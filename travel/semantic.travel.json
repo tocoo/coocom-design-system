@@ -1,0 +1,108 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "ToCoo Design System — Semantic Tokens(国内宿泊予約 travel)。用途ベース命名・全て primitive.travel.json への参照(HEX直書きなし)。ADR-0003 / 命名規則§1 準拠。コンポーネント実装はこの層のみ参照(primitive 直接参照禁止)。参照は {color.palette.*} 形式(実装着手ガイド§5)。",
+  "$meta": {
+    "layer": "semantic",
+    "service": "travel",
+    "version": "0.2.1-draft",
+    "status": "Draft",
+    "basedOn": "国内宿泊/semantic.travel.json 0.1.0-draft を起点に、参照先を primitive.travel.json(分割後)へ切替え、radius/motion/typography の用途トークンを追加(分類B)。0.2.1: 是正 R-1(elevation.* / icon.* 用途トークン追加=primitive 直接参照の解消)・R-2(color.text.link を placeholder へ降格・値不変)・S-5(color.icon.rating を null placeholder で構造化)。値・バインド先は変更していない",
+    "created": "2026-07-02",
+    "notes": [
+      "国内宿泊予約(travel)単独の semantic。3独立DS(ADR-0022)のため他サービスと値を共有せず、相互参照・共通化は行わない",
+      "brand/action/link は宿泊固有値(link は宿泊 accent 赤 #d10000)",
+      "C-10 会員ランク色は事実でないため破棄済(2026-06-26 オーナー確認)。本DSでは構築しない",
+      "Bootstrap残骸 --primary:#007bff(C-11/D-5)は持ち込まない",
+      "インバウンド宿泊サービスは現状なし前提(follow-up #12)"
+    ]
+  },
+
+  "color": {
+    "brand": {
+      "primary":      { "$value": "{color.palette.navy.500}", "$type": "color", "$description": "宿泊主色(紺 #283593)。揺れなし=確定", "$status": "bound" },
+      "primaryHover": { "$value": "{color.palette.navy.700}", "$type": "color", "$description": "主色 hover/暗色", "$status": "placeholder", "$note": "navy.700 暗色値が未抽出。暫定は hover opacity(follow-up #4)" }
+    },
+    "action": {
+      "primary": {
+        "bg":      { "$value": "{color.brand.primary}",      "$type": "color", "$description": "主CTA背景", "$status": "bound" },
+        "text":    { "$value": "{color.palette.white}",      "$type": "color", "$status": "bound" },
+        "hoverBg": { "$value": "{color.brand.primaryHover}", "$type": "color", "$status": "placeholder", "$note": "follow-up #4" }
+      },
+      "secondary": {
+        "bg":   { "$value": "{color.palette.white}",    "$type": "color", "$description": "白CTA(layerB §1 実測: bg白/文字#212121/pill)。暫定名 Button.secondary=要ADR(命名規則§10)", "$status": "bound" },
+        "text": { "$value": "{color.palette.gray.900}", "$type": "color", "$status": "placeholder", "$note": "Q2 連動" }
+      }
+    },
+    "text": {
+      "strong":  { "$value": "{color.palette.gray.900}", "$type": "color", "$description": "見出し", "$status": "placeholder", "$note": "Q2" },
+      "body":    { "$value": "{color.palette.gray.800}", "$type": "color", "$description": "本文", "$status": "placeholder", "$note": "Q2" },
+      "muted":   { "$value": "{color.palette.gray.600}", "$type": "color", "$status": "bound" },
+      "inverse": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
+      "link":    { "$value": "{color.palette.red.500}",  "$type": "color", "$description": "C-02 宿泊 link/accent 赤 #d10000(layerB では TOP リンクに主色紺 #283593 の使用も観測=DS内正規化候補🟢)", "$status": "placeholder", "$note": "R-2: コード値 #d10000(C-02)と本番実測リンク色 #283593(layerB §1/§6)で揺れあり。実装着手ガイド§6 の bound 定義(揺れなし)を満たさないため placeholder。$value は不変。正規化は owner-decisions #5(分類C・検討トリガー: リンク UI 着手時)" }
+    },
+    "surface": {
+      "default": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
+      "subtle":  { "$value": "{color.palette.gray.50}",  "$type": "color", "$status": "bound" },
+      "muted":   { "$value": "{color.palette.gray.100}", "$type": "color", "$status": "bound" },
+      "inverse": { "$value": "{color.palette.gray.900}", "$type": "color", "$status": "placeholder", "$note": "Q2 連動" }
+    },
+    "border": {
+      "subtle":  { "$value": "{color.palette.gray.300}", "$type": "color", "$status": "bound" },
+      "default": { "$value": "{color.palette.gray.400}", "$type": "color", "$status": "bound", "$note": "A-02 AAコントラスト監査で再確認" },
+      "strong":  { "$value": "{color.palette.gray.500}", "$type": "color", "$status": "bound" }
+    },
+    "state": {
+      "success": { "$value": "{color.palette.green.500}", "$type": "color", "$status": "placeholder", "$note": "follow-up #5 宿泊固有の success 色未取得(IB 値の暫定参照)" },
+      "error":   { "$value": "{color.palette.red.500}",   "$type": "color", "$description": "顧客向け error #d10000。リンク赤と同値だが用途トークンで分離(付随論点)", "$status": "bound" }
+    },
+    "accent": {
+      "campaign": { "$value": "{color.palette.orange.500}", "$type": "color", "$description": "特集/キャンペーン用 accent #EF4123(ブランド主色と分離)", "$status": "bound" }
+    },
+    "focus": {
+      "ring": { "$value": "{color.brand.primary}", "$type": "color", "$description": "命名規則§8 フォーカスリング(outline ベース)", "$status": "bound", "$note": "A-02 コントラスト未監査。AA目標" }
+    },
+    "icon": {
+      "rating": { "$value": null, "$type": "color", "$description": "ReviewStars 星の色(K-05/TR-i1・宿泊固有)", "$status": "placeholder", "$note": "S-5: 星の色は未抽出。空欄でなく null で構造化(実装着手ガイド§6)。検討トリガー: ReviewStars 実装着手時。Q8 アイコン体系に依存" }
+    }
+  },
+
+  "font": {
+    "body": {
+      "family":     { "$value": "{typography.fontFamily.sans}",      "$type": "fontFamily", "$status": "bound" },
+      "size":       { "$value": "{typography.size.md}",              "$type": "dimension", "$description": "本文 16px(layerB実測)", "$status": "placeholder", "$note": "Q4" },
+      "lineHeight": { "$value": "{typography.lineHeight.relaxed}",   "$type": "number", "$description": "1.8(layerB実測)", "$status": "placeholder", "$note": "Q4" }
+    },
+    "heading": {
+      "family": { "$value": "{typography.fontFamily.heading}", "$type": "fontFamily", "$status": "bound" },
+      "h2Size": { "$value": "{typography.size.3xl}",           "$type": "dimension", "$description": "h2 32px(layerB実測)", "$status": "placeholder", "$note": "Q4" }
+    },
+    "price": {
+      "family":       { "$value": "{typography.fontFamily.number}", "$type": "fontFamily", "$description": "K-03 価格数字強調(layerB実測は Roboto 900)", "$status": "bound" },
+      "weight":       { "$value": "{typography.fontWeight.black}",  "$type": "fontWeight", "$description": "数字 900(TR-i2)", "$status": "bound" },
+      "numberSize":   { "$value": "{typography.size.xl}",           "$type": "dimension", "$description": "価格数字 20px(layerB §2 実測)", "$status": "placeholder", "$note": "Q4" },
+      "captionSize":  { "$value": "{typography.size.xs}",           "$type": "dimension", "$description": "補助価格 12px(layerB §2 実測)", "$status": "placeholder", "$note": "Q4" }
+    }
+  },
+
+  "radius": {
+    "action": { "$value": "{radius.full}", "$type": "dimension", "$description": "ボタン形状 pill(R-01。.c-btn/白CTA 999px=layerB実測)", "$status": "bound" },
+    "card":   { "$value": "{radius.md}",   "$type": "dimension", "$description": "カード角丸", "$status": "placeholder", "$note": "検索結果カードの実px(角丸/影/余白)未取得(layerB §5)。暫定 md" }
+  },
+
+  "motion": {
+    "transition": {
+      "duration": { "$value": "{motion.duration.base}",   "$type": "duration", "$status": "placeholder", "$note": "follow-up #3(IB 値の暫定参照)" },
+      "easing":   { "$value": "{motion.easing.standard}", "$type": "cubicBezier", "$status": "placeholder", "$note": "follow-up #3" }
+    }
+  },
+
+  "icon": {
+    "reviewSize": { "$value": "{iconSize.sm}", "$type": "dimension", "$description": "ReviewStars 星のサイズ(K-05/TR-i1)", "$status": "placeholder", "$note": "S-5/R-1: Q8 アイコン体系未決。サイズは iconSize.sm を暫定参照。検討トリガー: ReviewStars 実装着手時" }
+  },
+
+  "elevation": {
+    "sticky":  { "$value": "{elevation.z.sticky}",  "$type": "number", "$description": "sticky ヘッダー等の重ね順", "$status": "bound" },
+    "overlay": { "$value": "{elevation.z.overlay}", "$type": "number", "$description": "オーバーレイの重ね順", "$status": "bound" },
+    "modal":   { "$value": "{elevation.z.modal}",   "$type": "number", "$description": "モーダルの重ね順", "$status": "bound" }
+  }
+}

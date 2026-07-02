@@ -1,0 +1,111 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "ToCoo Design System — Semantic Tokens(インバウンドレンタカー inbound)。semantic.inbound.json は素材に不在のため、56-IDマトリクスのインバウンド列と実装着手ガイド§2(生成手引き)から新規生成(分類B)。用途ベース命名・全て primitive.inbound.json への参照(HEX直書きなし)。参照は {color.palette.*} 形式(実装着手ガイド§5)。コンポーネント実装はこの層のみ参照。",
+  "$meta": {
+    "layer": "semantic",
+    "service": "inbound",
+    "version": "0.1.1-draft",
+    "status": "Draft",
+    "basedOn": "新規生成。出所: 56-IDマトリクス(インバウンド列)・実装着手ガイド§2・inventory-inbound.md・layerB-observations §3。要調査項目は値を作らず placeholder + follow-up 参照(生成手引きの規約)。0.1.1: 是正 R-1(elevation.* 用途トークン追加=primitive 直接参照の解消)。値・判断は変更していない",
+    "created": "2026-07-02",
+    "notes": [
+      "インバウンドレンタカー(inbound ゾーン)単独の semantic。3独立DS(ADR-0022)のため他サービスと値を共有せず、相互参照・共通化は行わない",
+      "brand primary は赤 #9e2334(layerB §3 確証)。国内RC の赤とは別値であり、Q1 の選定を自動適用しない(open-questions Q1 注記)",
+      "accent/link は blue #064f9e(ゾーン実装値)。ブランド accent ではない",
+      "i18n(en/cn/kr/th)は font.locale.* の fallback 体系で扱う(IB-i1/i2/i5。D-10 解消方針)",
+      "campaign accent は素材に色値なし(AD-01 IB 列=campaign系の構造のみ)のため定義しない。要実査"
+    ]
+  },
+
+  "color": {
+    "brand": {
+      "primary":      { "$value": "{color.palette.red.700}", "$type": "color", "$description": "IB 主色(赤 #9e2334=$color-main。layerB §3 本番確証)", "$status": "bound", "$note": "ゾーン実装値として bound。ブランド正値の最終確定は分類C(オーナー判断)" },
+      "primaryHover": { "$value": null, "$type": "color", "$description": "主色 hover 暗色", "$status": "placeholder", "$note": "BT-03: IB の hover は opacity 変化のみ確認(follow-up #4)。暗色トークンは未取得のため null" }
+    },
+    "action": {
+      "primary": {
+        "bg":      { "$value": "{color.brand.primary}", "$type": "color", "$description": "主CTA背景(%btn-red)", "$status": "bound" },
+        "text":    { "$value": "{color.palette.white}", "$type": "color", "$status": "bound" },
+        "hoverBg": { "$value": null, "$type": "color", "$status": "placeholder", "$note": "follow-up #4。暫定運用は hover opacity" }
+      },
+      "ghost": {
+        "text":   { "$value": "{color.palette.gray.900}", "$type": "color", "$description": "ghost CTA(Book Now: 透明bg/#212121/700/pill=layerB §3 実測)。ghost は暫定名=要ADR(命名規則§10)", "$status": "placeholder", "$note": "Q2 連動(gray.900)。variant 名の確定は命名規則§10" },
+        "border": { "$value": "{color.palette.gray.900}", "$type": "color", "$status": "placeholder", "$note": "枠線有無の実測詳細は要実査" }
+      }
+    },
+    "text": {
+      "strong":  { "$value": "{color.palette.gray.900}", "$type": "color", "$description": "見出し/本文強(layerB §3 実測 #212121)", "$status": "placeholder", "$note": "Q2" },
+      "body":    { "$value": "{color.palette.gray.900}", "$type": "color", "$description": "本文(IB 実測 14px #212121。実装 $color-txt:#333 は旧値=正規化候補🟢)", "$status": "placeholder", "$note": "Q2" },
+      "muted":   { "$value": "{color.palette.gray.700}", "$type": "color", "$description": "補足/弱(#616161。実装 #999 は正規化候補🟢)", "$status": "bound" },
+      "inverse": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
+      "link":    { "$value": "{color.palette.blue.500}", "$type": "color", "$description": "C-02 IB accent/link(blue #064f9e=ゾーン実装値)", "$status": "bound", "$note": "赤系へ寄せる方向の議論あり(分類C)。現状値で bind" }
+    },
+    "surface": {
+      "default": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
+      "subtle":  { "$value": "{color.palette.gray.50}",  "$type": "color", "$description": "実測 #f8f8f8/#f3f3f3 は正規化候補🟢", "$status": "bound" },
+      "muted":   { "$value": "{color.palette.gray.200}", "$type": "color", "$description": "C-06 IB surface($color-bg:#eee)", "$status": "bound" },
+      "inverse": { "$value": "{color.palette.gray.900}", "$type": "color", "$status": "placeholder", "$note": "Q2 連動" }
+    },
+    "border": {
+      "subtle":  { "$value": "{color.palette.gray.300}", "$type": "color", "$status": "bound" },
+      "default": { "$value": "{color.palette.gray.400}", "$type": "color", "$description": "C-07(#ccc。#c6c6c6 は正規化候補🟢)", "$status": "bound", "$note": "A-02 AAコントラスト監査で再確認" },
+      "strong":  { "$value": "{color.palette.gray.500}", "$type": "color", "$status": "bound" }
+    },
+    "state": {
+      "success": { "$value": "{color.palette.green.500}", "$type": "color", "$description": "C-08 IB form success(実装値=本DS自身の実測)", "$status": "bound" },
+      "error":   { "$value": "{color.palette.red.500}",   "$type": "color", "$description": "C-09 エラーテキスト(汎用赤 #f00)", "$status": "placeholder", "$note": "実装着手ガイド§2: #f00 は要精査" }
+    },
+    "form": {
+      "errorBg": { "$value": "{color.palette.pink.100}", "$type": "color", "$description": "F-02 フォーム error 背景(#ffd6de)", "$status": "placeholder", "$note": "follow-up #2" },
+      "focusBg": { "$value": "{color.palette.pink.200}", "$type": "color", "$description": "F-02 フォーム focus 背景(実装名 forcus 誤記を focus へ正規化=D-3)", "$status": "placeholder", "$note": "follow-up #2" }
+    },
+    "focus": {
+      "ring": { "$value": "{color.brand.primary}", "$type": "color", "$description": "命名規則§8 フォーカスリング(outline ベース)", "$status": "placeholder", "$note": "A-02 未監査。フォーム内は form.focusBg と併用" }
+    }
+  },
+
+  "font": {
+    "body": {
+      "family":     { "$value": "{typography.fontFamily.sans}",  "$type": "fontFamily", "$description": "新規制作の本文(現状実装 Arial,verdana は和文が薄い=D-3。踏襲しない)", "$status": "bound" },
+      "size":       { "$value": "{typography.size.sm}",          "$type": "dimension", "$description": "本文 14px(1.4rem=layerB 実測一致)", "$status": "placeholder", "$note": "Q4" },
+      "lineHeight": { "$value": "{typography.lineHeight.normal}", "$type": "number", "$description": "実測 1.5", "$status": "placeholder", "$note": "Q4" }
+    },
+    "heading": {
+      "family": { "$value": "{typography.fontFamily.heading}", "$type": "fontFamily", "$status": "bound" },
+      "h2Size": { "$value": "{typography.size.3xl}",           "$type": "dimension", "$description": "h2 36px(layerB §3 実測)", "$status": "placeholder", "$note": "Q4" },
+      "h3Size": { "$value": "{typography.size.md}",            "$type": "dimension", "$description": "h3 16px(layerB §3 実測)", "$status": "placeholder", "$note": "Q4" }
+    },
+    "display": {
+      "family": { "$value": "{typography.fontFamily.display}", "$type": "fontFamily", "$description": "装飾見出し(Outfit)。採否未決", "$status": "placeholder", "$note": "付随論点「欧文 Outfit の採否」" }
+    },
+    "price": {
+      "family": { "$value": "{typography.fontFamily.number}", "$type": "fontFamily", "$description": "K-03/CP-03: JPY~ Roboto 700(layerB §3 実測)", "$status": "bound" },
+      "weight": { "$value": "{typography.fontWeight.bold}",   "$type": "fontWeight", "$status": "bound" }
+    },
+    "locale": {
+      "en": { "$value": "{typography.fontFamilyFallback.en}", "$type": "fontFamily", "$description": "en 追加 fallback(不要=null)", "$status": "bound" },
+      "cn": { "$value": "{typography.fontFamilyFallback.cn}", "$type": "fontFamily", "$description": "cn 追加 fallback", "$status": "placeholder", "$note": "follow-up #10 実画面確認後に許可リストへ追加判断" },
+      "kr": { "$value": "{typography.fontFamilyFallback.kr}", "$type": "fontFamily", "$description": "kr 追加 fallback", "$status": "placeholder", "$note": "follow-up #10" },
+      "th": { "$value": "{typography.fontFamilyFallback.th}", "$type": "fontFamily", "$description": "th 追加 fallback(Prompt)。base スタックの末尾に追加適用", "$status": "bound" }
+    }
+  },
+
+  "radius": {
+    "action":        { "$value": "{radius.full}", "$type": "dimension", "$description": "CTA 形状 pill(R-01。Book Now 999px=layerB §3 実測)", "$status": "bound" },
+    "actionCompact": { "$value": "{radius.sm}",   "$type": "dimension", "$description": "小型ボタン(%btn-red 実装 3px→4px へ正規化候補🟢)。暫定名=要ADR", "$status": "placeholder", "$note": "pill と 3px の使い分け基準が未明文化。要実査" },
+    "card":          { "$value": "{radius.md}",   "$type": "dimension", "$status": "placeholder", "$note": "検索結果カードの実px未取得(layerB §4/§5)。暫定 md" }
+  },
+
+  "motion": {
+    "transition": {
+      "duration": { "$value": "{motion.duration.base}",   "$type": "duration", "$description": "IB 実装値 300ms(本DS自身の実測)", "$status": "bound" },
+      "easing":   { "$value": "{motion.easing.standard}", "$type": "cubicBezier", "$status": "bound" }
+    }
+  },
+
+  "elevation": {
+    "sticky":  { "$value": "{elevation.z.sticky}",  "$type": "number", "$description": "sticky ヘッダー等の重ね順", "$status": "bound" },
+    "overlay": { "$value": "{elevation.z.overlay}", "$type": "number", "$description": "オーバーレイ(remodal 等)の重ね順", "$status": "bound" },
+    "modal":   { "$value": "{elevation.z.modal}",   "$type": "number", "$description": "モーダルの重ね順", "$status": "bound" }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "ToCoo Design System — Semantic Tokens(国内レンタカー rental-car)。用途ベース命名・全て primitive.rental-car.json への参照(HEX直書きなし)。ADR-0003 / 命名規則§1 準拠。コンポーネント実装はこの層のみ参照(primitive 直接参照禁止)。参照は {color.palette.*} 形式(実装着手ガイド§5)。",
+  "$meta": {
+    "layer": "semantic",
+    "service": "rental-car",
+    "version": "0.2.1-draft",
+    "status": "Draft",
+    "basedOn": "国内レンタカー/semantic.rental-car.json 0.1.0-draft を起点に、参照先を primitive.rental-car.json(分割後)へ切替え、radius/motion/typography の用途トークンを追加(分類B)。0.2.1: 是正 R-1(elevation.* 用途トークン追加=primitive 直接参照の解消)。値・判断は変更していない",
+    "created": "2026-07-02",
+    "notes": [
+      "国内レンタカー(japan ゾーン)単独の semantic。3独立DS(ADR-0022)のため他サービスと値を共有せず、相互参照・共通化は行わない",
+      "brand/action はレンタカー固有値。link は国内実体が既定青(未スタイル)で正値未確定のため placeholder",
+      "インバウンド(inbound ゾーン)は別の独立DS(semantic.inbound.json)。本ファイルに内包しない",
+      "Q1 の選定はインバウンドの赤へ自動適用しない(open-questions Q1 注記 2026-07-01)"
+    ]
+  },
+
+  "color": {
+    "brand": {
+      "primary":      { "$value": "{color.palette.red.700}", "$type": "color", "$description": "レンタカー主色(赤)。暫定 #9E2334(Q1 暫定運用案)。japan ゾーン実装値は #9B2030(red.800)", "$status": "placeholder", "$note": "Q1 赤の正値確定後にバインド先 step を確定(分類C・オーナー判断)" },
+      "primaryHover": { "$value": "{color.palette.red.800}", "$type": "color", "$description": "主色 hover/暗色", "$status": "placeholder", "$note": "Q1。hover 実体も未取得(follow-up #4=hover opacity 暫定参照)" }
+    },
+    "action": {
+      "primary": {
+        "bg":      { "$value": "{color.brand.primary}",      "$type": "color", "$description": "主CTA背景(実測: 検索ボタン bg #9B2030/白/700/18px/角丸4px=layerB §3-2)", "$status": "placeholder", "$note": "Q1" },
+        "text":    { "$value": "{color.palette.white}",      "$type": "color", "$status": "bound" },
+        "hoverBg": { "$value": "{color.brand.primaryHover}", "$type": "color", "$status": "placeholder", "$note": "Q1 / follow-up #4" }
+      }
+    },
+    "text": {
+      "strong":  { "$value": "{color.palette.gray.900}", "$type": "color", "$description": "見出し", "$status": "placeholder", "$note": "Q2。国内実測は #1F1F1F(第3のテキスト色)" },
+      "body":    { "$value": "{color.palette.gray.800}", "$type": "color", "$description": "本文", "$status": "placeholder", "$note": "Q2" },
+      "muted":   { "$value": "{color.palette.gray.600}", "$type": "color", "$description": "補足/弱(実装 #999 系)", "$status": "bound" },
+      "inverse": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
+      "link":    { "$value": null, "$type": "color", "$description": "C-02 国内RC の link 正値は未確定。実体は既定青 #0000EE(未スタイル=負債 A-01/D-3)", "$status": "placeholder", "$note": "正値は分類C(オーナー判断)。IB ゾーン実装値 #064f9e の混入は除去済(FN-05/RR-02)。新DSでは用途トークンとして再定義する(構造化インプット仕様§6)" }
+    },
+    "surface": {
+      "default": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
+      "subtle":  { "$value": "{color.palette.gray.50}",  "$type": "color", "$status": "bound" },
+      "muted":   { "$value": "{color.palette.gray.100}", "$type": "color", "$description": "実装 #f1f1f1/#ededed は DS内正規化候補🟢", "$status": "bound" },
+      "inverse": { "$value": "{color.palette.gray.900}", "$type": "color", "$status": "placeholder", "$note": "Q2 連動" }
+    },
+    "border": {
+      "subtle":  { "$value": "{color.palette.gray.300}", "$type": "color", "$status": "bound" },
+      "default": { "$value": "{color.palette.gray.400}", "$type": "color", "$status": "bound", "$note": "A-02 AAコントラスト監査で再確認" },
+      "strong":  { "$value": "{color.palette.gray.500}", "$type": "color", "$status": "bound" }
+    },
+    "state": {
+      "success": { "$value": "{color.palette.green.500}", "$type": "color", "$status": "placeholder", "$note": "follow-up #5(IB 値の暫定参照)" },
+      "error":   { "$value": "{color.palette.red.500}",   "$type": "color", "$status": "placeholder", "$note": "follow-up #2 フォームエラー実体未取得(暫定バインド)" }
+    },
+    "accent": {
+      "campaign": { "$value": "{color.palette.orange.500}", "$type": "color", "$description": "特集/キャンペーン用 accent(ブランド主色と分離)", "$status": "bound" }
+    },
+    "focus": {
+      "ring": { "$value": "{color.brand.primary}", "$type": "color", "$description": "命名規則§8 フォーカスリング(outline ベース)", "$status": "placeholder", "$note": "Q1 連動。A-02 未監査" }
+    }
+  },
+
+  "font": {
+    "body": {
+      "family":     { "$value": "{typography.fontFamily.sans}",    "$type": "fontFamily", "$description": "収束候補(現状は游/Kozuka 混在=D-3)", "$status": "bound" },
+      "size":       { "$value": "{typography.size.sm}",            "$type": "dimension", "$description": "本文。国内実測は 15px(スケール外)", "$status": "placeholder", "$note": "Q4。15px の正規化(14/16px 寄せ)は root 基準確定と併せ要議論" },
+      "lineHeight": { "$value": "{typography.lineHeight.tight}",   "$type": "number", "$description": "国内実測 1.4", "$status": "placeholder", "$note": "Q4" }
+    },
+    "heading": {
+      "family": { "$value": "{typography.fontFamily.heading}", "$type": "fontFamily", "$description": "収束候補(現状 h1 Kozuka/h2-h3 游ゴシック混在=D-3)", "$status": "bound" },
+      "h1Size": { "$value": "{typography.size.4xl}",           "$type": "dimension", "$description": "h1 40px(layerB §3-2 実測)", "$status": "placeholder", "$note": "Q4" },
+      "h2Size": { "$value": "{typography.size.lg}",            "$type": "dimension", "$description": "h2 18px(56-ID T-05)", "$status": "placeholder", "$note": "Q4" }
+    },
+    "price": {
+      "family": { "$value": "{typography.fontFamily.number}", "$type": "fontFamily", "$description": "K-03 円+数字強調(構造🟢)。国内の価格書体実測は未取得", "$status": "placeholder", "$note": "number 自体が要実査(Barlow は宿泊由来の暫定継承)" }
+    }
+  },
+
+  "radius": {
+    "action": { "$value": "{radius.sm}", "$type": "dimension", "$description": "ボタン角丸 4px(R-01 🟡。IB/宿泊の pill とは異なる国内固有の形状。layerB §3-2 実測)", "$status": "bound" },
+    "card":   { "$value": "{radius.md}", "$type": "dimension", "$description": "カード角丸", "$status": "placeholder", "$note": "検索結果カードの実px未取得(layerB §5)。暫定 md" }
+  },
+
+  "motion": {
+    "transition": {
+      "duration": { "$value": "{motion.duration.base}",   "$type": "duration", "$status": "placeholder", "$note": "follow-up #3(IB 値の暫定参照)" },
+      "easing":   { "$value": "{motion.easing.standard}", "$type": "cubicBezier", "$status": "placeholder", "$note": "follow-up #3" }
+    }
+  },
+
+  "elevation": {
+    "sticky":  { "$value": "{elevation.z.sticky}",  "$type": "number", "$description": "sticky ヘッダー等の重ね順", "$status": "bound" },
+    "overlay": { "$value": "{elevation.z.overlay}", "$type": "number", "$description": "オーバーレイの重ね順", "$status": "bound" },
+    "modal":   { "$value": "{elevation.z.modal}",   "$type": "number", "$description": "モーダルの重ね順", "$status": "bound" }
+  }
+}

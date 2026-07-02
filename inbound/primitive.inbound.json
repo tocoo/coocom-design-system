@@ -1,0 +1,176 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "ToCoo Design System — Primitive Tokens(インバウンドレンタカー inbound 専用)。3独立DS(ADR-0022)につき本ファイルは inbound ゾーンのみが参照する。混載初版 primitive.json (0.1.0-draft) を実装着手ガイド§1の割当指針に従い分割し、インバウンド実装値(inventory-inbound §2)で固有色を補完。命名規則§1 準拠。",
+  "$meta": {
+    "layer": "primitive",
+    "service": "inbound",
+    "serviceLabel": "インバウンドレンタカー (tocoo/tocoo_rental_car — inbound ゾーン)",
+    "version": "0.2.1-draft",
+    "status": "Draft",
+    "basedOn": "共通/primitive.json 0.1.0-draft を実装着手ガイド§1で分割。pink 系(フォーム状態)と red 汎用は inventory-inbound §2 の実装値から追加(分類B・出所明記)。加えて typography.size.3xl を混載初版 32px(宿泊由来)から IB 実測 36px(layerB §3)へ変更している(値変更・出所明記=S-4)。0.2.1: 是正 S-4(3xl 値変更の basedOn 明記)。トークン値は 0.2.0 から変更していない",
+    "created": "2026-07-02",
+    "rules": [
+      "属性ベース命名({category}.{attribute}.{step})",
+      "コンポーネント実装からの直接参照は禁止(Semantic 経由のみ)",
+      "$status: bound=確定扱い / placeholder=未確定(Q番号・follow-up番号を $note に併記)",
+      "他サービス(travel/rental-car)のブランド固有色(紺 #283593・国内 #9b2030 等)は本ファイルに含めない(ADR-0022)",
+      "多言語フォントは許可リスト + fallback 体系で管理し、言語追加の都度継ぎ足しをしない(D-10 解消方針 = 判断基準§3)"
+    ]
+  },
+
+  "color": {
+    "palette": {
+      "white": { "$value": "#ffffff", "$type": "color", "$description": "C-05 揺れなし($color-default-white)", "$status": "bound" },
+      "black": { "$value": "#000000", "$type": "color", "$description": "C-05 揺れなし($color-default-black)", "$status": "bound" },
+
+      "gray": {
+        "50":  { "$value": "#f9f9f9", "$type": "color", "$description": "C-06。IB 実測では #f8f8f8/#f3f3f3 も観測=DS内正規化候補🟢", "$status": "bound" },
+        "100": { "$value": "#f5f5f5", "$type": "color", "$status": "bound" },
+        "200": { "$value": "#eeeeee", "$type": "color", "$description": "C-06 IB surface($color-bg:#eee。$color-sub-bg:#e8e8e2 は正規化候補🟢)", "$status": "bound" },
+        "300": { "$value": "#e0e0e0", "$type": "color", "$description": "C-07 border subtle", "$status": "bound" },
+        "400": { "$value": "#cccccc", "$type": "color", "$description": "C-07 border default(IB #ccc。#c6c6c6 は DS内正規化候補🟢)", "$status": "bound" },
+        "500": { "$value": "#bcbcbc", "$type": "color", "$description": "C-07 border strong", "$status": "bound" },
+        "600": { "$value": "#9e9e9e", "$type": "color", "$description": "C-04 text muted(IB 実装 $color-txt-lighter:#999 は正規化候補🟢)", "$status": "bound" },
+        "700": { "$value": "#616161", "$type": "color", "$description": "C-04 text muted strong(layerB §3 実測: グレー多用)", "$status": "bound" },
+        "800": { "$value": "#424242", "$type": "color", "$status": "placeholder", "$note": "Q2 テキスト主色の正値未確定" },
+        "900": { "$value": "#212121", "$type": "color", "$description": "C-03 IB text 強(layerB §3 実測 #212121。実装 $color-txt:#333 は旧値=正規化候補🟢)", "$status": "placeholder", "$note": "Q2" }
+      },
+
+      "red": {
+        "500": { "$value": "#ff0000", "$type": "color", "$description": "C-09 IB 汎用赤($color-default-red:#f00)。エラーテキスト用途候補", "$status": "placeholder", "$note": "実装着手ガイド§2: #f00 は要精査。エラー用途の正値は要確認" },
+        "700": { "$value": "#9e2334", "$type": "color", "$description": "C-01 インバウンド brand primary($color-main。layerB §3 本番実測で確証)。国内RC の #9b2030 とは本番でも別値(Q1 は自動適用しない)", "$status": "bound", "$note": "ゾーン実装値として bound。ブランド正値としての最終確定は分類C(オーナー判断)" },
+        "900": { "$value": "#9f1e30", "$type": "color", "$description": "グラデ端(%gradient-red 内 #9f1e30/#af2e40 は変数非経由の直書き=D-2/D-3)", "$status": "bound", "$note": "グラデ用実装値。新規制作での採否はブランドルール整理で判断" }
+      },
+
+      "pink": {
+        "100": { "$value": "#ffd6de", "$type": "color", "$description": "F-02 フォーム error 背景($color-form-error。inventory-inbound §2)", "$status": "placeholder", "$note": "follow-up #2 フォーム実体の追加観察待ち(実装値はあるが用途全体が未検証)" },
+        "200": { "$value": "#f3c8d0", "$type": "color", "$description": "F-02 フォーム focus 背景(実装名 $color-form-forcus=スペル誤記 D-3。本DSでは focus に正規化)", "$status": "placeholder", "$note": "follow-up #2" }
+      },
+
+      "blue": {
+        "500": { "$value": "#064f9e", "$type": "color", "$description": "C-02 IB accent/link($color-default-blue。layerB §3 確認)。ブランド accent ではなくゾーン実装値", "$status": "bound", "$note": "Phase 5 相当で赤系へ寄せる方向の議論あり(混載初版 $note 継承)。現状はゾーン実装値として保持" }
+      },
+
+      "green": {
+        "500": { "$value": "#58b85d", "$type": "color", "$description": "C-08 IB form success($color-form。グラデ #59b85e〜#44a048 は実装内)", "$status": "bound" }
+      }
+    }
+  },
+
+  "typography": {
+    "fontFamily": {
+      "sans":    { "$value": "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif", "$type": "fontFamily", "$description": "T-01 和文base(収束候補)。IB 本文実装は Arial,verdana=和文指定が薄い(D-3)。新規制作は本スタックへ収束", "$status": "bound" },
+      "heading": { "$value": "'Murecho', 'Noto Sans JP', sans-serif", "$type": "fontFamily", "$description": "T-01 見出し(IB TOP 実装: Outfit/Murecho。layerB §3: h2/h3 Roboto+Noto)", "$status": "bound" },
+      "latin":   { "$value": "'Roboto', sans-serif", "$type": "fontFamily", "$description": "T-02 欧文基準(頻出・layerB 実測)", "$status": "bound" },
+      "display": { "$value": "'Outfit', 'Roboto', sans-serif", "$type": "fontFamily", "$description": "T-02/T-06 欧文装飾(IB 頻出)。採否は付随論点(たたき台: Roboto 基準・Outfit は装飾用途で保留)", "$status": "placeholder", "$note": "付随論点「欧文 Outfit の採否」未決(open-questions)。Quicksand/Salesforce Sans 等の単発フォントは許可リスト外=採用しない" },
+      "number":  { "$value": "'Roboto', sans-serif", "$type": "fontFamily", "$description": "T-03 数字強調。IB 実測: JPY~ Roboto 700(layerB §3)", "$status": "bound" }
+    },
+    "fontFamilyFallback": {
+      "en": { "$value": null, "$type": "fontFamily", "$description": "en は latin(Roboto)+sans で充足。追加 fallback 不要", "$status": "bound", "$note": "追加なし=null は「不要」の明示(未取得ではない)" },
+      "cn": { "$value": null, "$type": "fontFamily", "$description": "中国語(簡体)の追加 fallback フォント", "$status": "placeholder", "$note": "follow-up #10 実装に cn 固有フォント指定は未確認。実画面確認後に許可リストへ追加判断" },
+      "kr": { "$value": null, "$type": "fontFamily", "$description": "韓国語の追加 fallback フォント", "$status": "placeholder", "$note": "follow-up #10 同上" },
+      "th": { "$value": "'Prompt'", "$type": "fontFamily", "$description": "T-06/D-10 タイ語 fallback(実装確認済)。sans/heading の末尾に追加適用(i18n 層で制御)", "$status": "bound" }
+    },
+    "fontWeight": {
+      "regular": { "$value": 400, "$type": "fontWeight", "$status": "bound" },
+      "medium":  { "$value": 500, "$type": "fontWeight", "$status": "bound" },
+      "bold":    { "$value": 700, "$type": "fontWeight", "$description": "JPY~ Roboto700・CTA 700(layerB §3)", "$status": "bound" }
+    },
+    "lineHeight": {
+      "tight":   { "$value": 1.3, "$type": "number", "$description": "IB _general 実装値", "$status": "placeholder", "$note": "Q4" },
+      "normal":  { "$value": 1.5, "$type": "number", "$description": "IB 本文実測 1.5(14px/21px=layerB §3)", "$status": "placeholder", "$note": "Q4" },
+      "relaxed": { "$value": 1.8, "$type": "number", "$status": "placeholder", "$note": "Q4" }
+    },
+    "size": {
+      "xs":  { "$value": "12px", "$type": "dimension", "$description": "IB .small 1.2rem", "$status": "placeholder", "$note": "Q4 root 基準(現状 62.5%=10px)未確定。スケール体系は確定、px値は root 確定後にバインド" },
+      "sm":  { "$value": "14px", "$type": "dimension", "$description": "IB 本文 1.4rem(layerB 実測一致)", "$status": "placeholder", "$note": "Q4" },
+      "md":  { "$value": "16px", "$type": "dimension", "$description": "IB .large 1.6rem / h3 16px", "$status": "placeholder", "$note": "Q4" },
+      "lg":  { "$value": "18px", "$type": "dimension", "$description": "IB .larger 1.8rem", "$status": "placeholder", "$note": "Q4" },
+      "xl":  { "$value": "20px", "$type": "dimension", "$description": "IB .largest 2.0rem", "$status": "placeholder", "$note": "Q4" },
+      "2xl": { "$value": "24px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" },
+      "3xl": { "$value": "36px", "$type": "dimension", "$description": "IB h2 36px(layerB §3 実測)。混載初版の 3xl は 32px(宿泊由来)であり、本DSでは IB 実測値を暫定バインド", "$status": "placeholder", "$note": "Q4" },
+      "4xl": { "$value": "40px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" }
+    }
+  },
+
+  "spacing": {
+    "0":  { "$value": "0px",  "$type": "dimension", "$status": "bound" },
+    "1":  { "$value": "4px",  "$type": "dimension", "$description": "base×1", "$status": "placeholder", "$note": "Q3 base unit 未確定。IB 実装は 5px 刻み15段生成(.m5〜.m70)。刻み体系は確定、値はQ3確定後にバインド" },
+    "2":  { "$value": "8px",  "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
+    "3":  { "$value": "12px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
+    "4":  { "$value": "16px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
+    "5":  { "$value": "20px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
+    "6":  { "$value": "24px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
+    "8":  { "$value": "32px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
+    "10": { "$value": "40px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
+    "12": { "$value": "48px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
+    "16": { "$value": "64px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" }
+  },
+
+  "size": {
+    "container": {
+      "sm": { "$value": "975px",  "$type": "dimension", "$description": "S-03 IB 未抽出のため宿泊値を暫定参照", "$status": "placeholder", "$note": "follow-up #6" },
+      "md": { "$value": "1195px", "$type": "dimension", "$status": "placeholder", "$note": "follow-up #6" },
+      "lg": { "$value": "1425px", "$type": "dimension", "$status": "placeholder", "$note": "follow-up #6" }
+    }
+  },
+
+  "radius": {
+    "sm":   { "$value": "4px",    "$type": "dimension", "$description": "R-02 IB %btn-red 実装 3px ≒ 4px へ正規化候補🟢", "$status": "bound" },
+    "md":   { "$value": "8px",    "$type": "dimension", "$status": "bound" },
+    "lg":   { "$value": "16px",   "$type": "dimension", "$status": "bound" },
+    "full": { "$value": "9999px", "$type": "dimension", "$description": "R-01 pill(CTA Book Now radius 999px=layerB §3 実測)", "$status": "bound" }
+  },
+
+  "shadow": {
+    "sm": { "$value": "0 1px 2px rgba(0,0,0,0.05)",  "$type": "shadow", "$description": "R-03 IB はアドホック。実値未抽出", "$status": "placeholder", "$note": "follow-up #13" },
+    "md": { "$value": "0 2px 8px rgba(0,0,0,0.10)",  "$type": "shadow", "$status": "placeholder", "$note": "follow-up #13" },
+    "lg": { "$value": "0 8px 24px rgba(0,0,0,0.15)", "$type": "shadow", "$status": "placeholder", "$note": "follow-up #13" }
+  },
+
+  "border": {
+    "width": {
+      "thin":  { "$value": "1px", "$type": "dimension", "$status": "bound" },
+      "thick": { "$value": "2px", "$type": "dimension", "$status": "bound" }
+    },
+    "style": {
+      "solid": { "$value": "solid", "$type": "strokeStyle", "$status": "bound" }
+    }
+  },
+
+  "elevation": {
+    "z": {
+      "base":     { "$value": 0,    "$type": "number", "$status": "bound" },
+      "dropdown": { "$value": 1000, "$type": "number", "$status": "bound" },
+      "sticky":   { "$value": 1100, "$type": "number", "$status": "bound" },
+      "overlay":  { "$value": 1200, "$type": "number", "$status": "bound" },
+      "modal":    { "$value": 1300, "$type": "number", "$status": "bound" },
+      "toast":    { "$value": 1400, "$type": "number", "$status": "bound" }
+    }
+  },
+
+  "motion": {
+    "duration": {
+      "fast": { "$value": "150ms", "$type": "duration", "$status": "placeholder", "$note": "follow-up #3 追加観察待ち" },
+      "base": { "$value": "300ms", "$type": "duration", "$description": "M-01 IB 実装値 `all .3s ease`(本DS自身の実測)", "$status": "bound" },
+      "slow": { "$value": "500ms", "$type": "duration", "$status": "placeholder", "$note": "follow-up #3" }
+    },
+    "easing": {
+      "standard": { "$value": "ease", "$type": "cubicBezier", "$description": "IB 実装値", "$status": "bound" }
+    }
+  },
+
+  "iconSize": {
+    "sm": { "$value": "16px", "$type": "dimension", "$status": "bound", "$note": "Q8 アイコン体系(FA5/FA6 混在=T-07)は別途。ここはサイズスケールのみ" },
+    "md": { "$value": "20px", "$type": "dimension", "$status": "bound" },
+    "lg": { "$value": "24px", "$type": "dimension", "$status": "bound" },
+    "xl": { "$value": "32px", "$type": "dimension", "$status": "bound" }
+  },
+
+  "breakpoint": {
+    "sm": { "$value": "600px",  "$type": "dimension", "$description": "B-01。inbound ゾーン実装は6段(320/520/692/800/960/961)。Q5 暫定運用案(宿泊 foundation 基準4段)を本DSの暫定値として独自定義", "$status": "placeholder", "$note": "Q5 未決。実装6段との移行整理が必要(follow-up #8 使用件数未集計)" },
+    "md": { "$value": "768px",  "$type": "dimension", "$status": "placeholder", "$note": "Q5" },
+    "lg": { "$value": "992px",  "$type": "dimension", "$status": "placeholder", "$note": "Q5" },
+    "xl": { "$value": "1200px", "$type": "dimension", "$status": "placeholder", "$note": "Q5" }
+  }
+}

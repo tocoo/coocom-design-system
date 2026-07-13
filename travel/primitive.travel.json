@@ -1,109 +1,125 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
-  "$description": "ToCoo Design System — Primitive Tokens(国内宿泊予約 travel 専用)。3独立DS(ADR-0022)につき本ファイルは travel のみが参照する。混載初版 primitive.json (0.1.0-draft) を実装着手ガイド§1の割当指針に従い分割(値は不変)。中立色・構造スケールは同値でも共有ではなく travel 独自定義。命名規則§1(属性ベース {category}.{attribute}.{step})準拠。",
+  "$description": "ToCoo 国内宿泊予約 Design System — Primitive Tokens (travel 専用)。独立DS要求仕様 R1〜R10 準拠: 本ファイルは travel のみが参照し、他サービスと値・実体を共有しない (R4 完全独立複製)。命名規則§1 (属性ベース {category}.{attribute}.{step}) 準拠。",
   "$meta": {
     "layer": "primitive",
     "service": "travel",
     "serviceLabel": "国内宿泊予約 (tocoo/tocoo_travel)",
-    "version": "0.2.0-draft",
+    "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "共通/primitive.json 0.1.0-draft (旧Phase 3 混載初版) — 実装着手ガイド§1で分割。値は変更していない",
-    "created": "2026-07-02",
+    "basedOn": "GitHub tocoo/coocom-design-system travel/primitive.travel.json 0.2.0-draft (Source of Truth)。設計判断 TVL-0001〜0004 を反映",
+    "sourceOfTruth": "https://github.com/tocoo/coocom-design-system/blob/main/travel/primitive.travel.json",
+    "created": "2026-07-09",
     "rules": [
-      "属性ベース命名({category}.{attribute}.{step})",
-      "コンポーネント実装からの直接参照は禁止(Semantic 経由のみ)",
-      "$status: bound=確定扱い / placeholder=未確定(Q番号・follow-up番号を $note に併記)",
-      "他サービス(rental-car/inbound)のブランド固有色は本ファイルに含めない(ADR-0022)",
-      "管理画面系の色(teal #1798A5 等)は顧客向けDSに持ち込まない(P3/ADR-0012)",
-      "Bootstrap残骸 --primary:#007bff (C-11/D-5) は本DSに持ち込まない"
+      "属性ベース命名 ({category}.{attribute}.{step})",
+      "コンポーネント実装からの直接参照は禁止 (Semantic 経由のみ)",
+      "$status: bound=確定 / placeholder=未確定 (Q番号・follow-up番号を $note に併記)",
+      "他サービス (rental-car/inbound) のトークンは参照・複製しない (R1-6)",
+      "管理画面系の色 (teal #1798A5 等)・Bootstrap 残骸 --primary:#007bff は持ち込まない"
     ]
   },
 
   "color": {
     "palette": {
-      "white": { "$value": "#ffffff", "$type": "color", "$description": "C-05 揺れなし", "$status": "bound" },
-      "black": { "$value": "#000000", "$type": "color", "$description": "C-05 揺れなし", "$status": "bound" },
-
+      "white": { "$value": "#ffffff", "$type": "color", "$status": "bound" },
+      "black": { "$value": "#000000", "$type": "color", "$status": "bound" },
       "gray": {
-        "50":  { "$value": "#f9f9f9", "$type": "color", "$description": "C-06 最も明るい面(宿泊実装値)", "$status": "bound" },
-        "100": { "$value": "#f5f5f5", "$type": "color", "$description": "C-06 surface(宿泊 #f5f5f5。layerB で #f5f5fa も観測=DS内正規化候補🟢)", "$status": "bound" },
-        "200": { "$value": "#eeeeee", "$type": "color", "$description": "C-06 surface 段階", "$status": "bound" },
-        "300": { "$value": "#e0e0e0", "$type": "color", "$description": "C-07 border subtle(宿泊 #DADCE0 実装値はDS内正規化候補🟢)", "$status": "bound" },
-        "400": { "$value": "#cccccc", "$type": "color", "$description": "C-07 border default", "$status": "bound" },
-        "500": { "$value": "#bcbcbc", "$type": "color", "$description": "C-07 border strong(宿泊 pearl-gray)", "$status": "bound" },
-        "600": { "$value": "#9e9e9e", "$type": "color", "$description": "C-04 text muted(宿泊 #9E9E9E)", "$status": "bound" },
-        "700": { "$value": "#616161", "$type": "color", "$description": "C-04 text muted strong(宿泊 #616161。補助価格等)", "$status": "bound" },
-        "800": { "$value": "#424242", "$type": "color", "$description": "C-03 本文(宿泊 $COLOR_TEXT・layerB実測一致)", "$status": "placeholder", "$note": "Q2 テキスト主色の正値未確定。暫定運用=2段(#424242本文+#212121見出し)" },
-        "900": { "$value": "#212121", "$type": "color", "$description": "C-03 見出し(layerB実測 h2 #212121)", "$status": "placeholder", "$note": "Q2" }
+        "50":  { "$value": "#f9f9f9", "$type": "color", "$description": "最も明るい面 (宿泊実装値)", "$status": "bound" },
+        "100": { "$value": "#f5f5f5", "$type": "color", "$description": "surface", "$status": "bound" },
+        "200": { "$value": "#eeeeee", "$type": "color", "$description": "surface 段階", "$status": "bound" },
+        "300": { "$value": "#e0e0e0", "$type": "color", "$description": "border subtle", "$status": "bound" },
+        "400": { "$value": "#cccccc", "$type": "color", "$description": "border default", "$status": "bound" },
+        "500": { "$value": "#bcbcbc", "$type": "color", "$description": "border strong (宿泊 pearl-gray)", "$status": "bound" },
+        "600": { "$value": "#9e9e9e", "$type": "color", "$description": "text muted", "$status": "bound" },
+        "700": { "$value": "#616161", "$type": "color", "$description": "text muted strong (補助価格等)", "$status": "bound" },
+        "800": { "$value": "#424242", "$type": "color", "$description": "本文 (宿泊 $COLOR_TEXT・実測一致)。TVL-0003 で確定", "$status": "bound" },
+        "900": { "$value": "#212121", "$type": "color", "$description": "見出し (実測 h2 #212121)。TVL-0003 で確定", "$status": "bound" }
       },
-
-      "navy": {
-        "500": { "$value": "#283593", "$type": "color", "$description": "C-01 宿泊 brand primary。揺れなし=確定(layerB §1 本番実測一致)", "$status": "bound" },
-        "700": { "$value": null, "$type": "color", "$description": "brand primary hover 用暗色。候補として layerB で $color-primary-dark #191E3B を観測(面色として)だが hover 用途の実測は未取得", "$status": "placeholder", "$note": "hover 暗色は未抽出(primitive 初版 $note 継承)。実測補完待ち。暫定は hover opacity 参照(follow-up #4)" }
+      "royal": {
+        "50":  { "$value": "#e8edfb", "$type": "color", "$description": "royal Tint 50 (選択面・薄い塗り)", "$status": "bound" },
+        "100": { "$value": "#dde3f8", "$type": "color", "$description": "royal 100 (段階)", "$status": "bound" },
+        "300": { "$value": "#8e9ee6", "$type": "color", "$description": "royal Soft 300 (補助・図版)", "$status": "bound" },
+        "500": { "$value": "#2c50c8", "$type": "color", "$description": "royal Primary 500 = brand primary (ロイヤルブルー)。白背景 ≈6.8:1 (AA適合)。TVL-0010 (旧 navy #283593)", "$status": "bound" },
+        "600": { "$value": "#2340a6", "$type": "color", "$description": "royal Hover 600", "$status": "bound" },
+        "700": { "$value": "#1b3488", "$type": "color", "$description": "royal Pressed 700", "$status": "bound" },
+        "900": { "$value": "#14224a", "$type": "color", "$description": "royal Ink (主色系の濃色テキスト)", "$status": "bound" }
       },
-
+      "indigo": {
+        "50":  { "$value": "#edecfb", "$type": "color", "$description": "indigo Tint 50", "$status": "bound" },
+        "100": { "$value": "#dbd9f7", "$type": "color", "$description": "indigo 100 (段階)", "$status": "bound" },
+        "300": { "$value": "#928ee4", "$type": "color", "$description": "indigo Soft 300", "$status": "bound" },
+        "500": { "$value": "#4845d4", "$type": "color", "$description": "indigo Primary 500 = brand secondary (ヴィヴィッドインディゴ)。白背景 ≈6.8:1 (AA適合)。TVL-0010 (サブ色)", "$status": "bound" },
+        "600": { "$value": "#3936b0", "$type": "color", "$description": "indigo Hover 600", "$status": "bound" },
+        "700": { "$value": "#2c2a8c", "$type": "color", "$description": "indigo Pressed 700", "$status": "bound" },
+        "900": { "$value": "#191840", "$type": "color", "$description": "indigo Ink", "$status": "bound" }
+      },
+      "amber": {
+        "500": { "$value": "#c8912c", "$type": "color", "$description": "メインスキーム逆色(補色) アンバー。ロイヤル #2C50C8 の対角。TVL-0010 (Owner指示[m0019] で参考値を正規トークン化。ガイドライン05/07章 補色)", "$status": "bound" }
+      },
+      "gold": {
+        "500": { "$value": "#c8b12c", "$type": "color", "$description": "サブスキーム逆色(補色) ゴールド。インディゴ #4845D4 の対角。TVL-0010 (Owner指示[m0019] で正規トークン化)", "$status": "bound" }
+      },
       "red": {
-        "500": { "$value": "#d10000", "$type": "color", "$description": "C-02/C-09 宿泊 link/accent・顧客向け error。リンク赤とエラー赤の同値整理は付随論点(用途トークンで分離済)", "$status": "bound" }
+        "500": { "$value": "#d10000", "$type": "color", "$description": "宿泊 link/error の実サイト由来・事実値。リンク赤とエラー赤の同値整理は付随論点 (用途トークンで分離済)。白背景コントラスト ≈5.7:1 (AA適合)", "$status": "bound" }
       },
-
       "orange": {
-        "500": { "$value": "#ef4123", "$type": "color", "$description": "特集アクセント(ultra-tocoo で最頻出18回=layerB §2)。ブランド主色と分離。キャンペーン用途のみ", "$status": "bound" }
+        "500": { "$value": "#ef4123", "$type": "color", "$description": "実サイト由来の特集橙 (事実値)。特集/キャンペーン用 accent。ブランド主色と分離", "$status": "bound" }
       },
-
       "green": {
-        "500": { "$value": "#58b85d", "$type": "color", "$description": "C-08 state success。宿泊固有の success 色は未抽出のためインバウンド実装値を暫定参照", "$status": "placeholder", "$note": "follow-up #5 宿泊の success 状態色未取得。IB #58b85d を暫定参照" }
+        "500": { "$value": "#58b85d", "$type": "color", "$description": "state success。宿泊固有の success 色は未抽出のためインバウンド実装値を暫定参照", "$status": "placeholder", "$note": "follow-up #5 宿泊の success 状態色未取得。IB #58b85d を暫定参照" }
       }
     }
   },
 
   "typography": {
     "fontFamily": {
-      "sans":    { "$value": "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif", "$type": "fontFamily", "$description": "T-01 和文base(layerB実測: Roboto+Noto Sans JP 完全一致)", "$status": "bound" },
-      "heading": { "$value": "'Murecho', 'Noto Sans JP', sans-serif", "$type": "fontFamily", "$description": "T-01 見出し(layerB実測: h2 Murecho 700)。特集頁で h2 が Noto 14px の頁あり=D-3 揺れ・DS内正規化候補🟢", "$status": "bound" },
-      "latin":   { "$value": "'Roboto', sans-serif", "$type": "fontFamily", "$description": "T-02 欧文", "$status": "bound" },
-      "number":  { "$value": "'Barlow', 'Roboto', sans-serif", "$type": "fontFamily", "$description": "T-03 数字強調(宿泊 $FONT_NUMBER=Barlow。layerB実測は価格数字 Roboto 900)", "$status": "bound" },
-      "mincho":  { "$value": "'Ryumin', '游明朝', serif", "$type": "fontFamily", "$description": "宿泊 $FONT_MINCHO。限定用途(travel 固有)", "$status": "bound" }
+      "sans":    { "$value": "'LINE Seed JP', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif", "$type": "fontFamily", "$description": "本文・UI ゴシック (Q1 確定=LINE Seed JP)。Noto Sans JP はフォールバック", "$status": "bound", "$note": "タイポグラフィ設計方針 2026-07-10 Q1 で確定 (旧: Noto Sans JP)" },
+      "heading": { "$value": "'LINE Seed JP', 'Noto Sans JP', sans-serif", "$type": "fontFamily", "$description": "一覧/カード見出しゴシック 700 (Q2)。詳細施設名は mincho を使用", "$status": "bound", "$note": "旧: Murecho。Q1/Q2 で本文ゴシックに統合" },
+      "latin":   { "$value": "'LINE Seed JP', 'Noto Sans JP', sans-serif", "$type": "fontFamily", "$description": "欧文 (本文ゴシックに統合・和欧一体設計)", "$status": "bound", "$note": "旧: Roboto。単独欧文フェイスを廃止" },
+      "number":  { "$value": "'LINE Seed JP', 'Noto Sans JP', sans-serif", "$type": "fontFamily", "$description": "価格・数字 (本文と同族。tabular-nums で桁揃え)", "$status": "bound", "$note": "旧: Barlow。Q3 で本文ゴシックに統合" },
+      "mincho":  { "$value": "'Noto Serif JP', serif", "$type": "fontFamily", "$description": "明朝。Display/Hero/特集/詳細施設名の主役 (Q8)", "$status": "bound", "$note": "旧: Shippori Mincho/Ryumin 代替。Q8 で Noto Serif JP に一本化" }
     },
     "fontWeight": {
       "regular": { "$value": 400, "$type": "fontWeight", "$status": "bound" },
       "medium":  { "$value": 500, "$type": "fontWeight", "$status": "bound" },
       "bold":    { "$value": 700, "$type": "fontWeight", "$status": "bound" },
-      "black":   { "$value": 900, "$type": "fontWeight", "$description": "価格数字 Roboto 900(layerB §2 実測)", "$status": "bound" }
+      "black":   { "$value": 900, "$type": "fontWeight", "$description": "巨大ヒーロー等の例外的強調のみ (Q3 で価格は 700 に変更・原則不使用)", "$status": "bound" }
     },
     "lineHeight": {
-      "tight":   { "$value": 1.3, "$type": "number", "$status": "placeholder", "$note": "Q4 基準確定で再調整" },
-      "normal":  { "$value": 1.5, "$type": "number", "$status": "placeholder", "$note": "Q4" },
-      "relaxed": { "$value": 1.8, "$type": "number", "$description": "宿泊本文実測 1.8(layerB §1)", "$status": "placeholder", "$note": "Q4。宿泊の現行実測値" }
+      "tight":   { "$value": 1.3, "$type": "number", "$status": "bound", "$note": "TVL-0001 で確定" },
+      "normal":  { "$value": 1.5, "$type": "number", "$status": "bound", "$note": "TVL-0001" },
+      "relaxed": { "$value": 1.8, "$type": "number", "$description": "宿泊本文実測 1.8", "$status": "bound", "$note": "TVL-0001" }
     },
     "size": {
-      "xs":  { "$value": "12px", "$type": "dimension", "$description": "補助価格 12px(layerB §2 実測)", "$status": "placeholder", "$note": "Q4 root 基準未確定。スケール体系は確定、px値は root 確定後にバインド" },
-      "sm":  { "$value": "14px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" },
-      "md":  { "$value": "16px", "$type": "dimension", "$description": "宿泊本文実測 16px(layerB §1)", "$status": "placeholder", "$note": "Q4" },
-      "lg":  { "$value": "18px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" },
-      "xl":  { "$value": "20px", "$type": "dimension", "$description": "価格数字 20px(layerB §2 実測)", "$status": "placeholder", "$note": "Q4" },
-      "2xl": { "$value": "24px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" },
-      "3xl": { "$value": "32px", "$type": "dimension", "$description": "宿泊 h2 32px(layerB §1 実測)", "$status": "placeholder", "$note": "Q4" },
-      "4xl": { "$value": "40px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" }
+      "xs":  { "$value": "0.75rem",  "$type": "dimension", "$description": "12px相当。補助価格 (実測)", "$status": "bound", "$note": "TVL-0001: root 16px・rem 基準で確定" },
+      "sm":  { "$value": "0.875rem", "$type": "dimension", "$description": "14px相当", "$status": "bound", "$note": "TVL-0001" },
+      "md":  { "$value": "1rem",     "$type": "dimension", "$description": "16px相当。本文 (実測)", "$status": "bound", "$note": "TVL-0001" },
+      "lg":  { "$value": "1.125rem", "$type": "dimension", "$description": "18px相当", "$status": "bound", "$note": "TVL-0001" },
+      "xl":  { "$value": "1.25rem",  "$type": "dimension", "$description": "20px相当。価格数字 (実測)", "$status": "bound", "$note": "TVL-0001" },
+      "2xl": { "$value": "1.5rem",   "$type": "dimension", "$description": "24px相当", "$status": "bound", "$note": "TVL-0001" },
+      "3xl": { "$value": "2rem",     "$type": "dimension", "$description": "32px相当。h2 (実測)", "$status": "bound", "$note": "TVL-0001" },
+      "4xl": { "$value": "2.5rem",   "$type": "dimension", "$description": "40px相当", "$status": "bound", "$note": "TVL-0001" },
+      "display-lg": { "$value": "3rem", "$type": "dimension", "$description": "48px相当。ヒーロー明朝用 (Q4 で1段追加)", "$status": "bound", "$note": "タイポグラフィ設計方針 2026-07-10 Q4。display-xl(60px) は見送り" }
     }
   },
 
   "spacing": {
-    "0":  { "$value": "0px",  "$type": "dimension", "$status": "bound" },
-    "1":  { "$value": "4px",  "$type": "dimension", "$description": "base×1", "$status": "placeholder", "$note": "Q3 base unit(4/5/8px)未確定。宿泊現状は 16px map($PADDING)。刻み体系は確定、値はQ3確定後にバインド" },
-    "2":  { "$value": "8px",  "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "3":  { "$value": "12px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "4":  { "$value": "16px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "5":  { "$value": "20px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "6":  { "$value": "24px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "8":  { "$value": "32px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "10": { "$value": "40px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "12": { "$value": "48px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "16": { "$value": "64px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" }
+    "0":  { "$value": "0",       "$type": "dimension", "$status": "bound" },
+    "1":  { "$value": "0.25rem", "$type": "dimension", "$description": "base×1 (4px相当)", "$status": "bound", "$note": "TVL-0002: 4px (0.25rem) 系で確定" },
+    "2":  { "$value": "0.5rem",  "$type": "dimension", "$status": "bound", "$note": "TVL-0002" },
+    "3":  { "$value": "0.75rem", "$type": "dimension", "$status": "bound", "$note": "TVL-0002" },
+    "4":  { "$value": "1rem",    "$type": "dimension", "$status": "bound", "$note": "TVL-0002" },
+    "5":  { "$value": "1.25rem", "$type": "dimension", "$status": "bound", "$note": "TVL-0002" },
+    "6":  { "$value": "1.5rem",  "$type": "dimension", "$status": "bound", "$note": "TVL-0002" },
+    "8":  { "$value": "2rem",    "$type": "dimension", "$status": "bound", "$note": "TVL-0002" },
+    "10": { "$value": "2.5rem",  "$type": "dimension", "$status": "bound", "$note": "TVL-0002" },
+    "12": { "$value": "3rem",    "$type": "dimension", "$status": "bound", "$note": "TVL-0002" },
+    "16": { "$value": "4rem",    "$type": "dimension", "$status": "bound", "$note": "TVL-0002" }
   },
 
   "size": {
     "container": {
-      "sm": { "$value": "975px",  "$type": "dimension", "$description": "S-03 宿泊 foundation 実装値", "$status": "bound" },
+      "sm": { "$value": "975px",  "$type": "dimension", "$description": "宿泊 foundation 実装値", "$status": "bound" },
       "md": { "$value": "1195px", "$type": "dimension", "$status": "bound" },
       "lg": { "$value": "1425px", "$type": "dimension", "$status": "bound" }
     }
@@ -113,11 +129,11 @@
     "sm":   { "$value": "4px",    "$type": "dimension", "$status": "bound" },
     "md":   { "$value": "8px",    "$type": "dimension", "$status": "bound" },
     "lg":   { "$value": "16px",   "$type": "dimension", "$status": "bound" },
-    "full": { "$value": "9999px", "$type": "dimension", "$description": "R-01/R-02 pill(宿泊 .c-btn・白CTA radius 999px=layerB実測)", "$status": "bound" }
+    "full": { "$value": "9999px", "$type": "dimension", "$description": "pill (宿泊 .c-btn・白CTA radius 999px=実測)", "$status": "bound" }
   },
 
   "shadow": {
-    "sm": { "$value": "0 1px 2px rgba(0,0,0,0.05)",  "$type": "shadow", "$description": "R-03 宿泊は box-shadow 定義ありだが実値未抽出", "$status": "placeholder", "$note": "follow-up #13 シャドウ実値未抽出。暫定値で据置き" },
+    "sm": { "$value": "0 1px 2px rgba(0,0,0,0.05)",  "$type": "shadow", "$status": "placeholder", "$note": "follow-up #13 実値未抽出。TVL-0008 により実査まで placeholder 維持" },
     "md": { "$value": "0 2px 8px rgba(0,0,0,0.10)",  "$type": "shadow", "$status": "placeholder", "$note": "follow-up #13" },
     "lg": { "$value": "0 8px 24px rgba(0,0,0,0.15)", "$type": "shadow", "$status": "placeholder", "$note": "follow-up #13" }
   },
@@ -145,26 +161,26 @@
 
   "motion": {
     "duration": {
-      "fast": { "$value": "150ms", "$type": "duration", "$status": "placeholder", "$note": "follow-up #3 宿泊の transition 未取得" },
-      "base": { "$value": "300ms", "$type": "duration", "$description": "IB `all .3s ease` の暫定参照(宿泊固有値は未取得)", "$status": "placeholder", "$note": "follow-up #3" },
+      "fast": { "$value": "150ms", "$type": "duration", "$status": "placeholder", "$note": "follow-up #3 宿泊の transition 未取得。TVL-0008" },
+      "base": { "$value": "300ms", "$type": "duration", "$status": "placeholder", "$note": "follow-up #3 (暫定値)" },
       "slow": { "$value": "500ms", "$type": "duration", "$status": "placeholder", "$note": "follow-up #3" }
     },
     "easing": {
-      "standard": { "$value": "ease", "$type": "cubicBezier", "$description": "IB 実装値の暫定参照", "$status": "placeholder", "$note": "follow-up #3" }
+      "standard": { "$value": "ease", "$type": "cubicBezier", "$status": "placeholder", "$note": "follow-up #3 (暫定値)" }
     }
   },
 
   "iconSize": {
-    "sm": { "$value": "16px", "$type": "dimension", "$status": "bound", "$note": "Q8 アイコン体系(Material+FA 混在)は別途。ここはサイズスケールのみ" },
+    "sm": { "$value": "16px", "$type": "dimension", "$status": "bound", "$note": "アイコン体系は FA6 で確定 (TVL-0006)" },
     "md": { "$value": "20px", "$type": "dimension", "$status": "bound" },
     "lg": { "$value": "24px", "$type": "dimension", "$status": "bound" },
     "xl": { "$value": "32px", "$type": "dimension", "$status": "bound" }
   },
 
   "breakpoint": {
-    "sm": { "$value": "600px",  "$type": "dimension", "$description": "B-01 宿泊 foundation(Bootstrap準拠4段)自身の実装値", "$status": "bound", "$note": "Q5 統一値のADR批准は未決だが、宿泊自身の実装値のためバインド" },
-    "md": { "$value": "768px",  "$type": "dimension", "$status": "bound", "$note": "Q5" },
-    "lg": { "$value": "992px",  "$type": "dimension", "$status": "bound", "$note": "Q5" },
-    "xl": { "$value": "1200px", "$type": "dimension", "$status": "bound", "$note": "Q5" }
+    "sm": { "$value": "640px",  "$type": "dimension", "$description": "TVL-0004: 現代標準 (旧 600px から変更)", "$status": "bound" },
+    "md": { "$value": "768px",  "$type": "dimension", "$status": "bound", "$note": "TVL-0004 (変更なし)" },
+    "lg": { "$value": "1024px", "$type": "dimension", "$description": "TVL-0004 (旧 992px から変更)", "$status": "bound" },
+    "xl": { "$value": "1280px", "$type": "dimension", "$description": "TVL-0004 (旧 1200px から変更)", "$status": "bound" }
   }
 }

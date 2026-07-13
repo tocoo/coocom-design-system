@@ -60,13 +60,18 @@
         "500": { "$value": "#c8b12c", "$type": "color", "$description": "サブスキーム逆色(補色) ゴールド。インディゴ #4845D4 の対角。TVL-0010 (Owner指示[m0019] で正規トークン化)", "$status": "bound" }
       },
       "red": {
-        "500": { "$value": "#d10000", "$type": "color", "$description": "宿泊 link/error の実サイト由来・事実値。リンク赤とエラー赤の同値整理は付随論点 (用途トークンで分離済)。白背景コントラスト ≈5.7:1 (AA適合)", "$status": "bound" }
+        "400": { "$value": "#d23a3a", "$type": "color", "$description": "メイン(第1候補ロイヤル)スキームの error。guideline 候補R --th-err (TVL-0011・per-scheme)", "$status": "bound" },
+        "500": { "$value": "#d10000", "$type": "color", "$description": "宿泊 link/error の実サイト由来・事実値。TVL-0011 で link=主色・error=候補別に移行したため現在は未参照。正式採用時の共通化候補として保持。白背景コントラスト ≈5.7:1 (AA適合)", "$status": "bound" }
+      },
+      "rose": {
+        "500": { "$value": "#d2405f", "$type": "color", "$description": "サブ(第2候補インディゴ)スキームの error。guideline 候補I --th-err (TVL-0011・per-scheme)", "$status": "bound" }
       },
       "orange": {
-        "500": { "$value": "#ef4123", "$type": "color", "$description": "実サイト由来の特集橙 (事実値)。特集/キャンペーン用 accent。ブランド主色と分離", "$status": "bound" }
+        "400": { "$value": "#e4572e", "$type": "color", "$description": "メイン(第1候補ロイヤル)スキームの特集アクセント。guideline 候補R --th-accent (TVL-0011・per-scheme)", "$status": "bound" },
+        "500": { "$value": "#ef4123", "$type": "color", "$description": "実サイト由来の特集橙 (事実値)。旧・共有 accent。per-scheme 化 (TVL-0011) で現在は未参照。正式採用時の共通化候補として保持", "$status": "bound" }
       },
-      "green": {
-        "500": { "$value": "#58b85d", "$type": "color", "$description": "state success。宿泊固有の success 色は未抽出のためインバウンド実装値を暫定参照", "$status": "placeholder", "$note": "follow-up #5 宿泊の success 状態色未取得。IB #58b85d を暫定参照" }
+      "coral": {
+        "500": { "$value": "#e0553c", "$type": "color", "$description": "サブ(第2候補インディゴ)スキームの特集アクセント。guideline 候補I --th-accent (TVL-0011・per-scheme)", "$status": "bound" }
       }
     }
   },

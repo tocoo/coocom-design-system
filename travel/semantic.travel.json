@@ -11,14 +11,14 @@
     "created": "2026-07-09",
     "notes": [
       "travel 単独の semantic。他サービスと値を共有せず、相互参照・共通化は行わない (R1/R4)",
-      "brand/action/link は宿泊固有値 (link は宿泊 accent 赤 #d10000・保留中=TVL-0005)",
+      "brand/action/link は宿泊固有値 (link=各スキームの主色。TVL-0011 で TVL-0005 を解決。旧 赤 #d10000 は事実値として primitive に保持)",
       "会員ランク色は構築しない (破棄済)。Bootstrap 残骸 --primary:#007bff は持ち込まない"
     ]
   },
 
   "color": {
     "scheme": {
-      "$description": "ブランドカラースキーム (TVL-0010)。2スキームを保存: main=第1候補メイン(ロイヤル) / sub=第2候補サブ(インディゴ)。各スキームは主色ハュー由来ロール(tint/soft/base/hover/pressed/ink)・逆色(inverse=補色) を自スキームの値で保持する。全スキーム共通(共有)は器/ニュートラル(surface/gray)・テキスト・境界・状態色・特集橙 (Owner決定 Q2)。DS 既定ビルドは第1候補(main)の値を bound。逆色は Owner指示[m0019] により正規トークン化 (ガイドライン07章の既定=常設化しない、とは差分)",
+      "$description": "ブランドカラースキーム (TVL-0010/0011)。2スキームを保存: main=第1候補メイン(ロイヤル) / sub=第2候補サブ(インディゴ)。各スキームは主色ハュー由来ロール(tint/soft/base/hover/pressed/ink)・逆色(inverse=補色) に加え、success(=base 主色)・error・accent(特集) を自スキームの値で保持する。TVL-0011: success=主色/評価色(icon.rating)=逆色/error・accent=候補別値 を per-scheme 化 (いずれかが正式採用された際に共通化)。全スキーム共通(共有)は器/ニュートラル(surface/gray)・テキスト・境界のみ (Owner決定 Q2)。DS 既定ビルドは第1候補(main)の値を bound。逆色は Owner指示[m0019] により正規トークン化 (ガイドライン07章の既定=常設化しない、とは差分)",
       "main": {
         "tint":    { "$value": "{color.palette.royal.50}",  "$type": "color", "$description": "メイン Tint (選択面・薄い塗り)", "$status": "bound" },
         "soft":    { "$value": "{color.palette.royal.300}", "$type": "color", "$description": "メイン Soft (補助・図版)", "$status": "bound" },
@@ -26,7 +26,9 @@
         "hover":   { "$value": "{color.palette.royal.600}", "$type": "color", "$description": "メイン hover #2340A6", "$status": "bound" },
         "pressed": { "$value": "{color.palette.royal.700}", "$type": "color", "$description": "メイン pressed #1B3488", "$status": "bound" },
         "ink":     { "$value": "{color.palette.royal.900}", "$type": "color", "$description": "メイン Ink #14224A (主色系の濃色テキスト)", "$status": "bound" },
-        "inverse": { "$value": "{color.palette.amber.500}", "$type": "color", "$description": "メイン逆色(補色) アンバー #C8912C。主色の対角=補助アクセント/図版/データ可視化用。特集アクセントとは別系統。TVL-0010 (Owner指示[m0019] で正規化)", "$status": "bound" }
+        "inverse": { "$value": "{color.palette.amber.500}", "$type": "color", "$description": "メイン逆色(補色) アンバー #C8912C。主色の対角=補助アクセント/図版/データ可視化用。評価色(星)に使用 (TVL-0011)。特集アクセントとは別系統。TVL-0010 (Owner指示[m0019] で正規化)", "$status": "bound" },
+        "error":   { "$value": "{color.palette.red.400}",    "$type": "color", "$description": "メインスキーム error #D23A3A (per-scheme・TVL-0011)。正式採用時に共通化", "$status": "bound" },
+        "accent":  { "$value": "{color.palette.orange.400}", "$type": "color", "$description": "メインスキーム 特集アクセント #E4572E (per-scheme・TVL-0011)。正式採用時に共通化", "$status": "bound" }
       },
       "sub": {
         "tint":    { "$value": "{color.palette.indigo.50}",  "$type": "color", "$description": "サブ Tint", "$status": "bound" },
@@ -35,7 +37,9 @@
         "hover":   { "$value": "{color.palette.indigo.600}", "$type": "color", "$description": "サブ hover #3936B0", "$status": "bound" },
         "pressed": { "$value": "{color.palette.indigo.700}", "$type": "color", "$description": "サブ pressed #2C2A8C", "$status": "bound" },
         "ink":     { "$value": "{color.palette.indigo.900}", "$type": "color", "$description": "サブ Ink #191840", "$status": "bound" },
-        "inverse": { "$value": "{color.palette.gold.500}", "$type": "color", "$description": "サブ逆色(補色) ゴールド #C8B12C。主色の対角=補助アクセント。特集アクセントとは別系統。TVL-0010 (Owner指示[m0019] で正規化)", "$status": "bound" }
+        "inverse": { "$value": "{color.palette.gold.500}", "$type": "color", "$description": "サブ逆色(補色) ゴールド #C8B12C。主色の対角=補助アクセント。評価色(星)に使用 (TVL-0011)。特集アクセントとは別系統。TVL-0010 (Owner指示[m0019] で正規化)", "$status": "bound" },
+        "error":   { "$value": "{color.palette.rose.500}",  "$type": "color", "$description": "サブスキーム error #D2405F (per-scheme・TVL-0011)。正式採用時に共通化", "$status": "bound" },
+        "accent":  { "$value": "{color.palette.coral.500}", "$type": "color", "$description": "サブスキーム 特集アクセント #E0553C (per-scheme・TVL-0011)。正式採用時に共通化", "$status": "bound" }
       }
     },
     "brand": {
@@ -60,7 +64,7 @@
       "body":    { "$value": "{color.palette.gray.800}", "$type": "color", "$description": "本文 #424242 (白背景 ≈9.7:1 AA適合)", "$status": "bound", "$note": "TVL-0003" },
       "muted":   { "$value": "{color.palette.gray.600}", "$type": "color", "$status": "bound" },
       "inverse": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
-      "link":    { "$value": "{color.palette.red.500}",  "$type": "color", "$description": "宿泊 link/accent 赤 #d10000 (実サイト由来・事実値)。実測ではリンクに主色の使用も観測=揺れ", "$status": "placeholder", "$note": "TVL-0005 保留 (赤 #d10000 と主色の併存)。検討トリガー: リンク UI 着手時" }
+      "link":    { "$value": "{color.scheme.main.base}",  "$type": "color", "$description": "リンク=各スキームの主色(primary)。DS 既定=第1候補メイン #2C50C8。副色文脈は scheme.sub.base #4845D4。guideline ロール表「Primary=リンク」に準拠", "$status": "bound", "$note": "TVL-0011 (Owner決定 [m0046])。旧 TVL-0005 保留 (赤 #d10000/紺併存) を link=主色 で解決。リンク・text バリアント・パンくず・ログインが主色に追隨" }
     },
     "surface": {
       "default": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
@@ -74,17 +78,17 @@
       "strong":  { "$value": "{color.palette.gray.500}", "$type": "color", "$status": "bound" }
     },
     "state": {
-      "success": { "$value": "{color.palette.green.500}", "$type": "color", "$status": "placeholder", "$note": "follow-up #5 宿泊固有の success 色未取得 (IB 値の暫定参照)" },
-      "error":   { "$value": "{color.palette.red.500}",   "$type": "color", "$description": "顧客向け error #d10000。リンク赤と同値だが用途トークンで分離 (付随論点)", "$status": "bound" }
+      "success": { "$value": "{color.scheme.main.base}", "$type": "color", "$description": "成功=各スキームの主色(primary)。DS 既定=第1候補メイン(ロイヤル #2C50C8)。第2候補サブ文脈では scheme.sub.base (インディゴ #4845D4)。専用の緑は廃止 (TVL-0011)", "$status": "bound", "$note": "TVL-0011 (Owner決定 [m0024]: success=各パレットの主色。#1E8A5A は不採用・green primitive 削除)。帰結: success は brand primary と同色 (色による成功識別なし・Owner承認済)" },
+      "error":   { "$value": "{color.scheme.main.error}",   "$type": "color", "$description": "error=各スキームの error。DS 既定=第1候補メイン #D23A3A。副色文脈は scheme.sub.error #D2405F。per-scheme・正式採用時に共通化 (TVL-0011)", "$status": "bound" }
     },
     "accent": {
-      "campaign": { "$value": "{color.palette.orange.500}", "$type": "color", "$description": "特集/キャンペーン用 accent #EF4123 (ブランド主色と分離)", "$status": "bound" }
+      "campaign": { "$value": "{color.scheme.main.accent}", "$type": "color", "$description": "特集/セール強調の accent=各スキームの accent。DS 既定=第1候補メイン #E4572E。副色文脈は scheme.sub.accent #E0553C。**バッジ/割引ラベル等の『点』専用 (Card badge)。ボタン塗りには使用しない=campaign ボタンは廃止 (TVL-0012)**。ブランド主色と分離・per-scheme・正式採用時に共通化 (TVL-0011)", "$status": "bound" }
     },
     "focus": {
       "ring": { "$value": "{color.brand.primary}", "$type": "color", "$description": "フォーカスリング (outline ベース=命名規則§8)。白背景 ≈10.4:1", "$status": "bound" }
     },
     "icon": {
-      "rating": { "$value": null, "$type": "color", "$description": "ReviewStars 星の色 (宿泊固有)", "$status": "placeholder", "$note": "星の色は未抽出。空欄でなく null で構造化。検討トリガー: ReviewStars 実装着手時。アイコン体系は FA6 (TVL-0006)" }
+      "rating": { "$value": "{color.scheme.main.inverse}", "$type": "color", "$description": "ReviewStars 星の色 (宿泊固有) = スキームの逆色(補色)。DS 既定アクティブスキーム=メイン(ロイヤル)のため main.inverse アンバー #C8912C を bound。副色(インディゴ)スキーム文脈では sub.inverse ゴールド #C8B12C を用いる (per-scheme)", "$status": "bound", "$note": "TVL-0011 (Owner決定 [m0015]/[m0017]: 各スキームは自らの補色を評価色に使う)。逆色トークンの適用が一部確定 (評価色=補色)。アイコン体系は FA6 (TVL-0006)" }
     }
   },
 
@@ -123,7 +127,7 @@
   },
 
   "icon": {
-    "reviewSize": { "$value": "{iconSize.sm}", "$type": "dimension", "$description": "ReviewStars 星のサイズ。アイコン体系 FA6 (TVL-0006)", "$status": "bound", "$note": "サイズは確定。色は color.icon.rating (placeholder) 参照" }
+    "reviewSize": { "$value": "{iconSize.sm}", "$type": "dimension", "$description": "ReviewStars 星のサイズ。アイコン体系 FA6 (TVL-0006)", "$status": "bound", "$note": "サイズは確定。色は color.icon.rating (bound・スキーム逆色 = TVL-0011) 参照" }
   },
 
   "elevation": {

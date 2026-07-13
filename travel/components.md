@@ -13,7 +13,7 @@
 - [事実] 状態の固定リスト: `hover / active / focus / disabled / loading / error / success` (命名規則§2)。追加は ADR 必須
 - [事実] ボタン状態 (hover/active/disabled/focus) は宿泊で未取得 (follow-up #4 / TVL-0008)。全 Component の hover は「opacity 変化 (≈0.85)」を暫定参照とし `🚧 暫定` を付す
 - [事実] フォーカスは `outline` ベースで `{color.focus.ring}` を使用 (命名規則§8)
-- [事実] variant 語彙は `primary / secondary / ghost / campaign / text` の5語で確定 (GOV-0002)。語彙外の新設は ADR 必須
+- [事実] variant 語彙は `primary / secondary / ghost / campaign / text` の5語で確定 (GOV-0002)。語彙外の新設は ADR 必須。**travel の Button 実装は4語 (primary/secondary/ghost/text)**— campaign (accent 塗りボタン) は廃止 (TVL-0012)、accent はバッジ/割引ラベルの「点」専用 (Card badge)
 - [事実] 未着手 Component: Select / Tabs / Toast / Table / Accordion — 実体データ皆無。本仕様に含めない
 
 ---
@@ -26,15 +26,15 @@
   - `Button.primary` — bg `{color.action.primary.bg}` (主色=ロイヤル) / 文字 `{color.action.primary.text}` / 角丸 `{radius.action}` (pill)
   - `Button.secondary` — 白CTA (名称は GOV-0002 で正式確定)。bg `{color.action.secondary.bg}` / 文字 `{color.action.secondary.text}` / pill。実測 (bg白・#212121・999px)
   - `Button.ghost` — 透明地 + `{color.text.strong}` 枠/文字。特集を見る等の低強調ナビ
-  - `Button.text` — 透明地 + `{color.text.link}` (🚧 TVL-0005 保留)。キャンセル・ログイン等の低強調テキスト操作
-  - `Button.campaign` — 特集/セール用。bg `{color.accent.campaign}` (#EF4123) / 文字 white / pill。通常導線では使用しない
+  - `Button.text` — 透明地 + `{color.text.link}` (=主色・TVL-0011)。キャンセル・ログイン等の低強調テキスト操作
+  - （campaign バリアントは廃止―TVL-0012。特集/セールの accent は Card のバッジ/割引ラベル等の「点」でのみ使用）
 - 状態:
   - hover: 🚧 暫定 opacity 変化 (navy 暗色未抽出 = follow-up #4)
   - active / disabled / loading: 🚧 未取得。focus は `{color.focus.ring}` outline を暫定適用
 - Do / Don't:
   - Do: 1画面の主 CTA は `primary` 1つに絞る
   - Do: 実装は Semantic のみ参照する
-  - Don't: 特集色 `{color.accent.campaign}` を通常導線の CTA に使わない (主色と分離)
+  - Don't: accent (`{color.accent.campaign}`) をボタン塗りに使わない (バッジ/割引ラベル等の「点」専用・TVL-0012)
   - Don't: `--primary:#007bff` (Bootstrap 残骸) を参照しない
 - 関連トークン: `color.action.*` / `radius.action` / `color.focus.ring` / `motion.transition.*`
 - 未確定事項: 状態一式 (follow-up #4)・サイズ段階 sm/md/lg の実測なし (暫定 md のみ)
@@ -98,8 +98,8 @@
 - Do / Don't:
   - Do: 数値スコアを併記 (色・形のみで伝えない = R9)
   - Don't: 他サービスへ流用しない
-- 関連トークン: `{icon.reviewSize}` (bound) / `{color.icon.rating}` (🚧 色未抽出・null)
-- 未確定事項: 星の色・実寸 (要実査。検討トリガー: ReviewStars 実装着手時)
+- 関連トークン: `{icon.reviewSize}` (bound) / `{color.icon.rating}` (bound・各スキームの逆色 #C8912C/#C8B12C = TVL-0011)
+- 未確定事項: 星の実寸 (要実査。検討トリガー: ReviewStars 実装着手時)
 
 ## Header
 
@@ -124,7 +124,7 @@
 
 - ステータス: Draft
 - 用途: 階層ナビゲーション
-- 構成: リンク (`{color.text.link}` 🚧 TVL-0005 保留) + 区切り + 現在地 (`{color.text.muted}`)
+- 構成: リンク (`{color.text.link}` = 主色・TVL-0011) + 区切り + 現在地 (`{color.text.muted}`)
 - Do: 現在地はリンク化しない
 
 ## Modal / Overlay

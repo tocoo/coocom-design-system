@@ -52,3 +52,4 @@
 | --- | --- | --- |
 | 2026-07-02 | 初版 (3サービス分の成果物一式・索引・ステータス) | Claude Design |
 | 2026-07-02 | 独立監査所見の是正を反映 (R-1/R-2・S-3〜S-6)。直接参照のあった semantic 3ファイルは version bump (travel/rc 0.2.1、inbound 0.1.1)、primitive.inbound 0.2.1 | Claude Design (Builder) |
+| 2026-07-13 | travel/ を 0.3.0-draft へ更新 (TVL-0001〜0012・PR分割)。ブランド色刷新・rem/4px化・per-scheme配色・campaign廃止 | Claude Code |

@@ -1,87 +1,101 @@
-# 国内宿泊予約 Design System (travel)
+# 国内宿泊予約 Design System (travel) — design.md
 
 - 種別: DS 成果物 (design.md = 統合文書)
-- 状態: Draft
-- 作成日: 2026-07-02
-- 対象: 顧客向け UI のみ (P3/ADR-0012。管理画面は対象外)
-- 実装の所在: GitHub `tocoo/tocoo_travel` (P6/ADR-0004)
-- 独立性: 本 DS は国内レンタカー・インバウンドレンタカーと Foundation/Semantic/design.md を共有しない (P1/ADR-0022)。命名・運用規約のみ3サービス共通 (P2)
+- 状態: Draft (0.3.0-draft)
+- 作成日: 2026-07-09
+- Source of Truth: https://github.com/tocoo/coocom-design-system/tree/main/travel (R3-10)
+- 対象: 顧客向け UI のみ (管理画面は対象外)
+- 実装の所在: GitHub `tocoo/tocoo_travel`
+- 独立性: 本 DS は国内レンタカー・インバウンドレンタカーと Foundation/Semantic/Component/design.md を共有しない (要求仕様 R1)。命名・運用規約のみ3サービス共通 (`governance/` 参照 = R2)
 
 ---
 
 ## 1. 概要・ブランド位置づけ
 
 - [事実] サービス: ToCoo! 宿泊予約 (tocoo.jp)。国内宿泊予約の顧客向けサイト
-- [事実] 主色: 紺 `#283593`。本番実測で揺れなし=確定 (C-01/layerB §1)
-- [事実] 固有要素: 星評価 (TR-i1)・価格強調タイポ (TR-i2)。レンタカー2サービスには無い
-- [観察] コピートーンは実用・価格訴求 (CP-01)。CTA 文言例「プラン選択へ」(CP-02)
-- [事実] 負債の非持込: Bootstrap 残骸 `--primary:#007bff` (C-11/D-5)・foundation/spa の変数二重定義 (D-2)・管理画面系の色 (teal `#1798A5` 等) は本 DS に持ち込まない
-- [事実] 非構築: 会員ランク色 (C-10 破棄=2026-06-26 オーナー訂正)
+- [決定] 主色=メイン: ロイヤルブルー `#2C50C8` (brand.primary)。サブ: ヴィヴィッドインディゴ `#4845D4` (brand.secondary)。オーナー決定 2026-07-10 (TVL-0010)。旧 主色 紺 `#283593` (navy) から変更
+- [事実] 固有要素: 星評価 (ReviewStars)・価格強調タイポ (PriceTag)。レンタカー2サービスには無い
+- [観察] コピートーンは実用・価格訴求。CTA 文言例「プラン選択へ」→ 詳細は `brand-content.md`
+- [事実] 負債の非持込: Bootstrap 残骸 `--primary:#007bff`・変数二重定義・管理画面系の色 (teal `#1798A5` 等) は本 DS に持ち込まない
+- [事実] 非構築: 会員ランク色 (破棄済)
 
 ## 2. カラー
 
-正: `semantic.travel.json` (用途) → `primitive.travel.json` (値)。以下は要約。
+正: `semantic.travel.json` (用途) → `primitive.travel.json` (値)。以下は要約。配色は **共有ファウンデーション＋ブランド2スキーム** の二層 (TVL-0010)。器/ニュートラル (白基調 warm-gray)・テキスト・境界・特集橙 #EF4123・状態色は全スキーム共通 (surface/text/border/accent/state)。スキームで差し替わるのは主色ハュー由来ロールと逆色のみ: `color.scheme.main` = メイン(royal) / `color.scheme.sub` = サブ(indigo)。各スキームは tint(50)/soft(300)/base(500)/hover(600)/pressed(700)/ink(900)/**inverse(逆色)**。
 
 | 用途 (Semantic) | 参照 | 値 | 状態 |
 | --- | --- | --- | --- |
-| `color.brand.primary` | `{color.palette.navy.500}` | `#283593` | bound |
-| `color.brand.primaryHover` | `{color.palette.navy.700}` | null | 🚧 hover 暗色未抽出 |
-| `color.text.strong` / `body` | gray.900 / gray.800 | `#212121` / `#424242` | 🚧 Q2 (2段を暫定共通) |
+| `color.scheme.main.*` (メイン=royal) | royal.50/300/500/600/700/900 + amber.500 | tint #E8EDFB / soft #8E9EE6 / base #2C50C8 / hover #2340A6 / pressed #1B3488 / ink #14224A / **inverse #C8912C (アンバー・逆色)** | bound (TVL-0010) |
+| `color.scheme.sub.*` (サブ=indigo) | indigo.50/300/500/600/700/900 + gold.500 | tint #EDECFB / soft #928EE4 / base #4845D4 / hover #3936B0 / pressed #2C2A8C / ink #191840 / **inverse #C8B12C (ゴールド・逆色)** | bound (TVL-0010) |
+| `color.brand.primary` (メイン) | scheme.main.base | `#2C50C8` | bound (白背景 ≈6.8:1) |
+| `color.brand.primaryHover` | scheme.main.hover | `#2340A6` | bound |
+| `color.brand.secondary` (サブ) | scheme.sub.base | `#4845D4` | bound (白背景 ≈6.8:1) |
+| `color.brand.secondaryHover` | scheme.sub.hover | `#3936B0` | bound |
+| `color.text.strong` / `body` | gray.900 / 800 | `#212121` / `#424242` | **bound (TVL-0003)** |
 | `color.text.muted` | gray.600 | `#9e9e9e` | bound |
-| `color.text.link` | red.500 | `#d10000` | 🚧 placeholder (R-2。コード値 #d10000 と実測 #283593 の揺れ。owner-decisions #5) |
-| `color.surface.default/subtle/muted` | white / gray.50 / gray.100 | `#fff` / `#f9f9f9` / `#f5f5f5` | bound |
+| `color.text.link` | red.500 | `#d10000` | 🚧 TVL-0005 保留 (赤と主色の揺れ。検討トリガー: リンクUI着手時) |
+| `color.surface.default/subtle/muted` | white / gray.50 / 100 | `#fff` / `#f9f9f9` / `#f5f5f5` | bound |
 | `color.border.subtle/default/strong` | gray.300/400/500 | `#e0e0e0` / `#ccc` / `#bcbcbc` | bound |
 | `color.state.success` | green.500 | `#58b85d` | 🚧 follow-up #5 (IB 暫定参照) |
 | `color.state.error` | red.500 | `#d10000` | bound |
 | `color.accent.campaign` | orange.500 | `#EF4123` | bound (特集専用・主色と分離) |
-| `color.focus.ring` | brand.primary | `#283593` | bound (A-02 未監査) |
+| `color.focus.ring` | brand.primary | `#2C50C8` | bound (白背景 ≈6.8:1) |
+| `color.icon.rating` | — | null | 🚧 未抽出 (検討トリガー: ReviewStars 実装着手時) |
 
-- [推奨] リンク色は用途トークンで管理する。layerB では TOP リンクに主色紺の使用も観測されており、`text.link` (赤) との使い分けは DS 内正規化候補 🟢 ❓ (検討トリガー: リンク UI 着手時)
+- [事実] 品質基準: WCAG 2.2 AA を最低ラインとし DS には違反値を入れない (要求仕様 R9)。本文 #424242 ≈9.7:1・主色 royal #2C50C8 ≈6.8:1・副色 indigo #4845D4 ≈6.8:1 いずれも AA 適合 (AAA 7:1 は未達)
 
 ## 3. タイポグラフィ
 
+root 16px・**rem 基準** (TVL-0001)。2 書体構成 = 明朝 (表現) + ゴシック (機能)。タイポグラフィ設計方針 (共有 dc) 2026-07-10 の決定を反映。
+
 | 用途 | 値 | 状態 |
 | --- | --- | --- |
-| 本文 | Noto Sans JP 系 / 16px / lh 1.8 (layerB 実測) | family bound / size・lh 🚧 Q4 |
-| 見出し | Murecho + Noto Sans JP / h2 32px | family bound / size 🚧 Q4 |
-| 欧文 | Roboto | bound |
-| 数字 (価格) | Barlow/Roboto・weight 900 (実測 Roboto 900) | bound |
-| 明朝 (限定用途) | Ryumin / 游明朝 | bound (travel 固有) |
+| 本文・UI | LINE Seed JP / 1rem / lh 1.8 | **bound (Q1)** |
+| 見出し (一覧・カード) | LINE Seed JP 700 / h2 2rem | **bound (Q2)** |
+| Display・Hero・詳細施設名 | Noto Serif JP (明朝) 500–600 | **bound (Q8)** |
+| 欧文 | LINE Seed JP に統合 (旧 Roboto 廃止) | bound |
+| 数字 (価格) | LINE Seed JP 700・tabular-nums (旧 Barlow 900 廃止) | **bound (Q3)** |
 
-- [観察] 特集頁で h2 が Noto 14px の頁あり=見出しフォント不一致 (D-3)。DS 内正規化候補 🟢
-- [観察] 壊れた font stack (h3 に sans-serif 混入 = T-07/D-3) は新規制作で再生産しない
+- サイズスケール: xs 0.75 / sm 0.875 / md 1 / lg 1.125 / xl 1.25 / 2xl 1.5 / 3xl 2 / 4xl 2.5 / display-lg 3rem (48px・Q4)
+- 行間: tight 1.3 / normal 1.5 / relaxed 1.8 (本文)
+- [注意] 実装移行時に px→rem の書き換えが発生する (TVL-0001 Consequences)
+- [観察] 特集頁の見出しフォント不一致・壊れた font stack は新規制作で再生産しない
 
 ## 4. スペーシング・グリッド・ブレークポイント
 
-- スペーシング: 刻み体系 (spacing.0〜16) は確定、px 値は 🚧 Q3 (現状は 16px map `$PADDING`。8px 寄せ/5px/4px ハイブリッドは未決)
-- コンテナ幅: `975 / 1195 / 1425px` (S-03 bound)
-- ブレークポイント: `600 / 768 / 992 / 1200px` (B-01。宿泊 foundation 自身の実装値=bound。3サービス統一の批准は Q5)
+- スペーシング: **4px (0.25rem) 系で確定** (TVL-0002)。spacing.0〜16 全段 bound
+- コンテナ幅: `975 / 1195 / 1425px` (宿泊実装値・bound)
+- ブレークポイント: **`640 / 768 / 1024 / 1280px`** (TVL-0004。現代標準へ更新 — 旧実装値 600/992/1200 からの変更。移行方針は TVL-0004 参照)
 
 ## 5. 角丸・シャドウ
 
-- 角丸: `radius.sm 4 / md 8 / lg 16 / full 9999px` (bound)。ボタンは pill (`radius.action` = full。layerB 実測)。カードは 🚧 実 px 未取得 (暫定 md)
-- シャドウ: 定義はあるが実値未抽出 🚧 (follow-up #13。暫定3段で据置き)
+- 角丸: `radius.sm 4 / md 8 / lg 16 / full 9999px` (bound)。ボタンは pill (`radius.action` = full) = 宿泊のサービスシグネチャ。カードは 🚧 実px未取得 (暫定 md)
+- シャドウ: 実値未抽出 🚧 (follow-up #13。暫定3段で据置き = TVL-0008)
 
 ## 6. アイコン・画像
 
-- アイコン体系: Material + FA 混在 (I-01) ❓ Q8 未決。暫定運用 =「新規制作分のみ統一・既存維持」(段階導入 P4)。サイズスケールは `iconSize.sm〜xl` (bound)
-- 画像比率: object-fit 制御あり (I-03 🟢)
-- 画像なし・在庫ゼロ時の表現: 未定義 (D-6) ❓ 検討トリガー: Card 実装着手時
+- アイコン体系: **Font Awesome 6 で確定** (TVL-0006)。新規制作は FA6 に統一、既存 Material 混在箇所は改修時に置換。サイズスケールは `iconSize.sm〜xl` (bound)
+- 画像比率: object-fit 制御あり
+- 画像なし・在庫ゼロ時の表現: 未定義 ❓ 検討トリガー: Card 実装着手時
 
 ## 7. コアコンポーネント
 
 正: `components.md`。定義済: Button / Input / SearchForm / Card (ResultCard) / PriceTag / ReviewStars / Header / Footer / Breadcrumb / Modal。
 
 - 実装は Semantic のみ参照 (primitive 直接参照禁止)
-- 状態リストは固定 (hover/active/focus/disabled/loading/error/success)。宿泊のボタン状態は未取得 🚧 (follow-up #4)
-- 未着手: Select / Tabs / Toast / Table / Accordion (follow-up #1・実体皆無)
+- 状態リストは固定 (hover/active/focus/disabled/loading/error/success)。宿泊のボタン状態は未取得 🚧
+- Button variant 語彙は GOV-0002 (cross-service 5語 = primary/secondary/ghost/campaign/text)
+- モーダルは **drawer に全面統一** (TVL-0007)。centered dialog は deprecated・段階移行
+- 未着手: Select / Tabs / Toast / Table / Accordion (実体皆無)
 
 ## 8. ブランド・クリエイティブガイド
 
-- [観察] 価格中心・実用トーン (CP-01)。数字を大きく強調する価格タイポ (TR-i2) がブランド表現の中核
-- [事実] 特集 (ultra-tocoo) は `#EF4123` を面で多用 (layerB §2: 最頻出18回)。通常導線と特集を色で分離する現状構造を維持
-- [事実] 写真選定基準は未明文化 (BR-01/D-9) ❓ 検討トリガー: ブランドルール整理時 (オーナー/マーケ判断)
-- [事実] 広告/SNS/メールの外部クリエイティブは資産提供待ち (AD-02/follow-up #11) — 本版のスコープ外
+正: `brand-content.md` (ライティング・価格表記)。
+
+- [観察] 価格中心・実用トーン。数字を大きく強調する価格タイポがブランド表現の中核
+- [事実] 特集は `#EF4123` を面で多用。通常導線と特集を色で分離する現状構造を維持
+- [事実] 写真選定基準は未明文化 ❓ 検討トリガー: ブランドルール整理時
+- [事実] ロゴファイルは未提供。プレーンな "ToCoo!" ワードマーク (見出しフォント + brand primary) で代用中。実ロゴ提供時に差し替え
 
 ## 9. Agent Prompt Guide
 
@@ -89,22 +103,23 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 
 1. `semantic.travel.json` を読み、色・フォントは Semantic トークン名で指定する (HEX 直書き・primitive 直接参照は禁止)
 2. `components.md` の該当 Component の固定フォーマット (用途/バリアント/状態/Do・Don't) に従う
-3. 値が `$status=placeholder` のトークンは `$note` の Q/follow-up 番号を確認し、生成物にも「🚧 暫定」を伝播させる
+3. `$status=placeholder` のトークンは `$note` を確認し、生成物にも「🚧 暫定」を伝播させる
 4. 宿泊固有要素: 評価は ReviewStars、価格は PriceTag (数字900+円+補助) を必ず使う
-5. 禁止: `--primary:#007bff` (D-5)・会員ランク色 (破棄済)・他サービス (レンタカー) のトークン値の流用 (P1)
-6. 迷ったら: `01_共通アセット/命名規則.md` §9 のフローチャート → `デザイン原則.md` (原則1から優先)
+5. 禁止: `--primary:#007bff`・会員ランク色・**他サービスのトークン値の流用 (R1-6)**
+6. 迷ったら: `governance/naming-rules.md` → 本書 §1〜8
 
-## 未確定事項の一覧 (オーナー確認待ち = 分類C)
+## 未確定事項の一覧
 
-| 論点 | 内容 | 暫定運用 |
+| 論点 | 内容 | 状態 |
 | --- | --- | --- |
-| Q2 | テキスト主色 (1段/2段/各維持) | 2段 (#424242 + #212121) |
-| Q3 | base unit (8/5/4px) | 刻み体系先行・4px 系で仮バインド |
-| Q4 | root 基準・本文サイズ | 実測値 (16px/1.8) で仮バインド |
-| Q5 | breakpoint 統一の批准 | 宿泊 foundation 値 (自身の実装値) |
-| Q8 | アイコン体系 | 新規のみ統一・既存維持 |
-| Q9 | モーダル基盤 | 新規は drawer 方向・既存併存 |
-| — | navy hover 暗色 / shadow 実値 / ボタン状態 / フォーム実体 / success 色 | follow-up #4/#13/#2/#5 参照 |
+| TVL-0005 | リンク色 (赤 #d10000 / 紺 #283593) | 🚧 保留。検討トリガー: リンクUI着手時 |
+| follow-up #4 | ボタンの hover 以外の状態 (active/focus/disabled/loading) 一式 | 🚧 実査待ち (TVL-0008)。※ brand primaryHover は TVL-0010 で解決 (royal.600) |
+| follow-up #13 | shadow 実値 | 🚧 実査待ち |
+| follow-up #3 | motion 実値 | 🚧 実査待ち |
+| follow-up #5 | success 色 | 🚧 未取得 (IB 値の暫定参照) |
+| follow-up #2 | フォーム入力/エラー/必須・検証 | 🚧 実査待ち |
+| — | カード実px・8スロット対応付け・画像欠落 fallback | 🚧 実査待ち / ❓ Card 着手時 |
+| Q6 | 実装クラス命名方法論 (FLOCSS 等) | ❓ 検討トリガー: Component 実装着手時 |
 
 ---
 
@@ -112,5 +127,4 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 
 | 日付 | 変更内容 | 変更者 |
 | --- | --- | --- |
-| 2026-07-02 | 初版 (Ph-E: Foundation/Semantic/Component/固有要素/Agent Prompt Guide を統合) | Claude Design (Builder) |
-| 2026-07-02 | 是正 R-2: §2 カラー表の `color.text.link` を bound→🚧 placeholder に更新 (コード値と本番実測の揺れ。$value 不変) | Claude Design (Builder) |
+| 2026-07-09 | 0.3.0-draft: 独立DS再構築 (要求仕様 R1〜R10)。TVL-0001〜0008 反映 (rem化・4px系・テキスト2段・BP現代標準・FA6・drawer統一・リンク色保留・実査待ちplaceholder維持) | Claude Design (Builder) |

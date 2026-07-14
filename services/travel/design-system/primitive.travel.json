@@ -8,7 +8,7 @@
     "version": "0.3.0-draft",
     "status": "Draft",
     "basedOn": "GitHub tocoo/coocom-design-system travel/primitive.travel.json 0.2.0-draft (Source of Truth)。設計判断 TVL-0001〜0004 を反映",
-    "sourceOfTruth": "https://github.com/tocoo/coocom-design-system/blob/main/travel/primitive.travel.json",
+    "sourceOfTruth": "https://github.com/tocoo/coocom-design-system/blob/main/services/travel/design-system/primitive.travel.json",
     "created": "2026-07-09",
     "rules": [
       "属性ベース命名 ({category}.{attribute}.{step})",

@@ -3,7 +3,7 @@
 - 種別: DS 成果物 (Component 仕様。R3-4)
 - 状態: Draft (0.3.0-draft)
 - 作成日: 2026-07-09
-- Source of Truth: https://github.com/tocoo/coocom-design-system/blob/main/travel/components.md
+- Source of Truth: https://github.com/tocoo/coocom-design-system/blob/main/services/travel/design-system/components.md
 - 参照トークン: `semantic.travel.json` のみ (primitive 直接参照は禁止 = 命名規則§1)
 
 ---

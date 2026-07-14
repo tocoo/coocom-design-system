@@ -3,7 +3,7 @@
 - 種別: DS 成果物 (design.md = 統合文書)
 - 状態: Draft (0.3.0-draft)
 - 作成日: 2026-07-09
-- Source of Truth: https://github.com/tocoo/coocom-design-system/tree/main/travel (R3-10)
+- Source of Truth: https://github.com/tocoo/coocom-design-system/tree/main/services/travel/design-system (R3-10)
 - 対象: 顧客向け UI のみ (管理画面は対象外)
 - 実装の所在: GitHub `tocoo/tocoo_travel`
 - 独立性: 本 DS は国内レンタカー・インバウンドレンタカーと Foundation/Semantic/Component/design.md を共有しない (要求仕様 R1)。命名・運用規約のみ3サービス共通 (`governance/` 参照 = R2)

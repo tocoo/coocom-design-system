@@ -478,6 +478,7 @@ User
 | Stay Plan | has/is evaluated with | Price | Draft | |
 | Stay Plan | is constrained by | Policy | Draft | |
 | Accommodation | is constrained by | Policy | Draft | |
+| Room | is constrained by | Policy | Draft | |
 | Accommodation | is evaluated by | Review | Draft | 評価対象・信頼性は Open Issue |
 | Content | supports evaluation of | Destination | Draft | |
 | Content | supports evaluation of | Accommodation | Draft | |

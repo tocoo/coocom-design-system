@@ -1,57 +1,102 @@
-# ToCoo Design System — 成果物索引
+# coocom Service Design Repository
 
-- 種別: DS 成果物の入口 (README)
-- 状態: Draft (サービスごとに版数が異なる — 下表「トークン現行版」参照)
-- 作成日: 2026-07-02
-- 更新日: 2026-07-13 (travel を 0.3.0-draft へ更新)
-- 構築主体: Claude Design (Builder 役割)。自己レビューは Architect 役割で実施済。2026-07-02 の独立監査所見 (是正 R-1/R-2・S-3〜S-6) を反映後、travel は設計判断 TVL-0001〜0012 を経て 0.3.0-draft へ更新済。rental-car・inbound は初版 Draft のまま。再監査と最終判断 (オーナー) は未了
+- 種別: リポジトリ全体の入口 (README)
+- 状態: 初期構造 (bootstrap) — Service Design 策定を開始するための最小基盤
+- 対象リポジトリ: `tocoo/coocom-design-system`
+
+このリポジトリは、Service Design から Design System までを一元管理するための設計リポジトリである。従来は Design System 中心の構成だったが、Task 001〜004 の設計成果物に基づき、Service Design を含む論理レイヤー構造へ移行した。
+
+## 1. 目的
+
+- サービスの設計意図から Design System までを、責務ごとに分離して一元管理する。
+- 後続の Service Design 策定を開始できる、責務が判別可能な基盤を提供する。
+
+## 2. Single Source of Truth
+
+- このリポジトリ本体が、設計の Single Source of Truth (正本) である。
+- Governance・Service Design・Screen Requirements・Design System・Assets・設計判断・決定記録・正式仕様・未決事項は、すべてリポジトリ本体で管理する。
+
+## 3. リポジトリ本体と GitHub Wiki の責務
+
+- **リポジトリ本体 (正本)**: 設計判断・正式仕様・ADR・Design System の正本を置く。設計判断はリポジトリ本体を優先する。
+- **GitHub Wiki (非正本)**: リポジトリの読み方・利用ガイド・初学者向け説明・運用説明などを置く想定の補助領域。設計判断・正式仕様・ADR・Design System の正本を Wiki に置かない。
+- 本 README には、存在が確認できない Wiki ページへのリンクは記載しない。
+
+## 4. 論理レイヤー
+
+リポジトリは 5 つの論理レイヤーを持つ。
+
+1. **Governance** — 全サービスを横断する共通領域 (`governance/`)
+2. **Service Design** — サービス単位 (`services/<service>/service-design/`)
+3. **Screen Requirements** — サービス単位 (`services/<service>/screen-requirements/`)
+4. **Design System** — サービス単位 (`services/<service>/design-system/`)
+5. **Assets** — サービス単位 (`services/<service>/assets/`)
+
+Governance は横断共通、それ以外は原則サービス単位で管理する。
+
+## 5. サービス一覧
+
+現在の対象サービスは 3 つ。ディレクトリ名は**暫定のサービス識別子**であり、正式な識別子は未決である (`governance/owner-decisions.md` 確認事項 #8 を参照)。
+
+| サービス | ディレクトリ | 入口 |
+| --- | --- | --- |
+| 国内宿泊 | `services/travel/` | [services/travel/README.md](services/travel/README.md) |
+| 国内レンタカー | `services/rental-car/` | [services/rental-car/README.md](services/rental-car/README.md) |
+| インバウンドレンタカー | `services/inbound/` | [services/inbound/README.md](services/inbound/README.md) |
+
+## 6. 推奨参照順序
+
+1. 本 README (全体像)
+2. [governance/](governance/README.md) (横断の位置づけと不足成果物)
+3. 各サービス README → 各サービス配下の Service Design → Screen Requirements → Design System → Assets
+
+上位レイヤー (なぜ・何を) から下位レイヤー (どう見せる・素材) へ向かう順を推奨とする。これは参照の目安であり、確定した運用フローではない。
+
+## 7. リンク
+
+- Governance: [governance/README.md](governance/README.md) / [governance/owner-decisions.md](governance/owner-decisions.md)
+- 国内宿泊: [services/travel/README.md](services/travel/README.md)
+- 国内レンタカー: [services/rental-car/README.md](services/rental-car/README.md)
+- インバウンドレンタカー: [services/inbound/README.md](services/inbound/README.md)
+
+## 8. 現在の構築状態
+
+- 各サービスの **Design System は既存資産** として存在する (下表)。
+- **Service Design / Screen Requirements / Assets は未着手** (`Status: Not started`)。成果物は存在しない。
+- Governance は最小限の入口 (README・owner-decisions.md) のみ。正本となる原則・命名規則・ADR・レビュー規則・用語定義は未整備 (`governance/README.md` を参照)。
+
+| サービス | Service Design | Screen Requirements | Design System | Assets |
+| --- | --- | --- | --- | --- |
+| 国内宿泊 (travel) | Not started | Not started | 既存資産 (Draft, 0.3.0-draft 系) | Not started |
+| 国内レンタカー (rental-car) | Not started | Not started | 既存資産 (Draft) | Not started |
+| インバウンドレンタカー (inbound) | Not started | Not started | 既存資産 (Draft) | Not started |
+
+各サービスの Design System の版数・成果物・状態の詳細は、当該サービスの README を参照。
+
+## 9. 事実・決定・仮説・未決事項の区別
+
+- 本リポジトリでは、事実・確定した決定・仮説 (暫定運用)・未決事項を混同しないこと。
+- 未決事項は未決として明示する。暫定的な扱い (例: サービス識別子) を確定と表現しない。
+
+## 10. 対象外
+
+- 実装コードは本リポジトリの管理対象外とする。
+- Design System の内容改善・トークン値の変更・命名変更は本 bootstrap の対象外。
 
 ---
 
-## 構成 (3独立 DS = ADR-0022)
+## 付録: 移行前の Design System 索引の継承情報
 
-3サービスは Foundation (Primitive 含む)・Semantic・design.md を共有しない (P1)。命名・運用規約のみ共通 (P2)。
+本リポジトリは移行前、Design System の成果物索引 README だった。その有効情報は以下へ継承した。
 
-| サービス | フォルダ | トークン現行版 (primitive / semantic) | 成果物 |
-| --- | --- | --- | --- |
-| 国内宿泊予約 (tvl / travel) | `travel/` | 0.3.0 / 0.3.0-draft | design.md・primitive.travel.json・semantic.travel.json・components.md |
-| 国内レンタカー (drc / japan) | `rental-car/` | 0.2.0 / 0.2.1-draft | design.md・primitive.rental-car.json・semantic.rental-car.json・components.md |
-| インバウンドレンタカー (irc / inbound) | `inbound/` | 0.2.1 / 0.1.1-draft | design.md・primitive.inbound.json・semantic.inbound.json・components.md (semantic は新規生成) |
+- 各サービスの Design System 版数・成果物・構築ステータスは、各サービス README (`services/<service>/README.md`) の Design System セクションへ移動した。
+- 3 サービス共通の規約 (命名・参照形式・未確定表記など) は Governance の対象であり、正本は未整備 (`governance/README.md` に不足として明記)。
 
-読み順 (各サービス): `design.md` → `semantic.*.json` → `primitive.*.json` → `components.md`
-
-## 規約 (3サービス共通 = P2)
-
-- 命名: `01_共通アセット/命名規則.md` (引き渡しパッケージ同梱) に準拠
-- 参照: Semantic → primitive は `{color.palette.*}` 形式。Component 実装は Semantic のみ参照 (primitive 直接参照禁止)
-- 未確定: `$status=placeholder` + `$note` (Q番号 / follow-up 番号)。文書中は 🚧 暫定 / ❓ 要議論
-- 非構築: 会員ランク色 (C-10 破棄)・100選ゾーン・管理画面 UI (P3)
-
-## 未確定事項 (分類C)
-
-オーナー確認待ちの集約は `owner-decisions.md` を参照。travel の未確定事項は `travel/design.md` §未確定事項の一覧を正とする (TVL-0005・success 色は 0.3.0-draft で解決済。shadow/motion/ボタン状態/フォームは実査待ちで継続)。
-
-## 構築ステータス
-
-| フェーズ (構築ロードマップ §3) | travel | rental-car | inbound |
-| --- | --- | --- | --- |
-| Ph-A 前提確認 | 済 | 済 | 済 |
-| Ph-B Foundation | 済 (0.3.0-draft) | 済 (Draft) | 済 (Draft) |
-| Ph-C Semantic | 済 (0.3.0-draft) | 済 (Draft) | 済 (Draft・新規生成) |
-| Ph-D Component | 済 (0.3.0-draft・未取得は placeholder) | 済 (Draft・同左) | 済 (Draft・同左) |
-| Ph-E design.md | 済 (0.3.0-draft) | 済 (Draft) | 済 (Draft) |
-| Ph-F 自己検証 | 済 (再実施) | 済 (再実施) | 済 (再実施) |
-
-- travel は上記 2026-07-02 Draft から設計判断 TVL-0001〜0012 を反映し **0.3.0-draft** へ更新済 (rem/4px 化・テキスト2段確定・breakpoint 現代化・タイポグラフィ刷新・ブランド色 navy→ロイヤル/インディゴ・per-scheme 配色・campaign ボタン廃止 ほか)。rental-car・inbound は初版 Draft のまま
-- MB-1〜MB-5 の品質判定は自己検証ベース。MB-3 以降の正式判定は独立監査 (Claude Code 側 Architect) の再監査とオーナーレビューに委ねる
-- 是正履歴: 独立監査所見 (2026-07-02) の R-1 (primitive 直接参照の解消)・R-2 (travel link を placeholder へ降格)・S-3〜S-6 を反映済。うち **R-2 (travel link) はその後 TVL-0011 で link=各スキームの主色として解決済** (降格は解消)。Ph-F を再実施し components.md の primitive 直接参照ゼロを確認
-
----
-
-## 変更履歴
+### 変更履歴 (移行前 DS 索引 README より継承。Design System 資産の履歴)
 
 | 日付 | 変更内容 | 変更者 |
 | --- | --- | --- |
 | 2026-07-02 | 初版 (3サービス分の成果物一式・索引・ステータス) | Claude Design |
 | 2026-07-02 | 独立監査所見の是正を反映 (R-1/R-2・S-3〜S-6)。直接参照のあった semantic 3ファイルは version bump (travel/rc 0.2.1、inbound 0.1.1)、primitive.inbound 0.2.1 | Claude Design (Builder) |
-| 2026-07-13 | travel/ を 0.3.0-draft へ更新 (TVL-0001〜0012・PR分割)。ブランド色刷新・rem/4px化・per-scheme配色・campaign廃止。索引の構成表 (トークン現行版)・構築ステータス・是正履歴 (R-2 解消) を実態に同期 | Claude Code |
+| 2026-07-13 | travel/ を 0.3.0-draft へ更新 (TVL-0001〜0012・PR分割)。ブランド色刷新・rem/4px化・per-scheme配色・campaign廃止 | Claude Code |
+| 2026-07-14 | リポジトリを Service Design Repository の初期構造へ移行 (Task 005 bootstrap)。Design System 資産を `services/<service>/design-system/` へ移動 | Claude Code |

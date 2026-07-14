@@ -45,7 +45,7 @@
 - 後続成果物 (IA・Navigation・Content・CTA・Screen Matrix・Screen Requirements) を策定・レビューする際、および Design System をレビューする際の判断基準として使用する。
 - 文書内の情報は **Fact / Decision / Hypothesis / Open Issue** に区別する。未確定の前提を事実として扱わない。
 - 原則同士が競合した場合は §5 Conflict Resolution に従う。
-- 原則は 10 件で固定であり、本文書内で新しい原則を追加しない。重複が疑われる場合も独断で統合・削除せず、Open Issue として扱う。
+- 本 Draft では、レビュー対象を SDP-001〜010 の 10 原則に限定する。追加・統合・削除は、本 Draft 内で独断では行わず、Open Issue として扱う。
 
 ## 4. Principles
 

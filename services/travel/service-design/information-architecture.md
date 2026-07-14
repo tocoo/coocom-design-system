@@ -179,6 +179,7 @@ Draft
 - Accommodation は Room を含む/提供する。
 - Stay Plan は Room に適用され得る。
 - Booking は Room を参照する。
+- Room は Policy によって制約され得る。
 
 ### Does Not Decide
 
@@ -210,6 +211,8 @@ Draft (業務関係は Open Issue)
 - Stay Plan は Price を持つ/Price で評価される。
 - Stay Plan は Policy によって制約され得る。
 - Stay Plan は Search Criteria の下で評価される。
+- Stay Plan は Review によって評価され得る (評価対象は Open Issue)。
+- Content は Stay Plan の評価を支援する。
 - Booking は Stay Plan を参照する。
 
 ### Does Not Decide
@@ -237,7 +240,7 @@ Draft (業務モデルは Open Issue)
 ### Relationships
 
 - Stay Plan は Availability を持つ。
-- Availability は Search Criteria の条件と併せて評価される。
+- Availability は、Search Criteria の下での Stay Plan の評価に用いられる。
 
 ### Does Not Decide
 
@@ -316,7 +319,8 @@ Draft (分類は Open Issue)
 
 ### Relationships
 
-- Review は Accommodation を評価する (宿泊体験・Stay Plan の評価支援を含み得る)。
+- Review は Accommodation を評価する。
+- Review は Stay Plan を評価し得る (評価対象は Open Issue)。
 
 ### Does Not Decide
 
@@ -399,7 +403,8 @@ Draft (分類は Open Issue)
 ### Relationships
 
 - Content は Destination の評価を支援する。
-- Content は Accommodation の評価を支援する (Stay Plan の評価支援を含み得る)。
+- Content は Accommodation の評価を支援する。
+- Content は Stay Plan の評価を支援する。
 
 ### Does Not Decide
 
@@ -481,8 +486,10 @@ User
 | Accommodation | is constrained by | Policy | Draft | |
 | Room | is constrained by | Policy | Draft | |
 | Accommodation | is evaluated by | Review | Draft | 評価対象・信頼性は Open Issue |
+| Stay Plan | is evaluated by | Review | Draft | 評価対象・信頼性は Open Issue |
 | Content | supports evaluation of | Destination | Draft | |
 | Content | supports evaluation of | Accommodation | Draft | |
+| Content | supports evaluation of | Stay Plan | Draft | |
 | User | creates/holds | Booking | Draft | |
 | Booking | references | Accommodation | Draft | |
 | Booking | references | Room | Draft | |

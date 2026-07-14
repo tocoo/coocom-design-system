@@ -476,6 +476,7 @@ User
 | Stay Plan | may apply to | Room | Draft | 業務モデルは Open Issue |
 | Stay Plan | has | Availability | Draft | |
 | Stay Plan | has/is evaluated with | Price | Draft | |
+| Stay Plan | is evaluated under | Search Criteria | Draft | |
 | Stay Plan | is constrained by | Policy | Draft | |
 | Accommodation | is constrained by | Policy | Draft | |
 | Room | is constrained by | Policy | Draft | |

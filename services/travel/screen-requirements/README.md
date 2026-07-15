@@ -10,7 +10,7 @@
 
 - Screen Requirements レイヤーの目的・責務と、個別 Screen Requirement 文書の共通構造を定義する。
 - 上流 Service Design 成果物 (SD-001〜SD-007) と Screen Requirement 文書の対応方法、および Screen Matrix の画面候補 (SCR-001〜SCR-014) との追跡可能性を定義する。
-- 「対応方法を定義する」ことと「実際の分割・統合・個別要件を決定する」ことを区別する。後者は本タスクでは行わない。
+- 「対応方法を定義する」ことと「実際の分割・統合・個別要件を決定する」ことを区別する。後者は本文書では確定しない。
 
 ## 2. Scope
 
@@ -43,7 +43,7 @@
 
 - 上流の Service Design 成果物 SD-001〜SD-007 が Draft として存在する ([../service-design/README.md](../service-design/README.md))。
 - Screen Matrix ([../service-design/screen-matrix.md](../service-design/screen-matrix.md)) は 14 画面候補 (SCR-001〜SCR-014) を Draft として管理する。
-- 個別 Screen Requirement 文書は本タスク以前・時点で未作成である。
+- 個別 Screen Requirement 文書は現時点で未作成である。
 - 正式な画面一覧・URL・画面遷移・業務仕様は未定義である。
 - Design System は既存資産として存在する ([../design-system/](../design-system/))。
 
@@ -84,7 +84,7 @@
 
 ## 6. Common Document Structure
 
-将来作成する個別 Screen Requirement 文書は、最低限以下の構造を持つ。各節の**責務のみ**を定義し、本タスクでは具体的な要件を記入しない。未定義の要件は空想で埋めず Open Issue として扱う。
+将来作成する個別 Screen Requirement 文書は、最低限以下の構造を持つ。各節の**責務のみ**を定義し、本文書では具体的な要件を記入しない。未定義の要件は空想で埋めず Open Issue として扱う。
 
 - **Title** — 文書の対象を示す表題。
 - **Status** — 個別文書の状態 (初期は `Draft`)。
@@ -116,7 +116,7 @@
 ### ID
 
 - `SCR-001`〜`SCR-014` は [Screen Matrix](../service-design/screen-matrix.md) 上の**画面候補 ID** であり、Screen Requirement 文書 ID と自動的に同一視しない。
-- 新しい Screen Requirement ID 体系の正式採用は本タスクで確定しない。
+- 新しい Screen Requirement ID 体系の正式採用は本文書では確定しない。
 - 管理上 ID 例が必要な場合も、正式採番ではなく placeholder であることを明示する (例として用いる `SR-xxx` 等は暫定であり確定した採番ではない)。
 - ID 体系そのものが未決であるため Open Issue として保持する (§16)。
 - SCR ID を URL・route・実装画面 ID として使用しない。
@@ -130,7 +130,7 @@
 
 ## 8. Relationship with Screen Matrix
 
-Screen Matrix ([../service-design/screen-matrix.md](../service-design/screen-matrix.md)) の画面候補と Screen Requirement 文書は **1 対 1 を前提としない**。具体的な分割・統合対象は本タスクで決定しない。
+Screen Matrix ([../service-design/screen-matrix.md](../service-design/screen-matrix.md)) の画面候補と Screen Requirement 文書は **1 対 1 を前提としない**。具体的な分割・統合対象は本文書では確定しない。
 
 ### One Candidate to Multiple Requirements
 
@@ -179,7 +179,7 @@ Screen Requirements の上流成果物は、README の Reference Order 上で先
 
 ## 12. Creation Order
 
-14 画面候補の作成順を本タスクで独断確定しない。順序決定時に確認する基準のみを定義する。
+14 画面候補の作成順を現時点では確定しない。順序決定時に確認する基準のみを定義する。
 
 - 上流成果物の定義充足度。
 - 未定義の事業要求・業務仕様への依存度。
@@ -194,7 +194,7 @@ Screen Requirements の上流成果物は、README の Reference Order 上で先
 ## 13. Planned Artifacts
 
 - 個別 Screen Requirement 文書は現時点で**未作成** (`Not started`)。
-- 作成単位・件数・ファイル命名規則・作成順はいずれも未決 (Open Issue)。したがって具体的な Planned Artifact 一覧は本タスクで確定しない。
+- 作成単位・件数・ファイル命名規則・作成順はいずれも未決 (Open Issue)。したがって具体的な Planned Artifact 一覧は現時点では確定しない。
 - 対象となり得る画面候補は Screen Matrix の SCR-001〜SCR-014 だが、Screen Requirement 文書として 1 対 1 に確定したものではない。
 
 ## 14. Current Status

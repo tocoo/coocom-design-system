@@ -197,26 +197,29 @@ Screen Requirements レイヤーの推奨参照順序は以下とする。未作
 
 1. 本 README (レイヤー入口・共通管理構造)
 2. [creation-plan.md](creation-plan.md) (SCR-001〜SCR-014 の作成単位・着手可否・作成順序の評価, Draft)
-3. 個別 Screen Requirement 文書 — 未作成 (`Not started`)
+3. [service-entry.md](service-entry.md) (SCR-001 Service Entry の個別 Screen Requirement, Draft)
+4. その他の個別 Screen Requirement 文書 (SCR-002〜SCR-014) — 未作成 (`Not started`)
 
 上流 Service Design 成果物 (SD-001〜SD-007) は本 README の Position ヘッダーおよび §9 を参照する。
 
 ## 14. Planned Artifacts
 
-- 個別 Screen Requirement 文書は現時点で**未作成** (`Not started`)。
-- 作成単位・件数・ファイル命名規則・作成順はいずれも未決 (Open Issue)。したがって具体的な個別 Screen Requirement の Planned Artifact 一覧は現時点では確定しない。
+- SCR-001 Service Entry の個別 Screen Requirement ([service-entry.md](service-entry.md)) が Draft として存在する。その他の画面候補 (SCR-002〜SCR-014) の個別 Screen Requirement は未作成 (`Not started`)。
+- 作成単位・件数・ファイル命名規則・作成順はいずれも未決 (Open Issue)。したがって残りの個別 Screen Requirement の Planned Artifact 一覧は現時点では確定しない。
 - 対象となり得る画面候補は Screen Matrix の SCR-001〜SCR-014 だが、Screen Requirement 文書として 1 対 1 に確定したものではない。
 
 | Artifact | Responsibility | Status |
 | --- | --- | --- |
 | [creation-plan.md](creation-plan.md) | SCR-001〜SCR-014 の作成単位・着手可否・作成順序の評価 | Draft |
-| 個別 Screen Requirement 文書 | 各画面候補の要件 | Not started (未作成) |
+| [service-entry.md](service-entry.md) | SCR-001 Service Entry の個別 Screen Requirement | Draft |
+| 個別 Screen Requirement 文書 (SCR-002〜SCR-014) | 各画面候補の要件 | Not started (未作成) |
 
 ## 15. Current Status
 
 - 本レイヤー入口 README が `In preparation` として存在する。
 - SCR-001〜SCR-014 の作成順序評価 ([creation-plan.md](creation-plan.md)) が `Draft` として存在する。
-- 個別 Screen Requirement 文書は未作成 (`Not started`)。
+- SCR-001 Service Entry の個別 Screen Requirement ([service-entry.md](service-entry.md)) が `Draft` として存在する。
+- その他の画面候補 (SCR-002〜SCR-014) の個別 Screen Requirement は未作成 (`Not started`)。
 - 上流 Service Design 成果物 SD-001〜SD-007 が Draft として存在する。
 - 下流 Design System は既存資産として存在する。
 - 上位の事業・業務・画面仕様の多くは未定義であり、Open Issue として保持する。
@@ -258,3 +261,4 @@ Screen Requirements レイヤーの推奨参照順序は以下とする。未作
 |---|---|---|
 | 2026-07-15 | Define Screen Requirements foundation (entry README and common management structure) | In preparation |
 | 2026-07-15 | Add Reference Order and creation-plan.md (Draft) to Planned Artifacts and Current Status | In preparation |
+| 2026-07-15 | Add service-entry.md (SCR-001, Draft) to Reference Order, Planned Artifacts, and Current Status | In preparation |

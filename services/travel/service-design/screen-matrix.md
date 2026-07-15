@@ -57,11 +57,11 @@
 
 ## 4. Screen Matrix
 
-Navigation Types は [navigation.md](navigation.md) の NAV ID、Content Categories は [content-principles.md](content-principles.md) の分類、Navigation States は [navigation.md](navigation.md) の状態名を用いる。Screen Requirements は全件 `Not started`。
+Navigation Types は [navigation.md](navigation.md) の NAV ID、Content Categories は [content-principles.md](content-principles.md) の分類、Navigation States は [navigation.md](navigation.md) の状態名を用いる。Screen Requirements は SCR-001 が [Draft](../screen-requirements/service-entry.md)、SCR-002〜SCR-014 は `Not started`。
 
 | Screen ID | Screen Candidate | Responsibility | Primary Task | Primary IA Objects | Navigation Types | Content Categories | Navigation States | Screen Requirements | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| SCR-001 | Service Entry | サービスへの入口を提供する | 探索の起点に立つ | Destination / Search Criteria / Content | NAV-001 / 004 / 006 | Identification / Task Guidance / Editorial and Support | Entry, Exploring | Not started | Draft |
+| SCR-001 | Service Entry | サービスへの入口を提供する | 探索の起点に立つ | Destination / Search Criteria / Content | NAV-001 / 004 / 006 | Identification / Task Guidance / Editorial and Support | Entry, Exploring | [Draft](../screen-requirements/service-entry.md) | Draft |
 | SCR-002 | Destination Discovery | 目的地・エリア・関連 Content を発見する | 目的地を発見する | Destination / Content | NAV-001 / 002 / 003 | Identification / Editorial and Support | Exploring | Not started | Draft |
 | SCR-003 | Accommodation Search | Search Criteria を入力・確認・変更する | 検索条件を指定する | Search Criteria / Destination | NAV-004 / 005 | Task Guidance / Identification | Entry, Exploring, Error / Interrupted | Not started | Draft |
 | SCR-004 | Search Results | Accommodation 候補を確認・比較する | 候補を比較する | Search Criteria / Accommodation | NAV-002 / 003 / 004 / 005 | Identification / Decision Support / Conditions and Policies | Exploring, Evaluating, Error / Interrupted | Not started | Draft |
@@ -114,7 +114,7 @@ Navigation Types は [navigation.md](navigation.md) の NAV ID、Content Categor
 
 ### Screen Requirements Status
 
-Not started
+[Draft](../screen-requirements/service-entry.md)
 
 ### Status
 
@@ -732,3 +732,4 @@ Draft
 | Date | Change | Status |
 |---|---|---|
 | 2026-07-15 | Initial draft of Travel Screen Matrix | Draft |
+| 2026-07-15 | Link SCR-001 Screen Requirements progress to service-entry.md (Draft); SCR-002〜SCR-014 unchanged | Draft |

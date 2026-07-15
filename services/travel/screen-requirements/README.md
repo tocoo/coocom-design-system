@@ -191,21 +191,37 @@ Screen Requirements の上流成果物は、README の Reference Order 上で先
 
 現時点で確実に順序を決められないため、作成順そのものを Open Issue とする。`SCR-001` から機械的に作成するとは決めない。
 
-## 13. Planned Artifacts
+## 13. Reference Order
+
+Screen Requirements レイヤーの推奨参照順序は以下とする。未作成の成果物にはリンクを作成しない。
+
+1. 本 README (レイヤー入口・共通管理構造)
+2. [creation-plan.md](creation-plan.md) (SCR-001〜SCR-014 の作成単位・着手可否・作成順序の評価, Draft)
+3. 個別 Screen Requirement 文書 — 未作成 (`Not started`)
+
+上流 Service Design 成果物 (SD-001〜SD-007) は本 README の Position ヘッダーおよび §9 を参照する。
+
+## 14. Planned Artifacts
 
 - 個別 Screen Requirement 文書は現時点で**未作成** (`Not started`)。
-- 作成単位・件数・ファイル命名規則・作成順はいずれも未決 (Open Issue)。したがって具体的な Planned Artifact 一覧は現時点では確定しない。
+- 作成単位・件数・ファイル命名規則・作成順はいずれも未決 (Open Issue)。したがって具体的な個別 Screen Requirement の Planned Artifact 一覧は現時点では確定しない。
 - 対象となり得る画面候補は Screen Matrix の SCR-001〜SCR-014 だが、Screen Requirement 文書として 1 対 1 に確定したものではない。
 
-## 14. Current Status
+| Artifact | Responsibility | Status |
+| --- | --- | --- |
+| [creation-plan.md](creation-plan.md) | SCR-001〜SCR-014 の作成単位・着手可否・作成順序の評価 | Draft |
+| 個別 Screen Requirement 文書 | 各画面候補の要件 | Not started (未作成) |
+
+## 15. Current Status
 
 - 本レイヤー入口 README が `In preparation` として存在する。
+- SCR-001〜SCR-014 の作成順序評価 ([creation-plan.md](creation-plan.md)) が `Draft` として存在する。
 - 個別 Screen Requirement 文書は未作成 (`Not started`)。
 - 上流 Service Design 成果物 SD-001〜SD-007 が Draft として存在する。
 - 下流 Design System は既存資産として存在する。
 - 上位の事業・業務・画面仕様の多くは未定義であり、Open Issue として保持する。
 
-## 15. Quality Criteria
+## 16. Quality Criteria
 
 今後作成する個別 Screen Requirement 文書には、以下を適用する。
 
@@ -218,9 +234,9 @@ Screen Requirements の上流成果物は、README の Reference Order 上で先
 - アクセシビリティを後工程限定にしない。
 - 下流 (Design System・実装) への影響を Downstream Impact として分離する。
 
-## 16. Open Issues
+## 17. Open Issues
 
-以下は未決である。解決策は推測して記載しない。
+以下は未決である。解決策は推測して記載しない。作成順序評価に関する未決事項は [creation-plan.md](creation-plan.md) §15 に整理する (本 README の未決事項を削除・確定しない)。
 
 - Screen Requirement ID 体系の正式採用。
 - 個別文書のファイル命名規則。
@@ -236,8 +252,9 @@ Screen Requirements の上流成果物は、README の Reference Order 上で先
 - Screen Matrix の進捗更新方法。
 - Requirement 変更時の上流・下流影響確認方法。
 
-## 17. Change Log
+## 18. Change Log
 
 | Date | Change | Status |
 |---|---|---|
 | 2026-07-15 | Define Screen Requirements foundation (entry README and common management structure) | In preparation |
+| 2026-07-15 | Add Reference Order and creation-plan.md (Draft) to Planned Artifacts and Current Status | In preparation |

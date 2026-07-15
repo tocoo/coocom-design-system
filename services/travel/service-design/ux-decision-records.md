@@ -175,7 +175,7 @@ Open Issue
 
 ### Rationale
 
-- Repository 全体の unknown-first 方針と一致する。
+- [principles.md](principles.md) の SDP-008 Evidence over Assumption (未確認の前提を事実として扱わない) および SDP-010 Incremental Definition (未決事項へ依存する設計を確定しない) と一致する。
 - 誤った前提が下流設計へ伝播することを防ぐ。
 - 後から判断根拠を追跡可能にする。
 

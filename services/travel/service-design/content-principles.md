@@ -323,11 +323,15 @@
 
 ## 6. Relationship with Navigation
 
+[navigation.md](navigation.md) の 6 分類 (NAV-001〜006) それぞれに対する Content 上の考慮を示す。分類名は `navigation.md` と一致させる (CTP-005 Consistent Terminology)。
+
 - Navigation ラベルは移動先を合理的に予測できる表現を必要とする。
-- Local / Contextual Navigation では、現在の対象との関係を Content で説明できるようにする。
-- Task Navigation では、現在の段階と次に可能な行動を理解できる表現を必要とする。
-- History and Recovery Navigation では、戻り先・修正対象・失われない情報を理解できるようにする。
-- Utility Navigation では、主要タスクと補助情報を混同しない。
+- **Global Navigation (NAV-001)** では、主要領域への入口ラベルが、その領域を誤解なく予測・識別できる表現であるようにする。
+- **Local Navigation (NAV-002)** では、同一領域内の関連情報との関係を Content で説明できるようにする。
+- **Contextual Navigation (NAV-003)** では、現在の対象と関連オブジェクトの関係性を Content で示し、関連性のない誘導と区別する。
+- **Task Navigation (NAV-004)** では、現在の段階と次に可能な行動を理解できる表現を必要とする。
+- **History and Recovery Navigation (NAV-005)** では、戻り先・修正対象・失われない情報を理解できるようにする。
+- **Utility Navigation (NAV-006)** では、主要タスクと補助情報を混同しない。
 - 具体的な Navigation ラベルは本タスクで決定しない。
 
 ## 7. Status and Uncertainty Model

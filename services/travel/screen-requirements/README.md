@@ -62,7 +62,7 @@
 - Screen Requirement ID 体系の正式採用。
 - 個別文書の作成単位・作成順。
 - 各画面候補の分割・統合。
-- （詳細は §16 に集約）
+- （詳細は §17 に集約）
 
 ## 4. Information Classification
 
@@ -118,7 +118,7 @@
 - `SCR-001`〜`SCR-014` は [Screen Matrix](../service-design/screen-matrix.md) 上の**画面候補 ID** であり、Screen Requirement 文書 ID と自動的に同一視しない。
 - 新しい Screen Requirement ID 体系の正式採用は本文書では確定しない。
 - 管理上 ID 例が必要な場合も、正式採番ではなく placeholder であることを明示する (例として用いる `SR-xxx` 等は暫定であり確定した採番ではない)。
-- ID 体系そのものが未決であるため Open Issue として保持する (§16)。
+- ID 体系そのものが未決であるため Open Issue として保持する (§17)。
 - SCR ID を URL・route・実装画面 ID として使用しない。
 
 ### Status
@@ -173,7 +173,7 @@ Screen Requirements の上流成果物は、README の Reference Order 上で先
 ## 11. Open Issue Handling
 
 - 未定義の事業要求・業務仕様・画面仕様は、推測で補完せず Open Issue として保持する。
-- 各 Screen Requirement 文書の `Open Issues` 節、および本 README の §16 に集約する。
+- 各 Screen Requirement 文書の `Open Issues` 節、および本 README の §17 に集約する。
 - Open Issue が解決されるまで、それに依存する要件・分割・統合・作成順を確定しない。
 - 既存文書にない回答を推測して付与しない。
 

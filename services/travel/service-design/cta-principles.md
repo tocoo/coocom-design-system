@@ -2,7 +2,7 @@
 
 - Status: Draft
 - Scope: 国内宿泊サービス (`travel`, 暫定識別子) の CTA 設計原則の初版 Draft
-- Position in Repository: `services/travel/service-design/cta-principles.md` — Service Design レイヤー (travel サービス配下)。入口は [README.md](README.md)、参照する上流成果物は [principles.md](principles.md) / [information-architecture.md](information-architecture.md) / [navigation.md](navigation.md) / [content-principles.md](content-principles.md) / [screen-matrix.md](screen-matrix.md)、横断共通は [Governance](../../../governance/README.md)。
+- Position in Repository: `services/travel/service-design/cta-principles.md` — Service Design レイヤー (travel サービス配下)。入口は [README.md](README.md)、参照する上流成果物は [principles.md](principles.md) / [information-architecture.md](information-architecture.md) / [navigation.md](navigation.md) / [content-principles.md](content-principles.md)、横断共通は [Governance](../../../governance/README.md)。下流の [Screen Matrix](screen-matrix.md) との関係は §7 を参照。
 
 ## 1. Purpose
 

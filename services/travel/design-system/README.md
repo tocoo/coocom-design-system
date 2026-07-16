@@ -1,0 +1,277 @@
+# Travel Design System
+
+- Status: Draft
+- Scope: 国内宿泊サービス (`travel`, 暫定識別子) の Design System レイヤーの入口・共通管理構造。既存 Design System 資産と、上流 Service Design / Screen Requirements との関係を管理する基盤を定義する。
+- Position in Repository: `services/travel/design-system/README.md` — Design System レイヤー (travel サービス配下)。サービス入口は [../README.md](../README.md)。上流成果物は Governance の実在成果物 ([../../../governance/README.md](../../../governance/README.md) / [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md))、Service Design (SD-001〜SD-007, [../service-design/README.md](../service-design/README.md))、Screen Requirements (入口 [../screen-requirements/README.md](../screen-requirements/README.md)・作成順序評価 [../screen-requirements/creation-plan.md](../screen-requirements/creation-plan.md)・作成済みの個別 Screen Requirement)。同一 Design System レイヤーの既存資産 (`design.md` / `semantic.travel.json` / `primitive.travel.json` / `components.md`) との関係は §6 Existing Artifact Inventory・§7 Reference Order を参照。下流成果物 (Assets / Implementation) との関係は §12 を参照。
+
+本 README は Design System レイヤーの入口文書であり、個別のトークン・Component・ブランド値・Design Decision そのものは定義・変更しない。既存 Design System 資産と上流成果物の関係を管理するための責務・原則・境界・Open Issue を定義する。具体的な Alignment Assessment (上流要件と既存資産の対応評価) は後続タスクとし、本文書では実施しない。
+
+## 1. Purpose
+
+- Design System レイヤーの目的・責務と、既存 Design System 資産の位置づけを定義する。
+- 上流 Service Design (SD-001〜SD-007) と Screen Requirements (入口 README・Creation Plan・作成済みの個別 Screen Requirement) を、既存 Design System 資産へ接続する際の管理原則・参照方法・境界を定義する。
+- 「関係・境界・管理原則を定義する」ことと「実際の Alignment Assessment・対応表・gap 判定・改訂を行う」ことを区別する。後者は本文書では確定しない。
+- 既存 Design System が上流成果物と整合しているか、作成済みの個別 Screen Requirement を満たせるかは、本文書では判定しない (未評価として保持する)。
+
+## 2. Scope
+
+### Managed
+
+- Design System レイヤーの目的・責務・管理対象。
+- 既存 Design System 資産の一覧化 (実在ファイル名・各正本から引用した Status / version)。
+- 上流 Service Design / Screen Requirements と Design System の関係・境界。
+- 後続 Alignment Assessment が扱う範囲と、本 README が決めない範囲の境界。
+- 既存 Design System 文書が参照する外部・内部の出典 (provenance) の追跡方法と Open Issue 管理。
+- 既存資産の Status / version の扱い方。
+- 下流 Assets / Implementation との関係。
+- 未確認・不足・矛盾・未検証事項を Open Issue として保持する方法。
+
+### Not Managed
+
+- トークン・Component・ブランド値・Design Decision の追加・変更・削除。
+- 既存 Design System 文書 (`design.md` / JSON / `components.md`) の内容修正・version bump。
+- 上流要件と既存資産の具体的な対応表・gap 一覧・traceability の作成。
+- ADR・命名規則・用語定義の正本作成、Decision ID の再認定。
+- UI・レイアウト・画面構成・URL・route・実装仕様の定義。
+- Service Design / Screen Requirements / Governance の内容変更。
+- SCR-006〜SCR-012 の Design System 要件の作成。
+- Repository 内に正本が存在しない方針名・略称・Decision・Phase・ゲート名・正式な評価 ID の創作。
+
+## 3. Preconditions
+
+### Facts
+
+- 上流の Service Design 成果物 SD-001〜SD-007 が Draft として存在する ([../service-design/README.md](../service-design/README.md))。
+- Screen Requirements レイヤー入口 README が `In preparation` として存在し、作成順序評価 [../screen-requirements/creation-plan.md](../screen-requirements/creation-plan.md) が Draft として存在する。
+- SCR-001〜SCR-005・SCR-013・SCR-014 の個別 Screen Requirement が Draft として存在する。SCR-006〜SCR-012 は未作成 (`Not started`) である ([../screen-requirements/README.md](../screen-requirements/README.md) §14・§15)。
+- 国内宿泊サービスの Design System は、Service Design / Screen Requirements 構築以前から存在する既存 Draft 資産である。実在ファイルは `design.md` / `semantic.travel.json` / `primitive.travel.json` / `components.md` (§6)。
+- 既存 Design System 資産の Status は各正本ファイル上で Draft、version は `0.3.0-draft` である (§6 に各ファイルからの引用を記載)。
+- 既存 Design System が SD-001〜SD-007 と整合しているか、作成済みの個別 Screen Requirement を満たせるかは未評価である。
+- 既存 Design System 文書は、Repository 内に正本が確認できない参照 (`brand-content.md`・`governance/naming-rules.md`・GOV / TVL 等の Decision ID・GitHub URL・follow-up 番号) を含む (§8)。
+- 正式な画面一覧・URL・画面遷移・業務仕様は未定義である ([../service-design/screen-matrix.md](../service-design/screen-matrix.md) §2)。
+
+### Decisions
+
+- 本レイヤーの入口・共通管理構造を定義する (個別のトークン・Component・Design Decision は定義・変更しない)。
+- 既存 Design System 資産の内容を「正しい」「承認済み」「上流整合済み」「Complete」として扱わない。既存資産が Draft であることと、上流整合性が未評価であることを区別する。
+- 上流 Service Design / Screen Requirements を上流成果物として扱い、既存 Design System の記述を上流要求へ昇格させない。
+- 未確認・不足・矛盾・未検証・由来不明の事項を推測で補完せず Open Issue として保持する ([../service-design/ux-decision-records.md](../service-design/ux-decision-records.md) UXDR-TRAVEL-001 と一致)。
+- 具体的な Alignment Assessment (対応・gap・改訂・追加・廃止) は後続タスクで行う。
+
+### Hypotheses
+
+- なし。
+
+### Open Issues
+
+- 作成済みの個別 Screen Requirement と既存 Design System 資産の Alignment 評価方法・評価単位。
+- 既存 Design System 文書が参照する不足ファイル・Decision ID・外部参照の正本と有効性。
+- （詳細は §16 に集約）
+
+## 4. Layer Responsibility
+
+Design System レイヤーは、上流要求を UI 設計語彙へ接続する下流レイヤーである。責務は以下とする。
+
+- 上流の Service Design / Screen Requirements を変更・再定義しない。
+- 上流に存在する要求を、視覚・token・Component・状態・パターン等の設計語彙へ接続する。
+- 既存 Design System の記述を上流要求へ昇格させない。
+- 上流にない業務仕様・画面仕様・UI 要件を Design System から逆算しない。
+- Design System に存在する Component を理由に、利用する UI や画面構成を決定しない。
+- 不足は不足として、矛盾は矛盾として、未検証は未検証として、由来不明は由来不明として保持する。
+- 具体的な Alignment・改訂・追加・廃止は後続タスクで行う (§10)。
+
+本レイヤーは新しい設計原則 ID や正式な Alignment 方針名を定義しない。
+
+## 5. Relationship with Upstream Artifacts
+
+Design System の上流成果物は、Repository の参照順序 (Governance → Service Design → Screen Requirements → Design System → Assets) 上で先行する実在成果物とする。各成果物の定義を Design System 側で変更・再定義しない。
+
+- **Governance** ([../../../governance/README.md](../../../governance/README.md) / [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md)) — 横断共通の規約・確認事項。ただし命名規則・ADR・レビュー規則・用語定義・Repository principles の正本は未整備である (Governance README が明記)。
+- **SD-001 [Service Design Principles](../service-design/principles.md)** (Draft) — 体験設計の上位基準。
+- **SD-002 [Information Architecture](../service-design/information-architecture.md)** (Draft) — 情報オブジェクトと概念関係。
+- **SD-003 [Navigation](../service-design/navigation.md)** (Draft) — 現在地・移動・文脈保持の基準。
+- **SD-004 [Content Principles](../service-design/content-principles.md)** (Draft) — 情報表現・状態・不確実性の基準。
+- **SD-005 [CTA Principles](../service-design/cta-principles.md)** (Draft) — 行動・確約・優先順位の基準。
+- **SD-006 [Screen Matrix](../service-design/screen-matrix.md)** (Draft) — 画面候補 (SCR-001〜SCR-014) と責務。
+- **SD-007 [UX Decision Records](../service-design/ux-decision-records.md)** (Draft) — Accepted な UX 判断の制約。
+- **Screen Requirements** — 入口 [README.md](../screen-requirements/README.md) (`In preparation`) / 作成順序評価 [creation-plan.md](../screen-requirements/creation-plan.md) (Draft) / 作成済みの個別 Screen Requirement (§9)。
+
+同一 Design System レイヤーの既存資産 (`design.md` / JSON / `components.md`) は上流成果物ではない。それらとの関係は §6・§7 で扱う。Assets / Implementation は下流成果物であり §12 で扱う。
+
+## 6. Existing Artifact Inventory
+
+最新 main 上で確認できる既存 Design System 資産を、実在ファイル名で一覧化する。Status / version は各正本ファイルから引用する。本文書は既存資産の内容を「正しい」「承認済み」「上流整合済み」と判定しない。
+
+| Artifact | 種別 | Status (実ファイル引用) | version (実ファイル引用) |
+| --- | --- | --- | --- |
+| [design.md](design.md) | 統合文書 (design.md) | Draft | 0.3.0-draft |
+| [semantic.travel.json](semantic.travel.json) | Semantic token | Draft (`$meta.status`) | 0.3.0-draft (`$meta.version`) |
+| [primitive.travel.json](primitive.travel.json) | Primitive token | Draft (`$meta.status`) | 0.3.0-draft (`$meta.version`) |
+| [components.md](components.md) | Component 仕様 | Draft | 0.3.0-draft |
+
+各成果物について、以下を区別する。
+
+- **確認できる Fact**: 4 ファイルが実在し、各ファイルが自身の Status を Draft、version を `0.3.0-draft` と記載している。JSON 2 ファイルには `$status: placeholder` のトークンが含まれる (例: `radius.card`・`motion.*`・`shadow.*` に follow-up 番号・TVL-0008 の `$note`)。
+- **文書自身が主張している Decision / 状態**: 既存文書は TVL-0001〜0012・GOV-0002 等の Decision ID、実測値、placeholder / 実査待ちの区別を自ら記載する。これらは「文書がそう記載している」という Fact であり、Repository 内の正本による裏付けとは区別する (§8)。
+- **Repository 内の正本による裏付け**: 既存文書が参照する命名規則・ADR・`brand-content.md` 等の正本は Repository 内に確認できない (§8)。裏付けの有無は後続評価で扱う。
+- **後続評価が必要な事項**: 上流 SD-001〜SD-007・作成済みの個別 Screen Requirement との対応、placeholder / 実査待ちトークンの解決、Decision ID の正本確認 (§10・§16)。
+
+## 7. Reference Order
+
+Design System レイヤーの推奨参照順序は以下とする。未作成の成果物にはリンクを作成しない。
+
+1. 本 README (レイヤー入口・共通管理構造)
+2. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
+3. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
+4. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
+5. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
+
+この順序は参照上の読み順であり、依存関係・生成順・優先度・実装順を自動的に意味しない。上流 Service Design / Screen Requirements との対応関係は本順序では確定せず、後続 Alignment Assessment で扱う (§10)。
+
+## 8. Source and Provenance Handling
+
+既存 Design System 文書には、Repository 内で正本が確認できない参照が含まれる。最新 main 上で確認した状況は以下のとおり。既存文書の参照切れ自体は本タスクでは修正しない。
+
+- **`brand-content.md`** — `design.md` が §8 等でライティング・価格表記の「正」として参照するが、`services/travel/design-system/` に当該ファイルは存在しない。
+- **`governance/naming-rules.md`** — `design.md` §9・`components.md` (§1・§2・§7・§8 等) が命名規則の参照先とするが、当該ファイルは存在しない。Governance README も「既存 Design System 文書が参照する `governance/naming-rules.md` は未作成」と明記する。
+- **GOV / TVL 等の Decision ID** — 既存文書は GOV-0002・TVL-0001〜0012 等を参照するが、Governance README は「ADR の正本は未作成」としており、これらを Accepted Decision として裏付ける ADR 正本が Repository 内に確認できない。[owner-decisions.md](../../../governance/owner-decisions.md) は「オーナー確認事項 (分類C)」の一覧であり、ADR 正本ではない。
+- **GitHub URL・実装 Repository・follow-up 番号** — 既存文書は Source of Truth の GitHub URL、実装 Repository (`tocoo/tocoo_travel`)、follow-up #2 / #3 / #4 / #5 / #13 等を参照するが、Repository 内の追跡可能な正本への接続は確認できない。
+
+これらの扱いは以下とする。
+
+- 存在しないファイルへのリンクを本 README に作成しない。
+- 正本がない Decision ID を Accepted Decision として再認定しない。
+- 「既存文書がそのように記載している」という Fact と、「その根拠が Repository 内で確認できる」ことを分離する。
+- 不足・参照切れ・由来未確認として Open Issue へ記録する (§16)。
+- 本タスクで代替文書・ADR・命名規則・`brand-content.md` を推測作成しない。
+
+## 9. Relationship with Screen Requirements
+
+作成済みの個別 Screen Requirement は、上流 Screen Matrix (SD-006) の画面候補に対応する。現在の上流対象は以下 (すべて Draft)。
+
+| SCR 候補 | 個別 Screen Requirement (実在ファイル) | Status |
+| --- | --- | --- |
+| SCR-001 Service Entry | [service-entry.md](../screen-requirements/service-entry.md) | Draft |
+| SCR-002 Destination Discovery | [destination-discovery.md](../screen-requirements/destination-discovery.md) | Draft |
+| SCR-003 Accommodation Search | [accommodation-search.md](../screen-requirements/accommodation-search.md) | Draft |
+| SCR-004 Search Results | [search-results.md](../screen-requirements/search-results.md) | Draft |
+| SCR-005 Accommodation Detail | [accommodation-detail.md](../screen-requirements/accommodation-detail.md) | Draft |
+| SCR-013 Help and Support | [help-and-support.md](../screen-requirements/help-and-support.md) | Draft |
+| SCR-014 Editorial Content | [editorial-content.md](../screen-requirements/editorial-content.md) | Draft |
+
+これらについて以下を守る。
+
+- これらはすべて Draft である。
+- 現時点では Design System との対応評価は未実施である。
+- 各 Screen Requirement の Downstream Impact に記載された例や既存 Component 名を、採用決定と解釈しない。
+- 具体的な Component 対応・token 対応・状態対応・gap 判定は後続評価 (§10) で行う。
+- 1 つの Screen Requirement と 1 つの Component を 1 対 1 で前提としない。
+
+SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕様が未解決である ([../screen-requirements/creation-plan.md](../screen-requirements/creation-plan.md) §10・§12)。これらについて以下を守る。
+
+- 未作成要件を推測して Design System 要件を作らない。
+- 予約・決済・認証・会員・変更・取消等を先取りしない。
+- 既存 Design System に関連しそうな Component があっても、上流要求として採用しない。
+- 後続評価の対象範囲外または未評価として保持する。
+
+## 10. Alignment Assessment Boundary
+
+後続の Alignment Assessment が扱い得る事項と、本 README が決めない範囲を定義する。
+
+### 後続評価で扱い得る事項
+
+- 作成済みの 7 個別 Screen Requirement と既存 Design System 資産の追跡。
+- 要件ごとに必要な設計責務。
+- 既存 token / Component / 状態 / pattern で確認できる対応。
+- 不足・過剰・矛盾・placeholder・実査待ち・根拠不明・参照切れ。
+- 下流反映方法の Open Issue。
+
+### 本 README で決定しない事項
+
+- 具体的な対応表・gap の解決策。
+- token の追加・変更・削除。
+- Component の追加・変更・削除。
+- version bump。
+- Design Decision・ADR・命名規則・実装仕様。
+- UI・レイアウト・画面構成。
+- SCR-006〜SCR-012 の Design System 要件。
+- 評価結果の承認・Alignment 完了条件の正式確定。
+
+後続評価用の新規ファイル名・正式な評価 ID は本タスクで確定しない。
+
+## 11. Status and Version Handling
+
+- 本入口 README 自身の Status は `Draft` である。
+- 既存資産の Status / version は各正本ファイル (`design.md` / JSON / `components.md`) から引用する。本 README は既存資産の version 正本にならない。
+- 上流との Alignment 未実施を理由に、既存資産の version を変更しない。
+- 文書追加 (本 README の新設) だけで token package の version を上げない。
+- 後続の変更で version bump が必要かは Open Issue とする (§16)。
+- `Draft`・placeholder・実査待ち・未着手を混同しない (Draft = 文書全体の状態、placeholder / 実査待ち = 個別トークンの未確定、未着手 = 成果物が存在しない)。
+- 既存の version 表記間に不整合がある場合、独断で統一せず Open Issue として記録する (§16。例: [../README.md](../README.md) は primitive を「0.3.0」と要約する一方、`primitive.travel.json` の `$meta.version` は「0.3.0-draft」である)。
+
+## 12. Relationship with Downstream Artifacts
+
+下流成果物を Position ヘッダーの「上流成果物」に含めない。
+
+- **Assets** ([../assets/README.md](../assets/README.md)) — `services/travel/assets/` に位置し、現在 `Not started`。ロゴ・フォント・アイコン等の実体資産を管理する別レイヤー。Design System との接続方法は Open Issue (§16)。
+- **Implementation** — Repository の管理対象外。Design System README だけで実装仕様を確定しない。既存文書に実装 Repository (`tocoo/tocoo_travel`) の記述があっても、実装状態を確認済みとみなさない。Design System から実装画面・URL・route を導出しない。
+
+## 13. Open Issue Handling
+
+- 未確認・不足・矛盾・未検証・由来不明の事項は、推測で補完せず Open Issue として保持する。
+- 各事項は本 README の §16、および後続 Alignment Assessment で扱う。
+- Open Issue が解決されるまで、それに依存する対応・改訂・version bump・承認を確定しない。
+- 既存文書にない回答を推測して付与しない。
+
+## 14. Quality Criteria
+
+本レイヤーおよび後続の成果物には、以下を適用する。
+
+- 単独で読んでも理解できる。
+- 責務が明確で、上流・同一レイヤー・下流の関係を混同しない。
+- Fact / Decision / Hypothesis / Open Issue が区別されている。
+- 既存資産の Status / version を正本ファイルから引用し、二重管理しない。
+- 上流成果物 (SD-001〜SD-007・Screen Requirements) の定義を再定義せず参照する。
+- 既存 Design System の記述を上流要求へ昇格させない。
+- 未確認・不足・矛盾を推測で補完せず Open Issue として扱う。
+- 下流 (Assets・Implementation) への関係を分離する。
+
+## 15. Current Status
+
+- 本レイヤー入口 README が `Draft` として存在する (本タスクで新設)。
+- 既存 Design System 資産 (`design.md` / `semantic.travel.json` / `primitive.travel.json` / `components.md`) が Draft (`0.3.0-draft`) として存在する (§6)。
+- 上流 Service Design 成果物 SD-001〜SD-007 が Draft として存在する。
+- Screen Requirements は入口 README (`In preparation`)・Creation Plan (Draft)・作成済みの個別 Screen Requirement (SCR-001〜SCR-005・SCR-013・SCR-014 は Draft、SCR-006〜SCR-012 は `Not started`) として存在する。
+- 既存 Design System と上流成果物の Alignment は未評価である。
+- 下流 Assets は `Not started`、Implementation は Repository 管理対象外。
+- 既存文書が参照する一部の出典 (`brand-content.md`・`governance/naming-rules.md`・ADR 正本) は Repository 内に存在しない (§8)。
+
+## 16. Open Issues
+
+以下は未決である。解決策は推測して記載しない。
+
+- 作成済みの 7 個別 Screen Requirement と既存 Design System 資産の Alignment 評価方法。
+- 評価単位。
+- traceability の記録方法。
+- gap の分類方法。
+- 評価・承認主体。
+- Design System への反映確認方法。
+- version bump の条件。
+- 既存 Decision ID (GOV / TVL 等) の正本と有効性。
+- Governance の命名規則正本 (`governance/naming-rules.md`) が存在しないこと。
+- ADR 正本が存在しないこと。
+- `brand-content.md` の参照と実在状況 (存在しない)。
+- `governance/naming-rules.md` の参照と実在状況 (存在しない)。
+- 既存 follow-up 番号 (#2 / #3 / #4 / #5 / #13 等) の追跡先。
+- 既存 GitHub / 実装 Repository 参照の検証方法。
+- placeholder / 実査待ちトークンの解決主体。
+- 既存の version 表記間の不整合 (例: [../README.md](../README.md) の「primitive 0.3.0」と `primitive.travel.json` の「0.3.0-draft」)。
+- SCR-006〜SCR-012 を評価対象へ加える条件。
+- Assets への接続方法。
+- Alignment 完了条件。
+
+## 17. Change Log
+
+| Date | Change | Status |
+|---|---|---|
+| 2026-07-16 | Define Design System layer foundation (entry README: responsibility, upstream/downstream relationships, existing artifact inventory, provenance handling, and alignment assessment boundary) | Draft |

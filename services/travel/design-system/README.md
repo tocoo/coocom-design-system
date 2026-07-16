@@ -125,10 +125,11 @@ Design System レイヤーの推奨参照順序は以下とする。未作成の
 1. 本 README (レイヤー入口・共通管理構造)
 2. [alignment-plan.md](alignment-plan.md) (Alignment Assessment の計画: 評価方法・証拠規則・記録構造・推奨実行順, Draft)
 3. [baseline-assessment.md](baseline-assessment.md) (既存 4 資産の Baseline Assessment: 内部整合性・provenance・placeholder の read-only 確認結果, Draft)
-4. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
-5. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
-6. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
-7. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
+4. [service-design-alignment-assessment.md](service-design-alignment-assessment.md) (Service Design 横断原則と既存 Design System の整合性評価: Work Order 2 の結果, Draft)
+5. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
+6. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
+7. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
+8. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
 
 この順序は参照上の読み順であり、依存関係・生成順・優先度・実装順を自動的に意味しない。上流 Service Design / Screen Requirements との対応関係は本順序では確定せず、後続 Alignment Assessment で扱う (§10)。
 
@@ -180,7 +181,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 
 ## 10. Alignment Assessment Boundary
 
-後続の Alignment Assessment が扱い得る事項と、本 README が決めない範囲を定義する。評価方法・記録構造・推奨実行順は [alignment-plan.md](alignment-plan.md) で Draft として定義された。Work Order 1 の Baseline 確認は [baseline-assessment.md](baseline-assessment.md) (Draft) として実施された。Work Order 2 以降 (上流との対応評価・gap 判定) は未実施であり、上流 Alignment の評価結果 (対応表・gap 判定) はまだ存在しない。
+後続の Alignment Assessment が扱い得る事項と、本 README が決めない範囲を定義する。評価方法・記録構造・推奨実行順は [alignment-plan.md](alignment-plan.md) で Draft として定義された。Work Order 1 の Baseline 確認は [baseline-assessment.md](baseline-assessment.md) (Draft) として、Work Order 2 の Service Design 横断整合性評価は [service-design-alignment-assessment.md](service-design-alignment-assessment.md) (Draft) として実施された。Work Order 3 以降 (個別 Screen Requirement との対応評価・改定候補整理) は未着手であり、その評価結果 (SCR 単位の対応表・gap 判定) はまだ存在しない。
 
 ### 後続評価で扱い得る事項
 
@@ -248,7 +249,8 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 - Screen Requirements は入口 README (`In preparation`)・Creation Plan (Draft)・作成済みの個別 Screen Requirement (SCR-001〜SCR-005・SCR-013・SCR-014 は Draft、SCR-006〜SCR-012 は `Not started`) として存在する。
 - Alignment Assessment の計画文書 [alignment-plan.md](alignment-plan.md) が Draft として存在する (評価方法・記録構造・推奨順を定義)。
 - 既存 Design System 4 資産の Baseline Assessment (内部整合性・provenance・placeholder の read-only 確認) が [baseline-assessment.md](baseline-assessment.md) として Draft で実施済みである (Work Order 1)。
-- 上流 Service Design / Screen Requirements との Alignment は未評価である (Work Order 2 以降未実施)。
+- Service Design の横断原則と既存 Design System の整合性評価が [service-design-alignment-assessment.md](service-design-alignment-assessment.md) として Draft で完了した (Work Order 2)。
+- 個別 Screen Requirement との整合性評価 (Work Order 3) は未着手である。
 - 下流 Assets は `Not started`、Implementation は Repository 管理対象外。
 - 既存文書が参照する一部の出典 (`brand-content.md`・`governance/naming-rules.md`・ADR 正本) は Repository 内に存在しない (§8)。
 
@@ -285,3 +287,4 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 | 2026-07-16 | Align `../README.md` の primitive version 要約表記を正本 `primitive.travel.json` の `$meta.version`「0.3.0-draft」へ是正し、§11・§16 の記述を更新 (資産 version は不変。PR #43 レビュー対応) | Draft |
 | 2026-07-16 | Add alignment-plan.md (Draft) to Scope, Preconditions/Current Status, Reference Order, Alignment Assessment Boundary, and Open Issues (評価計画の追加。評価自体は未実施) | Draft |
 | 2026-07-16 | Add baseline-assessment.md (Draft) to Reference Order, Current Status, Alignment Assessment Boundary, and Open Issues (Work Order 1 の Baseline 確認を実施。Work Order 2 以降の上流 Alignment は未実施) | Draft |
+| 2026-07-16 | Add service-design-alignment-assessment.md (Draft) to Reference Order, Current Status, and Alignment Assessment Boundary (Work Order 2 の Service Design 横断整合性評価を実施。Work Order 3 の個別 Screen Requirement 整合性評価は未着手) | Draft |

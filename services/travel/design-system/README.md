@@ -21,6 +21,7 @@
 - 既存 Design System 資産の一覧化 (実在ファイル名・各正本から引用した Status / version)。
 - 上流 Service Design / Screen Requirements と Design System の関係・境界。
 - 後続 Alignment Assessment が扱う範囲と、本 README が決めない範囲の境界。
+- Alignment Assessment の評価方法・証拠規則・記録構造・推奨実行順の計画 ([alignment-plan.md](alignment-plan.md), Draft)。
 - 既存 Design System 文書が参照する外部・内部の出典 (provenance) の追跡方法と Open Issue 管理。
 - 既存資産の Status / version の扱い方。
 - 下流 Assets / Implementation との関係。
@@ -47,6 +48,7 @@
 - 国内宿泊サービスの Design System は、Service Design / Screen Requirements 構築以前から存在する既存 Draft 資産である。実在ファイルは `design.md` / `semantic.travel.json` / `primitive.travel.json` / `components.md` (§6)。
 - 既存 Design System 資産の Status は各正本ファイル上で Draft、version は `0.3.0-draft` である (§6 に各ファイルからの引用を記載)。
 - 既存 Design System が SD-001〜SD-007 と整合しているか、作成済みの個別 Screen Requirement を満たせるかは未評価である。
+- Alignment Assessment の計画文書 [alignment-plan.md](alignment-plan.md) が Draft として存在する。具体的な Alignment Assessment 自体は未実施である。
 - 既存 Design System 文書は、Repository 内に正本が確認できない参照 (`brand-content.md`・`governance/naming-rules.md`・GOV / TVL 等の Decision ID・GitHub URL・follow-up 番号) を含む (§8)。
 - 正式な画面一覧・URL・画面遷移・業務仕様は未定義である ([../service-design/screen-matrix.md](../service-design/screen-matrix.md) §2)。
 
@@ -64,7 +66,7 @@
 
 ### Open Issues
 
-- 作成済みの個別 Screen Requirement と既存 Design System 資産の Alignment 評価方法・評価単位。
+- Alignment 評価方法・評価単位・記録構造・観察区分は [alignment-plan.md](alignment-plan.md) で Draft 定義済み。その妥当性・評価/承認主体・Alignment 完了条件は未決。
 - 既存 Design System 文書が参照する不足ファイル・Decision ID・外部参照の正本と有効性。
 - （詳細は §16 に集約）
 
@@ -121,10 +123,11 @@ Design System の上流成果物は、Repository の参照順序 (Governance →
 Design System レイヤーの推奨参照順序は以下とする。未作成の成果物にはリンクを作成しない。
 
 1. 本 README (レイヤー入口・共通管理構造)
-2. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
-3. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
-4. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
-5. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
+2. [alignment-plan.md](alignment-plan.md) (Alignment Assessment の計画: 評価方法・証拠規則・記録構造・推奨実行順, Draft)
+3. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
+4. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
+5. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
+6. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
 
 この順序は参照上の読み順であり、依存関係・生成順・優先度・実装順を自動的に意味しない。上流 Service Design / Screen Requirements との対応関係は本順序では確定せず、後続 Alignment Assessment で扱う (§10)。
 
@@ -176,7 +179,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 
 ## 10. Alignment Assessment Boundary
 
-後続の Alignment Assessment が扱い得る事項と、本 README が決めない範囲を定義する。
+後続の Alignment Assessment が扱い得る事項と、本 README が決めない範囲を定義する。評価方法・記録構造・推奨実行順は [alignment-plan.md](alignment-plan.md) で Draft として定義された。評価結果 (対応表・gap 判定) はまだ存在しない。
 
 ### 後続評価で扱い得る事項
 
@@ -242,6 +245,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 - 既存 Design System 資産 (`design.md` / `semantic.travel.json` / `primitive.travel.json` / `components.md`) が Draft (`0.3.0-draft`) として存在する (§6)。
 - 上流 Service Design 成果物 SD-001〜SD-007 が Draft として存在する。
 - Screen Requirements は入口 README (`In preparation`)・Creation Plan (Draft)・作成済みの個別 Screen Requirement (SCR-001〜SCR-005・SCR-013・SCR-014 は Draft、SCR-006〜SCR-012 は `Not started`) として存在する。
+- Alignment Assessment の計画文書 [alignment-plan.md](alignment-plan.md) が Draft として存在する (評価方法・記録構造・推奨順を定義)。具体的な Alignment Assessment は未実施である。
 - 既存 Design System と上流成果物の Alignment は未評価である。
 - 下流 Assets は `Not started`、Implementation は Repository 管理対象外。
 - 既存文書が参照する一部の出典 (`brand-content.md`・`governance/naming-rules.md`・ADR 正本) は Repository 内に存在しない (§8)。
@@ -250,8 +254,8 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 
 以下は未決である。解決策は推測して記載しない。
 
-- 作成済みの 7 個別 Screen Requirement と既存 Design System 資産の Alignment 評価方法。
-- 評価単位。
+- Alignment 評価方法・記録構造・観察区分は [alignment-plan.md](alignment-plan.md) で Draft 定義済み。その妥当性・評価/承認主体・実行結果・Alignment 完了条件は未決。
+- 評価単位の妥当性。
 - traceability の記録方法。
 - gap の分類方法。
 - 評価・承認主体。
@@ -276,3 +280,4 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 |---|---|---|
 | 2026-07-16 | Define Design System layer foundation (entry README: responsibility, upstream/downstream relationships, existing artifact inventory, provenance handling, and alignment assessment boundary) | Draft |
 | 2026-07-16 | Align `../README.md` の primitive version 要約表記を正本 `primitive.travel.json` の `$meta.version`「0.3.0-draft」へ是正し、§11・§16 の記述を更新 (資産 version は不変。PR #43 レビュー対応) | Draft |
+| 2026-07-16 | Add alignment-plan.md (Draft) to Scope, Preconditions/Current Status, Reference Order, Alignment Assessment Boundary, and Open Issues (評価計画の追加。評価自体は未実施) | Draft |

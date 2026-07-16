@@ -57,7 +57,7 @@
 
 ## 4. Screen Matrix
 
-Navigation Types は [navigation.md](navigation.md) の NAV ID、Content Categories は [content-principles.md](content-principles.md) の分類、Navigation States は [navigation.md](navigation.md) の状態名を用いる。Screen Requirements は SCR-001 が [Draft](../screen-requirements/service-entry.md)、SCR-013 が [Draft](../screen-requirements/help-and-support.md)、その他 (SCR-002〜SCR-012, SCR-014) は `Not started`。
+Navigation Types は [navigation.md](navigation.md) の NAV ID、Content Categories は [content-principles.md](content-principles.md) の分類、Navigation States は [navigation.md](navigation.md) の状態名を用いる。Screen Requirements は SCR-001 が [Draft](../screen-requirements/service-entry.md)、SCR-013 が [Draft](../screen-requirements/help-and-support.md)、SCR-014 が [Draft](../screen-requirements/editorial-content.md)、その他 (SCR-002〜SCR-012) は `Not started`。
 
 | Screen ID | Screen Candidate | Responsibility | Primary Task | Primary IA Objects | Navigation Types | Content Categories | Navigation States | Screen Requirements | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -74,7 +74,7 @@ Navigation Types は [navigation.md](navigation.md) の NAV ID、Content Categor
 | SCR-011 | Booking Change or Cancellation | Booking の変更・取消を検討・実行する | 変更・取消する | Booking / Policy | NAV-002 / 004 / 005 / 006 | Conditions and Policies / Task Guidance / Status and Feedback | Evaluating, Committing, Completed, Error / Interrupted | Not started | Draft |
 | SCR-012 | User Access | 認証・識別に関連する入口を提供する | サービスにアクセスする | User | NAV-001 / 004 / 006 | Task Guidance / Identification | Entry, Committing, Error / Interrupted | Not started | Draft |
 | SCR-013 | Help and Support | 問題解決・条件確認を支援する | 支援を得る | Content / Policy | NAV-001 / 002 / 003 / 006 | Editorial and Support / Conditions and Policies | Entry, Exploring, Error / Interrupted | [Draft](../screen-requirements/help-and-support.md) | Draft |
-| SCR-014 | Editorial Content | 特集・ガイド等の Content を提供する | 情報を読む | Content | NAV-001 / 002 / 003 | Editorial and Support / Identification | Entry, Exploring, Evaluating | Not started | Draft |
+| SCR-014 | Editorial Content | 特集・ガイド等の Content を提供する | 情報を読む | Content | NAV-001 / 002 / 003 | Editorial and Support / Identification | Entry, Exploring, Evaluating | [Draft](../screen-requirements/editorial-content.md) | Draft |
 
 ## 5. Screen Candidates
 
@@ -660,7 +660,7 @@ Draft
 
 ### Screen Requirements Status
 
-Not started
+[Draft](../screen-requirements/editorial-content.md)
 
 ### Status
 
@@ -734,3 +734,4 @@ Draft
 | 2026-07-15 | Initial draft of Travel Screen Matrix | Draft |
 | 2026-07-15 | Link SCR-001 Screen Requirements progress to service-entry.md (Draft); SCR-002〜SCR-014 unchanged | Draft |
 | 2026-07-15 | Link SCR-013 Screen Requirements progress to help-and-support.md (Draft); SCR-001 unchanged, SCR-002〜SCR-012 and SCR-014 unchanged | Draft |
+| 2026-07-16 | Link SCR-014 Screen Requirements progress to editorial-content.md (Draft); SCR-001 and SCR-013 unchanged, SCR-002〜SCR-012 unchanged | Draft |

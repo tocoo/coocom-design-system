@@ -43,7 +43,9 @@
 
 - 上流の Service Design 成果物 SD-001〜SD-007 が Draft として存在する ([../service-design/README.md](../service-design/README.md))。
 - Screen Matrix ([../service-design/screen-matrix.md](../service-design/screen-matrix.md)) は 14 画面候補 (SCR-001〜SCR-014) を Draft として管理する。
-- 個別 Screen Requirement 文書は現時点で未作成である。
+- 作成順序評価 [creation-plan.md](creation-plan.md) が Draft として存在する。
+- SCR-001〜SCR-005・SCR-013・SCR-014 の個別 Screen Requirement が Draft として存在する ([service-entry.md](service-entry.md) SCR-001 / [destination-discovery.md](destination-discovery.md) SCR-002 / [accommodation-search.md](accommodation-search.md) SCR-003 / [search-results.md](search-results.md) SCR-004 / [accommodation-detail.md](accommodation-detail.md) SCR-005 / [help-and-support.md](help-and-support.md) SCR-013 / [editorial-content.md](editorial-content.md) SCR-014)。
+- SCR-006〜SCR-012 の個別 Screen Requirement は未作成 (`Not started`) である。
 - 正式な画面一覧・URL・画面遷移・業務仕様は未定義である。
 - Design System は既存資産として存在する ([../design-system/](../design-system/))。
 
@@ -124,9 +126,9 @@
 ### Status
 
 - 本レイヤー入口 README の Status は `In preparation`。
-- 個別 Screen Requirement は未作成のため `Not started`。
-- 将来作成する個別成果物の初期 Status は `Draft`。
-- Screen Matrix の画面候補 Status と Screen Requirement 文書 Status を混同しない。
+- 個別 Screen Requirement 文書の Status は各文書で管理する。未作成の個別 Screen Requirement は `Not started`、作成した個別成果物の初期 Status は `Draft` とする。
+- 現在、SCR-001〜SCR-005・SCR-013・SCR-014 の個別 Screen Requirement は `Draft` として存在し、SCR-006〜SCR-012 は未作成 (`Not started`) である。
+- Screen Matrix の画面候補 Status と Screen Requirement 文書 Status は別に管理し、混同しない。
 
 ## 8. Relationship with Screen Matrix
 
@@ -288,3 +290,4 @@ Screen Requirements レイヤーの推奨参照順序は以下とする。未作
 | 2026-07-16 | Add search-results.md (SCR-004, Draft) to Reference Order, Planned Artifacts, and Current Status | In preparation |
 | 2026-07-16 | Add accommodation-detail.md (SCR-005, Draft) to Reference Order, Planned Artifacts, and Current Status | In preparation |
 | 2026-07-16 | Add destination-discovery.md (SCR-002, Draft) to Reference Order, Planned Artifacts, and Current Status | In preparation |
+| 2026-07-16 | Align §3 Preconditions Facts and §7 Status Model with current individual requirement creation status (SCR-001〜SCR-005・SCR-013・SCR-014 Draft, SCR-006〜SCR-012 Not started) | In preparation |

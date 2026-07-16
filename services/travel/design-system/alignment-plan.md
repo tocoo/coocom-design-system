@@ -45,6 +45,7 @@
 - 既存 Design System と上流 (SD-001〜SD-007・作成済みの個別 Screen Requirement) の Alignment は未評価である。
 - 既存 Design System 文書は、Repository 内に正本が確認できない参照 (`brand-content.md`・`governance/naming-rules.md`・GOV / TVL 等の Decision ID・GitHub URL・follow-up 番号) を含む ([README.md](README.md) §8)。
 - 正式な画面一覧・URL・画面遷移・業務仕様は未定義である ([../service-design/screen-matrix.md](../service-design/screen-matrix.md) §2)。
+- 実行状況: Work Order (§10) の 1 = 既存 Design System 4 資産の Baseline 確認が [baseline-assessment.md](baseline-assessment.md) (Draft) として実施済みである。Work Order 2〜6 は未実施。本計画の評価方法・評価単位・証拠規則・記録構造・観察区分・推奨順・推薦理由は変更していない。
 
 ### Decisions
 
@@ -243,6 +244,8 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 
 順序の理由: DS 側の信頼性 (1) を確認せずに上流対応 (2・3) を断定すると、未検証・placeholder・provenance 未確認の DS 記述を「正しい実現手段」として扱う危険がある。横断原則 (2) を個別評価 (3) より先に置くのは、個別評価の観点を統一するため。集約 (4)・分離 (5)・判断 (6) は観察が揃った後に成立する。
 
+実行状況: 1 (既存 4 資産の Baseline 確認) は [baseline-assessment.md](baseline-assessment.md) (Draft) として実施済み。2〜6 は未実施。この実行状況は上記の順序・理由・分類を変更しない。Baseline 実施をもって Alignment 全体を完了扱いしない。
+
 ## 11. First Assessment Recommendation
 
 最初に実行すべき評価対象を 1 件推薦する。
@@ -257,6 +260,7 @@ Alignment Assessment で使用できる証拠を以下に限定する。
   6. `design.md`・JSON・`components.md` 間の整合性が未確認である。
   7. この状態で Screen Requirement との対応を断定すると、未検証の DS 記述を正しい実現手段として扱う危険がある。
 - **位置づけ**: 「最初に行うこと」であり、正式な Phase・成果物名・ファイル名・評価 ID を確定するものではない。推薦対象の正式名称は本文書で確定しない。
+- **実行状況**: 本推薦は実行され、Baseline 確認結果が [baseline-assessment.md](baseline-assessment.md) (Draft) として存在する。これは推薦の実行状況の注記であり、上記の推薦理由を事後的に変更するものではない。
 
 ## 12. Entry Conditions for Assessment
 
@@ -273,6 +277,8 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 - 不明事項を Open Issue として保持できること。
 
 評価・承認主体が未定義であることを理由に、事実確認 (read-only の観察記録) まで停止しない。ただし未定義の承認主体を推測しない。
+
+実行状況: Work Order 1 の Baseline 確認 ([baseline-assessment.md](baseline-assessment.md), Draft) は、上記の開始条件を満たした上で実施した (評価対象 commit `0d446152` と 4 ファイルの blob SHA を記録・上流と同一レイヤーを区別・作成済み 7 個別 Screen Requirement 以外を評価せず・read-only・provenance 未確認を未確認のまま記録)。条件自体は変更していない。
 
 ## 13. Quality Criteria
 
@@ -317,6 +323,7 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 
 以下は未決である。解決策は推測して記載しない。
 
+- Baseline Assessment ([baseline-assessment.md](baseline-assessment.md)) の結果の承認・解決・反映は未決 (Baseline 実施は Alignment 全体の完了を意味しない)。
 - Alignment 評価の評価単位・記録構造・観察区分の妥当性。
 - 評価・承認主体。
 - traceability の記録の保存場所・形式。
@@ -357,3 +364,4 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 | Date | Change | Status |
 |---|---|---|
 | 2026-07-16 | Initial draft: Design System Alignment Assessment の評価方法・対象・証拠規則・記録構造・観察区分・評価観点・推奨実行順・最初の評価対象を定義 (評価自体は未実施) | Draft |
+| 2026-07-16 | 実行状況を同期: Work Order 1 (Baseline 確認) を baseline-assessment.md (Draft) として実施済みと §3/§10/§11/§12/§17 へ注記。評価方法・分類・順序・推薦理由は不変。Work Order 2〜6 は未実施 | Draft |

@@ -12,7 +12,7 @@
 | --- | --- | --- | --- |
 | Service Design | サービスの設計意図・方針 | [service-design/](service-design/README.md) | Draft (SD-001〜SD-007) |
 | Screen Requirements | 画面要件 | [screen-requirements/](screen-requirements/README.md) | In preparation (SCR-001〜SCR-005・SCR-013・SCR-014 個別要件は Draft / SCR-006〜SCR-012 は Not started) |
-| Design System | 視覚・トークン・コンポーネント定義 | [design-system/](design-system/) | 既存資産 (Draft) |
+| Design System | 視覚・トークン・コンポーネント定義 | [design-system/](design-system/README.md) | 既存資産 (Draft・上流との Alignment 未評価) |
 | Assets | 設計に付随する資産 | [assets/](assets/README.md) | Not started |
 
 横断の共通規約は [governance/](../../governance/README.md) を参照。
@@ -22,7 +22,7 @@
 1. 本 README
 2. Service Design → Screen Requirements → Design System → Assets
 
-Design System 内の推奨読み順: `design.md` → `semantic.travel.json` → `primitive.travel.json` → `components.md`
+Design System 内の推奨読み順は [design-system/README.md](design-system/README.md) を正本として参照する。
 
 ## 現在存在する成果物
 
@@ -32,13 +32,14 @@ Design System 内の推奨読み順: `design.md` → `semantic.travel.json` → 
   - 入口 README (`In preparation`) / [creation-plan.md](screen-requirements/creation-plan.md) (SCR-001〜SCR-014 の作成単位・着手可否・作成順序の評価, `Draft`)
   - 個別 Screen Requirement (`Draft`): SCR-001 [service-entry.md](screen-requirements/service-entry.md) / SCR-002 [destination-discovery.md](screen-requirements/destination-discovery.md) / SCR-003 [accommodation-search.md](screen-requirements/accommodation-search.md) / SCR-004 [search-results.md](screen-requirements/search-results.md) / SCR-005 [accommodation-detail.md](screen-requirements/accommodation-detail.md) / SCR-013 [help-and-support.md](screen-requirements/help-and-support.md) / SCR-014 [editorial-content.md](screen-requirements/editorial-content.md)
   - 参照順序は [screen-requirements/README.md](screen-requirements/README.md) §13 Reference Order を正本とする (本 README では別の作成順を定義しない)。
-- **Design System (既存資産)** — トークン現行版: primitive 0.3.0 / semantic 0.3.0-draft (Draft)
+- **Design System (既存資産)** — レイヤー入口 README を新設 (`Draft`)。既存資産のトークン現行版: primitive 0.3.0-draft / semantic 0.3.0-draft (Draft、各 JSON の `$meta.version` 準拠)。上流 Service Design / Screen Requirements との Alignment は未評価。入口: [design-system/README.md](design-system/README.md)
+  - [design-system/README.md](design-system/README.md) (レイヤー入口・既存資産の管理構造・上流下流関係, `Draft`)
   - [design-system/design.md](design-system/design.md)
   - [design-system/semantic.travel.json](design-system/semantic.travel.json)
   - [design-system/primitive.travel.json](design-system/primitive.travel.json)
   - [design-system/components.md](design-system/components.md)
 
-Design System は本 bootstrap 以前から存在する既存資産であり、内容は変更していない (移行に伴う参照パス修正を除く)。
+Design System の既存資産 (`design.md`・JSON・`components.md`) は本 bootstrap 以前から存在し、内容は変更していない (移行に伴う参照パス修正を除く)。入口 README (`Draft`) は既存資産と上流成果物の関係を管理する基盤であり、既存資産の内容・version・Status を変更しない。上流との Alignment 評価は後続タスクで行う。
 
 ## 現在存在しない成果物
 

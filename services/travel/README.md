@@ -32,10 +32,11 @@ Design System 内の推奨読み順は [design-system/README.md](design-system/R
   - 入口 README (`In preparation`) / [creation-plan.md](screen-requirements/creation-plan.md) (SCR-001〜SCR-014 の作成単位・着手可否・作成順序の評価, `Draft`)
   - 個別 Screen Requirement (`Draft`): SCR-001 [service-entry.md](screen-requirements/service-entry.md) / SCR-002 [destination-discovery.md](screen-requirements/destination-discovery.md) / SCR-003 [accommodation-search.md](screen-requirements/accommodation-search.md) / SCR-004 [search-results.md](screen-requirements/search-results.md) / SCR-005 [accommodation-detail.md](screen-requirements/accommodation-detail.md) / SCR-013 [help-and-support.md](screen-requirements/help-and-support.md) / SCR-014 [editorial-content.md](screen-requirements/editorial-content.md)
   - 参照順序は [screen-requirements/README.md](screen-requirements/README.md) §13 Reference Order を正本とする (本 README では別の作成順を定義しない)。
-- **Design System (既存資産)** — レイヤー入口 README (`Draft`)・Alignment Assessment 計画 (`Draft`)・Baseline Assessment (`Draft`) を整備。既存資産のトークン現行版: primitive 0.3.0-draft / semantic 0.3.0-draft (Draft、各 JSON の `$meta.version` 準拠)。既存資産の Baseline 確認 (内部整合性・provenance・placeholder) は実施済み。上流 Service Design / Screen Requirements との Alignment は未評価。入口: [design-system/README.md](design-system/README.md)
+- **Design System (既存資産)** — レイヤー入口 README (`Draft`)・Alignment Assessment 計画 (`Draft`)・Baseline Assessment (`Draft`)・Service Design 横断整合性評価 (`Draft`) を整備。既存資産のトークン現行版: primitive 0.3.0-draft / semantic 0.3.0-draft (Draft、各 JSON の `$meta.version` 準拠)。Alignment は Work Order 1 (Baseline 確認)・Work Order 2 (Service Design 横断原則との整合性評価) まで Draft で実施済み。個別 Screen Requirement との整合性評価 (Work Order 3) および Design System の改定は未着手。入口: [design-system/README.md](design-system/README.md)
   - [design-system/README.md](design-system/README.md) (レイヤー入口・既存資産の管理構造・上流下流関係, `Draft`)
   - [design-system/alignment-plan.md](design-system/alignment-plan.md) (Alignment Assessment の評価方法・記録構造・推奨順の計画, `Draft`)
   - [design-system/baseline-assessment.md](design-system/baseline-assessment.md) (既存 4 資産の Baseline Assessment: 内部整合性・provenance・placeholder の read-only 確認結果, `Draft`)
+  - [design-system/service-design-alignment-assessment.md](design-system/service-design-alignment-assessment.md) (Service Design 横断原則と既存 Design System の整合性評価: Work Order 2 の結果, `Draft`)
   - [design-system/design.md](design-system/design.md)
   - [design-system/semantic.travel.json](design-system/semantic.travel.json)
   - [design-system/primitive.travel.json](design-system/primitive.travel.json)

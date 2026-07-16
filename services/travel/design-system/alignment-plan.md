@@ -45,7 +45,7 @@
 - 既存 Design System と上流 (SD-001〜SD-007・作成済みの個別 Screen Requirement) の Alignment は未評価である。
 - 既存 Design System 文書は、Repository 内に正本が確認できない参照 (`brand-content.md`・`governance/naming-rules.md`・GOV / TVL 等の Decision ID・GitHub URL・follow-up 番号) を含む ([README.md](README.md) §8)。
 - 正式な画面一覧・URL・画面遷移・業務仕様は未定義である ([../service-design/screen-matrix.md](../service-design/screen-matrix.md) §2)。
-- 実行状況: Work Order (§10) の 1 = 既存 Design System 4 資産の Baseline 確認が [baseline-assessment.md](baseline-assessment.md) (Draft) として実施済みである。Work Order 2〜6 は未実施。本計画の評価方法・評価単位・証拠規則・記録構造・観察区分・推奨順・推薦理由は変更していない。
+- 実行状況: Work Order (§10) の 1 (Baseline 確認, [baseline-assessment.md](baseline-assessment.md)) と 2 (Service Design 横断整合性評価, [service-design-alignment-assessment.md](service-design-alignment-assessment.md)) が Draft として実施済みである。Work Order 3〜6 は未着手。本計画の評価方法・評価単位・証拠規則・記録構造・観察区分・推奨順・推薦理由は変更していない。
 
 ### Decisions
 
@@ -244,7 +244,7 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 
 順序の理由: DS 側の信頼性 (1) を確認せずに上流対応 (2・3) を断定すると、未検証・placeholder・provenance 未確認の DS 記述を「正しい実現手段」として扱う危険がある。横断原則 (2) を個別評価 (3) より先に置くのは、個別評価の観点を統一するため。集約 (4)・分離 (5)・判断 (6) は観察が揃った後に成立する。
 
-実行状況: 1 (既存 4 資産の Baseline 確認) は [baseline-assessment.md](baseline-assessment.md) (Draft) として実施済み。2〜6 は未実施。この実行状況は上記の順序・理由・分類を変更しない。Baseline 実施をもって Alignment 全体を完了扱いしない。
+実行状況: 1 (既存 4 資産の Baseline 確認) は [baseline-assessment.md](baseline-assessment.md) (Draft)、2 (Service Design 横断原則と既存 Design System の対応確認) は [service-design-alignment-assessment.md](service-design-alignment-assessment.md) (Draft) として実施済み。3〜6 は未着手。この実行状況は上記の順序・理由・分類を変更しない。Work Order 1・2 の実施をもって Alignment 全体を完了扱いしない。
 
 ## 11. First Assessment Recommendation
 
@@ -365,3 +365,4 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 |---|---|---|
 | 2026-07-16 | Initial draft: Design System Alignment Assessment の評価方法・対象・証拠規則・記録構造・観察区分・評価観点・推奨実行順・最初の評価対象を定義 (評価自体は未実施) | Draft |
 | 2026-07-16 | 実行状況を同期: Work Order 1 (Baseline 確認) を baseline-assessment.md (Draft) として実施済みと §3/§10/§11/§12/§17 へ注記。評価方法・分類・順序・推薦理由は不変。Work Order 2〜6 は未実施 | Draft |
+| 2026-07-16 | 実行状況を同期: Work Order 2 (Service Design 横断整合性評価) を service-design-alignment-assessment.md (Draft) として実施済みと §3/§10 へ注記。Work Order 3〜6 は未着手。評価方法・分類・順序・証拠規則・推薦理由は不変 | Draft |

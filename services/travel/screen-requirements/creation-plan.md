@@ -47,7 +47,7 @@
 
 - 上流の Service Design 成果物 SD-001〜SD-007 が Draft として存在する ([../service-design/README.md](../service-design/README.md))。
 - [Screen Matrix](../service-design/screen-matrix.md) (SD-006) は 14 画面候補 (SCR-001〜SCR-014) を Draft として管理する。
-- レイヤー入口 [README.md](README.md) は `In preparation` として存在し、個別 Screen Requirement は未作成 (`Not started`) である。
+- レイヤー入口 [README.md](README.md) は `In preparation` として存在する。着手可能候補の個別 Screen Requirement (SCR-001〜SCR-005・SCR-013・SCR-014) が `Draft` として存在し、SCR-006〜SCR-012 は未作成 (`Not started`) である。
 - 正式な画面一覧・URL・画面遷移・業務仕様は未定義である ([../service-design/screen-matrix.md](../service-design/screen-matrix.md) §2 Facts)。
 - Design System は既存資産 (Draft) として存在する ([../design-system/](../design-system/))。
 
@@ -92,7 +92,7 @@
 
 ### Draftable Without Assumption の区分
 
-§6 の `Draftable Without Assumption` 列および §7 では、次の 3 区分で説明する。これは評価上の説明であり、正式な Status 名として登録しない (画面候補の Status は Screen Matrix の `Draft`、個別要件の Status は `Not started` を維持する)。
+§6 の `Draftable Without Assumption` 列および §7 では、次の 3 区分で説明する。これは評価上の区分であり、正式な Status 名や個別成果物の Status として登録しない。画面候補の Status は Screen Matrix の `Draft` である。個別要件の Status は評価当初 (2026-07-15) には全件 `Not started` であったが、現在は §10・§11 の実行状況注記のとおり一部が `Draft` である (SCR-006〜SCR-012 は `Not started`)。`Draftable Without Assumption` の区分 (Mostly / Partial / Premature) は評価当時の着手可否の説明であり、成果物の Status ではない。
 
 - **Mostly** — 現在の上流根拠だけで [README.md](README.md) §6 Common Document Structure の大部分を推測なく記述できる。
 - **Partial** — 一部は記述できるが、重要部分が Open Issue になる。
@@ -364,6 +364,8 @@ SCR ID・Screen Candidate・責務は [Screen Matrix](../service-design/screen-m
 
 - **SCR-001 Service Entry** (§11 参照)。
 
+実行状況: SCR-001 の個別 Screen Requirement [service-entry.md](service-entry.md) が `Draft` として存在する。
+
 ### その次に作成可能な候補群 (探索・補助領域、予約業務仕様に中核依存しない)
 
 - SCR-002 Destination Discovery
@@ -374,6 +376,8 @@ SCR ID・Screen Candidate・責務は [Screen Matrix](../service-design/screen-m
 - SCR-014 Editorial Content (予約チェーンから独立)
 
 この群の内部順序は確定しない。探索連鎖 (SCR-002 → SCR-003 → SCR-004 → SCR-005) は利用者タスク上の接続順があるが、各候補の重要部分が Open Issue (Destination 階層・入力仕様・表示基準・業務モデル) であり、先後を確定する根拠が不足する。SCR-013・SCR-014 は独立性が高く、探索連鎖と並行し得る。順序の確定は各 Open Issue の解決状況に依存するため、現時点では未確定とする。
+
+実行状況: この群の全候補の個別 Screen Requirement が `Draft` として存在する — SCR-002 [destination-discovery.md](destination-discovery.md) / SCR-003 [accommodation-search.md](accommodation-search.md) / SCR-004 [search-results.md](search-results.md) / SCR-005 [accommodation-detail.md](accommodation-detail.md) / SCR-013 [help-and-support.md](help-and-support.md) / SCR-014 [editorial-content.md](editorial-content.md)。作成された事実は上記の内部順序の未確定・各 Open Issue を確定するものではない。
 
 ### 上流または業務仕様の確定を待つ候補群 (予約・会員・認証の業務仕様に中核依存)
 
@@ -386,6 +390,10 @@ SCR ID・Screen Candidate・責務は [Screen Matrix](../service-design/screen-m
 - SCR-012 User Access
 
 この群は Stay Plan/Room/Price/Availability の業務モデル、認証・決済、会員制度、予約変更・取消の業務範囲に中核依存し、いずれも未定義 ([../service-design/information-architecture.md](../service-design/information-architecture.md) §11 / [../service-design/screen-matrix.md](../service-design/screen-matrix.md) §9)。業務仕様が確定するまで着手しない。群内の順序は予約連鎖の接続順を持つが、業務仕様未確定のため確定しない。
+
+実行状況: この群 (SCR-006〜SCR-012) の個別 Screen Requirement は未作成 (`Not started`) である。依存する業務仕様が Open Issue から解決へ移っていないため、着手条件 (§12) を満たさない。
+
+上記の各実行状況は現時点の作成状態の注記であり、正式な作成順・新しい Phase・Decision として扱わない。候補群の区分と §6・§7 の評価は変更していない。
 
 ## 11. First Candidate Recommendation
 
@@ -405,6 +413,8 @@ SCR ID・Screen Candidate・責務は [Screen Matrix](../service-design/screen-m
 
 根拠上 SCR-001 に絞れるが、探索・補助群 (§10) の内部順序は絞り込めないため、そちらは順序未確定として明記する。
 
+実行状況: 本推薦は実行され、SCR-001 の個別 Screen Requirement [service-entry.md](service-entry.md) が `Draft` として存在する。これは推薦の実行状況の注記であり、上記の推薦理由・根拠を事後的に変更するものではない。
+
 ## 12. Entry Conditions for Individual Requirements
 
 個別 Screen Requirement 作成タスクを開始する条件を、確定ではなく前提整理として示す。
@@ -414,6 +424,8 @@ SCR ID・Screen Candidate・責務は [Screen Matrix](../service-design/screen-m
 - 個別文書が [README.md](README.md) §6 Common Document Structure と §7 ID and Status Model に従うこと。ID 体系・ファイル命名規則が未確定の場合、placeholder であることを明示する ([README.md](README.md) §7)。
 - 未定義事項を推測で補完せず Open Issue として保持すること (UXDR-TRAVEL-001)。
 - 画面候補を URL・route・実装画面と同一視しないこと (UXDR-TRAVEL-002)。
+
+現時点の適用状況 (条件自体は変更しない): §10「最初に作成する候補」および「その次に作成可能な候補群」(SCR-001〜SCR-005・SCR-013・SCR-014) は上記条件を満たし、個別要件が `Draft` として存在する。「上流または業務仕様の確定を待つ候補群」(SCR-006〜SCR-012) は、依存する業務仕様 — §6・§7 の各候補「必要な Open Issues」および §10 の当該群・§15 Open Issues に記載する Stay Plan/Room/Price/Availability の業務モデル、認証・決済・会員仕様、予約変更・取消の業務範囲等 — が Open Issue から解決へ移っていないため、現時点で着手条件を満たさない。
 
 ## 13. Relationship with Upstream Artifacts
 
@@ -460,3 +472,4 @@ SCR ID・Screen Candidate・責務は [Screen Matrix](../service-design/screen-m
 | Date | Change | Status |
 |---|---|---|
 | 2026-07-15 | Initial draft: assess SCR-001〜SCR-014 creation order, first candidate recommendation, and entry conditions | Draft |
+| 2026-07-16 | Sync execution status into §3 / §5 / §10 / §11 / §12 (SCR-001〜SCR-005・SCR-013・SCR-014 individual requirements Draft, SCR-006〜SCR-012 Not started). Assessment results, recommendation rationale, and the `Draftable Without Assumption` classification are unchanged | Draft |

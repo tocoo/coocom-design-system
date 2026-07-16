@@ -62,12 +62,12 @@ Governance は横断共通、それ以外は原則サービス単位で管理す
 ## 8. 現在の構築状態
 
 - 各サービスの **Design System は既存資産** として存在する (下表)。
-- **Service Design / Screen Requirements の着手状況はサービス別に異なる** (下表)。国内宿泊 (travel) は Service Design が Draft (SD-001〜SD-007)、Screen Requirements が入口設計中 (In preparation)。国内レンタカー・インバウンドレンタカーは未着手。**Assets は全サービス未着手** (`Status: Not started`)。
+- **Service Design / Screen Requirements の着手状況はサービス別に異なる** (下表)。国内宿泊 (travel) は Service Design が Draft (SD-001〜SD-007)、Screen Requirements は入口 README と Creation Plan が存在し、着手可能候補 (SCR-001〜SCR-005・SCR-013・SCR-014) の個別要件が Draft・SCR-006〜SCR-012 は Not started (レイヤー全体は In preparation)。国内レンタカー・インバウンドレンタカーは未着手。**Assets は全サービス未着手** (`Status: Not started`)。
 - Governance は最小限の入口 (README・owner-decisions.md) のみ。正本となる原則・命名規則・ADR・レビュー規則・用語定義は未整備 (`governance/README.md` を参照)。
 
 | サービス | Service Design | Screen Requirements | Design System | Assets |
 | --- | --- | --- | --- | --- |
-| 国内宿泊 (travel) | Draft (SD-001〜SD-007) | In preparation | 既存資産 (Draft, 0.3.0-draft 系) | Not started |
+| 国内宿泊 (travel) | Draft (SD-001〜SD-007) | In preparation (入口・Creation Plan あり; SCR-001〜SCR-005・SCR-013・SCR-014 個別要件 Draft, SCR-006〜SCR-012 Not started) | 既存資産 (Draft, 0.3.0-draft 系) | Not started |
 | 国内レンタカー (rental-car) | Not started | Not started | 既存資産 (Draft) | Not started |
 | インバウンドレンタカー (inbound) | Not started | Not started | 既存資産 (Draft) | Not started |
 

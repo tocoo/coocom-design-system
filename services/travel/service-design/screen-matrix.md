@@ -57,12 +57,12 @@
 
 ## 4. Screen Matrix
 
-Navigation Types は [navigation.md](navigation.md) の NAV ID、Content Categories は [content-principles.md](content-principles.md) の分類、Navigation States は [navigation.md](navigation.md) の状態名を用いる。Screen Requirements は SCR-001 が [Draft](../screen-requirements/service-entry.md)、SCR-003 が [Draft](../screen-requirements/accommodation-search.md)、SCR-004 が [Draft](../screen-requirements/search-results.md)、SCR-005 が [Draft](../screen-requirements/accommodation-detail.md)、SCR-013 が [Draft](../screen-requirements/help-and-support.md)、SCR-014 が [Draft](../screen-requirements/editorial-content.md)、その他 (SCR-002, SCR-006〜SCR-012) は `Not started`。
+Navigation Types は [navigation.md](navigation.md) の NAV ID、Content Categories は [content-principles.md](content-principles.md) の分類、Navigation States は [navigation.md](navigation.md) の状態名を用いる。Screen Requirements は SCR-001 が [Draft](../screen-requirements/service-entry.md)、SCR-002 が [Draft](../screen-requirements/destination-discovery.md)、SCR-003 が [Draft](../screen-requirements/accommodation-search.md)、SCR-004 が [Draft](../screen-requirements/search-results.md)、SCR-005 が [Draft](../screen-requirements/accommodation-detail.md)、SCR-013 が [Draft](../screen-requirements/help-and-support.md)、SCR-014 が [Draft](../screen-requirements/editorial-content.md)、その他 (SCR-006〜SCR-012) は `Not started`。
 
 | Screen ID | Screen Candidate | Responsibility | Primary Task | Primary IA Objects | Navigation Types | Content Categories | Navigation States | Screen Requirements | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | SCR-001 | Service Entry | サービスへの入口を提供する | 探索の起点に立つ | Destination / Search Criteria / Content | NAV-001 / 004 / 006 | Identification / Task Guidance / Editorial and Support | Entry, Exploring | [Draft](../screen-requirements/service-entry.md) | Draft |
-| SCR-002 | Destination Discovery | 目的地・エリア・関連 Content を発見する | 目的地を発見する | Destination / Content | NAV-001 / 002 / 003 | Identification / Editorial and Support | Exploring | Not started | Draft |
+| SCR-002 | Destination Discovery | 目的地・エリア・関連 Content を発見する | 目的地を発見する | Destination / Content | NAV-001 / 002 / 003 | Identification / Editorial and Support | Exploring | [Draft](../screen-requirements/destination-discovery.md) | Draft |
 | SCR-003 | Accommodation Search | Search Criteria を入力・確認・変更する | 検索条件を指定する | Search Criteria / Destination | NAV-004 / 005 | Task Guidance / Identification | Entry, Exploring, Error / Interrupted | [Draft](../screen-requirements/accommodation-search.md) | Draft |
 | SCR-004 | Search Results | Accommodation 候補を確認・比較する | 候補を比較する | Search Criteria / Accommodation | NAV-002 / 003 / 004 / 005 | Identification / Decision Support / Conditions and Policies | Exploring, Evaluating, Error / Interrupted | [Draft](../screen-requirements/search-results.md) | Draft |
 | SCR-005 | Accommodation Detail | 施設と関連情報を確認する | 施設を評価する | Accommodation | NAV-002 / 003 / 004 / 006 | Identification / Decision Support / Conditions and Policies / Editorial and Support | Evaluating, Error / Interrupted | [Draft](../screen-requirements/accommodation-detail.md) | Draft |
@@ -156,7 +156,7 @@ Draft
 
 ### Screen Requirements Status
 
-Not started
+[Draft](../screen-requirements/destination-discovery.md)
 
 ### Status
 
@@ -738,3 +738,4 @@ Draft
 | 2026-07-16 | Link SCR-003 Screen Requirements progress to accommodation-search.md (Draft); SCR-001/SCR-013/SCR-014 unchanged, SCR-002 and SCR-004〜SCR-012 unchanged | Draft |
 | 2026-07-16 | Link SCR-004 Screen Requirements progress to search-results.md (Draft); SCR-001/SCR-003/SCR-013/SCR-014 unchanged, SCR-002 and SCR-005〜SCR-012 unchanged | Draft |
 | 2026-07-16 | Link SCR-005 Screen Requirements progress to accommodation-detail.md (Draft); SCR-001/SCR-003/SCR-004/SCR-013/SCR-014 unchanged, SCR-002 and SCR-006〜SCR-012 unchanged | Draft |
+| 2026-07-16 | Link SCR-002 Screen Requirements progress to destination-discovery.md (Draft); SCR-001/SCR-003/SCR-004/SCR-005/SCR-013/SCR-014 unchanged, SCR-006〜SCR-012 unchanged | Draft |

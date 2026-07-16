@@ -67,7 +67,7 @@
 
 ## 4. Assessment Inputs
 
-評価は以下の実在成果物を入力とする。最新 main から取得し、対象ファイルと commit を記録する (§14 Entry Conditions)。
+評価は以下の実在成果物を入力とする。最新 main から取得し、対象ファイルと commit を記録する (§12 Entry Conditions)。
 
 ### 上流・前提
 
@@ -152,7 +152,7 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 - Screen Requirement の Downstream Impact に記載された例 (例: `search-results.md` の Card / PriceTag / ReviewStars 等) を、そのまま採用決定とすること。
 - Design System に Component が存在することを、その Component の利用要求とすること。
 
-出典が確認できない記述は、正しいものとして補完せず `provenance 未確認` として記録する (§10)。
+出典が確認できない記述は、正しいものとして補完せず `provenance 未確認` として記録する (§8)。
 
 ## 7. Traceability Record Structure
 
@@ -168,7 +168,7 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 | 既存 Design System 成果物 | design.md / JSON / components.md のいずれか |
 | DS 内の節 / token path / Component 名 | 例: `color.action.primary.bg` / Button.primary |
 | 確認できた直接証拠 | 実ファイルの記述 (引用元を特定できる形) |
-| 観察結果 | §10 の観察区分 |
+| 観察結果 | §8 の観察区分 |
 | provenance 状況 | 確認済み / 未確認 |
 | placeholder / 実査待ちの有無 | `$status: placeholder`・🚧 実査待ち等 |
 | 矛盾または不足 | 有無と内容 |
@@ -234,9 +234,9 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 
 後続評価の推奨実行順を以下とする。正式な Phase や新しい分類体系として登録しない。本計画では 1〜6 を実行せず、順序と理由のみを定義する。
 
-1. **既存 Design System 4 資産の内部整合性・provenance・placeholder 状況の確認** — 上流対応を断定する前に、評価の土台となる DS 側の記述の信頼性を確認する (§13 First Assessment Recommendation)。
+1. **既存 Design System 4 資産の内部整合性・provenance・placeholder 状況の確認** — 上流対応を断定する前に、評価の土台となる DS 側の記述の信頼性を確認する (§11 First Assessment Recommendation)。
 2. **Service Design の横断原則と既存 Design System の対応確認** — SDP / IA-OBJ / NVP・NAV / CTP / CTA・CTA-TYPE / UXDR-TRAVEL の横断原則と DS 側の対応を確認する。個別 Screen Requirement より先に横断原則を見ることで、後続の個別評価の観点を揃える。
-3. **作成済み 7 個別 Screen Requirement ごとの対応確認** — 各 Screen Requirement の設計責務 (§5) と DS 側の対応を、§7 の記録構造・§10 の観察区分で確認する。
+3. **作成済み 7 個別 Screen Requirement ごとの対応確認** — 各 Screen Requirement の設計責務 (§5) と DS 側の対応を、§7 の記録構造・§8 の観察区分で確認する。
 4. **観察結果の横断集約** — 個別評価で得た観察を横断的に集約し、重複・共通の不足・矛盾を整理する。
 5. **改訂候補と未解決事項の分離** — 改訂を検討し得る候補と、上流・業務仕様・provenance の未解決に依存し確定できない事項を分離する。
 6. **実際の改訂タスクを開始できるかの判断** — 改訂の着手可否を、Open Issue の解決状況と承認主体の有無から判断する。
@@ -266,7 +266,7 @@ Alignment Assessment で使用できる証拠を以下に限定する。
 - 対象ファイルと commit が記録されていること。
 - 上流・前提と、同一レイヤーの評価対象 (既存 DS 4 資産) が区別されていること (§4)。
 - 評価対象が作成済み 7 個別 Screen Requirement に限定されていること。SCR-006〜SCR-012 を先取りしないこと。
-- 評価記録構造 (§7) と観察区分 (§10) が使用できること。
+- 評価記録構造 (§7) と観察区分 (§8) が使用できること。
 - provenance 未確認を未確認のまま記録できること。
 - gap の解決策を同じタスクで決定しないこと。
 - 既存資産を変更せず read-only で評価できること。

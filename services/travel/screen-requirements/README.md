@@ -233,7 +233,7 @@ Screen Requirements レイヤーの推奨参照順序は以下とする。未作
 - SCR-004 Search Results の個別 Screen Requirement ([search-results.md](search-results.md)) が `Draft` として存在する。
 - SCR-013 Help and Support の個別 Screen Requirement ([help-and-support.md](help-and-support.md)) が `Draft` として存在する。
 - SCR-014 Editorial Content の個別 Screen Requirement ([editorial-content.md](editorial-content.md)) が `Draft` として存在する。
-- その他の画面候補 (SCR-002, SCR-004〜SCR-012) の個別 Screen Requirement は未作成 (`Not started`)。
+- その他の画面候補 (SCR-002, SCR-005〜SCR-012) の個別 Screen Requirement は未作成 (`Not started`)。
 - 上流 Service Design 成果物 SD-001〜SD-007 が Draft として存在する。
 - 下流 Design System は既存資産として存在する。
 - 上位の事業・業務・画面仕様の多くは未定義であり、Open Issue として保持する。

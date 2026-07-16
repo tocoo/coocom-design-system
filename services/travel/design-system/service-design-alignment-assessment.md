@@ -2,7 +2,7 @@
 
 - Status: Draft
 - Scope: 国内宿泊サービス (`travel`, 暫定識別子) の Service Design 横断的設計責務 (SD-001〜SD-005・SD-007) と既存 Design System 4 成果物 (`design.md` / `semantic.travel.json` / `primitive.travel.json` / `components.md`) の対応を、Repository 内の直接証拠だけで静的評価した記録。Alignment Plan §10 推奨作業順 2 の実行。個別 Screen Requirement の評価・Design System の修正・UX Decision の追加は行わない。
-- Position in Repository: `services/travel/design-system/service-design-alignment-assessment.md` — Design System レイヤー (travel サービス配下)。Design System README の Reference Order 上で自身より前に配置される上流成果物は、レイヤー入口 [README.md](README.md)・Alignment 計画 [alignment-plan.md](alignment-plan.md)・Baseline 評価 [baseline-assessment.md](baseline-assessment.md)。評価対象の Service Design 成果物および既存 Design System 4 成果物との関係は本文 Assessment Sources (§4) / Method (§5) / Service Design Alignment Assessment (§8) 等に記載し、Position の上流成果物へ混在させない。下流成果物 (Assets / Implementation) との関係は §13 を参照。
+- Position in Repository: `services/travel/design-system/service-design-alignment-assessment.md` — Design System レイヤー (travel サービス配下)。Design System README の Reference Order 上で自身より前に配置される上流成果物は、レイヤー入口 [README.md](README.md)・Alignment 計画 [alignment-plan.md](alignment-plan.md)・Baseline 評価 [baseline-assessment.md](baseline-assessment.md)。評価対象の Service Design 成果物および既存 Design System 4 成果物との関係は本文 Assessment Sources (§5) / Method (§6) / Service Design Alignment Assessment (§8) 等に記載し、Position の上流成果物へ混在させない。下流成果物 (Assets / Implementation) との関係は §12 を参照。
 
 本文書は評価記録であり、Design System 仕様・Design Decision の正本ではない。評価上の観察区分 (Alignment Plan §8) を Repository 成果物の正式 Status と混同しない。ファイル名 `service-design-alignment-assessment.md` は暫定識別子であり、正式な評価体系名・命名規則・評価 ID を確定しない。本評価は Repository 内文書の静的評価であり、実装検証ではない。Fact / Decision / Hypothesis / Open Issue を区別し、新しい Decision を追加しない。
 
@@ -11,7 +11,7 @@
 - Alignment Plan ([alignment-plan.md](alignment-plan.md)) §10 Recommended Work Order の 2「Service Design の横断原則と既存 Design System の対応確認」を実行する。
 - Service Design 成果物 (SD-001〜SD-005・SD-007) に定義された横断的設計責務が、既存 Design System 4 成果物によって「対応を直接確認できる / 一部のみ確認できる / 対応する定義を確認できない / 過剰 / 矛盾 / placeholder / 実査待ち / provenance 未確認 / 参照切れ / 評価対象外」のどれに該当するかを、Repository 内の直接証拠だけで記録する。
 - 評価結果は、後続の個別 Screen Requirement 整合性評価 (Work Order 3) と改定候補整理 (Work Order 5) の入力とする。
-- 「対応を確認・記録する」ことと「Design System を修正する / 適合を判定する / 改定要否を決める」ことを区別する。後者は本文書では行わない (§17)。
+- 「対応を確認・記録する」ことと「Design System を修正する / 適合を判定する / 改定要否を決める」ことを区別する。後者は本文書では行わない (§14)。
 
 ## 2. Assessment Snapshot
 
@@ -34,7 +34,7 @@
 - Screen Matrix の各画面候補を Design System component へ割り当てること。
 - Screen Matrix の画面候補を実装画面・URL・route とみなすこと。
 - Service Design の未解決 Open Issue を Design System 要求へ変換すること。
-- Design System の改定要否・token/component の追加削除・version bump・UX Decision の追加 (§17)。
+- Design System の改定要否・token/component の追加削除・version bump・UX Decision の追加 (§14)。
 
 ## 5. Assessment Sources
 
@@ -51,7 +51,7 @@ Position の上流成果物 (§Position: README / alignment-plan / baseline-asse
 ### 前提 (証拠品質・制約)
 
 - [alignment-plan.md](alignment-plan.md) (§6 Evidence Rules / §8 Observation Classification / §10 Work Order)。
-- [baseline-assessment.md](baseline-assessment.md) (§11 Baseline Constraints で継承)。
+- [baseline-assessment.md](baseline-assessment.md) (§11 Placeholder and Inspection-Pending Inventory・§12 Provenance and Broken Reference Inventory を、本文書 §11 Provenance and Reference Issues で制約として継承)。
 
 ## 6. Method
 
@@ -150,12 +150,12 @@ UX Decision Record の Decision Status (Accepted) と成果物自体の Status (
 - **Fact**: 既存 Design System は token・component の設計語彙を提供し、その内部整合性は baseline-assessment.md で確認済み (semantic 参照 63/63 解決)。SD-001 の SDP-008/009/010、SD-007 の UXDR-TRAVEL-001/002 は DS 内部の運用 (placeholder 保持・独立性・非画面単位構成) として対応を直接確認できる。
 - **Fact**: SD-003/SD-005 の状態モデル (Navigation State Model・CTA State Model) と DS 側の状態表現は一部のみ一致し、Pending Confirmation・navigation 状態など DS 側に対応する定義を確認できない領域がある。ボタン状態は未取得 (follow-up #4, placeholder)。
 - **Fact**: IA Object・Content Category・NAV 分類・CTA 種別は、DS の component/token と 1 対 1 対応しない。専用表現語彙 (SearchForm/Card/PriceTag/ReviewStars) が存在する IA Object は一部のみで、他は対応する定義を確認できない。
-- **Observation**: SD 各文書の Design System 関連 Open Issue (principles §7「既存 Design System との不整合確認」/ IA §11 / navigation §10 / content §10 / cta §11) は本 Baseline 段階でも未解決のまま継承される。
+- **Observation**: SD 各文書の Design System 関連 Open Issue (principles §7「既存 Design System との不整合確認」/ IA §11 / navigation §10 / content §10 / cta §11) は本評価 (Work Order 2) でも未解決のまま継承される。
 - 数値スコア・適合率・pass/fail・severity は付与しない (Alignment Plan §8)。
 
 ## 10. Conflicts and Gaps
 
-以下は観察であり、修正・追加・削除の Decision ではない (§17)。
+以下は観察であり、修正・追加・削除の Decision ではない (§14)。
 
 - **Gap (対応する定義を確認できない)**: SDP-002 Progressive Commitment / SDP-006 Recoverability の一部・CTA-006 Reversible Before Irreversible を横断的に表現する DS 側の規則を確認できない。これらは主にフロー・画面単位の責務であり、DS が決めない範囲を含む。
 - **Gap (一部のみ確認できる / placeholder)**: CTA State Model の Pending Confirmation・Navigation State Model の各状態に対応する DS 側の状態表現を確認できない。ボタン状態一式・motion は placeholder / 実査待ち。

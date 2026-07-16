@@ -207,7 +207,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 - 文書追加 (本 README の新設) だけで token package の version を上げない。
 - 後続の変更で version bump が必要かは Open Issue とする (§16)。
 - `Draft`・placeholder・実査待ち・未着手を混同しない (Draft = 文書全体の状態、placeholder / 実査待ち = 個別トークンの未確定、未着手 = 成果物が存在しない)。
-- 既存の version 表記間に不整合がある場合、独断で統一せず Open Issue として記録する (§16。例: [../README.md](../README.md) は primitive を「0.3.0」と要約する一方、`primitive.travel.json` の `$meta.version` は「0.3.0-draft」である)。
+- 入口・要約文書が正本ファイルと異なる version 文字列を記載している誤記は、正本ファイルの表記へ揃える (資産の version 自体は変更しない)。[../README.md](../README.md) の要約が primitive を「0.3.0」と記載していた点は、`primitive.travel.json` の `$meta.version`「0.3.0-draft」へ揃えた。正本ファイルどうしの version 値が乖離している場合は、独断で統一せず Open Issue として記録する (§16)。
 
 ## 12. Relationship with Downstream Artifacts
 
@@ -265,7 +265,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 - 既存 follow-up 番号 (#2 / #3 / #4 / #5 / #13 等) の追跡先。
 - 既存 GitHub / 実装 Repository 参照の検証方法。
 - placeholder / 実査待ちトークンの解決主体。
-- 既存の version 表記間の不整合 (例: [../README.md](../README.md) の「primitive 0.3.0」と `primitive.travel.json` の「0.3.0-draft」)。
+- 正本ファイルどうしの version 値が乖離した場合の統一方法 (入口・要約文書の誤記は §11 のとおり正本表記へ揃える。[../README.md](../README.md) の primitive 表記は本 PR で「0.3.0-draft」へ是正済み)。
 - SCR-006〜SCR-012 を評価対象へ加える条件。
 - Assets への接続方法。
 - Alignment 完了条件。
@@ -275,3 +275,4 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 | Date | Change | Status |
 |---|---|---|
 | 2026-07-16 | Define Design System layer foundation (entry README: responsibility, upstream/downstream relationships, existing artifact inventory, provenance handling, and alignment assessment boundary) | Draft |
+| 2026-07-16 | Align `../README.md` の primitive version 要約表記を正本 `primitive.travel.json` の `$meta.version`「0.3.0-draft」へ是正し、§11・§16 の記述を更新 (資産 version は不変。PR #43 レビュー対応) | Draft |

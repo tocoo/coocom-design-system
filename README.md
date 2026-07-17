@@ -54,7 +54,7 @@ Governance は横断共通、それ以外は原則サービス単位で管理す
 
 ## 7. リンク
 
-- Governance: [governance/README.md](governance/README.md) / [governance/owner-decisions.md](governance/owner-decisions.md) / [governance/review-approval-rules-creation-plan.md](governance/review-approval-rules-creation-plan.md) (Draft)
+- Governance: [governance/README.md](governance/README.md) / [governance/owner-decisions.md](governance/owner-decisions.md) / [governance/review-approval-rules-creation-plan.md](governance/review-approval-rules-creation-plan.md) (Draft) / [governance/review-approval-rules.md](governance/review-approval-rules.md) (Draft)
 - 国内宿泊: [services/travel/README.md](services/travel/README.md)
 - 国内レンタカー: [services/rental-car/README.md](services/rental-car/README.md)
 - インバウンドレンタカー: [services/inbound/README.md](services/inbound/README.md)
@@ -63,7 +63,7 @@ Governance は横断共通、それ以外は原則サービス単位で管理す
 
 - 各サービスの **Design System は既存資産** として存在する (下表)。
 - **Service Design / Screen Requirements の着手状況はサービス別に異なる** (下表)。国内宿泊 (travel) は Service Design が Draft (SD-001〜SD-007)、Screen Requirements は入口 README と Creation Plan が存在し、着手可能候補 (SCR-001〜SCR-005・SCR-013・SCR-014) の個別要件が Draft・SCR-006〜SCR-012 は Not started (レイヤー全体は In preparation)。国内レンタカー・インバウンドレンタカーは未着手。**Assets は全サービス未着手** (`Status: Not started`)。
-- Governance には入口 README・owner-decisions.md・Review / Approval Rules Creation Plan (Draft) が存在する。正本となる原則・命名規則・ADR・レビュー・承認規則・用語定義は未整備 (Creation Plan は正本そのものではなく作成計画である。`governance/README.md` を参照)。
+- Governance には入口 README・owner-decisions.md・Review / Approval Rules Creation Plan (Draft)・Review / Approval Rules 正本候補 Draft (`governance/review-approval-rules.md`, Draft) が存在する。正本候補 Draft は存在するが**未承認・未適用**であり、原則・命名規則・ADR・用語定義の正本は未整備 (Creation Plan は正本そのものではなく作成計画であり、正本候補 Draft も明示的なオーナー承認を経ていない。`governance/README.md` を参照)。
 
 | サービス | Service Design | Screen Requirements | Design System | Assets |
 | --- | --- | --- | --- | --- |

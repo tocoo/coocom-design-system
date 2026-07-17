@@ -28,7 +28,8 @@
 
 ## 現在存在する成果物
 
-- [owner-decisions.md](owner-decisions.md) — オーナー確認事項 (分類C) の一覧。既存資産として移行済。
+- [owner-decisions.md](owner-decisions.md) — オーナー確認事項 (分類C) の一覧。既存資産として移行済。§4 に Review / Approval Rules 作成前に必要な確認事項 (未回答) を独立節として記録。
+- [review-approval-rules-creation-plan.md](review-approval-rules-creation-plan.md) (Draft) — レビュー・承認規則の**正本を作成するための計画**。正本作成前に必要なオーナー確認事項・証拠・責務境界・作成順を整理する。これは正本そのものではなく、Review / Approval Rules を作成済み・承認済み・適用中とはしない。
 
 ## 現在不足している成果物
 
@@ -37,7 +38,7 @@
 - Repository principles の正本
 - 命名規則の正本 (例: 既存 Design System 文書が参照する `governance/naming-rules.md` は未作成)
 - ADR の正本
-- レビュー・承認規則の正本
+- レビュー・承認規則の正本 (作成計画 [review-approval-rules-creation-plan.md](review-approval-rules-creation-plan.md) は Draft で存在するが、**正本は依然として存在しない**)
 - 用語定義の正本
 
-これらの正本の作成・承認フローは未決である。空の ADR ファイルや、内容を推測した規約は作成していない。
+これらの正本の作成・承認フローは未決である。空の ADR ファイルや、内容を推測した規約は作成していない。レビュー・承認規則については、作成・承認フローの検討事項を Creation Plan (Draft) と [owner-decisions.md](owner-decisions.md) §4 に整理したが、**Creation Plan の追加だけでは正本は作成されず、Travel Work Order 6 で確認された共通阻害 Fact (承認・反映・解決主体の未定義) も解決されない**。

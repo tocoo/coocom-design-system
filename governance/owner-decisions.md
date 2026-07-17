@@ -53,9 +53,32 @@
 
 ---
 
+## 4. Review / Approval Rules 作成前に必要な確認事項 (Governance)
+
+- 種別: Governance レビュー・承認規則の正本作成前に必要なオーナー確認事項。上記 §1〜§3 (値論点・構築で顕在化した確認事項・未取得データ) とは独立した論点であり、混同しない。
+- 背景: Travel の Work Order 6 (改訂着手可否評価, [../services/travel/design-system/alignment-amendment-readiness-assessment.md](../services/travel/design-system/alignment-amendment-readiness-assessment.md)) が、全 12 候補側面を「現時点では開始できない」と判断し、全候補共通の阻害 Fact として「実際の改訂タスクの承認・反映・解決主体が Repository 内で未定義」を記録した。整理は [review-approval-rules-creation-plan.md](review-approval-rules-creation-plan.md) (Draft) を参照。
+- 規約: 恒久 ID・Decision ID は採番せず説明用の項目名で記録する。回答・推奨案は未記入 (推測しない)。本節の追加だけでは Review / Approval Rules 正本は作成されず、共通阻害 Fact も解決されない。
+
+| 項目名 | 確認事項 (未回答) |
+| --- | --- |
+| 適用範囲 | Review / Approval Rules を国内宿泊 (travel) だけに適用するか、Repository 横断規則とするか |
+| 候補採否の決定主体 | 改訂候補の採用・却下を誰が決定するか |
+| 改訂着手の承認主体 | Design System 改訂タスクの開始を誰が承認するか |
+| 責務の分割 | 内容レビュー・Repository 反映・未解決事項解決の責務をどう分けるか |
+| 上流 Open Issue の解決単位 | Service Design / Screen Requirements の Open Issue について、解決主体をどの単位で定義するか |
+| Governance 正本の担当 | Governance・ADR・provenance・参照切れについて、正本作成または有効性確認を誰が担うか |
+| placeholder / 実査待ちの確認主体 | placeholder・実査待ちの調査結果を誰が確認するか |
+| GitHub 操作と設計承認の関係 | GitHub PR の approval または merge を設計承認として扱うか、別の明示的承認記録を必要とするか |
+| 承認結果の記録先 | 承認結果をどの Repository 成果物へ、どの状態表現で記録するか |
+| 再評価の条件 | 阻害 Fact 解消後に Work Order 6 相当の再評価をどの条件で行うか |
+| Alignment 完了条件の所在 | Alignment 完了条件をこの規則で扱うか、別の Governance 成果物で扱うか |
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
 | --- | --- | --- |
 | 2026-07-02 | 初版 (Q1-9 暫定運用の適用状況・新規確認事項7件・未取得の扱いを集約) | Claude Design |
 | 2026-07-02 | 是正 S-3 (Q1 に provenance 索引との記述齟齬を注記)・S-6 (サービス識別子の要 ADR を確認事項#8 に追加) | Claude Design (Builder) |
+| 2026-07-17 | §4 (Review / Approval Rules 作成前に必要な確認事項) を独立節として追加。Travel Work Order 6 の共通阻害 Fact への対応整理 ([review-approval-rules-creation-plan.md](review-approval-rules-creation-plan.md) 連動)。既存 §1〜§3 の項目・内容・暫定運用案は不変。回答・主体割当は未記入 | Claude Code |

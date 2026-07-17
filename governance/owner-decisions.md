@@ -100,6 +100,24 @@
 
 ---
 
+## 6. 適用開始の事実記録 (Activation Record)
+
+- 種別: 適用開始条件成立の事実記録。上記 §5 設計承認ログとは分離した Fact の記録であり、新たな設計承認・承認種別・正式 Status 体系ではない。§1〜§5 の内容は本節で変更しない。
+- 規約: GitHub の approval・merge を設計承認と同一視しない。本節は §5 で既に承認された規則について、承認時に定めた適用開始条件が満たされた Fact のみを記録する。恒久 Decision ID・正式 Status 体系は採番・新設しない。
+
+| 項目 | 内容 |
+| --- | --- |
+| 対象規則 | Governance Review and Approval Rules ([review-approval-rules.md](review-approval-rules.md)) |
+| 明示的承認 | §5 設計承認ログに記録済み（承認主体: Web部責任者、明示的承認日: 2026-07-17） |
+| 適用開始条件 | 本承認記録 PR (Task 009-4) の main マージ（§5 の「適用開始条件」と同一） |
+| 根拠 PR | [#67](https://github.com/tocoo/coocom-design-system/pull/67) |
+| 条件成立を示す merge commit | `d095ded2998e0180ae6836747e8fbbd95a7a2ef1` |
+| 現在状態 | 適用開始済み（適用中） |
+
+本節は、§5 で承認された適用開始条件が PR #67 の main マージによって満たされた Fact の記録である。PR #67 の merge は既に承認された適用開始条件を満たした操作であって、それ自体を設計承認として扱わない（設計承認は §5）。本適用開始は、改訂候補の採否・Design System 改定要否・改訂着手・Travel Work Order 6 の再評価・Design System 改定を意味しない（Work Order 6 は未再評価）。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -109,3 +127,4 @@
 | 2026-07-17 | §4 (Review / Approval Rules 作成前に必要な確認事項) を独立節として追加。Travel Work Order 6 の共通阻害 Fact への対応整理 ([review-approval-rules-creation-plan.md](review-approval-rules-creation-plan.md) 連動)。既存 §1〜§3 の項目・内容・暫定運用案は不変。回答・主体割当は未記入 | Claude Code |
 | 2026-07-17 | §4 の全 11 項目へオーナーの明示的回答 (2026-07-17 取得) を記録。表を「確認事項／オーナー回答/残る Open Issue」の列構成へ変更。残る未定・条件付きは Open Issue 列へ分離。既存 §1〜§3 は不変。正式 Status 体系は新設せず、規則正本の作成・承認・適用や Work Order 6 再評価は行っていない | Claude Code |
 | 2026-07-17 | Task 009-4: §5 設計承認ログを §1〜§4 と分離して追加。オーナー (Web部責任者) が Governance Review and Approval Rules を Repository 横断規則として明示的に承認 (2026-07-17)。適用開始は本承認記録 PR の main マージ後とし、承認後も残る Open Issue を条件として明記。恒久 Decision ID・正式 Status 体系は新設せず。既存 §1〜§4 は不変。Work Order 6 の再評価・Design System 改定は行っていない | Claude Code |
+| 2026-07-17 | Task 009-5: §6 適用開始の事実記録 (Activation Record) を §5 と分離して追加。PR #67 (Task 009-4 承認記録) の main マージ（merge commit d095ded2998e0180ae6836747e8fbbd95a7a2ef1）により、承認時に定めた適用開始条件が成立した Fact を記録（現在状態＝適用中）。merge を設計承認と同一視せず、設計承認は §5 のまま不変。既存 §1〜§5 は不変。恒久 Decision ID・正式 Status 体系・新承認種別は新設せず。Work Order 6 の再評価・Design System 改定は行っていない | Claude Code |

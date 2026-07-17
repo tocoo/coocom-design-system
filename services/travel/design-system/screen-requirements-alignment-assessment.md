@@ -1,7 +1,7 @@
 # Travel Screen Requirements Alignment Assessment
 
 - Status: Draft
-- Scope: 国内宿泊サービス (`travel`, 暫定識別子) の作成済み 7 個別 Screen Requirement (SCR-001・SCR-002・SCR-003・SCR-004・SCR-005・SCR-013・SCR-014) ごとに、上流で確認できる設計責務と既存 Design System 4 成果物 (`design.md` / `semantic.travel.json` / `primitive.travel.json` / `components.md`) の対応を、Repository 内の直接証拠だけで個別に静的評価した記録。Alignment Plan §10 Recommended Work Order の 3 の実行。Screen Requirement 間の横断集約 (Work Order 4)・改定候補整理 (Work Order 5)・Design System 修正・UX Decision 追加は行わない。
+- Scope: 国内宿泊サービス (`travel`, 暫定識別子) の作成済み 7 個別 Screen Requirement (SCR-001・SCR-002・SCR-003・SCR-004・SCR-005・SCR-013・SCR-014) ごとに、上流で確認できる設計責務と既存 Design System 4 成果物 (`design.md` / `semantic.travel.json` / `primitive.travel.json` / `components.md`) の対応を、Repository 内の直接証拠だけで個別に静的評価した記録。Alignment Plan §10 Recommended Work Order の 3 の実行。Screen Requirement 間の横断集約 (Work Order 4)・改訂候補整理 (Work Order 5)・Design System 修正・UX Decision 追加は行わない。
 - Position in Repository: `services/travel/design-system/screen-requirements-alignment-assessment.md` — Design System レイヤー (travel サービス配下)。Design System README の Reference Order 上で自身より前に配置される上流成果物は、レイヤー入口 [README.md](README.md)・Alignment 計画 [alignment-plan.md](alignment-plan.md)・Baseline 評価 [baseline-assessment.md](baseline-assessment.md)・Service Design 横断整合性評価 [service-design-alignment-assessment.md](service-design-alignment-assessment.md)。評価対象の Screen Requirements、参照する Service Design 成果物、評価対象となる既存 Design System 4 成果物との関係は本文 Assessment Sources (§5) / Method (§6) / 各 SCR 節 (§12〜§18) に記載し、Position の上流成果物へ混在させない。下流成果物 (Assets / Implementation) との関係は §20 を参照。
 
 本文書は評価記録であり、Design System 仕様・Design Decision の正本ではない。評価上の観察区分 (Alignment Plan §8) を Repository 成果物の正式 Status・優先度・severity と混同しない。ファイル名 `screen-requirements-alignment-assessment.md` は記述的な暫定識別子であり、正式な評価体系名・評価 ID・命名規則を確定しない。SCR ID は Screen Matrix 上の画面候補 ID であり、Screen Requirement 文書 ID・実装画面 ID・URL・route と同一視しない。Fact / Decision / Hypothesis / Open Issue を区別し、新しい Decision を追加しない。
@@ -395,3 +395,4 @@ provenance 未確認の記述は、内容が正しい・承認済み・上流適
 | Date | Change | Status |
 |---|---|---|
 | 2026-07-16 | Initial assessment (Work Order 3): 作成済み 7 個別 Screen Requirement (SCR-001/002/003/004/005/013/014) ごとに設計責務と既存 Design System 4 成果物の対応を Repository 内直接証拠だけで個別に静的評価。横断集約・改定・UX Decision 追加は未実施 | Draft |
+| 2026-07-17 | 用語統一: Work Order 5 を指す概念語 (候補) の「改訂」表記を正式名称 (alignment-plan.md §10) へ揃えた (§3 Scope)。DS 変更行為・状態を指す用法 (要否・可能・Design System の改定) は維持。評価内容・観察区分・各 SCR の Traceability は不変 | Draft |

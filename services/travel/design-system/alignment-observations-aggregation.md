@@ -840,4 +840,4 @@ Baseline (Work Order 1) 由来の証拠制約を、関係する集約 Observatio
 
 | Date | Change | Status |
 |---|---|---|
-| 2026-07-17 | Initial aggregation (Work Order 4): Work Order 2 (Service Design 横断整合性評価) と Work Order 3 (作成済み 7 個別 Screen Requirement ごとの整合性評価) の Observation を、Work Order 1 の証拠制約を保持しながら設計責務単位で横断集約。共通 Observation・スコープ固有 Observation・provenance/placeholder/実査待ち/参照切れの影響・未解決依存を分離し、Source Traceability Index で元 Observation を追跡可能にした。改訂候補整理・改定着手可否判断・DS 修正・UX Decision 追加は未実施 | Draft |
+| 2026-07-17 | Initial aggregation (Work Order 4): Work Order 2 (Service Design 横断整合性評価) と Work Order 3 (作成済み 7 個別 Screen Requirement ごとの整合性評価) の Observation を、Work Order 1 の証拠制約を保持しながら設計責務単位で横断集約。共通 Observation・スコープ固有 Observation・provenance/placeholder/実査待ち/参照切れの影響・未解決依存を分離し、Source Traceability Index で元 Observation を追跡可能にした。改訂候補整理・改訂着手可否判断・DS 修正・UX Decision 追加は未実施 | Draft |

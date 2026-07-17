@@ -128,10 +128,11 @@ Design System レイヤーの推奨参照順序は以下とする。未作成の
 4. [service-design-alignment-assessment.md](service-design-alignment-assessment.md) (Service Design 横断原則と既存 Design System の整合性評価: Work Order 2 の結果, Draft)
 5. [screen-requirements-alignment-assessment.md](screen-requirements-alignment-assessment.md) (作成済み 7 個別 Screen Requirement ごとの整合性評価: Work Order 3 の結果, Draft)
 6. [alignment-observations-aggregation.md](alignment-observations-aggregation.md) (Work Order 2・3 の Observation の横断集約: Work Order 4 の結果, Draft)
-7. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
-8. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
-9. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
-10. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
+7. [alignment-amendment-candidate-separation.md](alignment-amendment-candidate-separation.md) (集約 Observation の改訂候補と未解決事項の分離: Work Order 5 の結果, Draft)
+8. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
+9. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
+10. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
+11. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
 
 この順序は参照上の読み順であり、依存関係・生成順・優先度・実装順を自動的に意味しない。上流 Service Design / Screen Requirements との対応関係は本順序では確定せず、後続 Alignment Assessment で扱う (§10)。
 
@@ -169,9 +170,9 @@ Design System レイヤーの推奨参照順序は以下とする。未作成の
 これらについて以下を守る。
 
 - これらはすべて Draft である。
-- 現時点では Design System との対応評価は未実施である。
+- 作成済み 7 個別 Screen Requirement については、Work Order 3 で個別に整合性評価済み、Work Order 4 で横断集約済み、Work Order 5 で改訂候補と未解決事項へ分離済みである (いずれも Draft, §10)。これは対応関係の記録・整理であり、改訂内容・改定要否・改訂着手可否の決定ではない。
 - 各 Screen Requirement の Downstream Impact に記載された例や既存 Component 名を、採用決定と解釈しない。
-- 具体的な Component 対応・token 対応・状態対応・gap 判定は後続評価 (§10) で行う。
+- 具体的な Component 対応・token 対応・状態対応の記録と改訂候補/未解決事項の整理は Work Order 3〜5 で実施済み。改訂内容・改定要否・改訂着手可否の判断は Work Order 6 以降 (§10) であり、本 README では決定しない。
 - 1 つの Screen Requirement と 1 つの Component を 1 対 1 で前提としない。
 
 SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕様が未解決である ([../screen-requirements/creation-plan.md](../screen-requirements/creation-plan.md) §10・§12)。これらについて以下を守る。
@@ -183,7 +184,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 
 ## 10. Alignment Assessment Boundary
 
-後続の Alignment Assessment が扱い得る事項と、本 README が決めない範囲を定義する。評価方法・記録構造・推奨実行順は [alignment-plan.md](alignment-plan.md) で Draft として定義された。Work Order 1 の Baseline 確認は [baseline-assessment.md](baseline-assessment.md) (Draft) として、Work Order 2 の Service Design 横断整合性評価は [service-design-alignment-assessment.md](service-design-alignment-assessment.md) (Draft) として、Work Order 3 の作成済み 7 個別 Screen Requirement ごとの整合性評価は [screen-requirements-alignment-assessment.md](screen-requirements-alignment-assessment.md) (Draft) として、Work Order 4 の Work Order 2・3 の Observation の横断集約は [alignment-observations-aggregation.md](alignment-observations-aggregation.md) (Draft) として実施された。Work Order 3 は 7 件の個別評価であり、横断集約ではない。Work Order 4 は Observation の横断集約であり、改訂候補整理ではない (改訂候補と未解決事項の分離・優先順位付け・gap の原因責任の決定は行っていない)。Work Order 5 以降 (改訂候補と未解決事項の分離・改訂着手可否の判断) は未着手であり、改訂候補一覧・優先順位・改定要否はまだ存在しない。Design System の改定は未着手である。
+後続の Alignment Assessment が扱い得る事項と、本 README が決めない範囲を定義する。評価方法・記録構造・推奨実行順は [alignment-plan.md](alignment-plan.md) で Draft として定義された。Work Order 1 の Baseline 確認は [baseline-assessment.md](baseline-assessment.md) (Draft) として、Work Order 2 の Service Design 横断整合性評価は [service-design-alignment-assessment.md](service-design-alignment-assessment.md) (Draft) として、Work Order 3 の作成済み 7 個別 Screen Requirement ごとの整合性評価は [screen-requirements-alignment-assessment.md](screen-requirements-alignment-assessment.md) (Draft) として、Work Order 4 の Work Order 2・3 の Observation の横断集約は [alignment-observations-aggregation.md](alignment-observations-aggregation.md) (Draft) として、Work Order 5 の集約 Observation の改訂候補と未解決事項の分離は [alignment-amendment-candidate-separation.md](alignment-amendment-candidate-separation.md) (Draft) として実施された。Work Order 3 は 7 件の個別評価であり、横断集約ではない。Work Order 4 は Observation の横断集約であり、改訂候補整理ではない。Work Order 5 は改訂候補と未解決事項の分離であり、改定要否・改訂内容・優先順位・改訂着手可否を決定していない (改訂を検討し得る候補は設計責務レベルの整理であり、採用・改定の Decision ではない)。Work Order 6 (実際の改訂タスクを開始できるかの判断 = 改訂着手可否の判断) は未着手である。Design System の改定は未着手である。
 
 ### 後続評価で扱い得る事項
 
@@ -210,7 +211,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 
 - 本入口 README 自身の Status は `Draft` である。
 - 既存資産の Status / version は各正本ファイル (`design.md` / JSON / `components.md`) から引用する。本 README は既存資産の version 正本にならない。
-- 上流との Alignment 未実施を理由に、既存資産の version を変更しない。
+- Alignment 評価 (Work Order 1〜5 は Draft で実施済み) の有無にかかわらず、評価・集約・分離文書の追加だけでは既存資産の version を変更しない。version bump は Work Order 6 以降の改訂着手可否の判断と、その後の承認された改訂タスク (実際の Design System の改定) で扱う。
 - 文書追加 (本 README の新設) だけで token package の version を上げない。
 - 後続の変更で version bump が必要かは Open Issue とする (§16)。
 - `Draft`・placeholder・実査待ち・未着手を混同しない (Draft = 文書全体の状態、placeholder / 実査待ち = 個別トークンの未確定、未着手 = 成果物が存在しない)。
@@ -254,7 +255,8 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 - Service Design の横断原則と既存 Design System の整合性評価が [service-design-alignment-assessment.md](service-design-alignment-assessment.md) として Draft で完了した (Work Order 2)。
 - 作成済み 7 個別 Screen Requirement ごとの整合性評価が [screen-requirements-alignment-assessment.md](screen-requirements-alignment-assessment.md) として Draft で完了した (Work Order 3。7 件の個別評価であり横断集約ではない)。
 - Work Order 2・3 の Observation の横断集約が [alignment-observations-aggregation.md](alignment-observations-aggregation.md) として Draft で完了した (Work Order 4。Observation の横断集約であり、改訂候補整理・優先順位付け・改定要否判断ではない)。
-- 改訂候補と未解決事項の分離 (Work Order 5)・改訂着手可否の判断 (Work Order 6)、および Design System の改定は未着手である。
+- 集約 Observation の改訂候補と未解決事項の分離が [alignment-amendment-candidate-separation.md](alignment-amendment-candidate-separation.md) として Draft で完了した (Work Order 5。改訂を検討し得る候補と、上流・provenance 等の未解決に依存し確定できない事項へ設計責務の側面単位で分離。改定要否・改訂内容・優先順位・改訂着手可否は決定していない)。
+- 実際の改訂タスクを開始できるかの判断 (Work Order 6 = 改訂着手可否の判断)、および Design System の改定は未着手である。
 - 下流 Assets は `Not started`、Implementation は Repository 管理対象外。
 - 既存文書が参照する一部の出典 (`brand-content.md`・`governance/naming-rules.md`・ADR 正本) は Repository 内に存在しない (§8)。
 
@@ -263,7 +265,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 以下は未決である。解決策は推測して記載しない。
 
 - Baseline Assessment ([baseline-assessment.md](baseline-assessment.md)) で確認された Open Issues (placeholder / 実査待ち token・参照切れ・provenance 未確認等) の承認・解決・反映方法。`brand-content.md`・`governance/naming-rules.md`・ADR 正本の不足は解決済みではない。
-- Service Design 横断整合性評価 ([service-design-alignment-assessment.md](service-design-alignment-assessment.md)) および作成済み 7 個別 Screen Requirement ごとの整合性評価 ([screen-requirements-alignment-assessment.md](screen-requirements-alignment-assessment.md)) で記録した Observation の横断集約 ([alignment-observations-aggregation.md](alignment-observations-aggregation.md), Work Order 4) の承認・反映主体、および改訂候補整理 (Work Order 5)・改訂着手可否 (Work Order 6)。Work Order 4 は集約のみであり、改訂候補と未解決事項の分離は行っていない。Work Order 5〜6 は未着手であり、Work Order 1〜4 の実施は Design System 適合・改定可能・承認済みを意味しない。
+- Work Order 4 の集約 Observation を分離した改訂候補と未解決事項 ([alignment-amendment-candidate-separation.md](alignment-amendment-candidate-separation.md), Work Order 5) の承認・反映主体、および改訂着手可否の判断 (Work Order 6)。Work Order 5 は改訂候補と未解決事項の分離のみであり、改訂候補の採用・却下・改定要否・改訂内容・優先順位・改訂着手可否は決定していない。Work Order 6 は未着手であり、Work Order 1〜5 の実施は Design System 適合・改定要否決定・改定可能・改訂着手可能・承認済みを意味しない。分離された未解決事項 (状態モデル業務定義・Navigation 分類・IA 業務モデル・入力/表示仕様・可逆/回復・文言/命名正本・provenance・placeholder/実査待ち・アクセシビリティ規格・承認主体) の解決主体は未定義。
 - Alignment 評価方法・記録構造・観察区分は [alignment-plan.md](alignment-plan.md) で Draft 定義済み。その妥当性・評価/承認主体・実行結果・Alignment 完了条件は未決。
 - 評価単位の妥当性。
 - traceability の記録方法。
@@ -295,3 +297,4 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 | 2026-07-16 | Add service-design-alignment-assessment.md (Draft) to Reference Order, Current Status, and Alignment Assessment Boundary (Work Order 2 の Service Design 横断整合性評価を実施。Work Order 3 の個別 Screen Requirement 整合性評価は未着手) | Draft |
 | 2026-07-16 | Add screen-requirements-alignment-assessment.md (Draft) to Reference Order, Current Status, Alignment Assessment Boundary, and Open Issues (Work Order 3 の作成済み 7 個別 Screen Requirement ごとの整合性評価を実施。7 件の個別評価であり横断集約ではない。Work Order 4〜6 と Design System 改定は未着手) | Draft |
 | 2026-07-17 | Add alignment-observations-aggregation.md (Draft) to Reference Order, Current Status, Alignment Assessment Boundary, and Open Issues (Work Order 4 の Work Order 2・3 の Observation の横断集約を実施。Observation の横断集約であり改訂候補整理ではない。Work Order 5〜6 と Design System 改定は未着手) | Draft |
+| 2026-07-17 | Add alignment-amendment-candidate-separation.md (Draft) to Reference Order, Current Status, Alignment Assessment Boundary, and Open Issues (Work Order 5 の改訂候補と未解決事項の分離を実施。設計責務の側面単位で分離し、改定要否・改訂内容・優先順位・改訂着手可否は未決定)。§9 の「対応評価は未実施」を Work Order 3〜5 実施済みの Fact へ、§11 の「上流との Alignment 未実施を理由に」を現在の version 責務へ状態整合是正。Work Order 6 と Design System 改定は未着手 | Draft |

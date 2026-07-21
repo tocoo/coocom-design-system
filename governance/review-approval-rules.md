@@ -10,13 +10,13 @@
 
 - Governance README ([README.md](README.md)) が不足成果物として挙げていた **レビュー・承認規則の正本** を提示する。本文書は当該正本であり、Task 009-4 で承認され、PR #67 の main マージで適用開始した。
 - Travel の Work Order 6 (改訂着手可否評価, [../services/travel/design-system/alignment-amendment-readiness-assessment.md](../services/travel/design-system/alignment-amendment-readiness-assessment.md)) が全候補共通の阻害 Fact として記録した「実際の改訂タスクの承認・反映・解決主体が Repository 内で未定義」に対し、[owner-decisions.md](owner-decisions.md) §4 に記録されたオーナー回答 (2026-07-17 取得) を規則として構造化する。
-- 「規則正本候補 Draft を作成すること」と「規則を承認・適用すること」を区別する。工程を次のとおり区別して記録する: **Task 009-3** が Creation Plan ([review-approval-rules-creation-plan.md](review-approval-rules-creation-plan.md)) の Ordered Creation Steps 手順 3「正本 Draft 作成」と手順 4「整合確認」、**Task 009-4** がオーナー（Web部責任者）による明示的承認と Status・適用範囲の反映（手順 5・6）、**PR #67 の main マージ** が承認済み規則の適用開始条件（本承認記録 PR の main マージ）の成立である。手順 7（Travel Work Order 6 再評価）は未実施。
+- 「規則正本候補 Draft を作成すること」と「規則を承認・適用すること」を区別する。工程を次のとおり区別して記録する: **Task 009-3** が Creation Plan ([review-approval-rules-creation-plan.md](review-approval-rules-creation-plan.md)) の Ordered Creation Steps 手順 3「正本 Draft 作成」と手順 4「整合確認」、**Task 009-4** がオーナー（Web部責任者）による明示的承認と Status・適用範囲の反映（手順 5・6）、**PR #67 の main マージ** が承認済み規則の適用開始条件（本承認記録 PR の main マージ）の成立である。手順 7（Travel Work Order 6 再評価）は **Task 009-6 (2026-07-21) で実施済み**（[../services/travel/design-system/alignment-amendment-readiness-reassessment.md](../services/travel/design-system/alignment-amendment-readiness-reassessment.md)、§18）。
 
 ## 2. Status
 
 - 本文書の Status は `承認済み・適用中`。オーナー（Web部責任者）による明示的承認を 2026-07-17 (Task 009-4) に取得し、適用開始条件（本承認記録 PR の main マージ）は PR #67 のマージ（merge commit d095ded）で成立した。承認の直接証拠は [owner-decisions.md](owner-decisions.md) の設計承認ログ。
 - **承認と適用開始は分離する**。承認 (Task 009-4) と適用開始（適用開始条件＝本承認記録 PR の main マージの成立）は別事象である。適用開始条件は PR #67 のマージ（merge commit d095ded）で成立し、現在は適用中である。
-- 承認は Review / Approval Rules を Repository 横断規則として有効化する意思決定であり、適用開始（実運用）とは別事象である。全候補共通の阻害 Fact は、規則の適用開始後に当該範囲で解消へ進むものであり、承認・適用開始だけで自動的に全面解消されるものではない（Work Order 6 は未再評価）。
+- 承認は Review / Approval Rules を Repository 横断規則として有効化する意思決定であり、適用開始（実運用）とは別事象である。全候補共通の阻害 Fact は、規則の適用開始後に当該範囲で解消へ進むものであり、承認・適用開始だけで自動的に全面解消されるものではない（Work Order 6 は Task 009-6 (2026-07-21) で再評価済み: 旧共通阻害 Fact は規則で定義された範囲において解消したが、候補固有の阻害 Fact が残り全 12 候補「現時点では開始できない」を維持・Alignment は未完了。[../services/travel/design-system/alignment-amendment-readiness-reassessment.md](../services/travel/design-system/alignment-amendment-readiness-reassessment.md)）。
 
 ## 3. Position
 
@@ -214,7 +214,7 @@ Fact: Alignment 完了条件の記録先は本文書である ([owner-decisions.
 
 - 本規則は Repository 横断であり、各サービス (`travel` / `rental-car` / `inbound`) 配下の成果物 (Service Design / Screen Requirements / Design System / Assets) の**内容を再定義しない**。責務と経路のみを対象とする。
 - Travel の Work Order 6 成果物は、全候補共通の阻害 Fact「承認・反映・解決主体が Repository 内で未定義」の出所であり (§6)、本規則はその主体をオーナー回答に基づき定義する。Work Order 6 の判断そのものは変更・再評価しない (§18)。
-- 各サービスの Design System 改訂タスクは、本規則が明示的に承認・適用されるまで、承認・反映・解決主体の定義を根拠に開始できない (Travel Work Order 6 の総合判断)。本規則の承認・適用（PR #67 マージ）だけでは改訂着手を承認しない（改訂着手可否は Work Order 6 の再評価で判断され、Work Order 6 は未再評価）。
+- 各サービスの Design System 改訂タスクは、本規則が明示的に承認・適用されるまで、承認・反映・解決主体の定義を根拠に開始できない (Travel Work Order 6 の総合判断)。本規則の承認・適用（PR #67 マージ）だけでは改訂着手を承認しない（改訂着手可否は Work Order 6 の再評価で判断される。Work Order 6 は Task 009-6 (2026-07-21) で再評価済みであり、全 12 候補「現時点では開始できない」・実際の Design System 改訂タスクは現時点では開始できない = 各候補固有の阻害 Fact が残るため。改訂着手の承認は行われていない）。
 - 本規則の追加は、下流の Design System・token・Component・version に変更を与えない。
 
 ## 21. Open Issues
@@ -226,7 +226,7 @@ Fact: Alignment 完了条件の記録先は本文書である ([owner-decisions.
 - placeholder / 実査待ちの**個別項目の確認主体**は、Web部責任者が確認方法を定めるまで未定 (§14)。
 - 改訂着手可否の再評価で、**上流 Open Issue・provenance 未確認を必須トリガーとするか**は未確定 (§18)。
 - 命名規則・ADR・用語定義・Repository principles の正本不在 ([README.md](README.md)) は本規則では解決しない。
-- **適用開始は PR #67 の main マージ（merge commit d095ded）で成立済み**であり、現在は適用中である。ただし承認・適用開始だけで、Work Order 6 共通阻害 Fact が全面解消されるわけではない（Work Order 6 は未再評価、§18）。
+- **適用開始は PR #67 の main マージ（merge commit d095ded）で成立済み**であり、現在は適用中である。ただし承認・適用開始だけで、Work Order 6 共通阻害 Fact が全面解消されるわけではない（Work Order 6 は Task 009-6 (2026-07-21) で再評価済み、§18。旧共通阻害 Fact は規則で定義された範囲において解消したが、候補固有の阻害 Fact — 上流 Open Issue・provenance 未確認・参照切れ・placeholder・実査待ち・placeholder/実査待ちの個別確認主体の未定 — が残り、全 12 候補「現時点では開始できない」を維持）。
 
 ## 22. Does Not Decide
 
@@ -247,3 +247,4 @@ Fact: Alignment 完了条件の記録先は本文書である ([owner-decisions.
 | 2026-07-17 | Task 009-3: Review / Approval Rules の正本候補 Draft を作成。[owner-decisions.md](owner-decisions.md) §4 の 11 件のオーナー回答 (2026-07-17) を根拠に、責務区別・影響度別のレビュー/反映/GitHub 操作経路・設計承認と GitHub 操作の分離・承認ログ正本・ライフサイクル・再評価条件・Alignment 完了条件の Draft 提案を構造化。Creation Plan Ordered Creation Steps 手順 3 (Draft 作成)・手順 4 (整合確認) に対応。規則は未承認・未適用 (Status = Draft)、影響度判定基準・判定主体は未定義の Open Issue、Work Order 6 は未再評価、Design System 改定は未着手 | Draft |
 | 2026-07-17 | Task 009-4: オーナー（Web部責任者）が Review / Approval Rules を Repository 横断規則として明示的に承認 (Creation Plan 手順 5 相当・本文書ライフサイクル手順 3)。Status を「承認済み（未適用・main マージ後に適用開始）」へ変更し適用範囲を反映 (手順 4)。影響度の判定主体を Web部責任者の都度判断として定義 (§8)、判定結果は Wiki（非正本）に記録、明文の判定基準は承認後も残る Open Issue。§19 Alignment 完了条件の 6 観点を承認済みへ格上げ。設計承認ログは owner-decisions.md へ記録。適用開始は本承認記録 PR の main マージ後（現時点では未適用）、Work Order 6 は未再評価、Design System 改定は未着手 | 承認済み（未適用・main マージ後に適用開始） |
 | 2026-07-17 | Task 009-5: PR #67（Task 009-4 承認記録）の main マージ（merge commit d095ded2998e0180ae6836747e8fbbd95a7a2ef1）により、承認時に定めた適用開始条件が成立した事実を反映。Status を「承認済み・適用中」へ同期し、「未適用」「main マージ後に適用開始」等のマージ前表現を現在状態へ更新。§1 Purpose を Task 009-3（Draft 作成・整合確認）／Task 009-4（明示的承認・反映）／PR #67 マージ（適用開始条件成立）に区別。承認内容・責務・影響度別経路・Alignment 完了条件・残る Open Issue は不変。PR #67 のマージは設計承認ではなく適用開始条件成立の Fact。Work Order 6 は未再評価、Design System 改定は未着手 | 承認済み・適用中 |
+| 2026-07-21 | Task 009-6: Travel Work Order 6 の再評価 ([../services/travel/design-system/alignment-amendment-readiness-reassessment.md](../services/travel/design-system/alignment-amendment-readiness-reassessment.md), Draft, snapshot `e0880d8`) を実施したことに伴い、§1・§2・§20・§21 の現在状態記述（「Work Order 6 は未再評価」「手順 7 は未実施」）を再評価済みの状態へ同期。**規則本文・責務 (§7〜§16)・承認内容 (§9・§16)・§18 の再評価規則・§19 Alignment 完了条件・Status（承認済み・適用中）は不変。** 再評価では旧共通阻害 Fact が規則で定義された範囲において解消したが候補固有の阻害 Fact が残り全 12 候補「現時点では開始できない」・Alignment 未完了 (§19 観点 4・5 未充足)。owner-decisions.md §5/§6・設計承認は不変。候補採否・改定要否・改訂着手・設計承認・Design System 改定は行っていない（状態同期のみ） | 承認済み・適用中 |

@@ -138,6 +138,28 @@
 
 ---
 
+## 8. Travel上流Open Issue初回着手論点の案件別判断記録
+
+- 種別: **Review / Approval Rules §8・§12 および Task 009-8 の解決計画に基づく案件別のプロセス判断**の記録。上記 §1〜§7 とは独立した記録であり、混同しない。**本記録は設計承認ではない**。§5 の Design Approval Log へ追加せず、§7「解決単位＝論点別」の回答も上書きしない。既存の Review / Approval Rules の承認内容も変更しない。
+- 規約: 恒久 Decision ID・新しい正式 Status・Phase・Gate は採番・新設しない。取得した回答は原文の意味を変えずに記録する。本記録は上流 Open Issue の内容を解決するものではなく、最初に扱う論点を特定し後続解決タスクを起票可能な状態にするための判断だけを記録する。最初に扱う論点の選択は、その論点の内容に対する承認ではない。
+
+| 項目 | 内容 |
+| --- | --- |
+| 判断対象 | Task 009-8 の解決計画 ([../services/travel/design-system/alignment-blocking-facts-resolution-plan.md](../services/travel/design-system/alignment-blocking-facts-resolution-plan.md)) §8A.2 で論点別に整理された 9 論点 (T1〜T9) |
+| 判断日 | 2026-07-21 |
+| 判断主体 | Web部責任者 |
+| 提示した 9 論点 | T1 Navigation 分類・Global Navigation・History and Recovery／T2 状態モデルの業務定義／T3 IA Object の業務モデル／T4 入力・検索仕様／T5 表示項目・料金・評価仕様／T6 主要行動・CTA／T7 可逆・回復フロー・サポート範囲／T8 タイポグラフィ具体規格の扱い／T9 アクセシビリティ適用規格の扱い (各論点の対象上流成果物・対応 Design System 候補側面・完了条件・決定/承認しない事項は同計画 §8A.2 のとおり中立に提示) |
+| 取得した回答 (原文の意味を変えず記録) | **「どれからでも構わない」** |
+| 最初に扱う論点 | 特定の 1 件に限定されず、T1〜T9 の**いずれからでも着手してよい**というオーナー判断。単一論点の指定・順序付き・並行着手の明示・条件付き・現時点で選ばない、のいずれとも異なり、初回着手論点の優先順位・限定をオーナーからは付与しないという回答である。 |
+| 適用範囲 | 国内宿泊 (travel) サービスの今回の Alignment 阻害 Fact 解決経路。他サービス (rental-car / inbound) へは適用しない。 |
+| 根拠 | Task 009-8 成果物 ([../services/travel/design-system/alignment-blocking-facts-resolution-plan.md](../services/travel/design-system/alignment-blocking-facts-resolution-plan.md) §8A)、[owner-decisions.md](owner-decisions.md) §7、Review / Approval Rules ([review-approval-rules.md](review-approval-rules.md)) §8・§12、本 Task (Task 009-9) の Issue #76 および本 Task の PR |
+| 回答により確定した事項 | 最初に解決対象として扱う上流 Open Issue の論点を、オーナーは特定の 1 件に限定せず、T1〜T9 のいずれからでも着手してよいとしたこと (初回着手論点の優先順位・限定は付与されない)。 |
+| 回答後も未決の事項 | 実際にどの論点から着手するかの具体選択／着手する論点の具体的な解決内容／上流成果物へ記録する判断内容／残る論点の着手順序／各後続タスクの影響度 (Q5)／Q2 placeholder・実査待ちの確認方法／Q3 個別確認主体／Q4 再評価トリガー／provenance・参照切れの扱い／候補採否・改定要否・継続保留・改訂着手。いずれも本記録では決定・補完しない。 |
+
+**Does Not Decide / Does Not Authorize**: 本記録は上流 Open Issue の内容を解決・close せず、選択されなかった論点を却下・不要・継続保留とせず、Design System の改定要否・候補採否・改訂着手・設計承認を決定・承認しない。最初に扱う論点の選択 (本件では「どれからでも構わない」) を、当該論点の内容に対する承認として扱わない。Task 009-6 の全 12 候補「現時点では開始できない」を変更しない。§7「解決単位＝論点別」を上書きしない。Q2〜Q5 への回答を補完しない。個別確認主体・担当者・期限・工数を推測しない。GitHub の approval・merge を設計承認と同一視しない。本記録に関する Wiki 記載があっても、本判断の正本は本 §8 である (Wiki は非正本)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -149,3 +171,4 @@
 | 2026-07-17 | Task 009-4: §5 設計承認ログを §1〜§4 と分離して追加。オーナー (Web部責任者) が Governance Review and Approval Rules を Repository 横断規則として明示的に承認 (2026-07-17)。適用開始は本承認記録 PR の main マージ後とし、承認後も残る Open Issue を条件として明記。恒久 Decision ID・正式 Status 体系は新設せず。既存 §1〜§4 は不変。Work Order 6 の再評価・Design System 改定は行っていない | Claude Code |
 | 2026-07-17 | Task 009-5: §6 適用開始の事実記録 (Activation Record) を §5 と分離して追加。PR #67 (Task 009-4 承認記録) の main マージ（merge commit d095ded2998e0180ae6836747e8fbbd95a7a2ef1）により、承認時に定めた適用開始条件が成立した Fact を記録（現在状態＝適用中）。merge を設計承認と同一視せず、設計承認は §5 のまま不変。既存 §1〜§5 は不変。恒久 Decision ID・正式 Status 体系・新承認種別は新設せず。Work Order 6 の再評価・Design System 改定は行っていない | Claude Code |
 | 2026-07-21 | Task 009-8: §7 Travel上流Open Issue解決単位の案件別判断記録を §1〜§6 と分離して追加。Web部責任者の判断「論点別」(2026-07-21) を Review / Approval Rules §12・§21② に基づくプロセス判断として記録 (設計承認ではない・§5 Design Approval Log へは追加しない)。既存 §1〜§6・設計承認ログ・適用開始記録・規則承認内容は不変。恒久 Decision ID・正式 Status 体系・Phase・Gate は新設せず。上流 Open Issue の内容解決・候補採否・改定要否・改訂着手・設計承認は行っていない。Q2〜Q5 は未回答のまま保持 | Claude Code |
+| 2026-07-21 | Task 009-9: §8 Travel上流Open Issue初回着手論点の案件別判断記録を §1〜§7 と分離して追加。Web部責任者の判断「どれからでも構わない」(2026-07-21、最初に扱う論点を特定の 1 件に限定せず T1〜T9 のいずれからでも着手してよい) を Review / Approval Rules §8・§12 に基づくプロセス判断として記録 (設計承認ではない・§5 へは追加しない・§7 の「解決単位＝論点別」は上書きしない)。選択されなかった論点を却下・不要・継続保留とせず、最初に扱う論点の選択を内容承認として扱わない。既存 §1〜§7 は不変。恒久 Decision ID・正式 Status 体系・Phase・Gate は新設せず。上流 Open Issue の内容解決・候補採否・改定要否・改訂着手・設計承認は行っていない。Q2〜Q5 は未回答のまま保持 | Claude Code |

@@ -63,7 +63,7 @@ Governance は横断共通、それ以外は原則サービス単位で管理す
 
 - 各サービスの **Design System は既存資産** として存在する (下表)。
 - **Service Design / Screen Requirements の着手状況はサービス別に異なる** (下表)。国内宿泊 (travel) は Service Design が Draft (SD-001〜SD-007)、Screen Requirements は入口 README と Creation Plan が存在し、着手可能候補 (SCR-001〜SCR-005・SCR-013・SCR-014) の個別要件が Draft・SCR-006〜SCR-012 は Not started (レイヤー全体は In preparation)。国内レンタカー・インバウンドレンタカーは未着手。**Assets は全サービス未着手** (`Status: Not started`)。
-- Governance には入口 README・owner-decisions.md・Review / Approval Rules Creation Plan (Draft)・Review / Approval Rules 正本 (`governance/review-approval-rules.md`) が存在する。Review / Approval Rules は **Task 009-4 (2026-07-17) でオーナー (Web部責任者) が Repository 横断規則として明示的に承認し、適用開始条件（承認記録 PR の main マージ）は PR #67 のマージ（merge commit d095ded）で成立したため現在は適用中**である (Status = 承認済み・適用中。承認の正本ログは owner-decisions.md §5、適用開始の事実記録は §6)。原則・命名規則・ADR・用語定義の正本は依然として未整備 (`governance/README.md` を参照。Work Order 6 は未再評価、Design System 改定は未着手)。
+- Governance には入口 README・owner-decisions.md・Review / Approval Rules Creation Plan (Draft)・Review / Approval Rules 正本 (`governance/review-approval-rules.md`) が存在する。Review / Approval Rules は **Task 009-4 (2026-07-17) でオーナー (Web部責任者) が Repository 横断規則として明示的に承認し、適用開始条件（承認記録 PR の main マージ）は PR #67 のマージ（merge commit d095ded）で成立したため現在は適用中**である (Status = 承認済み・適用中。承認の正本ログは owner-decisions.md §5、適用開始の事実記録は §6)。原則・命名規則・ADR・用語定義の正本は依然として未整備 (`governance/README.md` を参照。Work Order 6 は Task 009-6 で再評価済み・全 12 候補「現時点では開始できない」を維持・Alignment 未完了、Design System 改定は未着手)。
 
 | サービス | Service Design | Screen Requirements | Design System | Assets |
 | --- | --- | --- | --- | --- |

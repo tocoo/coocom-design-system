@@ -131,10 +131,11 @@ Design System レイヤーの推奨参照順序は以下とする。未作成の
 7. [alignment-amendment-candidate-separation.md](alignment-amendment-candidate-separation.md) (集約 Observation の改訂候補と未解決事項の分離: Work Order 5 の結果, Draft)
 8. [alignment-amendment-readiness-assessment.md](alignment-amendment-readiness-assessment.md) (改訂候補の改訂着手可否評価: Work Order 6 の結果, snapshot `eb0b891`, Draft)
 9. [alignment-amendment-readiness-reassessment.md](alignment-amendment-readiness-reassessment.md) (Work Order 6 の再評価: Review / Approval Rules 承認・適用開始後の改訂着手可否の再評価 (Task 009-6), snapshot `e0880d8`, Draft)
-10. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
-11. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
-12. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
-13. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
+10. [alignment-blocking-facts-resolution-plan.md](alignment-blocking-facts-resolution-plan.md) (候補固有阻害 Fact の解決計画: 全 12 候補の残る阻害 Fact と解決経路・依存関係の整理 (Task 009-7), snapshot `293357d`, Draft)
+11. [design.md](design.md) (統合文書, Draft 0.3.0-draft)
+12. [semantic.travel.json](semantic.travel.json) (Semantic token, Draft 0.3.0-draft)
+13. [primitive.travel.json](primitive.travel.json) (Primitive token, Draft 0.3.0-draft)
+14. [components.md](components.md) (Component 仕様, Draft 0.3.0-draft)
 
 この順序は参照上の読み順であり、依存関係・生成順・優先度・実装順を自動的に意味しない。上流 Service Design / Screen Requirements との対応関係は本順序では確定せず、後続 Alignment Assessment で扱う (§10)。
 
@@ -260,7 +261,8 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 - 集約 Observation の改訂候補と未解決事項の分離が [alignment-amendment-candidate-separation.md](alignment-amendment-candidate-separation.md) として Draft で完了した (Work Order 5。改訂を検討し得る候補と、上流・provenance 等の未解決に依存し確定できない事項へ設計責務の側面単位で分離。改定要否・改訂内容・優先順位・改訂着手可否は決定していない)。
 - 改訂候補の改訂着手可否の判断が [alignment-amendment-readiness-assessment.md](alignment-amendment-readiness-assessment.md) として Draft で完了した (Work Order 6, snapshot `eb0b891`)。全 12 候補側面は「現時点では開始できない」であり、実際の Design System 改訂タスクは現時点では開始できない (共通阻害 = 承認・反映・解決主体の未定義、加えて各候補固有の上流 Open Issue・provenance 未確認・placeholder/実査待ち・参照切れ)。これにより Alignment Plan §10 の Work Order 1〜6 が Draft で実施済み。
 - Work Order 6 の再評価が [alignment-amendment-readiness-reassessment.md](alignment-amendment-readiness-reassessment.md) として Draft で完了した (Task 009-6, snapshot `e0880d8`)。Governance Review / Approval Rules の承認・適用開始 (PR #67 main マージ) 後の直接証拠に基づく全候補一括再評価。旧共通阻害 Fact「承認・反映・解決主体が Repository 内で未定義」は規則で定義された範囲において解消したが、各候補固有の阻害 Fact (上流 Open Issue・provenance 未確認・参照切れ・placeholder・実査待ち・placeholder/実査待ちの個別確認主体の未定) が残るため、全 12 候補は「現時点では開始できない」・実際の Design System 改訂タスクは現時点では開始できないという総合判断を維持。§19 Alignment 完了条件は観点 4・5 未充足で Alignment は未完了。元 Work Order 6 (snapshot `eb0b891`) は不変。
-- Design System の改定は未着手である。着手可否評価・その再評価の記録は改定開始・Alignment 承認・Alignment 完了を意味しない。実際の改定・候補採否・改訂着手の設計承認は、本 PR のマージと必要なレビュー・Web部責任者の明示的判断の完了を経た別タスクでのみ扱う。
+- 候補固有阻害 Fact の解決計画が [alignment-blocking-facts-resolution-plan.md](alignment-blocking-facts-resolution-plan.md) として Draft で作成された (Task 009-7, snapshot `293357d`)。Task 009-6 が「現時点では開始できない」とした全 12 候補の残る阻害 Fact を 8 種別へ分類し、各候補との対応・Review / Approval Rules 上の解決経路・依存関係・Web部責任者へ確認が必要な事項・最初に必要なオーナー判断 1 件 (上流 Open Issue の解決単位) を整理した計画である。本計画は候補採否・改定要否・継続保留・改訂着手を決定せず、上流 Open Issue・provenance・参照切れ・placeholder・実査待ちを解消しない。個別確認主体は未定のまま保持。
+- Design System の改定は未着手である。着手可否評価・その再評価・解決計画の記録は改定開始・Alignment 承認・Alignment 完了を意味しない。実際の改定・候補採否・改訂着手の設計承認は、必要なレビュー・Web部責任者の明示的判断の完了を経た別タスクでのみ扱う。
 - 下流 Assets は `Not started`、Implementation は Repository 管理対象外。
 - 既存文書が参照する一部の出典 (`brand-content.md`・`governance/naming-rules.md`・ADR 正本) は Repository 内に存在しない (§8)。
 
@@ -269,7 +271,7 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 以下は未決である。解決策は推測して記載しない。
 
 - Baseline Assessment ([baseline-assessment.md](baseline-assessment.md)) で確認された Open Issues (placeholder / 実査待ち token・参照切れ・provenance 未確認等) の承認・解決・反映方法。`brand-content.md`・`governance/naming-rules.md`・ADR 正本の不足は解決済みではない。
-- 改訂着手可否評価 ([alignment-amendment-readiness-assessment.md](alignment-amendment-readiness-assessment.md), Work Order 6) と Task 009-6 の再評価 ([alignment-amendment-readiness-reassessment.md](alignment-amendment-readiness-reassessment.md)) が「現時点では開始できない」とした各候補の未解決事項の解決、および各候補の改定・非改定・継続保留の設計判断・改訂着手の設計承認。Work Order 6・その再評価は着手可否を記録したのみであり、改訂候補の採用・却下・改定要否・改訂内容・優先順位・実際の改定は決定・実施していない。Work Order 1〜6 とその再評価の実施は Design System 適合・改定要否決定・改定可能・改訂着手可能・承認済み・Alignment 完了を意味しない。実際の改訂タスクの承認・反映・解決主体は Task 009-6 の再評価により Review / Approval Rules で定義された範囲において Repository 内で定義済みとなった (規則の承認・適用開始)。ただし分離・評価された未解決事項 (状態モデル業務定義・Navigation 分類・IA 業務モデル・入力/表示仕様・可逆/回復・文言/命名正本・provenance・placeholder/実査待ち・アクセシビリティ規格) 自体、および placeholder/実査待ちの個別確認主体・上流 Open Issue の具体的解決単位は未解決・未定のまま残る。
+- 改訂着手可否評価 ([alignment-amendment-readiness-assessment.md](alignment-amendment-readiness-assessment.md), Work Order 6) と Task 009-6 の再評価 ([alignment-amendment-readiness-reassessment.md](alignment-amendment-readiness-reassessment.md)) が「現時点では開始できない」とした各候補の未解決事項の解決、および各候補の改定・非改定・継続保留の設計判断・改訂着手の設計承認。Work Order 6・その再評価は着手可否を記録したのみであり、改訂候補の採用・却下・改定要否・改訂内容・優先順位・実際の改定は決定・実施していない。Work Order 1〜6 とその再評価の実施は Design System 適合・改定要否決定・改定可能・改訂着手可能・承認済み・Alignment 完了を意味しない。実際の改訂タスクの承認・反映・解決主体は Task 009-6 の再評価により Review / Approval Rules で定義された範囲において Repository 内で定義済みとなった (規則の承認・適用開始)。ただし分離・評価された未解決事項 (状態モデル業務定義・Navigation 分類・IA 業務モデル・入力/表示仕様・可逆/回復・文言/命名正本・provenance・placeholder/実査待ち・アクセシビリティ規格) 自体、および placeholder/実査待ちの個別確認主体・上流 Open Issue の具体的解決単位は未解決・未定のまま残る。これら候補固有阻害 Fact の解決経路・依存関係・Web部責任者へ確認が必要な事項は [alignment-blocking-facts-resolution-plan.md](alignment-blocking-facts-resolution-plan.md) (Task 009-7, Draft) に整理した (整理であって解決ではない)。
 - Alignment 評価方法・記録構造・観察区分は [alignment-plan.md](alignment-plan.md) で Draft 定義済み。その妥当性・評価/承認主体・実行結果・Alignment 完了条件は未決。
 - 評価単位の妥当性。
 - traceability の記録方法。
@@ -305,3 +307,4 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 | 2026-07-17 | Add alignment-amendment-readiness-assessment.md (Draft) to Reference Order, Current Status, Alignment Assessment Boundary, and Open Issues (Work Order 6 の改訂着手可否の判断を実施。全 12 候補側面は「現時点では開始できない」、実際の Design System 改訂タスクは現時点では開始できない = 承認/解決主体の未定義と各候補固有の上流 Open Issue・provenance・placeholder/実査待ち・参照切れ)。これにより Work Order 1〜6 が Draft で実施済み。着手可否評価の記録は改定開始・Alignment 承認・完了ではない。Design System 本体は未変更 (Status Draft・version 0.3.0-draft を維持)・改定は未着手 | Draft |
 | 2026-07-17 | Align 冒頭本文・§1・§3 Facts/Decisions・§4 の Alignment Assessment 状態記述を Work Order 1〜6 実施済みの現状へ整合是正 (PR #55 補足コメントへの対応。旧「後続タスク／未実施／未評価」表現を、実行記録が Work Order 1〜6 の Draft 成果物にある旨へ是正)。本 README が個別評価結果の正本でない責務境界・Design System 改定を README で行わない境界・Design System 改定が未着手である Fact・承認/Alignment 完了が未決である Fact は維持。評価結果・Decision・UX Decision の追加なし | Draft |
 | 2026-07-21 | Add alignment-amendment-readiness-reassessment.md (Draft, snapshot `e0880d8`) to Reference Order (§7)・Alignment Assessment Boundary (§10)・Current Status (§15)・Open Issues (§16) (Task 009-6 の Work Order 6 再評価を実施済みと同期)。Governance Review / Approval Rules の承認・適用開始後の直接証拠に基づく再評価で、旧共通阻害 Fact は規則で定義された範囲において解消したが候補固有の阻害 Fact が残り全 12 候補「現時点では開始できない」・§19 Alignment 完了条件は観点 4・5 未充足で未完了、という状態へ §16 の「承認・反映・解決主体が未定義」記述を整合是正。元 Work Order 6 (snapshot `eb0b891`)・既存 Design System 4 資産・token・Component・JSON・version は不変。候補採否・改定要否・改訂着手・設計承認・評価結果の Decision 追加はなし | Draft |
+| 2026-07-21 | Add alignment-blocking-facts-resolution-plan.md (Draft, snapshot `293357d`) to Reference Order (§7)・Current Status (§15)・Open Issues (§16) (Task 009-7 の候補固有阻害 Fact 解決計画を作成)。Task 009-6 が「現時点では開始できない」とした全 12 候補の残る阻害 Fact の 8 種別分類・候補別対応・Review / Approval Rules 上の解決経路・依存関係・Web部責任者確認事項・最初に必要なオーナー判断 1 件を整理した計画。候補採否・改定要否・継続保留・改訂着手は決定せず、上流 Open Issue・provenance・参照切れ・placeholder・実査待ちは解消せず、個別確認主体は未定のまま保持。Task 009-6 成果物・元 Work Order 6・既存 Design System 4 資産・token・Component・JSON・version は不変 | Draft |

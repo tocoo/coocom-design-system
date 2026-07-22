@@ -160,6 +160,29 @@
 
 ---
 
+## 9. Review / Approval Rules 改定の承認記録 (§8 編集的訂正 carve-out)
+
+- 種別: **Review / Approval Rules ([review-approval-rules.md](review-approval-rules.md)) の改定 (§17 手順6「規則の変更」) に対する Web部責任者の承認記録**。上記 §1〜§8 とは独立した記録であり、混同しない。本記録は §5 設計承認ログで承認された規則本体への**改定**の承認であり、§5 の記録自体は変更しない (§5 は初回承認の記録として保持)。本記録は Design System の候補採否・改定要否・改訂着手といった**設計承認ではない**。
+- 規約: 恒久 Decision ID・新しい正式 Status・Phase・Gate は採番・新設しない。取得した判断は原文の意味を変えずに記録する。GitHub の approval・merge を承認と同一視しない (§5・§6 と同じ)。
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | Review / Approval Rules §8 への改定: 編集的訂正の類型を影響度・低とする明文の carve-out の追加 |
+| 承認内容 | 非文・誤字脱字・明白な文法／表記の誤りの訂正で、記述の意味・主張・意図を変えない字句修正を、影響度・低として扱う明文の例外を §8 に設ける。設計内容・設計判断・token・Component・version・プロセス判断に影響する変更、文の追加・削除や記述内容／整合の実質的変更、意味が変わりうる変更、該当するか迷う・境界的な場合は本例外の対象外とし、通常どおり Web部責任者が都度判定する (迷う場合は安全側で高)。Web部責任者は個別に高へ引き上げ可能。本例外はルール制定段階を含め規則適用中は有効。 |
+| 承認日 | 2026-07-21 |
+| 承認主体 | Web部責任者 |
+| 本改定自体の影響度 | 高 (本件として明示取得、2026-07-21)。→ 必要レビュー主体 = [review-approval-rules.md](review-approval-rules.md) §10 既定の Web部責任者＋チーフデザイナー。 |
+| 適用範囲 | Review / Approval Rules は Repository 横断規則 (§4) であり、本 carve-out も規則の適用範囲に従う。ただし本 carve-out は編集的訂正の類型に限定され、他の変更類型・一般的な高／低の内容基準・特定サービスの個別判断へ一般化しない。 |
+| 根拠成果物 | [review-approval-rules.md](review-approval-rules.md) §8・§5 Out of Scope・§17・§21・§23 |
+| 根拠 PR | 本改定 PR (Task 009-4-F1) |
+| 契機 | PR [#81](https://github.com/tocoo/coocom-design-system/pull/81) (Task 009-10-F1) の非文訂正レベルの補正に対し、暫定運用「ルール制定段階はすべて高」により責任者＋チーフデザイナーの必須レビューを要したことが過剰であるとの Web部責任者の指摘。 |
+| 位置づけ | §5 で承認された規則本体への改定 (§17 手順6) の承認であり、§5 初回承認・§6 適用開始・§7・§8 の各記録は変更しない。Design System の候補採否・改定要否・改訂着手・設計承認ではない。 |
+| 残る Open Issue | 一般的な高／低の明文判定基準は引き続き未整備 ([review-approval-rules.md](review-approval-rules.md) §8・§21)。本 carve-out は編集的訂正の類型に限定した部分的明文化であり、一般基準を確定しない。 |
+
+本承認は Review / Approval Rules §8 への編集的訂正 carve-out の追加の承認である。本承認および本 PR のマージは、改訂候補の採否・Design System 改定要否・改訂着手・Work Order 6 再評価・Design System 改定を意味しない。影響度・高／低の判定結果は Wiki (非正本) に記録する ([review-approval-rules.md](review-approval-rules.md) §8)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -171,4 +194,5 @@
 | 2026-07-17 | Task 009-4: §5 設計承認ログを §1〜§4 と分離して追加。オーナー (Web部責任者) が Governance Review and Approval Rules を Repository 横断規則として明示的に承認 (2026-07-17)。適用開始は本承認記録 PR の main マージ後とし、承認後も残る Open Issue を条件として明記。恒久 Decision ID・正式 Status 体系は新設せず。既存 §1〜§4 は不変。Work Order 6 の再評価・Design System 改定は行っていない | Claude Code |
 | 2026-07-17 | Task 009-5: §6 適用開始の事実記録 (Activation Record) を §5 と分離して追加。PR #67 (Task 009-4 承認記録) の main マージ（merge commit d095ded2998e0180ae6836747e8fbbd95a7a2ef1）により、承認時に定めた適用開始条件が成立した Fact を記録（現在状態＝適用中）。merge を設計承認と同一視せず、設計承認は §5 のまま不変。既存 §1〜§5 は不変。恒久 Decision ID・正式 Status 体系・新承認種別は新設せず。Work Order 6 の再評価・Design System 改定は行っていない | Claude Code |
 | 2026-07-21 | Task 009-8: §7 Travel上流Open Issue解決単位の案件別判断記録を §1〜§6 と分離して追加。Web部責任者の判断「論点別」(2026-07-21) を Review / Approval Rules §12・§21② に基づくプロセス判断として記録 (設計承認ではない・§5 Design Approval Log へは追加しない)。既存 §1〜§6・設計承認ログ・適用開始記録・規則承認内容は不変。恒久 Decision ID・正式 Status 体系・Phase・Gate は新設せず。上流 Open Issue の内容解決・候補採否・改定要否・改訂着手・設計承認は行っていない。Q2〜Q5 は未回答のまま保持 | Claude Code |
+| 2026-07-21 | Task 009-4-F1: §9 Review / Approval Rules 改定の承認記録 (§8 編集的訂正 carve-out) を §1〜§8 と分離して追加。Web部責任者が、非文・誤字脱字・明白な文法／表記誤りの訂正で意味を変えないものを影響度・低とする [review-approval-rules.md](review-approval-rules.md) §8 の明文 carve-out を承認 (2026-07-21、本改定自体の影響度=高)。§17 手順6「規則の変更」の初回実施。§5 初回承認・§6 適用開始・§7・§8 は不変。一般的な高／低の内容基準は引き続き Open Issue (本 carve-out は部分的明文化)。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない。恒久 Decision ID・正式 Status 体系・Phase・Gate は新設せず | Claude Code |
 | 2026-07-21 | Task 009-9: §8 Travel上流Open Issue初回着手論点の案件別判断記録を §1〜§7 と分離して追加。Web部責任者の判断「どれからでも構わない」(2026-07-21、最初に扱う論点を特定の 1 件に限定せず T1〜T9 のいずれからでも着手してよい) を Review / Approval Rules §8・§12 に基づくプロセス判断として記録 (設計承認ではない・§5 へは追加しない・§7 の「解決単位＝論点別」は上書きしない)。選択されなかった論点を却下・不要・継続保留とせず、最初に扱う論点の選択を内容承認として扱わない。既存 §1〜§7 は不変。恒久 Decision ID・正式 Status 体系・Phase・Gate は新設せず。上流 Open Issue の内容解決・候補採否・改定要否・改訂着手・設計承認は行っていない。Q2〜Q5 は未回答のまま保持 | Claude Code |

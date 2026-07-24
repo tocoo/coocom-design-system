@@ -15,7 +15,7 @@
 | Q2 | テキスト主色 (1段/2段/各維持) | 3DS | 2段 (#424242 + #212121) を暫定共通。国内実測 #1F1F1F の扱い含む |
 | Q3 | base unit (8px / 5px / 4px ハイブリッド) | 3DS | 刻み体系先行・4px 系で仮バインド (RC/IB 実装は 5px 系・宿泊は 16px map) |
 | Q4 | root 基準・本文サイズ (16px統一 / ブランド別許容 / rem再定義) | 3DS | T-shirt スケール先行・root 未バインド。実測値で仮バインド |
-| Q5 | breakpoint 統一値 | 3DS | 宿泊 foundation (600/768/992/1200) を暫定基準 (宿泊のみ自装値のため bound) |
+| Q5 | breakpoint 統一値 | 3DS | **決定 (2026-07-24, Web部責任者, Task 009-18-BP1): 3DS 共通 breakpoint = `640 / 768 / 1024 / 1280` (Travel `TVL-0004` の現行 bound 値を 3DS 共通値として再認定)。** 旧 `600 / 768 / 992 / 1200` は Travel 移行前の値であり現行 Travel foundation ではない (現行 Travel bound token は `640/768/1024/1280`)。RC / IB は本共通値へ統一 (breakpoint 値を変更・`$status` は placeholder 維持 = 各ゾーン実装 2段(959/960)・6段(320/520/692/800/960/961) との移行整理は follow-up #8 待ち)。`TVL-0004` の ADR 正本作成・provenance 解消は未了 (009-19 provenance トラックへ残す)。代表 viewport (画面設計・HTML 確認用) は breakpoint と別概念で各 `design.md` に記録 |
 | Q6 | 実装クラス命名方法論 (FLOCSS 等) | 3DS | トークンは憲章命名で先行 (要 ADR。Component 実装着手時) |
 | Q8 | アイコン体系 (Material / FA6 / 自社 / lucide) | 3DS | 新規制作分のみ統一・既存維持 |
 | Q9 | モーダル実装基盤 | 3DS | 新規は drawer 方向・既存併存 |

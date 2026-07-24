@@ -62,7 +62,8 @@
 
 - スペーシング: 刻み体系は確定、px 値は 🚧 Q3 (現状実装は 5px 刻み15段のユーティリティ生成)
 - コンテナ幅: 🚧 未抽出 (follow-up #6。宿泊値を暫定参照)
-- ブレークポイント: 🚧 Q5。実装は6段 (320/520/692/800/960/961)。暫定値は foundation 4段 (600/768/992/1200)。移行整理は使用件数集計 (follow-up #8) 待ち
+- ブレークポイント: **`640 / 768 / 1024 / 1280`** (Q5 決定 2026-07-24: 3DS 共通値 = Travel `TVL-0004` を再認定。旧暫定 600/768/992/1200 から変更・`$status` placeholder 維持)。実装は6段 (320/520/692/800/960/961) で、実装との移行整理は使用件数集計 (follow-up #8) 待ち。ADR 正本・provenance は未確認 (009-19)
+- 代表 viewport (画面設計・HTML 確認用の表示幅): **`390 / 768 / 1280 / 1440px`** (3DS 横断・Web部責任者判断 2026-07-24・Task 009-18-BP1)。**表示確認用の代表幅であり breakpoint token ではない**
 
 ## 5. 角丸・シャドウ
 
@@ -120,3 +121,4 @@
 | 日付 | 変更内容 | 変更者 |
 | --- | --- | --- |
 | 2026-07-02 | 初版 (Ph-E: Foundation/Semantic 新規生成/Component/i18n 固有構造/Agent Prompt Guide を統合) | Claude Design (Builder) |
+| 2026-07-24 | Task 009-18-BP1: breakpoint 記述を是正。旧「foundation 4段 (600/768/992/1200)」の参照を、Q5 決定 (2026-07-24, Web部責任者) の 3DS 共通値 640/768/1024/1280 (Travel TVL-0004 再認定) へ更新。primitive.inbound.json の breakpoint 値も同値へ変更 ($status placeholder 維持)。代表 viewport 390/768/1280/1440px を §4 に追加 (breakpoint とは別概念)。実装値 (320/520/692/800/960/961)・follow-up #8・provenance 未確認は保持 | Claude Code |

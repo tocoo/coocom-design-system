@@ -5,9 +5,9 @@
     "layer": "primitive",
     "service": "rental-car",
     "serviceLabel": "国内レンタカー (tocoo/tocoo_rental_car — japan ゾーン)",
-    "version": "0.2.0-draft",
+    "version": "0.2.1-draft",
     "status": "Draft",
-    "basedOn": "共通/primitive.json 0.1.0-draft (旧Phase 3 混載初版) — 実装着手ガイド§1で分割。値は変更していない",
+    "basedOn": "共通/primitive.json 0.1.0-draft (旧Phase 3 混載初版) — 実装着手ガイド§1で分割。0.2.1: breakpoint 値を旧暫定 600/768/992/1200 から 3DS 共通値 640/768/1024/1280 (Travel TVL-0004 を再認定・owner-decisions.md Q5 決定 2026-07-24, Task 009-18-BP1) へ変更 ($status は placeholder 維持)。他トークン値は分割時から変更していない",
     "created": "2026-07-02",
     "rules": [
       "属性ベース命名({category}.{attribute}.{step})",
@@ -157,9 +157,9 @@
   },
 
   "breakpoint": {
-    "sm": { "$value": "600px",  "$type": "dimension", "$description": "B-01。japan ゾーン実装は 2段(pc:959/pc_min:960)のみ。Q5 暫定運用案(宿泊 foundation 基準)を本DSの暫定値として独自定義", "$status": "placeholder", "$note": "Q5 breakpoint 統一値未決。実装値(2段)との移行整理が必要(follow-up #8 使用件数未集計)" },
-    "md": { "$value": "768px",  "$type": "dimension", "$status": "placeholder", "$note": "Q5" },
-    "lg": { "$value": "992px",  "$type": "dimension", "$status": "placeholder", "$note": "Q5" },
-    "xl": { "$value": "1200px", "$type": "dimension", "$status": "placeholder", "$note": "Q5" }
+    "sm": { "$value": "640px",  "$type": "dimension", "$description": "B-01。3DS 共通値(Travel TVL-0004 640/768/1024/1280 を再認定・Q5 決定 2026-07-24)。旧暫定値 600px から変更。japan ゾーン実装は 2段(pc:959/pc_min:960)のみ", "$status": "placeholder", "$note": "Q5 統一値=640/768/1024/1280(3DS 共通・Travel 再認定)。実装値(2段)との移行整理が必要(follow-up #8 使用件数未集計)。$status は実装移行整理まで placeholder 維持" },
+    "md": { "$value": "768px",  "$type": "dimension", "$status": "placeholder", "$note": "Q5 (3DS 共通・変更なし)" },
+    "lg": { "$value": "1024px", "$type": "dimension", "$status": "placeholder", "$note": "Q5 (3DS 共通・旧 992px から変更)" },
+    "xl": { "$value": "1280px", "$type": "dimension", "$status": "placeholder", "$note": "Q5 (3DS 共通・旧 1200px から変更)" }
   }
 }

@@ -129,3 +129,4 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | 日付 | 変更内容 | 変更者 |
 | --- | --- | --- |
 | 2026-07-09 | 0.3.0-draft: 独立DS再構築 (要求仕様 R1〜R10)。TVL-0001〜0008 反映 (rem化・4px系・テキスト2段・BP現代標準・FA6・drawer統一・リンク色保留・実査待ちplaceholder維持) | Claude Design (Builder) |
+| 2026-07-24 | Task 009-18-BP1: §4 に記述追加。ブレークポイント `640/768/1024/1280px` (TVL-0004) を 3DS 共通 breakpoint として再認定した旨を注記 (owner-decisions.md Q5 決定・2026-07-24。Travel token 値は不変)。代表 viewport (画面設計・HTML 確認用) `390/768/1280/1440px` を breakpoint とは別概念として §4 に追加 (3DS 横断・正本=各 design.md)。ADR 正本・provenance 未確認は 009-19 へ残す旨を明記。token・値・status・version は不変 | Claude Code |

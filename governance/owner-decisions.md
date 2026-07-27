@@ -17,7 +17,7 @@
 | Q4 | root 基準・本文サイズ (16px統一 / ブランド別許容 / rem再定義) | 3DS | T-shirt スケール先行・root 未バインド。実測値で仮バインド |
 | Q5 | breakpoint 統一値 | 3DS | **決定 (2026-07-24, Web部責任者, Task 009-18-BP1): 3DS 共通 breakpoint = `640 / 768 / 1024 / 1280` (Travel `TVL-0004` の現行 bound 値を 3DS 共通値として再認定)。** 旧 `600 / 768 / 992 / 1200` は Travel 移行前の値であり現行 Travel foundation ではない (現行 Travel bound token は `640/768/1024/1280`)。RC / IB は本共通値へ統一 (breakpoint 値を変更・`$status` は placeholder 維持 = 各ゾーン実装 2段(959/960)・6段(320/520/692/800/960/961) との移行整理は follow-up #8 待ち)。`TVL-0004` の ADR 正本作成・provenance 解消は未了 (009-19 provenance トラックへ残す)。代表 viewport (画面設計・HTML 確認用) は breakpoint と別概念で各 `design.md` に記録 |
 | Q6 | 実装クラス命名方法論 (FLOCSS 等) | 3DS | トークンは憲章命名で先行 (要 ADR。Component 実装着手時) |
-| Q8 | アイコン体系 (Material / FA6 / 自社 / lucide) | 3DS | 新規制作分のみ統一・既存維持 |
+| Q8 | アイコン体系 (Material / FA6 / 自社 / lucide) | 3DS | 新規制作分のみ統一・既存維持。**3DS 横断で統一する体系は未決** (rental-car / inbound を含む。本行の 4 候補は未決のまま維持)。一方、**国内宿泊 (travel) についてのみ 2026-07-27 に Web部責任者の現在判断を取得済み** (標準 = Font Awesome 6 / 新規制作は原則 FA6 統一 / 既存 Material は改修時に置換 / ReviewStars は FA6 `star` 維持 / `icon.reviewSize` の `$value = {iconSize.sm}`・`$status = bound` を維持)。適用範囲は travel 限定で rental-car / inbound / 3DS 横断共通体系へは自動適用しない (詳細は §10)。`TVL-0006` の ADR 正本・historical provenance は未確認 (009-19 provenance トラックへ残す) |
 | Q9 | モーダル実装基盤 | 3DS | 新規は drawer 方向・既存併存 |
 
 (Q7 はクローズ済: 顧客向けのみ = 2026-06-02 判断)
@@ -183,6 +183,34 @@
 
 ---
 
+## 10. Travel アイコン体系 (Font Awesome 6) の現在判断記録
+
+- 種別: 国内宿泊 (travel) のアイコン体系について Web部責任者が示した **2026-07-27 時点の現在判断**の記録。上記 §1〜§9 とは独立した記録であり、混同しない。本記録は §1 Q8 の 3DS 横断論点を解決せず、`TVL-0006` の historical provenance も解決しない。§5 設計承認ログ・§6 適用開始記録・§7〜§9 の各記録は変更しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。取得した判断は原文の意味を変えずに記録する。**現在判断と過去の provenance を区別する**。GitHub の approval・merge を判断と同一視しない。本記録は Design System の token・値・`$status`・description・note・Component 仕様を変更しない。
+
+| 項目 | 内容 |
+| --- | --- |
+| 判断対象 | 国内宿泊 (travel) のアイコン体系。Task 009-27 で調査した `TVL-0006` (Font Awesome 6) 関連の現行記録 (対象: [../services/travel/design-system/design.md](../services/travel/design-system/design.md) §6、[../services/travel/design-system/components.md](../services/travel/design-system/components.md) ReviewStars、[../services/travel/design-system/semantic.travel.json](../services/travel/design-system/semantic.travel.json) `icon.reviewSize`) |
+| 判断日 | 2026-07-27 |
+| 判断主体 | Web部責任者 |
+| 判断の種別 | **現在判断** (2026-07-27 時点)。過去判断の復元・追認・認定ではない |
+| 取得した判断 ⓐ アイコン体系 | 国内宿泊の新規制作における標準アイコン体系は **Font Awesome 6** とする |
+| 取得した判断 ⓑ 新規制作への適用 | 国内宿泊の新規制作では、原則として FA6 へ統一する。ただし package・style・weight・ライセンス・CDN／npm／kit 等の導入方式は本記録の判断に**含めない** |
+| 取得した判断 ⓒ 既存 Material の扱い | 既存 Material アイコンは、対象ページまたは Component に**実際の改修が発生した際に** FA6 へ置換する。「改修時」とは、対象ページまたは Component に実際の改修が発生した機会を指す。次は意味しない: アイコン置換のみを目的とする一括改修／全対象箇所の洗い出し／置換順序・期限・完了条件の決定／未改修箇所での既存 Material 使用禁止 |
+| 取得した判断 ⓓ ReviewStars | travel の ReviewStars では、FA6 の `star` を使用する現行方針を維持する。ただし solid／regular 等の style・weight・package・実装方式・実寸は本記録では決定しない |
+| 取得した判断 ⓔ サイズ token | `icon.reviewSize` の現行 token 定義 (`$value = {iconSize.sm}`、現在の解決値 `16px`、`$status = bound`) を維持する。これは**論理 token の参照関係を維持する判断**であり、次は意味しない: `icon.reviewSize` が literal な `16px` を直接保持していること／ReviewStars の現行実装から `16px` を実測確認したこと／`components.md` ReviewStars の「星の実寸 (要実査)」が解消したこと |
+| 適用範囲 | **国内宿泊 (travel) に限定**。rental-car・inbound・将来追加されるその他のサービス・3DS 横断の共通アイコン体系へは**自動適用しない** |
+| §1 Q8 との関係 | §1 Q8 (アイコン体系 = Material / FA6 / 自社 / lucide) の **3DS 横断論点は未決のまま維持**する。travel = 2026-07-27 の現在判断を取得済み / rental-car・inbound を含む 3DS 横断統一 = 未決、という状態に分離する。Q8 を削除せず、「FA6 で解決済み」への単純な置き換えもしない |
+| historical provenance | 次はいずれも **未確認のまま**: `TVL-0006` 導入前の判断成立経路／過去の判断主体・判断日／ADR 正本／historical provenance／2026-07-09・2026-07-13 時点で Owner 確認が行われたか。**commit 作成者・作成日、PR 作成者・merge 日を過去の判断主体・判断日として扱わない**。本記録の判断日 (2026-07-27)・判断主体 (Web部責任者) は現在判断のものであり、過去判断の認定ではない |
+| 本記録工程の影響度 | 高 (Web部責任者判定。Task 009-20 で R-D 個別解消タスク群として明示取得)。→ 必要レビュー主体 = [review-approval-rules.md](review-approval-rules.md) §10 の高 = Web部責任者＋チーフデザイナー |
+| 根拠 | Task 009-27 の調査結果 (`TVL-0006` の全出現箇所・導入前後の差分・Owner 確認経路・§1 Q8 との併存状態)、[../services/travel/design-system/alignment-blocking-facts-resolution-plan.md](../services/travel/design-system/alignment-blocking-facts-resolution-plan.md) §8L (R-D provenance トラック)、[review-approval-rules.md](review-approval-rules.md) §10・§13、Task 009-27R の Issue [#104](https://github.com/tocoo/coocom-design-system/issues/104) および本記録の PR |
+| 判断により確定した事項 | travel について ⓐ〜ⓔ を 2026-07-27 時点の現在判断として記録したこと |
+| 判断後も未決・未確認の事項 | 3DS 横断のアイコン体系統一 (§1 Q8)／FA6 の package・style・weight・ライセンス・導入方式／既存 Material の対象箇所・置換順序・期限・完了条件／ReviewStars の星の実寸 (要実査)／`TVL-0006` の ADR 正本・historical provenance。いずれも本記録では決定・補完しない |
+
+**Does Not Decide / Does Not Authorize**: 本記録は `TVL-0006` の過去判断・ADR 正本を発見・復元せず、2026-07-09・2026-07-13 の判断主体・判断日を認定せず、`TVL-0006` の historical provenance を解決しない。3DS 横断での FA6 統一を決定せず、rental-car・inbound の §1 Q8 を解決しない。FA6 の package・style・weight・ライセンス・導入方式を決定せず、既存 Material の一括置換・置換対象・順序・期限・完了条件を決定しない。ReviewStars の実寸を確定せず、`iconSize.sm` の `16px` を `TVL-0006` で新規決定したものとは扱わない。`color.icon.rating`・`TVL-0011` に関する記録を再判断しない。travel の token・値・`$status`・description・note・Component 仕様・ReviewStars のアイコン仕様を変更しない。新たな ADR が恒久的に不要であるとは確定しない。Design System の候補採否・改定要否・改訂着手・設計承認を決定・承認しない。GitHub の approval・merge を判断と同一視しない。本記録に関する Wiki 記載があっても、本判断の正本は本 §10 である (Wiki は非正本)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -197,3 +225,4 @@
 | 2026-07-21 | Task 009-4-F1: §9 Review / Approval Rules 改定の承認記録 (§8 編集的訂正 carve-out) を §1〜§8 と分離して追加。Web部責任者が、非文・誤字脱字・明白な文法／表記誤りの訂正で意味を変えないものを影響度・低とする [review-approval-rules.md](review-approval-rules.md) §8 の明文 carve-out を承認 (2026-07-21、本改定自体の影響度=高)。§17 手順6「規則の変更」の初回実施。§5 初回承認・§6 適用開始・§7・§8 は不変。一般的な高／低の内容基準は引き続き Open Issue (本 carve-out は部分的明文化)。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない。恒久 Decision ID・正式 Status 体系・Phase・Gate は新設せず | Claude Code |
 | 2026-07-21 | Task 009-9: §8 Travel上流Open Issue初回着手論点の案件別判断記録を §1〜§7 と分離して追加。Web部責任者の判断「どれからでも構わない」(2026-07-21、最初に扱う論点を特定の 1 件に限定せず T1〜T9 のいずれからでも着手してよい) を Review / Approval Rules §8・§12 に基づくプロセス判断として記録 (設計承認ではない・§5 へは追加しない・§7 の「解決単位＝論点別」は上書きしない)。選択されなかった論点を却下・不要・継続保留とせず、最初に扱う論点の選択を内容承認として扱わない。既存 §1〜§7 は不変。恒久 Decision ID・正式 Status 体系・Phase・Gate は新設せず。上流 Open Issue の内容解決・候補採否・改定要否・改訂着手・設計承認は行っていない。Q2〜Q5 は未回答のまま保持 | Claude Code |
 | 2026-07-24 | Task 009-18-BP1: §1 値論点表の Q5 (breakpoint 統一値) 行を是正。旧 Travel 値 `600/768/992/1200` を現行 Travel foundation として記録していた誤記を、Q5 決定 (2026-07-24, Web部責任者) の 3DS 共通 breakpoint = `640/768/1024/1280` (Travel `TVL-0004` の現行 bound 値を再認定・旧値は移行前) へ更新。RC/IB は本共通値へ統一 (breakpoint 値変更・`$status` placeholder 維持)、`TVL-0004` の ADR 正本・provenance 解消は 009-19 へ残す旨を明記。§1 の他 Q・§2〜§9・設計承認ログ (§5) は不変。恒久 Decision ID・正式 Status 体系は新設せず。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
+| 2026-07-27 | Task 009-27R: §10 Travel アイコン体系 (Font Awesome 6) の現在判断記録を §1〜§9 と分離して追加。Web部責任者の 2026-07-27 時点の現在判断 (ⓐ標準 = FA6／ⓑ新規制作は原則 FA6 統一・導入方式は含めない／ⓒ既存 Material は改修時に置換・一括改修や順序/期限/完了条件は含めない／ⓓReviewStars は FA6 `star` 維持・style/weight/package/実装方式/実寸は決めない／ⓔ`icon.reviewSize` の `$value = {iconSize.sm}`・`$status = bound` を維持・実測確認ではない) を **travel 限定**の適用範囲で記録。あわせて §1 値論点表の Q8 (アイコン体系) 行に、3DS 横断統一は未決のまま維持しつつ travel のみ現在判断を取得済みである旨と §10 への参照を追記 (Q8 の削除・「FA6 で解決済み」への置換はしない)。`TVL-0006` の ADR 正本・過去の判断主体・判断日・historical provenance は未確認のまま (009-19 provenance トラックに残る)。§1 の他 Q・§2〜§9・設計承認ログ (§5) は不変。恒久 Decision ID・ADR・正式 Status 体系は採番・作成・新設せず。travel の token・値・`$status`・description・note・Component 仕様、rental-car / inbound の成果物は変更していない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |

@@ -86,7 +86,7 @@ root 16px・**rem 基準** (TVL-0001)。2 書体構成 = 明朝 (表現) + ゴ�
 - 実装は Semantic のみ参照 (primitive 直接参照禁止)
 - 状態リストは固定 (hover/active/focus/disabled/loading/error/success)。宿泊のボタン状態は未取得 🚧
 - Button variant 語彙は GOV-0002 (cross-service 5語)。**travel の Button 実装は4語 (primary/secondary/ghost/text)**。campaign(accent 塗りボタン)は廃止し accent はバッジ/割引ラベルの点専用 (TVL-0012)
-- モーダルは **drawer に全面統一** (TVL-0007)。centered dialog は deprecated・段階移行
+- モーダルは **最終的に drawer へ全面統一**。centered dialog は deprecated・段階移行 (移行期間中は併存)。現在の方針根拠は `governance/owner-decisions.md` §11 (2026-07-27, Web部責任者の現在判断・**travel 限定**)。3DS 横断の Modal 実装基盤 (同 §1 Q9) は**未決**。`TVL-0007` は ADR 正本が Repository 内に不在で historical provenance 未確認のため、現在の仕様根拠として参照しない (R-D provenance トラック)
 - 未着手: Select / Tabs / Toast / Table / Accordion (実体皆無)
 
 ## 8. ブランド・クリエイティブガイド
@@ -130,3 +130,5 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | --- | --- | --- |
 | 2026-07-09 | 0.3.0-draft: 独立DS再構築 (要求仕様 R1〜R10)。TVL-0001〜0008 反映 (rem化・4px系・テキスト2段・BP現代標準・FA6・drawer統一・リンク色保留・実査待ちplaceholder維持) | Claude Design (Builder) |
 | 2026-07-24 | Task 009-18-BP1: §4 に記述追加。ブレークポイント `640/768/1024/1280px` (TVL-0004) を 3DS 共通 breakpoint として再認定した旨を注記 (owner-decisions.md Q5 決定・2026-07-24。Travel token 値は不変)。代表 viewport (画面設計・HTML 確認用) `390/768/1280/1440px` を breakpoint とは別概念として §4 に追加 (3DS 横断・正本=各 design.md)。ADR 正本・provenance 未確認は 009-19 へ残す旨を明記。token・値・status・version は不変 | Claude Code |
+| 2026-07-28 | Task 009-28R: §7 のモーダル記述について、`TVL-0007` を現在の仕様根拠として参照する表現を補正。現在の方針根拠は `governance/owner-decisions.md` §11 (2026-07-27, Web部責任者の現在判断・**travel 限定**) であること、3DS 横断の Modal 実装基盤 (同 §1 Q9) は**未決**であること、`TVL-0007` は ADR 正本が Repository 内に不在で historical provenance 未確認であるため現在の仕様根拠として参照しないことを明記した。**現行仕様そのものは不変** (drawer への全面統一・centered dialog の deprecated・段階移行はいずれも維持)。判断日 (2026-07-27) と本反映日 (2026-07-28) は別の事象として区別している。本工程の影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-07-28、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。§7 の他記述・§1〜§6・§8〜§9・未確定事項の一覧・token・値・`$status`・version・Component の実装要件・rental-car / inbound の成果物は不変。`TVL-0007` の historical provenance 未確認と `alignment-blocking-facts-resolution-plan.md` §8L の R-D 分類は変更していない。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-07-28 | Task 009-28R の記述是正: PR [#107](https://github.com/tocoo/coocom-design-system/pull/107) コードレビュー (issuecomment-5098867540) の指摘に対応し、§7 のモーダル記述の冒頭を是正。**「モーダルは drawer に全面統一」という、統一が完了済みと読める記述を撤回**し、「モーダルは最終的に drawer へ全面統一」へ変更した。同 PR 内で `components.md` の実装基盤行を「最終的に drawer へ全面統一」へ補正した一方、本ファイルは補正前の表現のままとしていたため、**本 PR によって 2 文書間に表現の分岐が生じていた**。あわせて「段階移行」に「(移行期間中は併存)」を補い、`governance/owner-decisions.md` §11 の判断ⓐ (最終到達方針であり既存 centered dialog の即時廃止・一括置換を意味しない)・判断ⓒ (deprecated だが移行期間中の併存を認める) と読み取りを一致させた。**是正対象は §7 の当該 1 行のみ**。方針そのものは不変 (最終的に drawer へ統一する現行方針・centered dialog の deprecated・段階移行はいずれも維持) であり、即時廃止・一括置換・移行対象・順序・期限・完了条件を決定していない。§7 の他記述・§1〜§6・§8〜§9・未確定事項の一覧・token・値・`$status`・version・Component の実装要件・rental-car / inbound の成果物は不変 | Claude Code |

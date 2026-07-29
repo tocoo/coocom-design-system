@@ -125,7 +125,7 @@
   "radius": {
     "action": { "$value": "{radius.full}", "$type": "dimension", "$description": "ボタン形状 pill (実測 999px)。宿泊のサービスシグネチャ", "$status": "bound" },
     "card":   { "$value": "{radius.md}",   "$type": "dimension", "$status": "placeholder", "$note": "カード実px (角丸/影/余白) 未取得。暫定 md (TVL-0008)" },
-    "badge":  { "$value": "{radius.sm}",   "$type": "dimension", "$description": "バッジ・ラベル用角丸 (非操作)。対象 = 割引率ラベル・状態バッジ・カテゴリラベル・非操作型の短い補助ラベル。対象外 = ボタン・CTA・入力要素・カード外形・チップ型操作要素", "$status": "placeholder", "$note": "バッジ・ラベルの実px未取得のため placeholder。既存 primitive radius scale から暫定選定 = sm (4px)。**新しい数値は追加していない**。選定根拠 = ①`radius.action` (full = pill・宿泊のサービスシグネチャ) と形状を明確に差別化し、ボタン・操作要素との誤認を避ける ②`radius.card` (暫定 md = 8px) との階層差を保つ ③小サイズラベルでの形状安定。**バッジが操作可能な場合は badge ではなく action 系 Component として扱う** (その場合の角丸は `radius.action`)。実確定は radius.card と同じ実査待ち区分 (実査の確認方法・確認主体は governance/review-approval-rules.md §14 により未定)" }
+    "badge":  { "$value": "{radius.sm}",   "$type": "dimension", "$description": "バッジ・ラベル用角丸 (非操作)。対象 = 割引率ラベル・状態バッジ・カテゴリラベル・非操作型の短い補助ラベル。対象外 = ボタン・CTA・入力要素・カード外形・チップ型操作要素", "$status": "placeholder", "$note": "バッジ・ラベルの実px未取得のため placeholder。既存 primitive radius scale から暫定選定 = sm (4px)。**新しい数値は追加していない**。選定根拠 = ①`radius.action` (full = pill・宿泊のサービスシグネチャ) と形状を明確に差別化し、ボタン・操作要素との誤認を避ける ②`radius.card` (暫定 md = 8px) との階層差を保つ ③寸法の小さいラベルでも形状が安定する。**バッジが操作可能な場合は badge ではなく action 系 Component として扱う** (その場合の角丸は `radius.action`)。実確定は radius.card と同じ実査待ち区分 (実査の確認方法・確認主体は governance/review-approval-rules.md §14 により未定)" }
   },
 
   "motion": {

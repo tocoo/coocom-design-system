@@ -6,7 +6,7 @@
     "service": "travel",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "GitHub tocoo/coocom-design-system travel/semantic.travel.json 0.2.1-draft (Source of Truth)。設計判断 TVL-0001〜0008 を反映。`color.text.mutedStrong` は、primitive `gray.700` (用途記述 `text muted strong (補助価格等)`) を参照する semantic が不在で、補助情報用の用途を semantic 経由で指定できなかった状態の解消として追加 (Task 009-33)。Decision ID・ADR は採番していない。`$meta.version` は据置き (version bump の条件は README.md §16 の Open Issue として未決・同 §13)。`$meta.notes` の適用範囲の列挙は、PR #109 のレビュー指摘に対応し `design.md` §2・`color.text.mutedStrong` の `$description`・`components.md` 共通事項と同一の4項目へ揃えた (トークンの値・参照先・`$status` は不変)",
+    "basedOn": "GitHub tocoo/coocom-design-system travel/semantic.travel.json 0.2.1-draft (Source of Truth)。設計判断 TVL-0001〜0008 を反映。`color.text.mutedStrong` は、primitive `gray.700` (用途記述 `text muted strong (補助価格等)`) を参照する semantic が不在で、補助情報用の用途を semantic 経由で指定できなかった状態の解消として追加 (Task 009-33)。Decision ID・ADR は採番していない。`$meta.version` は据置き (version bump の条件は README.md §16 の Open Issue として未決・同 §13)",
     "sourceOfTruth": "https://github.com/tocoo/coocom-design-system/blob/main/services/travel/design-system/semantic.travel.json",
     "created": "2026-07-09",
     "notes": [

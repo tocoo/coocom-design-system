@@ -56,38 +56,48 @@
 | 面 (背景) | 文字 | 概算 | 通常テキスト (4.5:1) | 大きなテキスト (3:1) | 扱い |
 | --- | --- | ---: | --- | --- | --- |
 | `color.accent.campaign` `#E4572E` | `color.text.onAccent` `#FFFFFF` | 3.68:1 | 未達 | 達成 | **条件付きで許可** (大きなテキスト相当のみ) |
-| `color.accent.campaign` `#E4572E` | `color.text.strong` `#212121` | 4.37:1 | 未達 | 達成 | 条件付き (通常テキストは不可) |
+| `color.accent.campaign` `#E4572E` | `color.text.strong` `#212121` | 4.37:1 | 未達 | 達成 | **規則としては使用しない** (面上の文字色は `color.text.onAccent` に限定。本行は参考値) |
 | `color.surface.inverse` `#212121` | `color.text.inverse` `#FFFFFF` | 16.10:1 | 達成 | 達成 | 許可 |
 | `color.surface.inverse` `#212121` | `color.text.inverseMuted` `#9E9E9E` | 6.01:1 | 達成 | 達成 | 許可 (補助情報) |
-| `color.scheme.*.inverse` `#C8912C` | `#FFFFFF` | 2.78:1 | 未達 | 未達 | **禁止** |
-| `color.scheme.*.inverse` `#C8912C` | `color.text.strong` `#212121` | 5.78:1 | 達成 | 達成 | 許可 |
+| `color.scheme.main.inverse` `#C8912C` | `#FFFFFF` | 2.78:1 | 未達 | 未達 | **禁止** |
+| `color.scheme.main.inverse` `#C8912C` | `color.text.strong` `#212121` | 5.78:1 | 達成 | 達成 | 許可 |
+| `color.scheme.sub.inverse` `#C8B12C` | `#FFFFFF` | 2.15:1 | 未達 | 未達 | **禁止** |
+| `color.scheme.sub.inverse` `#C8B12C` | `color.text.strong` `#212121` | 7.50:1 | 達成 | 達成 | 許可 |
 | `color.surface.default` `#FFFFFF` | `color.accent.campaign` `#E4572E` (文字色として) | 3.68:1 | 未達 | 達成 | 条件付き (大きなテキスト相当のみ) |
+| `color.surface.subtle` `#F9F9F9` | `color.accent.campaign` `#E4572E` (文字色として) | 3.50:1 | 未達 | 達成 | 条件付き (大きなテキスト相当のみ) |
+| `color.surface.muted` `#F5F5F5` | `color.accent.campaign` `#E4572E` (文字色として) | 3.38:1 | 未達 | 達成 | 条件付き (大きなテキスト相当のみ) |
 
 #### campaign accent 面上の文字
 
 - [事実] `color.accent.campaign` (`#E4572E`) 上では、白文字 3.68:1・濃色文字 `#212121` 4.37:1 のいずれも通常テキストの 4.5:1 に達しない。**既存色の範囲では、campaign accent 面上で任意サイズの通常テキストを成立させる文字色は存在しない**
-- [決定] campaign accent 面上の文字色は `color.text.onAccent` を使用し、**WCAG 2.2 上の大きなテキストに該当する場合に限定する**。最低条件は `24px` 以上の通常ウェイト、または約 `18.7px` 以上の bold 相当
-- [決定] 実運用上の誤差・フォント差を避けるため、**DS の推奨最低値は `20px / bold 以上`** とする。ただし 20px 未満でもウェイトを上げれば自動的に適合するという定義にはしない
+- [決定] campaign accent 面上の文字色は **`color.text.onAccent` のみ**を使用する。`color.text.strong` (`#212121`・4.37:1) は大きなテキスト基準は満たすが、面上の文字色を 1 つに定めるため**規則としては使用しない** (表の値は参考)
+- [決定] campaign accent を**面として使用できるのは、次の (a) (b) のいずれかを満たす文字に限る**。
+  - **(a) `24px` 以上の通常ウェイト** — WCAG 2.2 上の大きなテキスト
+  - **(b) `20px` 以上の bold** — WCAG 2.2 上の bold 側の下限は約 `18.7px` だが、実運用上の誤差・フォント差を避けるため DS では `20px` を下限とする
+- [決定] **上記 (a) (b) のいずれも満たさない文字には面として使用しない**。該当するのは **(i) `20px` 未満のすべて (ii) `20px` 以上 `24px` 未満の通常ウェイト**。ウェイトを上げれば自動的に適合するという定義にはしない
 - [決定] `color.text.onAccent` の存在は「白であれば常にアクセシブル」を意味しない。背景色と文字サイズ・ウェイトの確認を省略しない
 
-#### 20px 未満 (小サイズ) の代替規則
+#### campaign accent を面として使用できない場合の代替規則
 
-20px 未満の割引率ラベル・通常テキストには `color.accent.campaign` を**面として使用しない**。次のいずれかを用いる。
+上記 (a) (b) のいずれも満たさない文字 — すなわち `20px` 未満のすべて、および `20px` 以上 `24px` 未満の通常ウェイト — には次を用いる。
 
-1. **[既定] neutral dark 面へ切り替える** — 背景 `color.surface.inverse` (`#212121`) + 文字 `color.text.inverse` (16.10:1)。既存トークンのみで AA を満たすため、小サイズの割引率ラベルの既定とする
-2. accent を**文字色**として白または淡色面 (`color.surface.default` / `subtle` / `muted`) に置く — ただし白面上 3.68:1 のため、この場合も大きなテキスト相当に限る
-3. accent を面ではなく**境界色・アイコン・点的装飾**に限定する (非テキスト UI 要素の 3:1 は満たす)
+1. **[既定] neutral dark 面へ切り替える** — 背景 `color.surface.inverse` (`#212121`) + 文字 `color.text.inverse` (16.10:1)。**既存トークンの範囲で通常テキスト基準 4.5:1 を満たす唯一の面**であり、小サイズの割引率ラベルの既定とする
+2. accent を**非テキスト要素**に限定する — 境界色・アイコン・点的装飾 (非テキスト UI 要素の 3:1 は満たす)。**accent を文字色として明色面に置く方法は、この場合の代替にならない** (`default` 3.68:1 / `subtle` 3.50:1 / `muted` 3.38:1 はいずれも通常テキスト 4.5:1 に達しない)
+
+(a) (b) を満たす文字については、accent 面を用いない次の構成も選べる。
+
+3. accent を**文字色**として明色面に置く — `color.surface.default` 3.68:1 / `color.surface.subtle` 3.50:1 / `color.surface.muted` 3.38:1。いずれも大きなテキスト基準のみを満たすため、**(a) (b) を満たす文字に限る**
 
 - [事実] 上記はいずれも既存 palette の組み合わせで成立するため、代替背景色の primitive を新設していない
 - [決定] 禁止: campaign accent 面上に 12px〜16px 程度の白文字を置く / `onAccent` の存在だけを理由にコントラスト確認を省略する / AA 未達を「ブランド表現」で自動的に許容する / 文字へ縁取り・影を付けることでコントラスト不足を解決したものとして扱う
 
 #### scheme inverse 色を面として使用する場合
 
-- [事実] `color.scheme.main.inverse` (`#C8912C`) 上の白文字は 2.78:1 であり、通常テキスト 4.5:1 だけでなく大きなテキスト 3:1 も満たさない
-- [決定] 本色を面として使用する場合の文字色は `color.text.strong` (`#212121`・5.78:1) を原則とする。白文字は正式な通常利用として許可しない
+- [事実] 白文字は `color.scheme.main.inverse` (`#C8912C`) 上で 2.78:1、`color.scheme.sub.inverse` (`#C8B12C`) 上で 2.15:1 であり、**両スキームとも**通常テキスト 4.5:1 だけでなく大きなテキスト 3:1 も満たさない
+- [決定] 両スキームの逆色を面として使用する場合の文字色は `color.text.strong` (`#212121`) を原則とする (main `#C8912C` 上 5.78:1・sub `#C8B12C` 上 7.50:1)。白文字は正式な通常利用として許可しない
 - [事実] semantic alias (`color.text.onSchemeInverse` 等) は追加していない。現在 `color.scheme.*.inverse` の確認できる用途は評価色 (`color.icon.rating` = 文字/アイコン色) のみで、**面としての正式用途が正本上未定義**であるため、組み合わせ規則のみを本書に記載した (既存 semantic 設計の粒度に合わせ、面用途を先に既成事実化しない)
 - [Owner判断事項] 既存の Owner 指示で `#C8912C` 面上の白文字が指定されている場合、**現行指示とアクセシビリティ基準は矛盾する**。DS 側で Owner 指示を自動的に上書きしない。AA 適合案は濃色文字であり、白文字を維持するには背景色の変更が必要となる。最終判断は Owner 事項。「Owner 指示」を理由に AA 適合済みとして扱わない
-- [事実] 副色スキームの `#C8B12C` 上のコントラスト比は本書では未検証
+- [事実] 副色スキームの `#C8B12C` 上のコントラスト比も本書で検証済み (白 2.15:1・`#212121` 7.50:1)。上表に両スキームの行を個別に記載しており、`color.scheme.*.inverse` のようなワイルドカード表記で 2 スキームを 1 行に束ねない (値が異なるため)
 
 #### 評価色と販促面色の用途境界
 
@@ -258,4 +268,4 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | 2026-07-28 | Task 009-28R: §7 のモーダル記述について、`TVL-0007` を現在の仕様根拠として参照する表現を補正。現在の方針根拠は `governance/owner-decisions.md` §11 (2026-07-27, Web部責任者の現在判断・**travel 限定**) であること、3DS 横断の Modal 実装基盤 (同 §1 Q9) は**未決**であること、`TVL-0007` は ADR 正本が Repository 内に不在で historical provenance 未確認であるため現在の仕様根拠として参照しないことを明記した。**現行仕様そのものは不変** (drawer への全面統一・centered dialog の deprecated・段階移行はいずれも維持)。判断日 (2026-07-27) と本反映日 (2026-07-28) は別の事象として区別している。本工程の影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-07-28、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。§7 の他記述・§1〜§6・§8〜§9・未確定事項の一覧・token・値・`$status`・version・Component の実装要件・rental-car / inbound の成果物は不変。`TVL-0007` の historical provenance 未確認と `alignment-blocking-facts-resolution-plan.md` §8L の R-D 分類は変更していない。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-07-28 | Task 009-28R の記述是正: PR [#107](https://github.com/tocoo/coocom-design-system/pull/107) コードレビュー (issuecomment-5098867540) の指摘に対応し、§7 のモーダル記述の冒頭を是正。**「モーダルは drawer に全面統一」という、統一が完了済みと読める記述を撤回**し、「モーダルは最終的に drawer へ全面統一」へ変更した。同 PR 内で `components.md` の実装基盤行を「最終的に drawer へ全面統一」へ補正した一方、本ファイルは補正前の表現のままとしていたため、**本 PR によって 2 文書間に表現の分岐が生じていた**。あわせて「段階移行」に「(移行期間中は併存)」を補い、`governance/owner-decisions.md` §11 の判断ⓐ (最終到達方針であり既存 centered dialog の即時廃止・一括置換を意味しない)・判断ⓒ (deprecated だが移行期間中の併存を認める) と読み取りを一致させた。**是正対象は §7 の当該 1 行のみ**。方針そのものは不変 (最終的に drawer へ統一する現行方針・centered dialog の deprecated・段階移行はいずれも維持) であり、即時廃止・一括置換・移行対象・順序・期限・完了条件を決定していない。§7 の他記述・§1〜§6・§8〜§9・未確定事項の一覧・token・値・`$status`・version・Component の実装要件・rental-car / inbound の成果物は不変 | Claude Code |
 | 2026-07-29 | Task 009-33: §2 の表に semantic トークン `color.text.mutedStrong` (gray.700 `#616161`・bound・白背景 ≈6.2:1) の行を追加し、`color.text.muted` の行に白背景コントラスト値 (≈2.7:1) を補記した。§2 にテキスト色の 4 段構成 (`strong` `#212121` / `body` `#424242` / `mutedStrong` `#616161` / `muted` `#9e9e9e`) と、判読性を必要とする補助情報 (補助価格・税/人数/泊数等の価格条件注記・割引前価格・購買判断や内容理解に必要な補足条件) が `color.text.mutedStrong` を使用すること、`color.text.muted` は通常テキストに求められる 4.5:1 に達しないため判読性を要する情報には用いないことを [事実] として 1 行追加した。本書は適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない。未確定事項の一覧に 2 行追加した (Breadcrumb 現在地への `color.text.muted` 適用の可否・`color.text.muted` の適用可能範囲の明文化。いずれも本書では判定しない)。**不変**: §1・§3〜§9、§2 表の他の行、`color.text.muted` の参照先 gray.600 と値 `#9e9e9e` と `bound`、`color.text.body`、primitive の色値、他の token・`$status`、version 表記、Component の実装要件、rental-car / inbound の成果物。影響度は**未取得** (判定主体 = Web部責任者の都度判断 = [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §8)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
-| 2026-07-29 | Task 009-34: **§2 の表**に `color.text.inverse` / `color.text.inverseMuted` / `color.text.onAccent` の 3 行を追加した。**§2.1「面 (背景) と文字色の組み合わせ規則」を新設**し、検証した 7 組み合わせの表 (背景・文字・概算・通常テキスト 4.5:1 判定・大きなテキスト 3:1 判定・扱い)、campaign accent 面上の文字は `color.text.onAccent` を使用し大きなテキスト相当 (24px 通常ウェイト以上または約18.7px bold 以上) に限定すること、DS の推奨最低値を 20px / bold 以上とし 20px 未満でウェイトを上げても自動適合とはしないこと、20px 未満の代替規則 3 案 (既定 = `color.surface.inverse` 面 + `color.text.inverse` / accent を文字色として淡色面に置く場合も大きなテキスト相当のみ / accent を境界色・アイコン・点的装飾に限定)、禁止事項 4 件 (12〜16px の白文字・`onAccent` を理由としたコントラスト確認の省略・AA 未達のブランド表現としての自動許容・縁取り/影による代替)、`color.scheme.*.inverse` を面として使う場合は `color.text.strong` を原則とし白文字を正式な通常利用として許可しないこと、評価色・割引/販促色・ブランド補色・状態色を同一用途へ統合しない用途境界を記載した。**§5** に `radius.badge` (暫定 sm 4px) と非操作ラベルへ pill を使わない規則を追記した。**§7** に PriceTag の tone (default / inverse) を追記した。**§8** の「正: `brand-content.md`」を撤回し、同ファイルが Repository 内に存在しないこと・存在しない参照を正本として扱わないこと・現時点で確認できる記載箇所が §8 であることへ改めた。§1 の同ファイルへの委任表現も同様に改めた。**§8.1「割引率の表記規則」を新設**し、表示形式 (`-NN%`・原則使用しない表記)・符号 (表示規則として付与する記号)・桁 (半角/整数/先頭ゼロなし/小数非表示)・端数処理 (表示上の暫定案 = 小数点以下切り捨て／未確定事項 = 正式な算出式と端数処理／決定主体 = 価格・商品仕様の Owner を区別して記録し暫定案を正式規則として扱わない)・表示しない条件 4 件 (0% 以下・算出不能・元価格なし・販売価格が元価格以下でない)・DS で確定しない事項 3 件 (100% 以上の扱い・上限値・条件付き表現の使用条件)・表示成立条件 (比較対象価格・対象条件・税条件・人数・日程等の一致。DS は価格計算ロジックを定義しない)・割引率と値引額の使い分けが未決であることを記載した。**未確定事項の一覧に 11 行追加**した。**不変**: §3・§4・§6・§9、§2 表の他の行、§2 の既存 2 行 ([事実] 品質基準・テキスト 4 段)、既存 token の値・参照先・`$status`、primitive の色値、version 表記、Component の実装要件、rental-car / inbound の成果物。**作成していないもの**: `brand-content.md` (新設の要否・管理正本の所在は §8.1 に Owner判断事項として記載)、価格算出ロジック、事業上の割引率算出式、新規 primitive、`color.text.onSchemeInverse` 相当の alias。本書は適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない (§2.1 のコントラスト比は概算の記録)。影響度は**未取得** (判定主体 = Web部責任者の都度判断 = [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §8)。改訂着手の設計承認は取得していない (同 §9・§20)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-07-29 | Task 009-34: **§2 の表**に `color.text.inverse` / `color.text.inverseMuted` / `color.text.onAccent` の 3 行を追加した。**§2.1「面 (背景) と文字色の組み合わせ規則」を新設**し、検証した 11 組み合わせの表 (背景・文字・概算・通常テキスト 4.5:1 判定・大きなテキスト 3:1 判定・扱い。`color.scheme.main.inverse` `#C8912C` と `color.scheme.sub.inverse` `#C8B12C` は値が異なるためワイルドカード表記で束ねず個別に記載)、campaign accent 面上の文字色は `color.text.onAccent` のみとし `color.text.strong` (4.37:1) は規則としては使用しないこと、campaign accent を面として使用できるのは (a) 24px 以上の通常ウェイト または (b) 20px 以上の bold のいずれかを満たす文字に限り、(a) (b) のいずれも満たさない文字 (20px 未満のすべて／20px 以上 24px 未満の通常ウェイト) には面として使用しないこと、その場合の代替 2 案 (既定 = `color.surface.inverse` 面 + `color.text.inverse` / accent を非テキスト要素に限定。accent を文字色として明色面に置く方法は代替にならない) と (a) (b) を満たす文字に限り選べる第 3 の構成 (accent を文字色として明色面に置く)、禁止事項 4 件 (12〜16px の白文字・`onAccent` を理由としたコントラスト確認の省略・AA 未達のブランド表現としての自動許容・縁取り/影による代替)、両スキームの逆色を面として使う場合は `color.text.strong` を原則とし白文字 (main 2.78:1・sub 2.15:1) を正式な通常利用として許可しないこと、評価色・割引/販促色・ブランド補色・状態色を同一用途へ統合しない用途境界を記載した。**§5** に `radius.badge` (暫定 sm 4px) と非操作ラベルへ pill を使わない規則を追記した。**§7** に PriceTag の tone (default / inverse) を追記した。**§8** の「正: `brand-content.md`」を撤回し、同ファイルが Repository 内に存在しないこと・存在しない参照を正本として扱わないこと・現時点で確認できる記載箇所が §8 であることへ改めた。§1 の同ファイルへの委任表現も同様に改めた。**§8.1「割引率の表記規則」を新設**し、表示形式 (`-NN%`・原則使用しない表記)・符号 (表示規則として付与する記号)・桁 (半角/整数/先頭ゼロなし/小数非表示)・端数処理 (表示上の暫定案 = 小数点以下切り捨て／未確定事項 = 正式な算出式と端数処理／決定主体 = 価格・商品仕様の Owner を区別して記録し暫定案を正式規則として扱わない)・表示しない条件 4 件 (0% 以下・算出不能・元価格なし・販売価格が元価格以下でない)・DS で確定しない事項 3 件 (100% 以上の扱い・上限値・条件付き表現の使用条件)・表示成立条件 (比較対象価格・対象条件・税条件・人数・日程等の一致。DS は価格計算ロジックを定義しない)・割引率と値引額の使い分けが未決であることを記載した。**未確定事項の一覧に 11 行追加**した。**不変**: §3・§4・§6・§9、§2 表の他の行、§2 の既存 2 行 ([事実] 品質基準・テキスト 4 段)、既存 token の値・参照先・`$status`、primitive の色値、version 表記、Component の実装要件、rental-car / inbound の成果物。**作成していないもの**: `brand-content.md` (新設の要否・管理正本の所在は §8.1 に Owner判断事項として記載)、価格算出ロジック、事業上の割引率算出式、新規 primitive、`color.text.onSchemeInverse` 相当の alias。本書は適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない (§2.1 のコントラスト比は概算の記録)。影響度は**未取得** (判定主体 = Web部責任者の都度判断 = [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §8)。改訂着手の設計承認は取得していない (同 §9・§20)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |

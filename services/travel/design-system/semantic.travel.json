@@ -6,12 +6,13 @@
     "service": "travel",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "GitHub tocoo/coocom-design-system travel/semantic.travel.json 0.2.1-draft (Source of Truth)。設計判断 TVL-0001〜0008 を反映",
+    "basedOn": "GitHub tocoo/coocom-design-system travel/semantic.travel.json 0.2.1-draft (Source of Truth)。設計判断 TVL-0001〜0008 を反映。`color.text.mutedStrong` は、primitive `gray.700` (用途記述 `text muted strong (補助価格等)`) を参照する semantic が不在で、補助情報用の用途を semantic 経由で指定できなかった状態の解消として追加 (Task 009-33)。Decision ID・ADR は採番していない。`$meta.version` は据置き (version bump の条件は README.md §16 の Open Issue として未決・同 §13)",
     "sourceOfTruth": "https://github.com/tocoo/coocom-design-system/blob/main/services/travel/design-system/semantic.travel.json",
     "created": "2026-07-09",
     "notes": [
       "travel 単独の semantic。他サービスと値を共有せず、相互参照・共通化は行わない (R1/R4)",
       "brand/action/link は宿泊固有値 (link=各スキームの主色。TVL-0011 で TVL-0005 を解決。旧 赤 #d10000 は事実値として primitive に保持)",
+      "テキスト色は `strong` / `body` / `mutedStrong` / `muted` の4段。判読性を必要とする補助情報 (補助価格・税/人数/泊数等の価格条件注記・割引前価格・購買判断や内容理解に必要な補足条件) は `mutedStrong` (gray.700 #616161・白背景 ≈6.2:1) を参照する。`muted` (gray.600 #9e9e9e・白背景 ≈2.7:1) は通常テキストに求められる 4.5:1 に達しないため、判読性を要する情報には用いない。適用規格・達成レベルの正式確定・適合判定・適合宣言は本ファイルでは行わない",
       "会員ランク色は構築しない (破棄済)。Bootstrap 残骸 --primary:#007bff は持ち込まない"
     ]
   },
@@ -62,7 +63,8 @@
     "text": {
       "strong":  { "$value": "{color.palette.gray.900}", "$type": "color", "$description": "見出し #212121", "$status": "bound", "$note": "TVL-0003" },
       "body":    { "$value": "{color.palette.gray.800}", "$type": "color", "$description": "本文 #424242 (白背景 ≈9.7:1 AA適合)", "$status": "bound", "$note": "TVL-0003" },
-      "muted":   { "$value": "{color.palette.gray.600}", "$type": "color", "$status": "bound" },
+      "muted":   { "$value": "{color.palette.gray.600}", "$type": "color", "$description": "補足・弱表現 #9e9e9e (白背景 ≈2.7:1)。判読性を必要とする補助情報は `mutedStrong` を使用する", "$status": "bound" },
+      "mutedStrong": { "$value": "{color.palette.gray.700}", "$type": "color", "$description": "判読性を必要とする補助情報 #616161 (白背景 ≈6.2:1)。補助価格・税/人数/泊数等の価格条件注記・割引前価格・購買判断や内容理解に必要な補足条件", "$status": "bound", "$note": "primitive `gray.700` の用途記述 (`text muted strong (補助価格等)`) に対応する semantic。`muted` (#9e9e9e・≈2.7:1) は通常テキストに求められる 4.5:1 に達しないため、判読性を要する補助情報は本トークンを参照する。適用規格・達成レベルの正式確定・適合判定・適合宣言は行わない" },
       "inverse": { "$value": "{color.palette.white}",    "$type": "color", "$status": "bound" },
       "link":    { "$value": "{color.scheme.main.base}",  "$type": "color", "$description": "リンク=各スキームの主色(primary)。DS 既定=第1候補メイン #2C50C8。副色文脈は scheme.sub.base #4845D4。guideline ロール表「Primary=リンク」に準拠", "$status": "bound", "$note": "TVL-0011 (Owner決定 [m0046])。旧 TVL-0005 保留 (赤 #d10000/紺併存) を link=主色 で解決。リンク・text バリアント・パンくず・ログインが主色に追隨" }
     },

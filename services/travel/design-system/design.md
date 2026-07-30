@@ -37,7 +37,10 @@
 | `color.text.inverse` (inverse 面の主要文字) | white | `#ffffff` | bound (inverse 面 #212121 上 ≈16.10:1) |
 | `color.text.inverseMuted` (inverse 面の補助情報) | gray.600 | `#9e9e9e` | bound (inverse 面 #212121 上 ≈6.01:1・明色面には使用しない) |
 | `color.text.onAccent` (campaign accent 面の文字) | white | `#ffffff` | bound (accent 面 #E4572E 上 ≈3.68:1・**§2.1 の (a) (b) を満たす文字のみ**) |
+| `color.text.placeholder` (入力欄のプレースホルダ) | gray.700 | `#616161` | bound (白背景 ≈6.2:1・§2.3) |
 | `color.text.link` | scheme.main.base (副色=sub.base) | `#2C50C8` / `#4845D4` | bound (TVL-0011・リンク=主色。TVL-0005 解決) |
+| `color.text.linkHover` | scheme.main.hover (副色=sub.hover) | `#2340A6` / `#3936B0` | bound (§2.2) |
+| `color.text.linkActive` | scheme.main.pressed (副色=sub.pressed) | `#1B3488` / `#2C2A8C` | bound (§2.2) |
 | `color.surface.default/subtle/muted` | white / gray.50 / 100 | `#fff` / `#f9f9f9` / `#f5f5f5` | bound |
 | `color.border.subtle/default/strong` | gray.300/400/500 | `#e0e0e0` / `#ccc` / `#bcbcbc` | bound |
 | `color.state.success` | scheme.main.base (副色=sub.base) | `#2C50C8` / `#4845D4` | bound (TVL-0011・成功=各パレット主色。専用緑廃止) |
@@ -48,6 +51,7 @@
 
 - [事実] 品質基準: WCAG 2.2 AA を最低ラインとし DS には違反値を入れない (要求仕様 R9)。本文 #424242 ≈9.7:1・主色 royal #2C50C8 ≈6.8:1・副色 indigo #4845D4 ≈6.8:1 いずれも AA 適合 (AAA 7:1 は未達)
 - [事実] テキスト色は 4 段構成 (`strong` #212121 / `body` #424242 / `mutedStrong` #616161 / `muted` #9e9e9e)。判読性を必要とする補助情報 — 補助価格・税/人数/泊数等の価格条件注記・割引前価格・購買判断や内容理解に必要な補足条件 — は `color.text.mutedStrong` (白背景 ≈6.2:1) を使用する。`color.text.muted` (白背景 ≈2.7:1) は通常テキストに求められる 4.5:1 に達しないため、判読性を要する情報には用いない。本書は適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない (適用規格・達成レベルは未確定)
+- [事実] 上記 4 段は文字色の**濃度段**であり、特定の用途に固定した別名は 4 段とは別に定義する。`color.text.link` / `linkHover` / `linkActive` (リンク = §2.2)・`color.text.placeholder` (入力欄のプレースホルダ = §2.3)・`color.text.inverse` / `inverseMuted` (inverse 面 = §2.1)・`color.text.onAccent` (campaign accent 面 = §2.1) がこれに該当する。用途別名が同じ primitive を参照する場合でも、一方の値の変更が他方へ自動的に及ぶ設計にはしない
 
 ### 2.1 面 (背景) と文字色の組み合わせ規則
 
@@ -118,6 +122,44 @@
 - [決定] 評価用途は既存定義を維持する。`color.icon.rating` を割引ラベル・販促面・状態色へ流用しない
 - [Owner判断事項] **`color.scheme.*.inverse` を割引ラベル背景へ使用できるかは未定義**。根拠となる正本・Owner 決定が Repository 内に存在しないため、DS では用途追加を確定しない。推奨案は campaign accent との役割を明確に分離すること (割引/販促 = `color.accent.campaign`、評価 = scheme 逆色)
 
+### 2.2 リンクの装飾と状態
+
+リンクの**色**は `color.text.link` (= 各スキームの主色) で確定済み (TVL-0011・Owner決定 [m0046]。TVL-0005 解決)。本節は**色以外の装飾 (下線) と、状態 (hover / visited / active / focus) ごとの取り扱い**を定める。`color.text.link` の値・参照先は本節で変更しない。状態語そのものを新設するものではない (状態の固定リストは `components.md` 共通事項が正・追加は ADR 必須)。`visited` について本節が定めるのは「専用色を設けない = 既定と同じ」という取り扱いであり、固定リストへの追加ではない。
+
+文字色の列は対象を限定しない (standalone なリンクを含む)。下線の列は**文中リンクのみ**を対象とする。
+
+| 状態 | 文字色 (対象を限定しない) | 下線 (文中リンクのみ) |
+| --- | --- | --- |
+| 既定 | `color.text.link` (`#2C50C8`) | あり |
+| hover | `color.text.linkHover` (`scheme.main.hover` `#2340A6`) | あり (維持) |
+| active (押下中) | `color.text.linkActive` (`scheme.main.pressed` `#1B3488`) | あり (維持) |
+| visited | `color.text.link` (既定と同じ・専用色を設けない) | 既定と同じ |
+| focus | `color.text.link` (既定と同じ) | 既定と同じ + `color.focus.ring` の `outline` |
+
+- [決定] 本文・説明文などの**文中リンクには下線を付す**。リンクであることを色だけで伝えない。**下線を外す既定は置かない**
+- [決定] hover は**下線を維持したまま文字色を `color.text.linkHover` へ変更する**。hover で下線を外さない (下線の消失はリンクでなくなったように読める)
+- [決定] active (押下中) は `color.text.linkActive` を使用する
+- [決定] visited に**専用色を設けない**。訪問済みリンクは `color.text.link` を維持する。理由: 既存 palette に visited 用の色値が無く、本書では新しい色値 (primitive) を追加しないため。visited を色で区別する要否は Owner判断事項として未確定事項へ残す
+- [決定] focus は Component 共通の `color.focus.ring` による `outline` を用いる (`components.md` 共通事項)。hover の色変更で focus 表現を代替しない
+- [決定] リンクの状態表現に `opacity` を用いない。`opacity` は色トークンで表現できず、状態の識別が色・下線・不透明度へ分散する。`components.md` 共通事項は「**全 Component の** hover は `opacity` 変化 (≈0.85) を暫定参照とし `🚧 暫定` を付す」と定めているが、**リンクの hover は本節が定める色変更 (`color.text.linkHover`) を用い、同暫定参照の対象外とする** (同共通事項にリンクを対象外とする除外を置いている)
+- [事実] 実装側 (`webroot/assets_s/css/common.css`) は次の宣言を持つ (実装 Repository `tocoo/tocoo_travel` の確認時点)。**いずれも DS 規則として採らない**
+  - `a,a:hover,button,button:hover{color:#283593;transition:.5s ease}` — 旧主色 `#283593` を `a` と `button` へ同一セレクタで与えている。`#283593` は TVL-0010 以前の旧主色であり `color.text.link` はこれへ追随しない。リンクの規則とボタンの規則が分離されていない
+  - `a:hover,button:hover{opacity:.75;text-decoration:none}` — hover を `opacity` で表し下線を解除している
+  - `a:active,a:focus,a:visited,button:active,button:focus,button:visited{outline:none!important;text-decoration:none}` — 本節が下線を維持すると定めた `active` / `visited` で下線を解除し、`focus` の `outline` を `!important` 付きで無効化している。**とくに `outline: none !important` は本節の focus の決定と直接衝突し、特異度と `!important` の面で base 層からの `outline` 供給を妨げる**
+- [注意] 同ファイルは Bootstrap v4.6.2 を含み、`a{color:#007bff;text-decoration:none}` / `a:hover{color:#0056b3;text-decoration:underline}` が上記と併存する。同一要素に対して複数の宣言が重なっているため、**本書は同ファイルの計算値 (実際に適用される値) を実測として扱わない**。上記は宣言の存在を記録したものである
+- [注意] 本節が定める**下線の既定は文中リンクを対象とする**。カード全体リンク・ナビゲーション項目・パンくずなど、領域とレイアウトでリンクであることが成立する standalone なリンクへ下線の既定を及ぼすかは未判定 (未確定事項の一覧に起票)。**状態ごとの文字色 (hover / active / visited) と focus の取り扱いは対象を文中リンクに限定しない**ため、standalone なリンクにも適用される
+
+### 2.3 プレースホルダの文字色
+
+- [決定] 入力欄のプレースホルダ (`input` / `textarea` の `::placeholder`、および選択前の `option` に相当する表示) の文字色は `color.text.placeholder` (`gray.700` `#616161`・白背景 ≈6.2:1) を使用する
+- [決定] `color.text.muted` (`#9e9e9e`・白背景 ≈2.7:1) を**プレースホルダへ流用しない**。プレースホルダは入力補助として読まれる文字であり判読性を要するため、通常テキストに求められる 4.5:1 に達しない値を用いない (§2 のテキスト色規則と同じ扱い)
+- [決定] `color.text.mutedStrong` と同じ primitive (`gray.700`) を参照するが、**別の用途トークンとして定義する**。判読性を要する補助情報 (補助価格・価格条件注記等) と入力補助テキストは用途が異なり、一方の値を変えたときに他方が追随しない形にする。用途ベース命名の原則 (`semantic.travel.json` `$description`) に従う。**新しい色値 (primitive) は追加していない**
+- [事実] 実装側 (`common.css`) は `input::placeholder,option,textarea::placeholder{color:#9e9e9e;font-family:Roboto,sans-serif;font-size:14px;font-weight:400}` を持つ (実装 Repository `tocoo/tocoo_travel` の確認時点)。`#9e9e9e` と同値の semantic (`color.text.muted`) は存在するが、上記の理由により**本書はこの色を正としない**。同宣言の `Roboto` は §3 で廃止された旧欧文フェイスであり、本節は文字色のみを定義し書体・サイズ・ウェイトを定義しない
+- [決定] プレースホルダと入力済みテキスト (`color.text.body` `#424242`) の判別を色の差のみに依存させない。入力済みかどうかの識別は実際の文字列の有無で成立する
+- [決定] プレースホルダを必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない
+- 🚧 プレースホルダを含むフォーム入力の状態一式 (枠色・背景色・必須表現・検証表示) は実査待ち (`follow-up #2`)。本節は**文字色のみ**を定義する
+- [注意] 本節は `follow-up #2` の範囲のうち文字色のみを `bound` として確定させたものであり、`follow-up #2` 全体を解決済みとして扱わない。この部分確定が [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §14 (実査待ちの項目の取り扱い) に該当するかは本書では判定しない (未確定事項の一覧に起票)
+
 ## 3. タイポグラフィ
 
 root 16px・**rem 基準** (TVL-0001)。2 書体構成 = 明朝 (表現) + ゴシック (機能)。タイポグラフィ設計方針 (共有 dc) 2026-07-10 の決定を反映。
@@ -125,15 +167,51 @@ root 16px・**rem 基準** (TVL-0001)。2 書体構成 = 明朝 (表現) + ゴ�
 | 用途 | 値 | 状態 |
 | --- | --- | --- |
 | 本文・UI | LINE Seed JP / 1rem / lh 1.8 | **bound (Q1)** |
-| 見出し (一覧・カード) | LINE Seed JP 700 / h2 2rem | **bound (Q2)** |
+| 見出し (文書レベル h1〜h6) | LINE Seed JP 700 / h1 2.5rem〜h6 1rem / lh 1.3 | **bound (§3.1)** |
+| 見出し (一覧・カード) | LINE Seed JP 700 / h2 2rem (= 文書レベル h2 と同値・同一トークン) | **bound (Q2)** |
 | Display・Hero・詳細施設名 | Noto Serif JP (明朝) 500–600 | **bound (Q8)** |
 | 欧文 | LINE Seed JP に統合 (旧 Roboto 廃止) | bound |
 | 数字 (価格) | LINE Seed JP 700・tabular-nums (旧 Barlow 900 廃止) | **bound (Q3)** |
 
 - サイズスケール: xs 0.75 / sm 0.875 / md 1 / lg 1.125 / xl 1.25 / 2xl 1.5 / 3xl 2 / 4xl 2.5 / display-lg 3rem (48px・Q4)
-- 行間: tight 1.3 / normal 1.5 / relaxed 1.8 (本文)
+- 行間: tight 1.3 (見出し = §3.1) / normal 1.5 / relaxed 1.8 (本文)
 - [注意] 実装移行時に px→rem の書き換えが発生する (TVL-0001 Consequences)
 - [観察] 特集頁の見出しフォント不一致・壊れた font stack は新規制作で再生産しない
+
+### 3.1 文書レベルの見出しスケール (h1〜h6)
+
+Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのもの) に適用する既定値を定義する。本節が定めるのは `h1`〜`h6` の各要素に当てる既定値 (サイズ・太さ・行間・書体) のみであり、**どの画面のどのコンテンツを `h1` / `h2` とするかという画面別の見出し階層・semantic role の割当は定めない** (画面別情報構造は Screen Requirements 側の課題 = [alignment-blocking-facts-resolution-plan.md](alignment-blocking-facts-resolution-plan.md) §8J.4)。本節と同 §8J.4 の分類との関係は未確定事項の一覧に起票している。
+
+| 要素 | サイズ (semantic) | 参照先 | 値 | 太さ | 行間 |
+| --- | --- | --- | --- | ---: | ---: |
+| `h1` | `font.heading.h1Size` | `typography.size.4xl` | 2.5rem (40px相当) | 700 | 1.3 |
+| `h2` | `font.heading.h2Size` | `typography.size.3xl` | 2rem (32px相当) | 700 | 1.3 |
+| `h3` | `font.heading.h3Size` | `typography.size.2xl` | 1.5rem (24px相当) | 700 | 1.3 |
+| `h4` | `font.heading.h4Size` | `typography.size.xl` | 1.25rem (20px相当) | 700 | 1.3 |
+| `h5` | `font.heading.h5Size` | `typography.size.lg` | 1.125rem (18px相当) | 700 | 1.3 |
+| `h6` | `font.heading.h6Size` | `typography.size.md` | 1rem (16px相当) | 700 | 1.3 |
+
+- [決定] 書体は `font.heading.family` (LINE Seed JP・ゴシック) を文書レベルの既定とする。明朝 (`font.display.family`) は Display・Hero・特集・詳細施設名で**明示的に選択する**書体であり、文書レベルの見出しの既定ではない (§3)
+- [決定] 太さは `font.heading.weight` (`typography.fontWeight.bold` = 700) を h1〜h6 共通の既定とする
+- [決定] 行間は `font.heading.lineHeight` (`typography.lineHeight.tight` = 1.3) を h1〜h6 共通の既定とする。`relaxed` (1.8) は本文の値であり見出しへ適用しない
+- [決定] **文書レベルの見出しと Component の見出しは同一トークン群 (`font.heading.*`) を共用する**。`font.heading.h2Size` は従来「一覧・カード見出し h2 = 2rem (実測)」として bound 済みであり本節の h2 と同値であるため、文書レベル用の別系統を設けない。Component 側で文書レベルの既定から外れる値が必要な場合は当該 Component 仕様に**明示的に**記載する (暗黙の上書きを認めない)
+- [決定] **新しいサイズ値・行間値・ウェイト値 (primitive) は追加しない**。h1〜h6 はいずれも既存スケール (`4xl` / `3xl` / `2xl` / `xl` / `lg` / `md`) への割当である
+- [事実] `h6` は本文と同サイズ (1rem) となる。本文との差はウェイトと行間だが、**本文のウェイトは正本上定義されていない** (`font.body` は `family` / `size` / `lineHeight` の 3 トークンのみで `weight` を持たず、§3 の表の本文行にもウェイトの記載がない)。したがって**ウェイトによる区別を本書の根拠としない**。行間の差 (見出し 1.3 / 本文 `font.body.lineHeight` = `relaxed` 1.8) は値としては定義済みだが、折り返しが生じる場合にのみ視覚差となる。書体も `typography.fontFamily.heading` と `sans` はいずれも同じフォントスタックを先頭に持つため差がない。`h6` と本文の区別根拠が不足していることは未確定事項の一覧に起票している
+- [決定] 見出しサイズを UA 既定に委ねない。理由は次のとおり
+  - HTML 標準の Rendering セクションが定める見出しサイズは `em` 基準 (親の `font-size` に対する相対値) であり、親の `font-size` が異なる文脈で実寸が変わる。§3 が定める **rem 基準 (TVL-0001) と整合しない**
+  - 同セクションには `:is(article, aside, nav, section)` の入れ子段数に応じて `h1` のサイズを変える規則があり、`h1` の実寸が文書構造に依存する
+  - `h5` 0.83em / `h6` 0.67em は本文 1rem 基準で 13.3px / 10.7px となり、本文より小さい
+- [事実] 実装側 (`webroot/assets_s/css/common.css`) は文書レベルの `h1`〜`h6` に対して次の宣言を持つ (実装 Repository `tocoo/tocoo_travel` の確認時点)。`h1{font-size:24px}` / `h2{font-size:20px}` / `h3,h4{font-size:16px}` / `h5{font-size:14px}` / `h6{font-size:12px}` / `h1,h2,h3,h4,h5,h6{font-weight:500}`。**本節はこれらを正としない**。理由は次のとおり
+  - `h3` と `h4` が同一の宣言で同値に設定されており、段が一意に定まらない (§3 のサイズスケールは段ごとに異なる値を持つ)
+  - `h6` 12px が本文 16px より小さい
+  - `font-weight: 500` が §3 の見出し 700 と一致しない
+  - 同ファイルには Bootstrap v4.6.2 由来の `h1{font-size:2.5rem}` 等と `h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:400}` が併存し、同一要素に対して複数の宣言が重なっている。**本書は同ファイルの計算値 (実際に適用される値) を実測として扱わない**
+  - 同ファイルは DS 準拠の reset / base 層へ置き換える対象として実装側で扱われている (実装 Repository `tocoo/tocoo_travel` #6635 / PR #6643)。**撤去の範囲・完了状況は実装 Repository 側の事実であり本書では確定しない** (確認時点では会員系テンプレートの一部が同ファイルの読み込みを保持していた)
+- [注意] 同ファイルは §1 が持ち込まないと定める Bootstrap 残骸 (`--primary:#007bff`) を保持している。ただし上記 `h1`〜`h6` の宣言は Bootstrap 由来ではないため、**§1「負債の非持込」の列挙 3 項目 (Bootstrap 残骸 `--primary:#007bff`・変数二重定義・管理画面系の色) への該当性は本書では判定しない**
+- [事実] §3 の「見出し (一覧・カード) h2 2rem」は一覧・カードの実測値であり、`common.css` の `h2{font-size:20px}` は文書レベルの `h2` 要素に対する宣言である。両者は対象が異なるため同じ h2 の値として比較できない
+- [決定] 文書レベル h2 は `font.heading.h2Size` (2rem) を用いる。`common.css` の `h2{font-size:20px}` は採らない (理由は上記のとおり)
+- [注意] 本節の既定を実装へ反映すると文書レベルの見出しの実寸が従来の実装値から変わる (例: `h1` 24px → 40px)。反映の範囲・順序・期限は本書では決定しない (実装側タスクの範囲)
+- 🚧 Component 内の見出しが文書レベル既定から外れている箇所の洗い出しは実査待ち
 
 ## 4. スペーシング・グリッド・ブレークポイント
 
@@ -253,7 +331,7 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | follow-up #13 | shadow 実値 | 🚧 実査待ち |
 | follow-up #3 | motion 実値 | 🚧 実査待ち |
 | follow-up #5 | success 色 | ✅ 解決 (TVL-0011・成功=各パレット主色) |
-| follow-up #2 | フォーム入力/エラー/必須・検証 | 🚧 実査待ち |
+| follow-up #2 | フォーム入力/エラー/必須・検証 (枠色・背景色・必須表現・検証表示。プレースホルダを含む) | 🚧 実査待ち。**プレースホルダの文字色 `color.text.placeholder` のみ §2.3 で確定**し、それ以外は未解決 |
 | — | カード実px・8スロット対応付け・画像欠落 fallback | 🚧 実査待ち / ❓ Card 着手時 |
 | Q6 | 実装クラス命名方法論 (FLOCSS 等) | ❓ 検討トリガー: Component 実装着手時 |
 | — | Breadcrumb 現在地への `color.text.muted` (白背景 ≈2.7:1) 適用の可否 | ❓ 未判定。価格・補助情報の用途に該当せず、上流 NVP-001 (現在地の可視性) と全ページ共通 Component の影響範囲を伴うため本書では判定しない |
@@ -268,6 +346,14 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | — | `radius.badge` の実px | 🚧 実査待ち。暫定 sm (4px)。`radius.card` と同じ区分 (§5) |
 | — | PriceTag の tone (背景文脈) の実装 API 名 (prop 名) | ❓ 未確定。DS は default / inverse の 2 値と色の対応関係のみ定義 (`components.md`) |
 | — | `color.text.inverseMuted` を inverse 以外の暗色面へ適用する場合の可否 | ❓ 未判定。検証済みは inverse surface `#212121` 上 (≈6.01:1) のみ |
+| — | 訪問済みリンク (`visited`) を色で区別する要否 | ❓ 未確定。Owner判断事項。現在は `color.text.link` を維持する決定のみ (§2.2)。既存 palette に visited 用の色値が無く、本書では primitive を追加しない |
+| — | standalone なリンク (カード全体リンク・ナビゲーション項目・パンくず) へ下線の既定を及ぼすかの区分 | ❓ 未判定。§2.2 が定めた**下線**の既定は文中リンクを対象とする (状態ごとの文字色と focus の取り扱いは対象を限定しないため standalone にも適用される)。領域・レイアウトでリンクが成立する場合の下線の扱いは判定していない |
+| — | 文書レベルの見出し既定 (§3.1) を実装へ反映する範囲・順序・期限 | ❓ 未確定。本書は既定値のみを定義し反映計画を決定しない。実装値からの実寸変化 (例 `h1` 24px → 40px) を伴う |
+| — | Component 内の見出しが文書レベル既定 (§3.1) から外れている箇所の洗い出し | 🚧 実査待ち。外れる場合は当該 Component 仕様へ明示記載する規則のみ確定 (§3.1) |
+| — | 文書レベルの `h6` (1rem) と本文 (1rem) の区別根拠 | ❓ 未判定。本文のウェイト (`font.body.weight` 相当) が正本上不在で、ウェイトによる区別が成立しない。行間差 (1.3 / 1.8) は折り返し時のみ視覚差となり、書体も同一スタック (§3.1) |
+| — | `follow-up #2` のうち文字色のみを `bound` として確定させたことが [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §14 (実査待ちの項目の取り扱い) に該当するか | ❓ 未判定。判定主体 = Web部責任者。同 §14 が求める確認方法・個別項目の確認主体は Repository 内で未定 (§2.3) |
+| — | §3.1 の文書レベル見出しスケールが [alignment-blocking-facts-resolution-plan.md](alignment-blocking-facts-resolution-plan.md) §8J.4 の Screen Requirements 分類 (観点「h1〜h6 等の具体階層」) に抵触するか | ❓ Owner判断事項。同表は size scale・line-height scale・見出しの用途・token を「既存 Design System で明示」側へ分類する一方、観点の文言に「画面別」の限定が付いていない。§3.1 は既存スケールの文書レベル既定への割当であり画面別の見出し階層・semantic role の割当を定めていないが、抵触の有無は本書では判定しない |
+| — | 実装が文書レベルの既定値 (base 層) をどこで供給すべきかという層の責務そのものの方針 | ❓ 未定義。本書・`components.md`・`README.md` に記載がなく、reset CSS への言及も無い。§2.2・§2.3・§3.1 は値を定義したものであり供給箇所の方針を策定していない |
 
 ---
 
@@ -281,3 +367,4 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | 2026-07-28 | Task 009-28R の記述是正: PR [#107](https://github.com/tocoo/coocom-design-system/pull/107) コードレビュー (issuecomment-5098867540) の指摘に対応し、§7 のモーダル記述の冒頭を是正。**「モーダルは drawer に全面統一」という、統一が完了済みと読める記述を撤回**し、「モーダルは最終的に drawer へ全面統一」へ変更した。同 PR 内で `components.md` の実装基盤行を「最終的に drawer へ全面統一」へ補正した一方、本ファイルは補正前の表現のままとしていたため、**本 PR によって 2 文書間に表現の分岐が生じていた**。あわせて「段階移行」に「(移行期間中は併存)」を補い、`governance/owner-decisions.md` §11 の判断ⓐ (最終到達方針であり既存 centered dialog の即時廃止・一括置換を意味しない)・判断ⓒ (deprecated だが移行期間中の併存を認める) と読み取りを一致させた。**是正対象は §7 の当該 1 行のみ**。方針そのものは不変 (最終的に drawer へ統一する現行方針・centered dialog の deprecated・段階移行はいずれも維持) であり、即時廃止・一括置換・移行対象・順序・期限・完了条件を決定していない。§7 の他記述・§1〜§6・§8〜§9・未確定事項の一覧・token・値・`$status`・version・Component の実装要件・rental-car / inbound の成果物は不変 | Claude Code |
 | 2026-07-29 | Task 009-33: §2 の表に semantic トークン `color.text.mutedStrong` (gray.700 `#616161`・bound・白背景 ≈6.2:1) の行を追加し、`color.text.muted` の行に白背景コントラスト値 (≈2.7:1) を補記した。§2 にテキスト色の 4 段構成 (`strong` `#212121` / `body` `#424242` / `mutedStrong` `#616161` / `muted` `#9e9e9e`) と、判読性を必要とする補助情報 (補助価格・税/人数/泊数等の価格条件注記・割引前価格・購買判断や内容理解に必要な補足条件) が `color.text.mutedStrong` を使用すること、`color.text.muted` は通常テキストに求められる 4.5:1 に達しないため判読性を要する情報には用いないことを [事実] として 1 行追加した。本書は適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない。未確定事項の一覧に 2 行追加した (Breadcrumb 現在地への `color.text.muted` 適用の可否・`color.text.muted` の適用可能範囲の明文化。いずれも本書では判定しない)。**不変**: §1・§3〜§9、§2 表の他の行、`color.text.muted` の参照先 gray.600 と値 `#9e9e9e` と `bound`、`color.text.body`、primitive の色値、他の token・`$status`、version 表記、Component の実装要件、rental-car / inbound の成果物。影響度は**未取得** (判定主体 = Web部責任者の都度判断 = [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §8)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-07-29 | Task 009-34: **§2 の表**に `color.text.inverse` / `color.text.inverseMuted` / `color.text.onAccent` の 3 行を追加した。**§2.1「面 (背景) と文字色の組み合わせ規則」を新設**し、§2.1 冒頭に用語の定義 (本節で用いる条件) を置き (ウェイトの境界 = bold は `700` 以上・通常ウェイトは `700` 未満で全ウェイトを排他的に二分する／条件 (a) = `24px` 以上でウェイトを問わない／条件 (b) = `20px` 以上かつ bold／(a) (b) を満たさない文字 = (i) `20px` 未満のすべてと (ii) `20px` 以上 `24px` 未満かつ通常ウェイト／「大きなテキスト相当」= (a) (b) を満たす文字 (サイズ・ウェイトの条件・WCAG 2.2 の大きなテキストより狭い)／「大きなテキスト基準」= コントラスト比 3:1 で 2 語は別概念)、検証した 11 組み合わせの表 (背景・文字・概算・通常テキスト 4.5:1 判定・大きなテキスト 3:1 判定・扱い。`color.scheme.main.inverse` `#C8912C` と `color.scheme.sub.inverse` `#C8B12C` は値が異なるためワイルドカード表記で束ねず個別に記載。表は `#### 検証した組み合わせ` 節に置き、検証範囲を限定する前文を表の直前に配置した)、campaign accent 面上の文字色は `color.text.onAccent` のみとし `color.text.strong` (4.37:1) は規則としては使用しないこと、campaign accent を面として使用できるのは (a) (b) のいずれかを満たす文字に限り、(a) (b) のいずれも満たさない文字 ((i) (ii)) には面として使用しないこと、その場合の代替 2 案 (既定 = `color.surface.inverse` 面 + `color.text.inverse` / accent を非テキスト要素に限定。accent を文字色として明色面に置く方法は代替にならない) と (a) (b) を満たす文字に限り選べる第 3 の構成 (accent を文字色として明色面に置く)、禁止事項 4 件 ((a) (b) を満たさない文字への白文字・`onAccent` を理由としたコントラスト確認の省略・AA 未達のブランド表現としての自動許容・縁取り/影による代替)、両スキームの逆色を面として使う場合は `color.text.strong` を原則とし白文字 (main 2.78:1・sub 2.15:1) を正式な通常利用として許可しないこと、評価色・割引/販促色・ブランド補色・状態色を同一用途へ統合しない用途境界を記載した。**§5** に `radius.badge` (暫定 sm 4px) と非操作ラベルへ pill を使わない規則を追記した。**§7** に PriceTag の tone (default / inverse) を追記した。**§8** の「正: `brand-content.md`」を撤回し、同ファイルが Repository 内に存在しないこと・存在しない参照を正本として扱わないこと・現時点で確認できる記載箇所が §8 であることへ改めた。§1 の同ファイルへの委任表現も同様に改めた。**§8.1「割引率の表記規則」を新設**し、表示形式 (`-NN%`・原則使用しない表記)・符号 (表示規則として付与する記号)・桁 (半角/整数/先頭ゼロなし/小数非表示)・端数処理 (表示上の暫定案 = 小数点以下切り捨て／未確定事項 = 正式な算出式と端数処理／決定主体 = 価格・商品仕様の Owner を区別して記録し暫定案を正式規則として扱わない)・表示しない条件 4 件 (0% 以下・算出不能・元価格なし・販売価格が元価格以下でない)・DS で確定しない事項 3 件 (100% 以上の扱い・上限値・条件付き表現の使用条件)・表示成立条件 (比較対象価格・対象条件・税条件・人数・日程等の一致。DS は価格計算ロジックを定義しない)・割引率と値引額の使い分けが未決であることを記載した。**未確定事項の一覧に 10 行追加**した。**不変**: §3・§4・§6・§9、§2 表の他の行、§2 の既存 2 行 ([事実] 品質基準・テキスト 4 段)、既存 token の値・参照先・`$status`、primitive の色値、version 表記、Component の実装要件、rental-car / inbound の成果物。**作成していないもの**: `brand-content.md` (新設の要否・管理正本の所在は §8.1 に Owner判断事項として記載)、価格算出ロジック、事業上の割引率算出式、新規 primitive、`color.text.onSchemeInverse` 相当の alias。本書は適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない (§2.1 のコントラスト比は概算の記録)。影響度は**未取得** (判定主体 = Web部責任者の都度判断 = [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §8)。改訂着手の設計承認は取得していない (同 §9・§20)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-07-29 | Task 009-35: 文書レベルの既定値 (base 層) として参照されたが正本に記載が無かった 3 件を補完した。**§2 の表**に `color.text.placeholder` (gray.700 `#616161`・白背景 ≈6.2:1)・`color.text.linkHover` (scheme.main.hover `#2340A6`)・`color.text.linkActive` (scheme.main.pressed `#1B3488`) の 3 行を追加し、§2 に「テキスト色 4 段は濃度段であり、用途に固定した別名 (`link` / `linkHover` / `linkActive` / `placeholder` / `inverse` / `inverseMuted` / `onAccent`) は 4 段とは別に定義する。用途別名が同じ primitive を参照しても一方の値の変更が他方へ及ぶ設計にはしない」旨の [事実] を 1 行追加した。**§2.2「リンクの装飾と状態」を新設**し、本節が定めるのは色以外の装飾 (下線) と状態 (hover / visited / active / focus) ごとの取り扱いであって状態語そのものの新設ではないこと (固定リストは `components.md` 共通事項が正)、状態別の文字色と下線の表 (文字色の列は対象を限定せず standalone なリンクを含む・下線の列は文中リンクのみ)、文中リンクに下線を付し下線を外す既定を置かないこと、hover は下線を維持したまま `color.text.linkHover` へ変更すること、active は `color.text.linkActive` を使用すること、visited に専用色を設けず `color.text.link` を維持すること (既存 palette に visited 用色値が無く primitive を追加しない)、focus は `color.focus.ring` の `outline` を用い hover の色変更で代替しないこと、状態表現に `opacity` を用いず `components.md` 共通事項の「全 Component の hover は opacity 変化 (≈0.85) を暫定参照とし `🚧 暫定` を付す」からリンクを除外すること、実装側 `common.css` の 3 宣言 (`a,a:hover,button,button:hover` の旧主色 `#283593`／`a:hover,button:hover` の `opacity:.75` と下線解除／`a:active,a:focus,a:visited,button:active,button:focus,button:visited` の `outline:none!important` と下線解除。最後の 1 件は本節の focus の決定と直接衝突し base 層からの `outline` 供給を特異度と `!important` の面で妨げる) をいずれも DS 規則として採らないこと、同ファイルが Bootstrap v4.6.2 を含み `a{color:#007bff;…}` 等が併存するため計算値を実測として扱わないこと、下線の既定は文中リンクを対象とし standalone なリンクへの適用は未判定である一方で状態ごとの文字色と focus の取り扱いは対象を限定しないことを記載した。**§2.3「プレースホルダの文字色」を新設**し、`color.text.placeholder` を使用すること、`color.text.muted` (`#9e9e9e`・≈2.7:1) を流用しないこと、`color.text.mutedStrong` と同じ primitive (gray.700) を参照しつつ用途が異なるため別トークンとすること、実装側 `common.css` の `input::placeholder,option,textarea::placeholder` の宣言 (`#9e9e9e`・`Roboto`・14px・weight 400) のうち色を正とせず、本節は文字色のみを定義して書体・サイズ・ウェイトを定義しないこと、入力済みテキスト (`color.text.body`) との判別を色差のみに依存させないこと、必須項目・ラベル・エラーメッセージ・入力形式の説明の代替に用いないこと、文字色のみを定義し枠色・背景色・必須表現・検証表示は `follow-up #2` の実査待ちであること、`follow-up #2` 全体を解決済みとして扱わず文字色のみの `bound` 化が [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §14 に該当するかは判定しないことを記載した。**§3 の表**の見出し行を「文書レベル h1〜h6」と「一覧・カード」の 2 行に分け、行間行に「tight 1.3 (見出し = §3.1)」を補記した。**§3.1「文書レベルの見出しスケール (h1〜h6)」を新設**し、本節が定めるのは `h1`〜`h6` の各要素に当てる既定値のみであり画面別の見出し階層・semantic role の割当は定めないこと、h1 `4xl` 2.5rem / h2 `3xl` 2rem / h3 `2xl` 1.5rem / h4 `xl` 1.25rem / h5 `lg` 1.125rem / h6 `md` 1rem の割当表 (太さ 700・行間 1.3)、書体は `font.heading.family` を文書レベルの既定とし明朝は明示的に選択する書体であること、太さ `font.heading.weight` (700) と行間 `font.heading.lineHeight` (tight 1.3) を h1〜h6 共通の既定とすること、文書レベルと Component の見出しは同一トークン群 `font.heading.*` を共用し Component 側の逸脱は当該仕様へ明示記載すること、新しいサイズ値・行間値・ウェイト値 (primitive) を追加せず既存スケールへの割当のみであること、`h6` は本文と同サイズ (1rem) となるが本文のウェイトが正本上不在のためウェイトによる区別を根拠とせず行間差は折り返し時のみ視覚差となり書体も同一スタックであること、UA 既定に委ねない理由 3 点 (`em` 基準で rem 基準 TVL-0001 と不整合・入れ子段数で `h1` 実寸が変わる・`h5` `h6` が本文より小さい)、実装側 `common.css` の文書レベル `h1`〜`h6` の宣言 (`h1` 24px / `h2` 20px / `h3,h4` 16px / `h5` 14px / `h6` 12px / `h1〜h6` weight 500) を正としない理由 (`h3` と `h4` が同一宣言で同値のため段が一意に定まらない・`h6` が本文より小さい・weight 500 が §3 の 700 と不一致・同ファイル内に Bootstrap v4.6.2 由来の宣言が併存し同一要素へ複数の宣言が重なるため計算値を実測として扱わない・同ファイルは DS 準拠の reset / base 層へ置き換える対象として実装側で扱われており撤去の範囲・完了状況は本書では確定しない)、同ファイルが §1 の Bootstrap 残骸 (`--primary:#007bff`) を保持する一方で `h1`〜`h6` の宣言は Bootstrap 由来でないため §1 の列挙 3 項目への該当性を判定しないこと、§3 の「見出し (一覧・カード) h2 2rem」と `common.css` の `h2{font-size:20px}` は対象が異なり同じ h2 の値として比較できないこと、文書レベル h2 は `font.heading.h2Size` (2rem) を用いること、反映により実寸が変わること (例 `h1` 24px → 40px) と反映の範囲・順序・期限は本書で決定しないことを記載した。**未確定事項の一覧**は既存の `follow-up #2` 行の内容欄・状態欄を更新し (対象に枠色・背景色・必須表現・検証表示・プレースホルダを明記し、プレースホルダの文字色のみ §2.3 で確定・それ以外は未解決と記載)、**8 行追加**した (visited を色で区別する要否・standalone リンクへの下線既定の区分・§3.1 の実装反映の範囲/順序/期限・Component 内見出しの逸脱箇所の洗い出し・`h6` と本文の区別根拠・`follow-up #2` の部分確定と §14 該当性・§3.1 と `alignment-blocking-facts-resolution-plan.md` §8J.4 の Screen Requirements 分類との関係・実装が base 層をどこで供給すべきかという層の責務の方針)。**不変**: §1・§2.1・§4〜§9、§2 表の他の行、§2 の既存 2 行、`color.text.link` の `$value`・参照先・`$status`、`color.text.muted` / `mutedStrong` の値・参照先・用途、`font.heading.family` / `h2Size` の `$value`・参照先・`$status`、`font.body.*` / `font.display.*` / `font.price.*`、primitive の色値・サイズ値・行間値・ウェイト値、他の token・`$status`、version 表記、rental-car / inbound の成果物。**作成・追加していないもの**: 新規 primitive (サイズ・行間・ウェイト・色値のいずれも)、visited 用の色、状態の固定リストへの追加、reset / base 層の CSS 実装方針、実装ファイル、`brand-content.md`、画面別の見出し階層・semantic role の割当。本書は適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない (コントラスト比は概算の記録)。影響度は**未取得** (判定主体 = Web部責任者の都度判断 = [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §8)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |

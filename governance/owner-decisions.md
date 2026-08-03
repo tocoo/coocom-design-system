@@ -313,6 +313,52 @@
 
 ---
 
+## 14. Travel placeholder / 実査待ちの確認方法・個別確認主体の現在判断記録
+
+- 種別: 国内宿泊 (travel) の placeholder / 実査待ちトークンの**確認方法**と**個別項目の確認主体**について Web部責任者が示した **2026-08-03 時点の現在判断**の記録。[review-approval-rules.md](review-approval-rules.md) §14 は「確認方法を決める主体 = Web部責任者／個別項目の確認主体 = 確認ルールが制定されるまで未定」と定め、Web部責任者が確認方法および個別項目の確認主体を明示しその記録が Repository 内に存在するまで placeholder・実査待ちの項目を解決済みとして扱わないとしている (同 §14・§21)。本記録はその明示・記録に対応する。上記 §1〜§13 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§13 の各記録は変更しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。承認済み・適用中の規則 [review-approval-rules.md](review-approval-rules.md) 本体は改定せず、規則が Web部責任者に委ねた決定の記録を本ファイルに置く。GitHub の approval・merge を判断と同一視しない。本記録は Design System の token・値・`$status`・`$note`・`$meta.version` を変更しない。**判断日 (2026-08-03) と本 Repository 反映日 (2026-08-03) は同日だが別の事象として区別する**。
+
+| 項目 | 内容 |
+| --- | --- |
+| 判断対象 | travel の placeholder / 実査待ちトークンの確認方法と個別確認主体。契機は依頼元 (ウルトラトクー市 一覧ページ 画面設計・2026-08-03 起票) の依頼 F「placeholder の解決」(Task 009-41・Issue [#119](https://github.com/tocoo/coocom-design-system/issues/119))。[review-approval-rules.md](review-approval-rules.md) §14 が求める「確認方法」と「個別項目の確認主体」 |
+| 判断日 | 2026-08-03 |
+| 判断主体 | Web部責任者 |
+| 判断の種別 | **現在判断** (2026-08-03 時点) |
+| 取得した判断 ⓐ 確認方法 | placeholder / 実査待ちトークンの実値は、**依頼元 (画面設計) が提出する値を受領して確定する**。実装実測ではなく設計側の提出値を正とする |
+| 取得した判断 ⓑ 個別確認主体 | **作業担当者 (改訂作業の実施者) が提出値を SOT の placeholder と照合し、Web部責任者が確認する**。[review-approval-rules.md](review-approval-rules.md) §14 が「確認ルールが制定されるまで未定」としていた個別項目の確認主体を本記録で定義する |
+| 記録先 | 本 owner-decisions.md §14。承認済み・適用中の規則 [review-approval-rules.md](review-approval-rules.md) §14 本体は改定しない (規則が Web部責任者に委ねた決定の記録を本ファイルに置く) |
+| 適用範囲 | **国内宿泊 (travel) に限定**。rental-car・inbound・3DS 横断へは自動適用しない |
+| 本記録工程の影響度 | **低** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得)。→ 必要レビュー主体 = [review-approval-rules.md](review-approval-rules.md) §10 の影響度・低の既定である **Web部レビュー担当者**。判定理由 (Web部責任者): placeholder の列挙・追跡先の整理と確認方法/主体の記録であり、token の値・`$status`・`$meta.version` の変更を伴わない。高／低の一般的な明文判定基準は未整備であり推測・補完しない (同 §8・§21) |
+| 根拠 | 依頼元の依頼 F (2026-08-03)、Task 009-41 の Issue [#119](https://github.com/tocoo/coocom-design-system/issues/119)、`semantic.travel.json` / `primitive.travel.json` の実測 (placeholder 11 件)、[review-approval-rules.md](review-approval-rules.md) §14・§21、[../services/travel/design-system/alignment-blocking-facts-resolution-plan.md](../services/travel/design-system/alignment-blocking-facts-resolution-plan.md) §8L (R-D トラック)、本記録の PR |
+| 判断により確定した事項 | travel について ⓐ (確認方法 = 依頼元提出値の受領) ⓑ (個別確認主体 = 作業担当者照合 + Web部責任者確認) を 2026-08-03 時点の現在判断として記録したこと |
+| 判断後も未決・未確認の事項 | 実査 (提出値の受領) そのもの／placeholder の bound 昇格・暫定値の確定／follow-up #3 が §3 に追跡行を持たない不足の解消 (R-D §8L の別論点)／follow-up 番号体系の正本整備。いずれも本記録では決定・補完しない |
+
+### placeholder 11 件の確定リスト (本記録時点・`main` `cbc19c6`)
+
+`$status: placeholder` の実測は semantic 4 件・primitive 7 件・計 **11 件**。追跡先を **follow-up #13 / follow-up #3 / follow-up 番号なし** の 3 区分で分離する (一括で同一区分として扱わない)。
+
+| ファイル | トークン | `$value` | 追跡先区分 |
+| --- | --- | --- | --- |
+| semantic | `radius.card` | `{radius.md}` | follow-up 番号なし (TVL-0008・design.md §5 の実査待ち区分) |
+| semantic | `radius.badge` | `{radius.sm}` | follow-up 番号なし (実確定は `radius.card` と同じ実査待ち区分) |
+| semantic | `motion.transition.duration` | `{motion.duration.base}` | follow-up #3 |
+| semantic | `motion.transition.easing` | `{motion.easing.standard}` | follow-up #3 |
+| primitive | `shadow.sm` | `0 1px 2px rgba(0,0,0,0.05)` | follow-up #13 |
+| primitive | `shadow.md` | `0 2px 8px rgba(0,0,0,0.10)` | follow-up #13 |
+| primitive | `shadow.lg` | `0 8px 24px rgba(0,0,0,0.15)` | follow-up #13 |
+| primitive | `motion.duration.fast` | `150ms` | follow-up #3 |
+| primitive | `motion.duration.base` | `300ms` | follow-up #3 |
+| primitive | `motion.duration.slow` | `500ms` | follow-up #3 |
+| primitive | `motion.easing.standard` | `ease` | follow-up #3 |
+
+- 追跡先の状態は follow-up 番号ごとに異なる: **follow-up #13** (shadow 実値) は本 §3 に追跡行を持つ (`| #13 | shadow 実値 | 暫定3段で据置き |`)。**follow-up #3** (motion 実値) は §3 に記載が無く、この不足は [../services/travel/design-system/alignment-blocking-facts-resolution-plan.md](../services/travel/design-system/alignment-blocking-facts-resolution-plan.md) §8L (Task 009-19・R-D トラック) が既に記録している。**radius.card / radius.badge** は follow-up 番号を持たず TVL-0008 および design.md §5 の実査待ち区分である。本記録は follow-up #3 の §3 追跡行の不足を新たに解消せず、R-D トラック (§8L) の既存記録との対応関係のみ整理する。
+- 依頼書は「計 10 件」としていたが、これは `radius.badge` (Task 009-34 で追加) が反映される前の件数であり、本記録時点の実測は **11 件**である。
+- 本 §14 の確認方法・確認主体は placeholder 全般 (11 件) へ及ぶ。実査 (提出値の受領) は未実施であり、11 件はいずれも placeholder を維持する (bound 昇格・暫定値の確定は行わない)。
+
+**Does Not Decide / Does Not Authorize**: 本記録は実査 (提出値の受領) そのものを実施せず、placeholder の `bound` 昇格・暫定値 (`radius.card` = md 8px・`shadow.*` 3 段・`motion.*`) の確定を行わない。follow-up #3 が §3 に追跡行を持たない不足を本記録で解消せず (R-D §8L の別論点)、follow-up 番号体系の正本整備も行わない。承認済み・適用中の規則 [review-approval-rules.md](review-approval-rules.md) 本体を改定しない。token の値・参照先・`$status`・`$note`・`$meta.version`・正式 Status を変更しない。Design System の候補採否・改定要否・改訂着手・設計承認を決定・承認しない。GitHub の approval・merge を判断と同一視しない。rental-car / inbound の成果物へ適用しない。本記録に関する Wiki 記載があっても、本判断の正本は本 §14 である (Wiki は非正本)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -332,3 +378,4 @@
 | 2026-07-28 | Task 009-28R: §11 Travel Modal 実装基盤 (drawer) の現在判断記録を §1〜§10 と分離して追加。Web部責任者の **2026-07-27 時点**の現在判断 (ⓐ最終到達方針 = drawer へ統一を維持・即時廃止／一括置換ではない／ⓑ新規は原則 drawer・第3の実装基盤を導入しない・ライブラリ／モジュール／実装方式／DOM 構造は決めない／ⓒ既存 centered dialog は deprecated だが移行期間中の併存を認め改修時に置換要否を確認・一括改修／洗い出し／即時廃止／使用禁止／順序・期限・完了条件は含めない／ⓓ「centered dialog」は非 drawer 型 Modal を指す概念上の呼称であり `M-02`・`_modal_prime` 等の実装実体との対応を認定しない／ⓔ移行対象・順序・期限・完了条件・ロードマップは未決で決定には外部実装 Repository の実査が先行／ⓕ`elevation.overlay`・`elevation.modal` の `bound`・`motion.transition.*` の `placeholder`・follow-up #3／`TVL-0008` との関係および具体挙動は不変) を **travel 限定**の適用範囲で記録。あわせて §1 値論点表の Q9 (モーダル実装基盤) 行に、3DS 横断統一は未決のまま維持しつつ travel のみ現在判断を取得済みである旨と §11 への参照を追記 (Q9 の削除・「drawer で解決済み」への置換はしない)。**判断日 (2026-07-27) と本 Repository 反映日 (2026-07-28) は別の事象として区別**している。本記録工程の影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-07-28、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。`TVL-0007` の ADR 正本・過去の判断主体・判断日・historical provenance・過去の移行ロードマップは未確認のまま (009-19 provenance トラックに残る)。§1 の他 Q・§2〜§10・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。travel の token・値・`$status`・description・note・Component の実装要件・version、rental-car / inbound の成果物、[../services/travel/design-system/alignment-blocking-facts-resolution-plan.md](../services/travel/design-system/alignment-blocking-facts-resolution-plan.md) §8L の R-D 分類は変更していない。同一 Task で `design.md` §7・`components.md` Modal / Overlay の `TVL-0007` 参照・委任表現を補正しているが、Modal の現行仕様そのものは変更していない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
 | 2026-08-03 | Task 009-37: §12 Travel 配布物 (バンドル・スナップショット) の生成・管理責務と版の対応付けの現在判断記録を §1〜§11 と分離して追加。依頼元 (ウルトラトクー市 一覧ページ 画面設計・2026-08-03 起票) の依頼 A「バインド DS スナップショットの同期」に対応し、Web部責任者の **2026-08-03 時点**の現在判断 (ⓐ生成・管理責務 = 実装リポジトリ側 `tocoo/tocoo_travel`・生成器/生成手順/更新契機の運用手順は含めない／ⓑ版の対応付け = SOT の `$meta.version` 基準・`$meta.version` の付与規則自体は README §13/§16 の未決 Open Issue で確定しない) を **travel 限定**の適用範囲で記録。あわせて SOT と配布スナップショットの乖離 14 件の確定リスト (semantic のみ +14・primitive 増減なし・`semantic.travel.json` 実測と一致・うち `radius.badge` のみ placeholder)、依頼書の 4 件は 14 件の部分集合であること、配布スナップショット ID `fe4b9e52` が本 Repository の Git object として解決できないこと (`git cat-file -t` = Not a valid object name)、placeholder を配布に含める場合 design.md §9 手順 3 の「🚧 暫定」伝播が及ぶことを Fact として記録。**判断日 (2026-08-03) と本 Repository 反映日 (2026-08-03) は同日だが別の事象として区別**。本記録工程の影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。§1〜§11・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。バンドルの再生成・成果物側の暫定 materialize 削除は本 Repository では行わない (実装リポジトリ側)。travel の token・値・`$status`・`$note`・`$meta.version`・version、rental-car / inbound の成果物は変更していない。`radius.badge` の placeholder → bound 昇格は行っていない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
 | 2026-08-03 | Task 009-38: §13 Travel バッジ面色・文字色の現在判断記録を §1〜§12 と分離して追加。依頼元 (2026-08-03 起票) の依頼 B / C に対応し、Web部責任者の 2026-08-03 現在判断 (ⓐ依頼 B = b2 accent 淡色面の新設方向・実色値は未取得で新規 primitive/semantic の実追加は取得後の別作業／ⓑ依頼 C = c1 `color.scheme.*.inverse` の面用途を割引ラベル背景へ拡張・文字色 `color.text.strong` 固定 (main 5.78:1 / sub 7.50:1)・白文字不可・評価色 `color.icon.rating` トークンを面へ流用しない・面用途に専用 semantic 用途トークンは追加せず既存トークンを面として参照／ⓒ依頼元が根拠とする 2026-07-31 の Owner 決定は本 Repository 全体で 0 件・記録が無かった事実を提示のうえ本記録を現在判断として扱い過去の判断主体・判断日は認定しない) を **travel 限定**で記録。判断日 (2026-08-03) と反映日 (2026-08-03) は同日だが別事象として区別。本記録工程の影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。同一 Task で design.md §2.1 の規範規則 (面用途の未定義→定義・文字色固定) と components.md `Card.slot.badge`・`semantic.travel.json` の `$note` を補正しているが、既存 token の値・参照先・`$status`・`$meta.version`・version、primitive の色値、rental-car / inbound の成果物は不変。新規 primitive・新規 semantic 用途トークンは追加していない。`radius.badge` の placeholder → bound 昇格は行っていない。§1〜§12・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
+| 2026-08-03 | Task 009-41: §14 Travel placeholder / 実査待ちの確認方法・個別確認主体の現在判断記録を §1〜§13 と分離して追加。依頼元 (2026-08-03 起票) の依頼 F「placeholder の解決」に対応し、Web部責任者の 2026-08-03 現在判断 (ⓐ確認方法 = 依頼元 (画面設計) の提出値を受領して確定・実装実測ではない／ⓑ個別確認主体 = 作業担当者が提出値を SOT の placeholder と照合し Web部責任者が確認) を **travel 限定**で記録。review-approval-rules.md §14 が「未定」としていた個別確認主体を定義し、記録先は承認済み規則 review-approval-rules.md §14 本体ではなく本ファイル (規則が Web部責任者に委ねた決定の記録)。あわせて placeholder **11 件** (semantic 4・primitive 7) の確定リストと追跡先 3 区分 (follow-up #13 / #3 / follow-up 番号なし) を記録し、follow-up #3 が §3 に追跡行を持たない不足は R-D トラック (§8L) の既存記録との対応関係のみ整理 (新規解決しない)、依頼書の「10 件」は `radius.badge` 反映前の件数で実測 11 件である旨を記録。判断日と反映日は同日だが別事象として区別。本記録工程の影響度 = **低** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部レビュー担当者)。実査 (提出値の受領) は未実施・placeholder は 11 件とも維持・bound 昇格や暫定値の確定は行わない。§1〜§13・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。travel の token・値・`$status`・`$note`・`$meta.version`・version、rental-car / inbound の成果物は変更していない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |

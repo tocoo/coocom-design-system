@@ -240,6 +240,55 @@
 
 ---
 
+## 12. Travel 配布物 (バンドル・スナップショット) の生成・管理責務と版の対応付けの現在判断記録
+
+- 種別: 国内宿泊 (travel) の Design System 配布物 (バンドル・スナップショット) の生成・管理責務と、配布スナップショットが SOT のどの版に対応するかの対応付けについて Web部責任者が示した **2026-08-03 時点の現在判断**の記録。上記 §1〜§11 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§11 の各記録は変更しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。取得した判断は原文の意味を変えずに記録する。**現在判断と過去の provenance を区別する**。GitHub の approval・merge を判断と同一視しない。本記録は Design System の token・値・`$status`・`$description`・`$note`・`$meta.version` を変更しない。**判断日 (2026-08-03) と本 Repository 反映日 (2026-08-03) は同日だが別の事象として区別する**。
+
+| 項目 | 内容 |
+| --- | --- |
+| 判断対象 | travel の Design System 配布物 (バンドル・スナップショット) の生成・管理責務の所在、および配布スナップショットが SOT のどの版に対応するかの対応付け方法。契機は依頼元 (ウルトラトクー市 一覧ページ 画面設計・2026-08-03 起票) の依頼 A「バインド DS スナップショットの同期」(Task 009-37・Issue [#115](https://github.com/tocoo/coocom-design-system/issues/115)) |
+| 判断日 | 2026-08-03 |
+| 判断主体 | Web部責任者 |
+| 判断の種別 | **現在判断** (2026-08-03 時点)。過去の生成手順・生成主体の復元・追認ではない |
+| 取得した判断 ⓐ 生成・管理責務の所在 | 配布物 (バンドル・スナップショット) の生成・管理責務 — SOT の `semantic.travel.json` / `primitive.travel.json` からバンドルを生成し配布スナップショットを更新する責務 — は **実装リポジトリ側 (`tocoo/tocoo_travel`)** に置く。具体的な生成器・生成手順・更新契機の運用手順そのものは本記録では確定しない (実装リポジトリ側の作業) |
+| 取得した判断 ⓑ 版の対応付け方法 | 配布スナップショットは SOT の **`semantic.travel.json` (および `primitive.travel.json`) の `$meta.version`** に対応付ける。ただし `$meta.version` の付与規則 (version bump の条件) 自体は本 Repository 内で未決の Open Issue であり ([../services/travel/design-system/README.md](../services/travel/design-system/README.md) §13・§16)、本記録はその付与規則を確定しない |
+| 適用範囲 | **国内宿泊 (travel) に限定**。rental-car・inbound・3DS 横断へは自動適用しない |
+| 本記録工程の影響度 | **高** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得)。→ 必要レビュー主体 = [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定である **Web部責任者 および チーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11)。判定理由 (Web部責任者): Governance 正本 (owner-decisions.md) へ現在判断を新設する。高／低の一般的な明文判定基準は未整備であり推測・補完しない (同 §8・§21)。同 §8 の編集的訂正 carve-out は文の追加を含むため本工程に適用しない |
+| 根拠 | 依頼元の依頼 A (2026-08-03)、Task 009-37 の Issue [#115](https://github.com/tocoo/coocom-design-system/issues/115)、`semantic.travel.json` / `primitive.travel.json` / [baseline-assessment.md](../services/travel/design-system/baseline-assessment.md) の実測、[review-approval-rules.md](review-approval-rules.md) §14、本記録の PR |
+| 判断により確定した事項 | travel について ⓐ (生成・管理責務 = 実装リポジトリ側 `tocoo/tocoo_travel`) と ⓑ (版の対応付け = `$meta.version` 基準) を 2026-08-03 時点の現在判断として記録したこと |
+| 判断後も未決・未確認の事項 | `$meta.version` の付与規則 (version bump の条件・README §13/§16)／具体的な生成器・生成手順・更新契機の運用手順／配布スナップショット `fe4b9e52` と commit / version の対応／バンドル再生成の実施そのもの。いずれも本記録では決定・補完しない |
+
+### 配布スナップショットと SOT の乖離 (本記録時点の Fact・`main` `cbc19c6`)
+
+- SOT の `semantic.travel.json` の leaf token (`$value` を持つ行) は **77 件**、`primitive.travel.json` は **97 件** (実測)。[baseline-assessment.md](../services/travel/design-system/baseline-assessment.md) が 2026-07-16 時点で記録した「semantic 63 件・primitive 97 件」に対し、**semantic のみ +14 件**、primitive は増減なし。依頼元が観測したスナップショット (semantic 63 トークン構成) はこの 2026-07-16 時点の構成と一致する。
+- 未収録の semantic **14 件**の確定リスト (トークン名・`$value`・`$status`・追加 Task。`semantic.travel.json` の実測と一致)。
+
+| # | トークン | `$value` | `$status` | 追加 Task |
+| --- | --- | --- | --- | --- |
+| 1 | `color.text.mutedStrong` | `{color.palette.gray.700}` | bound | Task 009-33 |
+| 2 | `color.text.onAccent` | `{color.palette.white}` | bound | Task 009-34 |
+| 3 | `color.text.inverseMuted` | `{color.palette.gray.600}` | bound | Task 009-34 |
+| 4 | `radius.badge` | `{radius.sm}` | **placeholder** | Task 009-34 |
+| 5 | `font.heading.weight` | `{typography.fontWeight.bold}` | bound | Task 009-35 |
+| 6 | `font.heading.lineHeight` | `{typography.lineHeight.tight}` | bound | Task 009-35 |
+| 7 | `font.heading.h1Size` | `{typography.size.4xl}` | bound | Task 009-35 |
+| 8 | `font.heading.h3Size` | `{typography.size.2xl}` | bound | Task 009-35 |
+| 9 | `font.heading.h4Size` | `{typography.size.xl}` | bound | Task 009-35 |
+| 10 | `font.heading.h5Size` | `{typography.size.lg}` | bound | Task 009-35 |
+| 11 | `font.heading.h6Size` | `{typography.size.md}` | bound | Task 009-35 |
+| 12 | `color.text.linkHover` | `{color.scheme.main.hover}` | bound | Task 009-35 |
+| 13 | `color.text.linkActive` | `{color.scheme.main.pressed}` | bound | Task 009-35 |
+| 14 | `color.text.placeholder` | `{color.palette.gray.700}` | bound | Task 009-35 |
+
+- 依頼書が挙げた 4 件 (`color.text.mutedStrong` / `color.text.onAccent` / `color.text.linkHover` / `radius.badge`) は上記 14 件の部分集合である。依頼書の表に無い 10 件も同じく未収録である。
+- 配布スナップショット ID `fe4b9e52` は本 Repository の Git object として解決できない (`git cat-file -t fe4b9e52` = `Not a valid object name`)。スナップショットがどの commit / version に対応するかを本 Repository 内で確認する方法は現時点で存在しない。この点が ⓑ の版の対応付け方法を決める背景である。
+- `radius.badge` は `$status: placeholder` である (14 件中唯一)。[design.md](../services/travel/design-system/design.md) §9 (Agent Prompt Guide) 手順 3 は placeholder トークンについて「`$note` を確認し、生成物にも『🚧 暫定』を伝播させる」と定める。配布に含める場合この規則が及ぶ (`radius.badge` の `placeholder` → `bound` 昇格は本記録では行わない)。
+
+**Does Not Decide / Does Not Authorize**: 本記録はバンドルの再生成そのものを実施せず、生成器・生成手順・更新契機の運用手順を確定しない。成果物側の暫定 materialize の削除を行わない。token の値・参照先・`$status`・`$meta.version`・正式 Status を変更しない。`radius.badge` の `placeholder` → `bound` 昇格を行わない。`$meta.version` の付与規則 (version bump の条件) を確定しない。配布スナップショット `fe4b9e52` と commit / version の対応を認定しない。Design System の候補採否・改定要否・改訂着手・設計承認を決定・承認しない。GitHub の approval・merge を判断と同一視しない。rental-car / inbound の成果物へ適用しない。本記録に関する Wiki 記載があっても、本判断の正本は本 §12 である (Wiki は非正本)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -257,3 +306,4 @@
 | 2026-07-27 | Task 009-27R: §10 Travel アイコン体系 (Font Awesome 6) の現在判断記録を §1〜§9 と分離して追加。Web部責任者の 2026-07-27 時点の現在判断 (ⓐ標準 = FA6／ⓑ新規制作は原則 FA6 統一・導入方式は含めない／ⓒ既存 Material は改修時に置換・一括改修や順序/期限/完了条件は含めない／ⓓReviewStars は FA6 `star` 維持・style/weight/package/実装方式/実寸は決めない／ⓔ`icon.reviewSize` の `$value = {iconSize.sm}`・`$status = bound` を維持・実測確認ではない) を **travel 限定**の適用範囲で記録。あわせて §1 値論点表の Q8 (アイコン体系) 行に、3DS 横断統一は未決のまま維持しつつ travel のみ現在判断を取得済みである旨と §10 への参照を追記 (Q8 の削除・「FA6 で解決済み」への置換はしない)。`TVL-0006` の ADR 正本・過去の判断主体・判断日・historical provenance は未確認のまま (009-19 provenance トラックに残る)。§1 の他 Q・§2〜§9・設計承認ログ (§5) は不変。恒久 Decision ID・ADR・正式 Status 体系は採番・作成・新設せず。travel の token・値・`$status`・description・note・Component 仕様、rental-car / inbound の成果物は変更していない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
 | 2026-07-27 | Task 009-27R の記述是正: PR [#105](https://github.com/tocoo/coocom-design-system/pull/105) コードレビュー (issuecomment-5087572255) の指摘に対応し、§10「本記録工程の影響度」行を是正。影響度・高 の取得根拠として記載していた `Task 009-20` は Repository・GitHub Issue のいずれにも存在せず検証できないため、影響度・高 の断定を撤回し **未取得** (本記録工程について影響度を明示的に判定・記録した直接証拠は Repository 内に存在しない) へ変更。あわせて、判定主体 = Web部責任者の都度判断 ([review-approval-rules.md](review-approval-rules.md) §8)、必要レビュー主体 = 影響度判定前は未確定 (同 §10。高 = Web部責任者＋チーフデザイナー／低 = Web部レビュー担当者)、高／低の一般的な明文判定基準は未整備で推測・補完しない (同 §8・§21)、[../services/travel/design-system/alignment-blocking-facts-resolution-plan.md](../services/travel/design-system/alignment-blocking-facts-resolution-plan.md) §8L.1 の影響度・低 は R-D 整理工程 (Task 009-19) についての記録であり同 §8L.1・§8L.6 により本記録工程へ適用しない、影響度が明示 (判定・記録) されていない変更をレビュー済み・反映可能として扱わない (同規則 §8) を明記。**是正対象は §10 の当該 1 行のみ**。§10 の他行 (現在判断 ⓐ〜ⓔ・適用範囲 = travel 限定・§1 Q8 との関係・historical provenance 未確認・根拠・Does Not Decide)・§1 Q8 行・§2〜§9・設計承認ログ (§5) は不変。travel の token・値・`$status`・description・note・Component 仕様、rental-car / inbound の成果物は変更していない。恒久 Decision ID・ADR・正式 Status 体系は採番・作成・新設せず。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
 | 2026-07-28 | Task 009-28R: §11 Travel Modal 実装基盤 (drawer) の現在判断記録を §1〜§10 と分離して追加。Web部責任者の **2026-07-27 時点**の現在判断 (ⓐ最終到達方針 = drawer へ統一を維持・即時廃止／一括置換ではない／ⓑ新規は原則 drawer・第3の実装基盤を導入しない・ライブラリ／モジュール／実装方式／DOM 構造は決めない／ⓒ既存 centered dialog は deprecated だが移行期間中の併存を認め改修時に置換要否を確認・一括改修／洗い出し／即時廃止／使用禁止／順序・期限・完了条件は含めない／ⓓ「centered dialog」は非 drawer 型 Modal を指す概念上の呼称であり `M-02`・`_modal_prime` 等の実装実体との対応を認定しない／ⓔ移行対象・順序・期限・完了条件・ロードマップは未決で決定には外部実装 Repository の実査が先行／ⓕ`elevation.overlay`・`elevation.modal` の `bound`・`motion.transition.*` の `placeholder`・follow-up #3／`TVL-0008` との関係および具体挙動は不変) を **travel 限定**の適用範囲で記録。あわせて §1 値論点表の Q9 (モーダル実装基盤) 行に、3DS 横断統一は未決のまま維持しつつ travel のみ現在判断を取得済みである旨と §11 への参照を追記 (Q9 の削除・「drawer で解決済み」への置換はしない)。**判断日 (2026-07-27) と本 Repository 反映日 (2026-07-28) は別の事象として区別**している。本記録工程の影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-07-28、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。`TVL-0007` の ADR 正本・過去の判断主体・判断日・historical provenance・過去の移行ロードマップは未確認のまま (009-19 provenance トラックに残る)。§1 の他 Q・§2〜§10・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。travel の token・値・`$status`・description・note・Component の実装要件・version、rental-car / inbound の成果物、[../services/travel/design-system/alignment-blocking-facts-resolution-plan.md](../services/travel/design-system/alignment-blocking-facts-resolution-plan.md) §8L の R-D 分類は変更していない。同一 Task で `design.md` §7・`components.md` Modal / Overlay の `TVL-0007` 参照・委任表現を補正しているが、Modal の現行仕様そのものは変更していない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
+| 2026-08-03 | Task 009-37: §12 Travel 配布物 (バンドル・スナップショット) の生成・管理責務と版の対応付けの現在判断記録を §1〜§11 と分離して追加。依頼元 (ウルトラトクー市 一覧ページ 画面設計・2026-08-03 起票) の依頼 A「バインド DS スナップショットの同期」に対応し、Web部責任者の **2026-08-03 時点**の現在判断 (ⓐ生成・管理責務 = 実装リポジトリ側 `tocoo/tocoo_travel`・生成器/生成手順/更新契機の運用手順は含めない／ⓑ版の対応付け = SOT の `$meta.version` 基準・`$meta.version` の付与規則自体は README §13/§16 の未決 Open Issue で確定しない) を **travel 限定**の適用範囲で記録。あわせて SOT と配布スナップショットの乖離 14 件の確定リスト (semantic のみ +14・primitive 増減なし・`semantic.travel.json` 実測と一致・うち `radius.badge` のみ placeholder)、依頼書の 4 件は 14 件の部分集合であること、配布スナップショット ID `fe4b9e52` が本 Repository の Git object として解決できないこと (`git cat-file -t` = Not a valid object name)、placeholder を配布に含める場合 design.md §9 手順 3 の「🚧 暫定」伝播が及ぶことを Fact として記録。**判断日 (2026-08-03) と本 Repository 反映日 (2026-08-03) は同日だが別の事象として区別**。本記録工程の影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。§1〜§11・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。バンドルの再生成・成果物側の暫定 materialize 削除は本 Repository では行わない (実装リポジトリ側)。travel の token・値・`$status`・`$note`・`$meta.version`・version、rental-car / inbound の成果物は変更していない。`radius.badge` の placeholder → bound 昇格は行っていない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |

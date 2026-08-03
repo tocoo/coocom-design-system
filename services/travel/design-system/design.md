@@ -48,6 +48,7 @@
 | `color.accent.campaign` | scheme.main.accent (副色=sub.accent) | `#E4572E` / `#E0553C` | bound (TVL-0011・per-scheme・正式採用時共通化) |
 | `color.focus.ring` | brand.primary | `#2C50C8` | bound (白背景 ≈6.8:1) |
 | `color.icon.rating` | scheme.main.inverse (副色=sub.inverse) | `#C8912C` / `#C8B12C` | bound (TVL-0011・評価色=各パレット逆色) |
+| `color.overlay.backdrop` (Modal backdrop) | palette.blackAlpha.45 | `rgba(0,0,0,0.45)` | 🚧 placeholder (Modal / Overlay の backdrop・form 3形態共通・§7。暫定値=実装バンドル観測値を暫定参照・実査待ち) |
 
 - [事実] 品質基準: WCAG 2.2 AA を最低ラインとし DS には違反値を入れない (要求仕様 R9)。本文 #424242 ≈9.7:1・主色 royal #2C50C8 ≈6.8:1・副色 indigo #4845D4 ≈6.8:1 いずれも AA 適合 (AAA 7:1 は未達)
 - [事実] テキスト色は 4 段構成 (`strong` #212121 / `body` #424242 / `mutedStrong` #616161 / `muted` #9e9e9e)。判読性を必要とする補助情報 — 補助価格・税/人数/泊数等の価格条件注記・割引前価格・購買判断や内容理解に必要な補足条件 — は `color.text.mutedStrong` (白背景 ≈6.2:1) を使用する。`color.text.muted` (白背景 ≈2.7:1) は通常テキストに求められる 4.5:1 に達しないため、判読性を要する情報には用いない。本書は適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない (適用規格・達成レベルは未確定)
@@ -223,10 +224,11 @@ Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのも�
 
 ## 5. 角丸・シャドウ
 
-- 角丸: `radius.sm 4 / md 8 / lg 16 / full 9999px` (bound)。用途トークンは 3 系統
+- 角丸: `radius.sm 4 / md 8 / lg 16 / full 9999px` (bound)。用途トークンは 4 系統 (action / card / badge / overlay)
   - `radius.action` = full (pill) — ボタン・CTA・入力要素・チップ型操作要素。宿泊のサービスシグネチャ
   - `radius.card` = 暫定 md (8px) — カード外形。🚧 実px未取得
   - `radius.badge` = 暫定 sm (4px) — **非操作**のバッジ・ラベル (割引率ラベル・状態バッジ・カテゴリラベル・短い補助ラベル)。🚧 実px未取得
+  - `radius.overlay` = 暫定 lg (16px) — オーバーレイの角丸 (Modal の表示形態 form = sheet の上端2隅等・§7)。🚧 実px未取得 (依頼元固有値は未実査)
 - [決定] 割引率ラベル・状態バッジへ `radius.action` (pill) を使用しない。pill 形状はボタン・操作要素のシグネチャであり、非操作のラベルに用いると操作要素と誤認される。**バッジが操作可能な場合は badge ではなく action 系 Component として扱う** (その場合の角丸は `radius.action`)
 - [事実] `radius.badge` の参照先 sm (4px) は既存 primitive radius scale からの暫定選定であり、新しい数値は追加していない。選定根拠は ①`radius.action` (pill) との形状差別化 ②`radius.card` (暫定 md) との階層差 ③寸法の小さいラベルでも形状が安定する。実確定は `radius.card` と同じ実査待ち区分
 - シャドウ: 実値未抽出 🚧 (follow-up #13。暫定3段で据置き = TVL-0008)
@@ -248,6 +250,28 @@ Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのも�
 - PriceTag は背景文脈を**明示的に選択する軸 (tone)** を持ち、`default` (明色面) と `inverse` (inverse 面) の 2 値を定義する。inverse 面では主要価格 `color.text.inverse`・補助価格/価格条件注記/割引前価格 `color.text.inverseMuted` を使用する (対応関係の正は `components.md`)。背景色を検知して自動反転する仕様・コンポーネント内部の固定色だけで複数背景へ対応する仕様は採らない。**tone は variant 語彙 (GOV-0002) とは別軸であり、variant 語彙への追加ではない**。実装 API 名 (prop 名) は未確定 ❓
 - モーダルは **最終的に drawer へ全面統一**。centered dialog は deprecated・段階移行 (移行期間中は併存)。現在の方針根拠は `governance/owner-decisions.md` §11 (2026-07-27, Web部責任者の現在判断・**travel 限定**)。3DS 横断の Modal 実装基盤 (同 §1 Q9) は**未決**。`TVL-0007` は ADR 正本が Repository 内に不在で historical provenance 未確認のため、現在の仕様根拠として参照しない (R-D provenance トラック)
 - 未着手: Select / Tabs / Toast / Table / Accordion / Pagination / Badge (単体) / Stepper / Empty state (実体皆無)。Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理 (Task 009-39・受理と分類のみ・仕様定義は別 Task。正は `components.md` 共通事項)。新規 Component 定義工程への着手は Web部責任者判断 2026-08-03 で可 (`governance/owner-decisions.md` §15。依頼 D の新規 Component は Work Order 6 の 12 候補とは別)
+
+### 7.1 Modal の表示形態 (form)
+
+依頼元 (2026-08-03・依頼 D-6) に対応し、Modal に**表示形態 (form) 軸**を定義する。form は `drawer` (既定) / `sheet` / `popover` の 3 値をとる。
+
+- [決定] **実装基盤は drawer 単一を維持し、第3の Modal 実装基盤を導入しない** (`governance/owner-decisions.md` §11 判断ⓑ)。`popover` が §11 判断ⓑ の「第3の Modal 実装基盤」に当たるかは、Web部責任者判断 2026-08-03 で「**当たらない (drawer / sheet と overlay の z 軸・backdrop・dismiss を共有する同一基盤上の表示形態である)**」と確定した (`governance/owner-decisions.md` §17)。`popover` の配置方式 (基準要素への相対配置) が drawer / sheet と異なることは、実装基盤の相違としない
+- [決定] form は variant 語彙 (GOV-0002 の 5 語) とは**別軸**であり語彙への追加ではない (PriceTag の `tone` と同じ扱い)
+- [決定] **配置規則**:
+  - `drawer` (既定): 既存記述 (§7・`components.md`) を変更しない
+  - `sheet`: 画面下端に貼り付き・全幅・上端 2 隅のみ角丸 (`radius.overlay` = 暫定 lg 16px)
+  - `popover`: 基準要素 (トリガー) を起点に配置し、下方に余地がなければ上方向へ反転する。**基準要素を必要とする** (drawer / sheet は不要)
+- [決定] **切替規則**: `{breakpoint.lg}` (1024px) 未満は `sheet`、以上は `popover` を用いる。`drawer` は form の既定であり本切替規則の対象ではない (用途に応じて明示選択する)
+- [決定] backdrop (`color.overlay.backdrop` = 暫定 rgba(0,0,0,0.45)) は 3 形態すべてで使用する。z 軸は既存 `elevation.overlay` / `elevation.modal` を用いる。**開閉遷移 (`motion.transition.*`) と影 (`shadow.*`) は既存 placeholder を参照するのみ**で値・`$status` を変更しない
+- [決定] 実装 API 名 (prop 名) は未確定 ❓ (form の値・`popover` の基準要素指定の prop 名を含む)。form は明示的に選択する軸であり、背景・文脈を検知して自動で形態を切り替える仕様は採らない
+
+**本節で定義しない事項** (form 軸に付随して受領したが本 Task で定義せず理由を記録する):
+
+- a11y の `role` / `aria-modal` / フォーカストラップ / 復帰先・背面スクロールロック・閉じる操作の実装方式 — [alignment-blocking-facts-resolution-plan.md](alignment-blocking-facts-resolution-plan.md) §8K が HTML・ARIA / name・role・state / focus 順序を UI・Implementation 下流課題に分類済み。DS 層で決定しない
+- 最小タップ領域 (44px) の spacing トークン — ①§8K が target size・タップ領域を下流課題に分類済み ②44px は WCAG 2.2 の 2.5.5 Target Size (Enhanced) 相当で、§2 が最低ラインとする AA (2.5.8 Target Size (Minimum) = 24×24 CSS px) からは導けない ③`spacing` に step 11 (44px) が存在しない (step は 0/1/2/3/4/5/6/8/10/12/16 = 0/4/8/12/16/20/24/32/40/48/64px)。以上より**トークンを追加せず、未確定事項として残す**
+- `sheet` の最大高・`popover` の幅段階 — 依頼元の画面固有実装値 (85% / 420px / 680px) であり本 Repository で実査していない。未確定として残す
+- ADR (TVL-NNNN) の発行 — ADR / Decision ID の採番規則・正本体系が Repository 内に未整備 ([../../../governance/README.md](../../../governance/README.md))。恒久 ID を推測で採番しない
+- `_adherence.oxlintrc.json` / `components/overlay/Modal.jsx` の変更 — 本 Repository のトラッキング対象外 (実装 Repository `tocoo/tocoo_travel` 側の別作業)
 
 ## 8. ブランド・クリエイティブガイド
 
@@ -359,6 +383,9 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | — | 画像を面 (背景) とする場合の文字色とコントラスト確保の方法 (scrim の要否・実現方式・評価方法) | ❓ 未定義 (依頼元 2026-08-03・依頼 E-1)。§2.1 の検証表は**単色面のみ**を対象とし (`scrim` / `グラデーション` / `gradient` は travel 配下 0 件)、画像・グラデーションを面とする場合のコントラスト評価方法が正本上未定義。依頼元の暫定実装 (`color-mix` による scrim) を DS 規則として追認しない |
 | — | 会員限定で情報 (料金等) をマスクする表現の構成 (アイコン・文言・CTA の配置) | ❓ 未定義 (依頼元 2026-08-03・依頼 E-2。`会員限定` / `マスク` は travel 配下 0 件)。マスク表現の視覚構成は DS/UI に関わるが、会員限定の業務条件・料金非公開の業務ルールは上流 (Service Design / Screen Requirements) の未定義業務仕様に依存する (`../service-design/screen-matrix.md` §2 = 正式な画面一覧・業務仕様未定義)。DS 層で先行して構成を確定しない。`semantic.travel.json` `$meta.notes` の「会員ランク色は構築しない (破棄済)」とは別論点 |
 | — | 価格の単位表記 (1 名あたり・合計人数で割った旨等) の文言規則 | ❓ 未定義 (依頼元 2026-08-03・依頼 E-4)。§8.1 は割引率の表記規則のみを定義し**単位表記は対象外**。上流 `../service-design/content-principles.md` §10 が価格・税・手数料等の表示基準を未決として保持。管理正本は独立文書 (`brand-content.md` 等) を新設する方向を確定 (Web部責任者判断 2026-08-03・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §16) |
+| — | Modal の表示形態 (form = sheet / popover) の a11y (`role` / `aria-modal` / フォーカストラップ / 復帰先・背面スクロールロック・閉じる操作の実装方式) | ❓ 未定義 (依頼 D-6・§7.1)。[alignment-blocking-facts-resolution-plan.md](alignment-blocking-facts-resolution-plan.md) §8K が HTML・ARIA / name・role・state / focus 順序を UI・Implementation 下流課題に分類済み。DS 層で決定しない |
+| — | Modal の form 切替・タップ操作の最小タップ領域 (44px) の spacing トークン | ❓ 未追加 (依頼 D-6・§7.1)。§8K が target size を下流課題に分類済み・44px は WCAG 2.2 の 2.5.5 (Enhanced) 相当で §2 の AA 最低ライン (2.5.8 = 24×24 CSS px) から導けない・`spacing` に step 11 (44px) が不在。トークンを追加せず Owner判断事項として残す |
+| — | Modal の form = sheet の最大高・form = popover の幅段階 | ❓ 未確定 (依頼 D-6・§7.1)。依頼元の画面固有実装値 (85% / 420px / 680px) であり本 Repository で実査していない |
 
 ---
 
@@ -377,3 +404,4 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | 2026-08-03 | Task 009-41: 依頼元 (2026-08-03) の依頼 F「placeholder の解決」に対応。§5 に、placeholder (`radius.card`・`radius.badge`・`shadow.*`・`motion.*`) の確認方法・個別確認主体が Web部責任者判断 2026-08-03 で定義済み (確認方法 = 依頼元提出値の受領・確認主体 = 作業担当者照合 + Web部責任者確認・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §14) であること、実査 (提出値の受領) は未実施のため placeholder を維持すること、placeholder 11 件 (semantic 4・primitive 7) の確定リストと追跡先区分 (`follow-up #13` = shadow / `follow-up #3` = motion / follow-up 番号なし = radius.card・radius.badge) は owner-decisions.md §14 にあることを [事実] として 1 行追加した。未確定事項の一覧の `follow-up #2` 文字色確定の §14 該当性の行を、同 §14 が求める確認方法・個別確認主体が owner-decisions.md §14 で定義済みになった旨へ更新した (該当性の判定自体は引き続き本書で行わない)。**不変**: §5 の角丸/シャドウの token・値・`$status`・暫定値、§1〜§4・§6〜§9 の他記述、既存 token の値・参照先・`$status`・`$note`・`$meta.version`・version、primitive の色値、Component の実装要件、rental-car / inbound の成果物。placeholder の bound 昇格・暫定値の確定・実査の実施は行っていない。影響度 = **低** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部レビュー担当者)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-08-03 | Task 009-39: 依頼元 (2026-08-03) の依頼 D「Component の不足」に対応 (受理と分類のみ)。§7 コアコンポーネントの未着手一覧に Pagination / Badge (単体) / Stepper / Empty state を追加し (依頼 D で受理・仕様定義は別 Task・正は `components.md` 共通事項)、新規 Component 定義工程への着手が Web部責任者判断 2026-08-03 で可 (`governance/owner-decisions.md` §15・Work Order 6 の 12 候補とは別) である旨を併記した。**不変**: §7 の他記述 (定義済み Component・実装は Semantic のみ参照・状態リスト・Button variant 語彙・PriceTag tone・Modal)、§1〜§6・§8〜§9・未確定事項の一覧、既存 token の値・参照先・`$status`・`$meta.version`・version、primitive の色値、rental-car / inbound の成果物。**新設していないもの**: Component 仕様・variant 語彙・状態固定リスト・新規 primitive/semantic トークン。D-8 (横並び結果カード) は components.md Card の未確定事項へ 1 件追加した (本書では追加しない)。影響度 = **低** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部レビュー担当者)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-08-03 | Task 009-40: 依頼元 (2026-08-03) の依頼 E「規定の不足」に対応 (受理と分類)。**未確定事項の一覧に 3 件追加**した — E-1 (画像を面とする場合の文字色とコントラスト確保の方法・scrim の要否/実現方式/評価方法。§2.1 の検証表は単色面のみ対象で `scrim`/`グラデーション`/`gradient` は travel 配下 0 件)・E-2 (会員限定で情報をマスクする表現の構成。`会員限定`/`マスク` は 0 件・マスクの視覚構成は DS/UI だが会員限定の業務条件・料金非公開の業務ルールは上流の未定義業務仕様に依存し DS で先行確定しない)・E-4 の (iii) 価格の単位表記 (1 名あたり等) の文言規則 (§8.1 は割引率のみ定義し単位表記は対象外・上流 content-principles.md §10 未決)。**§2.1** の検証表前文に本表が単色面のみを対象とし画像・グラデーション面は対象外で未定義である旨 (E-1) を補記。**§8.1** 末尾の Owner判断事項 (管理正本を §8 に置くか独立文書を新設するか) を、独立文書 (brand-content.md 等) を新設する方向を確定 (Q11・作成/中身/管理責務は別 Task・推測で新規正本を作成しない) へ改め、対応する未確定事項の行も方向確定へ更新。E-3 (施設名の省略規則) は §8J の UI・Implementation 下流課題分類を維持し DS 層で定めないこと、E-5 (繰り返し内 CTA) の Button Do の撤回はいずれも Owner 判断として governance/owner-decisions.md §16 に記録 (E-5 の components.md 反映は同 Task の components.md 変更履歴)。**不変**: §1〜§7・§9、既存 token の値・参照先・`$status`・`$meta.version`・version、primitive の色値、Component の実装要件、rental-car / inbound の成果物。**行っていないもの**: brand-content.md の新規作成・§8J 分類の変更・依頼元暫定実装の追認・新規 primitive/semantic トークン。影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-08-03 | Task 009-36: 依頼元の依頼 D-6「ボトムシート / アンカー付きポップオーバーの定義追加」に対応。**§7.1「Modal の表示形態 (form)」を新設**し、form 軸 = drawer (既定) / sheet / popover の 3 値を定義 (実装基盤は drawer 単一を維持・第3の Modal 実装基盤を導入しない・popover は同一基盤上の表示形態で第3基盤に当たらない = governance/owner-decisions.md §17・form は variant 語彙とは別軸)、配置規則 (sheet = 下端貼付き全幅・上端2隅角丸 `radius.overlay` / popover = 基準要素起点で下方余地なしなら上反転・基準要素が必要 / drawer = 不変)、切替規則 (`{breakpoint.lg}` 1024px 未満 = sheet・以上 = popover)、backdrop (`color.overlay.backdrop`) を 3 形態共通で使用・遷移 (`motion.transition.*`) と影 (`shadow.*`) は既存 placeholder を参照するのみ、実装 API 名は未確定、および本節で定義しない事項 5 件 (a11y = §8K 下流課題 / 最小タップ領域 44px の spacing トークンは追加せず = §8K + WCAG AA 24px + spacing step11 不在 / sheet 最大高・popover 幅段階 = 依頼元固有値・未実査 / ADR 未発行 / oxlintrc・Modal.jsx はトラッキング対象外) を記載。**§5** の角丸を 3→4 系統へ (`radius.overlay` 追加)。**§2 表**に `color.overlay.backdrop` 行を追加。**未確定事項の一覧**に 3 件追加 (form の a11y・最小タップ領域 44px の spacing トークン・sheet 最大高/popover 幅段階)。**不変**: §1〜§4・§6・§8〜§9 の他記述、§7 の既存 Modal 記述 (drawer 統一・centered dialog deprecated・移行未決)、既存 token の値・参照先・`$status`・`$meta.version`・version、`shadow.*` / `motion.transition.*` の placeholder、rental-car / inbound の成果物。**追加した token**: semantic `radius.overlay` (`{radius.lg}` 参照・placeholder)・`color.overlay.backdrop` (primitive `blackAlpha.45` 参照・placeholder)、primitive `color.palette.blackAlpha.45` (`rgba(0,0,0,0.45)`・placeholder・暫定値)。追加した semantic トークンの参照はすべて既存 primitive で解決 (未解決 0・循環 0)。影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |

@@ -485,7 +485,7 @@
 
 | 項目 | 内容 |
 | --- | --- |
-| 判断対象 | travel の `Card.slot.badge` の白文字非準拠運用 — (i) 割引率ラベル `#C8912C` 面 / 白文字 14px、(ii) 12px 小サイズラベル (会員限定・カテゴリ) campaign accent 面 / 白文字。依頼元 (2026-08-04 起票) の依頼B + 判断点2/4 (Task 009-44・Issue [#129](https://github.com/tocoo/coocom-design-system/issues/129))。対象記述 = [../services/travel/design-system/components.md](../services/travel/design-system/components.md) `Card.slot.badge`・[../services/travel/design-system/design.md](../services/travel/design-system/design.md) §2.1 検証表・§8.1・本 §13 |
+| 判断対象 | travel の `Card.slot.badge` の白文字非準拠運用 — (i) 割引率ラベル `#C8912C` 面 / 白文字 14px、(ii) 12px 小サイズラベル (会員限定・カテゴリ) campaign accent 面 / 白文字。依頼元 (2026-08-04 起票) の依頼B + 判断点2/4 (Task 009-44・Issue [#129](https://github.com/tocoo/coocom-design-system/issues/129))。対象記述 = [../services/travel/design-system/components.md](../services/travel/design-system/components.md) `Card.slot.badge`・[../services/travel/design-system/design.md](../services/travel/design-system/design.md) §2.1 検証表・本 §13 (§8.1 は同じ割引率ラベルの**表記規則**であり面色は扱わないため対象外) |
 | 判断日 | 2026-08-04 |
 | 判断主体 | Web部責任者 |
 | 判断の種別 | **現在判断** (2026-08-04 時点) |
@@ -495,7 +495,7 @@
 | 取得した判断 ⓓ b2 (accent 淡色段) の扱い | 本 §13 の b2 (小サイズバッジ向けに accent 淡色面 = 淡色面 + 濃色文字 を新設する方向・実色値未取得) を**維持し保留する**。取得までの 12px ラベルの暫定は §13 の既定 (neutral dark 面 `color.surface.inverse` + `color.text.inverse`) を維持する。b2 (淡色面の追加) と ⓑ (白文字非準拠の例外許容) は同一問題への別経路として併存し、b2 は実色値取得まで保留する |
 | 適用範囲 | **国内宿泊 (travel) に限定**。rental-car・inbound・3DS 横断へは自動適用しない |
 | 本記録工程の影響度 | **低** (判定者 = Web部責任者、判定日 = 2026-08-04、本件について明示取得)。→ 必要レビュー主体 = [review-approval-rules.md](review-approval-rules.md) §10 の影響度・低の既定である **Web部レビュー担当者**。判定理由 (Web部責任者): 本記録工程は現在判断の記録と design.md 未確定事項の一覧・components.md `Card.slot.badge` 未確定事項の更新のみで、§2.1・components.md の面色・コントラスト規則 (白文字禁止・(i)(ii) 代替・逆色面 `color.text.strong` 固定) を実緩和せず、token の値・`$status`・`$meta.version` を変更しない (例外の実規則化・b2 の実追加は別 Task)。高／低の一般的な明文判定基準は未整備であり推測・補完しない (同 §8・§21)。同 §8 の編集的訂正 carve-out は文の追加を含むため本工程に適用しない |
-| 根拠 | 依頼元の依頼B + 判断点2/4 (2026-08-04)、Task 009-44 の Issue [#129](https://github.com/tocoo/coocom-design-system/issues/129)、[../services/travel/design-system/components.md](../services/travel/design-system/components.md) `Card.slot.badge`、design.md §2.1 検証表 (main 5.78:1 / sub 7.50:1・白文字 2.78:1 / 2.15:1・accent 3.68:1・surface.inverse 16.10:1)・§8.1、本 §13 (バッジ面色・c1・b2)、[review-approval-rules.md](review-approval-rules.md) §8・§9・§10・§20、本記録の PR |
+| 根拠 | 依頼元の依頼B + 判断点2/4 (2026-08-04)、Task 009-44 の Issue [#129](https://github.com/tocoo/coocom-design-system/issues/129)、[../services/travel/design-system/components.md](../services/travel/design-system/components.md) `Card.slot.badge`、design.md §2.1 検証表 (main 5.78:1 / sub 7.50:1・白文字 2.78:1 / 2.15:1・accent 3.68:1・surface.inverse 16.10:1)、本 §13 (バッジ面色・c1・b2)、[review-approval-rules.md](review-approval-rules.md) §8・§9・§10・§20、本記録の PR |
 | 判断により確定した事項 | travel について ⓐ (白文字非準拠 (i)(ii) の存在と現行規則不適合を認識・記録) ⓑ (例外許容の方向・限定条件 = 非操作の点的ラベル + campaign accent/逆色面・サイズ/ウェイト不問・AA 未達明示・実規則化は別 Task・現行規則は維持) ⓒ (白文字成立面は `surface.inverse` の 1 面のみ) ⓓ (b2 保留・12px 暫定は §13 の既定を維持) を 2026-08-04 時点の現在判断として記録したこと |
 | 判断後も未決・未確認の事項 | 例外条項の実規則化 (§2.1・components.md・別 Task・§9・§20 設計承認先行)／b2 の accent 淡色段の実色値・淡色面の実追加 (§13)／実装側の是正 / 非是正の範囲・時期 (実装 Repository 側の判断)／例外許容 (ⓑ) と b2 (ⓓ) のいずれを最終的な解決とするか。いずれも本記録では決定・補完しない |
 

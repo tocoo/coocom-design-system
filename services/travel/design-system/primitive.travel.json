@@ -7,7 +7,7 @@
     "serviceLabel": "国内宿泊予約 (tocoo/tocoo_travel)",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "GitHub tocoo/coocom-design-system travel/primitive.travel.json 0.2.0-draft (Source of Truth)。設計判断 TVL-0001〜0004 を反映",
+    "basedOn": "GitHub tocoo/coocom-design-system travel/primitive.travel.json 0.2.0-draft (Source of Truth)。設計判断 TVL-0001〜0004 を反映。Task 009-36 で `color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を Modal / Overlay の backdrop (semantic `color.overlay.backdrop`) を支える暫定色として追加 (依頼元が実装バンドルで観測した値を暫定参照・本 Repository の Fact ではない・実査待ち = owner-decisions.md §14)。`$meta.version` は据置き",
     "sourceOfTruth": "https://github.com/tocoo/coocom-design-system/blob/main/services/travel/design-system/primitive.travel.json",
     "created": "2026-07-09",
     "rules": [
@@ -72,6 +72,9 @@
       },
       "coral": {
         "500": { "$value": "#e0553c", "$type": "color", "$description": "サブ(第2候補インディゴ)スキームの特集アクセント。guideline 候補I --th-accent (TVL-0011・per-scheme)", "$status": "bound" }
+      },
+      "blackAlpha": {
+        "45": { "$value": "rgba(0,0,0,0.45)", "$type": "color", "$description": "黒 45% アルファ。オーバーレイ backdrop (scrim) 用の暫定値", "$status": "placeholder", "$note": "Task 009-36 で追加。Modal / Overlay の backdrop (color.overlay.backdrop) を支える primitive。**暫定値**であり、依頼元が実装バンドルで観測した rgba(0,0,0,.45) を暫定参照する (本 Repository のトラッキング対象外であり Fact としては扱わない)。実確定は実査待ち (確認方法 = 依頼元提出値の受領・確認主体 = 作業担当者照合 + Web部責任者確認 = governance/owner-decisions.md §14)。placeholder → bound 昇格・値の確定は行わない" }
       }
     }
   },

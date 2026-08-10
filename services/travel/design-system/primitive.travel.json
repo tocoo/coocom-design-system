@@ -7,7 +7,7 @@
     "serviceLabel": "国内宿泊予約 (tocoo/tocoo_travel)",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "GitHub tocoo/coocom-design-system travel/primitive.travel.json 0.2.0-draft (Source of Truth)。設計判断 TVL-0001〜0004 を反映。Task 009-36 で `color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を Modal / Overlay の backdrop (semantic `color.overlay.backdrop`) を支える暫定色として追加 (依頼元が実装バンドルで観測した値を暫定参照・本 Repository の Fact ではない・実査待ち = owner-decisions.md §14)。`$meta.version` は据置き",
+    "basedOn": "GitHub tocoo/coocom-design-system travel/primitive.travel.json 0.2.0-draft (Source of Truth)。設計判断 TVL-0001〜0004 を反映。Task 009-36 で `color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を Modal / Overlay の backdrop (semantic `color.overlay.backdrop`) を支える暫定色として追加 (依頼元が実装バンドルで観測した値を暫定参照・本 Repository の Fact ではない・実査待ち = owner-decisions.md §14)。ラベル・タグ定義シート (画面設計 Owner 決定 2026-08-07・依頼書「ラベル・タグ定義 (travel)」§5/§9) の実装として accent の淡色段・濃色段を追加: `orange.100` (#f9cdbc・淡色段の面・Owner 選定 2026-08-07 で bound)、`orange.800` (#8a2e11・濃色段の文字・🚧 仮色 placeholder)、`coral.100` (#f8cbc2・🚧 仮色)、`coral.800` (#8a2c18・🚧 仮色)。淡色段以外の 3 値は実査待ちで placeholder とし、実色値確定まで暫定 (§14)。`$meta.version` は据置き",
     "sourceOfTruth": "https://github.com/tocoo/coocom-design-system/blob/main/services/travel/design-system/primitive.travel.json",
     "created": "2026-07-09",
     "rules": [
@@ -67,11 +67,15 @@
         "500": { "$value": "#d2405f", "$type": "color", "$description": "サブ(第2候補インディゴ)スキームの error。guideline 候補I --th-err (TVL-0011・per-scheme)", "$status": "bound" }
       },
       "orange": {
+        "100": { "$value": "#f9cdbc", "$type": "color", "$description": "メイン accent 淡色段 (小サイズラベルの面)。ラベル・タグ定義シート B 会員ロイヤリティ (b2) で必要となり追加。Owner 選定 2026-08-07 (t3・濃色段 #8a2e11 上 ≈5.8:1)", "$status": "bound", "$note": "淡色面 (小サイズ 12px ラベルの面) 用途。Owner 選定値 (画面設計 2026-08-07) を Web部責任者確認のうえ bound (§14 = 依頼元提出値の受領・作業担当者照合 + Web部責任者確認)。濃色段 (orange.800) は仮色のため、面上文字とのコントラストは実色値確定後に本 Repository で検証する" },
         "400": { "$value": "#e4572e", "$type": "color", "$description": "メイン(第1候補ロイヤル)スキームの特集アクセント。guideline 候補R --th-accent (TVL-0011・per-scheme)", "$status": "bound" },
-        "500": { "$value": "#ef4123", "$type": "color", "$description": "実サイト由来の特集橙 (事実値)。旧・共有 accent。per-scheme 化 (TVL-0011) で現在は未参照。正式採用時の共通化候補として保持", "$status": "bound" }
+        "500": { "$value": "#ef4123", "$type": "color", "$description": "実サイト由来の特集橙 (事実値)。旧・共有 accent。per-scheme 化 (TVL-0011) で現在は未参照。正式採用時の共通化候補として保持", "$status": "bound" },
+        "800": { "$value": "#8a2e11", "$type": "color", "$description": "🚧 仮色 メイン accent 濃色段 (淡色面 #f9cdbc 上の文字。≈5.8:1)。ラベル・タグ定義シート B (b2) で追加", "$status": "placeholder", "$note": "**仮色**。実色値は実査待ち (依頼書 §9・確認方法/確認主体 = governance/owner-decisions.md §14 = 依頼元提出値の受領・作業担当者照合 + Web部責任者確認)。実色値が入り次第この値を差し替えれば淡色面上の文字 (会員ロイヤリティ・accent 淡色面ラベル) が追随する。placeholder → bound 昇格・値の確定は本 Task では行わない" }
       },
       "coral": {
-        "500": { "$value": "#e0553c", "$type": "color", "$description": "サブ(第2候補インディゴ)スキームの特集アクセント。guideline 候補I --th-accent (TVL-0011・per-scheme)", "$status": "bound" }
+        "100": { "$value": "#f8cbc2", "$type": "color", "$description": "🚧 仮色 サブ(第2候補インディゴ)スキームの accent 淡色段 (メインの t3 #f9cdbc に揃えた段)。ラベル・タグ定義シート B で追加", "$status": "placeholder", "$note": "**仮色**。サブスキーム (coral) の淡色段は未選定 (メイン揃えの可否を含め実査待ち・依頼書 §9)。実色値確定まで暫定。placeholder → bound 昇格・値の確定は本 Task では行わない (§14)" },
+        "500": { "$value": "#e0553c", "$type": "color", "$description": "サブ(第2候補インディゴ)スキームの特集アクセント。guideline 候補I --th-accent (TVL-0011・per-scheme)", "$status": "bound" },
+        "800": { "$value": "#8a2c18", "$type": "color", "$description": "🚧 仮色 サブ(第2候補インディゴ)スキームの accent 濃色段 (淡色面上の文字・未実査)。ラベル・タグ定義シート B で追加", "$status": "placeholder", "$note": "**仮色**。サブスキーム (coral) の濃色段は未実査 (依頼書 §9)。実色値確定まで暫定。placeholder → bound 昇格・値の確定は本 Task では行わない (§14)" }
       },
       "blackAlpha": {
         "45": { "$value": "rgba(0,0,0,0.45)", "$type": "color", "$description": "黒 45% アルファ。オーバーレイ backdrop (scrim) 用の暫定値", "$status": "placeholder", "$note": "Task 009-36 で追加。Modal / Overlay の backdrop (color.overlay.backdrop) を支える primitive。**暫定値**であり、依頼元が実装バンドルで観測した rgba(0,0,0,.45) を暫定参照する (本 Repository のトラッキング対象外であり Fact としては扱わない)。実確定は実査待ち (確認方法 = 依頼元提出値の受領・確認主体 = 作業担当者照合 + Web部責任者確認 = governance/owner-decisions.md §14)。placeholder → bound 昇格・値の確定は行わない" }

@@ -578,6 +578,54 @@
 
 ---
 
+## 24. Travel ラベル・タグ定義 (A〜H) の実装 (設計承認・影響度・現在判断) の記録
+
+- 種別: 国内宿泊 (travel) のラベル・タグ定義シート (画面設計 Owner 決定 2026-08-07・一部 2026-08-10) を DS 正本 (SOT) へ実装することについて Web部責任者が示した現在判断・改訂着手の設計承認・影響度判定の記録。契機は依頼元 (ToCoo! 国内宿泊 画面設計「ラベル・タグ定義シート」・「DS 依頼書: ラベル・タグ定義 (travel)」2026-08-07 起票 / 2026-08-10 改訂) の依頼 (Task 009-48〜009-56・Issue [#140](https://github.com/tocoo/coocom-design-system/issues/140)〜[#148](https://github.com/tocoo/coocom-design-system/issues/148))。上記 §1〜§23 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§23 の各記録は変更しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。現在判断と過去の provenance を区別する。GitHub の approval・merge を判断・設計承認と同一視しない。依頼元 (画面設計) の決定は依頼元が観測・記録した事実として扱い、本記録 (Web部責任者の現在判断) をもって本 Repository の承認正本とする。仮色 (実色値未取得) は placeholder として bind し発明しない。**判断日 (2026-08-10) と本 Repository 反映日 (2026-08-10) は同日だが別の事象として区別する**。
+
+### 24-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ラベル・タグ定義シート (A〜H) の DS 正本 (SOT) への実装 = `design.md` (§2.1 白文字例外・検証表・§8.1 表記・F 予約条件・H 適用範囲)・`components.md` (`Card.slot.badge` の分岐・器・各ラベル)・`primitive.travel.json` / `semantic.travel.json` (accent 2 段・用途色・器・`radius.badge`) の改訂/新設 |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-08-10 |
+| 承認主体 | Web部責任者 |
+| 根拠 | 各件の方向は既に確定済み (A 白文字例外 = §20 / A 表記 = §21 / b2 = §13)、または画面設計 Owner 決定 (2026-08-07 / 08-10) で確定。依頼書は「既存の方向確定の実行・用途の追記・規則の明文化であり新しい色値もトークンも増やさない」とする (例外は accent 2 段で、うち淡色段 1 値のみ Owner 選定で確定・残 3 値は 🚧 仮色) |
+| 適用範囲 | **国内宿泊 (travel) に限定**。rental-car・inbound・3DS 横断へは自動適用しない |
+
+### 24-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-08-10・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者 および チーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定理由 (Web部責任者) | 本実装は承認済み §2.1・§8.1・`components.md` `Card.slot.badge` の規範規則を実改訂し (白文字例外の追加・表記の基本形変更・符号節撤回)、`design.md` に節 (F 予約条件・H 適用範囲) を新設し、primitive / semantic に新規トークンを追加する。設計内容・設計判断・token 値/定義に及ぶため §8 の編集的訂正 carve-out (字句のみ) の対象外。Task 009-45 (§21・表記) も高判定だった。高/低の一般的な明文判定基準は未整備であり推測・補完しない (同 §8・§21) |
+
+### 24-3. 取得した現在判断 (カテゴリ別)
+
+| カテゴリ | 取得した判断 (2026-08-10 時点の現在判断) |
+| --- | --- |
+| 器 (共通) | 全ラベルの共通器 = 高さ sm 20px / md 24px・左右余白 sm 8px / md 12px・行高 1 (上下中央・上下余白は指定しない)・角丸 `radius.badge` (4px)・面のあるラベル 700 / 中立タグ (D) 400。semantic に top-level `label.*` として追加 (既存 spacing / typography.size / fontWeight / radius への割当・新しい数値なし) |
+| A 割引率 | 逆色面 `#C8912C` + 白文字 (≈2.78:1・AA 未達) を**非操作の点的ラベルに限る例外**として実規則化 (§2.1・`Card.slot.badge`)。表記の基本形を `-NN%` → `NN%OFF` へ変更し、**数字を 1 段大きく表示** (§8.1・符号節 = マイナス付与規則を撤回・全角 `％`/`▲` 禁止維持・半角 `%`)。用途色 `color.label.discount`。実 px = 器・`radius.badge` = 4px |
+| B 会員 | 有料 (プライム) = accent 淡色面 `#F9CDBC` + 濃色文字 `#8A2E11` (🚧 仮色)。無料 = 主色 tint `#E8EDFB` + ink `#14224A`。`color.membership.paid` / `free`。primitive に accent 淡色段 (`orange.100` bound) / 濃色段 (`orange.800` 🚧) と `coral` 2 段 (🚧) を追加。「会員ランク色は構築しない (破棄済)」は階級表現に限る形で**差し戻し** (会員種別 2 値は別) |
+| C 特集 | **仮決定** (accent の帰属が B / C で未定) のため本バッチでは実装しない (据え置き・依頼書 §10)。用途色 `color.label.category` は追加しない |
+| D 施設属性 | 中立面 `surface.muted` `#F5F5F5` + 文字 `text.body`・400。色を持たせず器 1 つに統合。区分 (D1 施設種別 / D2 館内設備 / D3 利用条件) は順序で読ませる (D4 格付けは廃止)。`color.tag.neutral` |
+| E 在庫・状態 | E1 残室僅少 = `state.error` の文字を価格の直上に (面なし・白背景 ≈4.8:1・写真上に出さない)。`color.label.stock`。`state.error` の用途に「利用者に不利な事実の明示」を含める (F 規則 7 と共通・上流 CTP-010)。E2 販売終了 (非活性 CTA) は**方向のみ** (CTA に集約) で値は未確定 = 据え置き (依頼書 §10) |
+| F 予約条件 | 決済手段・返金可否・ポイント付与の表示規則 7 点を `design.md` に新設 (面なしテキスト行・文字色 4 役 = 得 `scheme.main.base` 暫定 / 損 `state.error` / 中立 `text.mutedStrong` / 操作 `text.link`・アイコン固定・並び固定・文言併記)。**色値もトークンも新設しない** (既存色の割当規則のみ)。メリット色は G-1 (現行 base) で暫定・リンクとの見分けは未解決 (依頼書 §10) |
+| G 写真枚数 | pill (`surface.inverse` + 白文字・`radius.action`) で既存トークンで成立するため **DS への token 追加なし** (依頼書 §10)。`components.md` に規則として明記 |
+| H 適用範囲 | クリエイティブへの DS 適用を **2 段** (適用 = トークンのみ / 適用外 = ガイドライン) に分け `design.md` に新設。カラーは厳守・品質下限 (AA・44px・代替テキスト・色だけで伝えない) は維持・**グラデーションは審査対象**。審査基準の策定と審査主体の設置は運用体制として DS 側に委ねられた新規論点 (Task 009-55) であり、基準・主体の実策定は本バッチに含めない |
+| 実査値 (§9) | accent 濃色段 (`orange.800` `#8A2E11`) は 🚧 仮色・実色値は実査待ち。サブスキーム `coral` 2 段 (`#f8cbc2` / `#8a2c18`) も 🚧 仮色。accent 淡色段 (`orange.100` `#F9CDBC`) は Owner 選定で bound。`radius.badge` は 4px で placeholder → bound 昇格 (§14 の確認方法・確認主体を満たす・値は変わらない) |
+
+### 24-4. §23 (Governance 横断) との関係・未決事項
+
+- H (クリエイティブ適用範囲) は §23 (Task 009-47・非 UI クリエイティブのトークン指定外使用の例外を Governance 横断ルールとして新設する方向) と同軸だが、本 §24 は travel `design.md` §8 系への明文化 (travel 限定) を実装する。§23 の「カラーもトークン指定外を許容」(ⓑ) と本シートの「カラーは厳守」の差分、および原則正本の置き場所 (Governance 横断 vs travel design.md) は §23 の設計承認プロセス・Task 009-55 (Issue [#147](https://github.com/tocoo/coocom-design-system/issues/147)) で扱う (本 §24 では travel §8 への明文化に留める)。
+- **判断後も未決・未確認の事項**: accent 濃色段・coral 2 段の実色値 (実査待ち・§9・§14)／C 特集の用途色 (accent 帰属未定・据え置き)／E2 販売終了の値 (方向のみ)／F メリット色 (G-1 暫定・リンクとの見分け)／H グラデーション審査基準・審査主体の実策定 (Task 009-55)／§23 との原則正本の置き場所・カラー差分。いずれも本記録では決定・補完しない。
+
+**Does Not Decide / Does Not Authorize**: 本記録は accent 濃色段・`coral` 2 段の実色値を発明・確定しない (🚧 仮色 placeholder)。C 特集の用途色・E2 販売終了の値を確定しない (据え置き)。F のメリット色 (得 = `scheme.main.base`) を暫定から確定へ昇格せず、リンクとの見分けを解決しない。H のグラデーション審査基準・審査主体を策定・指名しない。承認済み [review-approval-rules.md](review-approval-rules.md) 本体を改定しない。rental-car / inbound の成果物へ適用しない。適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない (コントラスト比は概算・依頼元/シート値の記録。白文字例外・在庫 error は AA 未達を明示する)。GitHub の approval・merge を設計承認・判断と同一視しない。本記録に関する Wiki 記載があっても、本判断の正本は本 §24 である (Wiki は非正本)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -610,3 +658,4 @@
 | 2026-08-04 | Task 009-46: §22 Travel 未選択値 (プレースホルダ相当) への color.text.muted 使用の受理と分類の現在判断記録を §1〜§21 と分離して追加。依頼元 (2026-08-04 起票・DS-REQUEST「会員限定ラベルと割引率ラベルの面色」§4.5 + 判断点6) に対応し、Web部責任者の 2026-08-04 現在判断 (ⓐselect の未選択値 (選択前 `option` 相当) に限り `color.text.muted` (#9e9e9e・≈2.7:1) を例外許容する方向・AA 未達明示・§2.3 の muted 流用禁止 (L157)・選択前 `option` → placeholder (L156) への例外で実規則化は別 Task・§2.3 は維持／ⓑ通常 input/textarea の placeholder は `color.text.placeholder` (gray.700・≈6.2:1) を維持／ⓒ未選択値は §2.3 の placeholder 対象に含まれる既定義・placeholder トークンは不変) を **travel 限定**で記録 (受理と分類の工程)。判断日と反映日は同日だが別事象として区別。本記録工程の影響度 = **低** (判定者 = Web部責任者、判定日 = 2026-08-04、本件について明示取得。必要レビュー主体 = Web部レビュー担当者)。同一 PR で design.md 未確定事項の一覧を更新しているが、§2.3 本体 (L154-163) を実編集せず muted 流用禁止規則を実緩和せず、token (`color.text.placeholder` / `muted`) の値・参照先・`$status`・`$meta.version`・version、rental-car / inbound の成果物は不変。§1〜§21・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。依頼元の未選択値 muted 使用・ラベル gray.700 変更を DS 規則として追認していない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
 | 2026-08-05 | Task 009-47: §23 デザインシステム適用範囲の例外 (広告・非 UI クリエイティブ・画像等) を Governance 横断ルールとして新設することの受理と分類の現在判断記録を §1〜§22 と分離して追加。依頼者 (Web部責任者) の直接依頼 (2026-08-05・Issue [#138](https://github.com/tocoo/coocom-design-system/issues/138)) に対応し、Web部責任者の 2026-08-05 現在判断 (起票時の方向性: ⓐGovernance 横断ルール (3 サービス共通) として新設する方向・実本文は改訂着手の設計承認を経た別 Task／ⓑフォント / カラー / スペーシングのトークン指定外使用のみ例外・WCAG 2.2 AA 最低ライン (R9) は維持) を **Governance 横断 (3 サービス共通)** の適用範囲で記録 (受理と分類の工程)。あわせて新設する例外原則の骨子 4 項目 (対象・許容する逸脱・維持する制約 = R9 維持・適用境界) を定義案として分類し、恒久的な例外原則が 3 サービス design.md 冒頭スコープ行 (travel L7 / rental-car L6 / inbound L6)・§8 (rental-car L83 / inbound L94 は資産提供待ち本版スコープ外・travel §8 に該当なし)・governance/README.md (L35-40 principles 正本未整備) のいずれにも明文化されていない (欠落) 事実を直接証拠で記録。判断日と反映日は同日だが別事象として区別。本記録工程の影響度 = **高** (判定者 = Web部責任者、判定日 = 2026-08-05、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 Governance ファイルの実本文・各 design.md 冒頭スコープ行・§8・承認済み review-approval-rules.md 本体は実編集せず (原則正本の実本文は §9・§20 設計承認を経た別 Task)、3 サービスの token・値・参照先・`$status`・`$description`・`$meta.version`・version は不変。§1〜§22・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。新規 Governance ファイルの新規作成・rental-car / inbound §8 の書き換えは行っていない。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
 | 2026-08-05 | Task 009-47R の記述是正: PR [#139](https://github.com/tocoo/coocom-design-system/pull/139) コードレビュー補足 (issuecomment-5186543849) の指摘②に対応し、§23 Does Not 節 (L577) の「承認済み review-approval-rules.md 本体を改定しない」に付していた出典注記 `(CLAUDE.md §11)` を削除。理由 = CLAUDE.md は git 未追跡 (`.git/info/exclude` によるローカル限定除外) で GitHub・新規 clone に存在せずレビュー環境から典拠を辿れないこと、および同一制約を述べる §14 (L319・L358) と §23 自身の規約 bullet (L558) が CLAUDE.md を引用しない引用規律と不整合であること。制約の内容 (承認済み規則本体を改定しない) は不変で、制約のみを記述する形へ揃えた。**是正対象は §23 Does Not 節の当該 1 箇所のみ**。§23 の現在判断 ⓐ・ⓑ・骨子 4 項目・影響度 = 高・欠落の確認結果・他行、および §1〜§22・設計承認ログ (§5)・適用開始記録 (§6) は不変。3 サービスの token・値・参照先・`$status`・`$description`・`$meta.version`・version、各 design.md・[README.md](README.md)・承認済み [review-approval-rules.md](review-approval-rules.md) 本体は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
+| 2026-08-10 | Task 009-48〜009-56 (ラベル・タグ定義 A〜H の実装): §24 を追加。ラベル・タグ定義シート (画面設計 Owner 決定 2026-08-07/08-10) の SOT 実装について改訂着手の設計承認 (§9・§20)・影響度=高 (§8)・カテゴリ別の現在判断を記録。primitive/semantic のトークン追加 (accent 2 段・用途色・器・radius.badge=bound) は別 PR、design.md/components.md の実改訂も別 PR。C 特集・E2・F メリット色は据え置き。既存 §1〜§23 は不変 | Claude Code |

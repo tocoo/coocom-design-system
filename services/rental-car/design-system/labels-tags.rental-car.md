@@ -28,20 +28,22 @@
 
 ### A 割引率
 
-- 意匠: 逆色面 (`color.scheme.*.inverse`) + 白文字。数字は `font.price` 700 + tabular-nums で 1 段上
+- 意匠: 逆色面 (`color.scheme.main.inverse` `#C8912C` / `color.scheme.sub.inverse` `#C8B12C`) + 白文字。数字は `font.price` 700 + tabular-nums で 1 段上
 - 固定 = 面・文字色・書体・角丸。箱ごとに選べる = サイズ・表記・余白
 - 用途: 卸価格の割引率。表記の基本形は「数字強調 + %OFF」。幅が取れないときのみ「NN%OFF」の 1 サイズ
 - 写真の上でも意匠を変えない (スクリムを敷かない)。写真の上に置けるのは A だけ
-- `🚧` 白文字 2.78:1 は AA 未達。非操作の点的ラベルに限る例外条項が前提
+- `🚧` 白文字のコントラストは **main `#C8912C` 上 2.78:1 / sub `#C8B12C` 上 2.15:1** で、両スキームとも通常テキスト 4.5:1 に達しない。sub は大きなテキスト 3:1 も満たさない。2 スキームは値が異なるため 1 行に束ねない
+- `🚧` これを成立させる「非操作の点的ラベルに限る例外条項」は本 DS では**未明文化**である ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §25 の Does Not Authorize)。条項が確定するまで A の意匠は暫定として扱う
+- `🚧` 用途色トークン `label.discount` は本 DS に未定義であり、§4 の要追加トークンに含める
 
 ### B-1 会員種別 / 有料 (`membership.paid`)
 
-- 意匠: 淡色面 + 同じ色相の濃色段文字。面 = accent 淡色段 #F9CDBC (確定) / 文字 = accent 濃色段 `🚧` 仮 #8A2E11 (約 5.8:1)
+- 意匠: 淡色面 + 同じ色相の濃色段文字。面 = accent 淡色段 `🚧` 仮 `#F9CDBC` / 文字 = accent 濃色段 `🚧` 仮 `#8A2E11` (約 5.8:1)。**面・文字とも仮色**であり、本 DS の primitive に orange の淡色段・濃色段が存在しない
 - サイズ: 12px 単一・bold・器は共通 sm (A のような 2 段は設けない)
 - 出現箱: ヘッダーナビ / トップのヒーロー / 検索結果カード / 車両・プラン行 / モバイルドロワー
 - 文言は幅で切替 (1024px 未満「プライム限定」・以上「プライム」)
 - 12px では accent 濃色面 + 白文字は使わない
-- `🚧` 濃色段の実色は実査待ち。要トークン: `accent.campaignTint` / `accent.campaignInk`
+- `🚧` 淡色段・濃色段とも実色は実査待ち。要トークン: `accent.campaignTint` / `accent.campaignInk` (§4)
 
 ### B-2 会員種別 / 無料 (`membership.free`)
 
@@ -104,14 +106,14 @@
 - 意匠: 面を持たないテキストの行。バッジの器に乗せない
 - スロット構造: (1) キャンセル条件 (必ず 1 つ出る 2 値: 無料キャンセル / キャンセル不可) (2) 支払い (あるものだけ: カード決済可・現地決済可・事前払い) (3) 特典 (あれば: ポイント付)
 - 同じ意味の情報は値が変わっても常に同じ位置に出す
-- 4 役の色: 得 = 主色 (`🚧` 暫定。リンクと同値のため「押せないのにリンクに見える」論点は未解決) / 損 = `state.error` / 中立 = `text.muted` / 操作 = `text.link`
+- 4 役の色: 得 = 主色 (`🚧` 暫定。リンクと同値のため「押せないのにリンクに見える」論点は未解決) / 損 = `state.error` / 中立 = `text.mutedStrong` / 操作 = `text.link`
 - 得・損の判定: 問い 1 = 利用者が選べるか (選べる = 中立で終了。支払い手段はここ)。問い 2 = 素の予約と比べ (1) 支出 (2) 取り消し・変更の自由 (3) 時間の拘束 (4) 人数・人選び の 4 軸のいずれかが緩む = 得 / 厳しくなる = 損
 - アイコンは意味ごとに固定 (`circle-check` / `circle-xmark` / `credit-card` / `yen-sign` / `coins`)。アイコンに意味色は当てず文字色に従う
 - この行に車種クラス (D) や企画ラベル (C) を混ぜない
 
 ### G 写真枚数
 
-- 意匠: `surface.inverse` 面 + 白文字・`radius.action` (pill)。器の唯一の例外
+- 意匠: `surface.inverse` 面 + 白文字 (`#212121` 上 16.1:1)・角丸は他カテゴリと同じ `radius.badge` (4px)。非操作のラベルに `radius.action` (pill) を使わない (操作要素との誤認防止)
 - 用途: 車両写真の枚数。トークンの追加なし
 
 ### H 適用範囲
@@ -130,17 +132,18 @@
 
 ## 4. 要追加トークン
 
-結論: 5 件。うち `label.*` の器・`membership.*`・`accent.campaign*`・`label.stock` は国内宿泊 (travel) と同一の追加であり、`tag.neutral` は travel には既にあり本 DS に無い分である。確定まで `🚧` を伝播させる。
+結論: 6 件。いずれも本 DS の `semantic.rental-car.json` に未定義である。**6 件はすべて国内宿泊 (travel) の `semantic.travel.json` には実装済み**であり (PR [#149](https://github.com/tocoo/coocom-design-system/pull/149))、本 DS が独立して持つべき分である (値の共有はしない = [design.md](design.md) 独立性)。確定まで `🚧` を伝播させる。
 
 `radius.badge` は `semantic.rental-car.json` に定義済み (`{radius.sm}` = 4px・`$status: bound`) であり、本表の対象ではない。
 
-| トークン | 用途 | 現在の代用 |
-| --- | --- | --- |
-| `label.*` の器 | 高さ・左右余白の 2 段 | 仕様書の数値のみ |
-| `membership.paid` / `membership.free` | B-1 / B-2 の面・文字 | 直接指定 (#F9CDBC / 仮 #8A2E11 / tint / ink) |
-| `accent.campaignTint` / `accent.campaignInk` | orange・coral の淡色段 / 濃色段 | primitive に段がなく仮色 |
-| `label.stock` | E1 の文字色 | `state.error` |
-| `tag.neutral` | D1〜D3 中立タグの面・文字 | `surface.muted` / `text.body` |
+| トークン | 用途 | 現在の代用 | travel |
+| --- | --- | --- | --- |
+| `label.*` の器 | 高さ・左右余白・文字サイズ・ウェイト・角丸の 2 段 | 仕様書の数値のみ | 実装済み |
+| `label.discount` | A 割引率の面・文字 (逆色面 + 白文字) | `scheme.main.inverse` / `scheme.sub.inverse` を直接指定 | 実装済み |
+| `membership.paid` / `membership.free` | B-1 / B-2 の面・文字 | 直接指定 (仮 `#F9CDBC` / 仮 `#8A2E11` / `tint` / `ink`) | 実装済み |
+| `accent.campaignTint` / `accent.campaignInk` | orange・coral の淡色段 / 濃色段 | primitive に段がなく仮色 | 実装済み (濃色段は仮色) |
+| `label.stock` | E1 の文字色 | `state.error` | 実装済み |
+| `tag.neutral` | D1〜D3 中立タグの面・文字 | `surface.muted` / `text.body` | 実装済み |
 
 ## 5. 変更履歴
 
@@ -148,3 +151,4 @@
 | --- | --- | --- |
 | 2026-08-19 | 初版。国内宿泊の定義シート (2026-08-10) を継承し A〜H をレンタカーの用途へ割り当て。D4 廃止・B-2 は既定非表示・要追加トークン 5 件を明示 | Claude Design |
 | 2026-08-20 | 本 Repository へ新設 (0.3.0-draft)。あわせて記述是正 3 件: (1) §1 角丸行の「`radius.badge` 未定義のため `radius.sm` で代用」を削除 (`semantic.rental-car.json` に `{radius.sm}` = 4px・`$status: bound` で定義済のため事実に反する)。(2) C1 見出しの `label.category` を除去し、用途色を追加しない旨を明記 (未定義かつ国内宿泊でも C 特集は据え置き)。(3) §4 要追加トークン表から `radius.badge` を外し、未定義の `tag.neutral` を追加 (計 5 件は不変) | Claude Code |
+| 2026-08-20 | Task 009-57R の記述是正: PR [#156](https://github.com/tocoo/coocom-design-system/pull/156) コードレビュー ([issuecomment-5353729542](https://github.com/tocoo/coocom-design-system/pull/156#issuecomment-5353729542)) の指摘に対応。①A のコントラストを main 2.78:1 / sub 2.15:1 と個別に記載し、例外条項が本 DS では未明文化である事実と `label.discount` 未定義を明記した。②B-1 の面 `#F9CDBC` の「(確定)」を「仮色」へ是正した (§4 の「primitive に段がなく仮色」と矛盾していた)。③G 写真枚数の角丸を `radius.action` (pill) から `radius.badge` へ改めた (「押せるものだけ pill」と矛盾していた)。④F の中立色を `text.muted` から `text.mutedStrong` へ変更した。⑤§4 の結論文を是正し `label.discount` を追加して 6 件とした (旧文は 5 件のうち 4 件が travel でも未追加であるかのように読ませていたが、実際は 6 件すべて travel に実装済みである)。**不変**: 器の寸法・カテゴリ体系 A〜H・D4 廃止・B-2 の既定非表示・Do / Don't | Claude Code |

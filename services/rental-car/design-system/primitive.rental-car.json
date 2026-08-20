@@ -7,7 +7,7 @@
     "serviceLabel": "国内レンタカー (tocoo/tocoo_rental_car — japan ゾーン)",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "rental-car 0.2.1-draft。0.3.0-draft で travel 0.3.0-draft の Foundation 定義を採用 (オーナー判断 2026-08-18)。旧 Q1 赤3候補・Q2・Q3・Q4 は本判断により解消。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25)",
+    "basedOn": "rental-car 0.2.1-draft。0.3.0-draft で travel 0.3.0-draft の Foundation 定義を採用 (オーナー判断 2026-08-18)。旧 Q1 赤3候補・Q2・Q3・Q4 は本判断により解消。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、`color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を追加した (Modal の backdrop が components.md / design.md で `rgba(0,0,0,.45)` の生値として書かれ、semantic 経由で指定できなかった状態の解消。travel `blackAlpha.45` と同じ暫定値を独立に持つ = 値の共有ではない)。既存トークンの値・`$status`・`$meta.version` は不変。",
     "created": "2026-07-02",
     "updated": "2026-08-20",
     "rules": [
@@ -214,6 +214,15 @@
           "$type": "color",
           "$description": "サブ特集アクセント (per-scheme)",
           "$status": "bound"
+        }
+      },
+      "blackAlpha": {
+        "45": {
+          "$value": "rgba(0,0,0,0.45)",
+          "$type": "color",
+          "$description": "黒 45% アルファ。オーバーレイ backdrop (scrim) 用の暫定値",
+          "$status": "placeholder",
+          "$note": "Modal / Overlay の backdrop (color.overlay.backdrop) を支える primitive。**暫定値**であり、ハンドオフバンドルが記載した rgba(0,0,0,.45) を暫定参照する (本 Repository で実査しておらず Fact としては扱わない)。実確定は実査待ち (確認方法 = 依頼元提出値の受領・確認主体 = 作業担当者照合 + Web部責任者確認 = governance/owner-decisions.md §14)。placeholder → bound 昇格・値の確定は行わない"
         }
       }
     }

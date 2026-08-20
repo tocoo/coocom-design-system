@@ -1,165 +1,606 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
-  "$description": "ToCoo Design System — Primitive Tokens(国内レンタカー rental-car 専用)。3独立DS(ADR-0022)につき本ファイルは rental-car(japan ゾーン)のみが参照する。混載初版 primitive.json (0.1.0-draft) を実装着手ガイド§1の割当指針に従い分割(値は不変)。中立色・構造スケールは同値でも共有ではなく rental-car 独自定義。命名規則§1 準拠。",
+  "$description": "ToCoo Design System — Primitive Tokens (国内レンタカー rental-car 専用)。0.3.0-draft: オーナー判断 2026-08-18「国内宿泊で新たに定義されたものを適用する」に基づき、travel 0.3.0-draft (TVL-0001〜0012) の Foundation 値を rental-car にも採用。3独立DS (ADR-0022) の原則は維持し、値は本ファイルに独立して定義する (共有・相互参照はしない)。",
   "$meta": {
     "layer": "primitive",
     "service": "rental-car",
     "serviceLabel": "国内レンタカー (tocoo/tocoo_rental_car — japan ゾーン)",
-    "version": "0.2.1-draft",
+    "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "共通/primitive.json 0.1.0-draft (旧Phase 3 混載初版) — 実装着手ガイド§1で分割。0.2.1: breakpoint 値を旧暫定 600/768/992/1200 から 3DS 共通値 640/768/1024/1280 (Travel TVL-0004 を再認定・owner-decisions.md Q5 決定 2026-07-24, Task 009-18-BP1) へ変更 ($status は placeholder 維持)。他トークン値は分割時から変更していない",
+    "basedOn": "rental-car 0.2.1-draft。0.3.0-draft で travel 0.3.0-draft の Foundation 定義を採用 (オーナー判断 2026-08-18)。旧 Q1 赤3候補・Q2・Q3・Q4 は本判断により解消。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、`color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を追加した (Modal の backdrop が components.md / design.md で `rgba(0,0,0,.45)` の生値として書かれ、semantic 経由で指定できなかった状態の解消。travel `blackAlpha.45` と同じ暫定値を独立に持つ = 値の共有ではない)。既存トークンの値・`$status`・`$meta.version` は不変。",
     "created": "2026-07-02",
+    "updated": "2026-08-20",
     "rules": [
-      "属性ベース命名({category}.{attribute}.{step})",
-      "コンポーネント実装からの直接参照は禁止(Semantic 経由のみ)",
-      "$status: bound=確定扱い / placeholder=未確定(Q番号・follow-up番号を $note に併記)",
-      "他サービス(travel/inbound)のブランド固有色(紺 #283593・IB blue #064f9e 等)は本ファイルに含めない(ADR-0022)",
-      "100選(must-visit ゾーン)は DS 対象外(2026-07-01 オーナー確認)。素材として用いない"
+      "属性ベース命名 ({category}.{attribute}.{step})",
+      "コンポーネント実装からの直接参照は禁止 (Semantic 経由のみ)",
+      "$status: bound=確定扱い / placeholder=未確定 (Q番号・follow-up番号を $note に併記)",
+      "実装 (japan ゾーン) の旧値 (赤 #9E2334/#9B2030/#9F1E30・紺 #283593・リンク #0050a0・CTA緑 #43a047) は本ファイルに含めない (廃止)"
     ]
   },
-
   "color": {
     "palette": {
-      "white": { "$value": "#ffffff", "$type": "color", "$description": "C-05 揺れなし($white)", "$status": "bound" },
-      "black": { "$value": "#000000", "$type": "color", "$description": "C-05 揺れなし($black)", "$status": "bound" },
-
+      "white": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$status": "bound"
+      },
+      "black": {
+        "$value": "#000000",
+        "$type": "color",
+        "$status": "bound"
+      },
       "gray": {
-        "50":  { "$value": "#f9f9f9", "$type": "color", "$description": "C-06 最も明るい面", "$status": "bound" },
-        "100": { "$value": "#f5f5f5", "$type": "color", "$description": "C-06 surface(japan 実装は $gray #ededed / #f1f1f1=DS内正規化候補🟢)", "$status": "bound" },
-        "200": { "$value": "#eeeeee", "$type": "color", "$status": "bound" },
-        "300": { "$value": "#e0e0e0", "$type": "color", "$description": "C-07 border subtle", "$status": "bound" },
-        "400": { "$value": "#cccccc", "$type": "color", "$description": "C-07 border default(RC #ccc)", "$status": "bound" },
-        "500": { "$value": "#bcbcbc", "$type": "color", "$description": "C-07 border strong", "$status": "bound" },
-        "600": { "$value": "#9e9e9e", "$type": "color", "$description": "C-04 text muted(RC 実装は #999 系=DS内正規化候補🟢)", "$status": "bound" },
-        "700": { "$value": "#616161", "$type": "color", "$description": "C-04 text muted strong", "$status": "bound" },
-        "800": { "$value": "#424242", "$type": "color", "$description": "C-03 本文候補", "$status": "placeholder", "$note": "Q2 テキスト主色の正値未確定。国内実測は #1F1F1F(layerB §3-2=第3のテキスト色)。暫定運用=2段を暫定共通" },
-        "900": { "$value": "#212121", "$type": "color", "$description": "C-03 見出し候補", "$status": "placeholder", "$note": "Q2。国内実測 #1F1F1F との整理が必要" }
+        "50": {
+          "$value": "#f9f9f9",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "100": {
+          "$value": "#f5f5f5",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "200": {
+          "$value": "#eeeeee",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "300": {
+          "$value": "#e0e0e0",
+          "$type": "color",
+          "$description": "border subtle",
+          "$status": "bound"
+        },
+        "400": {
+          "$value": "#cccccc",
+          "$type": "color",
+          "$description": "border default",
+          "$status": "bound"
+        },
+        "500": {
+          "$value": "#bcbcbc",
+          "$type": "color",
+          "$description": "border strong",
+          "$status": "bound"
+        },
+        "600": {
+          "$value": "#9e9e9e",
+          "$type": "color",
+          "$description": "text muted",
+          "$status": "bound"
+        },
+        "700": {
+          "$value": "#616161",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "800": {
+          "$value": "#424242",
+          "$type": "color",
+          "$description": "text body (Q2 解決)",
+          "$status": "bound"
+        },
+        "900": {
+          "$value": "#212121",
+          "$type": "color",
+          "$description": "text strong (Q2 解決)",
+          "$status": "bound"
+        }
       },
-
+      "royal": {
+        "50": {
+          "$value": "#e8edfb",
+          "$type": "color",
+          "$description": "Tint",
+          "$status": "bound"
+        },
+        "100": {
+          "$value": "#dde3f8",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "300": {
+          "$value": "#8e9ee6",
+          "$type": "color",
+          "$description": "Soft",
+          "$status": "bound"
+        },
+        "500": {
+          "$value": "#2c50c8",
+          "$type": "color",
+          "$description": "メイン主色 (第1候補・Q1 解決)",
+          "$status": "bound"
+        },
+        "600": {
+          "$value": "#2340a6",
+          "$type": "color",
+          "$description": "Hover",
+          "$status": "bound"
+        },
+        "700": {
+          "$value": "#1b3488",
+          "$type": "color",
+          "$description": "Pressed",
+          "$status": "bound"
+        },
+        "900": {
+          "$value": "#14224a",
+          "$type": "color",
+          "$description": "Ink",
+          "$status": "bound"
+        }
+      },
+      "indigo": {
+        "50": {
+          "$value": "#edecfb",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "100": {
+          "$value": "#dbd9f7",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "300": {
+          "$value": "#928ee4",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "500": {
+          "$value": "#4845d4",
+          "$type": "color",
+          "$description": "サブ主色 (第2候補)",
+          "$status": "bound"
+        },
+        "600": {
+          "$value": "#3936b0",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "700": {
+          "$value": "#2c2a8c",
+          "$type": "color",
+          "$status": "bound"
+        },
+        "900": {
+          "$value": "#191840",
+          "$type": "color",
+          "$status": "bound"
+        }
+      },
+      "amber": {
+        "500": {
+          "$value": "#c8912c",
+          "$type": "color",
+          "$description": "メイン逆色 (補色)",
+          "$status": "bound"
+        }
+      },
+      "gold": {
+        "500": {
+          "$value": "#c8b12c",
+          "$type": "color",
+          "$description": "サブ逆色 (補色)",
+          "$status": "bound"
+        }
+      },
       "red": {
-        "500": { "$value": "#d10000", "$type": "color", "$description": "state error 用(C-09。RC 固有のエラー色は未抽出のため暫定)", "$status": "placeholder", "$note": "follow-up #2 フォームエラー実体未取得。暫定バインド" },
-        "700": { "$value": "#9e2334", "$type": "color", "$description": "C-01 brand 候補 (a)。Q1 暫定運用案の暫定値", "$status": "placeholder", "$note": "Q1 赤の正値未確定。候補 (a)#9e2334 (b)#9b2030 (c)#9f1e30。暫定 #9E2334。確定はオーナー判断(分類C)" },
-        "800": { "$value": "#9b2030", "$type": "color", "$description": "C-01 brand 候補 (b)。japan ゾーン実装値 $tocooRed(layerB §3-2 本番実測一致=国内検索ボタン)/ hover 候補", "$status": "placeholder", "$note": "Q1" },
-        "900": { "$value": "#9f1e30", "$type": "color", "$description": "C-01 brand 候補 (c)(グラデ端)", "$status": "placeholder", "$note": "Q1" }
+        "400": {
+          "$value": "#d23a3a",
+          "$type": "color",
+          "$description": "メイン error (per-scheme)",
+          "$status": "bound"
+        }
       },
-
+      "rose": {
+        "500": {
+          "$value": "#d2405f",
+          "$type": "color",
+          "$description": "サブ error (per-scheme)",
+          "$status": "bound"
+        }
+      },
       "orange": {
-        "500": { "$value": "#ef4123", "$type": "color", "$description": "campaign accent(実装着手ガイド§1: 宿泊/レンタカー campaign 用途)。主色と分離", "$status": "bound" }
+        "400": {
+          "$value": "#e4572e",
+          "$type": "color",
+          "$description": "メイン特集アクセント (per-scheme)",
+          "$status": "bound"
+        }
       },
-
-      "green": {
-        "500": { "$value": "#58b85d", "$type": "color", "$description": "C-08 state success。国内の success 色は明示なし(56-ID)のためインバウンド実装値を暫定参照", "$status": "placeholder", "$note": "follow-up #5" }
+      "coral": {
+        "500": {
+          "$value": "#e0553c",
+          "$type": "color",
+          "$description": "サブ特集アクセント (per-scheme)",
+          "$status": "bound"
+        }
+      },
+      "blackAlpha": {
+        "45": {
+          "$value": "rgba(0,0,0,0.45)",
+          "$type": "color",
+          "$description": "黒 45% アルファ。オーバーレイ backdrop (scrim) 用の暫定値",
+          "$status": "placeholder",
+          "$note": "Modal / Overlay の backdrop (color.overlay.backdrop) を支える primitive。**暫定値**であり、ハンドオフバンドルが記載した rgba(0,0,0,.45) を暫定参照する (本 Repository で実査しておらず Fact としては扱わない)。実確定は実査待ち (確認方法 = 依頼元提出値の受領・確認主体 = 作業担当者照合 + Web部責任者確認 = governance/owner-decisions.md §14)。placeholder → bound 昇格・値の確定は行わない"
+        }
       }
     }
   },
-
   "typography": {
     "fontFamily": {
-      "sans":    { "$value": "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif", "$type": "fontFamily", "$description": "T-01 和文base(収束候補)。国内実装は 游/Kozuka 混在(layerB §3-2: h1 Kozuka Gothic Pro・h2/h3 游ゴシック=D-3)。DS内正規化候補🟢", "$status": "bound" },
-      "heading": { "$value": "'Murecho', 'Noto Sans JP', sans-serif", "$type": "fontFamily", "$description": "T-01 見出し(収束候補)。国内実装は游ゴシック系混在(D-3)", "$status": "bound" },
-      "latin":   { "$value": "'Roboto', sans-serif", "$type": "fontFamily", "$description": "T-02 欧文(3者共通・本番実測一致)", "$status": "bound" },
-      "number":  { "$value": "'Barlow', 'Roboto', sans-serif", "$type": "fontFamily", "$description": "T-03 数字強調。国内は規定なし(56-ID T-03)のため混載初版値を暫定継承", "$status": "placeholder", "$note": "国内の価格書体は未取得(K-03 国内=—)。Barlow は宿泊実測由来。要実査" }
+      "sans": {
+        "$value": "'LINE Seed JP', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif",
+        "$type": "fontFamily",
+        "$description": "本文・UI ゴシック。実装の Kozuka Gothic Pro / 游ゴシック / Roboto 混在 (D-3) を廃止",
+        "$status": "bound"
+      },
+      "heading": {
+        "$value": "'LINE Seed JP', 'Noto Sans JP', sans-serif",
+        "$type": "fontFamily",
+        "$description": "一覧/カード見出し 700",
+        "$status": "bound"
+      },
+      "latin": {
+        "$value": "'LINE Seed JP', 'Noto Sans JP', sans-serif",
+        "$type": "fontFamily",
+        "$status": "bound"
+      },
+      "number": {
+        "$value": "'LINE Seed JP', 'Noto Sans JP', sans-serif",
+        "$type": "fontFamily",
+        "$description": "価格数字 = 本文と同族 (旧 Barlow 廃止)",
+        "$status": "bound"
+      },
+      "mincho": {
+        "$value": "'Noto Serif JP', serif",
+        "$type": "fontFamily",
+        "$description": "明朝 Display / Hero / 車両クラス名",
+        "$status": "bound"
+      }
     },
     "fontWeight": {
-      "regular": { "$value": 400, "$type": "fontWeight", "$status": "bound" },
-      "medium":  { "$value": 500, "$type": "fontWeight", "$status": "bound" },
-      "bold":    { "$value": 700, "$type": "fontWeight", "$description": "検索ボタン 700(layerB §3-2)", "$status": "bound" }
+      "regular": {
+        "$value": 400,
+        "$type": "fontWeight",
+        "$status": "bound"
+      },
+      "medium": {
+        "$value": 500,
+        "$type": "fontWeight",
+        "$status": "bound"
+      },
+      "bold": {
+        "$value": 700,
+        "$type": "fontWeight",
+        "$status": "bound"
+      },
+      "black": {
+        "$value": 900,
+        "$type": "fontWeight",
+        "$description": "例外的強調のみ",
+        "$status": "bound"
+      }
     },
     "lineHeight": {
-      "tight":   { "$value": 1.3, "$type": "number", "$status": "placeholder", "$note": "Q4。国内本文実測は 1.4(15px/21px=layerB §3-2)" },
-      "normal":  { "$value": 1.5, "$type": "number", "$status": "placeholder", "$note": "Q4" },
-      "relaxed": { "$value": 1.8, "$type": "number", "$status": "placeholder", "$note": "Q4" }
+      "tight": {
+        "$value": 1.3,
+        "$type": "number",
+        "$status": "bound"
+      },
+      "normal": {
+        "$value": 1.5,
+        "$type": "number",
+        "$status": "bound"
+      },
+      "relaxed": {
+        "$value": 1.8,
+        "$type": "number",
+        "$description": "本文既定 (実装 1.4 は廃止)",
+        "$status": "bound"
+      }
     },
     "size": {
-      "xs":  { "$value": "12px", "$type": "dimension", "$status": "placeholder", "$note": "Q4 root 基準未確定。スケール体系は確定、px値は root 確定後にバインド" },
-      "sm":  { "$value": "14px", "$type": "dimension", "$status": "placeholder", "$note": "Q4。国内本文実測は 15px(スケール外=正規化要議論)" },
-      "md":  { "$value": "16px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" },
-      "lg":  { "$value": "18px", "$type": "dimension", "$description": "RC h2 18 / 検索ボタン文字 18px(layerB §3-2)", "$status": "placeholder", "$note": "Q4" },
-      "xl":  { "$value": "20px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" },
-      "2xl": { "$value": "24px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" },
-      "3xl": { "$value": "32px", "$type": "dimension", "$status": "placeholder", "$note": "Q4" },
-      "4xl": { "$value": "40px", "$type": "dimension", "$description": "RC h1 40px(layerB §3-2 実測)", "$status": "placeholder", "$note": "Q4" }
+      "xs": {
+        "$value": "0.75rem",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "sm": {
+        "$value": "0.875rem",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "md": {
+        "$value": "1rem",
+        "$type": "dimension",
+        "$description": "本文 (root 16px 基準・Q4 解決。実装 15px は廃止)",
+        "$status": "bound"
+      },
+      "lg": {
+        "$value": "1.125rem",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "xl": {
+        "$value": "1.25rem",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "2xl": {
+        "$value": "1.5rem",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "3xl": {
+        "$value": "2rem",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "4xl": {
+        "$value": "2.5rem",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "display-lg": {
+        "$value": "3rem",
+        "$type": "dimension",
+        "$description": "48px ヒーロー明朝",
+        "$status": "bound"
+      }
     }
   },
-
   "spacing": {
-    "0":  { "$value": "0px",  "$type": "dimension", "$status": "bound" },
-    "1":  { "$value": "4px",  "$type": "dimension", "$description": "base×1", "$status": "placeholder", "$note": "Q3 base unit(4/5/8px)未確定。RC 実装は 5px 刻み。刻み体系は確定、値はQ3確定後にバインド" },
-    "2":  { "$value": "8px",  "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "3":  { "$value": "12px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "4":  { "$value": "16px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "5":  { "$value": "20px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "6":  { "$value": "24px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "8":  { "$value": "32px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "10": { "$value": "40px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "12": { "$value": "48px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" },
-    "16": { "$value": "64px", "$type": "dimension", "$status": "placeholder", "$note": "Q3" }
+    "0": {
+      "$value": "0",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "1": {
+      "$value": "0.25rem",
+      "$type": "dimension",
+      "$description": "base×1 (Q3 解決: 4px 系。実装 5px 刻みは廃止)",
+      "$status": "bound"
+    },
+    "2": {
+      "$value": "0.5rem",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "3": {
+      "$value": "0.75rem",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "4": {
+      "$value": "1rem",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "5": {
+      "$value": "1.25rem",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "6": {
+      "$value": "1.5rem",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "8": {
+      "$value": "2rem",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "10": {
+      "$value": "2.5rem",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "12": {
+      "$value": "3rem",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "16": {
+      "$value": "4rem",
+      "$type": "dimension",
+      "$status": "bound"
+    }
   },
-
   "size": {
     "container": {
-      "sm": { "$value": "975px",  "$type": "dimension", "$description": "S-03 RC 未抽出のため宿泊値を暫定参照", "$status": "placeholder", "$note": "follow-up #6 RC コンテナ最大幅未取得" },
-      "md": { "$value": "1195px", "$type": "dimension", "$status": "placeholder", "$note": "follow-up #6" },
-      "lg": { "$value": "1425px", "$type": "dimension", "$status": "placeholder", "$note": "follow-up #6" }
+      "sm": {
+        "$value": "975px",
+        "$type": "dimension",
+        "$description": "実装の 960px / 1280px 二重基準を置換",
+        "$status": "bound"
+      },
+      "md": {
+        "$value": "1195px",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "lg": {
+        "$value": "1425px",
+        "$type": "dimension",
+        "$status": "bound"
+      }
     }
   },
-
   "radius": {
-    "sm":   { "$value": "4px",    "$type": "dimension", "$description": "R-01 国内検索ボタン 4px(layerB §3-2 本番実測)", "$status": "bound" },
-    "md":   { "$value": "8px",    "$type": "dimension", "$status": "bound" },
-    "lg":   { "$value": "16px",   "$type": "dimension", "$status": "bound" },
-    "full": { "$value": "9999px", "$type": "dimension", "$description": "構造スケールとして保持(国内のボタンは 4px=pill 非採用)", "$status": "bound" }
+    "sm": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Input / Select / バッジ",
+      "$status": "bound"
+    },
+    "md": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "lg": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "pill。ボタンは full (旧 rental-car の 4px 固有形状は廃止)",
+      "$status": "bound"
+    }
   },
-
   "shadow": {
-    "sm": { "$value": "0 1px 2px rgba(0,0,0,0.05)",  "$type": "shadow", "$status": "placeholder", "$note": "follow-up #13 実値未抽出" },
-    "md": { "$value": "0 2px 8px rgba(0,0,0,0.10)",  "$type": "shadow", "$status": "placeholder", "$note": "follow-up #13" },
-    "lg": { "$value": "0 8px 24px rgba(0,0,0,0.15)", "$type": "shadow", "$status": "placeholder", "$note": "follow-up #13" }
+    "sm": {
+      "$value": "0 1px 2px rgba(0,0,0,0.05)",
+      "$type": "shadow",
+      "$status": "placeholder",
+      "$note": "follow-up #13 実値未抽出"
+    },
+    "md": {
+      "$value": "0 2px 8px rgba(0,0,0,0.10)",
+      "$type": "shadow",
+      "$status": "placeholder",
+      "$note": "follow-up #13"
+    },
+    "lg": {
+      "$value": "0 8px 24px rgba(0,0,0,0.15)",
+      "$type": "shadow",
+      "$status": "placeholder",
+      "$note": "follow-up #13"
+    }
   },
-
   "border": {
     "width": {
-      "thin":  { "$value": "1px", "$type": "dimension", "$status": "bound" },
-      "thick": { "$value": "2px", "$type": "dimension", "$status": "bound" }
+      "thin": {
+        "$value": "1px",
+        "$type": "dimension",
+        "$status": "bound"
+      },
+      "thick": {
+        "$value": "2px",
+        "$type": "dimension",
+        "$status": "bound"
+      }
     },
     "style": {
-      "solid": { "$value": "solid", "$type": "strokeStyle", "$status": "bound" }
+      "solid": {
+        "$value": "solid",
+        "$type": "strokeStyle",
+        "$status": "bound"
+      }
     }
   },
-
   "elevation": {
     "z": {
-      "base":     { "$value": 0,    "$type": "number", "$status": "bound" },
-      "dropdown": { "$value": 1000, "$type": "number", "$status": "bound" },
-      "sticky":   { "$value": 1100, "$type": "number", "$status": "bound" },
-      "overlay":  { "$value": 1200, "$type": "number", "$status": "bound" },
-      "modal":    { "$value": 1300, "$type": "number", "$status": "bound" },
-      "toast":    { "$value": 1400, "$type": "number", "$status": "bound" }
+      "base": {
+        "$value": 0,
+        "$type": "number",
+        "$status": "bound"
+      },
+      "dropdown": {
+        "$value": 1000,
+        "$type": "number",
+        "$status": "bound"
+      },
+      "sticky": {
+        "$value": 1100,
+        "$type": "number",
+        "$status": "bound"
+      },
+      "overlay": {
+        "$value": 1200,
+        "$type": "number",
+        "$status": "bound"
+      },
+      "modal": {
+        "$value": 1300,
+        "$type": "number",
+        "$status": "bound"
+      },
+      "toast": {
+        "$value": 1400,
+        "$type": "number",
+        "$status": "bound"
+      }
     }
   },
-
   "motion": {
     "duration": {
-      "fast": { "$value": "150ms", "$type": "duration", "$status": "placeholder", "$note": "follow-up #3(M-01 国内は未取得)" },
-      "base": { "$value": "300ms", "$type": "duration", "$description": "IB `all .3s ease` の暫定参照(国内固有値は未取得)", "$status": "placeholder", "$note": "follow-up #3" },
-      "slow": { "$value": "500ms", "$type": "duration", "$status": "placeholder", "$note": "follow-up #3" }
+      "fast": {
+        "$value": "150ms",
+        "$type": "duration",
+        "$status": "placeholder",
+        "$note": "follow-up #3"
+      },
+      "base": {
+        "$value": "300ms",
+        "$type": "duration",
+        "$description": "実装は 0.3s ease-in-out / 0.35s ease 混在",
+        "$status": "placeholder",
+        "$note": "follow-up #3"
+      },
+      "slow": {
+        "$value": "500ms",
+        "$type": "duration",
+        "$status": "placeholder",
+        "$note": "follow-up #3"
+      }
     },
     "easing": {
-      "standard": { "$value": "ease", "$type": "cubicBezier", "$description": "IB 実装値の暫定参照", "$status": "placeholder", "$note": "follow-up #3" }
+      "standard": {
+        "$value": "ease",
+        "$type": "cubicBezier",
+        "$status": "placeholder",
+        "$note": "follow-up #3"
+      }
     }
   },
-
   "iconSize": {
-    "sm": { "$value": "16px", "$type": "dimension", "$status": "bound", "$note": "Q8 アイコン体系(slick 等)は別途。ここはサイズスケールのみ" },
-    "md": { "$value": "20px", "$type": "dimension", "$status": "bound" },
-    "lg": { "$value": "24px", "$type": "dimension", "$status": "bound" },
-    "xl": { "$value": "32px", "$type": "dimension", "$status": "bound" }
+    "sm": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "md": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "lg": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$status": "bound"
+    }
   },
-
   "breakpoint": {
-    "sm": { "$value": "640px",  "$type": "dimension", "$description": "B-01。3DS 共通値(Travel TVL-0004 640/768/1024/1280 を再認定・Q5 決定 2026-07-24)。旧暫定値 600px から変更。japan ゾーン実装は 2段(pc:959/pc_min:960)のみ", "$status": "placeholder", "$note": "Q5 統一値=640/768/1024/1280(3DS 共通・Travel 再認定)。実装値(2段)との移行整理が必要(follow-up #8 使用件数未集計)。$status は実装移行整理まで placeholder 維持" },
-    "md": { "$value": "768px",  "$type": "dimension", "$status": "placeholder", "$note": "Q5 (3DS 共通・変更なし)" },
-    "lg": { "$value": "1024px", "$type": "dimension", "$status": "placeholder", "$note": "Q5 (3DS 共通・旧 992px から変更)" },
-    "xl": { "$value": "1280px", "$type": "dimension", "$status": "placeholder", "$note": "Q5 (3DS 共通・旧 1200px から変更)" }
+    "sm": {
+      "$value": "640px",
+      "$type": "dimension",
+      "$description": "実装の 2段 (959/960) は移行対象",
+      "$status": "bound"
+    },
+    "md": {
+      "$value": "768px",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "lg": {
+      "$value": "1024px",
+      "$type": "dimension",
+      "$status": "bound"
+    },
+    "xl": {
+      "$value": "1280px",
+      "$type": "dimension",
+      "$status": "bound"
+    }
   }
 }

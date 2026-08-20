@@ -22,17 +22,19 @@
 1. 本 README
 2. Service Design → Screen Requirements → Design System → Assets
 
-Design System 内の推奨読み順: `design.md` → `semantic.rental-car.json` → `primitive.rental-car.json` → `components.md`
+Design System 内の推奨読み順: `design.md` → `semantic.rental-car.json` → `primitive.rental-car.json` → `components.md` → `labels-tags.rental-car.md` → `migration-map.md`
 
 ## 現在存在する成果物
 
-- **Design System (既存資産)** — トークン現行版: primitive 0.2.0 / semantic 0.2.1-draft (Draft)
+- **Design System** — トークン現行版: primitive / semantic ともに 0.3.0-draft (Draft)
   - [design-system/design.md](design-system/design.md)
   - [design-system/semantic.rental-car.json](design-system/semantic.rental-car.json)
   - [design-system/primitive.rental-car.json](design-system/primitive.rental-car.json)
   - [design-system/components.md](design-system/components.md)
+  - [design-system/labels-tags.rental-car.md](design-system/labels-tags.rental-car.md) — ラベル・タグ定義 (A〜H)
+  - [design-system/migration-map.md](design-system/migration-map.md) — 実装値から DS 正値への移行対照表 (12 項目)
 
-Design System は本 bootstrap 以前から存在する既存資産であり、内容は変更していない。
+Design System は本 bootstrap 以前から存在する既存資産である。0.3.0-draft で国内宿泊 (travel) 0.3.0-draft の Foundation 定義体系を採用した (オーナー判断 2026-08-18・[governance/owner-decisions.md](../../governance/owner-decisions.md) §25)。3 独立 DS の原則は維持し、値は本 DS のファイルに独立して持つ。
 
 ## 現在存在しない成果物
 

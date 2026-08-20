@@ -626,6 +626,56 @@
 
 ---
 
+## 25. 国内レンタカー (rental-car) DS 0.3.0-draft — 国内宿泊 (travel) Foundation 定義体系の採用 (設計承認・影響度・現在判断) の記録
+
+- 種別: 国内レンタカー (rental-car) の Design System へ国内宿泊 (travel) 0.3.0-draft の Foundation 定義体系を採用することについて Web部責任者が示した現在判断・改訂着手の設計承認・影響度判定の記録。契機は Claude Design のハンドオフバンドル「国内レンタカーのデザインシステム構築」(`design_handoff_rental-car-ds/`・2026-08-19 作成) による反映依頼。上記 §1〜§24 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§24 の各記録は変更しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。現在判断と過去の provenance を区別する。GitHub の approval・merge を判断・設計承認と同一視しない。`TVL-NNNN` は ADR 正本が Repository 内に不在であるため、本記録および rental-car の新規文書で現在の仕様根拠として参照しない。仮色 (実色値未取得) は placeholder として bind し発明しない。**Foundation 採用の方向の判断日 (2026-08-18)・ハンドオフバンドルの作成日 (2026-08-19)・本 Repository への反映日 (2026-08-20) は別の事象として区別する**。
+
+### 25-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | rental-car DS 0.3.0-draft への改訂 = `primitive.rental-car.json` / `semantic.rental-car.json` の全置換・`components.md` の全置換・`design.md` の Foundation 記述 (カラー・タイポ・スペーシング・角丸・BP・アイコン・オーバーレイ) の改訂・`labels-tags.rental-car.md` と `migration-map.md` の新設・`services/rental-car/README.md` の版表記と読み順の更新 |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 方向の判断日 | 2026-08-18 (Web部責任者「国内宿泊で新たに定義されたものを適用する」) |
+| 改訂着手の承認日 | 2026-08-20 |
+| 承認主体 | Web部責任者 |
+| 根拠 | 適用の方向は 2026-08-18 の判断で確定済。travel 0.3.0-draft の Foundation は本 Repository の `services/travel/design-system/{primitive,semantic}.travel.json` に実在し (`color.scheme.main` / `sub`・`#2c50c8` / `#4845d4`)、採用対象の定義体系が確認できる。rental-car 側は 0.2.x 系のまま主色 3 候補が未確定 (Q1) であり、本改訂はその未確定を解消する |
+| 適用範囲 | **国内レンタカー (rental-car) に限定**。inbound・3DS 横断へは自動適用しない |
+
+### 25-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-08-20・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者 および チーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定理由 (Web部責任者) | 本改訂は Foundation を全面置換し、主色が赤系 3 候補からロイヤル `#2C50C8` へ変わる。primitive / semantic の token 値・`components.md` の Component 定義・version に及び、`design.md` に節を新設するため、§8 の編集的訂正 carve-out (意味を変えない字句の修正) の対象外である。§24-2 (travel ラベル・タグ実装) も高判定だった。高/低の一般的な明文判定基準は未整備であり推測・補完しない (同 §8・§21) |
+
+### 25-3. 取得した現在判断 (カテゴリ別)
+
+| カテゴリ | 取得した判断 (2026-08-18 の方向・2026-08-20 時点の現在判断) |
+| --- | --- |
+| 配色の構造 | 共有ファウンデーション (白・グレー・テキスト・境界) + ブランド 2 スキームの二層。既定 = main (ロイヤル `#2C50C8`)・sub (インディゴ `#4845D4`) は第 2 候補。**いずれを正式採用するかは未決** |
+| 役割色 | per-scheme とする。success = 主色 / link = 主色 / error・特集アクセント・評価色はスキーム別。いずれかのスキームが正式採用された時点で共通化する |
+| 独立性 | 3 独立 DS の原則 (P1/ADR-0022) は**維持する**。採用するのは travel の**定義体系**であり、値は rental-car のファイルに独立して持つ。travel のファイルを参照・共有しない |
+| 廃止値 | 赤 3 候補 (`#9E2334` / `#9B2030` / `#9F1E30`)・紺 `#283593`・link `#0050a0` と hover `#06f`・CTA 緑 `#43A047`・`$tocooBlue` `#2B4B65`・マスクのグレー板 `#7F7F7F`・`.cat-label` の分類色 (`#060` / `#C90`) と尾 `#8C4801`・5px 刻みユーティリティ・本文 15px / lh 1.4・Bootstrap 残骸 `#007BFF`。実装の事実値としてのみ `migration-map.md` の左列に残し、DS の正値としない |
+| 旧 Q 論点の解消 | Q1 (主色赤の正値 3 候補)・Q2 (テキスト主色)・Q3 (base unit = 5px 系)・Q4 (root 基準・本文 15px)・Q8 (アイコン体系) は本判断により**解消**する。Q5 (breakpoint) は 2026-07-24 決定済で `$status` を bound へ昇格する |
+| ボタン形状 | **pill** (`radius.action`) とする。旧 R-01 (角丸 4px を国内レンタカー固有の意匠として維持する) は**廃止**する。縦グラデ・emboss 影・text-shadow も廃止 |
+| 書体 | 明朝 (Noto Serif JP) + ゴシック (LINE Seed JP・フォールバック Noto Sans JP) の 2 書体。本文 1rem / lh 1.8 |
+| ラベル・タグ | travel の定義シート (A〜H) を継承し、レンタカーの用途へ割り当てる。器は sm (20px) / md (24px) の 2 段。**要追加トークン 5 件** (`label.*` の器・`membership.paid`/`free`・`accent.campaignTint`/`campaignInk`・`label.stock`・`tag.neutral`) は未追加であり `🚧` を伝播させる。C 特集の用途色・E2 販売終了の値は travel と同じく**据え置き** |
+| オーバーレイ | drawer を既定形態とする記述は**本書 (rental-car `design.md` / `components.md`) の提案**である。3 DS 横断の Modal 実装基盤 (本記録 §1 Q9) は未決のまま。BottomSheet / Popover は**未承認の拡張候補**として本文から分離して書く |
+| 実査待ち (§14) | accent 濃色段の実色 (仮色 `#8A2E11`)・ResultCard の実 px・料金列の実ラベル・モーション実値・シャドウ実値・ロゴ素材は未取得であり `🚧` のまま置く。記憶からの再構築は行わない |
+
+### 25-4. §24 との関係・未決事項
+
+- §24-1 は適用範囲を「**国内宿泊 (travel) に限定**。rental-car・inbound・3DS 横断へは自動適用しない」とし、同記録の Does Not Authorize も「rental-car / inbound の成果物へ適用しない」と述べている。本 §25 は、その**自動適用ではなく**、rental-car について別途取得した判断として記録するものである。§24 の判断内容・適用範囲は変更しない。
+- ラベル・タグ定義は travel の定義シート (A〜H) を**継承**するが、用途の割当・D4 の廃止・B-2 の既定非表示は rental-car 固有の判断である。
+- **判断後も未決・未確認の事項**: スキームの正式採用 (main / sub)／accent 濃色段の実色値 (実査待ち・§14)／accent の帰属 (B 有料会員 / C 特集)／A 割引率の逆色面 + 白文字 (2.78:1・AA 未達) を許容する例外条項の明文化／E2 満車・受付終了の値 (方向のみ)／F メリット色とリンクの見分け／ResultCard の実 px・料金列の実ラベル／モーション・シャドウの実値／ロゴ素材・写真選定基準／サービス識別子 `rental-car` の正式化 (確認事項 #8)／Filter の件数算出仕様／3 DS 横断の Modal 実装基盤 (§1 Q9)。いずれも本記録では決定・補完しない。
+
+**Does Not Decide / Does Not Authorize**: 本記録は main / sub いずれのスキームを正式採用するかを決定しない。accent 濃色段の実色値・ResultCard の実 px・料金列の実ラベル・モーション・シャドウの実値を発明・確定しない (`🚧` placeholder)。C 特集の用途色・E2 販売終了の値を確定しない (据え置き)。A 割引率の白文字例外を rental-car の規則として明文化・完了させない (例外条項の明文化は未了)。drawer を 3 DS 横断の Modal 実装基盤として確定せず、BottomSheet / Popover を承認しない。サービス識別子 `rental-car` を正式識別子として確定しない (確認事項 #8)。承認済み [review-approval-rules.md](review-approval-rules.md) 本体を改定しない。§24 の適用範囲・判断内容を変更しない。travel / inbound の成果物へ適用しない。適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない (コントラスト比は概算・ハンドオフ元の記録)。GitHub の approval・merge を設計承認・判断と同一視しない。本記録に関する Wiki 記載があっても、本判断の正本は本 §25 である (Wiki は非正本)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -660,3 +710,4 @@
 | 2026-08-05 | Task 009-47R の記述是正: PR [#139](https://github.com/tocoo/coocom-design-system/pull/139) コードレビュー補足 (issuecomment-5186543849) の指摘②に対応し、§23 Does Not 節 (L577) の「承認済み review-approval-rules.md 本体を改定しない」に付していた出典注記 `(CLAUDE.md §11)` を削除。理由 = CLAUDE.md は git 未追跡 (`.git/info/exclude` によるローカル限定除外) で GitHub・新規 clone に存在せずレビュー環境から典拠を辿れないこと、および同一制約を述べる §14 (L319・L358) と §23 自身の規約 bullet (L558) が CLAUDE.md を引用しない引用規律と不整合であること。制約の内容 (承認済み規則本体を改定しない) は不変で、制約のみを記述する形へ揃えた。**是正対象は §23 Does Not 節の当該 1 箇所のみ**。§23 の現在判断 ⓐ・ⓑ・骨子 4 項目・影響度 = 高・欠落の確認結果・他行、および §1〜§22・設計承認ログ (§5)・適用開始記録 (§6) は不変。3 サービスの token・値・参照先・`$status`・`$description`・`$meta.version`・version、各 design.md・[README.md](README.md)・承認済み [review-approval-rules.md](review-approval-rules.md) 本体は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。Design System の候補採否・改定要否・改訂着手・設計承認は行っていない | Claude Code |
 | 2026-08-10 | Task 009-48〜009-56 (ラベル・タグ定義 A〜H の実装): §24 を追加。ラベル・タグ定義シート (画面設計 Owner 決定 2026-08-07/08-10) の SOT 実装について改訂着手の設計承認 (§9・§20)・影響度=高 (§8)・カテゴリ別の現在判断を記録。primitive/semantic のトークン追加 (accent 2 段・用途色・器・radius.badge=bound) は別 PR、design.md/components.md の実改訂も別 PR。C 特集・E2・F メリット色は据え置き。既存 §1〜§23 は不変 | Claude Code |
 | 2026-08-10 | Task 009-48〜009-56 の記述是正 (PR #149 独立エージェント再レビュー issuecomment-5238944112 の指摘に対応): §24-1 根拠欄の自ファイル参照「A 白文字例外 = §20」を「いずれも本記録: … = §20」へ明示し、同小節の承認種別欄が指す [review-approval-rules.md](review-approval-rules.md) §20 との近接による取り違えを解消した。§24 の判断内容 (承認対象・承認種別・影響度・カテゴリ別判断)・§1〜§23・他記述は不変。新規 ADR・Decision ID・正式 Status は採番・新設していない | Claude Code |
+| 2026-08-20 | 国内レンタカー DS 0.3.0-draft: §25 を追加。travel 0.3.0-draft の Foundation 定義体系を rental-car へ採用することについて、方向の判断 (2026-08-18)・改訂着手の設計承認 (§9・§20, 2026-08-20)・影響度=高 (§8, 2026-08-20 明示取得)・カテゴリ別の現在判断を記録。§24 は travel 限定・rental-car へ自動適用しないと明記しているため、本 §25 は自動適用ではなく rental-car について別途取得した判断として記録した。3 独立 DS の原則は維持し値は rental-car のファイルに独立して持つ。スキームの正式採用・accent 濃色段の実色・C 特集・E2 は据え置き。既存 §1〜§24 は不変 | Claude Code |

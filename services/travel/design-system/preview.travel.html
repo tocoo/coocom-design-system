@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System 見本 — 国内宿泊 (travel)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=LINE+Seed+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  /* === generated:tokens (tools/gen-preview-tokens.py) — 手で編集しない === */
+  :root {
+    --color-scheme-main-tint        : #e8edfb; /* color.scheme.main.tint */
+    --color-scheme-main-soft        : #8e9ee6; /* color.scheme.main.soft */
+    --color-scheme-main-base        : #2c50c8; /* color.scheme.main.base */
+    --color-scheme-main-hover       : #2340a6; /* color.scheme.main.hover */
+    --color-scheme-main-pressed     : #1b3488; /* color.scheme.main.pressed */
+    --color-scheme-main-ink         : #14224a; /* color.scheme.main.ink */
+    --color-scheme-main-inverse     : #c8912c; /* color.scheme.main.inverse */
+    --color-scheme-main-error       : #d23a3a; /* color.scheme.main.error */
+    --color-scheme-main-accent      : #e4572e; /* color.scheme.main.accent */
+    --color-scheme-main-accent-tint : #f9cdbc; /* color.scheme.main.accentTint 🚧 placeholder */
+    --color-scheme-main-accent-ink  : #8a2e11; /* color.scheme.main.accentInk 🚧 placeholder */
+    --color-scheme-sub-tint         : #edecfb; /* color.scheme.sub.tint */
+    --color-scheme-sub-soft         : #928ee4; /* color.scheme.sub.soft */
+    --color-scheme-sub-base         : #4845d4; /* color.scheme.sub.base */
+    --color-scheme-sub-hover        : #3936b0; /* color.scheme.sub.hover */
+    --color-scheme-sub-pressed      : #2c2a8c; /* color.scheme.sub.pressed */
+    --color-scheme-sub-ink          : #191840; /* color.scheme.sub.ink */
+    --color-scheme-sub-inverse      : #c8b12c; /* color.scheme.sub.inverse */
+    --color-scheme-sub-error        : #d2405f; /* color.scheme.sub.error */
+    --color-scheme-sub-accent       : #e0553c; /* color.scheme.sub.accent */
+    --color-scheme-sub-accent-tint  : #f8cbc2; /* color.scheme.sub.accentTint 🚧 placeholder */
+    --color-scheme-sub-accent-ink   : #8a2c18; /* color.scheme.sub.accentInk 🚧 placeholder */
+    --color-brand-primary           : #2c50c8; /* color.brand.primary */
+    --color-brand-primary-hover     : #2340a6; /* color.brand.primaryHover */
+    --color-brand-secondary         : #4845d4; /* color.brand.secondary */
+    --color-brand-secondary-hover   : #3936b0; /* color.brand.secondaryHover */
+    --color-action-primary-bg       : #2c50c8; /* color.action.primary.bg */
+    --color-action-primary-text     : #ffffff; /* color.action.primary.text */
+    --color-action-primary-hover-bg : #2340a6; /* color.action.primary.hoverBg */
+    --color-action-secondary-bg     : #ffffff; /* color.action.secondary.bg */
+    --color-action-secondary-text   : #212121; /* color.action.secondary.text */
+    --color-text-strong             : #212121; /* color.text.strong */
+    --color-text-body               : #424242; /* color.text.body */
+    --color-text-muted              : #9e9e9e; /* color.text.muted */
+    --color-text-muted-strong       : #616161; /* color.text.mutedStrong */
+    --color-text-inverse            : #ffffff; /* color.text.inverse */
+    --color-text-inverse-muted      : #9e9e9e; /* color.text.inverseMuted */
+    --color-text-on-accent          : #ffffff; /* color.text.onAccent */
+    --color-text-placeholder        : #616161; /* color.text.placeholder */
+    --color-text-link               : #2c50c8; /* color.text.link */
+    --color-text-link-hover         : #2340a6; /* color.text.linkHover */
+    --color-text-link-active        : #1b3488; /* color.text.linkActive */
+    --color-surface-default         : #ffffff; /* color.surface.default */
+    --color-surface-subtle          : #f9f9f9; /* color.surface.subtle */
+    --color-surface-muted           : #f5f5f5; /* color.surface.muted */
+    --color-surface-inverse         : #212121; /* color.surface.inverse */
+    --color-border-subtle           : #e0e0e0; /* color.border.subtle */
+    --color-border-default          : #cccccc; /* color.border.default */
+    --color-border-strong           : #bcbcbc; /* color.border.strong */
+    --color-state-success           : #2c50c8; /* color.state.success */
+    --color-state-error             : #d23a3a; /* color.state.error */
+    --color-accent-campaign         : #e4572e; /* color.accent.campaign */
+    --color-accent-campaign-tint    : #f9cdbc; /* color.accent.campaignTint 🚧 placeholder */
+    --color-accent-campaign-ink     : #8a2e11; /* color.accent.campaignInk 🚧 placeholder */
+    --color-label-discount-surface  : #c8912c; /* color.label.discount.surface */
+    --color-label-discount-text     : #ffffff; /* color.label.discount.text */
+    --color-label-stock             : #d23a3a; /* color.label.stock */
+    --color-membership-paid-surface : #f9cdbc; /* color.membership.paid.surface 🚧 placeholder */
+    --color-membership-paid-text    : #8a2e11; /* color.membership.paid.text 🚧 placeholder */
+    --color-membership-free-surface : #e8edfb; /* color.membership.free.surface */
+    --color-membership-free-text    : #14224a; /* color.membership.free.text */
+    --color-tag-neutral-surface     : #f5f5f5; /* color.tag.neutral.surface */
+    --color-tag-neutral-text        : #424242; /* color.tag.neutral.text */
+    --color-focus-ring              : #2c50c8; /* color.focus.ring */
+    --color-icon-rating             : #c8912c; /* color.icon.rating */
+    --color-overlay-backdrop        : rgba(0,0,0,0.45); /* color.overlay.backdrop 🚧 placeholder */
+    --font-body-family              : 'LINE Seed JP', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; /* font.body.family */
+    --font-body-size                : 1rem; /* font.body.size */
+    --font-body-line-height         : 1.8; /* font.body.lineHeight */
+    --font-heading-family           : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.heading.family */
+    --font-heading-weight           : 700; /* font.heading.weight */
+    --font-heading-line-height      : 1.3; /* font.heading.lineHeight */
+    --font-heading-h1-size          : 2.5rem; /* font.heading.h1Size */
+    --font-heading-h2-size          : 2rem; /* font.heading.h2Size */
+    --font-heading-h3-size          : 1.5rem; /* font.heading.h3Size */
+    --font-heading-h4-size          : 1.25rem; /* font.heading.h4Size */
+    --font-heading-h5-size          : 1.125rem; /* font.heading.h5Size */
+    --font-heading-h6-size          : 1rem; /* font.heading.h6Size */
+    --font-display-family           : 'Noto Serif JP', serif; /* font.display.family */
+    --font-display-lg-size          : 3rem; /* font.display.lgSize */
+    --font-price-family             : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.price.family */
+    --font-price-weight             : 700; /* font.price.weight */
+    --font-price-number-size        : 1.25rem; /* font.price.numberSize */
+    --font-price-caption-size       : 0.75rem; /* font.price.captionSize */
+    --radius-action                 : 9999px; /* radius.action */
+    --radius-card                   : 8px; /* radius.card 🚧 placeholder */
+    --radius-badge                  : 4px; /* radius.badge */
+    --radius-overlay                : 16px; /* radius.overlay 🚧 placeholder */
+    --label-height-sm               : 1.25rem; /* label.height.sm */
+    --label-height-md               : 1.5rem; /* label.height.md */
+    --label-padding-inline-sm       : 0.5rem; /* label.paddingInline.sm */
+    --label-padding-inline-md       : 0.75rem; /* label.paddingInline.md */
+    --label-line-height             : 1; /* label.lineHeight */
+    --label-font-size-sm            : 0.75rem; /* label.fontSize.sm */
+    --label-font-size-md            : 0.875rem; /* label.fontSize.md */
+    --label-number-size-sm          : 0.875rem; /* label.numberSize.sm */
+    --label-number-size-md          : 1rem; /* label.numberSize.md */
+    --label-weight-emphasis         : 700; /* label.weight.emphasis */
+    --label-weight-neutral          : 400; /* label.weight.neutral */
+    --label-radius                  : 4px; /* label.radius */
+    --motion-transition-duration    : 300ms; /* motion.transition.duration 🚧 placeholder */
+    --motion-transition-easing      : ease; /* motion.transition.easing 🚧 placeholder */
+    --icon-review-size              : 16px; /* icon.reviewSize */
+    --elevation-sticky              : 1100; /* elevation.sticky */
+    --elevation-overlay             : 1200; /* elevation.overlay */
+    --elevation-modal               : 1300; /* elevation.modal */
+    --spacing-0                     : 0; /* spacing.0 */
+    --spacing-1                     : 0.25rem; /* spacing.1 */
+    --spacing-2                     : 0.5rem; /* spacing.2 */
+    --spacing-3                     : 0.75rem; /* spacing.3 */
+    --spacing-4                     : 1rem; /* spacing.4 */
+    --spacing-5                     : 1.25rem; /* spacing.5 */
+    --spacing-6                     : 1.5rem; /* spacing.6 */
+    --spacing-8                     : 2rem; /* spacing.8 */
+    --spacing-10                    : 2.5rem; /* spacing.10 */
+    --spacing-12                    : 3rem; /* spacing.12 */
+    --spacing-16                    : 4rem; /* spacing.16 */
+    --breakpoint-sm                 : 640px; /* breakpoint.sm */
+    --breakpoint-md                 : 768px; /* breakpoint.md */
+    --breakpoint-lg                 : 1024px; /* breakpoint.lg */
+    --breakpoint-xl                 : 1280px; /* breakpoint.xl */
+    --radius-sm                     : 4px; /* radius.sm */
+    --radius-md                     : 8px; /* radius.md */
+    --radius-lg                     : 16px; /* radius.lg */
+    --radius-full                   : 9999px; /* radius.full */
+    --shadow-sm                     : 0 1px 2px rgba(0,0,0,0.05); /* shadow.sm 🚧 placeholder */
+    --shadow-md                     : 0 2px 8px rgba(0,0,0,0.10); /* shadow.md 🚧 placeholder */
+    --shadow-lg                     : 0 8px 24px rgba(0,0,0,0.15); /* shadow.lg 🚧 placeholder */
+    --icon-size-sm                  : 16px; /* iconSize.sm */
+    --icon-size-md                  : 20px; /* iconSize.md */
+    --icon-size-lg                  : 24px; /* iconSize.lg */
+    --icon-size-xl                  : 32px; /* iconSize.xl */
+    --typography-size-xs            : 0.75rem; /* typography.size.xs */
+    --typography-size-sm            : 0.875rem; /* typography.size.sm */
+    --typography-size-md            : 1rem; /* typography.size.md */
+    --typography-size-lg            : 1.125rem; /* typography.size.lg */
+    --typography-size-xl            : 1.25rem; /* typography.size.xl */
+    --typography-size-2xl           : 1.5rem; /* typography.size.2xl */
+    --typography-size-3xl           : 2rem; /* typography.size.3xl */
+    --typography-size-4xl           : 2.5rem; /* typography.size.4xl */
+    --typography-size-display-lg    : 3rem; /* typography.size.display-lg */
+    --typography-line-height-tight  : 1.3; /* typography.lineHeight.tight */
+    --typography-line-height-normal : 1.5; /* typography.lineHeight.normal */
+    --typography-line-height-relaxed: 1.8; /* typography.lineHeight.relaxed */
+    --typography-font-weight-regular: 400; /* typography.fontWeight.regular */
+    --typography-font-weight-medium : 500; /* typography.fontWeight.medium */
+    --typography-font-weight-bold   : 700; /* typography.fontWeight.bold */
+    --typography-font-weight-black  : 900; /* typography.fontWeight.black */
+    --elevation-z-base              : 0; /* elevation.z.base */
+    --elevation-z-dropdown          : 1000; /* elevation.z.dropdown */
+    --elevation-z-sticky            : 1100; /* elevation.z.sticky */
+    --elevation-z-overlay           : 1200; /* elevation.z.overlay */
+    --elevation-z-modal             : 1300; /* elevation.z.modal */
+    --elevation-z-toast             : 1400; /* elevation.z.toast */
+    --size-container-sm             : 975px; /* size.container.sm */
+    --size-container-md             : 1195px; /* size.container.md */
+    --size-container-lg             : 1425px; /* size.container.lg */
+    --border-width-thin             : 1px; /* border.width.thin */
+    --border-width-thick            : 2px; /* border.width.thick */
+  }
+  /* === /generated:tokens === */
+
+  /* 以下は見本ページ自身の体裁。DS のトークンではない */
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 24px 64px;
+    background: var(--color-surface-subtle);
+    font-family: var(--font-body-family);
+    color: var(--color-text-body); line-height: 1.8;
+  }
+  .page { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+  .card { background: var(--color-surface-default); border-radius: var(--radius-card); padding: 24px 28px; }
+  h1 {
+    margin: 0 0 8px; font-family: var(--font-display-family); font-weight: 500;
+    font-size: 28px; line-height: 1.3; color: var(--color-text-strong);
+  }
+  h2 {
+    margin: 0 0 16px; font-size: 18px; line-height: 1.3; color: var(--color-text-strong);
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  h3 {
+    margin: 22px 0 8px; font-size: 13px; font-weight: 700;
+    color: var(--color-text-muted-strong);
+  }
+  h3:first-of-type { margin-top: 4px; }
+  p { margin: 0 0 8px; }
+  a { color: var(--color-text-link); }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
+    background: var(--color-surface-muted); border-radius: 3px; padding: 1px 5px;
+    overflow-wrap: anywhere;
+  }
+  .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .12em;
+    color: var(--color-text-muted-strong); margin-bottom: 6px;
+  }
+  .key {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 26px; height: 26px; padding: 0 6px; border-radius: var(--radius-badge);
+    background: var(--color-surface-inverse); color: var(--color-text-inverse);
+    font-size: 13px; font-weight: 700; line-height: 1; flex: none;
+  }
+  .meta { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 20px; font-size: 13px; }
+  .meta dt { color: var(--color-text-muted-strong); }
+  .meta dd { margin: 0; }
+  .note { border-left: 3px solid var(--color-border-subtle); padding-left: 14px; font-size: 13px; }
+  .flag {
+    display: inline-block; font-size: 11px; font-weight: 700; line-height: 1;
+    padding: 3px 6px; border-radius: 3px;
+    background: var(--color-surface-muted); color: var(--color-text-muted-strong);
+  }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; font-size: 13px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--color-border-subtle); vertical-align: middle; }
+  th { color: var(--color-text-muted-strong); font-weight: 700; white-space: nowrap; }
+  .stage {
+    background: var(--color-surface-subtle); border-radius: var(--radius-card);
+    padding: 20px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px;
+  }
+  .stage--stack { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .stage--dark { background: var(--color-surface-inverse); }
+  .stage__item { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .caption { font-size: 12px; color: var(--color-text-muted-strong); line-height: 1.6; }
+  .stage--dark .caption { color: var(--color-text-inverse-muted); }
+  .stage--dark code { background: rgba(255, 255, 255, .14); color: var(--color-text-inverse); }
+  .tokens { margin: 16px 0 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 16px; font-size: 13px; }
+  .tokens dt { color: var(--color-text-muted-strong); white-space: nowrap; }
+  .tokens dd { margin: 0; }
+  .source { margin: 14px 0 0; font-size: 12px; color: var(--color-text-muted-strong); }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+  /* 色見本 */
+  .sw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px 16px; }
+  .sw { display: grid; grid-template-columns: 26px 1fr; grid-template-rows: auto auto; gap: 0 10px; align-items: center; font-size: 12px; }
+  .sw__chip {
+    grid-row: 1 / 3; width: 26px; height: 26px; border-radius: 4px;
+    border: 1px solid var(--color-border-subtle);
+  }
+  .sw code { background: none; padding: 0; font-size: 11.5px; color: var(--color-text-body); }
+  .sw__val { color: var(--color-text-muted-strong); font-size: 11px; line-height: 1.4; }
+
+  /* スケール見本 */
+  .scale { margin-bottom: 4px; }
+  .scale td { border-bottom: 1px solid var(--color-border-subtle); }
+  .scale__val { color: var(--color-text-muted-strong); white-space: nowrap; width: 120px; }
+  .scale__sample { width: 55%; }
+  .bar { display: inline-block; height: 12px; background: var(--color-scheme-main-soft); border-radius: 2px; }
+  .shape { display: inline-block; width: 56px; height: 32px; background: var(--color-scheme-main-tint); border: 1px solid var(--color-scheme-main-soft); }
+  .shape--plain { background: var(--color-surface-default); border-color: transparent; }
+
+  /* 写真の代わりに置く面。撮影素材ではない */
+  .photo {
+    position: relative; width: 210px; height: 132px; border-radius: var(--radius-card);
+    background: linear-gradient(140deg, #6b7f9e 0%, #46566d 45%, #2f3a49 100%);
+    overflow: hidden; flex: none;
+  }
+  .photo--sm { width: 132px; height: 96px; }
+  .photo__tl { position: absolute; top: 8px; left: 8px; }
+  .photo__br { position: absolute; right: 8px; bottom: 8px; }
+
+  /* Button */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    min-height: 44px; padding: 10px 24px; border-radius: var(--radius-action);
+    font-family: var(--font-body-family); font-size: var(--typography-size-md);
+    font-weight: var(--typography-font-weight-bold); line-height: 1.2;
+    border: var(--border-width-thin) solid transparent; cursor: default;
+  }
+  .btn--primary { background: var(--color-action-primary-bg); color: var(--color-action-primary-text); }
+  .btn--secondary { background: var(--color-action-secondary-bg); color: var(--color-action-secondary-text); border-color: var(--color-border-default); }
+  .btn--ghost { background: transparent; color: var(--color-text-strong); border-color: var(--color-text-strong); }
+  .btn--text { background: transparent; color: var(--color-text-link); padding-inline: 8px; }
+  .btn--focus { outline: var(--border-width-thick) solid var(--color-focus-ring); outline-offset: 2px; }
+
+  /* Input */
+  .field {
+    display: block; width: 240px; padding: 10px 12px;
+    border: var(--border-width-thin) solid var(--color-border-default);
+    border-radius: var(--radius-action);
+    font-family: var(--font-body-family); font-size: var(--typography-size-md);
+    color: var(--color-text-body); background: var(--color-surface-default);
+  }
+  .field--placeholder { color: var(--color-text-placeholder); }
+  .field--error { border-color: var(--color-state-error); color: var(--color-state-error); }
+  .field--focus { outline: var(--border-width-thick) solid var(--color-focus-ring); outline-offset: 2px; }
+  .field-error-msg { color: var(--color-state-error); font-size: var(--typography-size-sm); }
+
+  /* Card (ResultCard) */
+  .rcard {
+    display: flex; gap: 14px; width: 100%; max-width: 520px;
+    background: var(--color-surface-default); border-radius: var(--radius-card);
+    border: var(--border-width-thin) solid var(--color-border-subtle); padding: 14px;
+  }
+  .rcard__body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .rcard__title { font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--typography-size-lg); color: var(--color-text-strong); line-height: 1.3; }
+  .rcard__meta { font-size: var(--typography-size-sm); color: var(--color-text-muted-strong); }
+  .rcard__desc { font-size: var(--typography-size-sm); color: var(--color-text-body); }
+  .slotmark { font-size: 10px; color: var(--color-text-muted-strong); letter-spacing: .04em; }
+
+  /* PriceTag */
+  .price { font-family: var(--font-price-family); font-weight: var(--font-price-weight); font-variant-numeric: tabular-nums; }
+  .price__num { font-size: var(--font-price-number-size); }
+  .price__cap { font-family: var(--font-body-family); font-size: var(--font-price-caption-size); font-weight: 400; }
+  .price--default .price__num { color: var(--color-text-strong); }
+  .price--default .price__cap { color: var(--color-text-muted-strong); }
+  .price--inverse .price__num { color: var(--color-text-inverse); }
+  .price--inverse .price__cap { color: var(--color-text-inverse-muted); }
+
+  /* ReviewStars */
+  .stars { display: inline-flex; align-items: center; gap: 6px; }
+  .stars i { color: var(--color-icon-rating); font-size: var(--icon-review-size); }
+  .stars__score { font-family: var(--font-price-family); font-weight: 700; font-size: var(--typography-size-sm); color: var(--color-text-strong); }
+
+  /* Header / Footer / Breadcrumb */
+  .bar-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    width: 100%; padding: 8px 16px; background: var(--color-surface-default);
+    border: var(--border-width-thin) solid var(--color-border-subtle); border-radius: var(--radius-card);
+  }
+  .wordmark { font-family: var(--font-heading-family); font-weight: 700; color: var(--color-brand-primary); font-size: var(--typography-size-lg); }
+  .navlist { display: flex; gap: 16px; font-size: var(--typography-size-sm); }
+  .crumb { display: flex; flex-wrap: wrap; gap: 6px; font-size: var(--typography-size-sm); align-items: center; }
+  .crumb a { text-decoration: underline; }
+  .crumb__sep { color: var(--color-text-muted-strong); }
+  .crumb__current { color: var(--color-text-muted); }
+
+  /* Modal (配置の模式図) */
+  .fig {
+    position: relative; width: 190px; height: 130px; border-radius: var(--radius-card);
+    background: var(--color-surface-default); border: var(--border-width-thin) solid var(--color-border-subtle);
+    overflow: hidden;
+  }
+  .fig__scrim { position: absolute; inset: 0; background: var(--color-overlay-backdrop); }
+  .fig__panel { position: absolute; background: var(--color-surface-default); }
+  .fig__panel--drawer { top: 0; right: 0; bottom: 0; width: 60%; }
+  .fig__panel--sheet { left: 0; right: 0; bottom: 0; height: 55%; border-radius: var(--radius-overlay) var(--radius-overlay) 0 0; }
+  .fig__panel--popover { top: 46px; left: 22px; width: 58%; height: 46%; border-radius: var(--radius-card); box-shadow: var(--shadow-md); }
+  .fig__trigger { position: absolute; top: 18px; left: 22px; width: 58%; height: 20px; border-radius: var(--radius-action); background: var(--color-scheme-main-tint); }
+
+  /* ラベル・タグ (label.* = 共通器) */
+  .lbl {
+    display: inline-flex; align-items: center;
+    line-height: var(--label-line-height); border-radius: var(--label-radius);
+    font-weight: var(--label-weight-emphasis); white-space: nowrap;
+  }
+  .lbl--sm { height: var(--label-height-sm); padding-inline: var(--label-padding-inline-sm); font-size: var(--label-font-size-sm); }
+  .lbl--md { height: var(--label-height-md); padding-inline: var(--label-padding-inline-md); font-size: var(--label-font-size-md); }
+  .lbl__num { font-family: var(--font-price-family); font-variant-numeric: tabular-nums; }
+  .lbl--sm .lbl__num { font-size: var(--label-number-size-sm); }
+  .lbl--md .lbl__num { font-size: var(--label-number-size-md); }
+  .lbl--discount { background: var(--color-label-discount-surface); color: var(--color-label-discount-text); }
+  .lbl--paid { background: var(--color-membership-paid-surface); color: var(--color-membership-paid-text); }
+  .lbl--free { background: var(--color-membership-free-surface); color: var(--color-membership-free-text); }
+  .lbl--tag { background: var(--color-tag-neutral-surface); color: var(--color-tag-neutral-text); font-weight: var(--label-weight-neutral); }
+  .stock { color: var(--color-label-stock); font-weight: var(--label-weight-emphasis); font-size: var(--label-font-size-sm); font-variant-numeric: tabular-nums; }
+  .cond { display: flex; flex-wrap: wrap; gap: 12px; font-size: var(--label-font-size-sm); }
+  .cond__item { display: inline-flex; align-items: center; gap: 5px; }
+  .cond--gain { color: var(--color-scheme-main-base); }
+  .cond--loss { color: var(--color-state-error); }
+  .cond--neutral { color: var(--color-text-muted-strong); }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 16px;
+    border-radius: var(--radius-action); background: var(--color-surface-inverse);
+    color: var(--color-text-inverse); font-size: var(--label-font-size-md); font-weight: var(--label-weight-emphasis);
+  }
+  .frag {
+    width: 230px; font-size: 13px; background: var(--color-surface-default);
+    border-radius: var(--radius-card); padding: 14px 16px;
+  }
+  .frag__name { font-weight: 700; color: var(--color-text-strong); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="card">
+  <div class="eyebrow">TOCOO! 国内宿泊 / DESIGN SYSTEM PREVIEW</div>
+  <h1>Design System 見本</h1>
+  <p>国内宿泊 (travel) の DS を、正本のトークンで実際に描画したもの。</p>
+  <dl class="meta">
+    <dt>種別</dt><dd>DS 付属資料 (見本)</dd>
+    <dt>状態</dt><dd>Draft</dd>
+    <dt>対象</dt><dd><code>services/travel/design-system</code></dd>
+    <dt>収録</dt><dd>色・書体・スケール・Component 10 種・ラベル・タグ (共通器 / A / B / D / E1 / F / G / H)</dd>
+    <dt>対象外</dt><dd>ラベル・タグの C カテゴリ・特集 (仮決定)、E2 販売終了 (方向のみ)</dd>
+  </dl>
+</header>
+
+<section class="card">
+  <h2>本ページの位置づけ</h2>
+  <ul class="note">
+    <li><strong>規則の正本は本ページではない。</strong> 規則は <a href="design.md"><code>design.md</code></a> と <a href="components.md"><code>components.md</code></a>、値は <a href="semantic.travel.json"><code>semantic.travel.json</code></a> / <a href="primitive.travel.json"><code>primitive.travel.json</code></a> にある。本ページは<strong>それらを見える形にしたもの</strong>で、規則の文章を持たない。各節の末尾に正本の所在を示す。</li>
+    <li><strong>値と一覧は生成している。</strong> CSS 変数・色見本・スケールの 3 ブロックは <code>tools/gen-preview-tokens.py</code> が JSON から生成する。手で書き写した値はない。JSON を改訂したら <code>python3 tools/gen-preview-tokens.py</code> を実行する (一致確認は <code>--check</code>)。</li>
+    <li><strong>書体とアイコンは本番と同じものを読む。</strong> LINE Seed JP / Noto Serif JP (Google Fonts・<code>design.md</code> §3) と Font Awesome 6 (同 §6)。</li>
+    <li><span class="flag">🚧</span> は <code>$status</code> が <code>placeholder</code> のトークン。<span class="flag">未取得</span> は正本に値が無く見本を描けないもの。いずれも Known Gaps に一覧がある。</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>色</h2>
+<!-- === generated:colors (tools/gen-preview-tokens.py) — 手で編集しない === -->
+  <h3>スキーム — メイン (royal)</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-tint)"></span><code>color.scheme.main.tint</code><span class="sw__val">#e8edfb</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-soft)"></span><code>color.scheme.main.soft</code><span class="sw__val">#8e9ee6</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-base)"></span><code>color.scheme.main.base</code><span class="sw__val">#2c50c8</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-hover)"></span><code>color.scheme.main.hover</code><span class="sw__val">#2340a6</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-pressed)"></span><code>color.scheme.main.pressed</code><span class="sw__val">#1b3488</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-ink)"></span><code>color.scheme.main.ink</code><span class="sw__val">#14224a</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-inverse)"></span><code>color.scheme.main.inverse</code><span class="sw__val">#c8912c</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-error)"></span><code>color.scheme.main.error</code><span class="sw__val">#d23a3a</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-accent)"></span><code>color.scheme.main.accent</code><span class="sw__val">#e4572e</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-accent-tint)"></span><code>color.scheme.main.accentTint</code><span class="sw__val">#f9cdbc <span class="flag">🚧</span></span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-main-accent-ink)"></span><code>color.scheme.main.accentInk</code><span class="sw__val">#8a2e11 <span class="flag">🚧</span></span></div>
+  </div>
+  <h3>スキーム — サブ (indigo)</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-tint)"></span><code>color.scheme.sub.tint</code><span class="sw__val">#edecfb</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-soft)"></span><code>color.scheme.sub.soft</code><span class="sw__val">#928ee4</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-base)"></span><code>color.scheme.sub.base</code><span class="sw__val">#4845d4</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-hover)"></span><code>color.scheme.sub.hover</code><span class="sw__val">#3936b0</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-pressed)"></span><code>color.scheme.sub.pressed</code><span class="sw__val">#2c2a8c</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-ink)"></span><code>color.scheme.sub.ink</code><span class="sw__val">#191840</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-inverse)"></span><code>color.scheme.sub.inverse</code><span class="sw__val">#c8b12c</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-error)"></span><code>color.scheme.sub.error</code><span class="sw__val">#d2405f</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-accent)"></span><code>color.scheme.sub.accent</code><span class="sw__val">#e0553c</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-accent-tint)"></span><code>color.scheme.sub.accentTint</code><span class="sw__val">#f8cbc2 <span class="flag">🚧</span></span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-scheme-sub-accent-ink)"></span><code>color.scheme.sub.accentInk</code><span class="sw__val">#8a2c18 <span class="flag">🚧</span></span></div>
+  </div>
+  <h3>ブランド</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-brand-primary)"></span><code>color.brand.primary</code><span class="sw__val">#2c50c8</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-brand-primary-hover)"></span><code>color.brand.primaryHover</code><span class="sw__val">#2340a6</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-brand-secondary)"></span><code>color.brand.secondary</code><span class="sw__val">#4845d4</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-brand-secondary-hover)"></span><code>color.brand.secondaryHover</code><span class="sw__val">#3936b0</span></div>
+  </div>
+  <h3>操作 (Button)</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-action-primary-bg)"></span><code>color.action.primary.bg</code><span class="sw__val">#2c50c8</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-action-primary-text)"></span><code>color.action.primary.text</code><span class="sw__val">#ffffff</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-action-primary-hover-bg)"></span><code>color.action.primary.hoverBg</code><span class="sw__val">#2340a6</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-action-secondary-bg)"></span><code>color.action.secondary.bg</code><span class="sw__val">#ffffff</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-action-secondary-text)"></span><code>color.action.secondary.text</code><span class="sw__val">#212121</span></div>
+  </div>
+  <h3>文字</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-strong)"></span><code>color.text.strong</code><span class="sw__val">#212121</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-body)"></span><code>color.text.body</code><span class="sw__val">#424242</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-muted)"></span><code>color.text.muted</code><span class="sw__val">#9e9e9e</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-muted-strong)"></span><code>color.text.mutedStrong</code><span class="sw__val">#616161</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-inverse)"></span><code>color.text.inverse</code><span class="sw__val">#ffffff</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-inverse-muted)"></span><code>color.text.inverseMuted</code><span class="sw__val">#9e9e9e</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-on-accent)"></span><code>color.text.onAccent</code><span class="sw__val">#ffffff</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-placeholder)"></span><code>color.text.placeholder</code><span class="sw__val">#616161</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-link)"></span><code>color.text.link</code><span class="sw__val">#2c50c8</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-link-hover)"></span><code>color.text.linkHover</code><span class="sw__val">#2340a6</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-text-link-active)"></span><code>color.text.linkActive</code><span class="sw__val">#1b3488</span></div>
+  </div>
+  <h3>面</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-surface-default)"></span><code>color.surface.default</code><span class="sw__val">#ffffff</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-surface-subtle)"></span><code>color.surface.subtle</code><span class="sw__val">#f9f9f9</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-surface-muted)"></span><code>color.surface.muted</code><span class="sw__val">#f5f5f5</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-surface-inverse)"></span><code>color.surface.inverse</code><span class="sw__val">#212121</span></div>
+  </div>
+  <h3>境界</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-border-subtle)"></span><code>color.border.subtle</code><span class="sw__val">#e0e0e0</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-border-default)"></span><code>color.border.default</code><span class="sw__val">#cccccc</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-border-strong)"></span><code>color.border.strong</code><span class="sw__val">#bcbcbc</span></div>
+  </div>
+  <h3>状態</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-state-success)"></span><code>color.state.success</code><span class="sw__val">#2c50c8</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-state-error)"></span><code>color.state.error</code><span class="sw__val">#d23a3a</span></div>
+  </div>
+  <h3>特集アクセント</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-accent-campaign)"></span><code>color.accent.campaign</code><span class="sw__val">#e4572e</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-accent-campaign-tint)"></span><code>color.accent.campaignTint</code><span class="sw__val">#f9cdbc <span class="flag">🚧</span></span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-accent-campaign-ink)"></span><code>color.accent.campaignInk</code><span class="sw__val">#8a2e11 <span class="flag">🚧</span></span></div>
+  </div>
+  <h3>ラベル・タグ</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-discount-surface)"></span><code>color.label.discount.surface</code><span class="sw__val">#c8912c</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-discount-text)"></span><code>color.label.discount.text</code><span class="sw__val">#ffffff</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-stock)"></span><code>color.label.stock</code><span class="sw__val">#d23a3a</span></div>
+  </div>
+  <h3>会員種別</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-membership-paid-surface)"></span><code>color.membership.paid.surface</code><span class="sw__val">#f9cdbc <span class="flag">🚧</span></span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-membership-paid-text)"></span><code>color.membership.paid.text</code><span class="sw__val">#8a2e11 <span class="flag">🚧</span></span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-membership-free-surface)"></span><code>color.membership.free.surface</code><span class="sw__val">#e8edfb</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-membership-free-text)"></span><code>color.membership.free.text</code><span class="sw__val">#14224a</span></div>
+  </div>
+  <h3>施設属性タグ</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-tag-neutral-surface)"></span><code>color.tag.neutral.surface</code><span class="sw__val">#f5f5f5</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-tag-neutral-text)"></span><code>color.tag.neutral.text</code><span class="sw__val">#424242</span></div>
+  </div>
+  <h3>フォーカス・アイコン・オーバーレイ</h3>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-focus-ring)"></span><code>color.focus.ring</code><span class="sw__val">#2c50c8</span></div>
+  </div>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-icon-rating)"></span><code>color.icon.rating</code><span class="sw__val">#c8912c</span></div>
+  </div>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-overlay-backdrop)"></span><code>color.overlay.backdrop</code><span class="sw__val">rgba(0,0,0,0.45) <span class="flag">🚧</span></span></div>
+  </div>
+<!-- === /generated:colors === -->
+  <p class="source">正本: <a href="semantic.travel.json"><code>semantic.travel.json</code></a> (用途) → <a href="primitive.travel.json"><code>primitive.travel.json</code></a> (値) / 面と文字色の組み合わせ規則は <a href="design.md"><code>design.md</code></a> §2.1</p>
+</section>
+
+<section class="card">
+  <h2>書体</h2>
+  <div class="stage stage--stack">
+    <div class="stage__item">
+      <span style="font-family: var(--font-body-family); font-size: var(--font-body-size); line-height: var(--font-body-line-height)">本文 — 天橋立の宿を、1 泊 12,800 円から。</span>
+      <span class="caption"><code>font.body.family</code> ・ <code>font.body.size</code> ・ <code>font.body.lineHeight</code></span>
+    </div>
+    <div class="stage__item">
+      <span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h3-size); line-height: var(--font-heading-line-height)">見出し — おすすめの宿</span>
+      <span class="caption"><code>font.heading.family</code> ・ <code>font.heading.weight</code> ・ <code>font.heading.lineHeight</code></span>
+    </div>
+    <div class="stage__item">
+      <span style="font-family: var(--font-display-family); font-weight: 500; font-size: var(--font-display-lg-size); line-height: 1.2">明朝 — 天橋立 花あかり亭</span>
+      <span class="caption"><code>font.display.family</code> ・ <code>font.display.lgSize</code> (Display・Hero・詳細施設名)</span>
+    </div>
+    <div class="stage__item">
+      <span class="price price--default"><span class="price__num">12,800</span><span class="price__cap"> 円 ／1泊・税込</span></span>
+      <span class="caption"><code>font.price.family</code> ・ <code>font.price.weight</code> ・ <code>font.price.numberSize</code> ・ <code>font.price.captionSize</code></span>
+    </div>
+  </div>
+
+  <h3>文書レベルの見出し (h1〜h6)</h3>
+  <div class="tablewrap"><table>
+    <tbody>
+      <tr><td><code>font.heading.h1Size</code></td><td class="scale__val">2.5rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h1-size); line-height: var(--font-heading-line-height)">見出し h1</span></td></tr>
+      <tr><td><code>font.heading.h2Size</code></td><td class="scale__val">2rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h2-size); line-height: var(--font-heading-line-height)">見出し h2</span></td></tr>
+      <tr><td><code>font.heading.h3Size</code></td><td class="scale__val">1.5rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h3-size); line-height: var(--font-heading-line-height)">見出し h3</span></td></tr>
+      <tr><td><code>font.heading.h4Size</code></td><td class="scale__val">1.25rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h4-size); line-height: var(--font-heading-line-height)">見出し h4</span></td></tr>
+      <tr><td><code>font.heading.h5Size</code></td><td class="scale__val">1.125rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h5-size); line-height: var(--font-heading-line-height)">見出し h5</span></td></tr>
+      <tr><td><code>font.heading.h6Size</code></td><td class="scale__val">1rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h6-size); line-height: var(--font-heading-line-height)">見出し h6</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="source">正本: <a href="design.md"><code>design.md</code></a> §3・§3.1 / <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>font.*</code></p>
+</section>
+
+<section class="card">
+  <h2>スケール</h2>
+<!-- === generated:scales (tools/gen-preview-tokens.py) — 手で編集しない === -->
+  <h3>文字サイズ</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>typography.size.xs</code></td><td class="scale__val">0.75rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-xs)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.size.sm</code></td><td class="scale__val">0.875rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-sm)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.size.md</code></td><td class="scale__val">1rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-md)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.size.lg</code></td><td class="scale__val">1.125rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-lg)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.size.xl</code></td><td class="scale__val">1.25rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-xl)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.size.2xl</code></td><td class="scale__val">1.5rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-2xl)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.size.3xl</code></td><td class="scale__val">2rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-3xl)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.size.4xl</code></td><td class="scale__val">2.5rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-4xl)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.size.display-lg</code></td><td class="scale__val">3rem</td><td class="scale__sample"><span style="font-size: var(--typography-size-display-lg)">見本 Aa 12,800円</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>行間</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>typography.lineHeight.tight</code></td><td class="scale__val">1.3</td><td class="scale__sample"></td></tr>
+      <tr><td><code>typography.lineHeight.normal</code></td><td class="scale__val">1.5</td><td class="scale__sample"></td></tr>
+      <tr><td><code>typography.lineHeight.relaxed</code></td><td class="scale__val">1.8</td><td class="scale__sample"></td></tr>
+    </tbody>
+  </table></div>
+  <h3>ウェイト</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>typography.fontWeight.regular</code></td><td class="scale__val">400</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-regular)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.fontWeight.medium</code></td><td class="scale__val">500</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-medium)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.fontWeight.bold</code></td><td class="scale__val">700</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-bold)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.fontWeight.black</code></td><td class="scale__val">900</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-black)">見本 Aa 12,800円</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>余白</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>spacing.0</code></td><td class="scale__val">0</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-0)"></span></td></tr>
+      <tr><td><code>spacing.1</code></td><td class="scale__val">0.25rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-1)"></span></td></tr>
+      <tr><td><code>spacing.2</code></td><td class="scale__val">0.5rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-2)"></span></td></tr>
+      <tr><td><code>spacing.3</code></td><td class="scale__val">0.75rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-3)"></span></td></tr>
+      <tr><td><code>spacing.4</code></td><td class="scale__val">1rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-4)"></span></td></tr>
+      <tr><td><code>spacing.5</code></td><td class="scale__val">1.25rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-5)"></span></td></tr>
+      <tr><td><code>spacing.6</code></td><td class="scale__val">1.5rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-6)"></span></td></tr>
+      <tr><td><code>spacing.8</code></td><td class="scale__val">2rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-8)"></span></td></tr>
+      <tr><td><code>spacing.10</code></td><td class="scale__val">2.5rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-10)"></span></td></tr>
+      <tr><td><code>spacing.12</code></td><td class="scale__val">3rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-12)"></span></td></tr>
+      <tr><td><code>spacing.16</code></td><td class="scale__val">4rem</td><td class="scale__sample"><span class="bar" style="width: var(--spacing-16)"></span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>角丸 (primitive)</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>radius.sm</code></td><td class="scale__val">4px</td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-sm)"></span></td></tr>
+      <tr><td><code>radius.md</code></td><td class="scale__val">8px</td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-md)"></span></td></tr>
+      <tr><td><code>radius.lg</code></td><td class="scale__val">16px</td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-lg)"></span></td></tr>
+      <tr><td><code>radius.full</code></td><td class="scale__val">9999px</td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-full)"></span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>角丸 (用途)</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>radius.action</code></td><td class="scale__val">9999px</td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-action)"></span></td></tr>
+      <tr><td><code>radius.card</code></td><td class="scale__val">8px <span class="flag">🚧</span></td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-card)"></span></td></tr>
+      <tr><td><code>radius.badge</code></td><td class="scale__val">4px</td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-badge)"></span></td></tr>
+      <tr><td><code>radius.overlay</code></td><td class="scale__val">16px <span class="flag">🚧</span></td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-overlay)"></span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>影</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>shadow.sm</code></td><td class="scale__val">0 1px 2px rgba(0,0,0,0.05) <span class="flag">🚧</span></td><td class="scale__sample"><span class="shape shape--plain" style="box-shadow: var(--shadow-sm)"></span></td></tr>
+      <tr><td><code>shadow.md</code></td><td class="scale__val">0 2px 8px rgba(0,0,0,0.10) <span class="flag">🚧</span></td><td class="scale__sample"><span class="shape shape--plain" style="box-shadow: var(--shadow-md)"></span></td></tr>
+      <tr><td><code>shadow.lg</code></td><td class="scale__val">0 8px 24px rgba(0,0,0,0.15) <span class="flag">🚧</span></td><td class="scale__sample"><span class="shape shape--plain" style="box-shadow: var(--shadow-lg)"></span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>アイコンサイズ</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>iconSize.sm</code></td><td class="scale__val">16px</td><td class="scale__sample"><i class="fa-solid fa-star" style="font-size: var(--icon-size-sm); color: var(--color-icon-rating)"></i></td></tr>
+      <tr><td><code>iconSize.md</code></td><td class="scale__val">20px</td><td class="scale__sample"><i class="fa-solid fa-star" style="font-size: var(--icon-size-md); color: var(--color-icon-rating)"></i></td></tr>
+      <tr><td><code>iconSize.lg</code></td><td class="scale__val">24px</td><td class="scale__sample"><i class="fa-solid fa-star" style="font-size: var(--icon-size-lg); color: var(--color-icon-rating)"></i></td></tr>
+      <tr><td><code>iconSize.xl</code></td><td class="scale__val">32px</td><td class="scale__sample"><i class="fa-solid fa-star" style="font-size: var(--icon-size-xl); color: var(--color-icon-rating)"></i></td></tr>
+    </tbody>
+  </table></div>
+  <h3>ブレークポイント</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>breakpoint.sm</code></td><td class="scale__val">640px</td><td class="scale__sample"></td></tr>
+      <tr><td><code>breakpoint.md</code></td><td class="scale__val">768px</td><td class="scale__sample"></td></tr>
+      <tr><td><code>breakpoint.lg</code></td><td class="scale__val">1024px</td><td class="scale__sample"></td></tr>
+      <tr><td><code>breakpoint.xl</code></td><td class="scale__val">1280px</td><td class="scale__sample"></td></tr>
+    </tbody>
+  </table></div>
+  <h3>コンテナ幅</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>size.container.sm</code></td><td class="scale__val">975px</td><td class="scale__sample"></td></tr>
+      <tr><td><code>size.container.md</code></td><td class="scale__val">1195px</td><td class="scale__sample"></td></tr>
+      <tr><td><code>size.container.lg</code></td><td class="scale__val">1425px</td><td class="scale__sample"></td></tr>
+    </tbody>
+  </table></div>
+  <h3>重なり (z)</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>elevation.z.base</code></td><td class="scale__val">0</td><td class="scale__sample"></td></tr>
+      <tr><td><code>elevation.z.dropdown</code></td><td class="scale__val">1000</td><td class="scale__sample"></td></tr>
+      <tr><td><code>elevation.z.sticky</code></td><td class="scale__val">1100</td><td class="scale__sample"></td></tr>
+      <tr><td><code>elevation.z.overlay</code></td><td class="scale__val">1200</td><td class="scale__sample"></td></tr>
+      <tr><td><code>elevation.z.modal</code></td><td class="scale__val">1300</td><td class="scale__sample"></td></tr>
+      <tr><td><code>elevation.z.toast</code></td><td class="scale__val">1400</td><td class="scale__sample"></td></tr>
+    </tbody>
+  </table></div>
+  <h3>モーション</h3>
+  <div class="tablewrap"><table class="scale">
+    <tbody>
+      <tr><td><code>motion.transition.duration</code></td><td class="scale__val">300ms <span class="flag">🚧</span></td><td class="scale__sample"></td></tr>
+      <tr><td><code>motion.transition.easing</code></td><td class="scale__val">ease <span class="flag">🚧</span></td><td class="scale__sample"></td></tr>
+    </tbody>
+  </table></div>
+<!-- === /generated:scales === -->
+  <p class="source">正本: <a href="design.md"><code>design.md</code></a> §3 (タイポ)・§4 (余白・ブレークポイント)・§5 (角丸・影)・§6 (アイコン) / 値は <a href="primitive.travel.json"><code>primitive.travel.json</code></a></p>
+</section>
+
+<section class="card">
+  <h2>Component — Button</h2>
+  <div class="stage">
+    <div class="stage__item"><span class="btn btn--primary">プラン選択へ</span><span class="caption"><code>Button.primary</code></span></div>
+    <div class="stage__item"><span class="btn btn--secondary">お気に入り</span><span class="caption"><code>Button.secondary</code></span></div>
+    <div class="stage__item"><span class="btn btn--ghost">特集を見る</span><span class="caption"><code>Button.ghost</code></span></div>
+    <div class="stage__item"><span class="btn btn--text">キャンセル</span><span class="caption"><code>Button.text</code></span></div>
+    <div class="stage__item"><span class="btn btn--primary btn--focus">プラン選択へ</span><span class="caption">focus = <code>color.focus.ring</code> の outline</span></div>
+  </div>
+  <dl class="tokens">
+    <dt>面・文字</dt><dd><code>color.action.primary.bg / text</code> ・ <code>color.action.secondary.bg / text</code> ・ <code>color.text.strong</code> ・ <code>color.text.link</code></dd>
+    <dt>角丸</dt><dd><code>radius.action</code> (pill)</dd>
+    <dt>hover / active / disabled / loading</dt><dd><span class="flag">未取得</span> 正本に値がないため見本を描かない</dd>
+  </dl>
+  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Button</code> (バリアント 4 語・campaign 廃止 = TVL-0012)</p>
+</section>
+
+<section class="card">
+  <h2>Component — Input / SearchForm</h2>
+  <div class="stage">
+    <div class="stage__item"><span class="field">東京都 奥多摩</span><span class="caption">入力値 <code>color.text.body</code></span></div>
+    <div class="stage__item"><span class="field field--placeholder">目的地・宿名で検索</span><span class="caption">プレースホルダ <code>color.text.placeholder</code></span></div>
+    <div class="stage__item"><span class="field field--focus">東京都 奥多摩</span><span class="caption">focus <code>color.focus.ring</code> <span class="flag">🚧</span></span></div>
+    <div class="stage__item">
+      <span class="field field--error">2026/09/01</span>
+      <span class="field-error-msg">チェックアウト日を後の日付にしてください</span>
+      <span class="caption">error <code>color.state.error</code> <span class="flag">🚧</span> ・文言を併記</span>
+    </div>
+  </div>
+  <div class="stage" style="margin-top:14px">
+    <div class="stage__item">
+      <div class="row">
+        <span class="field" style="width:200px">目的地・宿名</span>
+        <span class="field" style="width:190px">09/01 — 09/02</span>
+        <span class="btn btn--primary">検索</span>
+      </div>
+      <span class="caption"><code>SearchForm.default</code> = Input 群 + <code>Button.primary</code>。フィールド構成は <span class="flag">要実査</span></span>
+    </div>
+  </div>
+  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Input</code> / <code>SearchForm</code> ・ <a href="design.md"><code>design.md</code></a> §2.3 (プレースホルダ)</p>
+</section>
+
+<section class="card">
+  <h2>Component — Card (ResultCard)</h2>
+  <div class="stage">
+    <div class="stage__item">
+      <div class="rcard">
+        <div class="photo photo--sm"><span class="photo__tl lbl lbl--sm lbl--discount"><span class="lbl__num">52</span>%OFF</span></div>
+        <div class="rcard__body">
+          <div class="rcard__title">湯宿 かのう</div>
+          <div class="rcard__meta">東京都 奥多摩</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><span class="stars__score">4.2</span></div>
+          <div class="row"><span class="lbl lbl--sm lbl--tag">旅館</span><span class="lbl lbl--sm lbl--tag">温泉</span></div>
+          <div class="stock">残り2室</div>
+          <div class="price price--default"><span class="price__num">12,800</span><span class="price__cap"> 円 ／1泊・税込</span></div>
+          <div class="row"><span class="btn btn--primary" style="min-height:36px;padding:6px 16px;font-size:var(--typography-size-sm)">プラン選択へ</span></div>
+        </div>
+      </div>
+      <span class="caption">スロット: <span class="slotmark">media / badge / title / meta / rating / description / price / actions</span></span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>外形</dt><dd><code>radius.card</code> <span class="flag">🚧</span> ・ <code>color.border.subtle</code></dd>
+    <dt>バッジ</dt><dd><code>Card.slot.badge</code> = 下の「ラベル・タグ」節</dd>
+    <dt>8 スロットの対応付け</dt><dd><span class="flag">要実査</span></dd>
+  </dl>
+  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Card (ResultCard)</code></p>
+</section>
+
+<section class="card">
+  <h2>Component — PriceTag</h2>
+  <div class="stage">
+    <div class="stage__item">
+      <span class="price price--default"><span class="price__num">12,800</span><span class="price__cap"> 円 ／1泊・税込</span></span>
+      <span class="caption"><code>tone="default"</code> (明色面)</span>
+    </div>
+  </div>
+  <div class="stage stage--dark" style="margin-top:10px">
+    <div class="stage__item">
+      <span class="price price--inverse"><span class="price__num">12,800</span><span class="price__cap"> 円 ／1泊・税込</span></span>
+      <span class="caption"><code>tone="inverse"</code> (<code>color.surface.inverse</code> 面)</span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>default</dt><dd>主要価格 <code>color.text.strong</code> / 補助 <code>color.text.mutedStrong</code></dd>
+    <dt>inverse</dt><dd>主要価格 <code>color.text.inverse</code> / 補助 <code>color.text.inverseMuted</code></dd>
+    <dt>「円」の weight 600</dt><dd><span class="flag">🚧</span> スケール外実測・正規化は未確定</dd>
+  </dl>
+  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>PriceTag</code> (tone 対応表)</p>
+</section>
+
+<section class="card">
+  <h2>Component — ReviewStars / Header / Footer / Breadcrumb</h2>
+  <div class="stage stage--stack">
+    <div class="stage__item">
+      <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><span class="stars__score">4.2</span></div>
+      <span class="caption"><code>ReviewStars</code> — <code>color.icon.rating</code> ・ <code>icon.reviewSize</code> ・数値スコアを併記。星の実寸は <span class="flag">要実査</span></span>
+    </div>
+    <div class="stage__item" style="align-self:stretch">
+      <div class="bar-header">
+        <span class="wordmark">ToCoo!</span>
+        <span class="navlist"><a href="#">宿を探す</a><a href="#">特集</a><a href="#">ヘルプ</a></span>
+        <span class="row"><span class="lbl lbl--sm lbl--paid">プライム</span><span class="btn btn--text" style="min-height:0">ログイン</span></span>
+      </div>
+      <span class="caption"><code>Header</code> — 面 <code>color.surface.default</code>。ロゴは実ファイル未提供のためワードマーク代用 (<code>design.md</code> §8)</span>
+    </div>
+    <div class="stage__item">
+      <div class="crumb"><a href="#">ホーム</a><span class="crumb__sep">/</span><a href="#">東京都</a><span class="crumb__sep">/</span><span class="crumb__current">奥多摩</span></div>
+      <span class="caption"><code>Breadcrumb</code> — リンク <code>color.text.link</code> / 現在地 <code>color.text.muted</code>。下線の既定は <span class="flag">未判定</span></span>
+    </div>
+    <div class="stage__item">
+      <span class="caption"><code>Footer</code> — 新系 (<code>lp/_footer</code>) を正とする <span class="flag">🚧 暫定</span>。構成の実体が正本に無いため見本を描かない</span>
+    </div>
+  </div>
+  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>ReviewStars</code> / <code>Header</code> / <code>Footer</code> / <code>Breadcrumb</code> ・ <a href="design.md"><code>design.md</code></a> §2.2 (リンクの状態)</p>
+</section>
+
+<section class="card">
+  <h2>Component — Modal / Overlay</h2>
+  <div class="stage">
+    <div class="stage__item">
+      <div class="fig"><div class="fig__scrim"></div><div class="fig__panel fig__panel--drawer"></div></div>
+      <span class="caption"><code>form="drawer"</code> (既定)</span>
+    </div>
+    <div class="stage__item">
+      <div class="fig"><div class="fig__scrim"></div><div class="fig__panel fig__panel--sheet"></div></div>
+      <span class="caption"><code>form="sheet"</code> — 下端貼付き・全幅・上端 2 隅 <code>radius.overlay</code> <span class="flag">🚧</span></span>
+    </div>
+    <div class="stage__item">
+      <div class="fig"><div class="fig__scrim"></div><div class="fig__trigger"></div><div class="fig__panel fig__panel--popover"></div></div>
+      <span class="caption"><code>form="popover"</code> — 基準要素を起点に配置</span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>backdrop</dt><dd><code>color.overlay.backdrop</code> <span class="flag">🚧</span> ・3 形態共通</dd>
+    <dt>切替</dt><dd><code>breakpoint.lg</code> 未満 = sheet / 以上 = popover</dd>
+    <dt>z 軸</dt><dd><code>elevation.overlay</code> ・ <code>elevation.modal</code></dd>
+    <dt>開閉遷移</dt><dd><code>motion.transition.*</code> <span class="flag">🚧</span></dd>
+  </dl>
+  <p class="source">正本: <a href="design.md"><code>design.md</code></a> §7.1 / <a href="components.md"><code>components.md</code></a> <code>Modal / Overlay</code></p>
+</section>
+
+<section class="card">
+  <h2>ラベル・タグ — 共通器</h2>
+  <div class="stage">
+    <div class="stage__item">
+      <div class="row">
+        <span class="lbl lbl--sm lbl--discount"><span class="lbl__num">52</span>%OFF</span>
+        <span class="lbl lbl--sm lbl--paid">プライム</span>
+        <span class="lbl lbl--sm lbl--tag">旅館</span>
+      </div>
+      <span class="caption">sm</span>
+    </div>
+    <div class="stage__item">
+      <div class="row">
+        <span class="lbl lbl--md lbl--discount"><span class="lbl__num">52</span>%OFF</span>
+        <span class="lbl lbl--md lbl--tag">旅館</span>
+      </div>
+      <span class="caption">md</span>
+    </div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>項目</th><th>sm</th><th>md</th><th>トークン</th></tr></thead>
+    <tbody>
+      <tr><td>高さ</td><td>20px</td><td>24px</td><td><code>label.height.sm / md</code></td></tr>
+      <tr><td>左右余白</td><td>8px</td><td>12px</td><td><code>label.paddingInline.sm / md</code></td></tr>
+      <tr><td>行高</td><td colspan="2">1</td><td><code>label.lineHeight</code></td></tr>
+      <tr><td>文字サイズ</td><td>12px</td><td>14px</td><td><code>label.fontSize.sm / md</code></td></tr>
+      <tr><td>数字 (A のみ)</td><td>14px</td><td>16px</td><td><code>label.numberSize.sm / md</code></td></tr>
+      <tr><td>ウェイト</td><td colspan="2">面あり 700 / 中立タグ 400</td><td><code>label.weight.emphasis / neutral</code></td></tr>
+      <tr><td>角丸</td><td colspan="2">4px</td><td><code>label.radius</code> (= <code>radius.badge</code>)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="source">正本: <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>label.*</code> / <a href="components.md"><code>components.md</code></a> <code>Card.slot.badge</code></p>
+</section>
+
+<section class="card">
+  <h2><span class="key">A</span> 割引率ラベル</h2>
+  <div class="stage">
+    <div class="stage__item"><span class="lbl lbl--sm lbl--discount"><span class="lbl__num">52</span>%OFF</span><span class="caption">sm</span></div>
+    <div class="stage__item"><span class="lbl lbl--md lbl--discount"><span class="lbl__num">52</span>%OFF</span><span class="caption">md</span></div>
+    <div class="stage__item">
+      <div class="photo"><span class="photo__tl lbl lbl--sm lbl--discount"><span class="lbl__num">38</span>%OFF</span></div>
+      <span class="caption">写真の上。面は写真の代わりに置いたもので撮影素材ではない</span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>面</dt><dd><code>color.label.discount.surface</code></dd>
+    <dt>文字</dt><dd><code>color.label.discount.text</code></dd>
+    <dt>数字</dt><dd><code>font.price.family</code> ・ <code>label.numberSize.sm / md</code></dd>
+  </dl>
+  <p class="source">正本: <a href="design.md"><code>design.md</code></a> §2.1「非操作の点的ラベルに限る白文字の例外」・§8.1「割引率の表記規則」 / <a href="components.md"><code>components.md</code></a> <code>Card.slot.badge</code></p>
+</section>
+
+<section class="card">
+  <h2><span class="key">B</span> 会員種別</h2>
+  <div class="stage">
+    <div class="stage__item"><span class="lbl lbl--sm lbl--paid">プライム</span><span class="caption">有料 <span class="flag">🚧</span> 文字 (accent 濃色段) が仮色</span></div>
+    <div class="stage__item"><span class="lbl lbl--sm lbl--free">無料会員</span><span class="caption">無料</span></div>
+  </div>
+  <dl class="tokens">
+    <dt>有料</dt><dd><code>color.membership.paid.surface / text</code> <span class="flag">🚧 placeholder</span></dd>
+    <dt>無料</dt><dd><code>color.membership.free.surface / text</code></dd>
+  </dl>
+  <p class="source">正本: <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>color.membership</code> / <a href="components.md"><code>components.md</code></a> <code>Card.slot.badge</code> の (i)(ii) 代替 ②</p>
+</section>
+
+<section class="card">
+  <h2><span class="key">D</span> 施設属性タグ</h2>
+  <div class="stage">
+    <div class="stage__item">
+      <div class="row">
+        <span class="lbl lbl--sm lbl--tag">旅館</span>
+        <span class="lbl lbl--sm lbl--tag">ペット可</span>
+        <span class="lbl lbl--sm lbl--tag">全室禁煙</span>
+        <span class="lbl lbl--sm lbl--tag">送迎あり</span>
+        <span class="lbl lbl--sm lbl--tag">温泉</span>
+        <span class="lbl lbl--sm lbl--tag">大浴場</span>
+        <span class="lbl lbl--sm lbl--tag">Wi-Fi (全館)</span>
+      </div>
+      <span class="caption">列の並び = D1 施設種別 → D3 利用条件 → D2 館内設備</span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>面・文字</dt><dd><code>color.tag.neutral.surface / text</code></dd>
+    <dt>ウェイト</dt><dd><code>label.weight.neutral</code> (400)</dd>
+  </dl>
+  <p class="source">正本: <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>color.tag.neutral</code></p>
+</section>
+
+<section class="card">
+  <h2><span class="key">E1</span> 残室僅少</h2>
+  <div class="stage">
+    <div class="stage__item">
+      <div class="frag">
+        <div class="frag__name">湯宿 かのう</div>
+        <div class="row" style="margin:4px 0"><span class="lbl lbl--sm lbl--tag">旅館</span><span class="lbl lbl--sm lbl--tag">温泉</span></div>
+        <div class="stock">残り2室</div>
+        <div class="price price--default"><span class="price__num">12,800</span><span class="price__cap"> 円 ／1泊・税込</span></div>
+      </div>
+      <span class="caption">面を持たない文字。価格の直上・白背景</span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>文字</dt><dd><code>color.label.stock</code> (= <code>color.state.error</code>)</dd>
+    <dt>器</dt><dd>面を持たないため <code>label.*</code> の対象外</dd>
+  </dl>
+  <p class="source">正本: <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>color.label.stock</code></p>
+</section>
+
+<section class="card">
+  <h2><span class="key">F</span> 予約条件</h2>
+  <div class="stage stage--stack">
+    <div class="stage__item">
+      <div class="cond">
+        <span class="cond__item cond--gain"><i class="fa-regular fa-circle-check"></i>全額返金可</span>
+        <span class="cond__item cond--neutral"><i class="fa-regular fa-credit-card"></i>カード決済可</span>
+        <span class="cond__item cond--neutral"><i class="fa-solid fa-yen-sign"></i>現地決済可</span>
+        <span class="cond__item cond--gain"><i class="fa-solid fa-coins"></i>ポイント付</span>
+      </div>
+      <span class="caption">得あり</span>
+    </div>
+    <div class="stage__item">
+      <div class="cond">
+        <span class="cond__item cond--loss"><i class="fa-regular fa-circle-xmark"></i>返金不可</span>
+        <span class="cond__item cond--neutral"><i class="fa-regular fa-credit-card"></i>カード決済可</span>
+      </div>
+      <span class="caption">損あり</span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>得</dt><dd><code>color.scheme.main.base</code> <span class="flag">暫定 G-1</span> (<code>color.text.link</code> と同値・見分けは未解決)</dd>
+    <dt>損</dt><dd><code>color.state.error</code></dd>
+    <dt>中立</dt><dd><code>color.text.mutedStrong</code></dd>
+  </dl>
+  <p class="source">正本: <a href="design.md"><code>design.md</code></a> §8.2「予約条件の表示規則」 (7 項目・アイコンと並びの固定を含む)</p>
+</section>
+
+<section class="card">
+  <h2><span class="key">G</span> 写真枚数ラベル</h2>
+  <div class="stage">
+    <div class="stage__item">
+      <div class="photo"><span class="photo__br pill"><i class="fa-regular fa-images"></i>11枚</span></div>
+      <span class="caption">写真の右下。押しどころの印であり共通器の対象外</span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>面・文字</dt><dd><code>color.surface.inverse</code> ・ <code>color.text.inverse</code></dd>
+    <dt>角丸</dt><dd><code>radius.action</code> (pill)</dd>
+  </dl>
+  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Card.slot.badge</code> (G は本 badge の器の対象外)</p>
+</section>
+
+<section class="card">
+  <h2><span class="key">H</span> クリエイティブへの DS 適用範囲</h2>
+  <p class="note">H は適用の段 (適用 / 適用外) を定める規則であり、<strong>ラベルの意匠を持たないため見本がない</strong>。</p>
+  <p class="source">正本: <a href="design.md"><code>design.md</code></a> §8.3「クリエイティブへの DS 適用範囲」</p>
+</section>
+
+<section class="card">
+  <h2>正本の所在</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>探しているもの</th><th>正本</th></tr></thead>
+    <tbody>
+      <tr><td>色・書体・寸法の値と <code>$status</code></td><td><code>semantic.travel.json</code> → <code>primitive.travel.json</code></td></tr>
+      <tr><td>面と文字色の組み合わせ規則・白文字の例外</td><td><code>design.md</code> §2.1</td></tr>
+      <tr><td>リンクの装飾と状態 / プレースホルダ</td><td><code>design.md</code> §2.2 / §2.3</td></tr>
+      <tr><td>タイポグラフィ・見出しスケール</td><td><code>design.md</code> §3・§3.1</td></tr>
+      <tr><td>余白・グリッド・ブレークポイント / 角丸・影 / アイコン</td><td><code>design.md</code> §4 / §5 / §6</td></tr>
+      <tr><td>Modal の表示形態 (form)</td><td><code>design.md</code> §7.1</td></tr>
+      <tr><td>割引率の表記 / 予約条件 / クリエイティブ適用範囲</td><td><code>design.md</code> §8.1 / §8.2 / §8.3</td></tr>
+      <tr><td>Component 仕様・スロット・Do / Don't</td><td><code>components.md</code></td></tr>
+      <tr><td>決定の記録 (誰がいつ何を決めたか)</td><td><code>governance/owner-decisions.md</code> (ラベル・タグは §24)</td></tr>
+      <tr><td>AI に生成させる際の読み順</td><td><code>design.md</code> §9 Agent Prompt Guide</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="card">
+  <h2>Known Gaps</h2>
+  <h3><span class="flag">🚧</span> placeholder のトークン (JSON の <code>$status</code> が正)</h3>
+  <div class="tablewrap"><table>
+    <tbody>
+      <tr><td><code>color.scheme.{main,sub}.accentTint / accentInk</code> ・ <code>color.accent.campaignTint / campaignInk</code> ・ <code>color.membership.paid.*</code></td><td>accent 濃色段・coral 2 段が仮色。実査値の受領待ち</td></tr>
+      <tr><td><code>color.overlay.backdrop</code></td><td>実装バンドル観測値を暫定参照</td></tr>
+      <tr><td><code>radius.card</code> ・ <code>radius.overlay</code></td><td>実 px 未取得</td></tr>
+      <tr><td><code>shadow.sm / md / lg</code> ・ <code>motion.*</code></td><td>実値未抽出</td></tr>
+    </tbody>
+  </table></div>
+  <h3><span class="flag">未取得</span> 見本を描けないもの</h3>
+  <ul class="note">
+    <li>Button の hover / active / disabled / loading の状態一式</li>
+    <li>Input の必須表現・検証表示の一式</li>
+    <li>SearchForm のフィールド構成、Card の 8 スロット対応付け、ReviewStars の星の実寸</li>
+    <li>Footer の構成、Header の内部ナビ構成</li>
+    <li>Breadcrumb など standalone なリンクへ下線の既定を及ぼすか</li>
+  </ul>
+  <h3>本ページの範囲外</h3>
+  <ul class="note">
+    <li>ラベル・タグの C カテゴリ・特集 (仮決定)、E2 販売終了 (方向のみ)</li>
+    <li>未着手 Component (Select / Tabs / Toast / Table / Accordion / Pagination / Badge 単体 / Stepper / Empty state)</li>
+    <li>副色 (sub) スキームでの各 Component の見え方 — 色見本のみ収録</li>
+  </ul>
+  <p class="source">正本: <a href="design.md"><code>design.md</code></a>「未確定事項の一覧」 / 各 Component の「未確定事項」行 = <a href="components.md"><code>components.md</code></a></p>
+</section>
+
+</div>
+</body>
+</html>

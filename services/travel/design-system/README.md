@@ -112,6 +112,15 @@ Design System の上流成果物は、Repository の参照順序 (Governance →
 | [components.md](components.md) | Component 仕様 | Draft | 0.3.0-draft |
 | [preview.travel.html](preview.travel.html) | 付属資料 (見本・**非正本**) | Draft | — (正本の値を `tools/gen-preview-tokens.py` で生成) |
 
+見本ページはブラウザで開いて確認する。GitHub 上ではソースが表示されるだけなので、次の URL を用いる (GitHub Pages・`main` のルートを配信元とする)。
+
+```
+https://tocoo.github.io/coocom-design-system/services/travel/design-system/preview.travel.html
+```
+
+リポジトリルートの `.nojekyll` は、Pages が Jekyll の変換を行わずファイルをそのまま配信するために置いている。
+
+
 各成果物について、以下を区別する。
 
 - **確認できる Fact**: 正本 4 ファイルが実在し、各ファイルが自身の Status を Draft、version を `0.3.0-draft` と記載している。`preview.travel.html` は正本ではなく、正本のトークンで意匠を描画した見本であり、規則の文章を持たない (値・色見本・スケールの一覧は `tools/gen-preview-tokens.py` が JSON から生成する)。JSON 2 ファイルには `$status: placeholder` のトークンが含まれる (例: `radius.card`・`motion.*`・`shadow.*` に follow-up 番号・TVL-0008 の `$note`)。
@@ -314,4 +323,4 @@ SCR-006〜SCR-012 は未作成 (`Not started`) であり、依存する業務仕
 | 2026-07-21 | 初回着手論点の回答済みへ状態同期 (Task 009-9): §15 Current Status・§16 Open Issues の「着手対象未定」記述を、Web部責任者判断「どれからでも構わない」(特定の 1 件に限定せず T1〜T9 のいずれからでも着手してよい。正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §8、反映は解決計画 §8B) へ是正。選択されなかった論点を却下・不要・継続保留とせず、独自に論点を選定していない。各上流 Open Issue の内容・具体の着手選択・Q2〜Q5 は未回答・未定のまま保持。上流 Open Issue は未解決・後続 Issue は未作成。Task 009-6 の全 12 候補「現時点では開始できない」・Task 009-7/009-8 の snapshot/履歴・既存 Design System 4 資産・token・Component・JSON・version は不変。候補採否・改定要否・改訂着手・設計承認は行っていない | Draft |
 | 2026-07-21 | T1 の結果を状態同期 (Task 009-10): §15 Current Status・§16 Open Issues に、一覧先頭 T1 (Navigation) を機械的選択で着手 (優先順位でない)・Web部責任者との一問一答を経て Global Navigation の対象領域と History and Recovery の保持方式は Service Design 層で固定する必要のない事項と整理・上流成果物 (`../service-design/navigation.md`・Screen Requirements) は本案件で変更しない結論 (解決計画 §8C) を反映。§6.1 の「現時点では開始できない」は不変。次工程は T2 を機械的選択 (Task 009-11)。T2〜T9 の内容・Q2〜Q4・T2〜T9 の Q5 は未回答・未定 (Q5 は T1 のみ回答済み)。案件判断を Service Design 正本へ結合させず、機能・コンテンツ変更可否を横断ルール化しない。上流成果物・Task 009-6 成果物・Task 009-7〜009-9 の snapshot/履歴・既存 Design System 4 資産・token・Component・JSON・version は不変。候補採否・改定要否・改訂着手・設計承認は行っていない | Draft |
 | 2026-08-03 | Task 009-37: §16 Open Issues に配布物 (バンドル・スナップショット) の生成・管理責務と版の対応付けの項を追加。依頼元 (ウルトラトクー市 一覧ページ 画面設計・2026-08-03 起票) の依頼 A「バインド DS スナップショットの同期」に対応し、Web部責任者の 2026-08-03 時点の現在判断 (生成・管理責務 = 実装リポジトリ側 `tocoo/tocoo_travel`・版の対応付け = SOT の `$meta.version` 基準) を正本 [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §12 に記録したこと、SOT と配布スナップショットの乖離 14 件 (semantic のみ +14・primitive 増減なし・`semantic.travel.json` 実測と一致)・配布スナップショット `fe4b9e52` が本 Repository の Git object として解決不可であることを §16 に反映。`$meta.version` の付与規則 (version bump の条件) は §16 の別項のとおり未決のまま。既存 Design System 4 資産・token・値・`$status`・`$meta.version`・version は不変。バンドルの再生成・成果物側の暫定 materialize 削除は本 Repository では行わない (実装リポジトリ側)。本記録工程の影響度 = 高 (判定者 = Web部責任者、判定日 = 2026-08-03、本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Draft |
-| 2026-09-01 | §6 Existing Artifact Inventory に `preview.travel.html` (DS 見本ページ・**非正本**) の行を追加し、「確認できる Fact」の箇条書きに、同ファイルが正本ではなく正本のトークンで意匠を描画した見本であること・規則の文章を持たないこと・値と一覧は `tools/gen-preview-tokens.py` が JSON から生成することを明記した。**不変**: 正本 4 ファイル (design.md / semantic.travel.json / primitive.travel.json / components.md) の行・Status・version の記載、§1〜§5・§7〜§17 の記述、Repository 内の正本による裏付けの扱い (§8)。**行っていないもの**: 正本の追加・Status / version の変更・見本ページを正本として扱う記述の追加 | 追記 |
+| 2026-09-01 | §6 Existing Artifact Inventory に `preview.travel.html` (DS 見本ページ・**非正本**) の行を追加し、「確認できる Fact」の箇条書きに、同ファイルが正本ではなく正本のトークンで意匠を描画した見本であること・規則の文章を持たないこと・値と一覧は `tools/gen-preview-tokens.py` が JSON から生成することを明記した。**不変**: 正本 4 ファイル (design.md / semantic.travel.json / primitive.travel.json / components.md) の行・Status・version の記載、§1〜§5・§7〜§17 の記述、Repository 内の正本による裏付けの扱い (§8)。**行っていないもの**: 正本の追加・Status / version の変更・見本ページを正本として扱う記述の追加。影響度 = **低** (判定者 = Web部責任者、判定日 = 2026-09-01、本件について明示取得。必要レビュー主体 = Web部レビュー担当者 = [../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §8・§10)。**2026-09-01 追記**: §6 に見本ページの閲覧 URL (GitHub Pages・`main` ルートを配信元に有効化) と、リポジトリルートの `.nojekyll` の役割を追記した (GitHub 上では HTML がレンダリングされずソース表示になるため、閲覧経路を正本側に明記する) | 追記 |

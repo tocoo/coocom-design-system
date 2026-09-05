@@ -67,6 +67,9 @@
     --color-accent-campaign-ink     : #8a2e11; /* color.accent.campaignInk 🚧 placeholder */
     --color-label-discount-surface  : #c8912c; /* color.label.discount.surface */
     --color-label-discount-text     : #ffffff; /* color.label.discount.text */
+    --color-label-category-surface  : #ffffff; /* color.label.category.surface */
+    --color-label-category-text     : #212121; /* color.label.category.text */
+    --color-label-category-icon     : #e4572e; /* color.label.category.icon */
     --color-label-stock             : #d23a3a; /* color.label.stock */
     --color-membership-paid-surface : #f9cdbc; /* color.membership.paid.surface 🚧 placeholder */
     --color-membership-paid-text    : #8a2e11; /* color.membership.paid.text 🚧 placeholder */
@@ -364,6 +367,8 @@
   .lbl--discount { background: var(--color-label-discount-surface); color: var(--color-label-discount-text); }
   .lbl--paid { background: var(--color-membership-paid-surface); color: var(--color-membership-paid-text); }
   .lbl--free { background: var(--color-membership-free-surface); color: var(--color-membership-free-text); }
+  .lbl--category { background: var(--color-label-category-surface); color: var(--color-label-category-text); gap: 5px; }
+  .lbl--category i { color: var(--color-label-category-icon); }
   .lbl--tag { background: var(--color-tag-neutral-surface); color: var(--color-tag-neutral-text); font-weight: var(--label-weight-neutral); }
   .stock { color: var(--color-label-stock); font-weight: var(--label-weight-emphasis); font-size: var(--label-font-size-sm); font-variant-numeric: tabular-nums; }
   .cond { display: flex; flex-wrap: wrap; gap: 12px; font-size: var(--label-font-size-sm); }
@@ -394,8 +399,8 @@
     <dt>種別</dt><dd>DS 付属資料 (見本)</dd>
     <dt>状態</dt><dd>Draft</dd>
     <dt>対象</dt><dd><code>services/travel/design-system</code></dd>
-    <dt>収録</dt><dd>色・書体・スケール・Component 10 種・ラベル・タグ (共通器 / A / B / D / E1 / F / G / H)</dd>
-    <dt>対象外</dt><dd>ラベル・タグの C カテゴリ・特集 (仮決定)、E2 販売終了 (方向のみ)</dd>
+    <dt>収録</dt><dd>色・書体・スケール・Component 10 種・ラベル・タグ (共通器 / A / B / C / D / E1 / F / G / H)</dd>
+    <dt>対象外</dt><dd>ラベル・タグの E2 販売終了 (方向のみ)</dd>
   </dl>
 </header>
 
@@ -497,6 +502,9 @@
   <div class="sw-grid">
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-discount-surface)"></span><code>color.label.discount.surface</code><span class="sw__val">#c8912c</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-discount-text)"></span><code>color.label.discount.text</code><span class="sw__val">#ffffff</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-surface)"></span><code>color.label.category.surface</code><span class="sw__val">#ffffff</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-text)"></span><code>color.label.category.text</code><span class="sw__val">#212121</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-icon)"></span><code>color.label.category.icon</code><span class="sw__val">#e4572e</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-stock)"></span><code>color.label.stock</code><span class="sw__val">#d23a3a</span></div>
   </div>
   <h3>会員種別</h3>
@@ -892,6 +900,24 @@
 </section>
 
 <section class="card">
+  <h2><span class="key">C</span> カテゴリ・特集</h2>
+  <div class="stage">
+    <div class="stage__item"><span class="lbl lbl--sm lbl--category"><i class="fa-solid fa-bolt"></i>タイムセール</span><span class="caption">sm (12px)。白面のためサイズ・ウェイトの条件なく成立する (≈16.10:1)</span></div>
+    <div class="stage__item">
+      <div class="photo"><span class="photo__tl lbl lbl--sm lbl--category"><i class="fa-solid fa-bolt"></i>冬の特集</span></div>
+      <span class="caption">写真の上。面のみで分離し影・スクリムは用いない</span>
+    </div>
+  </div>
+  <dl class="tokens">
+    <dt>面</dt><dd><code>color.label.category.surface</code> (白 — accent で塗らない)</dd>
+    <dt>文字</dt><dd><code>color.label.category.text</code></dd>
+    <dt>アイコン</dt><dd><code>color.label.category.icon</code> (campaign accent — <strong>非テキスト要素に限る</strong>。字形は正本に定義がなく本ページの見本は例示)</dd>
+  </dl>
+  <p class="note"><strong>accent の帰属:</strong> accent を<strong>面</strong>として持つのは B 会員種別のみ、C は accent を<strong>アイコン (点)</strong> として持つ (<a href="../../../governance/owner-decisions.md"><code>owner-decisions.md</code></a> §27)。<span class="flag">未取得</span> 白面の C ラベルを白系の面の上に置く場合の分離手段 (境界線の要否・値) は未定義。上の見本の台は <code>color.surface.subtle</code> (#f9f9f9) で、白面との差は 1.05:1 (本 Repository で実測) とほぼ境界が生じていない。<code>color.surface.default</code> (#ffffff) の上では差が 1.00:1 となる。</p>
+  <p class="source">正本: <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>color.label.category</code> / <a href="components.md"><code>components.md</code></a> <code>Card.slot.badge</code>「ラベル種別と用途色」 / <a href="design.md"><code>design.md</code></a> §2.1 検証表</p>
+</section>
+
+<section class="card">
   <h2><span class="key">D</span> 施設属性タグ</h2>
   <div class="stage">
     <div class="stage__item">
@@ -1020,10 +1046,11 @@
     <li>SearchForm のフィールド構成、Card の 8 スロット対応付け、ReviewStars の星の実寸</li>
     <li>Footer の構成、Header の内部ナビ構成</li>
     <li>Breadcrumb など standalone なリンクへ下線の既定を及ぼすか</li>
+    <li>白面の C カテゴリ・特集ラベルを白系の面の上に置く場合の分離手段 (境界線の要否・値)、および C のアイコンの字形</li>
   </ul>
   <h3>本ページの範囲外</h3>
   <ul class="note">
-    <li>ラベル・タグの C カテゴリ・特集 (仮決定)、E2 販売終了 (方向のみ)</li>
+    <li>ラベル・タグの E2 販売終了 (方向のみ)</li>
     <li>未着手 Component (Select / Tabs / Toast / Table / Accordion / Pagination / Badge 単体 / Stepper / Empty state)</li>
     <li>副色 (sub) スキームでの各 Component の見え方 — 色見本のみ収録</li>
   </ul>

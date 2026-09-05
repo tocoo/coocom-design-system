@@ -70,6 +70,7 @@
     --color-label-category-surface  : #ffffff; /* color.label.category.surface */
     --color-label-category-text     : #212121; /* color.label.category.text */
     --color-label-category-icon     : #e4572e; /* color.label.category.icon */
+    --color-label-category-border   : #cccccc; /* color.label.category.border */
     --color-label-stock             : #d23a3a; /* color.label.stock */
     --color-membership-paid-surface : #f9cdbc; /* color.membership.paid.surface 🚧 placeholder */
     --color-membership-paid-text    : #8a2e11; /* color.membership.paid.text 🚧 placeholder */
@@ -367,7 +368,10 @@
   .lbl--discount { background: var(--color-label-discount-surface); color: var(--color-label-discount-text); }
   .lbl--paid { background: var(--color-membership-paid-surface); color: var(--color-membership-paid-text); }
   .lbl--free { background: var(--color-membership-free-surface); color: var(--color-membership-free-text); }
-  .lbl--category { background: var(--color-label-category-surface); color: var(--color-label-category-text); gap: 5px; }
+  .lbl--category { background: var(--color-label-category-surface); color: var(--color-label-category-text); gap: 5px;
+    border: var(--border-width-thin) solid var(--color-label-category-border); }
+  /* 写真の上・有色面の上では枠線を引かない (design.md 未確定事項の一覧「分離手段」・owner-decisions.md §27-3 ⓕ) */
+  .photo .lbl--category { border: none; }
   .lbl--category i { color: var(--color-label-category-icon); }
   .lbl--tag { background: var(--color-tag-neutral-surface); color: var(--color-tag-neutral-text); font-weight: var(--label-weight-neutral); }
   .stock { color: var(--color-label-stock); font-weight: var(--label-weight-emphasis); font-size: var(--label-font-size-sm); font-variant-numeric: tabular-nums; }
@@ -505,6 +509,7 @@
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-surface)"></span><code>color.label.category.surface</code><span class="sw__val">#ffffff</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-text)"></span><code>color.label.category.text</code><span class="sw__val">#212121</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-icon)"></span><code>color.label.category.icon</code><span class="sw__val">#e4572e</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-border)"></span><code>color.label.category.border</code><span class="sw__val">#cccccc</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-stock)"></span><code>color.label.stock</code><span class="sw__val">#d23a3a</span></div>
   </div>
   <h3>会員種別</h3>
@@ -883,7 +888,7 @@
     <dt>文字</dt><dd><code>color.label.discount.text</code></dd>
     <dt>数字</dt><dd><code>font.price.family</code> ・ <code>label.numberSize.sm / md</code></dd>
   </dl>
-  <p class="source">正本: <a href="design.md"><code>design.md</code></a> §2.1「非操作の点的ラベルに限る白文字の例外」・§8.1「割引率の表記規則」 / <a href="components.md"><code>components.md</code></a> <code>Card.slot.badge</code></p>
+  <p class="source">正本: <a href="design.md"><code>design.md</code></a> §2.1「A 割引率ラベルに限る白文字の例外」・§8.1「割引率の表記規則」 / <a href="components.md"><code>components.md</code></a> <code>Card.slot.badge</code></p>
 </section>
 
 <section class="card">
@@ -902,18 +907,19 @@
 <section class="card">
   <h2><span class="key">C</span> カテゴリ・特集</h2>
   <div class="stage">
-    <div class="stage__item"><span class="lbl lbl--sm lbl--category"><i class="fa-solid fa-bolt"></i>タイムセール</span><span class="caption">sm (12px)。白面のためサイズ・ウェイトの条件なく成立する (≈16.10:1)</span></div>
+    <div class="stage__item"><span class="lbl lbl--sm lbl--category"><i class="fa-solid fa-bolt"></i>タイムセール</span><span class="caption">sm (12px)。白面のためサイズ・ウェイトの条件なく成立する (≈16.10:1)。台が白系 (<code>surface.subtle</code>) のため 1px の枠線を引いている</span></div>
     <div class="stage__item">
       <div class="photo"><span class="photo__tl lbl lbl--sm lbl--category"><i class="fa-solid fa-bolt"></i>冬の特集</span></div>
-      <span class="caption">写真の上。面のみで分離し影・スクリムは用いない</span>
+      <span class="caption">写真の上。<strong>枠線は引かず</strong>面のみで分離し影・スクリムは用いない</span>
     </div>
   </div>
   <dl class="tokens">
     <dt>面</dt><dd><code>color.label.category.surface</code> (白 — accent で塗らない)</dd>
     <dt>文字</dt><dd><code>color.label.category.text</code></dd>
-    <dt>アイコン</dt><dd><code>color.label.category.icon</code> (campaign accent — <strong>非テキスト要素に限る</strong>。字形は正本に定義がなく本ページの見本は例示)</dd>
+    <dt>アイコン</dt><dd><code>color.label.category.icon</code> (campaign accent — <strong>非テキスト要素に限る</strong>。字形と<strong>サイズ</strong>は正本に定義がなく本ページの見本は例示)</dd>
+    <dt>枠線</dt><dd><code>color.label.category.border</code> (= <code>color.border.default</code> <code>#cccccc</code> · 1px — <strong>白系の面の上に置く場合のみ</strong>)</dd>
   </dl>
-  <p class="note"><strong>accent の帰属:</strong> accent を<strong>面</strong>として持つのは B 会員種別のみ、C は accent を<strong>アイコン (点)</strong> として持つ (<a href="../../../governance/owner-decisions.md"><code>owner-decisions.md</code></a> §27)。<span class="flag">未取得</span> 白面の C ラベルを白系の面の上に置く場合の分離手段 (境界線の要否・値) は未定義。上の見本の台は <code>color.surface.subtle</code> (#f9f9f9) で、白面との差は 1.05:1 (本 Repository で実測) とほぼ境界が生じていない。<code>color.surface.default</code> (#ffffff) の上では差が 1.00:1 となる。</p>
+  <p class="note"><strong>accent の帰属:</strong> accent を<strong>面</strong>として持つのは B 会員種別のみ、C は accent を<strong>アイコン (点)</strong> として持つ (<a href="../../../governance/owner-decisions.md"><code>owner-decisions.md</code></a> §27)。<strong>分離手段:</strong> 上の見本の台は <code>color.surface.subtle</code> (#f9f9f9) で、白面との差は 1.05:1 (本 Repository で実測) と面のみでは境界が生じない (<code>color.surface.default</code> #ffffff の上では 1.00:1)。このため<strong>白系の面の上に置く場合にのみ</strong> <code>color.label.category.border</code> (#cccccc) の枠線を 1px 引く (<a href="../../../governance/owner-decisions.md"><code>owner-decisions.md</code></a> §27-3 ⓕ)。枠線は白面上 ≈1.61:1 で<strong>非テキスト UI 要素の 3:1 に達しない</strong> (分離の補助であり、識別は文字 ≈16.10:1 が担う。適合宣言は行わない)。</p>
   <p class="source">正本: <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>color.label.category</code> / <a href="components.md"><code>components.md</code></a> <code>Card.slot.badge</code>「ラベル種別と用途色」 / <a href="design.md"><code>design.md</code></a> §2.1 検証表</p>
 </section>
 
@@ -1046,7 +1052,7 @@
     <li>SearchForm のフィールド構成、Card の 8 スロット対応付け、ReviewStars の星の実寸</li>
     <li>Footer の構成、Header の内部ナビ構成</li>
     <li>Breadcrumb など standalone なリンクへ下線の既定を及ぼすか</li>
-    <li>白面の C カテゴリ・特集ラベルを白系の面の上に置く場合の分離手段 (境界線の要否・値)、および C のアイコンの字形</li>
+    <li>C カテゴリ・特集ラベルのアイコンの<strong>字形とサイズ</strong> (<code>iconSize.sm〜xl</code> の最小段は 16px で、器 sm = 高さ 20px・文字 12px に当てる値が正本に無い。本ページの見本は継承の 12px = スケール外の例示)</li>
   </ul>
   <h3>本ページの範囲外</h3>
   <ul class="note">

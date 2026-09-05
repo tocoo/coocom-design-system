@@ -551,7 +551,7 @@
     </div>
     <div class="stage__item">
       <span style="font-family: var(--font-display-family); font-weight: 500; font-size: var(--font-display-lg-size); line-height: 1.2">明朝 — 天橋立 花あかり亭</span>
-      <span class="caption"><code>font.display.family</code> ・ <code>font.display.lgSize</code> (Display・Hero・詳細施設名)</span>
+      <span class="caption"><code>font.display.family</code> ・ <code>font.display.lgSize</code> (Display・Hero・特集・詳細施設名)</span>
     </div>
     <div class="stage__item">
       <span class="price price--default"><span class="price__num">12,800</span><span class="price__cap"> 円 ／1泊・税込</span></span>
@@ -560,6 +560,7 @@
   </div>
 
   <h3>文書レベルの見出し (h1〜h6)</h3>
+  <p class="note">下表は<strong>既定</strong>。書体は<strong>役割</strong>で選ぶため要素と書体の対応は固定されず、役割が Display・Hero・特集・詳細施設名にあたる場合は <code>h1</code> であっても <code>font.display.family</code> (明朝) を明示的に選択してよい。サイズ・太さ・行間の既定は書体の選択と独立で、明朝を選んでも下表の値と 700・1.3 がそのまま適用される (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
   <div class="tablewrap"><table>
     <tbody>
       <tr><td><code>font.heading.h1Size</code></td><td class="scale__val">2.5rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h1-size); line-height: var(--font-heading-line-height)">見出し h1</span></td></tr>
@@ -1028,7 +1029,7 @@
       <tr><td>Modal の表示形態 (form)</td><td><code>design.md</code> §7.1</td></tr>
       <tr><td>割引率の表記 / 予約条件 / クリエイティブ適用範囲</td><td><code>design.md</code> §8.1 / §8.2 / §8.3</td></tr>
       <tr><td>Component 仕様・スロット・Do / Don't</td><td><code>components.md</code></td></tr>
-      <tr><td>決定の記録 (誰がいつ何を決めたか)</td><td><code>governance/owner-decisions.md</code> (ラベル・タグは §24)</td></tr>
+      <tr><td>決定の記録 (誰がいつ何を決めたか)</td><td><code>governance/owner-decisions.md</code> (ラベル・タグは §24・C カテゴリ・特集は §27 / 見出しの書体選択は §26)</td></tr>
       <tr><td>AI に生成させる際の読み順</td><td><code>design.md</code> §9 Agent Prompt Guide</td></tr>
     </tbody>
   </table></div>

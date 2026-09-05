@@ -721,6 +721,54 @@
 
 ---
 
+## 27. Travel C カテゴリ・特集ラベルの用途色と accent の帰属 (B 有料会員 / C 特集) の確定 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) の `Card.slot.badge` C カテゴリ・特集ラベルについて、§24 で据え置いた用途色と、その前提であった **accent の帰属 (B 有料会員 / C 特集)** を確定することに対し、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録。契機は [Issue #162](https://github.com/tocoo/coocom-design-system/issues/162) (実装側 `tocoo/tocoo_travel` の Issue `6953` で顕在化した、用途色未確定に起因する実装 3 分岐の起票)。上記 §1〜§26 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§26 の各記録は変更しない。**§13 (b2)・§19 (会員限定ラベルの用途区別)・§20 (白文字例外の方向)・§24 (ラベル・タグ定義 A〜H の実装) の本体は改定せず**、本 §27 を現在判断として扱う (§10 / §11 と同じ区別)。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 27-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/travel/design-system/semantic.travel.json](../services/travel/design-system/semantic.travel.json) への用途色 `color.label.category` (`surface` / `text` / `icon` / `border` の 4 件) の追加、②[../services/travel/design-system/components.md](../services/travel/design-system/components.md) `Card.slot.badge` の「ラベル種別と用途色」C 行の据え置き記述の置換と白文字例外条項の適用範囲の縮小、③[../services/travel/design-system/design.md](../services/travel/design-system/design.md) §2 用途要約表への 1 行追加・§2.1 検証表への 1 行追加・§2.1「非操作の点的ラベルに限る白文字の例外」の適用範囲の縮小と同節の見出しの「A 割引率ラベルに限る白文字の例外」への改称・未確定事項の一覧の更新 (C 用途色を解決へ・派生する未定義事項 1 行の追加) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-09-05 |
+| 承認主体 | Web部責任者 |
+| 根拠 | §24 (2026-08-10) は C 特集の用途色を「accent の帰属が B / C で未定」を理由に据え置いた。その結果、実装側 (`tocoo/tocoo_travel`) で C 相当のラベルが 3 通りに分岐している ([Issue #162](https://github.com/tocoo/coocom-design-system/issues/162) 背景 — 宿泊トップ `.hero-label--category` = 白面 + 濃文字 + accent アイコン (仮決定トークン経由) / 施設詳細 `.hd-clabel` = 同配色だがトークンを介さない個別指定 / サイト共通 `.gl-label--campaign` = accent 濃色面 + 白文字)。帰属を確定し用途色を DS 側に置くことで、実装側はこの 3 通りを 1 つに寄せられる |
+| 適用範囲 | **国内宿泊 (travel) の `design.md` / `components.md` / `semantic.travel.json` に限定**。rental-car・inbound・3DS 横断へは自動適用しない (rental-car の C1 / C2 は [../services/rental-car/design-system/labels-tags.rental-car.md](../services/rental-car/design-system/labels-tags.rental-car.md) のとおり据え置きのまま) |
+
+### 27-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-05・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。同 §11 により、そのレビューが反映確定の前提となる |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out の適用でも、一般的な高／低の内容基準の確定でもない。用途色トークンの新設と面色規則の帰属確定を伴い、実装 3 箇所の配色を 1 つへ寄せる指示になるため、§24 (影響度 = 高) と同水準とした |
+
+### 27-3. 取得した現在判断 (2026-09-05)
+
+| 論点 | 取得した判断 |
+| --- | --- |
+| ⓐ accent の帰属 (B 有料会員 / C 特集) | **面と点で役割分離する**。accent を**面**として持つのは **B 会員種別** (`color.membership.paid` = accent 淡色段 `campaignTint` / `campaignInk`) のみとし、**C カテゴリ・特集**は accent を**アイコン (点)** として持つ。C の面は白 (`color.surface.default`) とし accent で塗らない。§19 (2026-08-04) が記した「基本 = neutral 面 / 特集紐づき = accent 面 / 例外 = inverse 面」のうち「特集紐づき = accent 面」は、**面ではなく点 (アイコン) で紐づく**形へ本記録で確定する (§19 本体は改定しない)。§24 で実装済みの `color.membership.paid` の値・参照先・`$status` は**変更しない** |
+| ⓑ C の用途色 `color.label.category` の semantic 定義 | **定義する**。`color.label.category.surface` = `{color.surface.default}` (#FFFFFF)・`.text` = `{color.text.strong}` (#212121)・`.icon` = `{color.accent.campaign}` (#E4572E) の 3 件を `semantic.travel.json` に追加する。いずれも**既存 semantic への参照**であり、新しい色値・新しい primitive は追加しない。実装側がトークンを介さず個別指定している箇所 (`.hd-clabel`) が仮決定の変更に追従しない問題を、単一の参照名を与えることで解消する |
+| ⓒ 12px (`label.fontSize.sm`) ラベルでの成立解 | **白面 × `color.text.strong` = ≈16.10:1 で成立する** (本 Repository で実測)。サイズ・ウェイトの条件を伴わないため、C については (i) (ii) の代替 2 択 (① neutral dark 面 `color.surface.inverse` / ② accent 淡色面 `campaignTint` + `campaignInk`) を要しない。② は accent 濃色段が 🚧 仮色で 4.5:1 未検証だが、C はこれに依存しない。accent アイコン (#E4572E) は白面上 ≈3.68:1 で、**非テキスト UI 要素の 3:1 は満たすが通常テキスト 4.5:1 には達しない**ため、アイコンに限り用いて文字色・面色には用いない |
+| ⓓ サイト共通 `.gl-label--campaign` (accent 濃色面 + 白文字 12px) の扱いと白文字例外との整合 | **C の用途色へ寄せ、白文字例外の対象外と明記する**。実装 3 分岐すべてを `color.label.category` へ統一し、C に campaign accent 面 + 白文字を用いない。あわせて `design.md` §2.1「非操作の点的ラベルに限る白文字の例外」(本 Task で「A 割引率ラベルに限る白文字の例外」へ改称) の**適用範囲を縮小**する — 用途を **A 割引率ラベル (`color.label.discount`) に限り**、面を **scheme 逆色 (`color.scheme.*.inverse`) に限る** (campaign accent 面 + 白文字を例外から外す)。**取得の契機** = 縮小前の §2.1 は用途例に「カテゴリラベル」を、面に campaign accent を含め「サイズ・ウェイトは不問」としており、`components.md` `Card.slot.badge` の「(i) (ii) では campaign accent 面を使用しない・代替は 2 択」と読みが割れていた (本 Repository の実測。二通りの読みが成立し、`.gl-label--campaign` が規則違反か否かの判定が分かれる状態だった)。本縮小により campaign accent 面の (i) (ii) 白文字禁止は例外なく維持される。方向を記録した §20 本体は改定せず、本 §27 を現在判断とする |
+| ⓕ 白系の面の上に置く C ラベルの分離手段 (2026-09-05 追加取得・Task 009-60R) | **枠線を引く**。**白系の面 (`color.surface.default` `#FFFFFF` / `color.surface.subtle` `#F9F9F9`) の上に置く場合にのみ**、`color.label.category.border` = `{color.border.default}` (`#CCCCCC`) の枠線を `border.width.thin` (1px) で引く。**写真の上・有色面の上では枠線を引かず**面のみで分離する (影・スクリムは用いない = ラベル・タグ定義シートと整合)。**取得の契機** = C の面を白と確定した結果、白いカード面・`surface.subtle` の上では面のみで境界が生じない (白 × 白 = 1.00:1・白 × `surface.subtle` = 1.05:1・本 Repository で実測)。**値の選定** = 既存 border 3 段の白面上コントラストは `subtle` `#e0e0e0` 1.32:1 / `default` `#cccccc` 1.61:1 / `strong` `#bcbcbc` 1.90:1 で、**非テキスト UI 要素の 3:1 に達する既存の border トークンは存在しない** (同実測)。DS 既定の境界線である `color.border.default` を採り、**3:1 未達を明示する** (適合宣言は行わない)。枠線は分離の補助であり、ラベルの識別は文字 (≈16.10:1) が担う。新しい色値・新しい primitive は追加しない |
+| ⓔ C のウェイト | `components.md` `Card.slot.badge` の既存規則「面のあるラベルは `label.weight.emphasis` (700)」に従い **700** とする (C は白面という面を持つため)。`label.weight.emphasis` の `$description` が置いていた「C 特集は accent 帰属確定後に面を持つ場合」という条件付き記述を、確定後の記述へ是正する。新しいウェイト値は追加しない |
+
+### 27-4. 本記録が決定しないこと
+
+- accent 濃色段 (`orange.800` `#8A2E11`) ・サブスキーム `coral` 2 段の実色値 (🚧 仮色・実査待ち・§14・§24)。b2 (accent 淡色面 + 濃色文字) の 4.5:1 成立検証は実色値確定後のままとし、`color.membership.paid` / `color.accent.campaignTint` / `campaignInk` の `$status` (placeholder) を昇格しない。
+- **C ラベルのアイコンのサイズ**。本記録はアイコンの色 (`color.label.category.icon`) を確定するが、サイズを定めない。アイコン体系のサイズスケール `iconSize.sm〜xl` の最小段は 16px で、ラベルの器 sm (高さ `label.height.sm` 20px・文字 `label.fontSize.sm` 12px) に当てる値は `design.md`・`components.md` のいずれにも無い ([../services/travel/design-system/preview.travel.html](../services/travel/design-system/preview.travel.html) の見本は継承の 12px で描いておりスケール外の例示である)。`design.md` 未確定事項の一覧へ 1 行として記録する。
+- 画像・グラデーションを面とする場合の scrim の要否 (依頼 E-1)。ⓕ は**単色の白系の面**の上での分離手段を定めるのみで、写真・グラデーション上の扱いは従前どおり別論点とする。
+- E2 販売終了の値・F メリット色とリンクの見分け・H グラデーション審査基準/審査主体 (§24-4 の未決事項)。
+- スキームの正式採用 (main / sub)、副色 (sub) 文脈での C の用途色の個別定義 (`color.label.category` は DS 既定ビルド = メインの値を参照する既存の per-scheme 方針に従う)。
+- 実装 Repository (`tocoo/tocoo_travel`) 側の適用作業・是正の範囲と時期 (Issue `6953` を含む)。本記録は DS 側の用途色を確定するのみで、実装側の改修計画を決定しない。
+- rental-car・inbound の成果物への適用 (rental-car の C1 / C2 は据え置きのまま。適用する場合は §25 と同様に別途取得した判断として記録する)。
+- 適用規格・達成レベルの正式確定・適合判定・適合宣言 (コントラスト比は概算の記録)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -760,3 +808,5 @@
 | 2026-09-05 | Task 009-59R: §26-3 に現在判断 1 件を追加 (2026-09-05・Web部責任者)。サイズ・太さ・行間の既定は**書体の選択と独立**とし、明朝を明示選択しても `h1` の太さ 700 を含む §3.1 の既定が適用される。§3 の「500–600」は書体の用途記述であり太さの既定を置き換えない。見えの太さが書体により異なる点は但し書きとして併記。取得の契機は PR #164 のコードレビュー指摘。§26-1 承認対象・§26-2 影響度 (低)・§26-4 決定しないこと・§1〜§25 の各記録および承認済み [review-approval-rules.md](review-approval-rules.md) 本体は不変。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-05 | Task 009-59R: §26-3 に現在判断 1 件を追加 (2026-09-05・Web部責任者)。文書レベルの見出しで**既定 (サイズ・太さ・行間) から外れる値は原則として認めない**とし、例外を (a) `design.md` §8.3 の適用外 (クリエイティブ)、(b) 利用目的・必然性が明確に示され承認を得たもの の 2 つに限定。承認の主体・手続は §8.3 の宣言運用によるものとし §3.1 では定めない。取得の契機は PR #164 のコードレビュー指摘。§26-1 承認対象・§26-2 影響度 (低)・§26-4 決定しないこと・§1〜§25 の各記録および承認済み [review-approval-rules.md](review-approval-rules.md) 本体・`design.md` §8.3 の本文は不変。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-05 | Task 009-59R2: Task 009-59R の記述是正 (PR [#164](https://github.com/tocoo/coocom-design-system/pull/164) の 2 回目のコードレビュー指摘に対応)。**§26-1 に「是正後の承認対象 (2026-09-05)」の 1 行を追加** — 承認対象の記述が 2026-09-04 時点のままで、撤回済みの②「画面仕様または Component 仕様へ明示記載」を含み、実装後の §3.1 ([決定] 4 行) および §3 の表の 2 行の改訂を覆っていなかったため、是正後の承認対象を明記した。**§26-3「既定から外れる値の可否」行を書き換え** — ①**承認主体 = Web部責任者**を明記 (従前は「承認の主体・手続は §8.3 の宣言運用による」としていたが、§8.3 の運用は自己宣言であって承認行為ではなく、審査主体の設置は同節の [事実] のとおり未了であるため、承認を求める相手が正本上存在しない状態だった)。②例外を **(a)(b) の閉じた列挙から、単一の基準 (利用目的とデザイン上の必然性の提示＋承認) ＋例示へ改めた** (従前の「(a) §8.3 の適用外、(b) LP 等に限る」は、§8.3 の適用外の列挙が LP を含まないため「§8.3 に従う」と両立しなかった。Web部責任者判断 2026-09-05 =「2 つに限らない」)。③**Component の逸脱**は §3.1 が既に定める「当該 Component 仕様へ明示記載」に一本化し別途の承認を要求しないことを明記 (Web部責任者判断 2026-09-05)。**不変**: §26-1 の承認種別・承認日 (2026-09-04)・承認主体・根拠・適用範囲、§26-2 の影響度 (低・判定日 2026-09-04)、§26-3 の他 4 行、§26-4、§1〜§25 の全記録、設計承認ログ (§5)、適用開始記録 (§6)。**作成・追加していないもの**: 承認手続 (申請様式・記録先・期限) の定義、`design.md` §8.3 の本文変更、§8.3 の適用外の列挙への LP の追加、審査基準・審査主体の設置 (Task 009-55 の範囲)、新規 primitive・token。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない。影響度は Task 009-59 と同じく**低** (判定者 = Web部責任者・判定日 2026-09-04)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-09-05 | Task 009-60: §27 「Travel C カテゴリ・特集ラベルの用途色と accent の帰属 (B 有料会員 / C 特集) の確定」を §1〜§26 と分離して追加 ([Issue #162](https://github.com/tocoo/coocom-design-system/issues/162))。Web部責任者の 2026-09-05 現在判断 (ⓐ accent は**面 = B 会員種別 / 点 (アイコン) = C カテゴリ・特集**で役割分離し C の面は白とする／ⓑ 用途色 `color.label.category` (`surface` / `text` / `icon` の 3 件・既存 semantic への参照のみ・新色値なし) を `semantic.travel.json` に定義する／ⓒ 12px は白面 × `color.text.strong` ≈16.10:1 で成立し C は (i) (ii) の代替 2 択に依存しない・accent はアイコン (非テキスト 3:1) に限る／ⓓ 実装 3 分岐を C の用途色へ寄せ、`design.md` §2.1 の白文字例外の適用範囲を **A 割引率ラベル + scheme 逆色面**へ縮小して `components.md` の (i) (ii) 代替 2 択との読みの割れを解消する／ⓔ C のウェイトは既存規則どおり 700) を **travel 限定**で記録。改訂着手の設計承認 (§9・§20) 取得済み (承認主体 = Web部責任者・承認日 2026-09-05)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-05・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。同一 PR で `design.md` (§2 要約表 1 行追加・§2.1 検証表 1 行追加・白文字例外の縮小・未確定事項の一覧の更新と 1 行追加)・`components.md` (`Card.slot.badge` の C 行・白文字例外・関連トークン・未確定事項)・`semantic.travel.json` (`color.label.category` 3 件の追加と 3 箇所の記述是正) を改訂している。**不変**: §1〜§26 の各記録 (§13 b2・§19 面色使い分け・§20 白文字例外の方向・§24 ラベル・タグ定義の実装を含む)・設計承認ログ (§5)・適用開始記録 (§6)、`color.membership.paid` / `color.accent.campaignTint` / `campaignInk` の値・参照先・`$status` (placeholder)、accent 濃色段・coral 2 段の 🚧 仮色、primitive の色値、`$meta.version`、rental-car / inbound の成果物。**決定していないもの**: accent 濃色段/coral の実色値・b2 の 4.5:1 検証・白面 C ラベルの白系面上での分離手段 (境界線の要否)・E2 / F / H の未決事項・スキームの正式採用・実装 Repository 側の適用作業。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。承認済み [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
+| 2026-09-05 | Task 009-60R: §27 に**現在判断 ⓕ を追加** (PR [#165](https://github.com/tocoo/coocom-design-system/pull/165) のコードレビュー指摘に対応)。ⓓ が「実装 3 分岐すべてを `color.label.category` へ統一」と指示する一方、C の面を白と確定した結果、白いカード面・`surface.subtle` の上では面のみで境界が生じない (白 × 白 = 1.00:1・白 × `surface.subtle` = 1.05:1・本 Repository で実測) にもかかわらず、§27-4 は分離手段を「本記録が決定しないこと」に置いたままだった。**ⓕ = 白系の面 (`color.surface.default` / `color.surface.subtle`) の上に置く場合にのみ `color.label.category.border` (= `color.border.default` `#CCCCCC`) の枠線を `border.width.thin` (1px) で引く**。写真の上・有色面の上では引かない。値の選定根拠として既存 border 3 段の白面上コントラスト (`subtle` 1.32:1 / `default` 1.61:1 / `strong` 1.90:1) を実測し、**非テキスト UI 要素の 3:1 に達する既存の border トークンが存在しない**ことと、3:1 未達を明示して適合宣言を行わないことを記録した。あわせて §27-1 の承認対象を `color.label.category` の **4 件** (`surface` / `text` / `icon` / `border`) へ更新し、§27-4 から分離手段の項を外して**アイコンのサイズ**の項を加えた (`iconSize.sm〜xl` の最小段 16px に対し器 sm は高さ 20px・文字 12px で、当てる値が正本に無い)。**不変**: §1〜§26 の各記録・§27-1 の承認種別/承認日/承認主体/適用範囲・§27-2 の影響度 (高) と必要レビュー主体・§27-3 の ⓐ〜ⓔ・設計承認ログ (§5)・適用開始記録 (§6)、`color.membership.paid` / `campaignTint` / `campaignInk` の `$status` (placeholder)、primitive の色値、rental-car / inbound の成果物。**決定していないもの**: C ラベルのアイコンのサイズ・accent 濃色段/coral の実色値・b2 の 4.5:1 検証・写真/グラデーション上の scrim (依頼 E-1)・E2 / F / H の未決事項・スキームの正式採用・実装 Repository 側の適用作業。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。承認済み [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |

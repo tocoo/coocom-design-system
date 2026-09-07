@@ -182,7 +182,28 @@ class Service:
 
     # --- ブロック 2: 色見本 ---------------------------------------------
 
+    def check_color_groups_cover_all(self):
+        """semantic の `color.*` に、色見本へ列挙されていない群が無いことを確かめる。
+
+        列挙漏れがあると、そのトークンは色見本から黙って落ちたまま `--check` が
+        「一致」を返す。「見本ページに値や一覧を手で書き写さない」という本ツールの
+        目的が崩れるため、生成時に検知して止める。
+        """
+        listed = [prefix for _, prefix in self.color_groups]
+        missing = sorted(
+            path
+            for path, *_ in self.flatten(self.node(self.sem, "color"), "color")
+            if not any(path == prefix or path.startswith(prefix + ".") for prefix in listed)
+        )
+        if missing:
+            raise SystemExit(
+                f"{self.name}: 色見本に列挙されていない色トークンがある "
+                f"(SERVICES['{self.name}']['color_groups'] に群を追加する): "
+                + " / ".join(missing)
+            )
+
     def build_colors(self):
+        self.check_color_groups_cover_all()
         lines = [BLOCKS["colors"][0]]
         for title, prefix in self.color_groups:
             rows = self.flatten(self.node(self.sem, prefix), prefix)

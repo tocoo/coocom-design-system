@@ -46,11 +46,10 @@
 | --- | --- | --- |
 | `color.brand.primary` | `{color.scheme.main.base}` | bound |
 | `color.action.primary.bg` | 主色 | bound |
-| `color.text.strong` / `body` / `mutedStrong` / `muted` | gray.900 `#212121` / gray.800 `#424242` / gray.700 `#616161` / gray.600 `#9E9E9E` | bound |
+| `color.text.strong` / `body` / `mutedStrong` / `muted` | gray.900 `#212121` / gray.800 `#424242` / gray.700 `#616161` / gray.600 `#9E9E9E` (`muted` は装飾用途に加え**未入力状態の案内文字**も担う = §2.6・**AA 未達明示**) | bound |
 | `color.text.inverse` (inverse 面の主要文字) | `#FFFFFF` (inverse 面 `#212121` 上 16.10:1) | bound |
 | `color.text.inverseMuted` (inverse 面の補助情報) | gray.600 `#9E9E9E` (inverse 面 `#212121` 上 6.01:1・**明色面には使用しない**) | bound (§2.4) |
 | `color.text.onAccent` (campaign accent 面の文字) | `#FFFFFF` (accent 面 `#E4572E` 上 3.68:1・**条件付き**) | bound (§2.4) |
-| `color.text.placeholder` (入力欄のプレースホルダ) | gray.700 `#616161` (白背景 6.19:1) | bound (§2.6) |
 | `color.text.link` | 主色 (per-scheme) `#2C50C8` (白背景 6.80:1) | bound (実装の `#0050a0` / hover `#06f` は廃止) |
 | `color.text.linkHover` / `linkActive` | `{color.scheme.main.hover}` `#2340A6` (8.92:1) / `{color.scheme.main.pressed}` `#1B3488` (11.09:1) | bound (§2.5) |
 | `color.surface.default` / `subtle` / `muted` / `inverse` | `#FFFFFF` / `#F9F9F9` / `#F5F5F5` / `#212121` | bound |
@@ -64,14 +63,14 @@
 | `color.label.stock` | `{color.state.error}` `#D23A3A` (白背景 4.77:1・面なし) | bound |
 | `color.membership.paid.surface` / `text` | `{color.accent.campaignTint}` / `{color.accent.campaignInk}` | placeholder `🚧` (濃色段が仮色) |
 | `color.membership.free.surface` / `text` | `{color.scheme.main.tint}` `#E8EDFB` / `{color.scheme.main.ink}` `#14224A` (13.21:1) | bound |
-| `color.tag.neutral.surface` / `text` | `{color.surface.muted}` `#F5F5F5` / `{color.text.body}` `#424242` (5.68:1) | bound |
+| `color.tag.neutral.surface` / `text` | `{color.surface.muted}` `#F5F5F5` / `{color.text.body}` `#424242` (9.22:1) | bound |
 | `color.focus.ring` | 主色 | bound |
 | `color.mask.secret` | `{color.scheme.main.tint}` `#E8EDFB` (SecretPrice のマスク面 = B-2 無料会員の面色。グレー板 `#7f7f7f` は廃止) | bound |
 | `color.overlay.backdrop` | `{color.palette.blackAlpha.45}` `rgba(0,0,0,0.45)` | placeholder `🚧` (実査待ち) |
 
 [事実] `color.state.success` / `color.text.link` / `color.text.linkHover` / `linkActive` / `color.state.error` / `color.accent.campaign` / `campaignTint` / `campaignInk` / `color.label.discount.surface` / `color.membership.free.*` / `color.mask.secret` は現在 `main` を参照して固定されており、スキームの切替に自動追随しない。sub を正式採用する場合は `semantic.rental-car.json` の当該箇所を差し替える。
 
-[事実] テキスト色 4 段 (`strong` / `body` / `mutedStrong` / `muted`) は文字色の**濃度段**であり、特定の用途に固定した別名は 4 段とは別に定義する。`color.text.link` / `linkHover` / `linkActive` (リンク = §2.5)・`color.text.placeholder` (入力欄のプレースホルダ = §2.6)・`color.text.inverse` / `inverseMuted` (inverse 面 = §2.4)・`color.text.onAccent` (campaign accent 面 = §2.4) がこれに該当する。用途別名が同じ primitive を参照する場合でも、一方の値の変更が他方へ自動的に及ぶ設計にはしない。
+[事実] テキスト色 4 段 (`strong` / `body` / `mutedStrong` / `muted`) は文字色の**濃度段**であり、特定の用途に固定した別名は 4 段とは別に定義する。`color.text.link` / `linkHover` / `linkActive` (リンク = §2.5)・`color.text.inverse` / `inverseMuted` (inverse 面 = §2.4)・`color.text.onAccent` (campaign accent 面 = §2.4) がこれに該当する。用途別名が同じ primitive を参照する場合でも、一方の値の変更が他方へ自動的に及ぶ設計にはしない。
 
 ### 2.3 品質下限
 
@@ -115,7 +114,7 @@ WCAG 2.2 AA・タップ領域 44px・代替テキスト・色だけで伝えな�
 | `color.surface.default` `#FFFFFF` | `color.accent.campaign` `#E4572E` (文字色として) | 3.68:1 | 未達 | 達成 | 条件付き ((a) (b) を満たす文字のみ) |
 | `color.surface.subtle` `#F9F9F9` | `color.accent.campaign` `#E4572E` (文字色として) | 3.50:1 | 未達 | 達成 | 条件付き ((a) (b) を満たす文字のみ) |
 | `color.surface.muted` `#F5F5F5` | `color.accent.campaign` `#E4572E` (文字色として) | 3.38:1 | 未達 | 達成 | 条件付き ((a) (b) を満たす文字のみ) |
-| `color.surface.muted` `#F5F5F5` | `color.tag.neutral.text` `#424242` | 5.68:1 | 達成 | 達成 | 許可 (D 中立タグの面 + 文字) |
+| `color.surface.muted` `#F5F5F5` | `color.tag.neutral.text` `#424242` | 9.22:1 | 達成 | 達成 | 許可 (D 中立タグの面 + 文字) |
 | `color.scheme.main.tint` `#E8EDFB` | `color.scheme.main.ink` `#14224A` | 13.21:1 | 達成 | 達成 | 許可 (B-2 無料会員ラベル・SecretPrice のマスク面) |
 | `color.accent.campaignTint` `#F9CDBC` (accent 淡色段・面) | `color.accent.campaignInk` `#8A2E11` (🚧 仮色) | 5.84:1 (概算・🚧) | 達成 (概算・🚧) | 達成 | **条件付き** (b2 = 小サイズ非操作ラベルの面 + 濃色文字。濃色段が **🚧 仮色**のため実色値確定後に本 Repository で検証・確定する) |
 | `color.accent.campaignTint` `#F9CDBC` (accent 淡色段・面) | `color.text.strong` `#212121` | 11.11:1 | 達成 | 達成 | 許可 (淡色面 + 既存の濃色文字。b2 の代替として成立) |
@@ -196,16 +195,16 @@ WCAG 2.2 AA・タップ領域 44px・代替テキスト・色だけで伝えな�
 - [事実] 実装 (japan ゾーン) の旧リンク色 `#0050a0` と hover `#06f` は廃止済みであり ([migration-map.md](migration-map.md))、本節はこれらを DS 規則として採らない
 - [注意] 本節が定める**下線の既定は文中リンクを対象とする**。カード全体リンク・ナビゲーション項目・パンくずなど、領域とレイアウトでリンクであることが成立する standalone なリンクへ下線の既定を及ぼすかは未判定 (未確定事項の一覧)。**状態ごとの文字色 (hover / active / visited) と focus の取り扱いは対象を文中リンクに限定しない**ため、standalone なリンクにも適用される
 
-### 2.6 プレースホルダの文字色
+### 2.6 未入力状態の文字色
 
-- [決定] 入力欄のプレースホルダ (`input` / `textarea` の `::placeholder`、および選択前の `option` に相当する表示) の文字色は `color.text.placeholder` (`gray.700` `#616161`・白背景 6.19:1) を使用する
-- [決定] `color.text.muted` (`#9E9E9E`・白背景 2.68:1) を**プレースホルダへ流用しない**。プレースホルダは入力補助として読まれる文字であり判読性を要するため、通常テキストに求められる 4.5:1 に達しない値を用いない (§2.3 のテキスト色規則と同じ扱い)
-- [決定] `color.text.mutedStrong` と同じ primitive (`gray.700`) を参照するが、**別の用途トークンとして定義する**。判読性を要する補助情報 (価格の補助テキスト・店舗のアクセスと営業時間等) と入力補助テキストは用途が異なり、一方の値を変えたときに他方が追随しない形にする。**新しい色値 (primitive) は追加していない**
-- [決定] プレースホルダと入力済みテキスト (`color.text.body` `#424242`) の判別を色の差のみに依存させない。入力済みかどうかの識別は実際の文字列の有無で成立する
-- [決定] プレースホルダを必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない
-- [決定] **Select の未選択値 (プレースホルダ相当) のみ `color.text.muted` (`#9E9E9E`・2.68:1) を例外として許容する** (判断 C-5・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。**AA 未達であることを明示する**。適用は Select の未選択値に限り、通常の `input` / `textarea` の `::placeholder` は `color.text.placeholder` (6.19:1) を維持する。適合宣言は行わない
-- [決定] 上記の例外は**色の許容であって、未選択であることを色だけで伝えてよいという意味ではない**。未選択の識別は文言 (「選択してください」等) が担う (色だけで伝えない = §2.3 の品質下限)
-- 🚧 プレースホルダを含むフォーム入力の状態一式 (枠色・背景色・必須表現・検証表示) は実査待ち (follow-up #2)。本節は**文字色のみ**を定義する
+- [決定] **未入力状態の案内文字の色は `color.text.muted` (`#9E9E9E`・白背景 2.68:1) に統一する。** 対象は `input` / `textarea` の `::placeholder`、Select の未選択値 (選択前の `option` に相当する表示)、およびその他の入力フィールドの未入力表示であり、**UI の種別で限定しない** (判断 C-5・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)
+- [決定] **`color.text.muted` は通常テキストに求められる 4.5:1 に達しない。AA 未達であることを明示する。** 適合宣言は行わない。本節は §2.3 の品質下限に対する明示的な例外であり、未入力状態以外の用途へ拡張しない (判読性を要する補助情報は `color.text.mutedStrong` `#616161`・6.19:1)
+- [決定] 上記は**色の許容であって、未入力であることを色だけで伝えてよいという意味ではない**。未入力の識別は文言 (「選択してください」「出発エリア・空港名」等) が担う (色だけで伝えない = §2.3 の品質下限)
+- [決定] 未入力の案内文字と入力済みテキスト (`color.text.body` `#424242`) の判別を色の差のみに依存させない。入力済みかどうかの識別は実際の文字列の有無で成立する
+- [決定] 案内文字を必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない
+- [決定] **プレースホルダ専用の用途トークン (`color.text.placeholder`) は定義しない。** 未入力状態を UI の種別で分けない以上、専用の別名を設ける必要がない。**新しい色値 (primitive) は追加していない**
+- [事実] 継承元の travel は §22 (2026-08-04・Web部責任者判断) で **Select の未選択値に限る**例外として記録しており、通常の `input` / `textarea` の `::placeholder` は `color.text.placeholder` (`#616161`・6.19:1) を維持している。**rental-car は本節で UI の種別による限定を置かない判断 (2026-09-07・§29) を採った**。3 独立 DS の原則 (P1/ADR-0022) により、本判断は travel・inbound の成果物へ及ばない
+- 🚧 未入力状態を含むフォーム入力の状態一式 (枠色・背景色・必須表現・検証表示) は実査待ち (follow-up #2)。本節は**文字色のみ**を定義する
 
 ## 3. タイポグラフィ
 
@@ -436,7 +435,7 @@ PR 帯・特集帯・支給バナー等のクリエイティブに対する DS �
 2. [components.md](components.md) の固定フォーマットに従う。ラベル・タグは [labels-tags.rental-car.md](labels-tags.rental-car.md) を参照する
 3. `$status=placeholder` は `$note` の follow-up 番号を確認し「`🚧` 暫定」を生成物に伝播させる
 4. **ボタンと入力要素は pill (`radius.action`)**。4px の旧固有形状・グラデ・影を再現しない。非操作のラベルは `radius.badge` (4px) で、pill を使わない
-4-1. 面 (背景) の上に文字を置くときは §2.4 の検証表で組み合わせを確認する。**表に無い組み合わせを検証済みとして扱わない**。リンクは §2.5 (文中は下線あり・hover で外さない・`opacity` を使わない)、プレースホルダは §2.6、文書レベルの見出しは §3.1 (1024px 未満は段を 1 つ下げる) に従う
+4-1. 面 (背景) の上に文字を置くときは §2.4 の検証表で組み合わせを確認する。**表に無い組み合わせを検証済みとして扱わない**。リンクは §2.5 (文中は下線あり・hover で外さない・`opacity` を使わない)、未入力状態の文字色は §2.6、文書レベルの見出しは §3.1 (1024px 未満は段を 1 つ下げる) に従う
 5. 禁止: 他サービスのトークン値の流用 (P1。インバウンドの blue `#064f9e` 等)・100選ゾーンの素材利用・会員ランク色 (階級表現。会員種別 2 値は [labels-tags.rental-car.md](labels-tags.rental-car.md) B で別途定義)
 6. 禁止 (廃止値): 赤 `#9E2334` / `#9B2030` / `#9F1E30`・紺 `#283593`・link `#0050a0` と hover `#06f`・CTA 緑 `#43A047`・`$tocooBlue` `#2B4B65`・マスクのグレー板 `#7F7F7F`・`.cat-label` の分類色 `#060` / `#C90` と尾 `#8C4801`・5px 刻みユーティリティ・本文 15px / lh 1.4・Bootstrap 残骸 `#007BFF`。これらは [migration-map.md](migration-map.md) の左列 (実装の事実値) にのみ現れる
 7. 迷ったら: `01_共通アセット/命名規則.md` §9 → `デザイン原則.md`
@@ -449,9 +448,9 @@ PR 帯・特集帯・支給バナー等のクリエイティブに対する DS �
 | --- | --- | --- |
 | accent 濃色段・サブスキーム (coral) 2 段の実色 | **primitive に段を追加済み** (Task 009-63) — `orange.100` `#F9CDBC` のみ bound、`orange.800` `#8A2E11`・`coral.100` `#F8CBC2`・`coral.800` `#8A2C18` は **🚧 仮色 placeholder**。B-1 の淡色面 + 濃色文字 (5.84:1) は概算であり成立検証は実色値確定後 | 実査 (§14 = 依頼元提出値の受領・作業担当者照合 + Web部責任者確認)。実色を発明しない |
 | accent の帰属 | ✅ **確定** (Task 009-63・判断は [governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。accent を**面**として持つのは B 会員種別のみ、**C カテゴリ・特集はアイコン (点)** として持つ。C の面は白 (`color.label.category.surface`)。白系の面の上に置く場合のみ枠線 1px (`color.label.category.border` = 白面上 1.61:1・非テキスト 3:1 未達を明示) | — |
-| A 割引率のコントラスト | 逆色面 + 白文字は main 2.78:1 / sub 2.15:1 で AA 未達 (sub は大きなテキスト 3:1 も未達)。**例外条項は §2.4「A 割引率ラベルに限る白文字の例外」として明文化済み** (Task 009-63)。**AA 未達を明示したうえでの許容であり適合宣言ではない** | 白文字 (例外) と b2 (accent 淡色面) のどちらを最終解とするかはオーナー判断 |
+| A 割引率のコントラスト | 逆色面 + 白文字は main 2.78:1 / sub 2.15:1 で、**両スキームとも**通常テキスト 4.5:1 だけでなく大きなテキスト 3:1 も未達。**例外条項は §2.4「A 割引率ラベルに限る白文字の例外」として明文化済み** (Task 009-63)。**AA 未達を明示したうえでの許容であり適合宣言ではない** | 白文字 (例外) と b2 (accent 淡色面) のどちらを最終解とするかはオーナー判断 |
 | C カテゴリ・特集ラベルのアイコンの字形とサイズ | ❓ 未定義。字形は C1 = `fa-bolt` / C2 = `fa-clock` を [labels-tags.rental-car.md](labels-tags.rental-car.md) が示すが、**サイズ**は `iconSize` の最小段が 16px で、器 sm (高さ `label.height.sm` 20px・文字 `label.fontSize.sm` 12px) に当てる値が本書・[components.md](components.md) のいずれにも無い。継承元の travel 側でも未定義 | 決定主体 = Web部責任者・チーフデザイナー |
-| Select の未選択値への `color.text.muted` 例外 | ✅ **確定** (Task 009-63 判断 C-5・§2.6)。Select の未選択値のみ `color.text.muted` (2.68:1・**AA 未達明示**) を例外許容し、通常の `input` / `textarea` は `color.text.placeholder` (6.19:1) を維持 | — |
+| 未入力状態への `color.text.muted` 適用 | ✅ **確定** (Task 009-63 判断 C-5・§2.6。適用範囲は 2026-09-07 に UI 種別非限定へ変更)。`input` / `textarea` の `::placeholder`・Select の未選択値・その他の入力フィールドの未入力表示のすべてに `color.text.muted` (2.68:1・**AA 未達明示**) を用いる。プレースホルダ専用トークンは定義しない | — |
 | フォーム入力の状態一式 | 🚧 実査待ち (follow-up #2)。§2.6 は**文字色のみ**を bound として確定させたものであり、枠色・背景色・必須表現・検証表示は未解決 | 実装実査 |
 | 訪問済みリンク (`visited`) を色で区別する要否 | ❓ 未確定。既存 palette に visited 用の色値が無く primitive を追加しないため、現在は `color.text.link` を維持する決定のみ (§2.5) | オーナー判断 |
 | standalone なリンクへ下線の既定を及ぼすかの区分 | ❓ 未判定。§2.5 が定めた**下線**の既定は文中リンクを対象とする (状態ごとの文字色と focus は対象を限定しないため standalone にも適用される)。カード全体リンク・ナビゲーション項目・パンくずの下線の扱いは判定していない | 設計判断 |
@@ -489,3 +488,4 @@ PR 帯・特集帯・支給バナー等のクリエイティブに対する DS �
 | 2026-08-20 | 0.3.0-draft: 国内宿泊 0.3.0-draft の Foundation 定義体系を採用 (オーナー判断 2026-08-18・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §25)。ラベル・タグ定義 (A〜H) と移行対照表を新設。旧実装値 (赤 3 候補・紺 #283593・link #0050a0・CTA 緑・5px 刻み) を廃止し [migration-map.md](migration-map.md) へ移した。§2 をスキーム二層 + 用途の 2 表へ、§5 を pill 既定へ、§6 に画像・オーバーレイを統合。未確定事項一覧を Q 番号ベースから `🚧` 論点ベースへ差し替え | Claude Code |
 | 2026-08-20 | Task 009-57R の記述是正: PR [#156](https://github.com/tocoo/coocom-design-system/pull/156) コードレビュー ([issuecomment-5353729542](https://github.com/tocoo/coocom-design-system/pull/156#issuecomment-5353729542)) の指摘に対応。§2.2 に `mutedStrong` 行と `color.overlay.backdrop` 行を追加し、`{color.scheme.*.error}` / `{color.scheme.*.accent}` のワイルドカード表記を実バインド (`main` 固定) へ是正、`color.mask.secret` の参照先を `{color.scheme.main.tint}` へ変更。§2.3 にテキスト 4 段の使い分け・A 割引率の main / sub 両コントラスト (2.78:1 / 2.15:1)・例外条項が未明文化である事実を追記。§3 に h1 と `font.heading.weight`・`font.display.mdSize` を反映し h4 以下が未定義である事実を明記。§5 のシャドウを「用途 semantic 未定義」へ、§5・§6 の角丸と backdrop をトークン参照へ是正。§7 の「継承 8 + 固有 9」を「travel と同型 7 + 先行定義 3 + 固有 8」へ是正し、travel のファイルを参照しない旨を明示。未確定事項に主 CTA 個数制約・BottomSheet / Popover の採否・backdrop の実値の 3 行を追加し、accent 段・A コントラスト・シャドウの 3 行を是正。**不変**: スキームの値・ブレークポイント・スペーシング・z 軸・§8 ブランド・§9 Agent Prompt Guide | Claude Code |
 | 2026-09-07 | Task 009-63: 国内宿泊 (travel) の最新版 (Task 009-58〜009-62) の定義体系を適用 ([Issue #170](https://github.com/tocoo/coocom-design-system/issues/170)・記録 = [governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。**節の新設**: §2.4 面 (背景) と文字色の組み合わせ規則 (用語の定義・検証した組み合わせの表 18 行・campaign accent 面の条件と代替規則・scheme inverse 面・**A 割引率ラベルに限る白文字の例外**・accent の帰属)、§2.5 リンクの装飾と状態、§2.6 プレースホルダの文字色、§3.1 文書レベルの見出しスケール (h1〜h6・幅 2 列・4 の倍数規則)、§7.1 Modal の表示形態 (form = drawer / sheet / popover)、§8.1 割引率の表記規則、§8.2 予約条件の表示規則、§8.3 クリエイティブへの DS 適用範囲。**既存節の是正**: §2.2 用途表に新規 semantic 12 行を追加しテキスト用途別名の区別を明記／§2.3 の「例外条項は未明文化」を解消／§3 の「見出しは h1〜h3 の 3 段のみ・h4 以下は未定義」を 6 段へ、車種クラス名の**要素固定**の書き方を**役割ベース**へ是正 (`h3Size` が 24px へ変わり `font.display.mdSize` 18px との同値衝突が消えたため)／§5 の入力角丸を `radius.input` (4px) から `radius.action` (pill) へ統一し用途トークンを 5 系統から 4 系統へ／§6 のオーバーレイを form 3 値へ／§7 に主 CTA 個数制約の不設置・PriceTag の `tone` 軸・Badge (単体) の切り出し境界を追加／§9 に §2.4〜§3.1 への参照を追加／未確定事項の一覧を全面更新 (解決 4 件・新規 11 件)。**トークン**: semantic 40 件追加・`radius.input` 1 件削除・`font.heading.h3Size` の参照先を `{typography.size.lg}` (18px) から `{typography.size.2xl}` (24px) へ変更、primitive 4 件追加 (`orange.100` / `orange.800` / `coral.100` / `coral.800`。`orange.100` のみ bound・他 3 段は 🚧 仮色)。**不変**: スキームの値・ブレークポイント・スペーシング・z 軸・コンテナ幅・`font.display.*` の値と参照先・`color.mask.secret`・§1 概要・§2.1 スキーム表・§4・migration-map.md。**節番号**: 既存 §2.1〜§2.3 は保持し新設分を §2.4〜§2.6 とした (travel との対応は §2 のみ 1 対 1 でない) | Claude Code |
+| 2026-09-07 | Task 009-63R の記述是正: PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー ([issuecomment-5565532746](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5565532746)) の指摘に対応。①§2.2・§2.4 の `color.surface.muted` × `color.tag.neutral.text` のコントラスト値を 5.68:1 から実測値 **9.22:1** へ是正 (誤値・本 Task で新規に混入)。②未入力状態の文字色を **UI の種別で限定せず `color.text.muted` に統一する** Web部責任者判断 (2026-09-07・§29 判断 C-5 の適用範囲変更) を反映し、§2.6 を「プレースホルダの文字色」から「未入力状態の文字色」へ改題・全面改訂、§2.2 の `color.text.placeholder` 行と用途別名の列挙から同トークンを削除、未確定事項の一覧の該当行を書き換えた。これに伴い `semantic.rental-car.json` の `color.text.placeholder` の追加を取り下げた (semantic 追加 40 件 → **39 件**)。③未確定事項の一覧の A 割引率のコントラスト行を「sub は 3:1 も未達」から「**両スキームとも** 3:1 も未達」へ是正 (main 2.78:1 も 3:1 に達しない)。**不変**: スキームの値・ブレークポイント・スペーシング・z 軸・§2.4 の例外条項・§3.1 の見出し表・§7.1 Modal の form・§8 ブランド・§9 Agent Prompt Guide | Claude Code |

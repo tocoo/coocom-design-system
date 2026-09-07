@@ -49,7 +49,6 @@
     --color-text-inverse            : #ffffff; /* color.text.inverse */
     --color-text-inverse-muted      : #9e9e9e; /* color.text.inverseMuted */
     --color-text-on-accent          : #ffffff; /* color.text.onAccent */
-    --color-text-placeholder        : #616161; /* color.text.placeholder */
     --color-text-link               : #2c50c8; /* color.text.link */
     --color-text-link-hover         : #2340a6; /* color.text.linkHover */
     --color-text-link-active        : #1b3488; /* color.text.linkActive */
@@ -326,8 +325,8 @@
     font-family: var(--font-body-family); font-size: var(--typography-size-md);
     color: var(--color-text-body); background: var(--color-surface-default);
   }
-  .field--placeholder { color: var(--color-text-placeholder); }
-  /* Select の未選択値のみ color.text.muted を例外許容 (AA 未達明示・design.md §2.6) */
+  /* 未入力状態の文字色は UI の種別で限定せず color.text.muted に統一 (AA 未達明示・design.md §2.6) */
+  .field--placeholder,
   .field--unselected { color: var(--color-text-muted); }
   .field--error { border-color: var(--color-state-error); color: var(--color-state-error); }
   .field--focus { outline: var(--border-width-thick) solid var(--color-focus-ring); outline-offset: 2px; }
@@ -536,7 +535,6 @@
     <div class="sw"><span class="sw__chip" style="background: var(--color-text-inverse)"></span><code>color.text.inverse</code><span class="sw__val">#ffffff</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-text-inverse-muted)"></span><code>color.text.inverseMuted</code><span class="sw__val">#9e9e9e</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-text-on-accent)"></span><code>color.text.onAccent</code><span class="sw__val">#ffffff</span></div>
-    <div class="sw"><span class="sw__chip" style="background: var(--color-text-placeholder)"></span><code>color.text.placeholder</code><span class="sw__val">#616161</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-text-link)"></span><code>color.text.link</code><span class="sw__val">#2c50c8</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-text-link-hover)"></span><code>color.text.linkHover</code><span class="sw__val">#2340a6</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-text-link-active)"></span><code>color.text.linkActive</code><span class="sw__val">#1b3488</span></div>
@@ -790,7 +788,7 @@
   <h2>Component — Input / Select / FormLabel / SearchForm</h2>
   <div class="stage">
     <div class="stage__item"><span class="field">那覇空港</span><span class="caption">入力値 <code>color.text.body</code></span></div>
-    <div class="stage__item"><span class="field field--placeholder">出発エリア・空港名</span><span class="caption">プレースホルダ <code>color.text.placeholder</code> (6.19:1)</span></div>
+    <div class="stage__item"><span class="field field--placeholder">出発エリア・空港名</span><span class="caption">未入力状態 <code>color.text.muted</code> (2.68:1・<strong>AA 未達</strong>を明示)。色だけで伝えず文言が担う</span></div>
     <div class="stage__item"><span class="field field--focus">那覇空港</span><span class="caption">focus <code>color.focus.ring</code> <span class="flag">🚧</span></span></div>
     <div class="stage__item">
       <span class="field field--error">2026/09/01</span>
@@ -805,7 +803,7 @@
     </div>
     <div class="stage__item">
       <span class="field field--select field--unselected"><span>車種クラスを選択してください</span><i class="fa-solid fa-chevron-down"></i></span>
-      <span class="caption"><code>Select</code> の<strong>未選択値</strong> — <code>color.text.muted</code> (2.68:1・<strong>AA 未達</strong>を明示した例外。判断 C-5)。色だけで伝えず文言を併記する</span>
+      <span class="caption"><code>Select</code> の<strong>未選択値</strong> — <code>color.text.muted</code> (2.68:1・<strong>AA 未達</strong>を明示。判断 C-5)。Input のプレースホルダと<strong>同一の扱い</strong>で、UI の種別で色を変えない</span>
     </div>
   </div>
   <div class="stage stage--stack" style="margin-top:14px">
@@ -831,7 +829,7 @@
     </div>
   </div>
   <p class="note"><strong>入力要素の角丸は <code>radius.action</code> (pill) に統一した</strong> (判断 F-5)。<code>radius.input</code> (4px) は廃止し、同一フォーム内でボタンと入力欄が異なる形状を持つ状態を解消している (<a href="design.md"><code>design.md</code></a> §5)。</p>
-  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Input</code> / <code>Select</code> / <code>FormLabel</code> / <code>SearchForm</code> ・ <a href="design.md"><code>design.md</code></a> §2.6 (プレースホルダ・未選択値)</p>
+  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Input</code> / <code>Select</code> / <code>FormLabel</code> / <code>SearchForm</code> ・ <a href="design.md"><code>design.md</code></a> §2.6 (未入力状態の文字色)</p>
 </section>
 
 <section class="card">
@@ -1068,7 +1066,7 @@
     </div>
   </div>
   <dl class="tokens">
-    <dt>面・文字</dt><dd><code>color.tag.neutral.surface / text</code> (中立面 #f5f5f5 上 5.68:1)</dd>
+    <dt>面・文字</dt><dd><code>color.tag.neutral.surface / text</code> (中立面 #f5f5f5 上 9.22:1)</dd>
     <dt>ウェイト</dt><dd><code>label.weight.neutral</code> (400 — 面ありラベルの 700 と区別する)</dd>
   </dl>
   <p class="note"><strong>D4 格付けは廃止</strong>している (グレードの定義が事業区分に存在しないため)。廃止したのは格付けのみで D1〜D3 は対象外。<code>tint</code> 面は B-2 無料会員の専用である。</p>
@@ -1156,7 +1154,7 @@
       <tr><td>色・書体・寸法の値と <code>$status</code></td><td><code>semantic.rental-car.json</code> → <code>primitive.rental-car.json</code></td></tr>
       <tr><td>スキームと用途 / 品質下限</td><td><code>design.md</code> §2.1・§2.2 / §2.3</td></tr>
       <tr><td>面と文字色の組み合わせ規則・白文字の例外・accent の帰属</td><td><code>design.md</code> §2.4</td></tr>
-      <tr><td>リンクの装飾と状態 / プレースホルダ</td><td><code>design.md</code> §2.5 / §2.6</td></tr>
+      <tr><td>リンクの装飾と状態 / 未入力状態の文字色</td><td><code>design.md</code> §2.5 / §2.6</td></tr>
       <tr><td>タイポグラフィ・文書レベルの見出しスケール</td><td><code>design.md</code> §3・§3.1</td></tr>
       <tr><td>余白・グリッド・ブレークポイント / 角丸・影・モーション / アイコン・画像・オーバーレイ</td><td><code>design.md</code> §4 / §5 / §6</td></tr>
       <tr><td>Modal の表示形態 (form)</td><td><code>design.md</code> §7.1</td></tr>
@@ -1180,7 +1178,6 @@
       <tr><td><code>color.overlay.backdrop</code></td><td>ハンドオフバンドル記載値の暫定参照</td></tr>
       <tr><td><code>radius.card</code> ・ <code>radius.overlay</code></td><td>実 px 未取得</td></tr>
       <tr><td><code>shadow.sm / md / lg</code> ・ <code>motion.*</code></td><td>実値未抽出 (用途 semantic は未定義)</td></tr>
-      <tr><td><code>breakpoint.sm / md / lg / xl</code></td><td>値は Q5 決定 (3DS 共通) だが <code>$status</code> は placeholder のまま</td></tr>
     </tbody>
   </table></div>
   <h3><span class="flag">未取得</span> 見本を描けないもの</h3>

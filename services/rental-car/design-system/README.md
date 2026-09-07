@@ -20,7 +20,7 @@
 
 | ファイル | 種別 | 責務 | Status |
 | --- | --- | --- | --- |
-| [design.md](design.md) | 正本 | Foundation の統合文書。カラー (面と文字色の組み合わせ規則・リンク・プレースホルダを含む)・タイポグラフィ (文書レベルの見出しスケール)・スペーシング/BP・角丸/シャドウ/モーション・アイコン/画像/オーバーレイ・コアコンポーネントの概観と Modal の表示形態・ブランド/クリエイティブガイド (表記規則 3 節)・Agent Prompt Guide・未確定事項の一覧 | Draft (0.3.0-draft) |
+| [design.md](design.md) | 正本 | Foundation の統合文書。カラー (面と文字色の組み合わせ規則・リンク・未入力状態の文字色を含む)・タイポグラフィ (文書レベルの見出しスケール)・スペーシング/BP・角丸/シャドウ/モーション・アイコン/画像/オーバーレイ・コアコンポーネントの概観と Modal の表示形態・ブランド/クリエイティブガイド (表記規則 3 節)・Agent Prompt Guide・未確定事項の一覧 | Draft (0.3.0-draft) |
 | [semantic.rental-car.json](semantic.rental-car.json) | 正本 | 用途 (Semantic) トークン。実装が参照するのはこの層のみ | Draft (0.3.0-draft) |
 | [primitive.rental-car.json](primitive.rental-car.json) | 正本 | 値 (Primitive) トークン。実装からの直接参照は禁止 | Draft (0.3.0-draft) |
 | [components.md](components.md) | 正本 | Component 仕様 (共通事項・フォーム系・検索系・検索結果系・オーバーレイ・レスポンシブ) | Draft (0.3.0-draft) |
@@ -49,7 +49,7 @@
 | 色・書体・寸法の値と `$status` | `semantic.rental-car.json` → `primitive.rental-car.json` |
 | スキーム (main / sub) と用途トークンの対応 / 品質下限 | `design.md` §2.1・§2.2 / §2.3 |
 | 面と文字色の組み合わせ規則・白文字の例外・accent の帰属 | `design.md` §2.4 |
-| リンクの装飾と状態 / プレースホルダの文字色 | `design.md` §2.5 / §2.6 |
+| リンクの装飾と状態 / 未入力状態の文字色 | `design.md` §2.5 / §2.6 |
 | タイポグラフィ・文書レベルの見出しスケール (h1〜h6) | `design.md` §3・§3.1 |
 | 余白・グリッド・ブレークポイント / 角丸・シャドウ・モーション / アイコン・画像・オーバーレイ | `design.md` §4 / §5 / §6 |
 | Modal の表示形態 (form = drawer / sheet / popover) | `design.md` §7.1 |
@@ -119,3 +119,4 @@
 | 日付 | 変更内容 | 変更者 |
 | --- | --- | --- |
 | 2026-09-07 | 初版。Design System レイヤーの入口文書として新設 (Task 009-63・[Issue #170](https://github.com/tocoo/coocom-design-system/issues/170)・記録 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。成果物の一覧・読み順・正本の所在・責務の境界・3 独立 DS の原則・Status / version の扱い・上流/下流との関係・Open Issue を定義した。**個別のトークン・Component・ブランド値・判断は定義・変更していない** | Claude Code |
+| 2026-09-07 | Task 009-63R の記述是正: PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー ([issuecomment-5565532746](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5565532746)) の指摘に対応。§2.6 の改題 (「プレースホルダの文字色」→「未入力状態の文字色」) に伴い、成果物の一覧と正本の所在表の該当記述を追随させた。**個別のトークン・Component・ブランド値・判断は定義・変更していない** | Claude Code |

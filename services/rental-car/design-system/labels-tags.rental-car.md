@@ -35,7 +35,7 @@
 - 固定 = 面・文字色・書体・角丸。箱ごとに選べる = サイズ・表記・余白
 - 用途: 卸価格の割引率。**表記規則の正は [design.md](design.md) §8.1** (基本形 `NN%OFF`・数字は `%OFF` より 1 段上・半角/整数/先頭ゼロなし・表示しない条件 4 件・表示成立条件)。幅が取れないときのみ「NN%OFF」の 1 サイズ
 - 写真の上でも意匠を変えない (スクリムを敷かない)。写真の上に置けるのは A だけ
-- 白文字のコントラストは **main `#C8912C` 上 2.78:1 / sub `#C8B12C` 上 2.15:1** で、両スキームとも通常テキスト 4.5:1 に達しない。sub は大きなテキスト 3:1 も満たさない。2 スキームは値が異なるため 1 行に束ねない
+- 白文字のコントラストは **main `#C8912C` 上 2.78:1 / sub `#C8B12C` 上 2.15:1** で、両スキームとも通常テキスト 4.5:1 だけでなく、大きなテキスト 3:1 も満たさない (main 2.78 / sub 2.15 はいずれも 3 未満)。2 スキームは値が異なるため 1 行に束ねない
 - ✅ これを成立させる例外条項は **[design.md](design.md) §2.4「A 割引率ラベルに限る白文字の例外」として明文化済み**である (Task 009-63・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。用途は **A 割引率ラベルに限り**、面は **scheme 逆色に限る** (campaign accent 面 + 白文字は例外に含めない)。サイズ・ウェイトは不問。**AA 未達を明示したうえでの許容であり、適合宣言ではない**。§25 の Does Not Authorize が「例外条項の明文化は未了」としていた状態は解消した
 - ✅ 用途色トークン `color.label.discount.surface` / `text` は **Task 009-63 で定義済み**である
 
@@ -78,7 +78,7 @@
 
 ### D1 車種クラス (`tag.neutral`)
 
-- 意匠: 中立タグ = `color.tag.neutral.surface` (= `surface.muted` `#F5F5F5`) 面 + `color.tag.neutral.text` (= `text.body` `#424242`・5.68:1)・ウェイト `label.weight.neutral` (400。面ありラベルの 700 と区別)。✅ トークンは **Task 009-63 で定義済み** (bound)
+- 意匠: 中立タグ = `color.tag.neutral.surface` (= `surface.muted` `#F5F5F5`) 面 + `color.tag.neutral.text` (= `text.body` `#424242`・9.22:1)・ウェイト `label.weight.neutral` (400。面ありラベルの 700 と区別)。✅ トークンは **Task 009-63 で定義済み** (bound)
 - D1〜D3 は同じ器で、区分は順序で読ませる
 - 用途: 1 台に必ず 1 つだけ (排他)。検索の絞り込み条件と 1 対 1。タグ列の先頭に置く
 
@@ -158,7 +158,7 @@
 | D1〜D3 中立タグ | `color.tag.neutral.surface` / `text` | 2 | bound |
 | C1 / C2 カテゴリ・特集 | `color.label.category.surface` / `text` / `icon` / `border` | 4 | bound (枠線は白面上 1.61:1 = 非テキスト 3:1 未達を明示) |
 
-- [事実] semantic の追加は計 **31 件** (上表)。本 Task ではこのほかに面と文字色・リンク・プレースホルダ・文書レベル見出しの 9 件を追加しており、`semantic.rental-car.json` 全体では 40 件の追加・1 件の削除 (`radius.input`)・1 件の参照先変更 (`font.heading.h3Size`) となる ([design.md](design.md) 変更履歴)
+- [事実] semantic の追加は計 **31 件** (上表)。本 Task ではこのほかに面と文字色・リンク・文書レベル見出しの 8 件を追加しており、`semantic.rental-car.json` 全体では 39 件の追加・1 件の削除 (`radius.input`)・1 件の参照先変更 (`font.heading.h3Size`) となる ([design.md](design.md) 変更履歴)
 - `🚧` **残る実査待ち**: accent 濃色段 (`orange.800` `#8A2E11`) とサブスキーム coral の 2 段の実色値。B-1 の淡色面 + 濃色文字 (5.84:1) は概算であり、成立検証は実色値確定後に行う。**実色を発明しない** (確認方法・個別確認主体 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §14)
 - `🚧` **残る未定義**: C カテゴリ・特集ラベルのアイコンのサイズ (C1)・E2 満車・受付終了の意匠値 (Button の disabled 定義が先)・F 予約条件「得」の文字色とリンクの見分け
 
@@ -170,3 +170,4 @@
 | 2026-08-20 | 本 Repository へ新設 (0.3.0-draft)。あわせて記述是正 3 件: (1) §1 角丸行の「`radius.badge` 未定義のため `radius.sm` で代用」を削除 (`semantic.rental-car.json` に `{radius.sm}` = 4px・`$status: bound` で定義済のため事実に反する)。(2) C1 見出しの `label.category` を除去し、用途色を追加しない旨を明記 (未定義かつ国内宿泊でも C 特集は据え置き)。(3) §4 要追加トークン表から `radius.badge` を外し、未定義の `tag.neutral` を追加 (計 5 件は不変) | Claude Code |
 | 2026-08-20 | Task 009-57R の記述是正: PR [#156](https://github.com/tocoo/coocom-design-system/pull/156) コードレビュー ([issuecomment-5353729542](https://github.com/tocoo/coocom-design-system/pull/156#issuecomment-5353729542)) の指摘に対応。①A のコントラストを main 2.78:1 / sub 2.15:1 と個別に記載し、例外条項が本 DS では未明文化である事実と `label.discount` 未定義を明記した。②B-1 の面 `#F9CDBC` の「(確定)」を「仮色」へ是正した (§4 の「primitive に段がなく仮色」と矛盾していた)。③G 写真枚数の角丸を `radius.action` (pill) から `radius.badge` へ改めた (「押せるものだけ pill」と矛盾していた)。④F の中立色を `text.muted` から `text.mutedStrong` へ変更した。⑤§4 の結論文を是正し `label.discount` を追加して 6 件とした (旧文は 5 件のうち 4 件が travel でも未追加であるかのように読ませていたが、実際は 6 件すべて travel に実装済みである)。**不変**: 器の寸法・カテゴリ体系 A〜H・D4 廃止・B-2 の既定非表示・Do / Don't | Claude Code |
 | 2026-09-07 | Task 009-63: 国内宿泊 (travel) の最新版 (Task 009-58〜009-62) の定義体系を適用 ([Issue #170](https://github.com/tocoo/coocom-design-system/issues/170)・記録 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。①§1 の器の表に**トークン列**を追加し、寸法を `label.*` (12 件・定義済み) への参照として書き換えた。②A の「例外条項は未明文化 `🚧`」を解消し [design.md](design.md) §2.4「A 割引率ラベルに限る白文字の例外」への参照へ、表記の 1 行を §8.1 への参照へ改めた。③B-1 を `color.membership.paid` 参照へ改め、**面 (`orange.100`) は bound・濃色段のみ仮色**であることを明記し、濃色段が確定するまで 12px は neutral dark 面を用いる旨を追記した。④B-2 / D1 / E1 / G を用途色トークン参照へ書き換えた。⑤**C1 の記述を是正**した — 旧「用途色トークンは追加しない。国内宿泊 (travel) でも C 特集は据え置きであり」は、travel が Task 009-60 (2026-09-05・同 §27) で `color.label.category` を確定しているため**現在の事実に反していた**。あわせて **accent の帰属を確定** (面 = B のみ / C はアイコン) し、白系の面の上での枠線 1px (`color.label.category.border`・白面上 1.61:1 = 非テキスト 3:1 未達を明示) を定め、`🚧` 2 箇所を解消した。C2 も同参照へ揃えた。⑥F を §8.2、H を §8.3 への参照へ揃えた。⑦§4 を「要追加トークン 6 件」から**「追加したトークン」**へ書き換え、semantic 31 件 + primitive 4 件の消し込みと残る実査待ち・未定義を明記した。**不変**: 器の寸法値・カテゴリ体系 A〜H・D4 廃止・B-2 の既定非表示・D1〜D3 の区分・E2 の方向・F のスロット構造と判定基準・Do / Don't | Claude Code |
+| 2026-09-07 | Task 009-63R の記述是正: PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー ([issuecomment-5565532746](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5565532746)) の指摘に対応。①A 割引率の白文字のコントラスト記述を「sub は大きなテキスト 3:1 も満たさない」から「**両スキームとも** 3:1 も満たさない」へ是正した (main 2.78:1 も 3:1 に達しないため、従前の記述は main が 3:1 を満たすと読めた)。**例外条項そのもの ([design.md](design.md) §2.4) は不変**。②D1 中立タグのコントラスト値を 5.68:1 から実測値 **9.22:1** へ是正した。③`color.text.placeholder` の追加取り下げ (§29 判断 C-5 の適用範囲変更) に伴い、§4 の件数を semantic 40 件 → **39 件**・本 Task の追加 9 件 → **8 件**へ是正した。**不変**: ラベル A〜H の器・用途色・角丸・書体・用途区分 | Claude Code |

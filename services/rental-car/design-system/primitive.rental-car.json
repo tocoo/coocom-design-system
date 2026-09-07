@@ -7,9 +7,9 @@
     "serviceLabel": "国内レンタカー (tocoo/tocoo_rental_car — japan ゾーン)",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "rental-car 0.2.1-draft。0.3.0-draft で travel 0.3.0-draft の Foundation 定義を採用 (オーナー判断 2026-08-18)。旧 Q1 赤3候補・Q2・Q3・Q4 は本判断により解消。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、`color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を追加した (Modal の backdrop が components.md / design.md で `rgba(0,0,0,.45)` の生値として書かれ、semantic 経由で指定できなかった状態の解消。travel `blackAlpha.45` と同じ暫定値を独立に持つ = 値の共有ではない)。既存トークンの値・`$status`・`$meta.version` は不変。",
+    "basedOn": "rental-car 0.2.1-draft。0.3.0-draft で travel 0.3.0-draft の Foundation 定義を採用 (オーナー判断 2026-08-18)。旧 Q1 赤3候補・Q2・Q3・Q4 は本判断により解消。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、`color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を追加した (Modal の backdrop が components.md / design.md で `rgba(0,0,0,.45)` の生値として書かれ、semantic 経由で指定できなかった状態の解消。travel `blackAlpha.45` と同じ暫定値を独立に持つ = 値の共有ではない)。既存トークンの値・`$status`・`$meta.version` は不変。 Task 009-63 (国内宿泊 travel の最新版 = Task 009-58〜009-62 の適用・Issue #170・記録 = governance/owner-decisions.md §29): accent の淡色段・濃色段 4 件 (`color.palette.orange.100` / `orange.800`・`coral.100` / `coral.800`) を追加した。ラベル・タグ定義 B-1 会員種別 / 有料 (b2 = 淡色面 + 濃色文字) の面・文字が primitive に段を持たず、semantic 用途トークン (`color.accent.campaignTint` / `campaignInk`・`color.scheme.{main,sub}.accentTint` / `accentInk`) を定義できなかった状態の解消。`orange.100` (#f9cdbc) のみ bound、他 3 段は **🚧 仮色 placeholder** (継承元である travel 側でも placeholder であり `🚧` を伝播させる・実色を発明しない)。値は本ファイルに独立して持ち travel のファイルを参照・共有しない (P1/ADR-0022)。既存トークンの値・`$status`・`$meta.version` は不変。",
     "created": "2026-07-02",
-    "updated": "2026-08-20",
+    "updated": "2026-09-07",
     "rules": [
       "属性ベース命名 ({category}.{attribute}.{step})",
       "コンポーネント実装からの直接参照は禁止 (Semantic 経由のみ)",
@@ -201,19 +201,47 @@
         }
       },
       "orange": {
+        "100": {
+          "$value": "#f9cdbc",
+          "$type": "color",
+          "$description": "メイン accent 淡色段 (小サイズ 12px ラベルの面)。ラベル・タグ定義 B-1 会員種別 / 有料 (b2 = 淡色面 + 濃色文字) で必要となり追加",
+          "$status": "bound",
+          "$note": "値は継承元である国内宿泊 (travel) のラベル・タグ定義シートで画面設計 Owner が選定した淡色段 (2026-08-07) と同値を、本 DS のファイルに**独立して**持つ (値の共有・相互参照はしない = design.md 独立性・P1/ADR-0022)。淡色面 (小サイズ 12px ラベルの面) 用途。**濃色段 (orange.800) は 🚧 仮色**であるため、淡色面 + 濃色文字のコントラストは実色値確定後に本 Repository で検証する (§14 = 依頼元提出値の受領・作業担当者照合 + Web部責任者確認)"
+        },
         "400": {
           "$value": "#e4572e",
           "$type": "color",
           "$description": "メイン特集アクセント (per-scheme)",
           "$status": "bound"
+        },
+        "800": {
+          "$value": "#8a2e11",
+          "$type": "color",
+          "$description": "🚧 仮色 メイン accent 濃色段 (淡色面 #f9cdbc 上の文字)。ラベル・タグ定義 B-1 (b2) で追加",
+          "$status": "placeholder",
+          "$note": "**仮色**。実色値は実査待ち (確認方法 / 個別確認主体 = governance/owner-decisions.md §14 = 依頼元提出値の受領・作業担当者照合 + Web部責任者確認)。継承元である国内宿泊 (travel) 側でも同段は placeholder (仮色) であり、`🚧` を伝播させる。**実色を発明しない**。placeholder → bound 昇格・値の確定は本 Task では行わない"
         }
       },
       "coral": {
+        "100": {
+          "$value": "#f8cbc2",
+          "$type": "color",
+          "$description": "🚧 仮色 サブ accent 淡色段 (メインの淡色段 #f9cdbc に揃えた段)。ラベル・タグ定義 B-1 (b2) で追加",
+          "$status": "placeholder",
+          "$note": "**仮色**。サブスキーム (coral) の淡色段は未選定であり、メイン揃えの可否を含め実査待ち (§14)。継承元である国内宿泊 (travel) 側でも同段は placeholder (仮色) である。placeholder → bound 昇格・値の確定は本 Task では行わない"
+        },
         "500": {
           "$value": "#e0553c",
           "$type": "color",
           "$description": "サブ特集アクセント (per-scheme)",
           "$status": "bound"
+        },
+        "800": {
+          "$value": "#8a2c18",
+          "$type": "color",
+          "$description": "🚧 仮色 サブ accent 濃色段 (淡色面上の文字・未実査)。ラベル・タグ定義 B-1 (b2) で追加",
+          "$status": "placeholder",
+          "$note": "**仮色**。サブスキーム (coral) の濃色段は未実査 (§14)。継承元である国内宿泊 (travel) 側でも同段は placeholder (仮色) であり、`🚧` を伝播させる。**実色を発明しない**。placeholder → bound 昇格・値の確定は本 Task では行わない"
         }
       },
       "blackAlpha": {

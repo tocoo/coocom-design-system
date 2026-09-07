@@ -818,6 +818,105 @@
 
 ---
 
+## 29. 国内レンタカー (rental-car) DS — 国内宿泊 (travel) 最新版 (Task 009-58〜009-62) の適用 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内レンタカー (rental-car) の Design System へ、国内宿泊 (travel) の最新版 (Task 009-58〜009-62 時点) の定義体系を適用することに対し、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録。契機は [Issue #170](https://github.com/tocoo/coocom-design-system/issues/170)。上記 §1〜§28 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§28 の各記録は変更しない。
+- **本記録は §25〜§28 からの自動適用ではない。** §26 / §27 / §28 はいずれも適用範囲を「国内宿泊 (travel) に限定。rental-car・inbound・3DS 横断へは自動適用しない」と明記しており、§25 も「§24 の自動適用ではなく rental-car について別途取得した判断」として記録されている。本 §29 も同じ形で、**rental-car について別途取得した判断**として記録する。§24・§26・§27・§28 の判断内容・適用範囲は変更しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。`TVL-NNNN` は ADR 正本が Repository 内に不在であるため、本記録および rental-car の文書で現在の仕様根拠として参照しない。仮色 (実色値未取得) は placeholder として bind し発明しない。
+
+### 29-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/rental-car/design-system/semantic.rental-car.json](../services/rental-car/design-system/semantic.rental-car.json) の部分更新 (**40 件追加・`radius.input` 1 件削除・`font.heading.h3Size` の参照先変更**)、②[../services/rental-car/design-system/primitive.rental-car.json](../services/rental-car/design-system/primitive.rental-car.json) の部分更新 (accent の淡色段・濃色段 **4 件追加**)、③[../services/rental-car/design-system/design.md](../services/rental-car/design-system/design.md) の部分更新 (§2.4 面と文字色・§2.5 リンク・§2.6 プレースホルダ・§3.1 文書レベルの見出しスケール・§7.1 Modal の表示形態・§8.1 割引率の表記規則・§8.2 予約条件の表示規則・§8.3 クリエイティブへの適用範囲の **7 節を新設**／§2.2 用途表・§2.3 品質下限・§3 タイポグラフィ・§5 角丸・§6 オーバーレイ・§7 コアコンポーネント・§9 Agent Prompt Guide・未確定事項の一覧の是正)、④[../services/rental-car/design-system/components.md](../services/rental-car/design-system/components.md) の部分更新 (§1 共通事項・Button・Input・Select・SearchForm・Label / Tag・PriceTag・Modal。**§6「拡張候補 (未承認)」を本文へ統合して廃止**し §7・§8 を繰り上げ)、⑤[../services/rental-car/design-system/labels-tags.rental-car.md](../services/rental-car/design-system/labels-tags.rental-car.md) の部分更新 (器とカテゴリのトークン参照化・**C1 の記述是正**・§4 要追加トークン表の消し込み)、⑥[../services/rental-car/design-system/preview.rental-car.html](../services/rental-car/design-system/preview.rental-car.html) の**新設** (DS 見本ページ・非正本)、⑦[../services/rental-car/design-system/README.md](../services/rental-car/design-system/README.md) の**新設** (design-system レイヤー入口文書)、⑧[../services/rental-car/README.md](../services/rental-car/README.md) の部分更新 (読み順・現在存在する成果物)、⑨`tools/gen-preview-tokens.py` の部分更新 (複数サービス対応) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-09-07 |
+| 承認主体 | Web部責任者 |
+| 根拠 | rental-car が採用済みなのは **2026-08-20 時点の travel Foundation 定義体系** (§25) であり、それ以降 travel に入った確定 (§26 見出しの書体選択・§27 C カテゴリ・特集の用途色と accent の帰属・§28 幅ごとの見出しのサイズ段、および Task 009-48〜009-56 のラベル・タグ実装) が未反映である。実測した差分は semantic トークン **42 件** (travel 側のみ)・primitive **6 件** (同)・文書の節 **8 節**で、**値の食い違いは 0 件**であった。また rental-car 側には、travel 側の確定を待つ形で `🚧` を置いたままの記述 (A 割引率の例外条項が未明文化・accent の帰属が未確定・要追加トークン 6 件・主 CTA 個数制約の適用判断が未取得・BottomSheet / Popover が未承認候補) が複数あり、本適用によりこれらを解消できる |
+| 適用範囲 | **国内レンタカー (rental-car) に限定**。travel・inbound・3DS 横断へは自動適用しない |
+
+### 29-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-07・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out (意味を変えない字句の修正) の適用でも、一般的な高／低の内容基準の確定でもない。semantic **40 件の追加・1 件の削除**・既に bound 済みのトークン (`font.heading.h3Size`) の**参照先変更**を伴い、`design.md` に **7 節を新設**するため carve-out の対象外である。前例として、より小さい範囲であった §25 (rental-car Foundation 定義体系の採用) も高判定であり、travel 側の §27 (用途色 4 件の追加)・§28 (semantic 1 件の参照先変更) も高判定であった |
+
+### 29-3. 取得した現在判断 (2026-09-07)
+
+本 Issue の起票時に取得した 7 件の判断。いずれも rental-car の既存記述・既存トークンと両立しない論点、または travel 限定と明記された判断の適用可否である。
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| D-2 | `font.heading.h3Size` を `lg` (1.125rem・18px) のまま維持するか `2xl` (1.5rem・24px) へ揃えるか | **24px へ揃える**。travel と同じ段構成 (h1 40 / h2 32 / h3 24 / h4 20 / h5 16 / h6 16px) とする。**帰結**: `font.display.mdSize` (18px・車種クラス名) と `h3Size` が同値でなくなるため、旧 §3 の「同一要素へ 2 系統を割り当てない」という同値衝突は解消する |
+| D-4 | 文書レベル見出しに**実寸が 4 の倍数の段のみ**を用いる規則を採るか | **採用する**。**対象は文書レベルの見出しのみ**とし、`font.display.mdSize` (`lg` 18px・車種クラス名) は**対象外**であることを明記する。`sm` (14px) も `label.fontSize.md` / `label.numberSize.sm` として bound 確定済みのため対象外。4px 系 (§4) の適用範囲を `typography` 全体へ拡げない |
+| F-5 | 入力要素の角丸を `radius.input` (4px) のまま維持するか `radius.action` (pill) へ統一するか | **pill へ統一する** (`radius.input` を廃止・削除)。同一フォーム内でボタン (pill) と入力欄 (4px) が異なる形状を持つ状態を解消する。角丸の用途トークンは 5 系統から **4 系統** (action / card / badge / overlay) へ |
+| F-1 | Modal の表示形態 (form = drawer / sheet / popover) を正式仕様にするか、「未承認の拡張候補」のまま据え置くか | **正式仕様にする**。`components.md` §6「拡張候補 (未承認)」の BottomSheet / Popover を form 軸の `sheet` / `popover` として本文へ統合し、同節を廃止する。**実装基盤は drawer 単一を維持し第 3 の Modal 実装基盤を導入しない** (`popover` は overlay の z 軸・backdrop・dismiss を共有する同一基盤上の表示形態であり第 3 の実装基盤に当たらない)。切替は `breakpoint.lg` (1024px) 未満 = `sheet` / 以上 = `popover`。backdrop は 3 形態共通 |
+| F-4 | 主 CTA の個数制約の撤廃 (travel = §16) を適用するか | **適用する**。rental-car でも**主 CTA の個数制約を設けない**ことを確定する。CTA の優先度は `primary` / `secondary` / `ghost` / `text` の強弱階層で表現し、繰り返し要素 (ResultCard 等) 内で各項目が `primary` を持つことを妨げない。`components.md` Button の「適用判断は未取得 `🚧`」を解消する |
+| C-5 | select の未選択値 (プレースホルダ相当) への `color.text.muted` の扱い (travel = §22) を適用するか | **適用する**。**Select の未選択値のみ** `color.text.muted` (`#9E9E9E`・白背景 2.68:1) を例外として許容し、**AA 未達であることを明示する**。通常の `input` / `textarea` の `::placeholder` は `color.text.placeholder` (`#616161`・6.19:1) を維持する。適合宣言は行わない。**色の許容であって、未選択であることを色だけで伝えてよいという意味ではない** (未選択の識別は文言が担う) |
+| H-1 / H-2 | DS 見本ページ (`preview.rental-car.html`) と design-system レイヤー入口 README を本 Issue に含めるか | **含める**。見本ページは**非正本**とし規則の文章を持たせない。値・色見本・スケールの 3 ブロックは生成器から出力し、見本ページへ値を手で書き写さない。あわせて `tools/gen-preview-tokens.py` を**複数サービス対応**にする (従来は `DS = services/travel/design-system` を固定) |
+
+あわせて、travel 側で既に確定していた次の内容を rental-car の規則として明文化する (上記 7 件の判断の適用に付随するもので、いずれも travel 側の確定内容を**縮小後の形で**持ち込む)。
+
+| 項目 | 内容 |
+| --- | --- |
+| A 割引率ラベルに限る白文字の例外 | 用途を **A 割引率ラベル (`color.label.discount`) に限り**、面を **scheme 逆色 (`color.scheme.*.inverse`) に限る**。campaign accent 面 + 白文字は例外に含めない。サイズ・ウェイトは不問。**AA 未達 (main 2.78:1 / sub 2.15:1) を明示**し適合宣言は行わない。§25 の Does Not Authorize が「例外条項の明文化は未了」としていた状態はこれで解消する |
+| accent の帰属 | accent を**面**として持つのは **B 会員種別** (`color.membership.paid` = accent 淡色段) のみとし、**C カテゴリ・特集は accent をアイコン (点)** (`color.label.category.icon`) として持つ。C の面は白 (`color.surface.default`) とし accent で塗らない。`labels-tags.rental-car.md` C1 と `design.md` 未確定事項の `🚧` 2 箇所を解消する |
+| C を白系の面の上に置く場合の分離手段 | **白系の面 (`color.surface.default` / `color.surface.subtle`) の上に置く場合にのみ** `color.label.category.border` (= `color.border.default` `#CCCCCC`) の枠線を `border.width.thin` (1px) で引く。写真の上・有色面の上では引かない。枠線は白面上 **1.61:1**・`surface.subtle` 上 **1.53:1** で**非テキスト UI 要素の 3:1 に達しない**ことを明示する (本 Repository で実測)。分離の補助であり、識別は文字 (16.10:1) が担う。適合宣言は行わない |
+| `labels-tags.rental-car.md` C1 の記述の是正 | 旧記述「用途色トークン (`label.category` 相当) は追加しない。**国内宿泊 (travel) でも C 特集は据え置き**であり」は、travel が Task 009-60 (2026-09-05・§27) で `color.label.category` を確定しているため**現在の事実に反していた**。当該記述を削除し、用途色を定義した記述へ置き換える |
+| 表記規則 3 節 | §8.1 割引率の表記規則 (基本形 `NN%OFF`・数字は `%OFF` より 1 段上・半角/整数/先頭ゼロなし・端数処理は未確定・表示しない条件 4 件・表示成立条件)・§8.2 予約条件の表示規則 (面なしのテキスト行・文字色 4 役・アイコン固定 5 種・並び固定・文言併記・得/損の 2 問判定)・§8.3 クリエイティブへの DS 適用範囲の詳細 (グラデーションを審査対象とする・どちらの段かを先に宣言し宣言がなければ適用とみなす・書体/文字サイズ/ウェイト/器の形/傾きは必然性を示せば外せる) |
+
+### 29-4. 追加・変更するトークン
+
+| 種別 | 内容 |
+| --- | --- |
+| semantic 追加 | **40 件** — (A 面と文字色) `color.text.inverseMuted` / `onAccent`、(B リンク) `color.text.linkHover` / `linkActive`、(C プレースホルダ) `color.text.placeholder`、(D 文書レベル見出し) `font.heading.lineHeight` / `h4Size` / `h5Size` / `h6Size`、(E ラベル・タグ) 器 `label.*` 12 件・`color.label.discount.surface` / `text`・`color.label.category.surface` / `text` / `icon` / `border`・`color.label.stock`・`color.membership.paid.surface` / `text`・`color.membership.free.surface` / `text`・`color.tag.neutral.surface` / `text`・`color.accent.campaignTint` / `campaignInk`・`color.scheme.{main,sub}.accentTint` / `accentInk` |
+| semantic 参照先の変更 | **1 件** — `font.heading.h3Size`: `{typography.size.lg}` (18px) → `{typography.size.2xl}` (24px) |
+| semantic 削除 | **1 件** — `radius.input` (判断 F-5 による) |
+| primitive 追加 | **4 件** — `color.palette.orange.100` (`#F9CDBC`・bound) / `orange.800` (`#8A2E11`・🚧 仮色) / `coral.100` (`#F8CBC2`・🚧 仮色) / `coral.800` (`#8A2C18`・🚧 仮色) |
+
+- **placeholder の扱い (§14)**: accent の濃色段 (`orange.800` / `coral.800`) とサブスキームの淡色段 (`coral.100`) は継承元である travel 側でも `placeholder` (仮色) であり、`🚧` を伝播させる。**実色を発明しない**。淡色段 `orange.100` (`#F9CDBC`) のみ bound とする。B-1 の淡色面 + 濃色文字 (5.84:1) は概算であり、成立検証は実色値確定後に本 Repository で行う。
+- **値は rental-car のファイルに独立して持つ** (3 独立 DS の原則 = P1/ADR-0022)。travel のファイルを参照・共有しない。採用するのは travel の**定義体系**である。
+
+### 29-5. 適用しない / 維持する
+
+**travel 固有のため適用しない**
+
+- `color.icon.rating` / `icon.reviewSize` — ReviewStars (星評価) は宿泊固有であり rental-car に対象の Component がない。したがって travel `design.md` §2.1 の「評価色と販促面色の用途境界」も本 DS では成立しない。
+- primitive `color.palette.red.500` `#D10000` / `orange.500` `#EF4123` — travel の旧リンク色・特集面色の実測値であり rental-car の実装事実値ではない。
+- travel `design.md` L382 の「割引率等のコンテンツ表記規則を管理する正本は独立した文書 (`brand-content.md` 等) を新設する方向を確定する」という [決定] 行 — travel 自身が Task 009-45 (2026-08-04・§21) で §16 の新設方向を**撤回**し §8 系へ集約する方向を確定しているため、撤回済みの方向を本 DS へ持ち込まない。
+
+**rental-car 独自要素として維持する**
+
+- `color.mask.secret` (SecretPrice のマスク面 = B-2 無料会員の面色)・`font.display.mdSize` (車種クラス名 18px 明朝)・`icon.size` (既定 20px)。
+- 本 DS で先行定義した Component 3 件 (Select / FormLabel / Label・Tag。travel 側は未着手) とレンタカー固有 Component 8 件 (SearchForm / ResultCard / SecretPrice / Options / StorePicker / StepIndicator / Filter / Sort・Pagination)。
+- ラベル体系の割当差 — D4 格付けの廃止 / B-2 の既定非表示 / C1・C2 の 2 区分 (企画名・販売条件) / D1〜D3 (車種クラス・装備・利用条件) / E1 は「在庫僅少」/ G は車両写真の枚数。
+- 画像なし表現 (No Image fallback = `surface.muted` 面 + `text.mutedStrong` の文字・比率 4:3)。**travel は §6 で「未定義」であり rental-car が先行している**。
+- [../services/rental-car/design-system/migration-map.md](../services/rental-car/design-system/migration-map.md) (実装 japan ゾーンの旧値 12 項目との対照表。travel に対応物がない)。
+- `design.md` §2 の既存小節 (§2.1 スキーム / §2.2 用途 / §2.3 品質下限) を保持し、新設分を **§2.4〜§2.6** とする。**travel と節番号が 1 対 1 に対応しないのは §2 のみ**で、§3.1・§7.1・§8.1〜§8.3 は同じ番号である。
+
+### 29-6. 本記録が決定しないこと
+
+- **スキームの正式採用 (main / sub)**。`color.state.success` / `color.text.link` / `linkHover` / `linkActive` / `color.state.error` / `color.accent.campaign` / `campaignTint` / `campaignInk` / `color.label.discount.surface` / `color.membership.free.*` / `color.mask.secret` は現在 `main` を参照して固定されており、スキームの切替に自動追随しない。
+- **accent 濃色段 (`orange.800`) およびサブスキーム coral の 2 段の実色値**。🚧 仮色のまま維持し `$status` を昇格しない。b2 (accent 淡色面 + 濃色文字) の 4.5:1 成立検証は実色値確定後とする。
+- **E2 満車・受付終了の意匠値** (Button の disabled 定義が先)。**F 予約条件の「得」の文字色とリンクの見分け** (同値 `#2C50C8` のため押せないのにリンクに見える論点)。
+- **C カテゴリ・特集ラベルのアイコンのサイズ** (`iconSize` の最小段は 16px で、器 sm = 高さ 20px・文字 12px に当てる値が正本に無い。継承元の travel 側でも未定義)。
+- **ResultCard の実 px・料金列の実ラベル・モーション/シャドウの実値・ロゴ素材・写真選定基準・backdrop の実値**。いずれも実査待ちであり発明しない。
+- **サービス識別子 `rental-car` の正式化** (確認事項 `#8`)。**Filter の件数算出仕様**。
+- **3 DS 横断の Modal 実装基盤** (§1 Q9)。判断 F-1 は rental-car の**表示形態**を定めるものであり、横断の実装基盤を確定しない。
+- **画像・グラデーションを面とする場合の文字色と scrim の要否**。§2.4 の検証表は**単色面のみ**を対象とする。
+- **Modal の form の a11y** (`role` / `aria-modal` / フォーカストラップ / 復帰先・背面スクロールロック)・`sheet` の最大高・`popover` の幅段階・実装 API 名 (prop 名)。**最小タップ領域 44px の spacing トークンは追加しない** (`spacing` に 44px の段が無く、44px は WCAG 2.2 の 2.5.5 Enhanced 相当で §2.3 の AA 最低ラインから導けない)。品質下限としての 44px 自体は §2.3 で維持する。
+- **クリエイティブのグラデーション審査基準・審査主体の設置**。§23 (Governance 横断) との原則正本の置き場所、および §23ⓑ「カラーもトークン指定外を許容」と本 DS §8.3「カラーは厳守」の差分の解消も本記録では行わない。
+- **画面別の見出し階層・semantic role の割当** (どの画面のどのコンテンツを `h1` / `h2` とするか)。本 DS の Screen Requirements レイヤーは未着手である。
+- **見出し以外の `typography` 用途へ 4 の倍数規則を及ぼすか**。判断 D-4 のとおり文書レベルの見出しに限定する。
+- **実装 Repository (`tocoo/tocoo_rental_car`) 側の適用作業**・既存の非適合箇所の是正・反映の範囲/順序/期限。実装の見出し実測値は本 Repository で実査していない。
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設**。**`$meta.version` の bump** (付与規則そのものが未決)。
+- **適用規格・達成レベルの正式確定・適合判定・適合宣言**。本記録および rental-car の文書に記載したコントラスト比は本 Repository での実測値の記録であり、適合宣言ではない。
+- **travel・inbound の成果物への適用**。§24・§26・§27・§28 の判断内容・適用範囲は変更しない。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -860,3 +959,4 @@
 | 2026-09-05 | Task 009-60: §27 「Travel C カテゴリ・特集ラベルの用途色と accent の帰属 (B 有料会員 / C 特集) の確定」を §1〜§26 と分離して追加 ([Issue #162](https://github.com/tocoo/coocom-design-system/issues/162))。Web部責任者の 2026-09-05 現在判断 (ⓐ accent は**面 = B 会員種別 / 点 (アイコン) = C カテゴリ・特集**で役割分離し C の面は白とする／ⓑ 用途色 `color.label.category` (`surface` / `text` / `icon` の 3 件・既存 semantic への参照のみ・新色値なし) を `semantic.travel.json` に定義する／ⓒ 12px は白面 × `color.text.strong` ≈16.10:1 で成立し C は (i) (ii) の代替 2 択に依存しない・accent はアイコン (非テキスト 3:1) に限る／ⓓ 実装 3 分岐を C の用途色へ寄せ、`design.md` §2.1 の白文字例外の適用範囲を **A 割引率ラベル + scheme 逆色面**へ縮小して `components.md` の (i) (ii) 代替 2 択との読みの割れを解消する／ⓔ C のウェイトは既存規則どおり 700) を **travel 限定**で記録。改訂着手の設計承認 (§9・§20) 取得済み (承認主体 = Web部責任者・承認日 2026-09-05)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-05・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。同一 PR で `design.md` (§2 要約表 1 行追加・§2.1 検証表 1 行追加・白文字例外の縮小・未確定事項の一覧の更新と 1 行追加)・`components.md` (`Card.slot.badge` の C 行・白文字例外・関連トークン・未確定事項)・`semantic.travel.json` (`color.label.category` 3 件の追加と 3 箇所の記述是正) を改訂している。**不変**: §1〜§26 の各記録 (§13 b2・§19 面色使い分け・§20 白文字例外の方向・§24 ラベル・タグ定義の実装を含む)・設計承認ログ (§5)・適用開始記録 (§6)、`color.membership.paid` / `color.accent.campaignTint` / `campaignInk` の値・参照先・`$status` (placeholder)、accent 濃色段・coral 2 段の 🚧 仮色、primitive の色値、`$meta.version`、rental-car / inbound の成果物。**決定していないもの**: accent 濃色段/coral の実色値・b2 の 4.5:1 検証・白面 C ラベルの白系面上での分離手段 (境界線の要否)・E2 / F / H の未決事項・スキームの正式採用・実装 Repository 側の適用作業。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。承認済み [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
 | 2026-09-05 | Task 009-60R: §27 に**現在判断 ⓕ を追加** (PR [#165](https://github.com/tocoo/coocom-design-system/pull/165) のコードレビュー指摘に対応)。ⓓ が「実装 3 分岐すべてを `color.label.category` へ統一」と指示する一方、C の面を白と確定した結果、白いカード面・`surface.subtle` の上では面のみで境界が生じない (白 × 白 = 1.00:1・白 × `surface.subtle` = 1.05:1・本 Repository で実測) にもかかわらず、§27-4 は分離手段を「本記録が決定しないこと」に置いたままだった。**ⓕ = 白系の面 (`color.surface.default` / `color.surface.subtle`) の上に置く場合にのみ `color.label.category.border` (= `color.border.default` `#CCCCCC`) の枠線を `border.width.thin` (1px) で引く**。写真の上・有色面の上では引かない。値の選定根拠として既存 border 3 段の白面上コントラスト (`subtle` 1.32:1 / `default` 1.61:1 / `strong` 1.90:1) を実測し、**非テキスト UI 要素の 3:1 に達する既存の border トークンが存在しない**ことと、3:1 未達を明示して適合宣言を行わないことを記録した。あわせて §27-1 の承認対象を `color.label.category` の **4 件** (`surface` / `text` / `icon` / `border`) へ更新し、§27-4 から分離手段の項を外して**アイコンのサイズ**の項を加えた (`iconSize.sm〜xl` の最小段 16px に対し器 sm は高さ 20px・文字 12px で、当てる値が正本に無い)。**不変**: §1〜§26 の各記録・§27-1 の承認種別/承認日/承認主体/適用範囲・§27-2 の影響度 (高) と必要レビュー主体・§27-3 の ⓐ〜ⓔ・設計承認ログ (§5)・適用開始記録 (§6)、`color.membership.paid` / `campaignTint` / `campaignInk` の `$status` (placeholder)、primitive の色値、rental-car / inbound の成果物。**決定していないもの**: C ラベルのアイコンのサイズ・accent 濃色段/coral の実色値・b2 の 4.5:1 検証・写真/グラデーション上の scrim (依頼 E-1)・E2 / F / H の未決事項・スキームの正式採用・実装 Repository 側の適用作業。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず。承認済み [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
 | 2026-09-07 | Task 009-62: §28 「Travel ブレークポイントごとの文書レベル見出しのサイズ段 (既定の適用幅・狭い幅での段下げ・4 の倍数規則) の確定」を §1〜§27 と分離して追加 ([Issue #168](https://github.com/tocoo/coocom-design-system/issues/168)・Web部責任者判断 2026-09-07)。改訂着手の設計承認 (§9・§20)・影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-07・明示取得)・現在判断 7 件 (ⓐ 一意の段下げ表を DS が定める／ⓑ 既定は `breakpoint.lg` 1024px 以上に適用し 1024px 未満は h1 `3xl` / h2 `2xl` / h3 `xl` / h4〜h6 `md`・境界は 1024px の 1 つのみ／ⓒ 表の範囲内の段下げは §3.1 の「既定から外れる」に該当せず都度承認不要／ⓓ `font.heading.h5Size` の参照先を `{typography.size.lg}` から `{typography.size.md}` へ変更・見出しには実寸が 4 の倍数の段のみを用いる／ⓔ `sm` 14px は対象外で TVL-0002 の適用範囲を `typography` 全体へ拡げない／ⓕ `alignment-blocking-facts-resolution-plan.md` §8J との優先関係 = 見出しのサイズ段は §3.1 が上位・§8J の分類自体は不変／ⓖ 見本ページを幅追従にする) と Does Not Decide を記録した。**§12 の表 10 行目 (`font.heading.h5Size` = `{typography.size.lg}`) は `main` `cbc19c6` 時点の Fact として遡及変更していない。§26 本体・§27 本体・§5 設計承認ログ・§6 適用開始記録・承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない。** | Claude Code |
+| 2026-09-07 | Task 009-63: §29 「国内レンタカー (rental-car) DS — 国内宿泊 (travel) 最新版 (Task 009-58〜009-62) の適用」を §1〜§28 と分離して追加 ([Issue #170](https://github.com/tocoo/coocom-design-system/issues/170))。改訂着手の設計承認 (§9・§20, 2026-09-07)・影響度 = **高** (§8, 2026-09-07 明示取得・必要レビュー主体 = Web部責任者およびチーフデザイナー)・取得した現在判断 7 件 (D-2 `font.heading.h3Size` を 24px へ揃える／D-4 文書レベル見出しに実寸 4 の倍数の段のみを用いる (`font.display.mdSize` 18px は対象外)／F-5 入力要素の角丸を `radius.action` (pill) へ統一し `radius.input` を廃止／F-1 Modal の表示形態 (form = drawer / sheet / popover) を正式仕様にし旧「拡張候補 (未承認)」を廃止／F-4 主 CTA の個数制約を設けない／C-5 Select の未選択値のみ `color.text.muted` を例外許容 (AA 未達明示)／H-1・H-2 DS 見本ページと design-system 入口 README を新設し生成器を複数サービス対応にする) と、これに付随して明文化する 5 項目 (A 割引率ラベルに限る白文字の例外・accent の帰属 (面 = B / 点 = C)・白系の面上での C の枠線・`labels-tags.rental-car.md` C1 の記述是正・表記規則 3 節)、トークンの追加/変更 (semantic **40 件追加・1 件削除・1 件の参照先変更**、primitive **4 件追加**。うち 3 段は 🚧 仮色)、適用しない / 維持する分、Does Not Decide を記録した。**本記録は §25〜§28 からの自動適用ではなく、rental-car について別途取得した判断である** (§26 / §27 / §28 はいずれも適用範囲を travel に限定と明記しており、§25 も §24 の自動適用ではない形で記録されている)。**§24・§25・§26・§27・§28 の判断内容・適用範囲・§5 設計承認ログ・§6 適用開始記録・承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない。** travel / inbound の成果物・token・値・`$status`・`$meta.version` は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設していない | Claude Code |

@@ -91,7 +91,7 @@
     --font-heading-h2-size          : 2rem; /* font.heading.h2Size */
     --font-heading-h3-size          : 1.5rem; /* font.heading.h3Size */
     --font-heading-h4-size          : 1.25rem; /* font.heading.h4Size */
-    --font-heading-h5-size          : 1.125rem; /* font.heading.h5Size */
+    --font-heading-h5-size          : 1rem; /* font.heading.h5Size */
     --font-heading-h6-size          : 1rem; /* font.heading.h6Size */
     --font-display-family           : 'Noto Serif JP', serif; /* font.display.family */
     --font-display-lg-size          : 3rem; /* font.display.lgSize */
@@ -261,6 +261,26 @@
   .scale td { border-bottom: 1px solid var(--color-border-subtle); }
   .scale__val { color: var(--color-text-muted-strong); white-space: nowrap; width: 120px; }
   .scale__sample { width: 55%; }
+  /* 文書レベルの見出しの幅ごとの段 (design.md §3.1)。既定は 1024px 以上・1024px 未満は段を下げる。
+     モバイルファーストで狭い幅を base に置き、min-width で既定へ戻す (境界は breakpoint.lg の 1 つのみ) */
+  .hsample {
+    font-family: var(--font-heading-family); font-weight: var(--font-heading-weight);
+    line-height: var(--font-heading-line-height); color: var(--color-text-strong);
+  }
+  .hsample--h1 { font-size: var(--typography-size-3xl); }
+  .hsample--h2 { font-size: var(--typography-size-2xl); }
+  .hsample--h3 { font-size: var(--typography-size-xl); }
+  .hsample--h4, .hsample--h5, .hsample--h6 { font-size: var(--typography-size-md); }
+  .hstate::after { content: "いまは 1024px 未満 — 「狭い幅」列の段を表示中"; font-weight: 700; }
+  @media (min-width: 1024px) {
+    .hsample--h1 { font-size: var(--font-heading-h1-size); }
+    .hsample--h2 { font-size: var(--font-heading-h2-size); }
+    .hsample--h3 { font-size: var(--font-heading-h3-size); }
+    .hsample--h4 { font-size: var(--font-heading-h4-size); }
+    .hsample--h5 { font-size: var(--font-heading-h5-size); }
+    .hsample--h6 { font-size: var(--font-heading-h6-size); }
+    .hstate::after { content: "いまは 1024px 以上 — 「既定」列の段を表示中"; }
+  }
   .bar { display: inline-block; height: 12px; background: var(--color-scheme-main-soft); border-radius: 2px; }
   .shape { display: inline-block; width: 56px; height: 32px; background: var(--color-scheme-main-tint); border: 1px solid var(--color-scheme-main-soft); }
   .shape--plain { background: var(--color-surface-default); border-color: transparent; }
@@ -560,17 +580,20 @@
   </div>
 
   <h3>文書レベルの見出し (h1〜h6)</h3>
-  <p class="note">下表は<strong>既定</strong>。書体は<strong>役割</strong>で選ぶため要素と書体の対応は固定されず、役割が Display・Hero・特集・詳細施設名にあたる場合は <code>h1</code> であっても <code>font.display.family</code> (明朝) を明示的に選択してよい。サイズ・太さ・行間の既定は書体の選択と独立で、明朝を選んでも下表の値と 700・1.3 がそのまま適用される (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
+  <p class="note"><strong>既定は <code>breakpoint.lg</code> (1024px) 以上に適用される値</strong>で、1024px 未満では <code>h1</code>〜<code>h3</code> の段を 1 つ下げる (<code>h4</code>〜<code>h6</code> は 1rem のまま下げない)。<strong>段を移す境界は 1024px の 1 つのみ</strong>で、640 / 768 / 1280px では変えない。この表の範囲内での段下げは §3.1 の「既定から外れる」に<strong>該当しない</strong>ため、画面ごとの都度の承認を要しない。文書レベルの見出しには実寸が 4 の倍数である段のみを用いる (<code>sm</code> 14px・<code>lg</code> 18px は見出しに用いない)。書体は<strong>役割</strong>で選ぶため要素と書体の対応は固定されず、役割が Display・Hero・特集・詳細施設名にあたる場合は <code>h1</code> であっても <code>font.display.family</code> (明朝) を明示的に選択してよい。サイズ・太さ・行間の既定は書体の選択と独立で、明朝を選んでも下表の値と 700・1.3 がそのまま適用される (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
+  <p class="note">見本欄は<strong>このウィンドウの幅に追従</strong>する — <span class="hstate"></span>。幅を 1024px の前後で変えると段が切り替わる。</p>
   <div class="tablewrap"><table>
+    <thead><tr><th>トークン</th><th>既定 (1024px 以上)</th><th>狭い幅 (1024px 未満)</th><th>見本 (この幅での段)</th></tr></thead>
     <tbody>
-      <tr><td><code>font.heading.h1Size</code></td><td class="scale__val">2.5rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h1-size); line-height: var(--font-heading-line-height)">見出し h1</span></td></tr>
-      <tr><td><code>font.heading.h2Size</code></td><td class="scale__val">2rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h2-size); line-height: var(--font-heading-line-height)">見出し h2</span></td></tr>
-      <tr><td><code>font.heading.h3Size</code></td><td class="scale__val">1.5rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h3-size); line-height: var(--font-heading-line-height)">見出し h3</span></td></tr>
-      <tr><td><code>font.heading.h4Size</code></td><td class="scale__val">1.25rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h4-size); line-height: var(--font-heading-line-height)">見出し h4</span></td></tr>
-      <tr><td><code>font.heading.h5Size</code></td><td class="scale__val">1.125rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h5-size); line-height: var(--font-heading-line-height)">見出し h5</span></td></tr>
-      <tr><td><code>font.heading.h6Size</code></td><td class="scale__val">1rem</td><td><span style="font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: var(--font-heading-h6-size); line-height: var(--font-heading-line-height)">見出し h6</span></td></tr>
+      <tr><td><code>font.heading.h1Size</code></td><td class="scale__val">2.5rem <span class="caption">40px</span></td><td class="scale__val">2rem <span class="caption">32px・<code>3xl</code></span></td><td><span class="hsample hsample--h1">見出し h1</span></td></tr>
+      <tr><td><code>font.heading.h2Size</code></td><td class="scale__val">2rem <span class="caption">32px</span></td><td class="scale__val">1.5rem <span class="caption">24px・<code>2xl</code></span></td><td><span class="hsample hsample--h2">見出し h2</span></td></tr>
+      <tr><td><code>font.heading.h3Size</code></td><td class="scale__val">1.5rem <span class="caption">24px</span></td><td class="scale__val">1.25rem <span class="caption">20px・<code>xl</code></span></td><td><span class="hsample hsample--h3">見出し h3</span></td></tr>
+      <tr><td><code>font.heading.h4Size</code></td><td class="scale__val">1.25rem <span class="caption">20px</span></td><td class="scale__val">1rem <span class="caption">16px・<code>md</code></span></td><td><span class="hsample hsample--h4">見出し h4</span></td></tr>
+      <tr><td><code>font.heading.h5Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h5">見出し h5</span></td></tr>
+      <tr><td><code>font.heading.h6Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h6">見出し h6</span></td></tr>
     </tbody>
   </table></div>
+  <p class="note">1024px 未満では <code>h4</code>・<code>h5</code>・<code>h6</code> がいずれも 1rem となり、<strong>本文 (<code>font.body.size</code> 1rem) とも同値</strong>になる。狭い幅で寸法によって区別できる文書レベルの見出しは <code>h1</code>・<code>h2</code>・<code>h3</code> の 3 段である。本文のウェイトは正本上定義されていないため、太さによる区別は根拠としない (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
   <p class="source">正本: <a href="design.md"><code>design.md</code></a> §3・§3.1 / <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>font.*</code></p>
 </section>
 

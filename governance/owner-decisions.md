@@ -922,6 +922,93 @@
 - **適用規格・達成レベルの正式確定・適合判定・適合宣言**。本記録および rental-car の文書に記載したコントラスト比は本 Repository での実測値の記録であり、適合宣言ではない。
 - **travel・inbound の成果物への適用**。§24・§26・§27・§28 の判断内容・適用範囲は変更しない。
 
+## 30. Travel `design.md` §2.1 検証表の欠落の回収と Breadcrumb 現在地の文字色の確定 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) `design.md` §2.1「面 (背景) と文字色の組み合わせ規則」の検証表が、同書・`components.md` が通常の用法として規定する組み合わせを欠いていた件の回収、および Breadcrumb 現在地の文字色の確定について、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録。契機は [Issue #172](https://github.com/tocoo/coocom-design-system/issues/172)。上記 §1〜§29 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§29 の各記録は変更しない。
+- **本記録は §29 からの自動適用ではない。** §29 は適用範囲を「国内レンタカー (rental-car) に限定。travel・inbound・3DS 横断へは自動適用しない」と明記しており、同 §29-3 判断 C-5 (未入力状態の案内文字を `color.text.muted` に統一) も rental-car 限定である。本 §30 は **travel について別途取得した判断**であり、rental-car・inbound へは及ばない (3 独立 DS の原則 = P1/ADR-0022)。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。新しい色値 (primitive) を発明しない。
+
+### 30-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/travel/design-system/design.md](../services/travel/design-system/design.md) の部分更新 (§2.1 検証表への **21 行追加** (14 行 → **35 行**)・既存 1 行の概算 `≈11.1:1` の実測値 `11.11:1` への是正・既存 5 行への「**主色**」の明示 (実測値は不変)・列見出し「概算」→「コントラスト比」の是正と概算/実測の区別の明記・`color.text.muted` を表に載せない旨の [決定] 1 行の追加・未確定事項の一覧 1 行の ✅ 解決化)、②[../services/travel/design-system/components.md](../services/travel/design-system/components.md) の部分更新 (`Breadcrumb` の現在地の文字色を `color.text.muted` から `color.text.mutedStrong` へ変更・Don't 1 行の追加)、③[../services/travel/design-system/preview.travel.html](../services/travel/design-system/preview.travel.html) の部分更新 (Breadcrumb の見本と caption を②へ追随。**非正本**) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-09-07 |
+| 承認主体 | Web部責任者 |
+| 根拠 | `design.md` §2.1 の検証表は「**表に無い組み合わせを検証済みとして扱わない**」と網羅性を宣言しながら、同書・`components.md` が実測値つきで通常の用法として規定する組み合わせを欠いていた (改訂前 **14 行**)。継承先の国内レンタカー (rental-car) では同じ欠落が Task 009-63R2 / 009-63R3 で是正済み (18 行 → 25 行) であり、継承元の travel 側に残っていたものを回収する。あわせて、`components.md` `Breadcrumb` の現在地が `color.text.muted` (`#9E9E9E`・白面 **2.68:1**) を用いており、`design.md` §2 の [事実]「`color.text.muted` は判読性を要する情報には用いない」と食い違っていた |
+| 適用範囲 | **国内宿泊 (travel) に限定**。rental-car・inbound・3DS 横断へは自動適用しない |
+
+### 30-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-07・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out (意味を変えない字句の修正) の適用でも、一般的な高／低の内容基準の確定でもない。正本の規範表への**行の追加**と、Component 仕様の**文字色の変更**を伴うため carve-out の対象外である。前例として、より小さい範囲であった §27 (用途色 4 件の追加)・§28 (semantic 1 件の参照先変更) も高判定であった |
+
+### 30-3. 取得した現在判断 (2026-09-07)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| G-1 | 白面 × `color.text.muted` (`#9E9E9E`・**2.68:1**・AA 未達) を §2.1 の検証表へどう載せるか。同組み合わせは `components.md` `Breadcrumb` の現在地で使用中であり、travel の未確定事項の一覧に「Breadcrumb 現在地への `color.text.muted` 適用の可否」が ❓ 未判定として残っていた | **表へ載せず、Breadcrumb 現在地の文字色を `color.text.mutedStrong` (`#616161`・白面 6.19:1) へ変更する**。理由は、travel `design.md` §2 の [事実] が既に「`color.text.muted` (白背景 2.68:1) は通常テキストに求められる 4.5:1 に達しないため、判読性を要する情報には用いない」と定めており、現在地は判読性を要する情報であるため。本判断により AA 未達の組み合わせを DS の規則として記録するのではなく**解消する**。**新しい色値は追加しない** (`color.text.mutedStrong` は既存 bound トークン)。`color.text.muted` トークンは文字色の濃度段として定義を維持し、値・参照先・`$status` を変更しない。<br>**適用範囲 = travel に限定**。rental-car (§29-3 判断 C-5 = 未入力状態の案内文字を `color.text.muted` に統一・AA 未達明示) とは扱いが異なるが、これは 3 独立 DS の原則 (P1/ADR-0022) による差であり、いずれか一方へ揃えない |
+| G-2 | 本件の影響度 (§8) | **高** (§30-2) |
+
+### 30-4. 追加・変更するトークン
+
+**なし。** semantic・primitive のいずれにも追加・削除・値の変更・参照先の変更・`$status` の変更を行わない。§2.1 の検証表へ追加する 10 行はいずれも**既存の bound 済みトークンの値から機械的に決まるコントラスト比の記録**であり、新しい色値・新しい規則を追加するものではない。
+
+### 30-5. 検証表へ追加する組み合わせ (実測値)
+
+いずれも本 Repository で WCAG 2.x 標準式により実測した値である。`color.text.link` / `linkHover` / `linkActive` は per-scheme (主色 = royal / 副色 = indigo) で値が異なるため、`design.md` の「**2 スキームは値が異なるため、値やコントラスト比を伴う記述でワイルドカード表記を用いて 1 行に束ねない**」に従い主色・副色で行を分ける (各 2 行 = 計 6 行)。
+
+| # | 面 (背景) | 文字 | 実測 | 通常テキスト (4.5:1) | 規定箇所 |
+| --- | --- | --- | ---: | --- | --- |
+| 1 | `color.action.primary.bg` `#2C50C8` | `color.action.primary.text` `#FFFFFF` | **6.80:1** | 達成 | `components.md` Button `primary` |
+| 2 | `color.surface.default` `#FFFFFF` | `color.text.body` `#424242` | **10.05:1** | 達成 | 本文の既定・`components.md` Input 入力値 |
+| 3 | `color.surface.default` `#FFFFFF` | `color.text.mutedStrong` `#616161` | **6.19:1** | 達成 | `design.md` §2 の [事実]・`components.md` PriceTag / Breadcrumb 現在地 (本記録 G-1) |
+| 4 | `color.surface.default` `#FFFFFF` | `color.text.placeholder` `#616161` | **6.19:1** | 達成 | `design.md` §2.3 |
+| 5 | `color.surface.default` `#FFFFFF` | `color.text.link` 主色 `#2C50C8` / 副色 `#4845D4` | **6.80:1** / **6.82:1** | 達成 | `design.md` §2.2 |
+| 6 | `color.surface.default` `#FFFFFF` | `color.text.linkHover` 主色 `#2340A6` / 副色 `#3936B0` | **8.92:1** / **9.02:1** | 達成 | `design.md` §2.2 |
+| 7 | `color.surface.default` `#FFFFFF` | `color.text.linkActive` 主色 `#1B3488` / 副色 `#2C2A8C` | **11.09:1** / **11.56:1** | 達成 | `design.md` §2.2 |
+
+- **行数 (事実)**: 改訂前 **14 行** → 改訂後 **35 行** (追加 **21 行**)。内訳は [Issue #172](https://github.com/tocoo/coocom-design-system/issues/172) の 1〜7 = **10 行**と、PR [#173](https://github.com/tocoo/coocom-design-system/pull/173) のコードレビュー (2026-09-07) を契機に追加した **11 行** (下記) である。[Issue #172](https://github.com/tocoo/coocom-design-system/issues/172) の推奨欄は「14 行 → 22 行」と記していたが、同 Issue が列挙する 1〜4 が各 1 行・5〜7 が各 2 行で計 **10 行**であるため、正しい改訂後の行数は **24 行**である (Issue の計算誤り)。追加する組み合わせの内容は Issue の 1〜7 と同一であり、増減はない。
+- 3 と 4 は同じ primitive (`gray.700` `#616161`) を参照するため実測値が一致するが、`design.md` §2 の [事実]「用途別名が同じ primitive を参照する場合でも、一方の値の変更が他方へ自動的に及ぶ設計にはしない」に従い**別トークンとして行を分ける**。
+- 1 の `color.action.primary.bg` は `{color.brand.primary}` → `{color.scheme.main.base}` を参照し **`#2C50C8` に固定**される (semantic を解決して確認)。スキーム切替に追随しないため主色・副色の 2 値は生じず 1 行である。
+
+**PR [#173](https://github.com/tocoo/coocom-design-system/pull/173) のコードレビュー (2026-09-07) を契機に追加した 11 行**
+
+同レビューが「同じ理由で表に無い組み合わせが残っている」「per-scheme の判定基準が表内で割れている」ことを検出したため、承認対象①の範囲を拡大した (Web部責任者判断 2026-09-07)。**新しい色値・新しい規則は追加していない。**
+
+| # | 面 (背景) | 文字 | 実測 | 通常テキスト (4.5:1) | 規定箇所 |
+| --- | --- | --- | ---: | --- | --- |
+| 8 | `color.surface.muted` `#F5F5F5` | `color.tag.neutral.text` `#424242` | **9.22:1** | 達成 | D 施設属性タグ (`color.tag.neutral`) |
+| 9 | `color.surface.default` `#FFFFFF` | `color.state.error` 主色 `#D23A3A` / 副色 `#D2405F` | **4.77:1** / **4.53:1** | 達成 | E1 残室僅少 (`color.label.stock`)。per-scheme のため 2 行 |
+| 10 | `color.scheme.main.tint` `#E8EDFB` | `color.scheme.main.ink` `#14224A` | **13.21:1** | 達成 | B 無料会員ラベル (`color.membership.free`) |
+| 11 | `color.action.secondary.bg` `#FFFFFF` | `color.action.secondary.text` `#212121` | **16.10:1** | 達成 | `components.md` Button `secondary` |
+| 12 | `color.surface.inverse` `#212121` | `color.text.mutedStrong` `#616161` | **2.60:1** | **未達 (禁止)** | `components.md` §1 の [事実] |
+| 13 | `color.accent.campaign` 副色 `#E0553C` | `color.text.onAccent` `#FFFFFF` | **3.79:1** | 未達 (条件付き) | §2.1 (主色行の副色対応) |
+| 14 | `color.accent.campaign` 副色 `#E0553C` | `color.text.strong` `#212121` | **4.24:1** | 未達 (規則としては使用しない) | 同上 |
+| 15 | `color.surface.default` / `subtle` / `muted` | `color.accent.campaign` 副色 `#E0553C` (文字色として) | **3.79:1** / **3.60:1** / **3.48:1** | 未達 (条件付き) | 同上。面ごとに 3 行 |
+
+- 8〜12 は同レビューが名指しした 5 組である。9 の `color.state.error` は §2 の用途表が per-scheme (主色 `#D23A3A` / 副色 `#D2405F`) と定義しているため 2 行に分ける。10 の `color.membership.free` と 11 の `color.action.secondary` は同表が per-scheme トークンとして定義していないため各 1 行である。
+- 13〜15 は、`color.accent.campaign` が §2 の用途表で per-scheme (主色 `#E4572E` / 副色 `#E0553C`) と定義されているにもかかわらず、改訂前の表が**主色の値のみ**を記録していたことへの対応である。既存 5 行には「**主色**」である旨を明示した (**実測値は変更していない**)。
+- **副色スキームの `color.accent.campaignTint` `#F8CBC2` / `campaignInk` `#8A2C18` は 🚧 仮色**であるため、これに対応する行は追加しない。実色値確定後に本 Repository で検証する (主色側の `campaignTint` の扱いと同じ)。
+- **per-scheme の判定基準 (事実)**: あるトークンを主色・副色の 2 行に分けるか 1 行にするかは、`semantic.travel.json` の解決チェーンではなく **§2 の用途表が per-scheme トークンとして定義しているか否か**による。`color.action.primary.bg` と `color.text.link` は JSON 上いずれも `{color.scheme.main.base}` へ解決するが、前者は副色が別トークン (`color.brand.secondary`) であり per-scheme ではなく、後者は同表に「副色=sub.base」と注記された per-scheme トークンである。
+
+### 30-6. 本記録が決定しないこと
+
+- **`color.text.muted` の適用可能範囲そのものの明文化** (装飾的・非必須の弱表現に限るか)。travel の未確定事項の一覧に ❓ 未判定として残す。本記録が確定するのは Breadcrumb 現在地への適用可否のみである。
+- **select の未選択値 (プレースホルダ相当) への `color.text.muted` 使用** (§22 で方向確定・§2.3 への例外条項の実規則化は別 Task)。本記録は §22 の判断内容・適用範囲を変更しない。
+- **画像・グラデーションを面とする場合の文字色と scrim の要否**。§2.1 の検証表は**単色面のみ**を対象とする (依頼 E-1)。
+- **`color.text.muted` トークンの削除・非推奨化**。文字色の濃度段としての定義を維持する。
+- **rental-car・inbound の成果物への適用**。§29-3 判断 C-5 (rental-car の未入力状態の案内文字 = `color.text.muted` に統一) の判断内容・適用範囲は変更しない。
+- **上流 NVP-001 (現在地の可視性) の解決**。本記録は DS 側の文字色を定めるにとどまり、上流の要件そのものを確定しない。
+- **適用規格・達成レベルの正式確定・適合判定・適合宣言**。本記録および travel の文書に記載したコントラスト比は本 Repository での実測値の記録であり、適合宣言ではない。
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設**。**`$meta.version` の bump**。
+- **実装 Repository (`tocoo/tocoo_travel`) 側の適用作業**。実装の Breadcrumb の現在地の文字色は本 Repository で実査していない (**未検証**)。
+
+
 ---
 
 ## 変更履歴
@@ -970,3 +1057,5 @@
 | 2026-09-07 | Task 009-63R: §29 の記述是正 (PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー [issuecomment-5565532746](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5565532746) の指摘に対応)。①§29-1 承認対象③・§29-2 判定の位置づけの「7 節を新設」を実測値の **8 節**へ是正した (§2.4 / §2.5 / §2.6 / §3.1 / §7.1 / §8.1 / §8.2 / §8.3。同 §29-1 根拠欄は既に「8 節」と記載しており同一節内で矛盾していた)。②**§29-3 判断 C-5 の適用範囲を変更**した — Web部責任者の 2026-09-07 判断 (明示取得)「未入力時の状態を特定の UI に限定しない。`color.text.muted` に統一」により、`input` / `textarea` の `::placeholder`・Select の未選択値・その他の入力フィールドの未入力表示のすべてを `color.text.muted` (2.68:1・**AA 未達明示**) とし、プレースホルダ専用トークン `color.text.placeholder` の追加を取り下げた。これに伴い §29-1 承認対象①・§29-2・§29-4 の semantic 追加件数を **40 件 → 39 件**へ、§29-1 承認対象③の節名を「§2.6 プレースホルダ」から「§2.6 未入力状態の文字色」へ是正した。**適用範囲は rental-car に限定**し、travel の §22 (2026-08-04 判断・Select の未選択値のみ) および inbound の成果物は不変。③本記録は Design System の適用規格・達成レベルの正式確定・適合判定・適合宣言を行わない。§1〜§28・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設していない | Claude Code |
 | 2026-09-07 | Task 009-63R2: §29 に**判断 F-6 を追加取得**して記録した — Modal の `sheet` の最大高を **`90vh`**、`popover` の幅を **`240〜320px`** として**確定する** (Web部責任者判断 2026-09-07・明示取得・影響度 = **高**・必要レビュー主体 = Web部責任者およびチーフデザイナー)。契機は PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) のコードレビューが検出した、正本 [../services/rental-car/design-system/design.md](../services/rental-car/design-system/design.md) §7.1 の「未確定として残す」と `components.md` の `🚧` なしの確定値記載との食い違いである。**確定した値は `components.md` に既にあったものと同一**で新しい値は発明していない。これに伴い §29-6 の「決定しないこと」から当該 2 項目を外した。**適用範囲は rental-car に限定**し、travel (§17 の Does Not Decide・travel `design.md` §7.1 の未確定) ・inbound は不変 (本行の「travel は不変」は F-6 の対象である §7.1 についての記述である。同じ Task 009-63R2 で travel `design.md` §2.1 代替規則 1 の記述是正を行っており、その承認対象・影響度は Task 009-63R3 で §29-1 承認対象⑩・§29-2 へ記録した)。§29-3 の既存 7 件 (D-2 / D-4 / F-5 / F-1 / F-4 / C-5 / H-1・H-2)・§29-1・§29-2・§29-4・§29-5・§1〜§28・設計承認ログ (§5)・適用開始記録 (§6)・承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設していない | Claude Code |
 | 2026-09-07 | Task 009-63R3: §29 の記述是正と**判断 F-7 の追加取得** (PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー 3 回目 [issuecomment-5567573901](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5567573901) の指摘に対応)。①**§29-3 に判断 F-7 を追加**した — C カテゴリ・特集ラベル (C1 / C2) を**写真の上に置いてよい**とし、写真の上に置けるのは **A 割引率と C の 2 カテゴリ**とする (Web部責任者判断 2026-09-07・明示取得)。契機は、本 PR で新設した rental-car `design.md` §2.4 の [決定] と `labels-tags.rental-car.md` A 節「写真の上に置けるのは A だけ」との食い違いである。**適用範囲は rental-car に限定**。②**§29-1 の承認対象に⑩ travel `design.md` の部分更新を追加**し、§29-1 適用範囲と §29-2 影響度に同⑩の扱い (影響度 = **高**・判定者 = Web部責任者・判定日 2026-09-07・明示取得) を記録した — 本 PR は travel `design.md` §2.1 代替規則 1 の記述是正を含むにもかかわらず、承認対象・影響度の記録が本書に無かった。③**2026-09-07 Task 009-63R2 の行の「travel は不変」に注記**を補い、当該記述が F-6 の対象である travel §7.1 についてのものであることと、§2.1 の記述是正が承認対象⑩に記録されていることを明記した。**不変**: §29-3 の既存 8 件 (D-2 / D-4 / F-5 / F-1 / F-4 / C-5 / H-1・H-2 / F-6) の判断内容、§29-4・§29-5・§29-6、§1〜§28 の判断内容・適用範囲、設計承認ログ (§5)、適用開始記録 (§6)、承認済みの [review-approval-rules.md](review-approval-rules.md) 本体。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設していない | Claude Code |
+| 2026-09-07 | Task 009-64: §30 「Travel `design.md` §2.1 検証表の欠落の回収と Breadcrumb 現在地の文字色の確定」を §1〜§29 と分離して追加 ([Issue #172](https://github.com/tocoo/coocom-design-system/issues/172))。改訂着手の設計承認 (§9・§20、2026-09-07・Web部責任者)・**影響度 = 高** (判定者 = Web部責任者・判定日 2026-09-07・明示取得・必要レビュー主体 = Web部責任者およびチーフデザイナー)・取得した現在判断 **2 件** (G-1 = 白面 × `color.text.muted` 2.68:1 を検証表へ載せず **Breadcrumb 現在地の文字色を `color.text.mutedStrong` `#616161` 6.19:1 へ変更**して AA 未達を解消する／G-2 = 影響度)・検証表へ追加する **10 行**の実測値・本記録が決定しないこと **8 項目**を記録した。**適用範囲 = travel に限定**し rental-car・inbound へは及ぼさない (3 独立 DS の原則 P1/ADR-0022)。とくに §29-3 判断 C-5 (rental-car の未入力状態の案内文字を `color.text.muted` に統一・AA 未達明示) とは扱いが異なるが、**同判断の内容・適用範囲は変更しない**。**トークンの追加・削除・値の変更・参照先の変更・`$status` の変更は 0 件**。**不変**: §1〜§29 の各記録、[review-approval-rules.md](review-approval-rules.md) 本体。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-09-07 | Task 009-64R: §30 の記述是正と**承認対象①の範囲拡大** (PR [#173](https://github.com/tocoo/coocom-design-system/pull/173) のコードレビュー 2026-09-07 の指摘 6 件に対応)。①**§30-1 承認対象①の行数を「10 行追加」から「21 行追加」(14 行 → 35 行) へ拡大**し、既存 1 行の概算 `≈11.1:1` の実測値 `11.11:1` への是正と既存 5 行への「主色」の明示を承認対象へ加えた (Web部責任者判断 2026-09-07)。②**§30-5 に「PR #173 のコードレビューを契機に追加した 11 行」の表を追加**した — 同レビューが名指しした 5 組 (`color.tag.neutral` 9.22:1・`color.label.stock` 主色 4.77:1 / 副色 4.53:1・`color.membership.free` 13.21:1・Button `secondary` 16.10:1・`surface.inverse` × `mutedStrong` 2.60:1 = **禁止**) と、per-scheme の判定基準を表全体へ一貫させるための**副色スキームの campaign accent 5 組** (3.79:1 / 4.24:1 / 3.79:1 / 3.60:1 / 3.48:1)。副色の `campaignTint` / `campaignInk` は 🚧 仮色のため追加しない。③**per-scheme の判定基準を [事実] として明記**した — 主色・副色で行を分けるか否かは `semantic.travel.json` の解決チェーンではなく **§2 の用途表が per-scheme トークンとして定義しているか否か**による (`color.action.primary.bg` と `color.text.link` は JSON 上いずれも `{color.scheme.main.base}` へ解決するが前者は per-scheme ではない)。**トークンの追加・削除・値の変更・参照先の変更・`$status` の変更は引き続き 0 件**。**不変**: §30-2 影響度 (**高**)・§30-3 判断 G-1 / G-2 の内容・§30-4 (トークン変更なし)・§30-6 決定しないこと、§1〜§29 の各記録、[review-approval-rules.md](review-approval-rules.md) 本体。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |

@@ -2,7 +2,7 @@
 
 - 種別: DS 成果物 (Ph-D Component 仕様)
 - 状態: Draft (0.3.0-draft)
-- 作成日: 2026-07-02 / 更新日: 2026-08-20
+- 作成日: 2026-07-02 / 更新日: 2026-09-07
 - 参照トークン: `semantic.rental-car.json` のみ (primitive 直接参照は禁止)
 - 根拠: オーナー判断 2026-08-18「国内宿泊で新たに定義されたものを適用する」。実装実測は `migration-map.md`、ラベル・タグは `labels-tags.rental-car.md` を参照
 - 注記: `TVL-NNNN` は ADR 正本が Repository 内に不在であり、本書では現在の仕様根拠として参照しない
@@ -12,12 +12,22 @@
 結論: Component が定義するのは自身の構造・状態・トークン参照だけである。ページの配置と余白は Foundation の責務であり、本書では決めない。
 
 - 状態の固定リスト: `hover / active / focus / disabled / loading / error / success`。追加は決定記録が必要
-- hover は `opacity` 約 .85 の暫定 `🚧`。focus は `outline` + `color.focus.ring`
-- ボタンは pill (`radius.action`)。実装の 4px 固有形状・グラデ・emboss 影は廃止
-- accent (特集色) はバッジ専用で塗りボタンにしない。主 CTA の個数制約は本 DS では設けない (§2 Button の未確定事項を参照)
+- hover は `opacity` 約 .85 の暫定 `🚧`。focus は `outline` + `color.focus.ring`。**ただしリンクの hover は対象外** — リンクは [design.md](design.md) §2.5 が定める色変更 (`color.text.linkHover`) を用い、`opacity` を状態表現に使わない (確定値のため `🚧 暫定` を付さない)
+- ボタン**と入力要素**は pill (`radius.action`)。実装の 4px 固有形状・グラデ・emboss 影は廃止。`radius.input` は Task 009-63 で廃止し `radius.action` へ統一した
+- accent (特集色) は「点」専用で塗りボタンにしない。**accent を面として持つのは B 会員種別のみ、C カテゴリ・特集はアイコン (点) として持つ** ([design.md](design.md) §2.4)
+- **主 CTA の個数制約は設けない** ([design.md](design.md) §7・判断 F-4)。CTA の優先度は `primary` / `secondary` / `ghost` / `text` の強弱階層で表現する
 - 価格は PriceTag (数字 700 + tabular-nums + 「円」 + 補助テキスト) を必ず使う
 - 最小タップ領域 44px。コントラストは AA が下限
 - アイコンは Font Awesome 6。絵文字は製品コピーに使わない
+- テキスト色は `color.text.strong` / `body` / `mutedStrong` / `muted` の 4 段。判読性を要する補助情報は `mutedStrong` (#616161・白背景 6.19:1) を使用する。`muted` (#9e9e9e・2.68:1) は 4.5:1 に達しないため判読性を要する情報に用いない。**上記 4 段は明色面 (`surface.default` / `subtle` / `muted`) 用**である — inverse 面 (`surface.inverse` #212121) 上のテキストは `color.text.inverse` (主要文字・16.10:1) と `color.text.inverseMuted` (補助情報・6.01:1) の 2 段を使用し、`inverseMuted` を明色面へ、`mutedStrong` を inverse 面へ (2.60:1) 使用しない
+- 面 (背景) として色を使う場合の許可される文字色・サイズ・ウェイト条件は面ごとに異なる。組み合わせ一覧・campaign accent 面の条件 ((a) `24px` 以上／(b) `20px` 以上かつ bold)・(a) (b) を満たさない場合 ((i) `20px` 未満のすべて／(ii) `20px` 以上 `24px` 未満かつ通常ウェイト) の代替規則・ウェイトの境界・scheme inverse 面 (main `#C8912C` / sub `#C8B12C`) の文字色は [design.md](design.md) §2.4 が正。**`color.text.onAccent` の存在を理由にコントラスト確認を省略しない**
+- 背景文脈は**明示的な tone / variant として選択できる**ようにする。背景色を検知して自動反転する仕様・Component 内部の固定色だけで複数背景へ対応する仕様は採らない。禁止: primitive の直接参照 / 利用側による任意 HEX 指定
+- 角丸の用途トークンは `radius.action` (pill・操作要素 = ボタン・CTA・入力要素・チップ型操作要素)・`radius.card` (カード外形)・`radius.badge` (非操作のバッジ/ラベル)・`radius.overlay` (オーバーレイ = Modal の form = sheet の上端 2 隅等) の **4 系統**。非操作の割引率ラベル・状態バッジへ `radius.action` を使用しない。**操作可能なバッジは badge ではなく action 系 Component として扱う**
+- 見出しは**文書レベル (h1〜h6) と Component の見出しで同一トークン群 `font.heading.*` を共用する**。割当 (**`breakpoint.lg` 1024px 以上の既定** = h1 2.5rem / h2 2rem / h3 1.5rem / h4 1.25rem / h5 1rem / h6 1rem、**1024px 未満** = h1 2rem / h2 1.5rem / h3 1.25rem / h4〜h6 1rem・ウェイト `font.heading.weight` 700・行間 `font.heading.lineHeight` 1.3) は [design.md](design.md) §3.1 が正。段を移す境界は 1024px の 1 つのみで、この表の範囲内での段下げは §3.1 の「既定から外れる」に**該当しない** (都度の承認を要しない)。文書レベルの見出しには実寸が 4 の倍数である段のみを用いる (`typography.size` の `sm` 14px は下記 `label.*` の器で、`lg` 18px は `font.display.mdSize` = 車種クラス名で用いる段であり、いずれも本規則の対象外)。Component が文書レベルの既定から外れる値を必要とする場合は**当該 Component の項へ明示的に記載する** (暗黙の上書きを認めない)。明朝 `font.display.family` は Display・Hero・車種クラス名で明示的に選択する書体であり見出しの既定ではない
+- リンクは色 `color.text.link` (= 主色) に加え、状態ごとの文字色 (hover = `color.text.linkHover` / active = `color.text.linkActive` / visited = 専用色を設けず `link` を維持 / focus = `color.focus.ring` の `outline`) を使用する。**文中リンクには下線を付し、hover で下線を外さない**。standalone なリンクへの下線の既定は未判定で、状態ごとの文字色は対象を限定せず適用される。正は [design.md](design.md) §2.5
+- **未入力状態の文字色は UI の種別で限定せず `color.text.muted` (#9e9e9e・白背景 2.68:1) に統一する** (`input` / `textarea` の `::placeholder`、Select の未選択値、その他の入力フィールドの未入力表示)。通常テキストの 4.5:1 に達しないため **AA 未達であることを明示する** (適合宣言は行わない)。未入力であることを色だけで伝えず文言を併記する。案内文字を必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない。判読性を要する補助情報には `color.text.mutedStrong` (#616161・6.19:1) を使う。正は [design.md](design.md) §2.6
+- 割引率のコンテンツ表記規則 (`NN%OFF`・数字強調・桁・端数処理の未確定・上限/異常値・表示成立条件) は [design.md](design.md) §8.1 が正。Component 仕様では表記規則そのものを再定義しない
+- **Badge (単体) Component の切り出し境界**: 既に定義済みのラベル・タグ (A〜H = [labels-tags.rental-car.md](labels-tags.rental-car.md)・器 `label.*`・角丸 `radius.badge`・用途色 `color.label.*`) と、単体 Component として追加で必要になる範囲 (カード外での配置・サイズ段階・操作可能な場合の扱い) を分離する。**操作可能なバッジは badge ではなく action 系 Component として扱う**境界は再定義しない。Badge 単体の仕様定義は本版に含めない
 - travel と同型 (7 件・定義体系の採用。**意匠と値は本 DS のファイルで定義し、travel のファイルを参照しない**): Button / Input / PriceTag / Header / Breadcrumb / Footer / Modal
 - 本 DS で先行定義 (3 件・travel 側は未着手): Select / FormLabel / Label・Tag
 - レンタカー固有 (8 件): SearchForm / ResultCard / SecretPrice / Options / StorePicker / StepIndicator / Filter / Sort・Pagination
@@ -37,25 +47,33 @@
 - 状態: hover = `color.action.primary.hoverBg` または opacity .85 `🚧` / focus = `color.focus.ring` の outline / disabled は `🚧` 未定義 (E2 満車表現の前提となるため優先度が高い)
 - サイズ: 標準 44px・SP の全幅 CTA は 48px
 - Do: 実装は Semantic のみ参照する。CTA の優先度は `primary` / `secondary` / `ghost` / `text` の強弱階層で表現する
+- Do: **主 CTA の個数制約は設けない** (判断 F-4・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。繰り返し要素 (ResultCard 等) 内で各項目が `primary` を持つことを妨げない。旧「1 画面の主 CTA は `primary` 1 つに絞る」は本 DS では採らない
 - Don't: 角丸 4px・縦グラデ・text-shadow の旧意匠を再現しない
+- Don't: `Button.text` の文字色に `color.text.link` を用いるが、**その hover を `color.text.linkHover` と同一視しない** — [design.md](design.md) §2.5 はリンク要素の規則であり、ボタンの hover は §1 共通事項の暫定参照に従う
 - 関連トークン: `color.action.primary.*` / `color.action.secondary.*` / `color.text.strong` / `color.text.link` / `radius.action` / `color.focus.ring` / `motion.transition.*` `🚧`
-- 未確定事項: disabled・loading の意匠。**繰り返し要素 (ResultCard 等) 内の主 CTA の個数制約** — travel は Web部責任者判断 2026-08-03 ([governance/owner-decisions.md](../../../governance/owner-decisions.md) §16) で「1 画面の主 CTA は `primary` 1 つに絞る」を撤回し個数制約を撤廃したが、同記録は適用範囲を travel に限定している。rental-car への適用判断は未取得であり、本書は個数制約を設けない `🚧`
+- 未確定事項: disabled・loading の意匠 `🚧` (E2 満車表現の前提となるため優先度が高い)。**主 CTA の個数制約は Task 009-63 で確定済み** (設けない) であり未確定事項ではない
 
 ### Input
 
 - バリアント: `default`。状態: `error` = `color.state.error` / `focus` = `color.focus.ring` / `disabled` `🚧`
-- 意匠: 面 `surface.default` + 境界 `border.default` + `radius.input` (4px)。高さ 44px
+- 意匠: 面 `surface.default` + 境界 `border.default` + **`radius.action` (pill)**。高さ 44px
+- 構成: 入力値の文字色 `color.text.body` / **未入力状態 (プレースホルダ) の文字色 `color.text.muted`** (#9e9e9e・白背景 2.68:1・**AA 未達明示**。[design.md](design.md) §2.6 が正)
 - Do: エラーはテキストを併記する (色だけで伝えない)
-- 関連トークン: `color.border.*` / `color.state.error` / `color.text.*` / `radius.input`
+- Do: プレースホルダは入力の補助にとどめ、必須項目・ラベル・エラーメッセージ・入力形式の説明の代替にしない
+- Do: プレースホルダの 2.68:1 が **AA 未達**であることを明示する。適合宣言に用いない。判読性を要する補助情報 (価格の補助テキスト等) には `color.text.mutedStrong` (#616161・6.19:1) を使い、本トークンを流用しない
+- Don't: 角丸 4px (旧 `radius.input`) を再現しない。**入力要素の角丸は `radius.action` (pill) へ統一した** (判断 F-5・Task 009-63)
+- 関連トークン: `color.border.*` / `color.state.error` / `color.text.body` / `color.text.muted` (未入力状態) / `color.focus.ring` / `radius.action`
 - 未確定事項: 必須表現・検証仕様の実体 (follow-up #2)
 
 ### Select
 
 - 位置づけ: travel 側は未着手。レンタカーの時刻・車種条件の多用により本 DS で先行定義する
-- 意匠: Input と同一の面・境界・角丸・高さ。右端に `fa-chevron-down` を 16px・`text.mutedStrong` で置き、`appearance: none` で OS 既定の矢印を消す
+- 意匠: Input と同一の面・境界・角丸 (`radius.action` = pill)・高さ。右端に `fa-chevron-down` を 16px・`text.mutedStrong` で置き、`appearance: none` で OS 既定の矢印を消す
 - 状態: Input に準ずる。open 状態の意匠は OS 依存とし DS では定義しない
+- **未選択値 (未入力状態) の文字色**: `color.text.muted` (#9e9e9e・白背景 2.68:1) を用いる (判断 C-5・[design.md](design.md) §2.6・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。**AA 未達であることを明示する**。適合宣言は行わない。Input の `::placeholder` と同一の扱いであり、**UI の種別で色を変えない**
+- Do: 未選択であることを色だけで伝えず、文言 (「選択してください」等) を必ず併記する
 - Don't: 選択肢が 2〜3 個で短い場合に Select を使わない (チップまたはラジオにする)
-- 関連トークン: Input と同一 + `icon.size`
+- 関連トークン: Input と同一 (`color.text.muted` = 未選択値) + `icon.size`
 
 ### FormLabel
 
@@ -68,8 +86,10 @@
 ### Label / Tag
 
 - 定義本体は `labels-tags.rental-car.md`。本書では重複させない
-- 要点のみ: 器は sm (20px / 左右 8px / 12px) と md (24px / 左右 12px / 14px) の 2 段。面ありは 700・中立タグは 400。押せるものだけ pill
-- 未確定事項: 要追加トークン 6 件 (同ファイル §4)
+- 要点のみ: 器は sm (`label.height.sm` 20px / `label.paddingInline.sm` 8px / `label.fontSize.sm` 12px) と md (`label.height.md` 24px / `label.paddingInline.md` 12px / `label.fontSize.md` 14px) の 2 段。行高 `label.lineHeight` (1・上下中央)・角丸 `label.radius` (= `radius.badge` 4px)。ウェイトは面あり `label.weight.emphasis` (700) / 中立タグ `label.weight.neutral` (400)。**A 割引率の数字**は `label.numberSize.sm` (14px) / `label.numberSize.md` (16px) = 文字より 1 段上 ([design.md](design.md) §8.1)
+- 用途色: **A** = `color.label.discount` (逆色面 + 白文字・§2.4 の例外) / **B** = `color.membership.paid` `🚧` / `color.membership.free` / **C** = `color.label.category` (白面 + 濃色文字 + accent アイコン + 白系面上のみ枠線) / **D** = `color.tag.neutral` / **E1** = `color.label.stock` (面なし)
+- 押せるものだけ pill (`radius.action`)。**操作可能なバッジは badge ではなく action 系 Component として扱う**
+- 未確定事項: **要追加トークン 6 件は Task 009-63 で解消した** (同ファイル §4)。残るのは accent 濃色段の実色 `🚧` (B-1 の面 + 文字の成立検証)・C のアイコンのサイズ・E2 の意匠値
 
 ## 3. 検索系
 
@@ -79,11 +99,11 @@
 
 - 構成: 経路タブ (エリア / 空港 / キーワード) + 出発エリア + 出発日時 + 返却日時 + 車種クラス + 主 CTA
 - レイアウト: PC は `minmax(200px, 1fr)` の自動折返しグリッド、CTA は右下。SP は 1 列縦積み、CTA は幅 100% / 高さ 48px
-- 意匠: タブは pill のチップ (選択 = 主色塗り / 非選択 = 白面 + `border.default`)
+- 意匠: タブは pill のチップ (選択 = 主色塗り / 非選択 = 白面 + `border.default`)。**フィールドの角丸は `radius.action` (pill)** — Input / Select と同一 (判断 F-5)
 - Do: 出発と返却の対を隣接配置する。日程未定の検索はチェックボックスで CTA の手前に置く
 - Don't: 実装の多経路 (13KB + 9KB の分岐) を新規ページへ複製しない
-- 関連トークン: Button / Input / Select の参照に準ずる
-- 未確定事項: フィールドの必須・任意の別、日時の入力方式 (Popover か native か)
+- 関連トークン: Button / Input / Select の参照に準ずる (`radius.action`)
+- 未確定事項: フィールドの必須・任意の別、日時の入力方式 (native か Modal の form = `popover` / `sheet` か = §5 Modal)
 
 ### StepIndicator
 
@@ -139,7 +159,7 @@
 - 方式: トリガー (pill・44px) + 並び替えパネル。国内宿泊の検索結果と同一方式に統一する
 - トリガーの構成: 「並び替え」(400・`text.mutedStrong`) + 現在値 (700) + `fa-arrow-down-wide-short`
 - パネル: アンカー直下 8px・幅 280px・影は `🚧` 未定義 (semantic に shadow 系トークンがなく実値も未抽出 = [design.md](design.md) §5)・行 48px・選択行は `scheme.main.tint` 面 + 主色のチェック・選択したら閉じる
-- SP: 追従バーに絞り込み (件数バッジ) と並び替え (現在値を省略表示) を並置し、押すと Modal の既定形態 (下からの全幅 drawer) で選択する。BottomSheet 候補 (§6) が承認された場合はそちらへ寄せる `🚧`
+- SP: 追従バーに絞り込み (件数バッジ) と並び替え (現在値を省略表示) を並置し、押すと Modal の form = `sheet` (下端貼り付き・全幅) で選択する。PC は `popover`・SP は `sheet` (§5 Modal の form 切替規則 = `breakpoint.lg` 1024px 未満は `sheet`・以上は `popover`)
 - Pagination: 40px の pill。現在地は主色塗り + `aria-current`
 - Don't: 常時展開の帯 (下線タブ) やチップ列にしない。件数と並び替えを検索条件と同じ面にまとめない
 - 移行: 実装の `.sort` 帯は廃止 (`migration-map.md` 参照)
@@ -147,13 +167,24 @@
 ### PriceTag
 
 - 構成: 数字 (`font.price` 700 + tabular-nums) + 「円」 + 補助テキストの 3 スロット
-- サイズ: 既定 20px / `lg` は 1 段上。補助テキストは 12px・`text.mutedStrong` (白背景 6.19:1。`text.muted` は 2.68:1 で AA 未達のため用いない)
+- サイズ: 既定 20px / `lg` は 1 段上。補助テキストは 12px (`font.price.captionSize`)
+- **tone (背景文脈)**: `default` (明色面) / `inverse` (inverse 面) の 2 値。**背景文脈は明示的に選択する**。`tone` はバリアント語彙とは別軸であり語彙への追加ではない。実装 API 名 (prop 名) は未確定 `🚧` (下表の対応関係が正)
+
+| 要素 | `tone="default"` (明色面) | `tone="inverse"` (inverse 面) |
+| --- | --- | --- |
+| 主要価格 (数字・「円」) | `color.text.strong` (#212121・白背景 16.10:1) | `color.text.inverse` (#ffffff・#212121 上 16.10:1) |
+| 補助テキスト (税込 / 日数 / 1 日あたり)・割引前価格 | `color.text.mutedStrong` (#616161・白背景 6.19:1) | `color.text.inverseMuted` (#9e9e9e・#212121 上 6.01:1) |
+| その他の本文 | 用途に応じた default 面用 semantic (`color.text.body` 等) | 用途に応じた inverse 面用 semantic (`color.text.inverse` / `inverseMuted`) |
+
+- 対応する面: `default` = `color.surface.default` / `subtle` / `muted`、`inverse` = `color.surface.inverse`
 - Do: 税・条件 (税込 / 3 日間 / 1 日あたり) を必ず補助スロットに併記する
-- 関連トークン: `font.price.*` / `color.text.strong` / `color.text.mutedStrong`
+- Don't: **背景色を検知して自動反転しない**。Component 内部の固定色だけで複数背景へ対応しない
+- Don't: 明色面へ `color.text.inverseMuted` (白背景 2.68:1) を、inverse 面へ `color.text.mutedStrong` (#212121 上 2.60:1) を使わない
+- 関連トークン: `font.price.*` / `color.text.strong` / `color.text.mutedStrong` / `color.text.inverse` / `color.text.inverseMuted` / `color.surface.*`
 
 ## 5. オプション・ナビゲーション・オーバーレイ
 
-結論: Header / Breadcrumb / Footer / Modal は travel と同型の定義を採るが、意匠と値は本 DS のファイルに独立して持つ。オーバーレイの追加種別 (BottomSheet / Popover) は未承認の拡張候補として §6 に分離する。
+結論: Header / Breadcrumb / Footer / Modal は travel と同型の定義を採るが、意匠と値は本 DS のファイルに独立して持つ。オーバーレイの追加種別 (BottomSheet / Popover) は、Task 009-63 で Modal の**表示形態 (form) 軸**として本文へ統合した — 旧版が独立節として置いていた「拡張候補 (未承認)」は廃止し、以降の節番号を 1 つ繰り上げている (旧 §7 レスポンシブ → §6、旧 §8 変更履歴 → §7)。**統合に際し、旧候補の Popover が定めていた「意匠 = backdrop なし」「Don't: backdrop を敷かない」は撤回した** — form = `popover` も `drawer` / `sheet` と同じく `color.overlay.backdrop` を敷く (判断 F-1・[design.md](design.md) §7.1)。旧記述は**未承認の候補**であり承認済み規則ではないが、挙動が反転するため差分として明示する。
 
 ### Options
 
@@ -172,33 +203,20 @@
 
 ### Modal
 
-- 形態: drawer (PC は右から 420px / SP は全幅・高さ 90vh まで)。backdrop は `color.overlay.backdrop` (`🚧` 暫定値 rgba(0,0,0,0.45))
-- 状態: Esc・backdrop・閉じるボタンで閉じる。フォーカスは内部にトラップし、閉じたら起点に戻す
-- z 軸: `elevation.overlay` (1200) / `elevation.modal` (1300)
+- **表示形態 (form)**: `drawer` (既定) / `sheet` / `popover` の 3 値 ([design.md](design.md) §7.1 が正)。実装基盤は drawer 単一を維持し **第 3 の Modal 実装基盤を導入しない** (`popover` は overlay の z 軸・backdrop・dismiss を共有する同一基盤上の表示形態であり第 3 の実装基盤に当たらない)。form はバリアント語彙とは**別軸** (PriceTag の `tone` と同じ扱い)
+  - `drawer` (既定): PC は右から 420px / SP は全幅・高さ 90vh まで
+  - `sheet`: 画面下端に貼り付き・全幅・上端 2 隅のみ角丸 (`radius.overlay` = 16px `🚧`)・ハンドル (40x4px)・行 48px・高さは内容なり (**最大 90vh** = [design.md](design.md) §7.1 で確定)。用途 = SP の並び替え・絞り込み・時刻や日付の選択など「選んで即閉じる」操作
+  - `popover`: 基準要素 (トリガー) を起点に配置し、下方に余地がなければ上方向へ反転する。**基準要素を必要とする** (drawer / sheet は不要)。**アンカー直下 8px・幅 240〜320px** ([design.md](design.md) §7.1 で確定)・影は `🚧` 未定義 ([design.md](design.md) §5)。用途 = PC の時刻選択・補足説明・小さな選択肢
+- **切替規則**: `breakpoint.lg` (1024px) 未満は `sheet`、以上は `popover`。`drawer` は既定であり本切替規則の対象ではない (用途に応じて明示選択する)
+- backdrop: `color.overlay.backdrop` (`🚧` 暫定値 rgba(0,0,0,0.45)) を **3 形態すべてで使用する**
+- 状態: Esc・backdrop・閉じるボタンで閉じる。`sheet` は下スワイプ、`popover` は外側クリックでも閉じる。フォーカスは内部にトラップし、閉じたら起点に戻す
+- z 軸: `elevation.overlay` (1200) / `elevation.modal` (1300)。同時に開くオーバーレイは 1 つに限る (3 形態共通)
+- Do: 表示形態 (form) は**明示的に選択する**。背景・文脈を検知して自動で形態を切り替えない
 - Don't: remodal / LightBox など別のモーダル基盤を新規に追加しない。ブラー・グラス表現を使わない
-- 未確定事項: 3 DS 横断の Modal 実装基盤は未決 (`governance/owner-decisions.md` §1 Q9)。travel の drawer 統一は travel 限定の現在判断であり、rental-car への適用は本書の提案である `🚧`
+- 関連トークン: `elevation.overlay` / `elevation.modal` / `radius.overlay` `🚧` / `color.overlay.backdrop` `🚧` / `motion.transition.*` `🚧` / `shadow.*` `🚧`
+- 未確定事項: form の a11y (`role` / `aria-modal` / フォーカストラップ / 復帰先・背面スクロールロック・閉じる操作の実装方式) は DS 層で決定しない / 実装 API 名 (prop 名) `🚧` / **3 DS 横断の Modal 実装基盤は未決** (`governance/owner-decisions.md` §1 Q9)。本節は rental-car の表示形態を定めるものであり横断の実装基盤を確定しない
 
-## 6. 拡張候補 (未承認)
-
-結論: 以下 2 種は国内レンタカー固有の拡張候補である。オーナー判断の取得までは既定仕様として扱わない。
-
-### BottomSheet (候補)
-
-- 用途: SP の並び替え・絞り込み・時刻や日付の選択など「選んで即閉じる」操作
-- 意匠: 全幅・上端 2 隅は `radius.overlay` (16px `🚧`)・ハンドル (40x4px)・行 48px・高さは内容なり (最大 90vh)
-- 閉じ方: backdrop タップ・下スワイプ・選択で自動クローズ
-- Don't: PC で使わない
-
-### Popover (候補)
-
-- 用途: PC の時刻選択・補足説明・小さな選択肢
-- 意匠: アンカー直下 8px・幅 240〜320px・影は `🚧` 未定義 ([design.md](design.md) §5)・backdrop なし
-- 閉じ方: 外側クリック・Esc・選択で自動クローズ
-- Don't: backdrop を敷かない。SP では同じ内容を BottomSheet で開く
-
-同時に開くオーバーレイは 1 つに限る (drawer・BottomSheet・Popover 共通)。
-
-## 7. レスポンシブ
+## 6. レスポンシブ
 
 結論: ブレークポイントは 640 / 768 / 1024 / 1280。実装は 2 段 (959 / 960) しか持たないため、置換時は下表の振る舞いに寄せる。
 
@@ -207,7 +225,7 @@
 | SearchForm | フィールドを 1 列に縦積み。タブは 3 分割の等幅 pill。CTA は幅 100% / 高さ 48px | 2〜4 列グリッド (minmax 200px)。CTA は右下 |
 | ResultCard | 画像 120px + 情報の 2 列。料金は 2x2 グリッド。価格と CTA を最下段に固定 | 画像 / スペック / 補足の 3 列 + 料金 6 列行 |
 | Filter | 固定バーの「絞り込み」から drawer で全画面。適用中チップは結果上部に横スクロール | 結果左の 280px サイドバーに常時表示 |
-| Sort / Pagination | 追従バーに絞り込み (件数バッジ) と並び替え (現在値を省略表示) を並置。押すと下からの全幅 drawer (BottomSheet 候補は §6 = 未承認) | 結果ヘッダー右にトリガー (pill 44px)。押すとアンカー直下にパネル。ページ送りは結果下部 |
+| Sort / Pagination | 追従バーに絞り込み (件数バッジ) と並び替え (現在値を省略表示) を並置。押すと Modal の form = `sheet` (下端貼り付き・全幅) | 結果ヘッダー右にトリガー (pill 44px)。押すとアンカー直下にパネル。ページ送りは結果下部 |
 | Header | ロゴ + ハンバーガー (44px)。ナビは右からの drawer | ロゴ + 横並びナビ + ログイン |
 | Footer | リンク列を 1 列に縦積み | auto-fit の 3〜4 列 |
 | StepIndicator | 現在ステップのみラベル表示、他は番号のみ (折返し可) | 全ステップをラベル付きで横並び |
@@ -216,7 +234,7 @@
 
 表示確認の代表 viewport は 390 / 768 / 1280 / 1440px であり、ブレークポイントとは別概念である。
 
-## 8. 変更履歴
+## 7. 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
 | --- | --- | --- |
@@ -225,3 +243,7 @@
 | 2026-08-19 | 0.3.0-draft: オーナー判断 2026-08-18 により Foundation の定義体系を更新 (pill ボタン・主色・2 書体・4px 系)。Select / FormLabel / Label・Tag / SecretPrice / Options / StorePicker / StepIndicator / Filter / Sort・Pagination を追加。ラベル・タグ定義を別ファイル化。BottomSheet / Popover を未承認の拡張候補として分離。レスポンシブ表を追加 | Claude Design |
 | 2026-08-20 | 本 Repository へ反映 (0.3.0-draft)。ハンドオフバンドル `design_handoff_rental-car-ds/02_specs/components.rental-car.md` を `components.md` へ全置換。根拠はオーナー判断 2026-08-18 (記録 = [governance/owner-decisions.md](../../../governance/owner-decisions.md) §25) | Claude Code |
 | 2026-08-20 | Task 009-57R の記述是正: PR [#156](https://github.com/tocoo/coocom-design-system/pull/156) コードレビュー ([issuecomment-5353729542](https://github.com/tocoo/coocom-design-system/pull/156#issuecomment-5353729542)) の指摘に対応。①共通事項と Button Do から「1 画面の主 CTA は primary 1 つ」を除去し、個数制約を未取得事項として Button の未確定事項へ移した (travel は §16 で撤回済みだが適用範囲は travel 限定)。②`ghost` / `text` の意匠を既存トークンの範囲で定義した (4 語の宣言に対し `primary` しか束縛がなかった)。③判読性を要する 8 箇所の文字色を `text.muted` (2.68:1) から `text.mutedStrong` (6.19:1) へ変更した。④車種クラス名の書体を `font.display.mdSize` に固定した (ゴシック `h3Size` との二重割当を解消)。⑤SecretPrice のマスク面を B-2 の `scheme.main.tint` に揃えた。⑥`shadow.md` の primitive 直接参照を「未定義 `🚧`」へ改めた。⑦Modal の backdrop を `color.overlay.backdrop`、BottomSheet の上端角丸を `radius.overlay` へ置換した (生値の解消)。⑧Sort / Pagination の SP 仕様とレスポンシブ表から未承認候補 BottomSheet への依存を外した。⑨「travel の実体をそのまま使う」を「travel と同型・意匠と値は本 DS で定義」へ改め、内訳を 7 / 3 / 8 件に統一した。**不変**: Component の構造・スロット責務名・状態の固定リスト・レスポンシブのブレークポイント | Claude Code |
+| 2026-09-07 | Task 009-63: 国内宿泊 (travel) の最新版 (Task 009-58〜009-62) の定義体系を適用 ([Issue #170](https://github.com/tocoo/coocom-design-system/issues/170)・記録 = [governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。①§1 共通事項に 9 項目を追加 (hover の `opacity` 暫定から**リンクを除外**／テキスト 4 段は明色面用・inverse 面は `inverse` / `inverseMuted` の 2 段／面と文字色の条件は [design.md](design.md) §2.4 が正／tone・variant は明示選択・自動反転しない／角丸 **4 系統**／見出しの幅別割当と 4 の倍数規則／リンクの状態と下線／プレースホルダと Select の未選択値の例外／Badge (単体) の切り出し境界)。②**入力要素の角丸を `radius.input` (4px) から `radius.action` (pill) へ統一**し Input / Select / SearchForm の意匠と関連トークンを改めた (判断 F-5)。③Input にプレースホルダの文字色 (`color.text.placeholder`) を追加。④Select に**未選択値への `color.text.muted` 例外** (AA 未達明示) を追加 (判断 C-5)。⑤**主 CTA の個数制約を「設けない」で確定**し Button の未確定事項から外した (判断 F-4)。⑥PriceTag に **`tone` 軸** (`default` / `inverse`) と対応表を追加。⑦Modal に**表示形態 (form) 軸** (`drawer` / `sheet` / `popover`・切替は `breakpoint.lg`・backdrop は 3 形態共通) を定義し、**旧 §6「拡張候補 (未承認)」の BottomSheet / Popover を本文へ統合して同節を廃止**した (判断 F-1)。これに伴い §7 レスポンシブ → §6、§8 変更履歴 → §7 へ繰り上げ、Sort / Pagination とレスポンシブ表の「BottomSheet 候補 (未承認)」参照を form = `sheet` へ置換した。⑧Label / Tag の器・用途色を**トークン参照**へ書き換え、要追加トークン 6 件の解消を反映した。**不変**: Component の構造・スロット責務名・状態の固定リスト・レスポンシブのブレークポイントと振る舞い・Button のバリアント 4 語と意匠・FormLabel・SecretPrice・ResultCard・Options / StorePicker / StepIndicator / Filter の仕様 | Claude Code |
+| 2026-09-07 | Task 009-63R の記述是正: PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー ([issuecomment-5565532746](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5565532746)) の指摘に対応。①未入力状態の文字色を **UI の種別で限定せず `color.text.muted` に統一する** Web部責任者判断 (2026-09-07・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §29 判断 C-5 の適用範囲変更) を反映し、§1 共通事項・Input・Select の記述を書き換えた。`color.text.placeholder` の追加は取り下げたため関連トークンからも外した。Input の Don't (「プレースホルダへ muted を使わない」) は AA 未達明示の Do へ置き換えた。②§5 冒頭に、旧 §6 の候補 Popover が定めていた「backdrop なし」「Don't: backdrop を敷かない」を撤回したことを明示した (統合により form = `popover` も backdrop を敷く挙動へ反転するため)。**不変**: Component の構造・スロット責務名・状態の固定リスト・レスポンシブのブレークポイントと振る舞い・Modal の form の 3 値と切替規則・角丸 `radius.action` への統一 | Claude Code |
+| 2026-09-07 | Task 009-63R2 (追補): `sheet` の**最大高 90vh** と `popover` の**幅 240〜320px** が [design.md](design.md) §7.1 で確定した (Web部責任者判断 2026-09-07・判断 F-6・記録 = [governance/owner-decisions.md](../../../governance/owner-decisions.md) §29-3) ことを受け、本書の該当箇所に正本の所在を明記した。**値そのものは従前の記載と同一で変更していない** (従前は正本が「未確定」としている値を本書のみが確定値として持っている状態だった)。**不変**: Modal の form の 3 値・切替規則・backdrop・状態・その他の Component の記述 | Claude Code |
+| 2026-09-07 | Task 009-63R3 の記述是正: PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー 3 回目 ([issuecomment-5567573901](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5567573901)) の指摘に対応。Modal の**未確定事項から「`sheet` の最大高・`popover` の幅段階の実 px は未実査」を削除**した。判断 F-6 (2026-09-07・[design.md](design.md) §7.1 で確定・記録 = [governance/owner-decisions.md](../../../governance/owner-decisions.md) §29-3) の追随漏れであり、同じ 2 項目について正本が「確定」・本書が「未実査」と**逆向きに割れた**まま残っていた。**不変**: `sheet` / `popover` の値 (`90vh` / `240〜320px`)・form の 3 値・切替規則・backdrop・状態・a11y と実装 API 名が未確定であること・その他の Component の記述 | Claude Code |

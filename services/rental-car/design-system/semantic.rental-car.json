@@ -6,13 +6,22 @@
     "service": "rental-car",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "rental-car 0.2.1-draft。オーナー判断 2026-08-18 により travel 0.3.0-draft の定義体系 (scheme 二層・link=主色・success=主色・accent=バッジ専用) を採用。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、次を追加・変更した。(1) `color.text.mutedStrong` (gray.700 #616161・白背景 6.19:1) を追加 — 判読性を要する補助情報が `muted` (#9e9e9e・2.68:1・AA 未達) しか参照先を持たず design.md §2.3 の AA 下限宣言と矛盾していた状態の解消。(2) `color.overlay.backdrop` (placeholder) を追加 — Modal の backdrop が生値 rgba(0,0,0,.45) で書かれていた状態の解消。(3) `radius.overlay` (placeholder・既存 radius.lg 参照) を追加。(4) `font.heading.h1Size` (4xl) を復活し `font.heading.weight` (bold) を追加 — h1 とウェイトを semantic 経由で指定できなかった状態の解消。(5) `font.display.mdSize` (lg = 18px) を追加し `font.heading.h3Size` の用途記述から「車両クラス名」を外した — 同一要素にゴシックと明朝の 2 系統が割り当てられていた状態の解消。(6) `color.mask.secret` の参照先を `{color.surface.muted}` から `{color.scheme.main.tint}` へ変更 — labels-tags.rental-car.md §2 B-2 が同じ箱に別値を定めていた矛盾の解消。(7) `radius.badge` に非操作ラベルへ pill を使わない旨の `$description` / `$note` を補い、`color.text.muted` の用途記述を装飾用途に限定した。新しい色値・数値は primitive `blackAlpha.45` (暫定値) 以外に追加していない。`$meta.version` は据置き。",
+    "basedOn": "rental-car 0.2.1-draft。オーナー判断 2026-08-18 により travel 0.3.0-draft の定義体系 (scheme 二層・link=主色・success=主色・accent=バッジ専用) を採用。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、次を追加・変更した。(1) `color.text.mutedStrong` (gray.700 #616161・白背景 6.19:1) を追加 — 判読性を要する補助情報が `muted` (#9e9e9e・2.68:1・AA 未達) しか参照先を持たず design.md §2.3 の AA 下限宣言と矛盾していた状態の解消。(2) `color.overlay.backdrop` (placeholder) を追加 — Modal の backdrop が生値 rgba(0,0,0,.45) で書かれていた状態の解消。(3) `radius.overlay` (placeholder・既存 radius.lg 参照) を追加。(4) `font.heading.h1Size` (4xl) を復活し `font.heading.weight` (bold) を追加 — h1 とウェイトを semantic 経由で指定できなかった状態の解消。(5) `font.display.mdSize` (lg = 18px) を追加し `font.heading.h3Size` の用途記述から「車両クラス名」を外した — 同一要素にゴシックと明朝の 2 系統が割り当てられていた状態の解消。(6) `color.mask.secret` の参照先を `{color.surface.muted}` から `{color.scheme.main.tint}` へ変更 — labels-tags.rental-car.md §2 B-2 が同じ箱に別値を定めていた矛盾の解消。(7) `radius.badge` に非操作ラベルへ pill を使わない旨の `$description` / `$note` を補い、`color.text.muted` の用途記述を装飾用途に限定した。新しい色値・数値は primitive `blackAlpha.45` (暫定値) 以外に追加していない。`$meta.version` は据置き。 **Task 009-63** (国内宿泊 travel の最新版 = Task 009-58〜009-62 の適用・Issue #170・正本 = governance/owner-decisions.md §29): semantic を **39 件追加・1 件削除・1 件の参照先変更**した。追加 = (A 面と文字色) `color.text.inverseMuted` / `onAccent`、(B リンク) `color.text.linkHover` / `linkActive`、(D 文書レベル見出し) `font.heading.lineHeight` / `h4Size` / `h5Size` / `h6Size`、(E ラベル・タグ) 器 `label.*` 12 件 (`height.sm`/`md`・`paddingInline.sm`/`md`・`lineHeight`・`fontSize.sm`/`md`・`numberSize.sm`/`md`・`weight.emphasis`/`neutral`・`radius`)・用途色 `color.label.discount.surface`/`text`・`color.label.category.surface`/`text`/`icon`/`border`・`color.label.stock`・`color.membership.paid.surface`/`text`・`color.membership.free.surface`/`text`・`color.tag.neutral.surface`/`text`・accent 2 段 `color.accent.campaignTint`/`campaignInk` と `color.scheme.{main,sub}.accentTint`/`accentInk`。削除 = `radius.input` (入力要素の角丸を `radius.action` = pill へ統一・判断 F-5)。参照先変更 = `font.heading.h3Size` を `{typography.size.lg}` (18px) から `{typography.size.2xl}` (24px) へ (文書レベルの見出しには実寸が 4 の倍数である段のみを用いる規則の新設・判断 D-2 / D-4)。新しい色値は primitive の accent 4 段のみ (うち 3 段は 🚧 仮色)。3 独立 DS の原則 (P1/ADR-0022) は維持し、値は本ファイルに独立して持ち travel のファイルを参照・共有しない。`$meta.version` は据置き。 **Task 009-63R の記述是正** (PR #171 コードレビュー issuecomment-5565532746 の指摘に対応): (1) `color.tag.neutral.text` の `$description` のコントラスト値を 5.68:1 から実測値 **9.22:1** へ是正。(2) 未入力状態の文字色を UI の種別で限定せず `color.text.muted` へ統一する判断 (Web部責任者 2026-09-07・§29 判断 C-5 の適用範囲変更) により、**`color.text.placeholder` の追加を取り下げ** (40 件追加 → 39 件追加)、`color.text.muted` に用途と AA 未達明示の `$note` を付した。travel 側 (§22) の記述は 3 独立 DS の原則により本判断の影響を受けない。",
     "created": "2026-07-02",
-    "updated": "2026-08-20",
+    "updated": "2026-09-07",
     "notes": [
       "既定スキームは main (ロイヤル #2C50C8)。sub (インディゴ #4845D4) は第2候補",
       "success / error / 特集アクセント / リンクは per-scheme。いずれかが正式採用された時点で共通化する",
-      "廃止: 赤3候補 (#9E2334 / #9B2030 / #9F1E30)・紺 #283593・リンク #0050a0 / hover #06f・CTA緑 #43a047・$tocooBlue #2b4b65"
+      "廃止: 赤3候補 (#9E2334 / #9B2030 / #9F1E30)・紺 #283593・リンク #0050a0 / hover #06f・CTA緑 #43a047・$tocooBlue #2b4b65",
+      "テキスト色 4 段 (`strong` #212121 / `body` #424242 / `mutedStrong` #616161 / `muted` #9e9e9e) は文字色の**濃度段**であり、用途に固定した別名 (`link` / `linkHover` / `linkActive` / `placeholder` / `inverse` / `inverseMuted` / `onAccent`) は 4 段とは別に定義する。用途別名が同じ primitive を参照する場合でも、一方の値の変更が他方へ自動的に及ぶ設計にはしない",
+      "面 (背景) として色を使う場合の文字色は、面ごとに許可される組み合わせと文字サイズ・ウェイトの条件が異なる。`color.accent.campaign` (#e4572e) 面は白文字 (`color.text.onAccent`) が 3.68:1 のため (a) 24px 以上 (ウェイトを問わない) または (b) 20px 以上かつ bold (700 以上) を満たす文字のみ。`color.scheme.main.inverse` (#c8912c) 面と `color.scheme.sub.inverse` (#c8b12c) 面は白文字が 2.78:1 / 2.15:1 で大きなテキスト基準も満たさないため濃色文字 `color.text.strong` (5.78:1 / 7.50:1) を用いる — ただし **A 割引率ラベルに限る白文字の例外**がある (AA 未達明示)。2 スキームは値が異なるため、値やコントラスト比を伴う記述で main と sub をワイルドカード表記で 1 行に束ねない。組み合わせの一覧と代替規則は design.md §2.4 が正",
+      "リンクは色 (`link` = 主色) のほか、状態ごとの文字色 (hover = `linkHover` / active = `linkActive` / visited = 専用色なしで `link` を維持 / focus = `color.focus.ring` の outline) と文中リンクの下線の取り扱いを定める。hover で下線を外さない。**状態表現に `opacity` を用いない** — components.md 共通事項の「hover は opacity 約 .85 の暫定」からリンクを除外している。正は design.md §2.5",
+      "文書レベルの見出し (h1〜h6) と Component の見出しは `font.heading.*` を共用する。h1 4xl 2.5rem / h2 3xl 2rem / h3 2xl 1.5rem / h4 xl 1.25rem / h5 md 1rem / h6 md 1rem・ウェイト 700 (`weight`)・行間 1.3 (`lineHeight`)。**上記は `breakpoint.lg` (1024px) 以上に適用される既定であり、1024px 未満では h1 3xl 2rem / h2 2xl 1.5rem / h3 xl 1.25rem / h4〜h6 md 1rem を用いる** (design.md §3.1)。段を移す境界は 1024px の 1 つのみ。文書レベルの見出しには**実寸が 4 の倍数である段のみを用いる** (`typography.size` のうち 4 の倍数でない `sm` 14px・`lg` 18px は見出しに用いない。`sm` は `label.*` の器で bound 確定済み・`lg` は `font.display.mdSize` = 車種クラス名 18px が引き続き参照するため、いずれも本規則の対象外)。**幅ごとの値を持つ semantic トークンは新設していない** (狭い幅の段は design.md §3.1 の表で既存 primitive 段への割当として示す)。書体は**役割**で選び要素名では決まらない。見出しサイズを UA 既定に委ねない",
+      "未入力状態 (`input` / `textarea` の `::placeholder`、Select の未選択値、その他の入力フィールドの未入力表示) の文字色は `muted` (#9e9e9e・白背景 2.68:1) に統一する。**UI の種別で限定しない** (判断 C-5)。通常テキストの 4.5:1 に達しないため **AA 未達を明示する** (適合宣言は行わない)。色の許容であって未入力を色だけで伝えてよいという意味ではない。プレースホルダ専用の用途トークン (`placeholder`) は定義しない。枠色・背景色・必須表現・検証表示は follow-up #2 の実査待ちで、文字色のみを確定させている。正は design.md §2.6",
+      "角丸の用途トークンは `action` (pill・操作要素 = ボタン・CTA・**入力要素**・チップ型操作要素)・`card` (カード外形)・`badge` (非操作のバッジ/ラベル)・`overlay` (オーバーレイ) の **4 系統**。`radius.input` (4px) は Task 009-63 で廃止し入力要素を `action` へ統一した。操作可能なバッジは badge ではなく action 系 Component として扱う",
+      "**accent を面として持つのは B 会員種別 (`color.membership.paid` = accent 淡色段) のみ**とし、C カテゴリ・特集は accent を**アイコン (点)** (`color.label.category.icon`) として持つ。C の面は白 (`color.surface.default`) とし accent で塗らない",
+      "会員ランク色 (会員の階級表現) は構築しない (廃止済) 方針を維持する。ただし会員種別 (無料 / 有料) の 2 値の用途色 (`color.membership.paid` / `free`) はラベル・タグ定義 B の実装として定義する。廃止したのは階級 (ランク) 表現であり、無料 / 有料の 2 区分の会員種別色はこれに該当しない",
+      "割引率等のコンテンツ表記規則 (表示形式・数字強調・桁・端数処理・上限・異常値・表示成立条件) は本ファイルでは定義しない。正は design.md §8.1"
     ]
   },
   "color": {
@@ -62,6 +71,20 @@
           "$value": "{color.palette.orange.400}",
           "$type": "color",
           "$status": "bound"
+        },
+        "accentTint": {
+          "$value": "{color.palette.orange.100}",
+          "$type": "color",
+          "$description": "メインスキーム accent 淡色段 #f9cdbc (小サイズ 12px ラベルの面)。ラベル・タグ定義 B-1 会員種別 / 有料 (b2)",
+          "$status": "placeholder",
+          "$note": "🚧 面の値 (orange.100 #f9cdbc) は bound だが、面上の文字 `accentInk` (orange.800) が **🚧 仮色**のため、面 + 文字の 4.5:1 成立は実色値確定後に本 Repository で検証する (§14)。b2 = 小サイズの非操作ラベル (会員種別 / 有料) 用途。副色文脈は `color.scheme.sub.accentTint`"
+        },
+        "accentInk": {
+          "$value": "{color.palette.orange.800}",
+          "$type": "color",
+          "$description": "🚧 仮色 メインスキーム accent 濃色段 #8a2e11 (淡色面 #f9cdbc 上の文字)。ラベル・タグ定義 B-1 (b2)",
+          "$status": "placeholder",
+          "$note": "🚧 仮色。実色値は実査待ち (§14)。placeholder → bound 昇格は本 Task では行わない。副色文脈は `color.scheme.sub.accentInk`"
         }
       },
       "sub": {
@@ -109,6 +132,20 @@
           "$value": "{color.palette.coral.500}",
           "$type": "color",
           "$status": "bound"
+        },
+        "accentTint": {
+          "$value": "{color.palette.coral.100}",
+          "$type": "color",
+          "$description": "🚧 仮色 サブスキーム accent 淡色段 (小サイズラベルの面・メインの淡色段に揃えた段)。ラベル・タグ定義 B-1 (b2)",
+          "$status": "placeholder",
+          "$note": "🚧 仮色。サブスキーム (coral) の淡色段は未選定 (メイン揃えの可否を含め実査待ち・§14)。placeholder → bound 昇格は本 Task では行わない"
+        },
+        "accentInk": {
+          "$value": "{color.palette.coral.800}",
+          "$type": "color",
+          "$description": "🚧 仮色 サブスキーム accent 濃色段 (淡色面上の文字・未実査)。ラベル・タグ定義 B-1 (b2)",
+          "$status": "placeholder",
+          "$note": "🚧 仮色。サブスキーム (coral) の濃色段は未実査 (§14)。placeholder → bound 昇格は本 Task では行わない"
         }
       }
     },
@@ -180,8 +217,9 @@
       "muted": {
         "$value": "{color.palette.gray.600}",
         "$type": "color",
-        "$description": "装飾・非情報要素の弱表現 #9e9e9e (白背景 2.68:1)。判読性を必要とする補助情報には `mutedStrong` を使用する",
-        "$status": "bound"
+        "$description": "装飾・非情報要素の弱表現、および**未入力状態の案内文字** #9e9e9e (白背景 2.68:1・AA 未達)。判読性を必要とする補助情報には `mutedStrong` を使用する",
+        "$status": "bound",
+        "$note": "**未入力状態の文字色は UI の種別で限定せず本トークンに統一する** (`input` / `textarea` の `::placeholder`、Select の未選択値 = 選択前の `option` に相当する表示、その他の入力フィールドの未入力表示を含む。判断 C-5・governance/owner-decisions.md §29)。白背景 2.68:1 は通常テキストに求められる 4.5:1 に達しない — **AA 未達であることを明示する**。適合宣言は行わない。**色の許容であって、未入力であることを色だけで伝えてよいという意味ではない** (未入力の識別は文言が担う)。入力済みテキスト (`color.text.body` #424242) との判別を色差のみに依存させない。案内文字を必須項目・ラベル・エラーメッセージ・入力形式の説明の代替に用いない。プレースホルダ専用の用途トークン (`color.text.placeholder`) は定義しない。枠色・背景色・必須表現・検証表示は実査待ち (follow-up #2)。正は design.md §2.6"
       },
       "mutedStrong": {
         "$value": "{color.palette.gray.700}",
@@ -193,13 +231,43 @@
       "inverse": {
         "$value": "{color.palette.white}",
         "$type": "color",
+        "$description": "inverse 面上の主要文字 #ffffff (inverse surface #212121 上 16.10:1)。見出し・価格・重要情報。補助情報は `inverseMuted` を使用する",
         "$status": "bound"
+      },
+      "inverseMuted": {
+        "$value": "{color.palette.gray.600}",
+        "$type": "color",
+        "$description": "inverse 面上の補助情報 #9e9e9e (inverse surface #212121 上 6.01:1)。価格の補助テキスト・割引前価格・セカンダリメタ情報",
+        "$status": "bound",
+        "$note": "`inverse` (#ffffff・inverse 面上 16.10:1) が主要文字、本トークンがその補助段。**白背景等の明色面には使用しない** (#9e9e9e は白背景 2.68:1 = 通常テキスト 4.5:1 未達。明色面の補助情報は `mutedStrong` を使用する)。逆に `mutedStrong` (#616161) を inverse 面へ使用しない (#212121 上 2.60:1)。適用規格・達成レベルの正式確定・適合判定・適合宣言は行わない (design.md §2.4)"
+      },
+      "onAccent": {
+        "$value": "{color.palette.white}",
+        "$type": "color",
+        "$description": "campaign accent 面上の文字色 #ffffff。使用条件付き = `color.accent.campaign` (#e4572e) 上のコントラスト比は 3.68:1 で、大きなテキストに求められる 3:1 は満たすが通常テキストに求められる 4.5:1 には達しない。**使用できるのは (a) 24px 以上 (ウェイトを問わない) または (b) 20px 以上かつ bold (700 以上) のいずれかを満たす文字に限る**",
+        "$status": "bound",
+        "$note": "**本トークンは「白であれば常にアクセシブル」を意味しない**。背景色・文字サイズ・ウェイトの組み合わせ制約と併せて使用する (組み合わせ一覧と代替規則は design.md §2.4 が正)。**(a) (b) のいずれも満たさない文字 = (i) 20px 未満のすべて / (ii) 20px 以上 24px 未満かつ通常ウェイト には campaign accent を面として使用しない** ((a) (b) (i) (ii) で全サイズ・全ウェイトを網羅する)。ウェイトを上げれば自動的に適合するという定義ではない。本トークンの存在を理由にコントラスト確認を省略しない。縁取り・影でコントラスト不足を解決したものとして扱わない。適用規格・達成レベルの正式確定・適合判定・適合宣言は行わない"
       },
       "link": {
         "$value": "{color.scheme.main.base}",
         "$type": "color",
-        "$description": "リンク=主色 (per-scheme)。実装の #0050a0 / hover #06f は廃止",
-        "$status": "bound"
+        "$description": "リンク=主色 (per-scheme) #2c50c8 (白背景 6.80:1)。実装の #0050a0 / hover #06f は廃止",
+        "$status": "bound",
+        "$note": "**色以外の装飾 (下線) と状態 (hover / visited / active / focus) の正は design.md §2.5** — 文中リンクは下線を付し下線を外す既定を置かない・hover は下線を維持したまま `linkHover` へ・active は `linkActive`・visited は専用色を設けず本トークンを維持・focus は `color.focus.ring` の outline。**リンクの状態表現に `opacity` を用いない** (components.md 共通事項の「hover は opacity 約 .85 の暫定」からリンクを除外している)"
+      },
+      "linkHover": {
+        "$value": "{color.scheme.main.hover}",
+        "$type": "color",
+        "$description": "リンク hover の文字色 = 各スキームの hover。既定 = メイン #2340a6 (白背景 8.92:1)。副色文脈は scheme.sub.hover #3936b0",
+        "$status": "bound",
+        "$note": "hover では**下線を維持したまま**本トークンへ文字色を変更する (下線の消失はリンクでなくなったように読める)。既存の scheme ロール (hover) を参照し新しい色値 (primitive) は追加していない。本トークンは確定値であり `🚧 暫定` を付さない。正は design.md §2.5"
+      },
+      "linkActive": {
+        "$value": "{color.scheme.main.pressed}",
+        "$type": "color",
+        "$description": "リンク active (押下中) の文字色 = 各スキームの pressed。既定 = メイン #1b3488 (白背景 11.09:1)。副色文脈は scheme.sub.pressed #2c2a8c",
+        "$status": "bound",
+        "$note": "既存の scheme ロール (pressed) を参照し新しい色値 (primitive) は追加していない。visited には専用色を設けない (既存 palette に visited 用の色値が無く primitive を追加しないため。色で区別する要否は未確定事項)。正は design.md §2.5"
       }
     },
     "surface": {
@@ -258,8 +326,130 @@
       "campaign": {
         "$value": "{color.scheme.main.accent}",
         "$type": "color",
-        "$description": "特集/セール専用。バッジのみ (塗りボタン禁止)",
-        "$status": "bound"
+        "$description": "特集/セール強調の accent = 各スキームの accent。既定 = メイン #e4572e。副色文脈は scheme.sub.accent #e0553c。**バッジ/割引ラベル等の『点』専用。ボタン塗りには使用しない** (campaign バリアントは廃止)",
+        "$status": "bound",
+        "$note": "**面 (背景) として使用する場合の文字色は `color.text.onAccent` (#ffffff・3.68:1) のみとする。使用できるのは (a) 24px 以上 (ウェイトを問わない) または (b) 20px 以上かつ bold (700 以上) のいずれかを満たす文字に限る**。`color.text.strong` (#212121) との組み合わせ 4.37:1 は大きなテキスト基準は満たすが、面上の文字色を 1 つに定めるため**規則としては使用しない** (参考値)。**(a) (b) のいずれも満たさない文字 = (i) 20px 未満のすべて / (ii) 20px 以上 24px 未満かつ通常ウェイト には本トークンを面として使用せず、既定は neutral dark 面 `color.surface.inverse` + `color.text.inverse` (16.10:1) とし、本トークンは境界色・アイコン・点的装飾に限定する** (本トークンを文字色として明色面に置く方法はこの場合の代替にならない = 明色面上 3.38〜3.68:1 で通常テキスト 4.5:1 未達) = design.md §2.4 が正。**accent を面として持つのは B 会員種別 (`color.membership.paid` = accent 淡色段) のみ**とし、C カテゴリ・特集は accent を**アイコン (点)** として持つ (`color.label.category.icon`)"
+      },
+      "campaignTint": {
+        "$value": "{color.scheme.main.accentTint}",
+        "$type": "color",
+        "$description": "🚧 小サイズ (12px) の非操作ラベルの面 = accent 淡色段 (b2)。**面の値 (orange.100 #f9cdbc) は bound** だが濃色文字 (campaignInk) が仮色のため b2 の成立は実色値待ち。既定 = メイン。副色文脈は scheme.sub.accentTint。ラベル・タグ定義 B-1 会員種別 / 有料",
+        "$status": "placeholder",
+        "$note": "🚧 面上の文字 `campaignInk` (accentInk = orange.800) が **🚧 仮色**のため、面 + 濃色文字の 4.5:1 成立は実色値確定後に本 Repository で検証する (§14)。**小サイズラベル用途に限る** ((a)(b) を満たさない (i)(ii) の代替の 2 択目 = accent 淡色面 + 濃色文字。もう 1 択は neutral dark 面。design.md §2.4 が正)。campaign accent (`campaign` #e4572e・面) とは別トークン"
+      },
+      "campaignInk": {
+        "$value": "{color.scheme.main.accentInk}",
+        "$type": "color",
+        "$description": "🚧 仮色 上記淡色面 (`campaignTint` #f9cdbc) 上の文字色 = accent 濃色段 (b2)。既定 = メイン。副色文脈は scheme.sub.accentInk。淡色面上 5.84:1 (仮色濃色段に基づく概算)",
+        "$status": "placeholder",
+        "$note": "🚧 仮色。実色値は実査待ち (§14)。placeholder → bound 昇格は本 Task では行わない。淡色面 + 濃色文字の 4.5:1 成立は実色値確定後に本 Repository で検証する"
+      }
+    },
+    "label": {
+      "$description": "非操作の点的ラベル (バッジ/タグ) の用途色。器 (寸法) は top-level `label`・角丸は `radius.badge`。ラベル・タグ定義 (labels-tags.rental-car.md) の実装。操作可能なラベルは badge ではなく action 系 Component として扱い本群を用いない",
+      "discount": {
+        "surface": {
+          "$value": "{color.scheme.main.inverse}",
+          "$type": "color",
+          "$description": "A 割引率ラベルの面 = スキーム逆色 #c8912c。副色文脈は scheme.sub.inverse #c8b12c",
+          "$status": "bound",
+          "$note": "面上の文字は `discount.text` (白文字)。白文字は逆色面上 2.78:1 (main) / 2.15:1 (sub) で通常テキスト 4.5:1 未達 = **AA 未達**。**A 割引率ラベルに限る例外**として許容する (design.md §2.4「A 割引率ラベルに限る白文字の例外」が正)。適合宣言は行わない"
+        },
+        "text": {
+          "$value": "{color.text.inverse}",
+          "$type": "color",
+          "$description": "A 割引率ラベルの文字 = 白 #ffffff (main 逆色面上 2.78:1 / sub 逆色面上 2.15:1 = AA 未達)。A 割引率ラベルに限る例外 (design.md §2.4)",
+          "$status": "bound",
+          "$note": "白文字 (`color.text.inverse`) を逆色面へ用いるのは §2.4 の白文字禁止に対する**例外条項**による (**A 割引率ラベル・scheme 逆色面に限る**・AA 未達明示)。campaign accent 面 + 白文字は例外に含めない。適合宣言は行わない"
+        }
+      },
+      "category": {
+        "$description": "C カテゴリ・特集ラベル (C1 企画名 / C2 販売条件) の用途色。accent は**面ではなくアイコン (点)** として持つ — accent を面として持つのは B 会員種別 (`membership.paid` = accent 淡色段) のみとする用途分離による。器は共通 sm (12px)・ウェイトは `label.weight.emphasis` (700)・角丸は `radius.badge`。白系の面の上に置く場合は `category.border` の枠線を 1px 引く",
+        "surface": {
+          "$value": "{color.surface.default}",
+          "$type": "color",
+          "$description": "C カテゴリ・特集ラベルの面 = 白 #ffffff。accent (#e4572e) で塗らない",
+          "$status": "bound",
+          "$note": "白面 + 濃色文字 (`category.text` #212121) は 16.10:1 で通常テキスト 4.5:1 を達成する (design.md §2.4 検証表)。**器のサイズ・ウェイトに条件を付けずに成立する**ため、12px (`label.fontSize.sm`) でも (i) (ii) の代替 2 択 (neutral dark 面 / accent 淡色面) を要しない。写真の上に置く場合も面のみで分離し影・スクリムは用いない"
+        },
+        "text": {
+          "$value": "{color.text.strong}",
+          "$type": "color",
+          "$description": "C カテゴリ・特集ラベルの文字 = #212121 (白面上 16.10:1)",
+          "$status": "bound"
+        },
+        "icon": {
+          "$value": "{color.accent.campaign}",
+          "$type": "color",
+          "$description": "C カテゴリ・特集ラベルのアイコン色 = campaign accent #e4572e (白面上 3.68:1)。企画・条件への紐づきを示す識別の点 (C1 = `fa-bolt` / C2 = `fa-clock`)",
+          "$status": "bound",
+          "$note": "**非テキスト要素 (アイコン) としての使用に限る** — 非テキスト UI 要素の 3:1 は満たすが通常テキスト 4.5:1 (3.68:1) には達しないため、本トークンを文字色・面色へ用いない (design.md §2.4 代替規則 2)。本ラベルへ campaign accent 面 + 白文字を用いない (§2.4「A 割引率ラベルに限る白文字の例外」の対象は A 割引率ラベルであり C は対象外)。**アイコンの字形とサイズは未定義** (未確定事項)"
+        },
+        "border": {
+          "$value": "{color.border.default}",
+          "$type": "color",
+          "$description": "C カテゴリ・特集ラベルの枠線色 = #cccccc。白系の面 (`surface.default` #ffffff / `surface.subtle` #f9f9f9) の上に置く場合にのみ 1px (`border.width.thin`) で用いる",
+          "$status": "bound",
+          "$note": "白面が背景と同色・近似色になり面のみでは境界が生じないため (白 × 白 = 1.00:1・白 × `surface.subtle` = 1.05:1・本 Repository で実測) の分離手段。**写真の上・有色面の上では枠線を用いず面のみで分離する** (影・スクリムは用いない)。枠線は白面上 1.61:1・`surface.subtle` 上 1.53:1 で**非テキスト UI 要素の 3:1 には達しない** — 分離の補助であり、ラベルの識別は文字 (16.10:1) が担う。既存 border 3 段はいずれも白面上 3:1 に達しない (`subtle` 1.32:1 / `default` 1.61:1 / `strong` 1.90:1・同実測)。適合宣言は行わない"
+        }
+      },
+      "stock": {
+        "$value": "{color.state.error}",
+        "$type": "color",
+        "$description": "E1 在庫僅少 (残台数のひっ迫) の文字色 = state.error #d23a3a (白背景 4.77:1)。面なしのテキスト (価格の直上に置く)",
+        "$status": "bound",
+        "$note": "state.error を「利用者に不利な事実の明示 (在庫のひっ迫)」用途へ拡張したもの (予約条件 F の色規則と共通)。**白背景に限る** (写真の上には置かない = design.md §2.4 検証表の対象外)。色のみで伝えず文言を併記する。適合宣言は行わない。E2 満車・受付終了 (非活性 CTA) の値は方向のみで未反映"
+      }
+    },
+    "membership": {
+      "$description": "会員種別 (無料 / 有料) の用途色。ラベル・タグ定義 B。**会員ランク色 (会員の階級表現) は構築しない (廃止済) 方針を維持する** — 廃止したのは階級 (ランク) 表現であり、本群は無料 / 有料の 2 区分の会員種別色である",
+      "paid": {
+        "surface": {
+          "$value": "{color.accent.campaignTint}",
+          "$type": "color",
+          "$description": "🚧 有料会員 (プライム) ラベルの面 = accent 淡色段 (b2・面 #f9cdbc は bound・成立は濃色段の実色値待ち)",
+          "$status": "placeholder",
+          "$note": "🚧 accent 淡色段 (面) を参照。面 + 文字の 4.5:1 成立は実色値 (accentInk = 🚧 仮色) 確定後に検証 (§14)"
+        },
+        "text": {
+          "$value": "{color.accent.campaignInk}",
+          "$type": "color",
+          "$description": "🚧 仮色 有料会員 (プライム) ラベルの文字 = accent 濃色段 (淡色面上 5.84:1・仮色濃色段に基づく概算)",
+          "$status": "placeholder",
+          "$note": "🚧 仮色。実色値は実査待ち (§14)"
+        }
+      },
+      "free": {
+        "surface": {
+          "$value": "{color.scheme.main.tint}",
+          "$type": "color",
+          "$description": "無料会員ラベルの面 = 主色 tint #e8edfb。誘導の印 (会員になれば見られる)。**既定では表示しない** (無印 = 無料会員)",
+          "$status": "bound",
+          "$note": "色の適用先は 2 箱のみ = (1) 卸価格の解放訴求ブロック (2) 価格のマスク表示 (`color.mask.secret` が同値を参照)。会員登録・ログイン導線は操作要素のため適用外"
+        },
+        "text": {
+          "$value": "{color.scheme.main.ink}",
+          "$type": "color",
+          "$description": "無料会員ラベルの文字 = 主色 ink #14224a (tint 面上 13.21:1)",
+          "$status": "bound"
+        }
+      }
+    },
+    "tag": {
+      "$description": "中立タグ (D1 車種クラス / D2 装備 / D3 利用条件) の用途色。中立面 1 つに統合し色を持たせない (D は車両の事実であり訴求ではない)。区分は順序で読ませる (D4 格付けは廃止)。値を持つ情報は表に残しタグは真偽の要約のみを担う",
+      "neutral": {
+        "surface": {
+          "$value": "{color.surface.muted}",
+          "$type": "color",
+          "$description": "D 中立タグの面 #f5f5f5 (中立面は 1 つに統合。subtle / tint は使わない — tint 面は B-2 無料会員の専用)",
+          "$status": "bound"
+        },
+        "text": {
+          "$value": "{color.text.body}",
+          "$type": "color",
+          "$description": "D 中立タグの文字 #424242 (中立面 #f5f5f5 上 9.22:1)。中立タグは通常ウェイト 400 (`label.weight.neutral`)",
+          "$status": "bound"
+        }
       }
     },
     "focus": {
@@ -307,33 +497,67 @@
       }
     },
     "heading": {
+      "$description": "見出しトークン群。**文書レベルの見出し (h1〜h6) と Component の見出しは本トークン群を共用する** (別系統を設けない)。Component 側で文書レベルの既定から外れる値が必要な場合は当該 Component 仕様へ明示記載する (暗黙の上書きを認めない)。割当の正は design.md §3.1",
       "family": {
         "$value": "{typography.fontFamily.heading}",
         "$type": "fontFamily",
-        "$status": "bound"
+        "$description": "見出しゴシック (LINE Seed JP)。文書レベル h1〜h6 の**既定**書体。明朝 (`font.display.family`) は Display・Hero・車種クラス名で**明示的に選択する**書体であり文書レベル見出しの既定ではない",
+        "$status": "bound",
+        "$note": "書体は**役割** (表現 = Display / 機能 = UI・文書構造) で選び、要素名 (`h1`〜`h6`) では決まらない。役割が Display・Hero・車種クラス名にあたる場合は、その要素が `h1` であっても `font.display.family` (明朝) を明示的に選択してよい (design.md §3.1)"
       },
       "weight": {
         "$value": "{typography.fontWeight.bold}",
         "$type": "fontWeight",
-        "$description": "見出しウェイト 700 (design.md §3 と一致)",
-        "$status": "bound"
+        "$description": "見出しウェイト 700。文書レベル h1〜h6 共通の既定 (design.md §3 の見出し 700 と一致)",
+        "$status": "bound",
+        "$note": "**サイズ・太さ・行間の既定は書体の選択と独立**に定める。明朝 (`font.display.family`) を明示的に選択しても本トークンの 700 がそのまま適用される (design.md §3.1)"
+      },
+      "lineHeight": {
+        "$value": "{typography.lineHeight.tight}",
+        "$type": "number",
+        "$description": "見出し行間 1.3。文書レベル h1〜h6 共通の既定",
+        "$status": "bound",
+        "$note": "Task 009-63 で追加。行間 3 段 (tight 1.3 / normal 1.5 / relaxed 1.8) のうち見出しへの割当が正本上不在だった状態の解消。`relaxed` (1.8) は本文の値であり見出しへ適用しない (`font.body.lineHeight`)。新しい行間値 (primitive) は追加していない"
       },
       "h1Size": {
         "$value": "{typography.size.4xl}",
         "$type": "dimension",
-        "$description": "ページ見出し 2.5rem",
+        "$description": "文書レベル h1 2.5rem (40px相当)。**`breakpoint.lg` (1024px) 以上に適用される既定**であり、1024px 未満では `typography.size.3xl` (2rem・32px相当) の段を用いる (design.md §3.1)",
         "$status": "bound"
       },
       "h2Size": {
         "$value": "{typography.size.3xl}",
         "$type": "dimension",
+        "$description": "文書レベル h2 2rem (32px相当)。**1024px 未満**は `typography.size.2xl` (1.5rem・24px相当)。一覧・カード見出しにも同値を用いる (文書レベル用の別系統を設けない)",
         "$status": "bound"
       },
       "h3Size": {
-        "$value": "{typography.size.lg}",
+        "$value": "{typography.size.2xl}",
         "$type": "dimension",
-        "$description": "カード見出し (ゴシック)。車両クラス名は明朝のため `font.display.mdSize` を使用する",
-        "$status": "bound"
+        "$description": "文書レベル h3 1.5rem (24px相当)。**1024px 未満**は `typography.size.xl` (1.25rem・20px相当)。カード見出しにも同値を用いる",
+        "$status": "bound",
+        "$note": "Task 009-63 で参照先を `{typography.size.lg}` (1.125rem・18px) から `{typography.size.2xl}` (1.5rem・24px) へ変更した — 文書レベルの見出しには**実寸が 4 の倍数である段のみを用いる**規則を design.md §3.1 に新設したことによる (Issue #170 判断 D-2 / D-4・正本 = governance/owner-decisions.md §29)。`typography.size` 9 段のうち 4 の倍数でないのは `sm` (14px) と `lg` (18px) の 2 段。**`sm` は `label.fontSize.md` / `label.numberSize.sm` として器トークンに組み込まれ bound 確定済みのため本規則の対象外**であり、`lg` は `font.display.mdSize` (車種クラス名 18px・明朝) が引き続き参照する (**文書レベルの見出しに限る規則**であり `font.display.*` は対象外)。本変更により `h3Size` (24px) と `font.display.mdSize` (18px) は同値でなくなった。新しいサイズ値 (primitive) は追加していない"
+      },
+      "h4Size": {
+        "$value": "{typography.size.xl}",
+        "$type": "dimension",
+        "$description": "文書レベル h4 1.25rem (20px相当)。**1024px 未満**は `typography.size.md` (1rem・16px相当)",
+        "$status": "bound",
+        "$note": "Task 009-63 で追加。既存スケール xl への割当であり新しいサイズ値 (primitive) は追加していない"
+      },
+      "h5Size": {
+        "$value": "{typography.size.md}",
+        "$type": "dimension",
+        "$description": "文書レベル h5 1rem (16px相当)。1024px 未満でも同値 (段を下げない)",
+        "$status": "bound",
+        "$note": "Task 009-63 で追加。4 の倍数規則により `lg` (1.125rem・18px) は用いない。`h6Size` と同値になるが用途が異なるため別トークンとして維持する。新しいサイズ値 (primitive) は追加していない"
+      },
+      "h6Size": {
+        "$value": "{typography.size.md}",
+        "$type": "dimension",
+        "$description": "文書レベル h6 1rem (16px相当)。本文と同サイズ。1024px 未満でも同値 (段を下げない)",
+        "$status": "bound",
+        "$note": "Task 009-63 で追加。UA 既定の h6 0.67em は本文 1rem 基準で 10.7px となり本文より小さいため委ねない (design.md §3.1)。**本文との区別根拠は不足している** — 本文のウェイトが正本上不在 (`font.body` は family / size / lineHeight のみ) のためウェイトによる区別は成立せず、行間差 (1.3 / 1.8) は折り返し時のみ視覚差となり、書体も同一スタック。区別根拠は design.md 未確定事項の一覧に起票"
       }
     },
     "display": {
@@ -347,7 +571,8 @@
         "$value": "{typography.size.lg}",
         "$type": "dimension",
         "$description": "車種クラス名 1.125rem (18px)。明朝 (`font.display.family`) と組で使用する",
-        "$status": "bound"
+        "$status": "bound",
+        "$note": "**文書レベルの見出しに用いる段を 4 の倍数に限る規則 (design.md §3.1) の対象外**である — 同規則は文書レベルの見出し (`font.heading.h1Size`〜`h6Size`) にのみ適用され、`font.display.*` には及ばない (Issue #170 判断 D-4・正本 = governance/owner-decisions.md §29)。Task 009-63 で `font.heading.h3Size` が `2xl` (24px) へ変わったため、本トークン (18px) と `h3Size` は同値でなくなった。書体は**役割**で選ぶ (design.md §3.1) — 車種クラス名は Display の役割として明朝を明示的に選択したものであり、要素名で固定したものではない"
       },
       "lgSize": {
         "$value": "{typography.size.display-lg}",
@@ -383,13 +608,9 @@
     "action": {
       "$value": "{radius.full}",
       "$type": "dimension",
-      "$description": "pill。旧 rental-car の 4px 固有形状 (R-01) は廃止",
-      "$status": "bound"
-    },
-    "input": {
-      "$value": "{radius.sm}",
-      "$type": "dimension",
-      "$status": "bound"
+      "$description": "操作要素の角丸 pill (9999px) — ボタン・CTA・**入力要素 (Input / Select / SearchForm のフィールド)**・チップ型操作要素。旧 rental-car の 4px 固有形状 (R-01) は廃止",
+      "$status": "bound",
+      "$note": "Task 009-63 で**入力要素を本トークンへ統一**し `radius.input` (4px) を廃止・削除した (Issue #170 判断 F-5・正本 = governance/owner-decisions.md §29)。操作要素の角丸を 1 つに定め、ボタンと入力欄が同じフォーム内で異なる形状を持つ状態を解消する。用途トークンは action / card / badge / overlay の **4 系統**"
     },
     "card": {
       "$value": "{radius.md}",
@@ -407,9 +628,95 @@
     "overlay": {
       "$value": "{radius.lg}",
       "$type": "dimension",
-      "$description": "オーバーレイの角丸 16px (SP の下からの drawer / BottomSheet 候補の上端 2 隅等)",
+      "$description": "オーバーレイの角丸 16px (Modal の表示形態 form = sheet の上端 2 隅等・design.md §7)",
       "$status": "placeholder",
-      "$note": "既存 primitive `radius.lg` (16px) を参照し**新しい数値は追加していない**。$status = placeholder = 用途への binding が暫定 (実 px を本 Repository で実査していない)。用途トークンは action / input / card / badge / overlay の 5 系統"
+      "$note": "既存 primitive `radius.lg` (16px) を参照し**新しい数値は追加していない**。$status = placeholder = 用途への binding が暫定 (実 px を本 Repository で実査していない)。用途トークンは action / card / badge / overlay の **4 系統** (Task 009-63 で `radius.input` を廃止し 5 系統から 4 系統へ)"
+    }
+  },
+  "label": {
+    "$description": "非操作の点的ラベル (バッジ/タグ) の共通器 (寸法)。ラベル・タグ定義 (labels-tags.rental-car.md §1) — 高さで箱を決め上下余白は指定しない (行高 1・上下中央)。sm / md の 2 段。用途色は color.label / color.membership / color.tag、角丸は radius.badge。押せるものは badge ではなく action 系として扱い本群を用いない。既存 spacing / typography.size / fontWeight / radius への割当であり新しい数値は追加していない",
+    "height": {
+      "sm": {
+        "$value": "{spacing.5}",
+        "$type": "dimension",
+        "$description": "ラベル高さ sm 20px (spacing.5)。既定 (2 段を持つのは A 割引率のみ)",
+        "$status": "bound"
+      },
+      "md": {
+        "$value": "{spacing.6}",
+        "$type": "dimension",
+        "$description": "ラベル高さ md 24px (spacing.6)",
+        "$status": "bound"
+      }
+    },
+    "paddingInline": {
+      "sm": {
+        "$value": "{spacing.2}",
+        "$type": "dimension",
+        "$description": "ラベル左右余白 sm 8px (spacing.2)",
+        "$status": "bound"
+      },
+      "md": {
+        "$value": "{spacing.3}",
+        "$type": "dimension",
+        "$description": "ラベル左右余白 md 12px (spacing.3)",
+        "$status": "bound"
+      }
+    },
+    "lineHeight": {
+      "$value": 1,
+      "$type": "number",
+      "$description": "ラベル行高 = 1。行高で高さを作らず箱の高さで決める (上下中央)",
+      "$status": "bound"
+    },
+    "fontSize": {
+      "sm": {
+        "$value": "{typography.size.xs}",
+        "$type": "dimension",
+        "$description": "ラベル文字 sm 12px (xs)",
+        "$status": "bound"
+      },
+      "md": {
+        "$value": "{typography.size.sm}",
+        "$type": "dimension",
+        "$description": "ラベル文字 md 14px (sm)",
+        "$status": "bound"
+      }
+    },
+    "numberSize": {
+      "sm": {
+        "$value": "{typography.size.sm}",
+        "$type": "dimension",
+        "$description": "A 割引率の数字 sm 14px (sm) = 文字 (12px) より 1 段上",
+        "$status": "bound",
+        "$note": "数字強調 = 数字部分は `%OFF` 部分より既存スケールで 1 段上のサイズ段を用いる (新 primitive なし)。正は design.md §8.1"
+      },
+      "md": {
+        "$value": "{typography.size.md}",
+        "$type": "dimension",
+        "$description": "A 割引率の数字 md 16px (md) = 文字 (14px) より 1 段上",
+        "$status": "bound"
+      }
+    },
+    "weight": {
+      "emphasis": {
+        "$value": "{typography.fontWeight.bold}",
+        "$type": "fontWeight",
+        "$description": "面のあるラベルのウェイト 700 (A 割引率 / B 会員種別 / C カテゴリ・特集 = 白面 / G 写真枚数)。E1 在庫僅少は面なしのため対象外",
+        "$status": "bound"
+      },
+      "neutral": {
+        "$value": "{typography.fontWeight.regular}",
+        "$type": "fontWeight",
+        "$description": "中立タグ (D1〜D3) のウェイト 400",
+        "$status": "bound"
+      }
+    },
+    "radius": {
+      "$value": "{radius.badge}",
+      "$type": "dimension",
+      "$description": "ラベル角丸 = radius.badge (4px)。primitive 直参照 (radius.sm) は使わず用途トークンを参照する",
+      "$status": "bound"
     }
   },
   "motion": {

@@ -7,7 +7,7 @@
     "serviceLabel": "国内レンタカー (tocoo/tocoo_rental_car — japan ゾーン)",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "rental-car 0.2.1-draft。0.3.0-draft で travel 0.3.0-draft の Foundation 定義を採用 (オーナー判断 2026-08-18)。旧 Q1 赤3候補・Q2・Q3・Q4 は本判断により解消。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、`color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を追加した (Modal の backdrop が components.md / design.md で `rgba(0,0,0,.45)` の生値として書かれ、semantic 経由で指定できなかった状態の解消。travel `blackAlpha.45` と同じ暫定値を独立に持つ = 値の共有ではない)。既存トークンの値・`$status`・`$meta.version` は不変。 Task 009-63 (国内宿泊 travel の最新版 = Task 009-58〜009-62 の適用・Issue #170・記録 = governance/owner-decisions.md §29): accent の淡色段・濃色段 4 件 (`color.palette.orange.100` / `orange.800`・`coral.100` / `coral.800`) を追加した。ラベル・タグ定義 B-1 会員種別 / 有料 (b2 = 淡色面 + 濃色文字) の面・文字が primitive に段を持たず、semantic 用途トークン (`color.accent.campaignTint` / `campaignInk`・`color.scheme.{main,sub}.accentTint` / `accentInk`) を定義できなかった状態の解消。`orange.100` (#f9cdbc) のみ bound、他 3 段は **🚧 仮色 placeholder** (継承元である travel 側でも placeholder であり `🚧` を伝播させる・実色を発明しない)。値は本ファイルに独立して持ち travel のファイルを参照・共有しない (P1/ADR-0022)。既存トークンの値・`$status`・`$meta.version` は不変。",
+    "basedOn": "rental-car 0.2.1-draft。0.3.0-draft で travel 0.3.0-draft の Foundation 定義を採用 (オーナー判断 2026-08-18)。旧 Q1 赤3候補・Q2・Q3・Q4 は本判断により解消。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、`color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を追加した (Modal の backdrop が components.md / design.md で `rgba(0,0,0,.45)` の生値として書かれ、semantic 経由で指定できなかった状態の解消。travel `blackAlpha.45` と同じ暫定値を独立に持つ = 値の共有ではない)。既存トークンの値・`$status`・`$meta.version` は不変。 Task 009-63 (国内宿泊 travel の最新版 = Task 009-58〜009-62 の適用・Issue #170・記録 = governance/owner-decisions.md §29): accent の淡色段・濃色段 4 件 (`color.palette.orange.100` / `orange.800`・`coral.100` / `coral.800`) を追加した。ラベル・タグ定義 B-1 会員種別 / 有料 (b2 = 淡色面 + 濃色文字) の面・文字が primitive に段を持たず、semantic 用途トークン (`color.accent.campaignTint` / `campaignInk`・`color.scheme.{main,sub}.accentTint` / `accentInk`) を定義できなかった状態の解消。`orange.100` (#f9cdbc) のみ bound、他 3 段は **🚧 仮色 placeholder** (継承元である travel 側でも placeholder であり `🚧` を伝播させる・実色を発明しない)。値は本ファイルに独立して持ち travel のファイルを参照・共有しない (P1/ADR-0022)。既存トークンの値・`$status`・`$meta.version` は不変。 Task 009-65 (`typography.fontWeight` のスケールを書体の配信段に揃える・Issue #174・Owner 2026-09-11・記録 = governance/owner-decisions.md §31): `medium` (500) と `black` (900) を**削除**し、`thin` (100) と `extraBold` (800) を**追加**した。書体 (`typography.fontFamily.heading` / `sans` / `latin` / `number` の先頭 = LINE Seed JP) が Google Fonts で配信するウェイトは **100 / 400 / 700 / 800 の 4 段のみ**であり (本 Repository で実測。200 / 300 / 500 / 600 / 900 を要求すると CSS ではなく `400: Font family not found` が返る)、500 と 900 には対応する字面が存在しなかったため。削除した 2 段を `$value` で参照する semantic トークンは本サービスに存在しなかった (実測。`font.heading.weight` / `font.price.weight` / `label.weight.emphasis` は `bold`、`label.weight.neutral` は `regular` を参照)。追加した `thin` / `extraBold` を参照する semantic は設けておらず、**見出しの太さの既定は `font.heading.weight` (700) のまま不変**である (travel `design.md` §3.1 が定める太さ 100 の選択規則は travel に限る・本サービスへは自動適用しない = P1/ADR-0022)。値は本ファイルに独立して持ち travel のファイルを参照・共有しない。他のトークンの値・`$status`・`$meta.version` は不変。",
     "created": "2026-07-02",
     "updated": "2026-09-07",
     "rules": [
@@ -288,25 +288,28 @@
       }
     },
     "fontWeight": {
+      "thin": {
+        "$value": 100,
+        "$type": "fontWeight",
+        "$description": "LINE Seed JP Thin。書体が配信する最も細い段。現時点で参照する semantic は無く、用途は正本上未定義 (見出しの既定は 700 のまま・Task 009-65)",
+        "$status": "bound"
+      },
       "regular": {
         "$value": 400,
         "$type": "fontWeight",
-        "$status": "bound"
-      },
-      "medium": {
-        "$value": 500,
-        "$type": "fontWeight",
+        "$description": "LINE Seed JP Regular。本文・UI の既定",
         "$status": "bound"
       },
       "bold": {
         "$value": 700,
         "$type": "fontWeight",
+        "$description": "LINE Seed JP Bold。見出し・価格・強調ラベルの既定",
         "$status": "bound"
       },
-      "black": {
-        "$value": 900,
+      "extraBold": {
+        "$value": 800,
         "$type": "fontWeight",
-        "$description": "例外的強調のみ",
+        "$description": "LINE Seed JP ExtraBold。書体が配信する最も太い段。現時点で参照する semantic は無く、用途は正本上未定義 (Task 009-65)",
         "$status": "bound"
       }
     },

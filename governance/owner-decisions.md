@@ -1009,6 +1009,80 @@
 - **実装 Repository (`tocoo/tocoo_travel`) 側の適用作業**。実装の Breadcrumb の現在地の文字色は本 Repository で実査していない (**未検証**)。
 
 
+## 31. Travel 文書レベル見出しの太さ 100 (thin) の導入と `typography.fontWeight` スケールの配信段への整合 (travel / rental-car) — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) の文書レベルの見出しに **LINE Seed JP Thin (100)** を選べるようにする件、および同件の検証中に判明した **`typography.fontWeight` のスケールに書体が配信しない段が含まれていた**件について、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録。契機は [Issue #174](https://github.com/tocoo/coocom-design-system/issues/174)。上記 §1〜§30 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§30 の各記録は変更しない。
+- **本記録は §28 (ブレークポイントごとの見出しサイズ段) の続きではない。** §28 が確定したのは**サイズ段と適用幅**であり、本記録が確定するのは**太さ**である。§28 の判断内容・適用範囲は変更しない。
+- **適用範囲は国内宿泊 (travel) と国内レンタカー (rental-car) の 2 サービス**であり、範囲はスケールの整合 (後述 H-5) の部分に限り 2 サービスへ及ぶ。**見出しの太さ 100 を選べる規則 (H-1〜H-4) は travel に限る。** inbound へは及ばない (後述 H-6・3 独立 DS の原則 = P1/ADR-0022)。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 31-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/travel/design-system/primitive.travel.json](../services/travel/design-system/primitive.travel.json) の `typography.fontWeight` の**追加 2 件** (`thin` 100・`extraBold` 800) と**削除 2 件** (`medium` 500・`black` 900)、②[../services/travel/design-system/semantic.travel.json](../services/travel/design-system/semantic.travel.json) への `font.heading.weightThin` の追加 (既定 `font.heading.weight` は不変)、③[../services/travel/design-system/design.md](../services/travel/design-system/design.md) の部分更新 (§2.1 用語の定義「ウェイトの境界」の是正・§3 の表と箇条・§3.1 の表への列追加と [決定] の追加/改訂・未確定事項の一覧 2 行追加)、④[../services/rental-car/design-system/primitive.rental-car.json](../services/rental-car/design-system/primitive.rental-car.json) の同じスケール整合 (追加 2 件・削除 2 件)、⑤[../services/rental-car/design-system/design.md](../services/rental-car/design-system/design.md) の部分更新 (§2.1 用語の定義の是正・§3 の箇条と [事実]・§3.1 の [決定] 改訂)、⑥両サービスの `preview.*.html` の部分更新 (Google Fonts 読み込み・生成ブロックの再生成・注記。**非正本**) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-09-11 |
+| 承認主体 | Web部責任者 |
+| 根拠 | ①見出しのウェイトを変更したいという要望に対し、正本は文書レベルの見出しを **700 固定**と定め、100 に相当する primitive を持たなかった ([Issue #174](https://github.com/tocoo/coocom-design-system/issues/174))。②同件の検証で、`typography.fontWeight` が定義する `medium` (500) と `black` (900) に、書体 (LINE Seed JP) の**対応する字面が存在しない**ことが判明した (本 Repository での実測)。正本が存在しない字面を値として定義し続けることは、実装が指定しても得られない見た目を DS が約束している状態にあたる |
+| 適用範囲 | H-1〜H-4 (太さ 100 の選択規則) = **travel に限定**。H-5 (スケールの配信段への整合) = **travel および rental-car**。inbound へは及ばない (H-6) |
+
+### 31-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-11・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out (意味を変えない字句の修正) の適用でも、一般的な高／低の内容基準の確定でもない。**primitive の削除 2 件**・**追加 2 件**・承認済みの [決定] の改訂・2 サービスにまたがる変更を伴うため carve-out の対象外である |
+
+### 31-3. 取得した現在判断 (2026-09-11)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| H-1 | 太さ 100 を見出しの**既定そのもの**にするか、既定は 700 のまま**選べる選択肢**として足すか | **既定は 700 のまま、明示的な選択肢として足す**。`font.heading.weight` (700) は置き換えず、選択しない限り 700 が適用される。選択のための semantic を別に設ける (`font.heading.weightThin`)。**根拠となった実測** = 実寸 16px の見出しに 100 を当てると本文 (400) より細くなり、見出しが本文より弱く見える (本 Repository で描画して確認)。既定にすると `h4`〜`h6` を含む全段が巻き添えになる |
+| H-2 | 100 を使ってよい見出しの**範囲** (文書レベル `h1`〜`h6` 全体か、Display・Hero・特集・詳細施設名のような役割に限るか) | **要素名 (`h1`〜`h6`) では制限しない。** 制限は実寸で行う (H-4)。`design.md` §3.1 が既に「書体は要素名ではなく役割で選ぶ」と定めており、太さも要素名では決めない |
+| H-3 | `design.md` §3.1 の [決定]「**新しいサイズ値・行間値・ウェイト値 (primitive) は追加しない**」の扱い (改訂するか、本件を例外として記録するか) | **決定文を改訂する。** サイズ値・行間値を追加しない方針は変更せず、ウェイト値についてのみ本 Task の追加・削除を記録する形へ改める。例外として別記すると、正本の [決定] と実物が食い違ったまま残るため |
+| H-4 | 100 は細いため小さい見出しでの可読性が課題になりうる。**サイズの下限**を設けるか | **実寸 24px (1.5rem) 以上の見出しに限る。** 24px 未満では 100 を用いず既定の 700 を用いる。判定の対象はその幅で実際に適用される実寸であり、**同一の見出しが幅によって可否を変える** (`h3` は 1024px 以上で 24px = 可・1024px 未満で 20px = 不可)。本条件を満たす選択は §3.1 の「既定から外れる」に該当せず、**画面ごとの都度の承認を要しない**。<br>**根拠となった実測** = 40px / 32px / 24px では 100 が 700 と別の表情として成立する一方、20px で目に見えて弱くなり、16px では本文 400 より細くなる。下限 24px は §2.1 の**条件 (a)** (`24px` 以上・ウェイトを問わない) とも一致する |
+| H-5 | `typography.fontWeight` が定義する段のうち、書体が**配信していない段**の扱い | **配信されている段は追加し、配信されていない段は記述を削除する。** 本判断により `medium` (500) と `black` (900) を削除し、`thin` (100) と `extraBold` (800) を追加する。<br>**実測 (本 Repository)** = Google Fonts が LINE Seed JP について配信するウェイトは **100 / 400 / 700 / 800 の 4 段のみ**である (`wght@100` / `@400` / `@700` / `@800` は `@font-face` が日本語 124 スライスぶん返り、`@200` / `@300` / `@500` / `@600` / `@900` は CSS ではなく `400: Font family not found` の HTML が返る)。削除する 2 段を `$value` で参照する semantic トークンは travel・rental-car・inbound のいずれにも**存在しなかった**。<br>**判断取得時に想定していた 300 は存在しない** — 取得時点では 300 も配信段と見込んでいたが、その見込みは配信されていないウェイトを要求した際に返るエラーページの内容を配信 CSS と誤って読み取った測定誤りによるものであり、`@font-face` の実数で測り直した結果 300 は配信されていないことが確定した。本判断の内容 (配信されていれば追加・されていなければ削除) は変わらず、追加対象が `thin` 100 と `extraBold` 800 の 2 件に確定した |
+| H-6 | H-5 を適用する**サービスの範囲** | **travel と rental-car の 2 サービス**とする。両サービスは `typography.fontFamily` の先頭がいずれも LINE Seed JP であり、配信段が同一である (実測)。**inbound は保留** — 同 DS の書体規定 (`Murecho` / `Noto Sans JP` / `Roboto` / `Outfit`) 自体が暫定であり、配信段も travel / rental-car と異なるため、書体規定の確定後に別途判断する |
+| H-7 | 本件の影響度 (§8) | **高** (§31-2) |
+
+### 31-4. 追加・変更するトークン
+
+**primitive (travel / rental-car の両方)**
+
+| トークン | 変更 | 値 | `$status` | 参照する semantic |
+| --- | --- | ---: | --- | --- |
+| `typography.fontWeight.thin` | **追加** | 100 | bound | travel = `font.heading.weightThin`。rental-car = **無し** (用途は正本上未定義) |
+| `typography.fontWeight.regular` | 不変 | 400 | bound | `label.weight.neutral` |
+| `typography.fontWeight.medium` | **削除** | (500) | — | 削除前から **0 件** |
+| `typography.fontWeight.bold` | 不変 | 700 | bound | `font.heading.weight` / `font.price.weight` / `label.weight.emphasis` |
+| `typography.fontWeight.extraBold` | **追加** | 800 | bound | **無し** (両サービスとも用途は正本上未定義) |
+| `typography.fontWeight.black` | **削除** | (900) | — | 削除前から **0 件** |
+
+**semantic (travel のみ)**
+
+| トークン | 変更 | `$value` | `$status` |
+| --- | --- | --- | --- |
+| `font.heading.weightThin` | **追加** | `{typography.fontWeight.thin}` | bound |
+| `font.heading.weight` | **不変** | `{typography.fontWeight.bold}` (700) | bound |
+
+- **新しい色値は追加していない。** 本記録が扱うのはウェイトのみである。
+- **`$meta.version` は primitive / semantic とも据置き** (bump の条件は各 README の Open Issue として未決)。
+
+### 31-5. 本記録が決定しないこと
+
+- **`extraBold` (800) の用途。** 値として持つのみで、参照する semantic は両サービスとも設けない。どの用途に割り当てるかは別途判断する。
+- **rental-car の見出しへ太さ 100 を導入するか否か。** 同サービスの `font.heading.weight` (700) は不変であり、travel `design.md` §3.1 の選択規則は同サービスへ自動適用しない (P1/ADR-0022)。
+- **inbound の `typography.fontWeight` の扱い** (H-6 のとおり保留)。同 DS の書体規定の確定後に別途判断する。
+- **本文 (`font.body`) のウェイト。** 正本上いまも未定義であり、本記録では扱わない。
+- **明朝 (`font.display.family` = Noto Serif JP) を選んだ見出しの太さ。** 同書体は 100 を配信していないため (配信段は 200〜900・`wght@100` は `400: Font family not found`・本 Repository で実測)、明朝 × 100 は選べない。これは実測された制約の記録であり、明朝側の太さの規定を新たに定めるものではない。
+- **画像・グラデーションを面とする場合の 100 の見えかた。** §2.1 が同面を対象外・未定義としている範囲に属する (travel の未確定事項の一覧へ起票)。
+- **適用規格・達成レベルの正式確定・適合判定・適合宣言。** 太さは §2.1 のコントラスト比を変えない (比はウェイトでは変わらない)。本記録は適合宣言を行わない。
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+- **実装 Repository (`tocoo/tocoo_travel`) 側の適用作業** (Google Fonts 読み込みの更新・トークンスナップショットの同期・実際の見出しへの適用)。実装側の状態は本 Repository で実査していない (**未検証**)。
+
+
 ---
 
 ## 変更履歴
@@ -1059,3 +1133,4 @@
 | 2026-09-07 | Task 009-63R3: §29 の記述是正と**判断 F-7 の追加取得** (PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー 3 回目 [issuecomment-5567573901](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5567573901) の指摘に対応)。①**§29-3 に判断 F-7 を追加**した — C カテゴリ・特集ラベル (C1 / C2) を**写真の上に置いてよい**とし、写真の上に置けるのは **A 割引率と C の 2 カテゴリ**とする (Web部責任者判断 2026-09-07・明示取得)。契機は、本 PR で新設した rental-car `design.md` §2.4 の [決定] と `labels-tags.rental-car.md` A 節「写真の上に置けるのは A だけ」との食い違いである。**適用範囲は rental-car に限定**。②**§29-1 の承認対象に⑩ travel `design.md` の部分更新を追加**し、§29-1 適用範囲と §29-2 影響度に同⑩の扱い (影響度 = **高**・判定者 = Web部責任者・判定日 2026-09-07・明示取得) を記録した — 本 PR は travel `design.md` §2.1 代替規則 1 の記述是正を含むにもかかわらず、承認対象・影響度の記録が本書に無かった。③**2026-09-07 Task 009-63R2 の行の「travel は不変」に注記**を補い、当該記述が F-6 の対象である travel §7.1 についてのものであることと、§2.1 の記述是正が承認対象⑩に記録されていることを明記した。**不変**: §29-3 の既存 8 件 (D-2 / D-4 / F-5 / F-1 / F-4 / C-5 / H-1・H-2 / F-6) の判断内容、§29-4・§29-5・§29-6、§1〜§28 の判断内容・適用範囲、設計承認ログ (§5)、適用開始記録 (§6)、承認済みの [review-approval-rules.md](review-approval-rules.md) 本体。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設していない | Claude Code |
 | 2026-09-07 | Task 009-64: §30 「Travel `design.md` §2.1 検証表の欠落の回収と Breadcrumb 現在地の文字色の確定」を §1〜§29 と分離して追加 ([Issue #172](https://github.com/tocoo/coocom-design-system/issues/172))。改訂着手の設計承認 (§9・§20、2026-09-07・Web部責任者)・**影響度 = 高** (判定者 = Web部責任者・判定日 2026-09-07・明示取得・必要レビュー主体 = Web部責任者およびチーフデザイナー)・取得した現在判断 **2 件** (G-1 = 白面 × `color.text.muted` 2.68:1 を検証表へ載せず **Breadcrumb 現在地の文字色を `color.text.mutedStrong` `#616161` 6.19:1 へ変更**して AA 未達を解消する／G-2 = 影響度)・検証表へ追加する **10 行**の実測値・本記録が決定しないこと **8 項目**を記録した。**適用範囲 = travel に限定**し rental-car・inbound へは及ぼさない (3 独立 DS の原則 P1/ADR-0022)。とくに §29-3 判断 C-5 (rental-car の未入力状態の案内文字を `color.text.muted` に統一・AA 未達明示) とは扱いが異なるが、**同判断の内容・適用範囲は変更しない**。**トークンの追加・削除・値の変更・参照先の変更・`$status` の変更は 0 件**。**不変**: §1〜§29 の各記録、[review-approval-rules.md](review-approval-rules.md) 本体。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-07 | Task 009-64R: §30 の記述是正と**承認対象①の範囲拡大** (PR [#173](https://github.com/tocoo/coocom-design-system/pull/173) のコードレビュー 2026-09-07 の指摘 6 件に対応)。①**§30-1 承認対象①の行数を「10 行追加」から「21 行追加」(14 行 → 35 行) へ拡大**し、既存 1 行の概算 `≈11.1:1` の実測値 `11.11:1` への是正と既存 5 行への「主色」の明示を承認対象へ加えた (Web部責任者判断 2026-09-07)。②**§30-5 に「PR #173 のコードレビューを契機に追加した 11 行」の表を追加**した — 同レビューが名指しした 5 組 (`color.tag.neutral` 9.22:1・`color.label.stock` 主色 4.77:1 / 副色 4.53:1・`color.membership.free` 13.21:1・Button `secondary` 16.10:1・`surface.inverse` × `mutedStrong` 2.60:1 = **禁止**) と、per-scheme の判定基準を表全体へ一貫させるための**副色スキームの campaign accent 5 組** (3.79:1 / 4.24:1 / 3.79:1 / 3.60:1 / 3.48:1)。副色の `campaignTint` / `campaignInk` は 🚧 仮色のため追加しない。③**per-scheme の判定基準を [事実] として明記**した — 主色・副色で行を分けるか否かは `semantic.travel.json` の解決チェーンではなく **§2 の用途表が per-scheme トークンとして定義しているか否か**による (`color.action.primary.bg` と `color.text.link` は JSON 上いずれも `{color.scheme.main.base}` へ解決するが前者は per-scheme ではない)。**トークンの追加・削除・値の変更・参照先の変更・`$status` の変更は引き続き 0 件**。**不変**: §30-2 影響度 (**高**)・§30-3 判断 G-1 / G-2 の内容・§30-4 (トークン変更なし)・§30-6 決定しないこと、§1〜§29 の各記録、[review-approval-rules.md](review-approval-rules.md) 本体。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-09-11 | Task 009-65: §31 「Travel 文書レベル見出しの太さ 100 (thin) の導入と `typography.fontWeight` スケールの配信段への整合 (travel / rental-car)」を §1〜§30 と分離して追加 ([Issue #174](https://github.com/tocoo/coocom-design-system/issues/174))。改訂着手の設計承認 (§9・§20、2026-09-11・Web部責任者)、影響度 = **高** (§8、2026-09-11・明示取得)、現在判断 7 件 (H-1 既定は 700 のまま 100 を明示的な選択肢として足す／H-2 選べる要素を `h1`〜`h6` の要素名では制限しない／H-3 §3.1 の [決定]「新しいウェイト値は追加しない」を改訂する／H-4 選べるのは実寸 24px 以上の見出しに限る／H-5 書体が配信していないウェイトは記述を削除し、配信されているウェイトは追加する／H-6 H-5 の適用は travel と rental-car の 2 サービス・inbound は書体規定が暫定のため保留／H-7 影響度 = 高) を記録した。§31-4 に追加・変更するトークン (primitive = `thin` 100 と `extraBold` 800 を追加・`medium` 500 と `black` 900 を削除／semantic = travel のみ `font.heading.weightThin` を追加・既定 `font.heading.weight` 700 は不変) を、§31-5 に本記録が決定しないこと 9 件を記載した。**§5 設計承認ログ・§6 適用開始記録・§7〜§30 の各記録は変更していない。** 承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |

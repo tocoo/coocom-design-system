@@ -6,174 +6,174 @@
 <title>Design System 見本 — 国内レンタカー (rental-car)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=LINE+Seed+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=LINE+Seed+JP:wght@100;400;700;800&family=Noto+Sans+JP:wght@400;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
   /* === generated:tokens (tools/gen-preview-tokens.py) — 手で編集しない === */
   :root {
-    --color-scheme-main-tint        : #e8edfb; /* color.scheme.main.tint */
-    --color-scheme-main-soft        : #8e9ee6; /* color.scheme.main.soft */
-    --color-scheme-main-base        : #2c50c8; /* color.scheme.main.base */
-    --color-scheme-main-hover       : #2340a6; /* color.scheme.main.hover */
-    --color-scheme-main-pressed     : #1b3488; /* color.scheme.main.pressed */
-    --color-scheme-main-ink         : #14224a; /* color.scheme.main.ink */
-    --color-scheme-main-inverse     : #c8912c; /* color.scheme.main.inverse */
-    --color-scheme-main-error       : #d23a3a; /* color.scheme.main.error */
-    --color-scheme-main-accent      : #e4572e; /* color.scheme.main.accent */
-    --color-scheme-main-accent-tint : #f9cdbc; /* color.scheme.main.accentTint 🚧 placeholder */
-    --color-scheme-main-accent-ink  : #8a2e11; /* color.scheme.main.accentInk 🚧 placeholder */
-    --color-scheme-sub-tint         : #edecfb; /* color.scheme.sub.tint */
-    --color-scheme-sub-soft         : #928ee4; /* color.scheme.sub.soft */
-    --color-scheme-sub-base         : #4845d4; /* color.scheme.sub.base */
-    --color-scheme-sub-hover        : #3936b0; /* color.scheme.sub.hover */
-    --color-scheme-sub-pressed      : #2c2a8c; /* color.scheme.sub.pressed */
-    --color-scheme-sub-ink          : #191840; /* color.scheme.sub.ink */
-    --color-scheme-sub-inverse      : #c8b12c; /* color.scheme.sub.inverse */
-    --color-scheme-sub-error        : #d2405f; /* color.scheme.sub.error */
-    --color-scheme-sub-accent       : #e0553c; /* color.scheme.sub.accent */
-    --color-scheme-sub-accent-tint  : #f8cbc2; /* color.scheme.sub.accentTint 🚧 placeholder */
-    --color-scheme-sub-accent-ink   : #8a2c18; /* color.scheme.sub.accentInk 🚧 placeholder */
-    --color-brand-primary           : #2c50c8; /* color.brand.primary */
-    --color-brand-primary-hover     : #2340a6; /* color.brand.primaryHover */
-    --color-brand-secondary         : #4845d4; /* color.brand.secondary */
-    --color-brand-secondary-hover   : #3936b0; /* color.brand.secondaryHover */
-    --color-action-primary-bg       : #2c50c8; /* color.action.primary.bg */
-    --color-action-primary-text     : #ffffff; /* color.action.primary.text */
-    --color-action-primary-hover-bg : #2340a6; /* color.action.primary.hoverBg */
-    --color-action-secondary-bg     : #ffffff; /* color.action.secondary.bg */
-    --color-action-secondary-text   : #212121; /* color.action.secondary.text */
-    --color-text-strong             : #212121; /* color.text.strong */
-    --color-text-body               : #424242; /* color.text.body */
-    --color-text-muted              : #9e9e9e; /* color.text.muted */
-    --color-text-muted-strong       : #616161; /* color.text.mutedStrong */
-    --color-text-inverse            : #ffffff; /* color.text.inverse */
-    --color-text-inverse-muted      : #9e9e9e; /* color.text.inverseMuted */
-    --color-text-on-accent          : #ffffff; /* color.text.onAccent */
-    --color-text-link               : #2c50c8; /* color.text.link */
-    --color-text-link-hover         : #2340a6; /* color.text.linkHover */
-    --color-text-link-active        : #1b3488; /* color.text.linkActive */
-    --color-surface-default         : #ffffff; /* color.surface.default */
-    --color-surface-subtle          : #f9f9f9; /* color.surface.subtle */
-    --color-surface-muted           : #f5f5f5; /* color.surface.muted */
-    --color-surface-inverse         : #212121; /* color.surface.inverse */
-    --color-border-subtle           : #e0e0e0; /* color.border.subtle */
-    --color-border-default          : #cccccc; /* color.border.default */
-    --color-border-strong           : #bcbcbc; /* color.border.strong */
-    --color-state-success           : #2c50c8; /* color.state.success */
-    --color-state-error             : #d23a3a; /* color.state.error */
-    --color-accent-campaign         : #e4572e; /* color.accent.campaign */
-    --color-accent-campaign-tint    : #f9cdbc; /* color.accent.campaignTint 🚧 placeholder */
-    --color-accent-campaign-ink     : #8a2e11; /* color.accent.campaignInk 🚧 placeholder */
-    --color-label-discount-surface  : #c8912c; /* color.label.discount.surface */
-    --color-label-discount-text     : #ffffff; /* color.label.discount.text */
-    --color-label-category-surface  : #ffffff; /* color.label.category.surface */
-    --color-label-category-text     : #212121; /* color.label.category.text */
-    --color-label-category-icon     : #e4572e; /* color.label.category.icon */
-    --color-label-category-border   : #cccccc; /* color.label.category.border */
-    --color-label-stock             : #d23a3a; /* color.label.stock */
-    --color-membership-paid-surface : #f9cdbc; /* color.membership.paid.surface 🚧 placeholder */
-    --color-membership-paid-text    : #8a2e11; /* color.membership.paid.text 🚧 placeholder */
-    --color-membership-free-surface : #e8edfb; /* color.membership.free.surface */
-    --color-membership-free-text    : #14224a; /* color.membership.free.text */
-    --color-tag-neutral-surface     : #f5f5f5; /* color.tag.neutral.surface */
-    --color-tag-neutral-text        : #424242; /* color.tag.neutral.text */
-    --color-focus-ring              : #2c50c8; /* color.focus.ring */
-    --color-mask-secret             : #e8edfb; /* color.mask.secret */
-    --color-overlay-backdrop        : rgba(0,0,0,0.45); /* color.overlay.backdrop 🚧 placeholder */
-    --font-body-family              : 'LINE Seed JP', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; /* font.body.family */
-    --font-body-size                : 1rem; /* font.body.size */
-    --font-body-line-height         : 1.8; /* font.body.lineHeight */
-    --font-heading-family           : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.heading.family */
-    --font-heading-weight           : 700; /* font.heading.weight */
-    --font-heading-line-height      : 1.3; /* font.heading.lineHeight */
-    --font-heading-h1-size          : 2.5rem; /* font.heading.h1Size */
-    --font-heading-h2-size          : 2rem; /* font.heading.h2Size */
-    --font-heading-h3-size          : 1.5rem; /* font.heading.h3Size */
-    --font-heading-h4-size          : 1.25rem; /* font.heading.h4Size */
-    --font-heading-h5-size          : 1rem; /* font.heading.h5Size */
-    --font-heading-h6-size          : 1rem; /* font.heading.h6Size */
-    --font-display-family           : 'Noto Serif JP', serif; /* font.display.family */
-    --font-display-md-size          : 1.125rem; /* font.display.mdSize */
-    --font-display-lg-size          : 3rem; /* font.display.lgSize */
-    --font-price-family             : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.price.family */
-    --font-price-weight             : 700; /* font.price.weight */
-    --font-price-number-size        : 1.25rem; /* font.price.numberSize */
-    --font-price-caption-size       : 0.75rem; /* font.price.captionSize */
-    --radius-action                 : 9999px; /* radius.action */
-    --radius-card                   : 8px; /* radius.card 🚧 placeholder */
-    --radius-badge                  : 4px; /* radius.badge */
-    --radius-overlay                : 16px; /* radius.overlay 🚧 placeholder */
-    --label-height-sm               : 1.25rem; /* label.height.sm */
-    --label-height-md               : 1.5rem; /* label.height.md */
-    --label-padding-inline-sm       : 0.5rem; /* label.paddingInline.sm */
-    --label-padding-inline-md       : 0.75rem; /* label.paddingInline.md */
-    --label-line-height             : 1; /* label.lineHeight */
-    --label-font-size-sm            : 0.75rem; /* label.fontSize.sm */
-    --label-font-size-md            : 0.875rem; /* label.fontSize.md */
-    --label-number-size-sm          : 0.875rem; /* label.numberSize.sm */
-    --label-number-size-md          : 1rem; /* label.numberSize.md */
-    --label-weight-emphasis         : 700; /* label.weight.emphasis */
-    --label-weight-neutral          : 400; /* label.weight.neutral */
-    --label-radius                  : 4px; /* label.radius */
-    --motion-transition-duration    : 300ms; /* motion.transition.duration 🚧 placeholder */
-    --motion-transition-easing      : ease; /* motion.transition.easing 🚧 placeholder */
-    --icon-size                     : 20px; /* icon.size */
-    --elevation-sticky              : 1100; /* elevation.sticky */
-    --elevation-overlay             : 1200; /* elevation.overlay */
-    --elevation-modal               : 1300; /* elevation.modal */
-    --spacing-0                     : 0; /* spacing.0 */
-    --spacing-1                     : 0.25rem; /* spacing.1 */
-    --spacing-2                     : 0.5rem; /* spacing.2 */
-    --spacing-3                     : 0.75rem; /* spacing.3 */
-    --spacing-4                     : 1rem; /* spacing.4 */
-    --spacing-5                     : 1.25rem; /* spacing.5 */
-    --spacing-6                     : 1.5rem; /* spacing.6 */
-    --spacing-8                     : 2rem; /* spacing.8 */
-    --spacing-10                    : 2.5rem; /* spacing.10 */
-    --spacing-12                    : 3rem; /* spacing.12 */
-    --spacing-16                    : 4rem; /* spacing.16 */
-    --breakpoint-sm                 : 640px; /* breakpoint.sm */
-    --breakpoint-md                 : 768px; /* breakpoint.md */
-    --breakpoint-lg                 : 1024px; /* breakpoint.lg */
-    --breakpoint-xl                 : 1280px; /* breakpoint.xl */
-    --radius-sm                     : 4px; /* radius.sm */
-    --radius-md                     : 8px; /* radius.md */
-    --radius-lg                     : 16px; /* radius.lg */
-    --radius-full                   : 9999px; /* radius.full */
-    --shadow-sm                     : 0 1px 2px rgba(0,0,0,0.05); /* shadow.sm 🚧 placeholder */
-    --shadow-md                     : 0 2px 8px rgba(0,0,0,0.10); /* shadow.md 🚧 placeholder */
-    --shadow-lg                     : 0 8px 24px rgba(0,0,0,0.15); /* shadow.lg 🚧 placeholder */
-    --icon-size-sm                  : 16px; /* iconSize.sm */
-    --icon-size-md                  : 20px; /* iconSize.md */
-    --icon-size-lg                  : 24px; /* iconSize.lg */
-    --icon-size-xl                  : 32px; /* iconSize.xl */
-    --typography-size-xs            : 0.75rem; /* typography.size.xs */
-    --typography-size-sm            : 0.875rem; /* typography.size.sm */
-    --typography-size-md            : 1rem; /* typography.size.md */
-    --typography-size-lg            : 1.125rem; /* typography.size.lg */
-    --typography-size-xl            : 1.25rem; /* typography.size.xl */
-    --typography-size-2xl           : 1.5rem; /* typography.size.2xl */
-    --typography-size-3xl           : 2rem; /* typography.size.3xl */
-    --typography-size-4xl           : 2.5rem; /* typography.size.4xl */
-    --typography-size-display-lg    : 3rem; /* typography.size.display-lg */
-    --typography-line-height-tight  : 1.3; /* typography.lineHeight.tight */
-    --typography-line-height-normal : 1.5; /* typography.lineHeight.normal */
-    --typography-line-height-relaxed: 1.8; /* typography.lineHeight.relaxed */
-    --typography-font-weight-regular: 400; /* typography.fontWeight.regular */
-    --typography-font-weight-medium : 500; /* typography.fontWeight.medium */
-    --typography-font-weight-bold   : 700; /* typography.fontWeight.bold */
-    --typography-font-weight-black  : 900; /* typography.fontWeight.black */
-    --elevation-z-base              : 0; /* elevation.z.base */
-    --elevation-z-dropdown          : 1000; /* elevation.z.dropdown */
-    --elevation-z-sticky            : 1100; /* elevation.z.sticky */
-    --elevation-z-overlay           : 1200; /* elevation.z.overlay */
-    --elevation-z-modal             : 1300; /* elevation.z.modal */
-    --elevation-z-toast             : 1400; /* elevation.z.toast */
-    --size-container-sm             : 975px; /* size.container.sm */
-    --size-container-md             : 1195px; /* size.container.md */
-    --size-container-lg             : 1425px; /* size.container.lg */
-    --border-width-thin             : 1px; /* border.width.thin */
-    --border-width-thick            : 2px; /* border.width.thick */
+    --color-scheme-main-tint           : #e8edfb; /* color.scheme.main.tint */
+    --color-scheme-main-soft           : #8e9ee6; /* color.scheme.main.soft */
+    --color-scheme-main-base           : #2c50c8; /* color.scheme.main.base */
+    --color-scheme-main-hover          : #2340a6; /* color.scheme.main.hover */
+    --color-scheme-main-pressed        : #1b3488; /* color.scheme.main.pressed */
+    --color-scheme-main-ink            : #14224a; /* color.scheme.main.ink */
+    --color-scheme-main-inverse        : #c8912c; /* color.scheme.main.inverse */
+    --color-scheme-main-error          : #d23a3a; /* color.scheme.main.error */
+    --color-scheme-main-accent         : #e4572e; /* color.scheme.main.accent */
+    --color-scheme-main-accent-tint    : #f9cdbc; /* color.scheme.main.accentTint 🚧 placeholder */
+    --color-scheme-main-accent-ink     : #8a2e11; /* color.scheme.main.accentInk 🚧 placeholder */
+    --color-scheme-sub-tint            : #edecfb; /* color.scheme.sub.tint */
+    --color-scheme-sub-soft            : #928ee4; /* color.scheme.sub.soft */
+    --color-scheme-sub-base            : #4845d4; /* color.scheme.sub.base */
+    --color-scheme-sub-hover           : #3936b0; /* color.scheme.sub.hover */
+    --color-scheme-sub-pressed         : #2c2a8c; /* color.scheme.sub.pressed */
+    --color-scheme-sub-ink             : #191840; /* color.scheme.sub.ink */
+    --color-scheme-sub-inverse         : #c8b12c; /* color.scheme.sub.inverse */
+    --color-scheme-sub-error           : #d2405f; /* color.scheme.sub.error */
+    --color-scheme-sub-accent          : #e0553c; /* color.scheme.sub.accent */
+    --color-scheme-sub-accent-tint     : #f8cbc2; /* color.scheme.sub.accentTint 🚧 placeholder */
+    --color-scheme-sub-accent-ink      : #8a2c18; /* color.scheme.sub.accentInk 🚧 placeholder */
+    --color-brand-primary              : #2c50c8; /* color.brand.primary */
+    --color-brand-primary-hover        : #2340a6; /* color.brand.primaryHover */
+    --color-brand-secondary            : #4845d4; /* color.brand.secondary */
+    --color-brand-secondary-hover      : #3936b0; /* color.brand.secondaryHover */
+    --color-action-primary-bg          : #2c50c8; /* color.action.primary.bg */
+    --color-action-primary-text        : #ffffff; /* color.action.primary.text */
+    --color-action-primary-hover-bg    : #2340a6; /* color.action.primary.hoverBg */
+    --color-action-secondary-bg        : #ffffff; /* color.action.secondary.bg */
+    --color-action-secondary-text      : #212121; /* color.action.secondary.text */
+    --color-text-strong                : #212121; /* color.text.strong */
+    --color-text-body                  : #424242; /* color.text.body */
+    --color-text-muted                 : #9e9e9e; /* color.text.muted */
+    --color-text-muted-strong          : #616161; /* color.text.mutedStrong */
+    --color-text-inverse               : #ffffff; /* color.text.inverse */
+    --color-text-inverse-muted         : #9e9e9e; /* color.text.inverseMuted */
+    --color-text-on-accent             : #ffffff; /* color.text.onAccent */
+    --color-text-link                  : #2c50c8; /* color.text.link */
+    --color-text-link-hover            : #2340a6; /* color.text.linkHover */
+    --color-text-link-active           : #1b3488; /* color.text.linkActive */
+    --color-surface-default            : #ffffff; /* color.surface.default */
+    --color-surface-subtle             : #f9f9f9; /* color.surface.subtle */
+    --color-surface-muted              : #f5f5f5; /* color.surface.muted */
+    --color-surface-inverse            : #212121; /* color.surface.inverse */
+    --color-border-subtle              : #e0e0e0; /* color.border.subtle */
+    --color-border-default             : #cccccc; /* color.border.default */
+    --color-border-strong              : #bcbcbc; /* color.border.strong */
+    --color-state-success              : #2c50c8; /* color.state.success */
+    --color-state-error                : #d23a3a; /* color.state.error */
+    --color-accent-campaign            : #e4572e; /* color.accent.campaign */
+    --color-accent-campaign-tint       : #f9cdbc; /* color.accent.campaignTint 🚧 placeholder */
+    --color-accent-campaign-ink        : #8a2e11; /* color.accent.campaignInk 🚧 placeholder */
+    --color-label-discount-surface     : #c8912c; /* color.label.discount.surface */
+    --color-label-discount-text        : #ffffff; /* color.label.discount.text */
+    --color-label-category-surface     : #ffffff; /* color.label.category.surface */
+    --color-label-category-text        : #212121; /* color.label.category.text */
+    --color-label-category-icon        : #e4572e; /* color.label.category.icon */
+    --color-label-category-border      : #cccccc; /* color.label.category.border */
+    --color-label-stock                : #d23a3a; /* color.label.stock */
+    --color-membership-paid-surface    : #f9cdbc; /* color.membership.paid.surface 🚧 placeholder */
+    --color-membership-paid-text       : #8a2e11; /* color.membership.paid.text 🚧 placeholder */
+    --color-membership-free-surface    : #e8edfb; /* color.membership.free.surface */
+    --color-membership-free-text       : #14224a; /* color.membership.free.text */
+    --color-tag-neutral-surface        : #f5f5f5; /* color.tag.neutral.surface */
+    --color-tag-neutral-text           : #424242; /* color.tag.neutral.text */
+    --color-focus-ring                 : #2c50c8; /* color.focus.ring */
+    --color-mask-secret                : #e8edfb; /* color.mask.secret */
+    --color-overlay-backdrop           : rgba(0,0,0,0.45); /* color.overlay.backdrop 🚧 placeholder */
+    --font-body-family                 : 'LINE Seed JP', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; /* font.body.family */
+    --font-body-size                   : 1rem; /* font.body.size */
+    --font-body-line-height            : 1.8; /* font.body.lineHeight */
+    --font-heading-family              : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.heading.family */
+    --font-heading-weight              : 700; /* font.heading.weight */
+    --font-heading-line-height         : 1.3; /* font.heading.lineHeight */
+    --font-heading-h1-size             : 2.5rem; /* font.heading.h1Size */
+    --font-heading-h2-size             : 2rem; /* font.heading.h2Size */
+    --font-heading-h3-size             : 1.5rem; /* font.heading.h3Size */
+    --font-heading-h4-size             : 1.25rem; /* font.heading.h4Size */
+    --font-heading-h5-size             : 1rem; /* font.heading.h5Size */
+    --font-heading-h6-size             : 1rem; /* font.heading.h6Size */
+    --font-display-family              : 'Noto Serif JP', serif; /* font.display.family */
+    --font-display-md-size             : 1.125rem; /* font.display.mdSize */
+    --font-display-lg-size             : 3rem; /* font.display.lgSize */
+    --font-price-family                : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.price.family */
+    --font-price-weight                : 700; /* font.price.weight */
+    --font-price-number-size           : 1.25rem; /* font.price.numberSize */
+    --font-price-caption-size          : 0.75rem; /* font.price.captionSize */
+    --radius-action                    : 9999px; /* radius.action */
+    --radius-card                      : 8px; /* radius.card 🚧 placeholder */
+    --radius-badge                     : 4px; /* radius.badge */
+    --radius-overlay                   : 16px; /* radius.overlay 🚧 placeholder */
+    --label-height-sm                  : 1.25rem; /* label.height.sm */
+    --label-height-md                  : 1.5rem; /* label.height.md */
+    --label-padding-inline-sm          : 0.5rem; /* label.paddingInline.sm */
+    --label-padding-inline-md          : 0.75rem; /* label.paddingInline.md */
+    --label-line-height                : 1; /* label.lineHeight */
+    --label-font-size-sm               : 0.75rem; /* label.fontSize.sm */
+    --label-font-size-md               : 0.875rem; /* label.fontSize.md */
+    --label-number-size-sm             : 0.875rem; /* label.numberSize.sm */
+    --label-number-size-md             : 1rem; /* label.numberSize.md */
+    --label-weight-emphasis            : 700; /* label.weight.emphasis */
+    --label-weight-neutral             : 400; /* label.weight.neutral */
+    --label-radius                     : 4px; /* label.radius */
+    --motion-transition-duration       : 300ms; /* motion.transition.duration 🚧 placeholder */
+    --motion-transition-easing         : ease; /* motion.transition.easing 🚧 placeholder */
+    --icon-size                        : 20px; /* icon.size */
+    --elevation-sticky                 : 1100; /* elevation.sticky */
+    --elevation-overlay                : 1200; /* elevation.overlay */
+    --elevation-modal                  : 1300; /* elevation.modal */
+    --spacing-0                        : 0; /* spacing.0 */
+    --spacing-1                        : 0.25rem; /* spacing.1 */
+    --spacing-2                        : 0.5rem; /* spacing.2 */
+    --spacing-3                        : 0.75rem; /* spacing.3 */
+    --spacing-4                        : 1rem; /* spacing.4 */
+    --spacing-5                        : 1.25rem; /* spacing.5 */
+    --spacing-6                        : 1.5rem; /* spacing.6 */
+    --spacing-8                        : 2rem; /* spacing.8 */
+    --spacing-10                       : 2.5rem; /* spacing.10 */
+    --spacing-12                       : 3rem; /* spacing.12 */
+    --spacing-16                       : 4rem; /* spacing.16 */
+    --breakpoint-sm                    : 640px; /* breakpoint.sm */
+    --breakpoint-md                    : 768px; /* breakpoint.md */
+    --breakpoint-lg                    : 1024px; /* breakpoint.lg */
+    --breakpoint-xl                    : 1280px; /* breakpoint.xl */
+    --radius-sm                        : 4px; /* radius.sm */
+    --radius-md                        : 8px; /* radius.md */
+    --radius-lg                        : 16px; /* radius.lg */
+    --radius-full                      : 9999px; /* radius.full */
+    --shadow-sm                        : 0 1px 2px rgba(0,0,0,0.05); /* shadow.sm 🚧 placeholder */
+    --shadow-md                        : 0 2px 8px rgba(0,0,0,0.10); /* shadow.md 🚧 placeholder */
+    --shadow-lg                        : 0 8px 24px rgba(0,0,0,0.15); /* shadow.lg 🚧 placeholder */
+    --icon-size-sm                     : 16px; /* iconSize.sm */
+    --icon-size-md                     : 20px; /* iconSize.md */
+    --icon-size-lg                     : 24px; /* iconSize.lg */
+    --icon-size-xl                     : 32px; /* iconSize.xl */
+    --typography-size-xs               : 0.75rem; /* typography.size.xs */
+    --typography-size-sm               : 0.875rem; /* typography.size.sm */
+    --typography-size-md               : 1rem; /* typography.size.md */
+    --typography-size-lg               : 1.125rem; /* typography.size.lg */
+    --typography-size-xl               : 1.25rem; /* typography.size.xl */
+    --typography-size-2xl              : 1.5rem; /* typography.size.2xl */
+    --typography-size-3xl              : 2rem; /* typography.size.3xl */
+    --typography-size-4xl              : 2.5rem; /* typography.size.4xl */
+    --typography-size-display-lg       : 3rem; /* typography.size.display-lg */
+    --typography-line-height-tight     : 1.3; /* typography.lineHeight.tight */
+    --typography-line-height-normal    : 1.5; /* typography.lineHeight.normal */
+    --typography-line-height-relaxed   : 1.8; /* typography.lineHeight.relaxed */
+    --typography-font-weight-thin      : 100; /* typography.fontWeight.thin */
+    --typography-font-weight-regular   : 400; /* typography.fontWeight.regular */
+    --typography-font-weight-bold      : 700; /* typography.fontWeight.bold */
+    --typography-font-weight-extra-bold: 800; /* typography.fontWeight.extraBold */
+    --elevation-z-base                 : 0; /* elevation.z.base */
+    --elevation-z-dropdown             : 1000; /* elevation.z.dropdown */
+    --elevation-z-sticky               : 1100; /* elevation.z.sticky */
+    --elevation-z-overlay              : 1200; /* elevation.z.overlay */
+    --elevation-z-modal                : 1300; /* elevation.z.modal */
+    --elevation-z-toast                : 1400; /* elevation.z.toast */
+    --size-container-sm                : 975px; /* size.container.sm */
+    --size-container-md                : 1195px; /* size.container.md */
+    --size-container-lg                : 1425px; /* size.container.lg */
+    --border-width-thin                : 1px; /* border.width.thin */
+    --border-width-thick               : 2px; /* border.width.thick */
   }
   /* === /generated:tokens === */
 
@@ -670,10 +670,10 @@
   <h3>ウェイト</h3>
   <div class="tablewrap"><table class="scale">
     <tbody>
+      <tr><td><code>typography.fontWeight.thin</code></td><td class="scale__val">100</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-thin)">見本 Aa 12,800円</span></td></tr>
       <tr><td><code>typography.fontWeight.regular</code></td><td class="scale__val">400</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-regular)">見本 Aa 12,800円</span></td></tr>
-      <tr><td><code>typography.fontWeight.medium</code></td><td class="scale__val">500</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-medium)">見本 Aa 12,800円</span></td></tr>
       <tr><td><code>typography.fontWeight.bold</code></td><td class="scale__val">700</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-bold)">見本 Aa 12,800円</span></td></tr>
-      <tr><td><code>typography.fontWeight.black</code></td><td class="scale__val">900</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-black)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.fontWeight.extraBold</code></td><td class="scale__val">800</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-extra-bold)">見本 Aa 12,800円</span></td></tr>
     </tbody>
   </table></div>
   <h3>余白</h3>

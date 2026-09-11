@@ -7,7 +7,7 @@
     "serviceLabel": "国内宿泊予約 (tocoo/tocoo_travel)",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "GitHub tocoo/coocom-design-system travel/primitive.travel.json 0.2.0-draft (Source of Truth)。設計判断 TVL-0001〜0004 を反映。Task 009-36 で `color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を Modal / Overlay の backdrop (semantic `color.overlay.backdrop`) を支える暫定色として追加 (依頼元が実装バンドルで観測した値を暫定参照・本 Repository の Fact ではない・実査待ち = owner-decisions.md §14)。ラベル・タグ定義シート (画面設計 Owner 決定 2026-08-07・依頼書「ラベル・タグ定義 (travel)」§5/§9) の実装として accent の淡色段・濃色段を追加: `orange.100` (#f9cdbc・淡色段の面・Owner 選定 2026-08-07 で bound)、`orange.800` (#8a2e11・濃色段の文字・🚧 仮色 placeholder)、`coral.100` (#f8cbc2・🚧 仮色)、`coral.800` (#8a2c18・🚧 仮色)。淡色段以外の 3 値は実査待ちで placeholder とし、実色値確定まで暫定 (§14)。`$meta.version` は据置き",
+    "basedOn": "GitHub tocoo/coocom-design-system travel/primitive.travel.json 0.2.0-draft (Source of Truth)。設計判断 TVL-0001〜0004 を反映。Task 009-36 で `color.palette.blackAlpha.45` (rgba(0,0,0,0.45)・placeholder) を Modal / Overlay の backdrop (semantic `color.overlay.backdrop`) を支える暫定色として追加 (依頼元が実装バンドルで観測した値を暫定参照・本 Repository の Fact ではない・実査待ち = owner-decisions.md §14)。ラベル・タグ定義シート (画面設計 Owner 決定 2026-08-07・依頼書「ラベル・タグ定義 (travel)」§5/§9) の実装として accent の淡色段・濃色段を追加: `orange.100` (#f9cdbc・淡色段の面・Owner 選定 2026-08-07 で bound)、`orange.800` (#8a2e11・濃色段の文字・🚧 仮色 placeholder)、`coral.100` (#f8cbc2・🚧 仮色)、`coral.800` (#8a2c18・🚧 仮色)。淡色段以外の 3 値は実査待ちで placeholder とし、実色値確定まで暫定 (§14)。`$meta.version` は据置き。2026-09-11 *Task 009-65*: `typography.fontWeight.thin` (100) を追加した — 文書レベルの見出しの太さに、既定 (700) から明示的に選択できる細いウェイトを設けるため (Issue #174・Owner 2026-09-11・正本 = governance/owner-decisions.md §31)。既定は `bold` (700) のまま不変であり、`thin` は design.md §3.1 が定める条件 (実寸 24px 以上・要素名では制限しない) を満たす場合にのみ選択できる。書体側の裏付け = Google Fonts が LINE Seed JP の `wght@100` を配信していること (本 Repository で実測・`@font-face { font-weight: 100 }` が日本語 124 スライスぶん返る・v5)。`regular` (400) / `bold` (700) の値・`$status` は不変。**あわせて同 Task で `medium` (500) と `black` (900) を削除し、`extraBold` (800) を追加した** — 書体 (`typography.fontFamily.heading` / `sans` / `latin` / `number` の先頭 = LINE Seed JP) が Google Fonts で配信するウェイトは **100 / 400 / 700 / 800 の 4 段のみ**であり (本 Repository で実測。200 / 300 / 500 / 600 / 900 を要求すると CSS ではなく `400: Font family not found` が返る)、500 と 900 には対応する字面が存在しなかったため (Owner 2026-09-11)。削除した 2 段を `$value` で参照する semantic トークンは travel・rental-car・inbound のいずれにも存在しなかった (実測)。`$meta.version` は据置き",
     "sourceOfTruth": "https://github.com/tocoo/coocom-design-system/blob/main/services/travel/design-system/primitive.travel.json",
     "created": "2026-07-09",
     "rules": [
@@ -92,10 +92,10 @@
       "mincho":  { "$value": "'Noto Serif JP', serif", "$type": "fontFamily", "$description": "明朝。Display/Hero/特集/詳細施設名の主役 (Q8)", "$status": "bound", "$note": "旧: Shippori Mincho/Ryumin 代替。Q8 で Noto Serif JP に一本化" }
     },
     "fontWeight": {
-      "regular": { "$value": 400, "$type": "fontWeight", "$status": "bound" },
-      "medium":  { "$value": 500, "$type": "fontWeight", "$status": "bound" },
-      "bold":    { "$value": 700, "$type": "fontWeight", "$status": "bound" },
-      "black":   { "$value": 900, "$type": "fontWeight", "$description": "巨大ヒーロー等の例外的強調のみ (Q3 で価格は 700 に変更・原則不使用)", "$status": "bound" }
+      "thin":      { "$value": 100, "$type": "fontWeight", "$description": "LINE Seed JP Thin。文書レベルの見出しで既定 (700) から明示的に選択する細いウェイト。実寸 24px 以上の見出しに限る (design.md §3.1・Task 009-65)。本文・UI・価格・ラベルには用いない", "$status": "bound" },
+      "regular":   { "$value": 400, "$type": "fontWeight", "$description": "LINE Seed JP Regular。本文・UI の既定", "$status": "bound" },
+      "bold":      { "$value": 700, "$type": "fontWeight", "$description": "LINE Seed JP Bold。見出し・価格・強調ラベルの既定", "$status": "bound" },
+      "extraBold": { "$value": 800, "$type": "fontWeight", "$description": "LINE Seed JP ExtraBold。書体が配信する最も太い段。現時点で参照する semantic は無く、用途は正本上未定義 (design.md §3・Task 009-65)", "$status": "bound" }
     },
     "lineHeight": {
       "tight":   { "$value": 1.3, "$type": "number", "$status": "bound", "$note": "TVL-0001 で確定" },

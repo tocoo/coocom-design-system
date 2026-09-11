@@ -6,174 +6,175 @@
 <title>Design System 見本 — 国内宿泊 (travel)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=LINE+Seed+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=LINE+Seed+JP:wght@100;400;700;800&family=Noto+Sans+JP:wght@400;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
   /* === generated:tokens (tools/gen-preview-tokens.py) — 手で編集しない === */
   :root {
-    --color-scheme-main-tint        : #e8edfb; /* color.scheme.main.tint */
-    --color-scheme-main-soft        : #8e9ee6; /* color.scheme.main.soft */
-    --color-scheme-main-base        : #2c50c8; /* color.scheme.main.base */
-    --color-scheme-main-hover       : #2340a6; /* color.scheme.main.hover */
-    --color-scheme-main-pressed     : #1b3488; /* color.scheme.main.pressed */
-    --color-scheme-main-ink         : #14224a; /* color.scheme.main.ink */
-    --color-scheme-main-inverse     : #c8912c; /* color.scheme.main.inverse */
-    --color-scheme-main-error       : #d23a3a; /* color.scheme.main.error */
-    --color-scheme-main-accent      : #e4572e; /* color.scheme.main.accent */
-    --color-scheme-main-accent-tint : #f9cdbc; /* color.scheme.main.accentTint 🚧 placeholder */
-    --color-scheme-main-accent-ink  : #8a2e11; /* color.scheme.main.accentInk 🚧 placeholder */
-    --color-scheme-sub-tint         : #edecfb; /* color.scheme.sub.tint */
-    --color-scheme-sub-soft         : #928ee4; /* color.scheme.sub.soft */
-    --color-scheme-sub-base         : #4845d4; /* color.scheme.sub.base */
-    --color-scheme-sub-hover        : #3936b0; /* color.scheme.sub.hover */
-    --color-scheme-sub-pressed      : #2c2a8c; /* color.scheme.sub.pressed */
-    --color-scheme-sub-ink          : #191840; /* color.scheme.sub.ink */
-    --color-scheme-sub-inverse      : #c8b12c; /* color.scheme.sub.inverse */
-    --color-scheme-sub-error        : #d2405f; /* color.scheme.sub.error */
-    --color-scheme-sub-accent       : #e0553c; /* color.scheme.sub.accent */
-    --color-scheme-sub-accent-tint  : #f8cbc2; /* color.scheme.sub.accentTint 🚧 placeholder */
-    --color-scheme-sub-accent-ink   : #8a2c18; /* color.scheme.sub.accentInk 🚧 placeholder */
-    --color-brand-primary           : #2c50c8; /* color.brand.primary */
-    --color-brand-primary-hover     : #2340a6; /* color.brand.primaryHover */
-    --color-brand-secondary         : #4845d4; /* color.brand.secondary */
-    --color-brand-secondary-hover   : #3936b0; /* color.brand.secondaryHover */
-    --color-action-primary-bg       : #2c50c8; /* color.action.primary.bg */
-    --color-action-primary-text     : #ffffff; /* color.action.primary.text */
-    --color-action-primary-hover-bg : #2340a6; /* color.action.primary.hoverBg */
-    --color-action-secondary-bg     : #ffffff; /* color.action.secondary.bg */
-    --color-action-secondary-text   : #212121; /* color.action.secondary.text */
-    --color-text-strong             : #212121; /* color.text.strong */
-    --color-text-body               : #424242; /* color.text.body */
-    --color-text-muted              : #9e9e9e; /* color.text.muted */
-    --color-text-muted-strong       : #616161; /* color.text.mutedStrong */
-    --color-text-inverse            : #ffffff; /* color.text.inverse */
-    --color-text-inverse-muted      : #9e9e9e; /* color.text.inverseMuted */
-    --color-text-on-accent          : #ffffff; /* color.text.onAccent */
-    --color-text-placeholder        : #616161; /* color.text.placeholder */
-    --color-text-link               : #2c50c8; /* color.text.link */
-    --color-text-link-hover         : #2340a6; /* color.text.linkHover */
-    --color-text-link-active        : #1b3488; /* color.text.linkActive */
-    --color-surface-default         : #ffffff; /* color.surface.default */
-    --color-surface-subtle          : #f9f9f9; /* color.surface.subtle */
-    --color-surface-muted           : #f5f5f5; /* color.surface.muted */
-    --color-surface-inverse         : #212121; /* color.surface.inverse */
-    --color-border-subtle           : #e0e0e0; /* color.border.subtle */
-    --color-border-default          : #cccccc; /* color.border.default */
-    --color-border-strong           : #bcbcbc; /* color.border.strong */
-    --color-state-success           : #2c50c8; /* color.state.success */
-    --color-state-error             : #d23a3a; /* color.state.error */
-    --color-accent-campaign         : #e4572e; /* color.accent.campaign */
-    --color-accent-campaign-tint    : #f9cdbc; /* color.accent.campaignTint 🚧 placeholder */
-    --color-accent-campaign-ink     : #8a2e11; /* color.accent.campaignInk 🚧 placeholder */
-    --color-label-discount-surface  : #c8912c; /* color.label.discount.surface */
-    --color-label-discount-text     : #ffffff; /* color.label.discount.text */
-    --color-label-category-surface  : #ffffff; /* color.label.category.surface */
-    --color-label-category-text     : #212121; /* color.label.category.text */
-    --color-label-category-icon     : #e4572e; /* color.label.category.icon */
-    --color-label-category-border   : #cccccc; /* color.label.category.border */
-    --color-label-stock             : #d23a3a; /* color.label.stock */
-    --color-membership-paid-surface : #f9cdbc; /* color.membership.paid.surface 🚧 placeholder */
-    --color-membership-paid-text    : #8a2e11; /* color.membership.paid.text 🚧 placeholder */
-    --color-membership-free-surface : #e8edfb; /* color.membership.free.surface */
-    --color-membership-free-text    : #14224a; /* color.membership.free.text */
-    --color-tag-neutral-surface     : #f5f5f5; /* color.tag.neutral.surface */
-    --color-tag-neutral-text        : #424242; /* color.tag.neutral.text */
-    --color-focus-ring              : #2c50c8; /* color.focus.ring */
-    --color-icon-rating             : #c8912c; /* color.icon.rating */
-    --color-overlay-backdrop        : rgba(0,0,0,0.45); /* color.overlay.backdrop 🚧 placeholder */
-    --font-body-family              : 'LINE Seed JP', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; /* font.body.family */
-    --font-body-size                : 1rem; /* font.body.size */
-    --font-body-line-height         : 1.8; /* font.body.lineHeight */
-    --font-heading-family           : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.heading.family */
-    --font-heading-weight           : 700; /* font.heading.weight */
-    --font-heading-line-height      : 1.3; /* font.heading.lineHeight */
-    --font-heading-h1-size          : 2.5rem; /* font.heading.h1Size */
-    --font-heading-h2-size          : 2rem; /* font.heading.h2Size */
-    --font-heading-h3-size          : 1.5rem; /* font.heading.h3Size */
-    --font-heading-h4-size          : 1.25rem; /* font.heading.h4Size */
-    --font-heading-h5-size          : 1rem; /* font.heading.h5Size */
-    --font-heading-h6-size          : 1rem; /* font.heading.h6Size */
-    --font-display-family           : 'Noto Serif JP', serif; /* font.display.family */
-    --font-display-lg-size          : 3rem; /* font.display.lgSize */
-    --font-price-family             : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.price.family */
-    --font-price-weight             : 700; /* font.price.weight */
-    --font-price-number-size        : 1.25rem; /* font.price.numberSize */
-    --font-price-caption-size       : 0.75rem; /* font.price.captionSize */
-    --radius-action                 : 9999px; /* radius.action */
-    --radius-card                   : 8px; /* radius.card 🚧 placeholder */
-    --radius-badge                  : 4px; /* radius.badge */
-    --radius-overlay                : 16px; /* radius.overlay 🚧 placeholder */
-    --label-height-sm               : 1.25rem; /* label.height.sm */
-    --label-height-md               : 1.5rem; /* label.height.md */
-    --label-padding-inline-sm       : 0.5rem; /* label.paddingInline.sm */
-    --label-padding-inline-md       : 0.75rem; /* label.paddingInline.md */
-    --label-line-height             : 1; /* label.lineHeight */
-    --label-font-size-sm            : 0.75rem; /* label.fontSize.sm */
-    --label-font-size-md            : 0.875rem; /* label.fontSize.md */
-    --label-number-size-sm          : 0.875rem; /* label.numberSize.sm */
-    --label-number-size-md          : 1rem; /* label.numberSize.md */
-    --label-weight-emphasis         : 700; /* label.weight.emphasis */
-    --label-weight-neutral          : 400; /* label.weight.neutral */
-    --label-radius                  : 4px; /* label.radius */
-    --motion-transition-duration    : 300ms; /* motion.transition.duration 🚧 placeholder */
-    --motion-transition-easing      : ease; /* motion.transition.easing 🚧 placeholder */
-    --icon-review-size              : 16px; /* icon.reviewSize */
-    --elevation-sticky              : 1100; /* elevation.sticky */
-    --elevation-overlay             : 1200; /* elevation.overlay */
-    --elevation-modal               : 1300; /* elevation.modal */
-    --spacing-0                     : 0; /* spacing.0 */
-    --spacing-1                     : 0.25rem; /* spacing.1 */
-    --spacing-2                     : 0.5rem; /* spacing.2 */
-    --spacing-3                     : 0.75rem; /* spacing.3 */
-    --spacing-4                     : 1rem; /* spacing.4 */
-    --spacing-5                     : 1.25rem; /* spacing.5 */
-    --spacing-6                     : 1.5rem; /* spacing.6 */
-    --spacing-8                     : 2rem; /* spacing.8 */
-    --spacing-10                    : 2.5rem; /* spacing.10 */
-    --spacing-12                    : 3rem; /* spacing.12 */
-    --spacing-16                    : 4rem; /* spacing.16 */
-    --breakpoint-sm                 : 640px; /* breakpoint.sm */
-    --breakpoint-md                 : 768px; /* breakpoint.md */
-    --breakpoint-lg                 : 1024px; /* breakpoint.lg */
-    --breakpoint-xl                 : 1280px; /* breakpoint.xl */
-    --radius-sm                     : 4px; /* radius.sm */
-    --radius-md                     : 8px; /* radius.md */
-    --radius-lg                     : 16px; /* radius.lg */
-    --radius-full                   : 9999px; /* radius.full */
-    --shadow-sm                     : 0 1px 2px rgba(0,0,0,0.05); /* shadow.sm 🚧 placeholder */
-    --shadow-md                     : 0 2px 8px rgba(0,0,0,0.10); /* shadow.md 🚧 placeholder */
-    --shadow-lg                     : 0 8px 24px rgba(0,0,0,0.15); /* shadow.lg 🚧 placeholder */
-    --icon-size-sm                  : 16px; /* iconSize.sm */
-    --icon-size-md                  : 20px; /* iconSize.md */
-    --icon-size-lg                  : 24px; /* iconSize.lg */
-    --icon-size-xl                  : 32px; /* iconSize.xl */
-    --typography-size-xs            : 0.75rem; /* typography.size.xs */
-    --typography-size-sm            : 0.875rem; /* typography.size.sm */
-    --typography-size-md            : 1rem; /* typography.size.md */
-    --typography-size-lg            : 1.125rem; /* typography.size.lg */
-    --typography-size-xl            : 1.25rem; /* typography.size.xl */
-    --typography-size-2xl           : 1.5rem; /* typography.size.2xl */
-    --typography-size-3xl           : 2rem; /* typography.size.3xl */
-    --typography-size-4xl           : 2.5rem; /* typography.size.4xl */
-    --typography-size-display-lg    : 3rem; /* typography.size.display-lg */
-    --typography-line-height-tight  : 1.3; /* typography.lineHeight.tight */
-    --typography-line-height-normal : 1.5; /* typography.lineHeight.normal */
-    --typography-line-height-relaxed: 1.8; /* typography.lineHeight.relaxed */
-    --typography-font-weight-regular: 400; /* typography.fontWeight.regular */
-    --typography-font-weight-medium : 500; /* typography.fontWeight.medium */
-    --typography-font-weight-bold   : 700; /* typography.fontWeight.bold */
-    --typography-font-weight-black  : 900; /* typography.fontWeight.black */
-    --elevation-z-base              : 0; /* elevation.z.base */
-    --elevation-z-dropdown          : 1000; /* elevation.z.dropdown */
-    --elevation-z-sticky            : 1100; /* elevation.z.sticky */
-    --elevation-z-overlay           : 1200; /* elevation.z.overlay */
-    --elevation-z-modal             : 1300; /* elevation.z.modal */
-    --elevation-z-toast             : 1400; /* elevation.z.toast */
-    --size-container-sm             : 975px; /* size.container.sm */
-    --size-container-md             : 1195px; /* size.container.md */
-    --size-container-lg             : 1425px; /* size.container.lg */
-    --border-width-thin             : 1px; /* border.width.thin */
-    --border-width-thick            : 2px; /* border.width.thick */
+    --color-scheme-main-tint           : #e8edfb; /* color.scheme.main.tint */
+    --color-scheme-main-soft           : #8e9ee6; /* color.scheme.main.soft */
+    --color-scheme-main-base           : #2c50c8; /* color.scheme.main.base */
+    --color-scheme-main-hover          : #2340a6; /* color.scheme.main.hover */
+    --color-scheme-main-pressed        : #1b3488; /* color.scheme.main.pressed */
+    --color-scheme-main-ink            : #14224a; /* color.scheme.main.ink */
+    --color-scheme-main-inverse        : #c8912c; /* color.scheme.main.inverse */
+    --color-scheme-main-error          : #d23a3a; /* color.scheme.main.error */
+    --color-scheme-main-accent         : #e4572e; /* color.scheme.main.accent */
+    --color-scheme-main-accent-tint    : #f9cdbc; /* color.scheme.main.accentTint 🚧 placeholder */
+    --color-scheme-main-accent-ink     : #8a2e11; /* color.scheme.main.accentInk 🚧 placeholder */
+    --color-scheme-sub-tint            : #edecfb; /* color.scheme.sub.tint */
+    --color-scheme-sub-soft            : #928ee4; /* color.scheme.sub.soft */
+    --color-scheme-sub-base            : #4845d4; /* color.scheme.sub.base */
+    --color-scheme-sub-hover           : #3936b0; /* color.scheme.sub.hover */
+    --color-scheme-sub-pressed         : #2c2a8c; /* color.scheme.sub.pressed */
+    --color-scheme-sub-ink             : #191840; /* color.scheme.sub.ink */
+    --color-scheme-sub-inverse         : #c8b12c; /* color.scheme.sub.inverse */
+    --color-scheme-sub-error           : #d2405f; /* color.scheme.sub.error */
+    --color-scheme-sub-accent          : #e0553c; /* color.scheme.sub.accent */
+    --color-scheme-sub-accent-tint     : #f8cbc2; /* color.scheme.sub.accentTint 🚧 placeholder */
+    --color-scheme-sub-accent-ink      : #8a2c18; /* color.scheme.sub.accentInk 🚧 placeholder */
+    --color-brand-primary              : #2c50c8; /* color.brand.primary */
+    --color-brand-primary-hover        : #2340a6; /* color.brand.primaryHover */
+    --color-brand-secondary            : #4845d4; /* color.brand.secondary */
+    --color-brand-secondary-hover      : #3936b0; /* color.brand.secondaryHover */
+    --color-action-primary-bg          : #2c50c8; /* color.action.primary.bg */
+    --color-action-primary-text        : #ffffff; /* color.action.primary.text */
+    --color-action-primary-hover-bg    : #2340a6; /* color.action.primary.hoverBg */
+    --color-action-secondary-bg        : #ffffff; /* color.action.secondary.bg */
+    --color-action-secondary-text      : #212121; /* color.action.secondary.text */
+    --color-text-strong                : #212121; /* color.text.strong */
+    --color-text-body                  : #424242; /* color.text.body */
+    --color-text-muted                 : #9e9e9e; /* color.text.muted */
+    --color-text-muted-strong          : #616161; /* color.text.mutedStrong */
+    --color-text-inverse               : #ffffff; /* color.text.inverse */
+    --color-text-inverse-muted         : #9e9e9e; /* color.text.inverseMuted */
+    --color-text-on-accent             : #ffffff; /* color.text.onAccent */
+    --color-text-placeholder           : #616161; /* color.text.placeholder */
+    --color-text-link                  : #2c50c8; /* color.text.link */
+    --color-text-link-hover            : #2340a6; /* color.text.linkHover */
+    --color-text-link-active           : #1b3488; /* color.text.linkActive */
+    --color-surface-default            : #ffffff; /* color.surface.default */
+    --color-surface-subtle             : #f9f9f9; /* color.surface.subtle */
+    --color-surface-muted              : #f5f5f5; /* color.surface.muted */
+    --color-surface-inverse            : #212121; /* color.surface.inverse */
+    --color-border-subtle              : #e0e0e0; /* color.border.subtle */
+    --color-border-default             : #cccccc; /* color.border.default */
+    --color-border-strong              : #bcbcbc; /* color.border.strong */
+    --color-state-success              : #2c50c8; /* color.state.success */
+    --color-state-error                : #d23a3a; /* color.state.error */
+    --color-accent-campaign            : #e4572e; /* color.accent.campaign */
+    --color-accent-campaign-tint       : #f9cdbc; /* color.accent.campaignTint 🚧 placeholder */
+    --color-accent-campaign-ink        : #8a2e11; /* color.accent.campaignInk 🚧 placeholder */
+    --color-label-discount-surface     : #c8912c; /* color.label.discount.surface */
+    --color-label-discount-text        : #ffffff; /* color.label.discount.text */
+    --color-label-category-surface     : #ffffff; /* color.label.category.surface */
+    --color-label-category-text        : #212121; /* color.label.category.text */
+    --color-label-category-icon        : #e4572e; /* color.label.category.icon */
+    --color-label-category-border      : #cccccc; /* color.label.category.border */
+    --color-label-stock                : #d23a3a; /* color.label.stock */
+    --color-membership-paid-surface    : #f9cdbc; /* color.membership.paid.surface 🚧 placeholder */
+    --color-membership-paid-text       : #8a2e11; /* color.membership.paid.text 🚧 placeholder */
+    --color-membership-free-surface    : #e8edfb; /* color.membership.free.surface */
+    --color-membership-free-text       : #14224a; /* color.membership.free.text */
+    --color-tag-neutral-surface        : #f5f5f5; /* color.tag.neutral.surface */
+    --color-tag-neutral-text           : #424242; /* color.tag.neutral.text */
+    --color-focus-ring                 : #2c50c8; /* color.focus.ring */
+    --color-icon-rating                : #c8912c; /* color.icon.rating */
+    --color-overlay-backdrop           : rgba(0,0,0,0.45); /* color.overlay.backdrop 🚧 placeholder */
+    --font-body-family                 : 'LINE Seed JP', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; /* font.body.family */
+    --font-body-size                   : 1rem; /* font.body.size */
+    --font-body-line-height            : 1.8; /* font.body.lineHeight */
+    --font-heading-family              : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.heading.family */
+    --font-heading-weight              : 700; /* font.heading.weight */
+    --font-heading-weight-thin         : 100; /* font.heading.weightThin */
+    --font-heading-line-height         : 1.3; /* font.heading.lineHeight */
+    --font-heading-h1-size             : 2.5rem; /* font.heading.h1Size */
+    --font-heading-h2-size             : 2rem; /* font.heading.h2Size */
+    --font-heading-h3-size             : 1.5rem; /* font.heading.h3Size */
+    --font-heading-h4-size             : 1.25rem; /* font.heading.h4Size */
+    --font-heading-h5-size             : 1rem; /* font.heading.h5Size */
+    --font-heading-h6-size             : 1rem; /* font.heading.h6Size */
+    --font-display-family              : 'Noto Serif JP', serif; /* font.display.family */
+    --font-display-lg-size             : 3rem; /* font.display.lgSize */
+    --font-price-family                : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.price.family */
+    --font-price-weight                : 700; /* font.price.weight */
+    --font-price-number-size           : 1.25rem; /* font.price.numberSize */
+    --font-price-caption-size          : 0.75rem; /* font.price.captionSize */
+    --radius-action                    : 9999px; /* radius.action */
+    --radius-card                      : 8px; /* radius.card 🚧 placeholder */
+    --radius-badge                     : 4px; /* radius.badge */
+    --radius-overlay                   : 16px; /* radius.overlay 🚧 placeholder */
+    --label-height-sm                  : 1.25rem; /* label.height.sm */
+    --label-height-md                  : 1.5rem; /* label.height.md */
+    --label-padding-inline-sm          : 0.5rem; /* label.paddingInline.sm */
+    --label-padding-inline-md          : 0.75rem; /* label.paddingInline.md */
+    --label-line-height                : 1; /* label.lineHeight */
+    --label-font-size-sm               : 0.75rem; /* label.fontSize.sm */
+    --label-font-size-md               : 0.875rem; /* label.fontSize.md */
+    --label-number-size-sm             : 0.875rem; /* label.numberSize.sm */
+    --label-number-size-md             : 1rem; /* label.numberSize.md */
+    --label-weight-emphasis            : 700; /* label.weight.emphasis */
+    --label-weight-neutral             : 400; /* label.weight.neutral */
+    --label-radius                     : 4px; /* label.radius */
+    --motion-transition-duration       : 300ms; /* motion.transition.duration 🚧 placeholder */
+    --motion-transition-easing         : ease; /* motion.transition.easing 🚧 placeholder */
+    --icon-review-size                 : 16px; /* icon.reviewSize */
+    --elevation-sticky                 : 1100; /* elevation.sticky */
+    --elevation-overlay                : 1200; /* elevation.overlay */
+    --elevation-modal                  : 1300; /* elevation.modal */
+    --spacing-0                        : 0; /* spacing.0 */
+    --spacing-1                        : 0.25rem; /* spacing.1 */
+    --spacing-2                        : 0.5rem; /* spacing.2 */
+    --spacing-3                        : 0.75rem; /* spacing.3 */
+    --spacing-4                        : 1rem; /* spacing.4 */
+    --spacing-5                        : 1.25rem; /* spacing.5 */
+    --spacing-6                        : 1.5rem; /* spacing.6 */
+    --spacing-8                        : 2rem; /* spacing.8 */
+    --spacing-10                       : 2.5rem; /* spacing.10 */
+    --spacing-12                       : 3rem; /* spacing.12 */
+    --spacing-16                       : 4rem; /* spacing.16 */
+    --breakpoint-sm                    : 640px; /* breakpoint.sm */
+    --breakpoint-md                    : 768px; /* breakpoint.md */
+    --breakpoint-lg                    : 1024px; /* breakpoint.lg */
+    --breakpoint-xl                    : 1280px; /* breakpoint.xl */
+    --radius-sm                        : 4px; /* radius.sm */
+    --radius-md                        : 8px; /* radius.md */
+    --radius-lg                        : 16px; /* radius.lg */
+    --radius-full                      : 9999px; /* radius.full */
+    --shadow-sm                        : 0 1px 2px rgba(0,0,0,0.05); /* shadow.sm 🚧 placeholder */
+    --shadow-md                        : 0 2px 8px rgba(0,0,0,0.10); /* shadow.md 🚧 placeholder */
+    --shadow-lg                        : 0 8px 24px rgba(0,0,0,0.15); /* shadow.lg 🚧 placeholder */
+    --icon-size-sm                     : 16px; /* iconSize.sm */
+    --icon-size-md                     : 20px; /* iconSize.md */
+    --icon-size-lg                     : 24px; /* iconSize.lg */
+    --icon-size-xl                     : 32px; /* iconSize.xl */
+    --typography-size-xs               : 0.75rem; /* typography.size.xs */
+    --typography-size-sm               : 0.875rem; /* typography.size.sm */
+    --typography-size-md               : 1rem; /* typography.size.md */
+    --typography-size-lg               : 1.125rem; /* typography.size.lg */
+    --typography-size-xl               : 1.25rem; /* typography.size.xl */
+    --typography-size-2xl              : 1.5rem; /* typography.size.2xl */
+    --typography-size-3xl              : 2rem; /* typography.size.3xl */
+    --typography-size-4xl              : 2.5rem; /* typography.size.4xl */
+    --typography-size-display-lg       : 3rem; /* typography.size.display-lg */
+    --typography-line-height-tight     : 1.3; /* typography.lineHeight.tight */
+    --typography-line-height-normal    : 1.5; /* typography.lineHeight.normal */
+    --typography-line-height-relaxed   : 1.8; /* typography.lineHeight.relaxed */
+    --typography-font-weight-thin      : 100; /* typography.fontWeight.thin */
+    --typography-font-weight-regular   : 400; /* typography.fontWeight.regular */
+    --typography-font-weight-bold      : 700; /* typography.fontWeight.bold */
+    --typography-font-weight-extra-bold: 800; /* typography.fontWeight.extraBold */
+    --elevation-z-base                 : 0; /* elevation.z.base */
+    --elevation-z-dropdown             : 1000; /* elevation.z.dropdown */
+    --elevation-z-sticky               : 1100; /* elevation.z.sticky */
+    --elevation-z-overlay              : 1200; /* elevation.z.overlay */
+    --elevation-z-modal                : 1300; /* elevation.z.modal */
+    --elevation-z-toast                : 1400; /* elevation.z.toast */
+    --size-container-sm                : 975px; /* size.container.sm */
+    --size-container-md                : 1195px; /* size.container.md */
+    --size-container-lg                : 1425px; /* size.container.lg */
+    --border-width-thin                : 1px; /* border.width.thin */
+    --border-width-thick               : 2px; /* border.width.thick */
   }
   /* === /generated:tokens === */
 
@@ -271,8 +272,16 @@
   .hsample--h2 { font-size: var(--typography-size-2xl); }
   .hsample--h3 { font-size: var(--typography-size-xl); }
   .hsample--h4, .hsample--h5, .hsample--h6 { font-size: var(--typography-size-md); }
+  /* 太さ 100 (thin) の見本。design.md §3.1 = 実寸 24px 以上の見出しに限り選択でき、24px 未満では既定 700 に戻す。
+     h3 は 1024px 以上で 24px・1024px 未満で 20px となるため、同一の見出しでも幅によって可否が変わる */
+  .hsample--thin { font-weight: var(--font-heading-weight-thin); }
+  .hsample--h3.hsample--thin { font-weight: var(--font-heading-weight); }
+  .hthin-na { color: var(--color-text-muted-strong); font-size: 12px; line-height: 1.6; }
+  .h3thin::after { content: "1024px 未満 (20px) のため不可 — 既定 700 を表示中"; }
   .hstate::after { content: "いまは 1024px 未満 — 「狭い幅」列の段を表示中"; font-weight: 700; }
   @media (min-width: 1024px) {
+    .hsample--h3.hsample--thin { font-weight: var(--font-heading-weight-thin); }
+    .h3thin::after { content: "1024px 以上 (24px) のため可 — 100 を表示中"; }
     .hsample--h1 { font-size: var(--font-heading-h1-size); }
     .hsample--h2 { font-size: var(--font-heading-h2-size); }
     .hsample--h3 { font-size: var(--font-heading-h3-size); }
@@ -581,19 +590,21 @@
 
   <h3>文書レベルの見出し (h1〜h6)</h3>
   <p class="note"><strong>既定は <code>breakpoint.lg</code> (1024px) 以上に適用される値</strong>で、1024px 未満では <code>h1</code>〜<code>h3</code> の段を 1 つ下げる (<code>h4</code>〜<code>h6</code> は 1rem のまま下げない)。<strong>段を移す境界は 1024px の 1 つのみ</strong>で、640 / 768 / 1280px では変えない。この表の範囲内での段下げは §3.1 の「既定から外れる」に<strong>該当しない</strong>ため、画面ごとの都度の承認を要しない。文書レベルの見出しには実寸が 4 の倍数である段のみを用いる (<code>sm</code> 14px・<code>lg</code> 18px は見出しに用いない)。書体は<strong>役割</strong>で選ぶため要素と書体の対応は固定されず、役割が Display・Hero・特集・詳細施設名にあたる場合は <code>h1</code> であっても <code>font.display.family</code> (明朝) を明示的に選択してよい。サイズ・太さ・行間の既定は書体の選択と独立で、明朝を選んでも下表の値と 700・1.3 がそのまま適用される (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
+  <p class="note"><strong>太さは既定 700 のほかに 100 (<code>font.heading.weightThin</code>) を明示的に選択できる。</strong>選択しない限り 700 が適用される。選べるのは<strong>その幅で実際に適用される実寸が 24px 以上</strong>の見出しに限り、<strong>要素名 (<code>h1</code>〜<code>h6</code>) では制限しない</strong>。24px 未満では 100 を用いず 700 に戻すため、<code>h3</code> のように<strong>同一の見出しが幅によって可否を変える</strong>。この条件を満たす選択は §3.1 の「既定から外れる」に<strong>該当しない</strong>ため都度の承認を要しない。100 は本文・UI・価格・ラベルには用いない (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
   <p class="note">見本欄は<strong>このウィンドウの幅に追従</strong>する — <span class="hstate"></span>。幅を 1024px の前後で変えると段が切り替わる。</p>
   <div class="tablewrap"><table>
-    <thead><tr><th>トークン</th><th>既定 (1024px 以上)</th><th>狭い幅 (1024px 未満)</th><th>見本 (この幅での段)</th></tr></thead>
+    <thead><tr><th>トークン</th><th>既定 (1024px 以上)</th><th>狭い幅 (1024px 未満)</th><th>見本 (この幅での段・既定 700)</th><th>太さ 100 の選択可否</th></tr></thead>
     <tbody>
-      <tr><td><code>font.heading.h1Size</code></td><td class="scale__val">2.5rem <span class="caption">40px</span></td><td class="scale__val">2rem <span class="caption">32px・<code>3xl</code></span></td><td><span class="hsample hsample--h1">見出し h1</span></td></tr>
-      <tr><td><code>font.heading.h2Size</code></td><td class="scale__val">2rem <span class="caption">32px</span></td><td class="scale__val">1.5rem <span class="caption">24px・<code>2xl</code></span></td><td><span class="hsample hsample--h2">見出し h2</span></td></tr>
-      <tr><td><code>font.heading.h3Size</code></td><td class="scale__val">1.5rem <span class="caption">24px</span></td><td class="scale__val">1.25rem <span class="caption">20px・<code>xl</code></span></td><td><span class="hsample hsample--h3">見出し h3</span></td></tr>
-      <tr><td><code>font.heading.h4Size</code></td><td class="scale__val">1.25rem <span class="caption">20px</span></td><td class="scale__val">1rem <span class="caption">16px・<code>md</code></span></td><td><span class="hsample hsample--h4">見出し h4</span></td></tr>
-      <tr><td><code>font.heading.h5Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h5">見出し h5</span></td></tr>
-      <tr><td><code>font.heading.h6Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h6">見出し h6</span></td></tr>
+      <tr><td><code>font.heading.h1Size</code></td><td class="scale__val">2.5rem <span class="caption">40px</span></td><td class="scale__val">2rem <span class="caption">32px・<code>3xl</code></span></td><td><span class="hsample hsample--h1">見出し h1</span></td><td><span class="hsample hsample--h1 hsample--thin">見出し h1</span><br><span class="caption">両幅で可 (40px / 32px)</span></td></tr>
+      <tr><td><code>font.heading.h2Size</code></td><td class="scale__val">2rem <span class="caption">32px</span></td><td class="scale__val">1.5rem <span class="caption">24px・<code>2xl</code></span></td><td><span class="hsample hsample--h2">見出し h2</span></td><td><span class="hsample hsample--h2 hsample--thin">見出し h2</span><br><span class="caption">両幅で可 (32px / 24px)</span></td></tr>
+      <tr><td><code>font.heading.h3Size</code></td><td class="scale__val">1.5rem <span class="caption">24px</span></td><td class="scale__val">1.25rem <span class="caption">20px・<code>xl</code></span></td><td><span class="hsample hsample--h3">見出し h3</span></td><td><span class="hsample hsample--h3 hsample--thin">見出し h3</span><br><span class="hthin-na h3thin"></span><br><span class="caption">1024px 以上でのみ可 (24px)。1024px 未満は 20px のため不可</span></td></tr>
+      <tr><td><code>font.heading.h4Size</code></td><td class="scale__val">1.25rem <span class="caption">20px</span></td><td class="scale__val">1rem <span class="caption">16px・<code>md</code></span></td><td><span class="hsample hsample--h4">見出し h4</span></td><td><span class="hthin-na">— 24px 未満のため 100 を用いない</span><br><span class="caption">両幅で不可 (20px / 16px)</span></td></tr>
+      <tr><td><code>font.heading.h5Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h5">見出し h5</span></td><td><span class="hthin-na">— 24px 未満のため 100 を用いない</span><br><span class="caption">両幅で不可 (16px)</span></td></tr>
+      <tr><td><code>font.heading.h6Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h6">見出し h6</span></td><td><span class="hthin-na">— 24px 未満のため 100 を用いない</span><br><span class="caption">両幅で不可 (16px)</span></td></tr>
     </tbody>
   </table></div>
   <p class="note">1024px 未満では <code>h4</code>・<code>h5</code>・<code>h6</code> がいずれも 1rem となり、<strong>本文 (<code>font.body.size</code> 1rem) とも同値</strong>になる。狭い幅で寸法によって区別できる文書レベルの見出しは <code>h1</code>・<code>h2</code>・<code>h3</code> の 3 段である。本文のウェイトは正本上定義されていないため、太さによる区別は根拠としない (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
+  <p class="note">100 は 40px / 32px / 24px では 700 と別の表情として成立する一方、20px で目に見えて弱くなり、16px では<strong>本文 (400) より細くなって見出しが本文より弱く見える</strong> — 下限 24px はこの実測による。コントラスト比はウェイトでは変わらないが (§2.1 の面と文字色の組み合わせ規則はそのまま適用される)、反転面の 16px・明るい画像の上の白文字・<code>color.text.muted</code> 相当との組み合わせでは 100 はさらに弱くなる (<a href="design.md"><code>design.md</code></a> §3.1 の [観察])。</p>
   <p class="source">正本: <a href="design.md"><code>design.md</code></a> §3・§3.1 / <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>font.*</code></p>
 </section>
 
@@ -625,10 +636,10 @@
   <h3>ウェイト</h3>
   <div class="tablewrap"><table class="scale">
     <tbody>
+      <tr><td><code>typography.fontWeight.thin</code></td><td class="scale__val">100</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-thin)">見本 Aa 12,800円</span></td></tr>
       <tr><td><code>typography.fontWeight.regular</code></td><td class="scale__val">400</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-regular)">見本 Aa 12,800円</span></td></tr>
-      <tr><td><code>typography.fontWeight.medium</code></td><td class="scale__val">500</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-medium)">見本 Aa 12,800円</span></td></tr>
       <tr><td><code>typography.fontWeight.bold</code></td><td class="scale__val">700</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-bold)">見本 Aa 12,800円</span></td></tr>
-      <tr><td><code>typography.fontWeight.black</code></td><td class="scale__val">900</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-black)">見本 Aa 12,800円</span></td></tr>
+      <tr><td><code>typography.fontWeight.extraBold</code></td><td class="scale__val">800</td><td class="scale__sample"><span style="font-weight: var(--typography-font-weight-extra-bold)">見本 Aa 12,800円</span></td></tr>
     </tbody>
   </table></div>
   <h3>余白</h3>
@@ -718,6 +729,7 @@
     </tbody>
   </table></div>
 <!-- === /generated:scales === -->
+  <p class="note">このスケール一覧のうち<strong>「ウェイト」の表</strong>は、primitive の 5 段を<strong>同じ本文サイズで並べて比べるための一覧</strong>であり、各段をそのサイズで使ってよいことを示すものではない。<code>typography.fontWeight.thin</code> (100) を使えるのは<strong>実寸 24px 以上の文書レベルの見出し</strong>に限る (前節「タイポグラフィ」の<strong>「文書レベルの見出し (h1〜h6)」の表</strong>)。本文・UI・価格・ラベルには用いない (<a href="design.md"><code>design.md</code></a> §3.1)。上の 4 段は、書体 (LINE Seed JP) が Google Fonts で配信するウェイト <strong>100 / 400 / 700 / 800</strong> と一致する (本 Repository で実測)。改訂前にあった <code>medium</code> (500)・<code>black</code> (900) は<strong>対応する字面が存在せず</strong>、このページでも 500 が 400 と、900 が 700 と同じ字形・同じ描画幅で描かれていたため、Task 009-65 で削除した (<a href="design.md"><code>design.md</code></a> §3)。<code>extraBold</code> (800) を参照する semantic は無く、用途は正本上未定義である。</p>
   <p class="source">正本: <a href="design.md"><code>design.md</code></a> §3 (タイポ)・§4 (余白・ブレークポイント)・§5 (角丸・影)・§6 (アイコン) / 値は <a href="primitive.travel.json"><code>primitive.travel.json</code></a></p>
 </section>
 

@@ -1083,6 +1083,56 @@
 - **実装 Repository (`tocoo/tocoo_travel`) 側の適用作業** (Google Fonts 読み込みの更新・トークンスナップショットの同期・実際の見出しへの適用)。実装側の状態は本 Repository で実査していない (**未検証**)。
 
 
+## 32. リポジトリ入口 README ほか 3 文書の記述の最新化 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: リポジトリ入口 [../README.md](../README.md)・Governance 入口 [README.md](README.md)・国内宿泊入口 [../services/travel/README.md](../services/travel/README.md)・インバウンドレンタカー入口 [../services/inbound/README.md](../services/inbound/README.md) の**記述を `main` の現状へ最新化する**改訂に対し、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録。契機は [Issue #176](https://github.com/tocoo/coocom-design-system/issues/176)。
+- **本記録は Design System の内容を変更しない。** トークン値・`$status`・`$meta.version`・規則・Component 仕様のいずれも対象外であり、扱うのは入口文書の記述のみである。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 32-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | 4 つの入口文書の記述の最新化。①[../README.md](../README.md) — 冒頭「状態」・§4 (`tools/` の位置づけ)・§7 (補助スクリプトへのリンク)・§8 (構築状態・サービス表・DS 見本ページ)・§10 (対象外の現在の扱い)。②[README.md](README.md) — `owner-decisions.md` の説明を §31 まで、規則の説明へ適用開始後の改定 1 件を反映。③[../services/travel/README.md](../services/travel/README.md) — 見本ページの追記とレイヤー表・成果物説明の是正。④[../services/inbound/README.md](../services/inbound/README.md) — primitive 版数 `0.2.1` → `0.2.2-draft` の是正と、bootstrap 後の変更 1 件の明記 |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-09-11 |
+| 承認主体 | Web部責任者 |
+| 根拠 | 入口文書が **既に完了した作業を未着手と記述している**状態にあった。とくに [../README.md](../README.md) §8 の「Design System 改定は未着手」は、2026-07-24 (Task 009-18-BP1) 以降 travel / rental-car で継続している改定と矛盾する。[../services/inbound/README.md](../services/inbound/README.md) の `primitive 0.2.1` は JSON の `$meta.version` (`0.2.2-draft`) と一致しない事実の誤りである。入口文書は参照順序上の起点であり (§6)、誤った現況記述は下位レイヤーの読み違えへ伝播する |
+| 適用範囲 | **上記 4 文書の記述に限定**。各サービスの Design System 成果物・Screen Requirements・Service Design の内容へは及ばない |
+
+### 32-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **低** (判定者 = Web部責任者・判定日 2026-09-11・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・低の既定 = **Web部レビュー担当者**。反映確定の前提は同 §11 に従う |
+| 判定の位置づけ | 本判定は本件に限る都度判断である。**§8 の編集的訂正 carve-out (意味を変えない字句の修正) を根拠とする自動的な「低」ではない** — 本件は記述の意味 (現況の記述内容) を変えるため carve-out の対象外であり、本件について明示的に取得した判定である |
+
+### 32-3. 取得した現在判断 (2026-09-11)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| I-1 | 最新化の反映経路 | **ブランチを作成し PR として反映する**。`main` はルールセット保護下にあり直接 push しない |
+| I-2 | 最新化の対象範囲 ([../README.md](../README.md) のみか、実測で判明した他の入口文書も含めるか) | **4 文書すべてを 1 つの作業単位として扱う**。①[../README.md](../README.md)、②[../services/inbound/README.md](../services/inbound/README.md) の版数是正、③[../services/travel/README.md](../services/travel/README.md) への見本ページ・改定継続の反映、④[README.md](README.md) の `owner-decisions.md` 説明の §31 までの拡張 |
+| I-3 | 本件の影響度 (§8) | **低** (§32-2) |
+
+### 32-4. 記述上の扱いの統一 (本記録に基づき 4 文書で揃える点)
+
+- **「12 候補の改訂」と「案件ごとの改定」を別経路として書き分ける。** Work Order 6 の総合判断 (全 12 候補「現時点では開始できない」・Task 009-6 / 2026-07-21 が記録上の最新) は維持する一方、案件ごとの改訂着手承認 ([review-approval-rules.md](review-approval-rules.md) §9・§20) に基づく Design System の改定は継続中である。**従前の「Design System 改定は未着手」という書き方は、前者を指しながら後者まで否定する形になっていたため用いない。**
+- **`tools/` は 5 論理レイヤーのいずれにも属さない補助スクリプト置き場であり、正本ではない**ことを入口で明記する。
+- **DS 見本ページ (`preview.<service>.html`) は非正本**であり、値・`$status` の正本は各サービスの JSON と `design.md` にあることを、travel・rental-car の双方で同じ扱いとして書く。
+
+### 32-5. 本記録が決定しないこと
+
+- **Work Order 6 の総合判断の変更・再評価の実施。** 全 12 候補「現時点では開始できない」・Alignment 未完了 (§19 観点 4・5 未充足) は本記録により変更しない。
+- **Design System のトークン値・`$status`・`$meta.version`・規則・Component 仕様の変更。** 本件は記述の最新化に限る。
+- **不足成果物の新規作成。** Repository principles・命名規則・ADR・用語定義の正本は引き続き未整備であり、本記録は空ファイルや推測による規約を作成しない。
+- **承認済みの [review-approval-rules.md](review-approval-rules.md) 本体の改定。**
+- **サービス識別子の確定。** `travel` / `rental-car` / `inbound` は暫定のままである (確認事項 #8)。
+- **入口文書以外の陳腐化の点検範囲の確定。** 本件で点検したのは 4 つの入口文書であり、下位レイヤーの各成果物の記述が現況と一致するかは本記録では判定しない。
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+
 ---
 
 ## 変更履歴
@@ -1134,3 +1184,4 @@
 | 2026-09-07 | Task 009-64: §30 「Travel `design.md` §2.1 検証表の欠落の回収と Breadcrumb 現在地の文字色の確定」を §1〜§29 と分離して追加 ([Issue #172](https://github.com/tocoo/coocom-design-system/issues/172))。改訂着手の設計承認 (§9・§20、2026-09-07・Web部責任者)・**影響度 = 高** (判定者 = Web部責任者・判定日 2026-09-07・明示取得・必要レビュー主体 = Web部責任者およびチーフデザイナー)・取得した現在判断 **2 件** (G-1 = 白面 × `color.text.muted` 2.68:1 を検証表へ載せず **Breadcrumb 現在地の文字色を `color.text.mutedStrong` `#616161` 6.19:1 へ変更**して AA 未達を解消する／G-2 = 影響度)・検証表へ追加する **10 行**の実測値・本記録が決定しないこと **8 項目**を記録した。**適用範囲 = travel に限定**し rental-car・inbound へは及ぼさない (3 独立 DS の原則 P1/ADR-0022)。とくに §29-3 判断 C-5 (rental-car の未入力状態の案内文字を `color.text.muted` に統一・AA 未達明示) とは扱いが異なるが、**同判断の内容・適用範囲は変更しない**。**トークンの追加・削除・値の変更・参照先の変更・`$status` の変更は 0 件**。**不変**: §1〜§29 の各記録、[review-approval-rules.md](review-approval-rules.md) 本体。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-07 | Task 009-64R: §30 の記述是正と**承認対象①の範囲拡大** (PR [#173](https://github.com/tocoo/coocom-design-system/pull/173) のコードレビュー 2026-09-07 の指摘 6 件に対応)。①**§30-1 承認対象①の行数を「10 行追加」から「21 行追加」(14 行 → 35 行) へ拡大**し、既存 1 行の概算 `≈11.1:1` の実測値 `11.11:1` への是正と既存 5 行への「主色」の明示を承認対象へ加えた (Web部責任者判断 2026-09-07)。②**§30-5 に「PR #173 のコードレビューを契機に追加した 11 行」の表を追加**した — 同レビューが名指しした 5 組 (`color.tag.neutral` 9.22:1・`color.label.stock` 主色 4.77:1 / 副色 4.53:1・`color.membership.free` 13.21:1・Button `secondary` 16.10:1・`surface.inverse` × `mutedStrong` 2.60:1 = **禁止**) と、per-scheme の判定基準を表全体へ一貫させるための**副色スキームの campaign accent 5 組** (3.79:1 / 4.24:1 / 3.79:1 / 3.60:1 / 3.48:1)。副色の `campaignTint` / `campaignInk` は 🚧 仮色のため追加しない。③**per-scheme の判定基準を [事実] として明記**した — 主色・副色で行を分けるか否かは `semantic.travel.json` の解決チェーンではなく **§2 の用途表が per-scheme トークンとして定義しているか否か**による (`color.action.primary.bg` と `color.text.link` は JSON 上いずれも `{color.scheme.main.base}` へ解決するが前者は per-scheme ではない)。**トークンの追加・削除・値の変更・参照先の変更・`$status` の変更は引き続き 0 件**。**不変**: §30-2 影響度 (**高**)・§30-3 判断 G-1 / G-2 の内容・§30-4 (トークン変更なし)・§30-6 決定しないこと、§1〜§29 の各記録、[review-approval-rules.md](review-approval-rules.md) 本体。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-11 | Task 009-65: §31 「Travel 文書レベル見出しの太さ 100 (thin) の導入と `typography.fontWeight` スケールの配信段への整合 (travel / rental-car)」を §1〜§30 と分離して追加 ([Issue #174](https://github.com/tocoo/coocom-design-system/issues/174))。改訂着手の設計承認 (§9・§20、2026-09-11・Web部責任者)、影響度 = **高** (§8、2026-09-11・明示取得)、現在判断 7 件 (H-1 既定は 700 のまま 100 を明示的な選択肢として足す／H-2 選べる要素を `h1`〜`h6` の要素名では制限しない／H-3 §3.1 の [決定]「新しいウェイト値は追加しない」を改訂する／H-4 選べるのは実寸 24px 以上の見出しに限る／H-5 書体が配信していないウェイトは記述を削除し、配信されているウェイトは追加する／H-6 H-5 の適用は travel と rental-car の 2 サービス・inbound は書体規定が暫定のため保留／H-7 影響度 = 高) を記録した。§31-4 に追加・変更するトークン (primitive = `thin` 100 と `extraBold` 800 を追加・`medium` 500 と `black` 900 を削除／semantic = travel のみ `font.heading.weightThin` を追加・既定 `font.heading.weight` 700 は不変) を、§31-5 に本記録が決定しないこと 9 件を記載した。**§5 設計承認ログ・§6 適用開始記録・§7〜§30 の各記録は変更していない。** 承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
+| 2026-09-11 | Task 009-66: §32 「リポジトリ入口 README ほか 3 文書の記述の最新化」を §1〜§31 と分離して追加 ([Issue #176](https://github.com/tocoo/coocom-design-system/issues/176))。Web部責任者の**改訂着手の設計承認 (2026-09-11)**・**影響度 = 低 (本件について明示取得)**・現在判断 I-1〜I-3 (反映経路 = PR・対象範囲 = 入口 4 文書・影響度) を記録。あわせて 4 文書で揃える記述上の扱い (§32-4) — **「12 候補の改訂 (未着手)」と「案件ごとの改訂着手承認に基づく改定 (継続中)」の書き分け**・`tools/` が 5 レイヤー外の非正本であること・DS 見本ページが非正本であること — を記録。**Design System のトークン値・`$status`・`$meta.version`・規則・Component 仕様は変更していない。**Work Order 6 の総合判断 (全 12 候補「現時点では開始できない」)・[review-approval-rules.md](review-approval-rules.md) 本体・既存 §1〜§31 は不変 | Claude Code |

@@ -87,6 +87,7 @@
     --font-heading-family              : 'LINE Seed JP', 'Noto Sans JP', sans-serif; /* font.heading.family */
     --font-heading-weight              : 700; /* font.heading.weight */
     --font-heading-weight-thin         : 100; /* font.heading.weightThin */
+    --font-heading-weight-regular      : 400; /* font.heading.weightRegular */
     --font-heading-line-height         : 1.3; /* font.heading.lineHeight */
     --font-heading-h1-size             : 2.5rem; /* font.heading.h1Size */
     --font-heading-h2-size             : 2rem; /* font.heading.h2Size */
@@ -272,16 +273,18 @@
   .hsample--h2 { font-size: var(--typography-size-2xl); }
   .hsample--h3 { font-size: var(--typography-size-xl); }
   .hsample--h4, .hsample--h5, .hsample--h6 { font-size: var(--typography-size-md); }
-  /* 太さ 100 (thin) の見本。design.md §3.1 = 実寸 24px 以上の見出しに限り選択でき、24px 未満では既定 700 に戻す。
+  /* 太さ 100 (thin) / 400 (regular) の見本。design.md §3.1 = いずれも実寸 24px 以上の見出しに限り選択でき、24px 未満では既定 700 に戻す。
      h3 は 1024px 以上で 24px・1024px 未満で 20px となるため、同一の見出しでも幅によって可否が変わる */
   .hsample--thin { font-weight: var(--font-heading-weight-thin); }
-  .hsample--h3.hsample--thin { font-weight: var(--font-heading-weight); }
+  .hsample--regular { font-weight: var(--font-heading-weight-regular); }
+  .hsample--h3.hsample--thin, .hsample--h3.hsample--regular { font-weight: var(--font-heading-weight); }
   .hthin-na { color: var(--color-text-muted-strong); font-size: 12px; line-height: 1.6; }
   .h3thin::after { content: "1024px 未満 (20px) のため不可 — 既定 700 を表示中"; }
   .hstate::after { content: "いまは 1024px 未満 — 「狭い幅」列の段を表示中"; font-weight: 700; }
   @media (min-width: 1024px) {
     .hsample--h3.hsample--thin { font-weight: var(--font-heading-weight-thin); }
-    .h3thin::after { content: "1024px 以上 (24px) のため可 — 100 を表示中"; }
+    .hsample--h3.hsample--regular { font-weight: var(--font-heading-weight-regular); }
+    .h3thin::after { content: "1024px 以上 (24px) のため可 — 100 / 400 を表示中"; }
     .hsample--h1 { font-size: var(--font-heading-h1-size); }
     .hsample--h2 { font-size: var(--font-heading-h2-size); }
     .hsample--h3 { font-size: var(--font-heading-h3-size); }
@@ -590,21 +593,21 @@
 
   <h3>文書レベルの見出し (h1〜h6)</h3>
   <p class="note"><strong>既定は <code>breakpoint.lg</code> (1024px) 以上に適用される値</strong>で、1024px 未満では <code>h1</code>〜<code>h3</code> の段を 1 つ下げる (<code>h4</code>〜<code>h6</code> は 1rem のまま下げない)。<strong>段を移す境界は 1024px の 1 つのみ</strong>で、640 / 768 / 1280px では変えない。この表の範囲内での段下げは §3.1 の「既定から外れる」に<strong>該当しない</strong>ため、画面ごとの都度の承認を要しない。文書レベルの見出しには実寸が 4 の倍数である段のみを用いる (<code>sm</code> 14px・<code>lg</code> 18px は見出しに用いない)。書体は<strong>役割</strong>で選ぶため要素と書体の対応は固定されず、役割が Display・Hero・特集・詳細施設名にあたる場合は <code>h1</code> であっても <code>font.display.family</code> (明朝) を明示的に選択してよい。サイズ・太さ・行間の既定は書体の選択と独立で、明朝を選んでも下表の値と 700・1.3 がそのまま適用される (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
-  <p class="note"><strong>太さは既定 700 のほかに 100 (<code>font.heading.weightThin</code>) を明示的に選択できる。</strong>選択しない限り 700 が適用される。選べるのは<strong>その幅で実際に適用される実寸が 24px 以上</strong>の見出しに限り、<strong>要素名 (<code>h1</code>〜<code>h6</code>) では制限しない</strong>。24px 未満では 100 を用いず 700 に戻すため、<code>h3</code> のように<strong>同一の見出しが幅によって可否を変える</strong>。この条件を満たす選択は §3.1 の「既定から外れる」に<strong>該当しない</strong>ため都度の承認を要しない。100 は本文・UI・価格・ラベルには用いない (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
+  <p class="note"><strong>太さは既定 700 のほかに 100 (<code>font.heading.weightThin</code>) と 400 (<code>font.heading.weightRegular</code>) を明示的に選択できる。</strong>選択しない限り 700 が適用される。選べるのは<strong>その幅で実際に適用される実寸が 24px 以上</strong>の見出しに限り (下限は両ウェイトで同一)、<strong>要素名 (<code>h1</code>〜<code>h6</code>) では制限しない</strong>。24px 未満では 100 / 400 を用いず 700 に戻すため、<code>h3</code> のように<strong>同一の見出しが幅によって可否を変える</strong>。この条件を満たす選択は §3.1 の「既定から外れる」に<strong>該当しない</strong>ため都度の承認を要しない。100 は本文・UI・価格・ラベルには用いない (400 は本文・UI の既定でもあり、見出し以外での使用は制限されない) (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
   <p class="note">見本欄は<strong>このウィンドウの幅に追従</strong>する — <span class="hstate"></span>。幅を 1024px の前後で変えると段が切り替わる。</p>
   <div class="tablewrap"><table>
-    <thead><tr><th>トークン</th><th>既定 (1024px 以上)</th><th>狭い幅 (1024px 未満)</th><th>見本 (この幅での段・既定 700)</th><th>太さ 100 の選択可否</th></tr></thead>
+    <thead><tr><th>トークン</th><th>既定 (1024px 以上)</th><th>狭い幅 (1024px 未満)</th><th>見本 (この幅での段・既定 700)</th><th>太さ 100 / 400 の選択可否</th></tr></thead>
     <tbody>
-      <tr><td><code>font.heading.h1Size</code></td><td class="scale__val">2.5rem <span class="caption">40px</span></td><td class="scale__val">2rem <span class="caption">32px・<code>3xl</code></span></td><td><span class="hsample hsample--h1">見出し h1</span></td><td><span class="hsample hsample--h1 hsample--thin">見出し h1</span><br><span class="caption">両幅で可 (40px / 32px)</span></td></tr>
-      <tr><td><code>font.heading.h2Size</code></td><td class="scale__val">2rem <span class="caption">32px</span></td><td class="scale__val">1.5rem <span class="caption">24px・<code>2xl</code></span></td><td><span class="hsample hsample--h2">見出し h2</span></td><td><span class="hsample hsample--h2 hsample--thin">見出し h2</span><br><span class="caption">両幅で可 (32px / 24px)</span></td></tr>
-      <tr><td><code>font.heading.h3Size</code></td><td class="scale__val">1.5rem <span class="caption">24px</span></td><td class="scale__val">1.25rem <span class="caption">20px・<code>xl</code></span></td><td><span class="hsample hsample--h3">見出し h3</span></td><td><span class="hsample hsample--h3 hsample--thin">見出し h3</span><br><span class="hthin-na h3thin"></span><br><span class="caption">1024px 以上でのみ可 (24px)。1024px 未満は 20px のため不可</span></td></tr>
-      <tr><td><code>font.heading.h4Size</code></td><td class="scale__val">1.25rem <span class="caption">20px</span></td><td class="scale__val">1rem <span class="caption">16px・<code>md</code></span></td><td><span class="hsample hsample--h4">見出し h4</span></td><td><span class="hthin-na">— 24px 未満のため 100 を用いない</span><br><span class="caption">両幅で不可 (20px / 16px)</span></td></tr>
-      <tr><td><code>font.heading.h5Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h5">見出し h5</span></td><td><span class="hthin-na">— 24px 未満のため 100 を用いない</span><br><span class="caption">両幅で不可 (16px)</span></td></tr>
-      <tr><td><code>font.heading.h6Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h6">見出し h6</span></td><td><span class="hthin-na">— 24px 未満のため 100 を用いない</span><br><span class="caption">両幅で不可 (16px)</span></td></tr>
+      <tr><td><code>font.heading.h1Size</code></td><td class="scale__val">2.5rem <span class="caption">40px</span></td><td class="scale__val">2rem <span class="caption">32px・<code>3xl</code></span></td><td><span class="hsample hsample--h1">見出し h1</span></td><td><span class="hsample hsample--h1 hsample--thin">見出し h1</span><br><span class="hsample hsample--h1 hsample--regular">見出し h1</span><br><span class="caption">両幅で可 (40px / 32px)</span></td></tr>
+      <tr><td><code>font.heading.h2Size</code></td><td class="scale__val">2rem <span class="caption">32px</span></td><td class="scale__val">1.5rem <span class="caption">24px・<code>2xl</code></span></td><td><span class="hsample hsample--h2">見出し h2</span></td><td><span class="hsample hsample--h2 hsample--thin">見出し h2</span><br><span class="hsample hsample--h2 hsample--regular">見出し h2</span><br><span class="caption">両幅で可 (32px / 24px)</span></td></tr>
+      <tr><td><code>font.heading.h3Size</code></td><td class="scale__val">1.5rem <span class="caption">24px</span></td><td class="scale__val">1.25rem <span class="caption">20px・<code>xl</code></span></td><td><span class="hsample hsample--h3">見出し h3</span></td><td><span class="hsample hsample--h3 hsample--thin">見出し h3</span><br><span class="hsample hsample--h3 hsample--regular">見出し h3</span><br><span class="hthin-na h3thin"></span><br><span class="caption">1024px 以上でのみ可 (24px)。1024px 未満は 20px のため不可</span></td></tr>
+      <tr><td><code>font.heading.h4Size</code></td><td class="scale__val">1.25rem <span class="caption">20px</span></td><td class="scale__val">1rem <span class="caption">16px・<code>md</code></span></td><td><span class="hsample hsample--h4">見出し h4</span></td><td><span class="hthin-na">— 24px 未満のため 100 / 400 を用いない</span><br><span class="caption">両幅で不可 (20px / 16px)</span></td></tr>
+      <tr><td><code>font.heading.h5Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h5">見出し h5</span></td><td><span class="hthin-na">— 24px 未満のため 100 / 400 を用いない</span><br><span class="caption">両幅で不可 (16px)</span></td></tr>
+      <tr><td><code>font.heading.h6Size</code></td><td class="scale__val">1rem <span class="caption">16px</span></td><td class="scale__val">1rem <span class="caption">段を下げない</span></td><td><span class="hsample hsample--h6">見出し h6</span></td><td><span class="hthin-na">— 24px 未満のため 100 / 400 を用いない</span><br><span class="caption">両幅で不可 (16px)</span></td></tr>
     </tbody>
   </table></div>
   <p class="note">1024px 未満では <code>h4</code>・<code>h5</code>・<code>h6</code> がいずれも 1rem となり、<strong>本文 (<code>font.body.size</code> 1rem) とも同値</strong>になる。狭い幅で寸法によって区別できる文書レベルの見出しは <code>h1</code>・<code>h2</code>・<code>h3</code> の 3 段である。本文のウェイトは正本上定義されていないため、太さによる区別は根拠としない (<a href="design.md"><code>design.md</code></a> §3.1)。</p>
-  <p class="note">100 は 40px / 32px / 24px では 700 と別の表情として成立する一方、20px で目に見えて弱くなり、16px では<strong>本文 (400) より細くなって見出しが本文より弱く見える</strong> — 下限 24px はこの実測による。コントラスト比はウェイトでは変わらないが (§2.1 の面と文字色の組み合わせ規則はそのまま適用される)、反転面の 16px・明るい画像の上の白文字・<code>color.text.muted</code> 相当との組み合わせでは 100 はさらに弱くなる (<a href="design.md"><code>design.md</code></a> §3.1 の [観察])。</p>
+  <p class="note">100 は 40px / 32px / 24px では 700 と別の表情として成立する一方、20px で目に見えて弱くなり、16px では<strong>本文 (400) より細くなって見出しが本文より弱く見える</strong> — 100 の下限 24px はこの実測による。<strong>400 の下限 24px は、可否の条件体系を両ウェイトで 1 本化する Owner 判断による</strong> (描画実測に基づくものではない・<a href="design.md"><code>design.md</code></a> §3.1 の [根拠])。コントラスト比はウェイトでは変わらないが (§2.1 の面と文字色の組み合わせ規則はそのまま適用される)、反転面の 16px・明るい画像の上の白文字・<code>color.text.muted</code> 相当との組み合わせでは 100 はさらに弱くなる (<a href="design.md"><code>design.md</code></a> §3.1 の [観察])。</p>
   <p class="source">正本: <a href="design.md"><code>design.md</code></a> §3・§3.1 / <a href="semantic.travel.json"><code>semantic.travel.json</code></a> の <code>font.*</code></p>
 </section>
 

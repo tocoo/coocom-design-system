@@ -93,7 +93,7 @@
     },
     "fontWeight": {
       "thin":      { "$value": 100, "$type": "fontWeight", "$description": "LINE Seed JP Thin。文書レベルの見出しで既定 (700) から明示的に選択する細いウェイト。実寸 24px 以上の見出しに限る (design.md §3.1・Task 009-65)。本文・UI・価格・ラベルには用いない", "$status": "bound" },
-      "regular":   { "$value": 400, "$type": "fontWeight", "$description": "LINE Seed JP Regular。本文・UI の既定", "$status": "bound" },
+      "regular":   { "$value": 400, "$type": "fontWeight", "$description": "LINE Seed JP Regular。本文・UI の既定。文書レベルの見出しでは既定 (700) から明示的に選択できる — 実寸 24px 以上の見出しに限る (design.md §3.1・Task 009-67)", "$status": "bound" },
       "bold":      { "$value": 700, "$type": "fontWeight", "$description": "LINE Seed JP Bold。見出し・価格・強調ラベルの既定", "$status": "bound" },
       "extraBold": { "$value": 800, "$type": "fontWeight", "$description": "LINE Seed JP ExtraBold。書体が配信する最も太い段。現時点で参照する semantic は無く、用途は正本上未定義 (design.md §3・Task 009-65)", "$status": "bound" }
     },

@@ -1133,6 +1133,64 @@
 - **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
 
 
+## 33. Travel 文書レベル見出しの太さの明示的な選択肢への regular (400) の追加 — Task 009-65 の thin (100) 限定の是正 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) の文書レベルの見出しの太さについて、Task 009-65 (§31) が既定 700 に対する明示的な選択肢を **thin (100) のみ**と規定していた点を誤りと判断し、**regular (400) を同じ条件の選択肢として追加する**件について、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録。契機 = 実装リポジトリ `tocoo/tocoo_travel` のお問い合わせ (`#7032`) のレビューで、FAQ (`#7031`) の見出し (`.faq__title` 32/40px・`.question` 20/24px) の 400 指定が現行 SOT のもとで逸脱と判定されたこと ([Issue #178](https://github.com/tocoo/coocom-design-system/issues/178))。上記 §1〜§32 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§32 の各記録は変更しない。
+- **本記録は §31 の判断内容を遡って変更するものではない。** §31 の H-1〜H-7 (thin の導入・スケールの配信段への整合) はそのまま有効であり、本記録が是正するのは「明示的な選択肢が thin のみである」という規定の範囲である。
+- **適用範囲は国内宿泊 (travel) に限る。** rental-car / inbound へは及ばない (thin と同じ扱い・3 独立 DS の原則 = P1/ADR-0022)。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 33-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/travel/design-system/semantic.travel.json](../services/travel/design-system/semantic.travel.json) への `font.heading.weightRegular` (= 既存 primitive `typography.fontWeight.regular` 400 への参照) の追加 (既定 `font.heading.weight` 700 は不変)、②[../services/travel/design-system/design.md](../services/travel/design-system/design.md) の部分更新 (§3 の箇条・§3.1 の表の列名と [決定] の追加/改訂・[根拠] [事実] の追加/改訂)、③[../services/travel/design-system/primitive.travel.json](../services/travel/design-system/primitive.travel.json) の `regular` の `$description` への見出し用途の追記 (値・`$status` は不変)、④[../services/travel/design-system/preview.travel.html](../services/travel/design-system/preview.travel.html) の部分更新 (**非正本**) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-09-12 |
+| 承認主体 | Web部責任者 |
+| 根拠 | Task 009-65 の規定のもとでは、見出しへの 400 の使用が既定からの逸脱と判定される。Web部責任者は、明示的な選択肢が thin のみとなっていることを**規定側の誤り**と判断した (2026-09-12。実装側 FAQ の 400 を逸脱と扱わない) |
+| 適用範囲 | travel に限定。rental-car / inbound へは及ばない |
+
+### 33-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **未取得** (判定主体 = Web部責任者の都度判断 = [review-approval-rules.md](review-approval-rules.md) §8。取得後に本表を更新する) |
+| 参考 | 同種の先行判断 = §31 (thin の導入) は**高**。ただし本件は primitive の追加・削除を伴わず (既存 `regular` への参照追加のみ)、対象も travel 1 サービスに限る点で §31 と異なる |
+
+### 33-3. 取得した現在判断 (2026-09-12)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| J-1 | regular (400) を見出しの選択肢として認めるか | **認める。** Task 009-65 が明示的な選択肢を thin (100) のみとした規定は誤りであり是正する。既定は `font.heading.weight` (700) のまま変更しない。選択のための semantic を別に設ける (`font.heading.weightRegular`) |
+| J-2 | 400 を選べる**条件** | **thin と同一 = その幅で実際に適用される実寸が 24px (1.5rem) 以上の見出しに限る。** 要素名 (`h1`〜`h6`) では制限しない。可否の条件体系を両ウェイトで 1 本化する (100 の下限のような描画実測に基づくものではない) |
+| J-3 | 進め方 | **既存フロー = Issue 起票 → 本記録への判断記録 → origin/main からの新ブランチで PR** |
+
+### 33-4. 追加・変更するトークン
+
+**semantic (travel のみ)**
+
+| トークン | 変更 | `$value` | `$status` |
+| --- | --- | --- | --- |
+| `font.heading.weightRegular` | **追加** | `{typography.fontWeight.regular}` (400) | bound |
+| `font.heading.weight` | **不変** | `{typography.fontWeight.bold}` (700) | bound |
+| `font.heading.weightThin` | **不変** | `{typography.fontWeight.thin}` (100) | bound |
+
+- **primitive は追加・削除・値の変更のいずれも行わない** (`typography.fontWeight.regular` 400 は既存。`$description` への見出し用途の追記のみ)。
+- **新しい色値は追加していない。** 本記録が扱うのはウェイトのみである。
+- **`$meta.version` は primitive / semantic とも据置き** (bump の条件は各 README の Open Issue として未決)。
+
+### 33-5. 本記録が決定しないこと
+
+- **実装 Repository (`tocoo/tocoo_travel`) 側の適用作業** (FAQ・お問い合わせ等の見出しへの適用・トークンスナップショットの同期)。実装側 FAQ の 400 が本規定の条件 (実寸 24px 以上) を満たすか否かの個別判定も行わない (FAQ `.question` の 1024px 未満の実寸は 20px であり、本規定のもとでは 700 を用いる対象になる — この適合判定は実装側タスクの範囲)。
+- **rental-car / inbound の見出しへの 400 の導入。** travel `design.md` §3.1 の選択規則は他サービスへ自動適用しない (P1/ADR-0022)。
+- **thin (100) の条件・規定の変更。** §31 の判断はそのまま有効である。
+- **本文 (`font.body`) のウェイト。** 正本上いまも未定義であり、本記録では扱わない。
+- **`extraBold` (800) の用途。** 選択肢には加えない。
+- **適用規格・達成レベルの正式確定・適合判定・適合宣言。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+
 ---
 
 ## 変更履歴
@@ -1185,3 +1243,4 @@
 | 2026-09-07 | Task 009-64R: §30 の記述是正と**承認対象①の範囲拡大** (PR [#173](https://github.com/tocoo/coocom-design-system/pull/173) のコードレビュー 2026-09-07 の指摘 6 件に対応)。①**§30-1 承認対象①の行数を「10 行追加」から「21 行追加」(14 行 → 35 行) へ拡大**し、既存 1 行の概算 `≈11.1:1` の実測値 `11.11:1` への是正と既存 5 行への「主色」の明示を承認対象へ加えた (Web部責任者判断 2026-09-07)。②**§30-5 に「PR #173 のコードレビューを契機に追加した 11 行」の表を追加**した — 同レビューが名指しした 5 組 (`color.tag.neutral` 9.22:1・`color.label.stock` 主色 4.77:1 / 副色 4.53:1・`color.membership.free` 13.21:1・Button `secondary` 16.10:1・`surface.inverse` × `mutedStrong` 2.60:1 = **禁止**) と、per-scheme の判定基準を表全体へ一貫させるための**副色スキームの campaign accent 5 組** (3.79:1 / 4.24:1 / 3.79:1 / 3.60:1 / 3.48:1)。副色の `campaignTint` / `campaignInk` は 🚧 仮色のため追加しない。③**per-scheme の判定基準を [事実] として明記**した — 主色・副色で行を分けるか否かは `semantic.travel.json` の解決チェーンではなく **§2 の用途表が per-scheme トークンとして定義しているか否か**による (`color.action.primary.bg` と `color.text.link` は JSON 上いずれも `{color.scheme.main.base}` へ解決するが前者は per-scheme ではない)。**トークンの追加・削除・値の変更・参照先の変更・`$status` の変更は引き続き 0 件**。**不変**: §30-2 影響度 (**高**)・§30-3 判断 G-1 / G-2 の内容・§30-4 (トークン変更なし)・§30-6 決定しないこと、§1〜§29 の各記録、[review-approval-rules.md](review-approval-rules.md) 本体。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-11 | Task 009-65: §31 「Travel 文書レベル見出しの太さ 100 (thin) の導入と `typography.fontWeight` スケールの配信段への整合 (travel / rental-car)」を §1〜§30 と分離して追加 ([Issue #174](https://github.com/tocoo/coocom-design-system/issues/174))。改訂着手の設計承認 (§9・§20、2026-09-11・Web部責任者)、影響度 = **高** (§8、2026-09-11・明示取得)、現在判断 7 件 (H-1 既定は 700 のまま 100 を明示的な選択肢として足す／H-2 選べる要素を `h1`〜`h6` の要素名では制限しない／H-3 §3.1 の [決定]「新しいウェイト値は追加しない」を改訂する／H-4 選べるのは実寸 24px 以上の見出しに限る／H-5 書体が配信していないウェイトは記述を削除し、配信されているウェイトは追加する／H-6 H-5 の適用は travel と rental-car の 2 サービス・inbound は書体規定が暫定のため保留／H-7 影響度 = 高) を記録した。§31-4 に追加・変更するトークン (primitive = `thin` 100 と `extraBold` 800 を追加・`medium` 500 と `black` 900 を削除／semantic = travel のみ `font.heading.weightThin` を追加・既定 `font.heading.weight` 700 は不変) を、§31-5 に本記録が決定しないこと 9 件を記載した。**§5 設計承認ログ・§6 適用開始記録・§7〜§30 の各記録は変更していない。** 承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
 | 2026-09-11 | Task 009-66: §32 「リポジトリ入口 README ほか 3 文書の記述の最新化」を §1〜§31 と分離して追加 ([Issue #176](https://github.com/tocoo/coocom-design-system/issues/176))。Web部責任者の**改訂着手の設計承認 (2026-09-11)**・**影響度 = 低 (本件について明示取得)**・現在判断 I-1〜I-3 (反映経路 = PR・対象範囲 = 入口 4 文書・影響度) を記録。あわせて 4 文書で揃える記述上の扱い (§32-4) — **「12 候補の改訂 (未着手)」と「案件ごとの改訂着手承認に基づく改定 (継続中)」の書き分け**・`tools/` が 5 レイヤー外の非正本であること・DS 見本ページが非正本であること — を記録。**Design System のトークン値・`$status`・`$meta.version`・規則・Component 仕様は変更していない。**Work Order 6 の総合判断 (全 12 候補「現時点では開始できない」)・[review-approval-rules.md](review-approval-rules.md) 本体・既存 §1〜§31 は不変 | Claude Code |
+| 2026-09-12 | Task 009-67: §33 「Travel 文書レベル見出しの太さの明示的な選択肢への regular (400) の追加 — Task 009-65 の thin (100) 限定の是正」を §1〜§32 と分離して追加 ([Issue #178](https://github.com/tocoo/coocom-design-system/issues/178))。改訂着手の設計承認 (§9・§20、2026-09-12・Web部責任者)、影響度 = **未取得** (§8・取得後に §33-2 を更新)、現在判断 3 件 (J-1 regular 400 を既定 700 に対する明示的な選択肢として認める・§31 の thin 限定は誤りとして是正／J-2 条件は thin と同一 = 実寸 24px 以上・要素名では制限しない／J-3 進め方 = 既存フロー) を記録した。§33-4 に追加・変更するトークン (semantic = travel のみ `font.heading.weightRegular` を追加。primitive は追加・削除・値の変更なし・`regular` の `$description` 追記のみ。既定 `font.heading.weight` 700・`weightThin` 100 は不変) を、§33-5 に本記録が決定しないこと 7 件を記載した。**§5 設計承認ログ・§6 適用開始記録・§7〜§32 の各記録は変更していない。** 承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |

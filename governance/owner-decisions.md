@@ -1323,6 +1323,68 @@
 - **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
 
 
+## 36. Travel の「一覧まわりの部品」6 件の定義 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) について、実装 (`tocoo/tocoo_travel` `origin/dev-ds`) に存在しながら SOT に定義が無い一覧まわりの部品 6 件 (OverlayTrigger・DateRangeCalendar・AvailabilityCalendar・RangeSlider・Skeleton・StickyBar) を定義する件について、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #184](https://github.com/tocoo/coocom-design-system/issues/184))。**§34 K-7 が定めた 3 本のうちの 3 本目**にあたる。上記 §1〜§35 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§35 の各記録は変更しない。
+- **適用範囲は国内宿泊 (travel) に限る。** rental-car / inbound へは自動適用しない (3 独立 DS の原則 = P1/ADR-0022)。rental-car への反映は別 Task で、§29 と同じ枠組み (定義体系を採用し、値は rental-car のファイルに独立して持つ) で行う。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 36-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/travel/design-system/components.md](../services/travel/design-system/components.md) への 6 節の新設と共通事項の更新、②[../services/travel/design-system/semantic.travel.json](../services/travel/design-system/semantic.travel.json) への器トークン群 `trigger.*` / `calendar.*` / `availability.*` / `rangeSlider.*` / `skeleton.*` / `stickyBar.*` の追加 (いずれも既存 primitive への参照)、③[../services/travel/design-system/design.md](../services/travel/design-system/design.md) §7 の Component 一覧の更新 |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
+| 承認日 | 2026-09-15 |
+| 承認主体 | Web部責任者 |
+| 根拠 | 6 件はいずれも実装に存在するが SOT に定義が無く、未着手 Component 一覧にも載っていない。定義の不在が実装側の逸脱 (44px の混在・スケール外の値・用途トークンとの食い違い) を生んでいる |
+| 適用範囲 | travel に限定 |
+
+### 36-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out の適用ではない。Component を 6 件新設するため carve-out の対象外である |
+
+### 36-3. 取得した現在判断 (2026-09-15)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| M-1 | 一覧まわりの部品 6 件を定義するか | **定義する。** 起点ボタン・追従帯は 2 箇所とも値が同一の複写であり、定義により集約できる。カレンダーは日付範囲選択と空室・料金一覧で**用途が別**のため 2 部品として定義する |
+| M-2 | 起点ボタンを `Button` の variant で表すか | **別 Component (`OverlayTrigger`) として定義する。** `Button` の 4 語 (primary / secondary / ghost / text) はいずれも枠線 + 現在値 + 件数バッジを抱える形を持たない |
+| M-3 | スケルトンのカード外形の角丸 | **`{radius.card}` を正とする。** 実装は `radius.lg` (16px) を用いているが、骨組みは置き換える対象と同じ外形であるべきであり、カードの角丸は用途トークン `radius.card` が定める。**`radius.card` 自体が placeholder である点は本 Task で解消しない** |
+| M-4 | 本件の影響度 (§8) | **高** (§36-2) |
+
+### 36-4. 追加・変更するトークン
+
+**semantic (travel のみ)** — いずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。
+
+| 群 | 件数 | 主な参照先 |
+| --- | --- | --- |
+| `trigger` (オーバーレイを開く起点ボタンの器) | 7 | `{radius.action}` / `{spacing.2}` / `{spacing.4}` / `{border.width.thin}` / `{typography.size.sm}` / `{spacing.5}` |
+| `calendar` (日付カレンダーの器) | 8 | `{spacing.4}` / `{spacing.12}` / `{spacing.6}` / `{spacing.8}` / `{typography.size.xs}` / `{typography.size.sm}` / `{radius.lg}` / `{border.width.thin}` |
+| `availability` (空室・料金カレンダーのセルの器) | 4 | `{radius.md}` / `{spacing.2}` / `{spacing.1}` / `{border.width.thick}` |
+| `rangeSlider` (レンジスライダーの器) | 5 | `{spacing.1}` / `{radius.full}` / `{spacing.4}` / `{border.width.thick}` / `{spacing.6}` |
+| `skeleton` (骨組みの器) | 7 | `{radius.sm}` / `{spacing.4}` / `{spacing.3}` / `{spacing.6}` / `{spacing.8}` / `{spacing.10}` |
+| `stickyBar` (追従帯の器) | 5 | `{spacing.1}` / `{spacing.4}` / `{spacing.3}` / `{typography.size.sm}` / `{typography.size.xs}` |
+
+- **`$meta.version` は primitive / semantic とも据置き。**
+
+### 36-5. 本記録が決定しないこと
+
+- **選択不可 (過去日・満室) の文字色トークン。** 実装は `color.text.mutedStrong` に不透明度 0.45 を掛けた暫定表現であり、実効コントラストを本 Repository で検証していない。**AA 適合を主張しない**。未確定事項として起票するにとどめ、トークンの新設は行わない。
+- **空室・料金カレンダーのセル高 96px のトークン化。** `spacing` に 96px の段が無く単一のトークンで表せない。実装値をそのまま正とし、**新しい段は追加しない**。
+- **料金・在庫の 10px。** `typography.size` の 9 段に存在しない派生値であり、**本書はこれを正としない**。段の新設の要否は未確定事項とする。
+- **`radius.card` の実px。** placeholder のまま維持する (follow-up)。
+- **影 (`shadow.sm` / `shadow.md`) と遷移 (`motion.transition.*`) の実値。** placeholder のまま維持する (follow-up #13 / #3)。
+- **実装 Repository 側の是正作業** — 起点ボタン・条件ボタン・絞り込み解除リンクの 44px → 48px、スケルトンの `radius.lg` → `radius.card`。範囲・順序・期限は実装 Repository 側の課題である。
+- **rental-car / inbound への適用。** 別 Task で §29 と同じ枠組みで扱う。
+- **適用規格・達成レベルの正式確定・適合判定・適合宣言。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+
 ---
 
 ## 変更履歴
@@ -1378,3 +1440,4 @@
 | 2026-09-12 | Task 009-67: §33 「Travel 文書レベル見出しの太さの明示的な選択肢への regular (400) の追加 — Task 009-65 の thin (100) 限定の是正」を §1〜§32 と分離して追加 ([Issue #178](https://github.com/tocoo/coocom-design-system/issues/178))。改訂着手の設計承認 (§9・§20、2026-09-12・Web部責任者)、影響度 = **高** (§8・2026-09-12・明示取得)、現在判断 4 件 (J-1 regular 400 を既定 700 に対する明示的な選択肢として認める・§31 の thin 限定は誤りとして是正／J-2 条件は thin と同一 = 実寸 24px 以上・要素名では制限しない／J-3 進め方 = 既存フロー／J-4 影響度 = 高) を記録した。§33-4 に追加・変更するトークン (semantic = travel のみ `font.heading.weightRegular` を追加。primitive は追加・削除・値の変更なし・`regular` の `$description` 追記のみ。既定 `font.heading.weight` 700・`weightThin` 100 は不変) を、§33-5 に本記録が決定しないこと 7 件を記載した。**§5 設計承認ログ・§6 適用開始記録・§7〜§32 の各記録は変更していない。** 承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
 | 2026-09-15 | Task 009-68: §34 「Travel の中央寄せの器の左右余白・最小タップ領域・Select の定義」を §1〜§33 と分離して追加。Web部責任者の 2026-09-15 現在判断 (K-1 左右余白を幅ごとに 5 段で定義 (16/24/24/32/48px・既存 `spacing` 段への割当) ／K-2 Select は既存実装のいずれかを選ぶのではなく DS の既存の決まりから組み立てて定義 ／K-3 Select の角丸は 8px = `radius.select`・`radius.action` (pill) の「入力要素」に対する Select 限定の例外・`Input` へは及ぼさない ／K-4 最小タップ領域は 48px = `size.tapTarget` に統一・**44px 段は追加しない** (§18 の判断を維持) ／K-5 Select の未選択値は `color.text.muted` (2.68:1・**AA 未達を明示**)・`input` / `textarea` の `::placeholder` は `color.text.placeholder` を維持 (§22 の方向を規則化) ／K-6 チェックボックス・ラジオは自前で描く方式に統一 (**定義は後続 Task**) ／K-7 3 本に分けて出す ／K-8 影響度 = 高) を **travel 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は 4 件 (`radius.select` / `size.tapTarget` / `select.paddingInline` / `select.chevronSize`) でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`$meta.version` は据置き。§1〜§33・設計承認ログ (§5)・適用開始記録 (§6) は不変。§18 (44px 段を追加しない)・§22 (select 未選択値の方向)・§29-3 判断 C-5 (rental-car 限定) の判断内容は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
 | 2026-09-15 | Task 009-69: §35 「Travel の『選ぶための部品』6 件の定義」を §1〜§34 と分離して追加 ([Issue #182](https://github.com/tocoo/coocom-design-system/issues/182)・§34 K-7 の 3 本のうち 2 本目)。Web部責任者の 2026-09-15 現在判断 (L-1 オーバーレイ内の行は役割が異なるため `OptionRow` と `NavigationRow` の 2 部品に分ける ／L-2 `NavigationRow` の現在の経路は面 + **太字**で示しホバー (面のみ) と区別する ／L-3 `OptionRow` の選択中は太字 + `color.text.link` + チェックアイコン・面は用いない ／L-4 行の左右余白は 16px に統一 ／L-5 チェックボックス・ラジオは自前で描く方式・`display: none` は用いない ／L-6 影響度 = 高) を **travel 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は器トークン 4 群 (`control` 6 件 / `row` 5 件 / `chip` 8 件 / `tab` 4 件) でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`Chip` の用途軸 `use` は variant 語彙 (GOV-0002) への追加ではない (`PriceTag` の `tone`・`Modal` の `form` と同じ別軸)。`$meta.version` は据置き。§1〜§34・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
+| 2026-09-15 | Task 009-70: §36 「Travel の『一覧まわりの部品』6 件の定義」を §1〜§35 と分離して追加 ([Issue #184](https://github.com/tocoo/coocom-design-system/issues/184)・§34 K-7 の 3 本のうち 3 本目)。Web部責任者の 2026-09-15 現在判断 (M-1 6 件を定義する・カレンダーは用途が別のため 2 部品 ／M-2 起点ボタンは `Button` の variant ではなく別 Component `OverlayTrigger` ／M-3 スケルトンのカード外形は `{radius.card}` を正とする (実装の `radius.lg` は是正対象・`radius.card` の placeholder は解消しない) ／M-4 影響度 = 高) を **travel 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は器トークン 6 群 36 件でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。未確定事項として 3 件 (選択不可の文字色トークン／セル高 96px のトークン化／料金・在庫 10px のスケール外の値) を起票し、いずれも本記録では決定しない。`$meta.version` は据置き。§1〜§35・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |

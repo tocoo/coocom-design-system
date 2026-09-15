@@ -25,7 +25,7 @@
 - [事実] リンクは色 `{color.text.link}` (= 主色・TVL-0011) に加え、状態ごとの文字色 (hover = `{color.text.linkHover}` / active = `{color.text.linkActive}` / visited = 専用色を設けず `{color.text.link}` を維持 / focus = `{color.focus.ring}` の `outline`) を使用する。**文中リンクには下線を付し、hover で下線を外さない**。standalone なリンク (カード全体リンク・ナビゲーション項目・パンくず) への下線の既定は未判定であり、状態ごとの文字色は対象を限定せず適用される。**リンクの状態表現に `opacity` を用いない** — 上記の「全 Component の hover は opacity 変化 (≈0.85) を暫定参照」からリンクを除外している。正は `design.md` §2.2
 - [事実] 入力欄のプレースホルダ文字色は `{color.text.placeholder}` (#616161・白背景 ≈6.2:1) を使用する。`{color.text.muted}` (#9e9e9e・≈2.7:1) を流用しない。プレースホルダを必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない。正は `design.md` §2.3
 - [事実] variant 語彙は `primary / secondary / ghost / campaign / text` の5語で確定 (GOV-0002)。語彙外の新設は ADR 必須。**travel の Button 実装は4語 (primary/secondary/ghost/text)**— campaign (accent 塗りボタン) は廃止 (TVL-0012)、accent はバッジ/割引ラベルの「点」専用 (Card badge)
-- [事実] 未着手 Component: Toast / Table / Accordion / Pagination / Badge (単体) / Stepper / Empty state。本仕様に含めない。**Select は Task 009-68・Tabs は Task 009-69 で定義済みへ移した**。Task 009-69 ではあわせて未着手一覧に無かった 4 件 (Checkbox / Radio・OptionRow・NavigationRow・Chip) を新規に定義した (実装は存在するが一覧に載っていなかったもの)。**Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理した** (Task 009-39・受理と分類のみ。仕様定義は別 Task)。Tabs / Select は従来から未着手として記載済み。各 Component の実体データ・実装実査の有無は Component ごとに異なる (`Pagination` / `Stepper` / `Empty state` は全文検索 0 件・従来の未着手一覧にも不在だった / Badge は `Card.slot.badge` としてスロット規則が定義済みだが Card 外で使う単体 Component は未定義)
+- [事実] 未着手 Component: Toast / Table / Accordion / Pagination / Badge (単体) / Stepper / Empty state。本仕様に含めない。**Select は Task 009-68・Tabs は Task 009-69 で定義済みへ移した**。Task 009-69 / 009-70 ではあわせて、実装に存在しながら未着手一覧に載っていなかった 10 件 (Checkbox / Radio・OptionRow・NavigationRow・Chip・OverlayTrigger・DateRangeCalendar・AvailabilityCalendar・RangeSlider・Skeleton・StickyBar) を新規に定義した。**Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理した** (Task 009-39・受理と分類のみ。仕様定義は別 Task)。Tabs / Select は従来から未着手として記載済み。各 Component の実体データ・実装実査の有無は Component ごとに異なる (`Pagination` / `Stepper` / `Empty state` は全文検索 0 件・従来の未着手一覧にも不在だった / Badge は `Card.slot.badge` としてスロット規則が定義済みだが Card 外で使う単体 Component は未定義)
 - [事実] **Badge (単体) Component の切り出し境界** (Task 009-39): 既に定義済みの `Card.slot.badge` (角丸 `{radius.badge}`・面と文字色の (a)(b) 分岐・割引ラベルの面色・Do / Don't = `design.md` §2.1 が正) と、単体 Component として追加で必要になる範囲 (Card 外での配置・サイズ段階・操作可能な場合の扱い) を分離する。**操作可能なバッジは badge ではなく action 系 Component として扱う**既存の境界 (共通事項) は再定義しない
 - [事実] 依頼 D の新規 Component (Pagination / Badge (単体) / Stepper / Empty state) の**定義工程への着手は Web部責任者判断 2026-08-03 で可** (正本 = `governance/owner-decisions.md` §15)。ただし着手可は改訂着手の可否 (`governance/review-approval-rules.md` §9) であり、Component 仕様・variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2) の新設ではない。依頼 D の新規 Component は Work Order 6 の 12 候補 (alignment 候補) とは別であり、同 Work Order 6 の「12 候補は現時点では開始できない」は不変
 
@@ -204,6 +204,127 @@
 - [事実] 実装は 1 箇所 (`search_s_global.scss` L52-69) のみで割れていない (本 Repository で実測)。非選択の文字色は同実装が `color.text.muted-strong` を用いており本節と一致する
 - 未確定事項: a11y (`role="tablist"` / `aria-selected` / 矢印キー操作) は `alignment-blocking-facts-resolution-plan.md` §8K の下流課題 / 本数が多い場合の省略・スクロール / タブ内容 (pane) の切替の遷移
 
+## OverlayTrigger
+
+- ステータス: Draft
+- 用途: 絞り込み・並び替え・検索条件のオーバーレイを開く起点。**現在の値を表示したまま押せる**ボタン
+- バリアント: なし (`Button` の 4 語とは別の Component。枠線を持ち、アイコン + ラベル + 現在値 + 件数バッジを抱える形が異なる)
+- 構成:
+  - 器 — 最小の高さ `{size.tapTarget}` (48px) / 角丸 `{trigger.radius}` (pill) / 上下 `{trigger.paddingBlock}` (8px)・左右 `{trigger.paddingInline}` (16px) / 面 `{color.surface.default}` / 枠 `{trigger.borderWidth}` (1px) × `{color.border.default}`
+  - 中身 — アイコン (`{color.text.mutedStrong}`) + ラベル (`{color.text.mutedStrong}`) + 現在値 (`{trigger.fontSize}` 14px / `{font.heading.weight}` 700 / `{color.text.strong}`)。間隔は `{trigger.gap}` (8px)
+  - 件数バッジ — 適用中の絞り込みの件数を示す。最小幅 `{trigger.badgeMinWidth}` (20px) / 面 `{color.brand.primary}` / 文字 `{color.text.inverse}`
+  - 現在値が長い場合は末尾を省略する (`text-overflow`)。狭い幅では表示幅に上限を置く
+- 状態: focus = `{color.focus.ring}` outline / hover 🚧 暫定 / disabled 🚧 未取得
+- Do / Don't:
+  - Do: 押すと開くことを、開いた先 (`Modal` の `sheet` / `drawer` / `popover`) と対応づける
+  - Do: 現在の値をボタン上に出す。何が適用されているかをボタンを押さずに読めるようにする
+  - Don't: `Button` の variant (`primary` / `secondary` / `ghost` / `text`) で代用しない — それらは現在値・件数バッジを抱える形を持たない
+  - Don't: 件数を色だけで示さない (数字を表示する)
+- 関連トークン: `{size.tapTarget}` / `{trigger.radius}` / `{trigger.paddingBlock}` / `{trigger.paddingInline}` / `{trigger.gap}` / `{trigger.borderWidth}` / `{trigger.fontSize}` / `{trigger.badgeMinWidth}` / `{color.surface.default}` / `{color.border.default}` / `{color.text.strong}` / `{color.text.mutedStrong}` / `{color.brand.primary}` / `{color.text.inverse}` / `{font.heading.weight}` / `{color.focus.ring}`
+- [事実] 実装は 2 箇所 (`search_result_s.scss` L212-227・`chokuzen_s.scss` L304-323) にあり、**値は 1 つも違わない複写**である (本 Repository で実測)。最小の高さは実装では 44px (`calc(spacing.4 * 2.75)`) であり、`design.md` §4.2 (48px) に合わせて変更する。追従帯の中の条件ボタン (`search_result_s.scss` L783) と絞り込み解除リンク (同 L314) も同じ 44px を用いており、同様に 48px とする
+- 未確定事項: hover の実体 (follow-up #4) / disabled / 起点が 3 つ以上並ぶ場合の優先順位
+
+## DateRangeCalendar
+
+- ステータス: Draft
+- 用途: 宿泊日など**日付の範囲 (開始日〜終了日)** を選ぶカレンダー
+- バリアント: なし
+- 構成:
+  - 器 — 内側余白 `{calendar.padding}` (16px)。1024px 未満は 1 か月、1024px 以上は 2 か月を `{calendar.monthGap}` (24px) の間隔で並べる
+  - 月送り — 一辺 `{calendar.navSize}` (48px) の円形ボタン (枠 `{calendar.navBorderWidth}` × `{color.border.default}` / 文字色 `{color.text.link}`)。表示中の期間は `{font.heading.family}` / `{font.body.size}` / `{font.heading.weight}`
+  - 曜日見出し — 高さ `{calendar.weekdayHeight}` (32px) / `{calendar.weekdayFontSize}` (12px) / `{color.text.mutedStrong}`。日曜は `{color.state.error}`、土曜は `{color.text.link}`
+  - 日付セル — 最小の高さ `{size.tapTarget}` (48px) / `{calendar.dateFontSize}` (14px) / `{color.text.strong}` / 数字は等幅 (`tabular-nums`)
+  - 範囲の表現 — 両端 = 面 `{color.brand.primary}` + `{color.text.inverse}` + `{font.heading.weight}` + 角丸 `{calendar.selectedRadius}` (16px) / 期間中 = 面 `{color.surface.subtle}`
+- 状態: 選択不可 (過去日) 🚧 暫定 — `{color.text.mutedStrong}` + 不透明度 0.45。**DS に選択不可の文字色トークンが無い**ため暫定表現である (未確定事項) / focus = `{color.focus.ring}` outline
+- Do / Don't:
+  - Do: 曜日の色分け (日曜・土曜) は補助にとどめる。曜日は列の位置でも判別できる
+  - Do: 範囲の両端と期間中を**面の濃さで区別**し、両端は太さも併せ持つ
+  - Don't: 選択不可を不透明度だけで表現したまま確定しない (未確定事項として追跡する)
+  - Don't: 空室・料金を載せない — それは `AvailabilityCalendar` の役割
+- 関連トークン: `{calendar.padding}` / `{calendar.navSize}` / `{calendar.navBorderWidth}` / `{calendar.monthGap}` / `{calendar.weekdayHeight}` / `{calendar.weekdayFontSize}` / `{calendar.dateFontSize}` / `{calendar.selectedRadius}` / `{size.tapTarget}` / `{color.brand.primary}` / `{color.text.inverse}` / `{color.surface.subtle}` / `{color.text.strong}` / `{color.text.mutedStrong}` / `{color.text.link}` / `{color.state.error}` / `{font.heading.family}` / `{font.heading.weight}` / `{color.focus.ring}`
+- [事実] 実装は 1 箇所 (`search_s_global.scss` L382-461) のみで割れていない (本 Repository で実測)。同実装のコメントは「DS に disabled 用 text トークン無し。muted+opacity で暫定表現」と記しており、本節はこれを未確定事項として引き継ぐ
+- 未確定事項: **選択不可 (過去日・満室) の文字色トークン** — 不透明度 0.45 を掛けた実効コントラストは本 Repository で検証しておらず、AA 適合を主張しない / 月送りの上限・下限 / 1 泊も選べない期間の表現
+
+## AvailabilityCalendar
+
+- ステータス: Draft
+- 用途: 日付ごとの**空室状況と料金**を一覧するカレンダー (プラン空室カレンダー)
+- バリアント: なし
+- 構成:
+  - セル — 最小の高さ **96px** / 角丸 `{availability.cellRadius}` (8px) / 上下 `{availability.cellPaddingBlock}` (8px)・左右は 640px 以上で `{availability.cellPaddingInline}` (4px)、640px 未満は実装が 2px を用いる (段が無く未確定事項) / 枠線は用いず**面で状態を分ける**
+  - 面 — 空室あり・残りわずか = `{color.scheme.main.tint}` / 問い合わせ = `{color.surface.muted}` / 空室なし = `{color.surface.subtle}`
+  - 選択中の日 — 面は変えず、内側に `{availability.selectedBorderWidth}` (2px) × `{color.brand.primary}` の枠を重ねる
+  - 文字 — 日付は `{font.price.family}`、料金・在庫は 10px (`{typography.size.xs}` から 2px 小さい派生値)。残りわずかは `{color.label.stock}`、問い合わせは `{color.text.mutedStrong}`、空室なしは `{color.text.placeholder}`
+- 状態: 空室なしは押せない (`cursor: default`) / focus = `{color.focus.ring}` outline 🚧
+- Do / Don't:
+  - Do: 空室状況は**面と文言の両方**で示す。面の色だけで在庫状態を伝えない
+  - Do: 選択中の日は枠で示す。面を変えると在庫状態の表示と衝突する
+  - Don't: 日付の範囲選択に用いない — それは `DateRangeCalendar` の役割
+- 関連トークン: `{availability.cellRadius}` / `{availability.cellPaddingBlock}` / `{availability.cellPaddingInline}` / `{availability.selectedBorderWidth}` / `{color.scheme.main.tint}` / `{color.surface.muted}` / `{color.surface.subtle}` / `{color.brand.primary}` / `{font.price.family}` / `{color.label.stock}` / `{color.text.mutedStrong}` / `{color.text.placeholder}`
+- [事実] 実装は 1 箇所 (`ultra_plan_calendar_s.scss` L100-183) のみで割れていない (本 Repository で実測)
+- [事実] セルの最小の高さ 96px は実装では `calc(spacing.16 + spacing.8)` (64px + 32px) で組まれている。`spacing` に 96px の段が無いため**単一のトークンでは表せない**。本節は実装値をそのまま正とし、**新しい段は追加しない** (トークン化の要否は未確定事項)
+- [事実] 料金・在庫の 10px は `calc(typography.size.xs - 0.125rem)` で組まれており、`typography.size` の 9 段に存在しない値である。**本書はこれを正としない** — 段の新設の要否を未確定事項として起票する
+- 未確定事項: セル高 96px のトークン化 / **料金・在庫の 10px** (スケール外の値・段の新設の要否) / 横スクロール時の月またぎ / focus の実体
+
+## RangeSlider
+
+- ステータス: Draft
+- 用途: 価格など**数値の範囲**を 2 つのつまみで絞り込む
+- バリアント: なし
+- 構成:
+  - 軌道 — 高さ `{rangeSlider.trackHeight}` (4px) / 角丸 `{rangeSlider.trackRadius}` (pill) / 面 `{color.surface.muted}`
+  - 選択範囲 — 面 `{color.brand.primary}`
+  - つまみ — 直径 `{rangeSlider.thumbSize}` (16px) / 円 / 面 `{color.surface.default}` / 内側に `{rangeSlider.thumbBorderWidth}` (2px) × `{color.brand.primary}` の枠 + `{shadow.md}` 🚧
+  - 当たり判定 — つまみを掴める領域の高さ `{rangeSlider.hitHeight}` (24px)
+  - 現在値 — 軌道の下に下限・上限を両端揃えで表示する
+- 状態: focus = `{color.focus.ring}` outline / disabled 🚧 未取得
+- Do / Don't:
+  - Do: 現在の下限・上限を**数値で併記**する。つまみの位置だけで値を伝えない
+  - Do: ネイティブの `input[type="range"]` を土台に用い、キーボードで操作できる状態を保つ
+  - Don't: `{size.tapTarget}` (48px) を軌道上のつまみへ適用しない — 独立した操作要素の最小の高さであり、つまみは当たり判定 24px で扱う
+- 関連トークン: `{rangeSlider.trackHeight}` / `{rangeSlider.trackRadius}` / `{rangeSlider.thumbSize}` / `{rangeSlider.thumbBorderWidth}` / `{rangeSlider.hitHeight}` / `{color.surface.muted}` / `{color.surface.default}` / `{color.brand.primary}` / `{shadow.md}` 🚧 / `{color.focus.ring}`
+- [事実] 実装は 1 箇所 (`search_result_s.scss` L645-700) のみで割れていない (本 Repository で実測)
+- 未確定事項: 影 `{shadow.md}` は placeholder (follow-up #13) / 下限と上限が交差したときの挙動 / 刻み幅 / disabled
+
+## Skeleton
+
+- ステータス: Draft
+- 用途: 読み込み中に、**これから出る内容の場所**を面で示す骨組み
+- バリアント: なし
+- 構成:
+  - 器 — 置き換える対象と同じ外形を用いる。カードを置き換える場合は角丸 `{radius.card}` 🚧
+  - 面 — `{color.surface.muted}`
+  - 線 — 角丸 `{skeleton.radius}` (4px)。高さは `{skeleton.lineHeight.sm}` (16px・本文相当) / `.md` (24px・見出し相当) / `.lg` (32px・価格相当) / `.xl` (40px・ボタン相当) の 4 段
+  - 余白 — 内側 `{skeleton.padding}` (16px) / 線どうしの間隔 `{skeleton.gap}` (12px)
+- 状態: なし (読み込み完了で実内容に置き換わる)
+- Do / Don't:
+  - Do: 置き換える対象と**同じ外形・同じ配置**にする。差があると読み込み完了時に内容が飛ぶ
+  - Do: 読み込み中であることを支援技術へ伝える手段 (`aria-busy` 等) を併せて用いる
+  - Don't: 点滅・明滅で読み込み中を表現しない (`prefers-reduced-motion` への配慮が別途必要になる)
+  - Don't: 実際には出ない要素の骨組みを置かない
+- 関連トークン: `{skeleton.radius}` / `{skeleton.padding}` / `{skeleton.gap}` / `{skeleton.lineHeight.sm}` / `.md` / `.lg` / `.xl` / `{color.surface.muted}` / `{radius.card}` 🚧
+- [事実] 実装は 1 箇所 (`ultra_market_s.scss` L806-860) のみで割れていない (本 Repository で実測)。ただし同実装はカード外形に `radius.lg` (16px) を用いており、**カード外形の用途トークン `{radius.card}` (暫定 md = 8px) と食い違う**。本節は `{radius.card}` を正とする — 骨組みは置き換える対象と同じ外形であるべきであり、対象であるカードの角丸は `{radius.card}` が定めるためである。**`{radius.card}` 自体が `placeholder` (実px 未取得) である点は本 Task で解消しない**
+- 未確定事項: `{radius.card}` の実px (follow-up・`design.md` §5) / 骨組みを出す件数・最小表示時間 / 読み込み中の支援技術への伝え方
+
+## StickyBar
+
+- ステータス: Draft
+- 用途: 一覧をスクロールした際に画面上端へ貼り付き、**現在の検索条件と主要な操作**を出し続ける帯
+- バリアント: なし
+- 構成:
+  - 器 — 上下 `{stickyBar.paddingBlock}` (4px) / 左右 `{stickyBar.paddingInline}` (16px) / 要素の間隔 `{stickyBar.gap}` (12px) / 面 `{color.surface.default}` / `{shadow.sm}` 🚧
+  - z 軸 — `{elevation.sticky}`
+  - 上端の位置 — サイト共通の固定告知の下に置く (実測値を実装が渡す)
+  - 中身 — 条件ボタン (最小の高さ `{size.tapTarget}` / 角丸 `{trigger.radius}` / 面 `{color.surface.subtle}`) に、主となる条件を `{stickyBar.mainFontSize}` (14px) / `{font.heading.weight}` / `{color.text.strong}` で、補助を `{stickyBar.subFontSize}` (12px) / `{color.text.mutedStrong}` で 2 行に積む。結果ヘッダーが画面外へ出たら絞り込みと並び替えの起点もこの帯へ合流させる
+- 状態: 表示 / 非表示 (スクロール位置による)。focus = `{color.focus.ring}` outline
+- Do / Don't:
+  - Do: 画面の占有を 1 本に抑える。帯を複数積まない
+  - Do: 帯の中の操作要素も `{size.tapTarget}` (48px) を満たす
+  - Don't: 帯に入れる情報を増やして高さを可変にしない (内容が跳ねる)
+- 関連トークン: `{stickyBar.paddingBlock}` / `{stickyBar.paddingInline}` / `{stickyBar.gap}` / `{stickyBar.mainFontSize}` / `{stickyBar.subFontSize}` / `{elevation.sticky}` / `{color.surface.default}` / `{color.surface.subtle}` / `{shadow.sm}` 🚧 / `{size.tapTarget}` / `{trigger.radius}` / `{color.text.strong}` / `{color.text.mutedStrong}` / `{font.heading.weight}` / `{color.focus.ring}`
+- [事実] 実装は 2 箇所 (`search_result_s.scss` L761-826・`chokuzen_s.scss` L1245 以降) にあり、**値は 1 つも違わない複写**である (本 Repository で実測)
+- 未確定事項: 影 `{shadow.sm}` は placeholder (follow-up #13) / 出現・退出の遷移 (`{motion.transition.*}` 🚧) / 固定告知との重なりの規則
+
 ## SearchForm
 
 - ステータス: Draft
@@ -370,3 +491,4 @@
 | 2026-09-07 | Task 009-64: **`Breadcrumb` の現在地の文字色を変更**した ([Issue #172](https://github.com/tocoo/coocom-design-system/issues/172)・Web部責任者判断 2026-09-07・明示取得・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §30 判断 G-1)。構成行の現在地を `{color.text.muted}` (#9e9e9e・白背景 **2.68:1**) から **`{color.text.mutedStrong}`** (#616161・白背景 **6.19:1**) へ改め、現在地へ `{color.text.muted}` を使わない Don't を 1 行追加した。従前の記述は `design.md` §2 の [事実]「`color.text.muted` は通常テキストに求められる 4.5:1 に達しないため判読性を要する情報には用いない」と食い違っており、同 §2.1 の検証表にも当該組み合わせの行が無いまま (表は「表に無い組み合わせを検証済みとして扱わない」と宣言) 使用されていた。**新しい色値・新しいトークンは追加していない** (`{color.text.mutedStrong}` は既存 bound トークン)。あわせて非正本の [preview.travel.html](preview.travel.html) の Breadcrumb 見本 (`.crumb__current`) と caption を本変更へ追随させた。**不変**: `Breadcrumb` の用途・ステータス・Do (現在地はリンク化しない)・リンク部分の状態ごとの文字色・未確定事項 (下線の既定は未判定)、他 Component の仕様、共通事項、`{color.text.muted}` / `{color.text.mutedStrong}` の値・参照先・`$status` (トークンの追加・削除・変更は **0 件**)、Input / PriceTag の `{color.text.muted}` に関する既存 Don't、rental-car / inbound の成果物。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-07・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-15 | Task 009-68: **`Select` 節を新設**し、共通事項へ最小タップ領域と角丸 5 系統を反映した ([Issue #180](https://github.com/tocoo/coocom-design-system/issues/180)・Web部責任者判断 2026-09-15・正本 = `governance/owner-decisions.md` §34・`design.md` §4.1 / §4.2 / §5 / §2.3)。①**`Select` 節を追加**した — 器 (高さ `{size.tapTarget}` 48px / 枠線 `{border.width.thin}` × `{color.border.default}` / 面 `{color.surface.default}` / 角丸 `{radius.select}` 8px)、余白 (`{select.paddingInline}` 12px + シェブロン領域)、文字 (`{font.body.family}` / `{font.body.size}` 16px / 選択済み `{color.text.body}` / 未選択 `{color.text.muted}` = AA 未達を明示)、シェブロン (`{select.chevronSize}`・FA6 グリフ・**SVG 画像/データ URI で描かない**)、状態 (focus = `{color.focus.ring}`・error 🚧 暫定・disabled / success 🚧 未取得)、**Modal の表示形態 (§7.1) との使い分け** (1 階層で短い一覧 = Select / 階層あり・件数が多い・他の入力と組み合わせる = sheet / drawer / popover。件数のしきい値は定めない)、Do / Don't、未確定事項。②**共通事項**に、指で操作する要素の最小の高さを `{size.tapTarget}` (48px) とする行を追加し、角丸の用途トークンを **4 系統 → 5 系統** (`{radius.select}` 追加) へ更新し、未着手 Component 一覧から **Select を外した** (8 件へ)。③Modal の未確定事項の「最小タップ領域 44px の spacing トークン (追加せず)」に、Task 009-68 で 48px に確定した旨を追記した (44px 段は引き続き追加しない)。**不変**: Button / Input / SearchForm / Card (ResultCard) / PriceTag / ReviewStars / Header / Footer / Breadcrumb / Modal の仕様 (Modal は未確定事項の当該 1 行のみ追記)、`Card.slot.badge` のラベル種別・用途色・器トークン `label.*` の値と参照先、共通事項の他の行、variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2)、token の値・参照先・`$status`・version、rental-car / inbound の成果物。**行っていないもの**: `Input` の角丸・仕様の変更、Select のサイズ段階 (sm/md/lg) の定義、複数選択・検索付き選択の定義、他の未着手 Component の定義、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-15 | Task 009-69: **「選ぶための部品」5 節 (6 Component) を新設**した ([Issue #182](https://github.com/tocoo/coocom-design-system/issues/182)・Web部責任者判断 2026-09-15・正本 = `governance/owner-decisions.md` §35)。①**`Checkbox / Radio`** — ネイティブ `input` を視覚的にのみ隠し (`display: none` は用いない)、箱 (`{control.size}` 16px・`{control.borderWidth}` 2px × `{color.border.strong}`) と印を自前で描く。Checkbox は `{control.radius}` (4px) + `{color.brand.primary}` 面 + `{color.text.inverse}` のチェック印 (`{control.glyphSize}`)、Radio は円 + 中心に `{control.dotSize}` (8px) の点。②**`OptionRow`** (単一選択の行) — 器 `{size.tapTarget}` / `{row.paddingBlock}` / `{row.paddingInline}` / `{row.gap}` / `{row.fontSize}`、選択中は太字 + `{color.text.link}` + チェックアイコンで示し**面は用いない** (面は hover 用)。③**`NavigationRow`** (階層をたどる行) — `OptionRow` と同じ器を共有し、行末にシェブロンと件数を持つ。現在の経路は面 `{color.surface.subtle}` + **太字**で示す (実装は hover と同じ面のみで区別できなかった)。シェブロンは `{color.text.mutedStrong}` を正とする (実装の `color.text.muted` は白面 2.68:1 で非テキスト UI 要素の 3:1 未達)。④**`Chip`** — **用途軸 `use` = `select` / `applied` の 2 値**を定義 (variant 語彙 GOV-0002 への追加ではない・`PriceTag` の `tone` と同じ別軸)。面・枠・文字サイズ・上下余白が `use` ごとに分かれ、`select` の選択中は枠 `{color.brand.primary}` + 面 `{color.scheme.main.tint}` + 太字で示す。⑤**`Tabs`** — 選択中は `{color.text.link}` + 下線 `{tab.indicatorWidth}` (2px) × `{color.brand.primary}` の**両方**で示す。⑥**共通事項**に「状態を色だけで伝えない・hover の表現 (面 `{color.surface.subtle}`) を選択中へ流用しない」を追加し、**未着手 Component 一覧から Tabs を外した** (7 件へ)。**不変**: Button / Input / Select / SearchForm / Card (ResultCard) / PriceTag / ReviewStars / Header / Footer / Breadcrumb / Modal の仕様、`Card.slot.badge` のラベル種別・用途色・器トークン `label.*`、共通事項の他の行、variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2)、token の値・参照先・`$status`・version、rental-car / inbound の成果物。**行っていないもの**: a11y の実装方式の決定 (§8K の下流課題)、disabled / error / hover の実体の確定 (follow-up #2 / #4)、他の未着手 Component の定義、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-09-15 | Task 009-70: **「一覧まわりの部品」6 節を新設**した ([Issue #184](https://github.com/tocoo/coocom-design-system/issues/184)・Web部責任者判断 2026-09-15・正本 = `governance/owner-decisions.md` §36)。①**`OverlayTrigger`** — 絞り込み・並び替え・条件のオーバーレイを開く起点。枠線 + アイコン + ラベル + 現在値 + 件数バッジを抱える形であり `Button` の 4 語では代用できないため別 Component とした (§36 M-2)。最小の高さは実装の 44px から `{size.tapTarget}` (48px) へ揃える。②**`DateRangeCalendar`** — 日付の範囲選択。両端は面 `{color.brand.primary}` + `{color.text.inverse}` + 太字 + `{calendar.selectedRadius}`、期間中は面 `{color.surface.subtle}`。**選択不可 (過去日) は実装が `color.text.mutedStrong` + 不透明度 0.45 の暫定表現であり、DS に選択不可の文字色トークンが無い**ため未確定事項として起票した (AA 適合を主張しない)。③**`AvailabilityCalendar`** — 空室状況と料金の一覧。面で在庫状態を分け、選択中の日は内側の枠で示す (面を変えると在庫状態の表示と衝突するため)。**セル高 96px は `spacing` に段が無く単一トークンで表せない**、**料金・在庫の 10px は `typography.size` の 9 段に存在しない派生値**であり、いずれも未確定事項として起票した (本書は 10px を正としない)。④**`RangeSlider`** — 軌道 4px・つまみ 16px・当たり判定 24px。`{size.tapTarget}` は独立した操作要素の最小の高さであり軌道上のつまみには適用しない旨を明記した。⑤**`Skeleton`** — 線の高さを 4 段 (16 / 24 / 32 / 40px) で定義。**カード外形は `{radius.card}` を正とする** — 実装は `radius.lg` (16px) を用いており用途トークンと食い違っていた (§36 M-3。`radius.card` の placeholder は解消しない)。⑥**`StickyBar`** — 上端に貼り付く帯。z 軸 `{elevation.sticky}`、帯の中の操作要素も `{size.tapTarget}` を満たす。⑦**共通事項**の未着手 Component 一覧の記述を更新した (Task 009-69 / 009-70 で新規定義した 10 件を明記。未着手は 7 件で不変)。**不変**: Button / Input / Select / Checkbox / Radio / OptionRow / NavigationRow / Chip / Tabs / SearchForm / Card (ResultCard) / PriceTag / ReviewStars / Header / Footer / Breadcrumb / Modal の仕様、`Card.slot.badge` のラベル種別・用途色・器トークン `label.*`、`select.*` / `control.*` / `row.*` / `chip.*` / `tab.*` / `size.tapTarget`、共通事項の他の行、variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2)、token の値・参照先・`$status`・version、rental-car / inbound の成果物。**行っていないもの**: 選択不可の文字色トークンの新設、`spacing` / `typography.size` の段の追加、`radius.card` / `shadow.*` / `motion.*` の placeholder の解消、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |

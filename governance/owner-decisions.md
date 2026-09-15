@@ -1193,6 +1193,74 @@
 - **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
 
 
+## 34. Travel の中央寄せの器の左右余白・最小タップ領域・Select の定義 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) について、①中央寄せの器の左右余白の幅ごとの割り当て ②指で操作する要素の最小タップ領域 ③Select (プルダウン) Component の定義 の 3 件について、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録。契機 = 実装リポジトリ `tocoo/tocoo_travel` `origin/dev-ds` (`142afb120`・2026-09-15) が左右余白の 5 段を持つ一方で SOT 側に割り当てが無く、最小タップ領域が 44px / 48px に、Select が 2 通りに割れていたこと ([Issue #180](https://github.com/tocoo/coocom-design-system/issues/180))。上記 §1〜§33 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§33 の各記録は変更しない。
+- **適用範囲は国内宿泊 (travel) に限る。** rental-car / inbound へは及ばない (3 独立 DS の原則 = P1/ADR-0022)。
+- **本記録は §18 (44px 段を追加しない)・§22 (select 未選択値への muted の方向) の判断内容を否定しない。** §18 は維持され (44px 段は本 Task でも追加しない)、§22 は方向のまま留め置かれていたものを本記録が規則として確定させる。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 34-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/travel/design-system/design.md](../services/travel/design-system/design.md) の部分更新 (§4.1 / §4.2 の新設・§5 の角丸用途トークンの 5 系統化・§2.3 への例外条項の追加・§7 の Component 一覧・§7.1 と未確定事項の一覧の該当行の解決)、②[../services/travel/design-system/components.md](../services/travel/design-system/components.md) への `Select` 節の新設と共通事項の更新、③[../services/travel/design-system/semantic.travel.json](../services/travel/design-system/semantic.travel.json) への `radius.select` / `size.tapTarget` / `select.paddingInline` / `select.chevronSize` の追加 (いずれも既存 primitive への参照) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-09-15 |
+| 承認主体 | Web部責任者 |
+| 根拠 | 左右余白は実装だけが 5 段を持ち SOT 側に割り当てが無い。最小タップ領域は 44px / 48px に割れ、実装側に「DS に 44px の tap 用トークンが無いため `spacing-12` で代替」と記載された箇所がある。Select は「未着手」のまま実装が 2 通りに割れている。いずれも SOT 側の不在が実装の割れを生んでいる状態であり、SOT 側で確定させる |
+| 適用範囲 | travel に限定。rental-car / inbound へは及ばない |
+
+### 34-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out の適用でも、一般的な高／低の内容基準の確定でもない。未着手 Component を 1 件定義済みへ移し、既存の [決定] (入力要素は pill・`color.text.muted` をプレースホルダへ流用しない) に例外を設けるため carve-out の対象外である |
+
+### 34-3. 取得した現在判断 (2026-09-15)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| K-1 | 中央寄せの器の左右余白を定義するか | **定義する。** 幅ごとに 5 段 (〜639 = 16px / 640〜767 = 24px / 768〜1023 = 24px / 1024〜1279 = 32px / 1280〜 = 48px)。既存 `spacing` 段への割当であり新しい数値は追加しない |
+| K-2 | Select の見た目の根拠 | **既存実装のいずれかを選ぶのではなく、DS の既存の決まりから組み立てて Component として定義する。** 実装 2 通りの割れは本定義により統一する |
+| K-3 | Select の角丸 | **8px (`radius.select` = `{radius.md}`)。** `radius.action` (pill) が定める「入力要素」に対する **Select 限定の例外**とし、`Input` (テキスト/日付/数値) へは及ぼさない |
+| K-4 | 最小タップ領域 | **48px に統一する** (`size.tapTarget` = `{spacing.12}`)。44px を用いない。**44px 段 (`spacing` step 11) は追加しない** (§18 の判断を維持) |
+| K-5 | Select の未選択値の文字色 | **§22 の方向を規則として確定させる。** プルダウンの未選択値に限り `color.text.muted` (`#9E9E9E`・白背景 2.68:1) を用い、**AA 未達を明示**する。適合宣言は行わない。`input` / `textarea` の `::placeholder` は `color.text.placeholder` (`#616161`・6.19:1) を維持する。未選択であることを色だけで伝えない |
+| K-6 | チェックボックス・ラジオの統一先 | **自前で描く方式 (絞り込みパネル `filter_s_global.scss` の作り) に統一する。** 実装 3 箇所の割れを解消する。**定義は後続 Task (2 本目) で行い、本 Task には含めない** |
+| K-7 | 進め方 | **3 本に分ける。** 1 本目 = 横断の決定 (左右余白・最小タップ領域) + Select (本 Task)、2 本目 = 選ぶための部品 (チェックボックス・ラジオ / オーバーレイの選択肢行 / チップ 2 種 / タブ)、3 本目 = 一覧まわりの部品 (ソート・絞り込みの起点ボタン / カレンダー 2 種 / レンジスライダー / スケルトン / 追従帯)。前の本がマージされてから次を作る |
+| K-8 | 本件の影響度 (§8) | **高** (§34-2) |
+
+### 34-4. 追加・変更するトークン
+
+**semantic (travel のみ)**
+
+| トークン | 変更 | `$value` | `$status` |
+| --- | --- | --- | --- |
+| `radius.select` | **追加** | `{radius.md}` (8px) | bound |
+| `size.tapTarget` | **追加** | `{spacing.12}` (48px) | bound |
+| `select.paddingInline` | **追加** | `{spacing.3}` (12px) | bound |
+| `select.chevronSize` | **追加** | `{iconSize.sm}` | bound |
+| `radius.action` / `card` / `badge` / `overlay` | **不変** | — | — |
+| `color.text.placeholder` / `color.text.muted` | **不変** | — | — |
+
+- **primitive は追加・削除・値の変更のいずれも行わない。** 追加した 4 件はいずれも既存 primitive への参照であり、**新しい数値・新しい色値は追加していない**。
+- **44px 段 (`spacing` step 11) は追加していない。**
+- **幅ごとに値を持つ semantic トークンは新設していない** (左右余白の 5 段は `design.md` §4.1 の表で既存 `spacing` 段への割当として示す。文書レベルの見出しのサイズ段 = §3.1・Task 009-62 と同じ扱い)。
+- **`$meta.version` は primitive / semantic とも据置き** (bump の条件は各 README の Open Issue として未決)。
+
+### 34-5. 本記録が決定しないこと
+
+- **実装 Repository (`tocoo/tocoo_travel`) 側の是正作業** — Select 2 箇所の統一、44px を用いている箇所 (ソート・絞り込みの起点ボタン / 適用中の絞り込みチップ) の 48px への変更、シェブロンの SVG 直書きから FA6 グリフへの置換、`_container.scss` が primitive (`--spacing-4` 等) を直接参照している点。**範囲・順序・期限はいずれも実装 Repository 側の課題**である。
+- **Select を Modal の表示形態へ切り替える件数のしきい値。** 実装に根拠が無いため定めない (未確定事項として残す)。
+- **後続 2 本で定義する部品の具体的な値** (チェックボックス・ラジオの寸法、選択肢行・チップ・タブ・カレンダー・レンジスライダー・スケルトン・追従帯)。K-6 / K-7 は統一先と進め方のみを定める。
+- **`Input` (テキスト/日付/数値) の角丸・仕様の変更。**
+- **rental-car / inbound への適用。** §29-3 判断 C-5 (rental-car の未入力状態の案内文字の扱い) は本記録により変更しない。
+- **適用規格・達成レベルの正式確定・適合判定・適合宣言。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+
 ---
 
 ## 変更履歴
@@ -1246,3 +1314,4 @@
 | 2026-09-11 | Task 009-65: §31 「Travel 文書レベル見出しの太さ 100 (thin) の導入と `typography.fontWeight` スケールの配信段への整合 (travel / rental-car)」を §1〜§30 と分離して追加 ([Issue #174](https://github.com/tocoo/coocom-design-system/issues/174))。改訂着手の設計承認 (§9・§20、2026-09-11・Web部責任者)、影響度 = **高** (§8、2026-09-11・明示取得)、現在判断 7 件 (H-1 既定は 700 のまま 100 を明示的な選択肢として足す／H-2 選べる要素を `h1`〜`h6` の要素名では制限しない／H-3 §3.1 の [決定]「新しいウェイト値は追加しない」を改訂する／H-4 選べるのは実寸 24px 以上の見出しに限る／H-5 書体が配信していないウェイトは記述を削除し、配信されているウェイトは追加する／H-6 H-5 の適用は travel と rental-car の 2 サービス・inbound は書体規定が暫定のため保留／H-7 影響度 = 高) を記録した。§31-4 に追加・変更するトークン (primitive = `thin` 100 と `extraBold` 800 を追加・`medium` 500 と `black` 900 を削除／semantic = travel のみ `font.heading.weightThin` を追加・既定 `font.heading.weight` 700 は不変) を、§31-5 に本記録が決定しないこと 9 件を記載した。**§5 設計承認ログ・§6 適用開始記録・§7〜§30 の各記録は変更していない。** 承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
 | 2026-09-11 | Task 009-66: §32 「リポジトリ入口 README ほか 3 文書の記述の最新化」を §1〜§31 と分離して追加 ([Issue #176](https://github.com/tocoo/coocom-design-system/issues/176))。Web部責任者の**改訂着手の設計承認 (2026-09-11)**・**影響度 = 低 (本件について明示取得)**・現在判断 I-1〜I-3 (反映経路 = PR・対象範囲 = 入口 4 文書・影響度) を記録。あわせて 4 文書で揃える記述上の扱い (§32-4) — **「12 候補の改訂 (未着手)」と「案件ごとの改訂着手承認に基づく改定 (継続中)」の書き分け**・`tools/` が 5 レイヤー外の非正本であること・DS 見本ページが非正本であること — を記録。**Design System のトークン値・`$status`・`$meta.version`・規則・Component 仕様は変更していない。**Work Order 6 の総合判断 (全 12 候補「現時点では開始できない」)・[review-approval-rules.md](review-approval-rules.md) 本体・既存 §1〜§31 は不変 | Claude Code |
 | 2026-09-12 | Task 009-67: §33 「Travel 文書レベル見出しの太さの明示的な選択肢への regular (400) の追加 — Task 009-65 の thin (100) 限定の是正」を §1〜§32 と分離して追加 ([Issue #178](https://github.com/tocoo/coocom-design-system/issues/178))。改訂着手の設計承認 (§9・§20、2026-09-12・Web部責任者)、影響度 = **高** (§8・2026-09-12・明示取得)、現在判断 4 件 (J-1 regular 400 を既定 700 に対する明示的な選択肢として認める・§31 の thin 限定は誤りとして是正／J-2 条件は thin と同一 = 実寸 24px 以上・要素名では制限しない／J-3 進め方 = 既存フロー／J-4 影響度 = 高) を記録した。§33-4 に追加・変更するトークン (semantic = travel のみ `font.heading.weightRegular` を追加。primitive は追加・削除・値の変更なし・`regular` の `$description` 追記のみ。既定 `font.heading.weight` 700・`weightThin` 100 は不変) を、§33-5 に本記録が決定しないこと 7 件を記載した。**§5 設計承認ログ・§6 適用開始記録・§7〜§32 の各記録は変更していない。** 承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
+| 2026-09-15 | Task 009-68: §34 「Travel の中央寄せの器の左右余白・最小タップ領域・Select の定義」を §1〜§33 と分離して追加。Web部責任者の 2026-09-15 現在判断 (K-1 左右余白を幅ごとに 5 段で定義 (16/24/24/32/48px・既存 `spacing` 段への割当) ／K-2 Select は既存実装のいずれかを選ぶのではなく DS の既存の決まりから組み立てて定義 ／K-3 Select の角丸は 8px = `radius.select`・`radius.action` (pill) の「入力要素」に対する Select 限定の例外・`Input` へは及ぼさない ／K-4 最小タップ領域は 48px = `size.tapTarget` に統一・**44px 段は追加しない** (§18 の判断を維持) ／K-5 Select の未選択値は `color.text.muted` (2.68:1・**AA 未達を明示**)・`input` / `textarea` の `::placeholder` は `color.text.placeholder` を維持 (§22 の方向を規則化) ／K-6 チェックボックス・ラジオは自前で描く方式に統一 (**定義は後続 Task**) ／K-7 3 本に分けて出す ／K-8 影響度 = 高) を **travel 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は 4 件 (`radius.select` / `size.tapTarget` / `select.paddingInline` / `select.chevronSize`) でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`$meta.version` は据置き。§1〜§33・設計承認ログ (§5)・適用開始記録 (§6) は不変。§18 (44px 段を追加しない)・§22 (select 未選択値の方向)・§29-3 判断 C-5 (rental-car 限定) の判断内容は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |

@@ -1261,6 +1261,68 @@
 - **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
 
 
+## 35. Travel の「選ぶための部品」6 件の定義 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) について、実装 (`tocoo/tocoo_travel` `origin/dev-ds`) に存在しながら SOT に定義が無い「選ぶための部品」6 件 (Checkbox / Radio・OptionRow・NavigationRow・Chip・Tabs) を定義する件について、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #182](https://github.com/tocoo/coocom-design-system/issues/182))。**§34 K-7 が定めた 3 本のうちの 2 本目**にあたる。上記 §1〜§34 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§34 の各記録は変更しない。
+- **適用範囲は国内宿泊 (travel) に限る。** rental-car / inbound へは及ばない (3 独立 DS の原則 = P1/ADR-0022)。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 35-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/travel/design-system/components.md](../services/travel/design-system/components.md) への 5 節の新設 (`Checkbox / Radio`・`OptionRow`・`NavigationRow`・`Chip`・`Tabs`) と共通事項の更新、②[../services/travel/design-system/semantic.travel.json](../services/travel/design-system/semantic.travel.json) への器トークン群 `control.*` / `row.*` / `chip.*` / `tab.*` の追加 (いずれも既存 primitive への参照)、③[../services/travel/design-system/design.md](../services/travel/design-system/design.md) §7 の Component 一覧の更新 |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20)。候補採否とは別の判断 |
+| 承認日 | 2026-09-15 |
+| 承認主体 | Web部責任者 |
+| 根拠 | 6 件はいずれも実装に存在するが SOT に定義が無く、**未着手 Component 一覧にも載っていない** (Tabs を除く)。不足が記録されていないため実装が割れたまま積み上がっている |
+| 適用範囲 | travel に限定 |
+
+### 35-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out の適用でも、一般的な高／低の内容基準の確定でもない。Component を 6 件新設するため carve-out の対象外である |
+
+### 35-3. 取得した現在判断 (2026-09-15)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| L-1 | オーバーレイ内の行を 1 部品として定義するか | **2 部品に分ける。** 実測の結果、並び替えの行 (選択肢から 1 つ選び確定して閉じる) と目的地の行 (地方 → 都道府県 → エリアと次の階層へ進むナビゲーション。行末にシェブロンと件数を持ち、`is-active` は選択結果ではなく現在たどっている経路を示す) は**役割が異なる**ことが確認された。`OptionRow` と `NavigationRow` として別に定義し、選択中の表し方もそれぞれの役割に合わせる |
+| L-2 | `NavigationRow` のホバーと現在の経路が同じ見た目である件 | **現在の経路を太字にする。** 面 (`color.surface.subtle`) はホバー専用に残し、現在の経路は面 + 太字で示す。新しい色は追加しない。実装は `:hover` と `.is-active` の双方へ同じ面を指定しており両者が区別できない状態にあった (`search_s_global.scss` L352-353・本 Repository で実測) |
+| L-3 | `OptionRow` の選択中の表し方 | **太字 + `color.text.link` + 行末のチェックアイコン。面 (背景) は用いない** — 面はホバーに割り当てているため |
+| L-4 | オーバーレイ内の行の左右余白 | **16px (`row.paddingInline` = `spacing.4`) に統一する。** 実装は 12px (目的地の行) と 16px (並び替え・絞り込みの行) に割れていた |
+| L-5 | チェックボックス・ラジオの統一先 | §34 K-6 のとおり**自前で描く方式**。ネイティブ `input` は視覚的にのみ隠し、`display: none` は用いない (キーボード操作を失うため) |
+| L-6 | 本件の影響度 (§8) | **高** (§35-2) |
+
+### 35-4. 追加・変更するトークン
+
+**semantic (travel のみ)** — いずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。
+
+| 群 | トークン | 参照先 |
+| --- | --- | --- |
+| `control` (チェックボックス・ラジオの器) | `size` / `radius` / `borderWidth` / `glyphSize` / `dotSize` / `gap` | `{spacing.4}` / `{radius.sm}` / `{border.width.thick}` / `{typography.size.xs}` / `{spacing.2}` / `{spacing.3}` |
+| `row` (オーバーレイ内の行の器) | `paddingBlock` / `paddingInline` / `gap` / `fontSize` / `countFontSize` | `{spacing.3}` / `{spacing.4}` / `{spacing.3}` / `{typography.size.sm}` / `{typography.size.xs}` |
+| `chip` (チップの器) | `radius` / `paddingInline` / `gap` / `borderWidth` / `paddingBlock.select` / `paddingBlock.applied` / `fontSize.select` / `fontSize.applied` | `{radius.full}` / `{spacing.4}` / `{spacing.2}` / `{border.width.thin}` / `{spacing.2}` / `{spacing.1}` / `{typography.size.sm}` / `{typography.size.xs}` |
+| `tab` (タブの器) | `paddingBlock` / `paddingInline` / `fontSize` / `indicatorWidth` | `{spacing.3}` / `{spacing.2}` / `{typography.size.sm}` / `{border.width.thick}` |
+
+- `Chip` の**用途軸 `use` (`select` / `applied`) は variant 語彙 (GOV-0002) への追加ではない** — `PriceTag` の `tone`・`Modal` の `form` と同じ別軸の扱いである。variant 語彙・状態固定リスト (命名規則§2) は新設していない。
+- `control.radius` は `radius.badge` と値が同じ (4px) だが、同トークンは**非操作**のバッジ/ラベル専用で入力要素を対象外と定めているため流用せず、別の用途トークンとして置く。
+- **`$meta.version` は primitive / semantic とも据置き。**
+
+### 35-5. 本記録が決定しないこと
+
+- **実装 Repository (`tocoo/tocoo_travel`) 側の是正作業** — チェックボックス・ラジオ 3 箇所の統一、行の左右余白の 16px への統一、`NavigationRow` のホバーと現在経路の区別、`Chip` (`use = applied`) の 44px → 48px、`NavigationRow` のシェブロンの `color.text.muted` → `color.text.mutedStrong`。**範囲・順序・期限はいずれも実装 Repository 側の課題**である。
+- **3 本目で定義する部品の具体的な値** (ソート・絞り込みの起点ボタン / カレンダー 2 種 / レンジスライダー / スケルトン / 追従帯)。
+- **a11y の実装方式** (`role="tablist"` / `aria-selected` / 矢印キー操作 / フォーカストラップ等)。`alignment-blocking-facts-resolution-plan.md` §8K の下流課題として継続する。
+- **disabled・error・hover の実体一式** (follow-up #2 / #4)。
+- **rental-car / inbound への適用。**
+- **適用規格・達成レベルの正式確定・適合判定・適合宣言。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+
 ---
 
 ## 変更履歴
@@ -1315,3 +1377,4 @@
 | 2026-09-11 | Task 009-66: §32 「リポジトリ入口 README ほか 3 文書の記述の最新化」を §1〜§31 と分離して追加 ([Issue #176](https://github.com/tocoo/coocom-design-system/issues/176))。Web部責任者の**改訂着手の設計承認 (2026-09-11)**・**影響度 = 低 (本件について明示取得)**・現在判断 I-1〜I-3 (反映経路 = PR・対象範囲 = 入口 4 文書・影響度) を記録。あわせて 4 文書で揃える記述上の扱い (§32-4) — **「12 候補の改訂 (未着手)」と「案件ごとの改訂着手承認に基づく改定 (継続中)」の書き分け**・`tools/` が 5 レイヤー外の非正本であること・DS 見本ページが非正本であること — を記録。**Design System のトークン値・`$status`・`$meta.version`・規則・Component 仕様は変更していない。**Work Order 6 の総合判断 (全 12 候補「現時点では開始できない」)・[review-approval-rules.md](review-approval-rules.md) 本体・既存 §1〜§31 は不変 | Claude Code |
 | 2026-09-12 | Task 009-67: §33 「Travel 文書レベル見出しの太さの明示的な選択肢への regular (400) の追加 — Task 009-65 の thin (100) 限定の是正」を §1〜§32 と分離して追加 ([Issue #178](https://github.com/tocoo/coocom-design-system/issues/178))。改訂着手の設計承認 (§9・§20、2026-09-12・Web部責任者)、影響度 = **高** (§8・2026-09-12・明示取得)、現在判断 4 件 (J-1 regular 400 を既定 700 に対する明示的な選択肢として認める・§31 の thin 限定は誤りとして是正／J-2 条件は thin と同一 = 実寸 24px 以上・要素名では制限しない／J-3 進め方 = 既存フロー／J-4 影響度 = 高) を記録した。§33-4 に追加・変更するトークン (semantic = travel のみ `font.heading.weightRegular` を追加。primitive は追加・削除・値の変更なし・`regular` の `$description` 追記のみ。既定 `font.heading.weight` 700・`weightThin` 100 は不変) を、§33-5 に本記録が決定しないこと 7 件を記載した。**§5 設計承認ログ・§6 適用開始記録・§7〜§32 の各記録は変更していない。** 承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない | Claude Code |
 | 2026-09-15 | Task 009-68: §34 「Travel の中央寄せの器の左右余白・最小タップ領域・Select の定義」を §1〜§33 と分離して追加。Web部責任者の 2026-09-15 現在判断 (K-1 左右余白を幅ごとに 5 段で定義 (16/24/24/32/48px・既存 `spacing` 段への割当) ／K-2 Select は既存実装のいずれかを選ぶのではなく DS の既存の決まりから組み立てて定義 ／K-3 Select の角丸は 8px = `radius.select`・`radius.action` (pill) の「入力要素」に対する Select 限定の例外・`Input` へは及ぼさない ／K-4 最小タップ領域は 48px = `size.tapTarget` に統一・**44px 段は追加しない** (§18 の判断を維持) ／K-5 Select の未選択値は `color.text.muted` (2.68:1・**AA 未達を明示**)・`input` / `textarea` の `::placeholder` は `color.text.placeholder` を維持 (§22 の方向を規則化) ／K-6 チェックボックス・ラジオは自前で描く方式に統一 (**定義は後続 Task**) ／K-7 3 本に分けて出す ／K-8 影響度 = 高) を **travel 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は 4 件 (`radius.select` / `size.tapTarget` / `select.paddingInline` / `select.chevronSize`) でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`$meta.version` は据置き。§1〜§33・設計承認ログ (§5)・適用開始記録 (§6) は不変。§18 (44px 段を追加しない)・§22 (select 未選択値の方向)・§29-3 判断 C-5 (rental-car 限定) の判断内容は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
+| 2026-09-15 | Task 009-69: §35 「Travel の『選ぶための部品』6 件の定義」を §1〜§34 と分離して追加 ([Issue #182](https://github.com/tocoo/coocom-design-system/issues/182)・§34 K-7 の 3 本のうち 2 本目)。Web部責任者の 2026-09-15 現在判断 (L-1 オーバーレイ内の行は役割が異なるため `OptionRow` と `NavigationRow` の 2 部品に分ける ／L-2 `NavigationRow` の現在の経路は面 + **太字**で示しホバー (面のみ) と区別する ／L-3 `OptionRow` の選択中は太字 + `color.text.link` + チェックアイコン・面は用いない ／L-4 行の左右余白は 16px に統一 ／L-5 チェックボックス・ラジオは自前で描く方式・`display: none` は用いない ／L-6 影響度 = 高) を **travel 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は器トークン 4 群 (`control` 6 件 / `row` 5 件 / `chip` 8 件 / `tab` 4 件) でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`Chip` の用途軸 `use` は variant 語彙 (GOV-0002) への追加ではない (`PriceTag` の `tone`・`Modal` の `form` と同じ別軸)。`$meta.version` は据置き。§1〜§34・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |

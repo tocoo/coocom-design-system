@@ -6,7 +6,7 @@
     "service": "rental-car",
     "version": "0.3.0-draft",
     "status": "Draft",
-    "basedOn": "rental-car 0.2.1-draft。オーナー判断 2026-08-18 により travel 0.3.0-draft の定義体系 (scheme 二層・link=主色・success=主色・accent=バッジ専用) を採用。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、次を追加・変更した。(1) `color.text.mutedStrong` (gray.700 #616161・白背景 6.19:1) を追加 — 判読性を要する補助情報が `muted` (#9e9e9e・2.68:1・AA 未達) しか参照先を持たず design.md §2.3 の AA 下限宣言と矛盾していた状態の解消。(2) `color.overlay.backdrop` (placeholder) を追加 — Modal の backdrop が生値 rgba(0,0,0,.45) で書かれていた状態の解消。(3) `radius.overlay` (placeholder・既存 radius.lg 参照) を追加。(4) `font.heading.h1Size` (4xl) を復活し `font.heading.weight` (bold) を追加 — h1 とウェイトを semantic 経由で指定できなかった状態の解消。(5) `font.display.mdSize` (lg = 18px) を追加し `font.heading.h3Size` の用途記述から「車両クラス名」を外した — 同一要素にゴシックと明朝の 2 系統が割り当てられていた状態の解消。(6) `color.mask.secret` の参照先を `{color.surface.muted}` から `{color.scheme.main.tint}` へ変更 — labels-tags.rental-car.md §2 B-2 が同じ箱に別値を定めていた矛盾の解消。(7) `radius.badge` に非操作ラベルへ pill を使わない旨の `$description` / `$note` を補い、`color.text.muted` の用途記述を装飾用途に限定した。新しい色値・数値は primitive `blackAlpha.45` (暫定値) 以外に追加していない。`$meta.version` は据置き。 **Task 009-63** (国内宿泊 travel の最新版 = Task 009-58〜009-62 の適用・Issue #170・正本 = governance/owner-decisions.md §29): semantic を **39 件追加・1 件削除・1 件の参照先変更**した。追加 = (A 面と文字色) `color.text.inverseMuted` / `onAccent`、(B リンク) `color.text.linkHover` / `linkActive`、(D 文書レベル見出し) `font.heading.lineHeight` / `h4Size` / `h5Size` / `h6Size`、(E ラベル・タグ) 器 `label.*` 12 件 (`height.sm`/`md`・`paddingInline.sm`/`md`・`lineHeight`・`fontSize.sm`/`md`・`numberSize.sm`/`md`・`weight.emphasis`/`neutral`・`radius`)・用途色 `color.label.discount.surface`/`text`・`color.label.category.surface`/`text`/`icon`/`border`・`color.label.stock`・`color.membership.paid.surface`/`text`・`color.membership.free.surface`/`text`・`color.tag.neutral.surface`/`text`・accent 2 段 `color.accent.campaignTint`/`campaignInk` と `color.scheme.{main,sub}.accentTint`/`accentInk`。削除 = `radius.input` (入力要素の角丸を `radius.action` = pill へ統一・判断 F-5)。参照先変更 = `font.heading.h3Size` を `{typography.size.lg}` (18px) から `{typography.size.2xl}` (24px) へ (文書レベルの見出しには実寸が 4 の倍数である段のみを用いる規則の新設・判断 D-2 / D-4)。新しい色値は primitive の accent 4 段のみ (うち 3 段は 🚧 仮色)。3 独立 DS の原則 (P1/ADR-0022) は維持し、値は本ファイルに独立して持ち travel のファイルを参照・共有しない。`$meta.version` は据置き。 **Task 009-63R の記述是正** (PR #171 コードレビュー issuecomment-5565532746 の指摘に対応): (1) `color.tag.neutral.text` の `$description` のコントラスト値を 5.68:1 から実測値 **9.22:1** へ是正。(2) 未入力状態の文字色を UI の種別で限定せず `color.text.muted` へ統一する判断 (Web部責任者 2026-09-07・§29 判断 C-5 の適用範囲変更) により、**`color.text.placeholder` の追加を取り下げ** (40 件追加 → 39 件追加)、`color.text.muted` に用途と AA 未達明示の `$note` を付した。travel 側 (§22) の記述は 3 独立 DS の原則により本判断の影響を受けない。",
+    "basedOn": "rental-car 0.2.1-draft。オーナー判断 2026-08-18 により travel 0.3.0-draft の定義体系 (scheme 二層・link=主色・success=主色・accent=バッジ専用) を採用。本 Repository へは 2026-08-20 に反映 (記録 = governance/owner-decisions.md §25) Task 009-57R の記述是正: PR #156 コードレビュー (issuecomment-5353729542) の指摘に対応し、次を追加・変更した。(1) `color.text.mutedStrong` (gray.700 #616161・白背景 6.19:1) を追加 — 判読性を要する補助情報が `muted` (#9e9e9e・2.68:1・AA 未達) しか参照先を持たず design.md §2.3 の AA 下限宣言と矛盾していた状態の解消。(2) `color.overlay.backdrop` (placeholder) を追加 — Modal の backdrop が生値 rgba(0,0,0,.45) で書かれていた状態の解消。(3) `radius.overlay` (placeholder・既存 radius.lg 参照) を追加。(4) `font.heading.h1Size` (4xl) を復活し `font.heading.weight` (bold) を追加 — h1 とウェイトを semantic 経由で指定できなかった状態の解消。(5) `font.display.mdSize` (lg = 18px) を追加し `font.heading.h3Size` の用途記述から「車両クラス名」を外した — 同一要素にゴシックと明朝の 2 系統が割り当てられていた状態の解消。(6) `color.mask.secret` の参照先を `{color.surface.muted}` から `{color.scheme.main.tint}` へ変更 — labels-tags.rental-car.md §2 B-2 が同じ箱に別値を定めていた矛盾の解消。(7) `radius.badge` に非操作ラベルへ pill を使わない旨の `$description` / `$note` を補い、`color.text.muted` の用途記述を装飾用途に限定した。新しい色値・数値は primitive `blackAlpha.45` (暫定値) 以外に追加していない。`$meta.version` は据置き。 **Task 009-63** (国内宿泊 travel の最新版 = Task 009-58〜009-62 の適用・Issue #170・正本 = governance/owner-decisions.md §29): semantic を **39 件追加・1 件削除・1 件の参照先変更**した。追加 = (A 面と文字色) `color.text.inverseMuted` / `onAccent`、(B リンク) `color.text.linkHover` / `linkActive`、(D 文書レベル見出し) `font.heading.lineHeight` / `h4Size` / `h5Size` / `h6Size`、(E ラベル・タグ) 器 `label.*` 12 件 (`height.sm`/`md`・`paddingInline.sm`/`md`・`lineHeight`・`fontSize.sm`/`md`・`numberSize.sm`/`md`・`weight.emphasis`/`neutral`・`radius`)・用途色 `color.label.discount.surface`/`text`・`color.label.category.surface`/`text`/`icon`/`border`・`color.label.stock`・`color.membership.paid.surface`/`text`・`color.membership.free.surface`/`text`・`color.tag.neutral.surface`/`text`・accent 2 段 `color.accent.campaignTint`/`campaignInk` と `color.scheme.{main,sub}.accentTint`/`accentInk`。削除 = `radius.input` (入力要素の角丸を `radius.action` = pill へ統一・判断 F-5)。参照先変更 = `font.heading.h3Size` を `{typography.size.lg}` (18px) から `{typography.size.2xl}` (24px) へ (文書レベルの見出しには実寸が 4 の倍数である段のみを用いる規則の新設・判断 D-2 / D-4)。新しい色値は primitive の accent 4 段のみ (うち 3 段は 🚧 仮色)。3 独立 DS の原則 (P1/ADR-0022) は維持し、値は本ファイルに独立して持ち travel のファイルを参照・共有しない。`$meta.version` は据置き。 **Task 009-63R の記述是正** (PR #171 コードレビュー issuecomment-5565532746 の指摘に対応): (1) `color.tag.neutral.text` の `$description` のコントラスト値を 5.68:1 から実測値 **9.22:1** へ是正。(2) 未入力状態の文字色を UI の種別で限定せず `color.text.muted` へ統一する判断 (Web部責任者 2026-09-07・§29 判断 C-5 の適用範囲変更) により、**`color.text.placeholder` の追加を取り下げ** (40 件追加 → 39 件追加)、`color.text.muted` に用途と AA 未達明示の `$note` を付した。travel 側 (§22) の記述は 3 独立 DS の原則により本判断の影響を受けない。 2026-09-15 *Task 009-72*: 国内宿泊 (travel) の横断の規則と Select の**定義体系を採用**し **4 件を追加**した (Owner 2026-09-15・正本 = governance/owner-decisions.md §38) — `radius.select` (= 既存 primitive `radius.md` 8px。`radius.action` (pill) が定める「入力要素」に対する **Select 限定の例外**であり Input / SearchForm のフィールドへ拡大しない。**判断 F-5 の `radius.input` 廃止と入力要素の pill 統一は維持**。用途トークンは action / card / badge / overlay / select の **5 系統**となった)、`size.tapTarget` (= 既存 primitive `spacing.12` 48px。**従前の 44px を 48px へ改めた**もので travel の統一に揃えた。**44px 段 (spacing step 11) は追加していない**)、`select.paddingInline` (= `spacing.3` 12px) / `select.chevronSize` (= `iconSize.sm`)。**いずれも既存 primitive への参照であり、新しい数値・新しい色値・新しい primitive は追加していない**。未入力状態の文字色 (`color.text.muted`・判断 C-5) は変更していない — travel が 2026-09-15 (§37) に同型へ改めたため両 DS の規則は既に一致している。**値は本 DS のファイルに独立して持ち travel のファイルを参照・共有しない** (3 独立 DS の原則 = P1/ADR-0022)。`$meta.version` は据置き。",
     "created": "2026-07-02",
     "updated": "2026-09-07",
     "notes": [
@@ -630,7 +630,14 @@
       "$type": "dimension",
       "$description": "オーバーレイの角丸 16px (Modal の表示形態 form = sheet の上端 2 隅等・design.md §7)",
       "$status": "placeholder",
-      "$note": "既存 primitive `radius.lg` (16px) を参照し**新しい数値は追加していない**。$status = placeholder = 用途への binding が暫定 (実 px を本 Repository で実査していない)。用途トークンは action / card / badge / overlay の **4 系統** (Task 009-63 で `radius.input` を廃止し 5 系統から 4 系統へ)"
+      "$note": "既存 primitive `radius.lg` (16px) を参照し**新しい数値は追加していない**。$status = placeholder = 用途への binding が暫定 (実 px を本 Repository で実査していない)。用途トークンは action / card / badge / overlay / select の **5 系統** (Task 009-63 で `radius.input` を廃止し 5 系統から 4 系統へ・Task 009-72 で `radius.select` を追加し 5 系統へ)"
+    },
+    "select": {
+      "$value": "{radius.md}",
+      "$type": "dimension",
+      "$description": "プルダウン (Select) の外形 8px。対象 = Select のみ。対象外 = ボタン・CTA・チップ型操作要素・Input / SearchForm のフィールド・カード外形・非操作のバッジ/ラベル・オーバーレイ",
+      "$status": "bound",
+      "$note": "Task 009-72 で追加 (Owner 2026-09-15・正本 = governance/owner-decisions.md §38)。`radius.action` (full = pill) が定める「入力要素」に対する **Select 限定の例外**であり、Input / SearchForm のフィールドへ拡大しない (判断 F-5 の統一と `radius.input` の廃止は維持する)。既存 primitive `radius.md` (8px) を参照し**新しい数値は追加していない**。選定根拠 = ①プルダウンは押すと一覧が開く要素であり pill を与えるとボタン・チップ型操作要素と見分けがつかない ②`radius.badge` (4px・非操作) との階層差を保つ。国内宿泊 (travel) `radius.select` と同型の定義体系だが、**値は本 DS のファイルに独立して持ち travel のファイルを参照・共有しない** (3 独立 DS の原則 = P1/ADR-0022)"
     }
   },
   "label": {
@@ -719,6 +726,33 @@
       "$status": "bound"
     }
   },
+  "size": {
+    "tapTarget": {
+      "$value": "{spacing.12}",
+      "$type": "dimension",
+      "$description": "指で操作する要素の最小の高さ 48px (spacing.12)。対象 = ボタン・チップ・プルダウン・オーバーレイ内の選択肢行・タブ等",
+      "$status": "bound",
+      "$note": "Task 009-72 で追加 (Owner 2026-09-15・正本 = governance/owner-decisions.md §38・design.md §4.2)。**従前の 44px を 48px へ改めた**もので、国内宿泊 (travel) の統一に揃えた。既存 primitive `spacing.12` を参照し**新しい数値は追加していない**。**44px 段 (spacing step 11) は追加していない** — 追加しない判断 (design.md 未確定事項の一覧) は維持される。Component は primitive を直接参照しないため用途トークンとして置く"
+    }
+  },
+
+  "select": {
+    "$description": "プルダウン (Select) の共通器 (寸法)。高さは size.tapTarget (48px)・角丸は radius.select (8px) を参照するため本群には持たせない。既存 spacing / iconSize への割当であり新しい数値は追加していない (Task 009-72)",
+    "paddingInline": {
+      "$value": "{spacing.3}",
+      "$type": "dimension",
+      "$description": "Select の左右余白 12px (spacing.3)。右側はシェブロン (select.chevronSize) の領域を加算する",
+      "$status": "bound"
+    },
+    "chevronSize": {
+      "$value": "{iconSize.sm}",
+      "$type": "dimension",
+      "$description": "Select 右端のシェブロンのサイズ。アイコン体系 FA6 (design.md §6)",
+      "$status": "bound",
+      "$note": "ブラウザ標準の矢印を止め (appearance: none) FA6 グリフを置く。**SVG 画像・データ URI で描かない** — 色の解決値が焼き込まれスキーム切替に追随しないため"
+    }
+  },
+
   "motion": {
     "transition": {
       "duration": {

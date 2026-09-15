@@ -14,6 +14,7 @@
 - [事実] ボタン状態 (hover/active/disabled/focus) は宿泊で未取得 (follow-up #4 / TVL-0008)。全 Component の hover は「opacity 変化 (≈0.85)」を暫定参照とし `🚧 暫定` を付す。**ただしリンクの hover は対象外** — リンクは `design.md` §2.2 が定める色変更 (`{color.text.linkHover}`) を用い、`opacity` を状態表現に使わない (確定値のため `🚧 暫定` を付さない)
 - [事実] フォーカスは `outline` ベースで `{color.focus.ring}` を使用 (命名規則§8)
 - [事実] 指で操作する要素 (ボタン・チップ・プルダウン・オーバーレイ内の選択肢行・タブ等) の**最小の高さは `{size.tapTarget}` (48px)** とする。44px を用いない。正は `design.md` §4.2 (Task 009-68)
+- [事実] **選択・適用・現在地といった状態を色だけで伝えない。** 形 (チェック印・点・下線・アイコン)・太さ・面のいずれかを併せ持つ。hover に用いる表現 (面 `{color.surface.subtle}`) を選択中の表現へ流用しない — 同じ表現を割り当てると両者が区別できなくなる (Task 009-69)
 - [事実] テキスト色は `{color.text.strong}` / `{color.text.body}` / `{color.text.mutedStrong}` / `{color.text.muted}` の4段。判読性を必要とする補助情報 (補助価格・税/人数/泊数等の価格条件注記・割引前価格・購買判断や内容理解に必要な補足条件) は `{color.text.mutedStrong}` (#616161・白背景 ≈6.2:1) を使用する。`{color.text.muted}` (#9e9e9e・白背景 ≈2.7:1) は通常テキストに求められる 4.5:1 に達しないため、判読性を要する情報には用いない。適用規格・達成レベルの正式確定・適合判定・適合宣言は本書では行わない (design.md §2)
 - [事実] 上記4段は**明色面 (`{color.surface.default}` / `subtle` / `muted`) 用**である。inverse 面 (`{color.surface.inverse}` #212121) 上のテキストは `{color.text.inverse}` (主要文字・≈16.10:1) と `{color.text.inverseMuted}` (補助情報・≈6.01:1) の2段を使用する。`{color.text.inverseMuted}` (#9e9e9e) を明色面へ使用しない (白背景 ≈2.7:1)。`{color.text.mutedStrong}` を inverse 面へ使用しない (#616161 は #212121 上 ≈2.60:1)
 - [事実] 面 (背景) として色を使う場合の許可される文字色・文字サイズ条件は面ごとに異なる。組み合わせ一覧・campaign accent を面として使用できる条件 ((a) `24px` 以上 (ウェイトを問わない) または (b) `20px` 以上かつ bold)・(a) (b) を満たさない場合 ((i) `20px` 未満のすべて／(ii) `20px` 以上 `24px` 未満かつ通常ウェイト) の代替規則・ウェイトの境界 (bold = `700` 以上／通常ウェイト = `700` 未満)・scheme inverse 面 (main `#C8912C` / sub `#C8B12C`) の文字色は `design.md` §2.1 が正。**`{color.text.onAccent}` の存在を理由にコントラスト確認を省略しない**
@@ -24,7 +25,7 @@
 - [事実] リンクは色 `{color.text.link}` (= 主色・TVL-0011) に加え、状態ごとの文字色 (hover = `{color.text.linkHover}` / active = `{color.text.linkActive}` / visited = 専用色を設けず `{color.text.link}` を維持 / focus = `{color.focus.ring}` の `outline`) を使用する。**文中リンクには下線を付し、hover で下線を外さない**。standalone なリンク (カード全体リンク・ナビゲーション項目・パンくず) への下線の既定は未判定であり、状態ごとの文字色は対象を限定せず適用される。**リンクの状態表現に `opacity` を用いない** — 上記の「全 Component の hover は opacity 変化 (≈0.85) を暫定参照」からリンクを除外している。正は `design.md` §2.2
 - [事実] 入力欄のプレースホルダ文字色は `{color.text.placeholder}` (#616161・白背景 ≈6.2:1) を使用する。`{color.text.muted}` (#9e9e9e・≈2.7:1) を流用しない。プレースホルダを必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない。正は `design.md` §2.3
 - [事実] variant 語彙は `primary / secondary / ghost / campaign / text` の5語で確定 (GOV-0002)。語彙外の新設は ADR 必須。**travel の Button 実装は4語 (primary/secondary/ghost/text)**— campaign (accent 塗りボタン) は廃止 (TVL-0012)、accent はバッジ/割引ラベルの「点」専用 (Card badge)
-- [事実] 未着手 Component: Tabs / Toast / Table / Accordion / Pagination / Badge (単体) / Stepper / Empty state。本仕様に含めない。**Select は Task 009-68 で定義済みへ移した** (実装 2 箇所の割れを統一して確定)。**Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理した** (Task 009-39・受理と分類のみ。仕様定義は別 Task)。Tabs / Select は従来から未着手として記載済み。各 Component の実体データ・実装実査の有無は Component ごとに異なる (`Pagination` / `Stepper` / `Empty state` は全文検索 0 件・従来の未着手一覧にも不在だった / Badge は `Card.slot.badge` としてスロット規則が定義済みだが Card 外で使う単体 Component は未定義)
+- [事実] 未着手 Component: Toast / Table / Accordion / Pagination / Badge (単体) / Stepper / Empty state。本仕様に含めない。**Select は Task 009-68・Tabs は Task 009-69 で定義済みへ移した**。Task 009-69 ではあわせて未着手一覧に無かった 4 件 (Checkbox / Radio・OptionRow・NavigationRow・Chip) を新規に定義した (実装は存在するが一覧に載っていなかったもの)。**Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理した** (Task 009-39・受理と分類のみ。仕様定義は別 Task)。Tabs / Select は従来から未着手として記載済み。各 Component の実体データ・実装実査の有無は Component ごとに異なる (`Pagination` / `Stepper` / `Empty state` は全文検索 0 件・従来の未着手一覧にも不在だった / Badge は `Card.slot.badge` としてスロット規則が定義済みだが Card 外で使う単体 Component は未定義)
 - [事実] **Badge (単体) Component の切り出し境界** (Task 009-39): 既に定義済みの `Card.slot.badge` (角丸 `{radius.badge}`・面と文字色の (a)(b) 分岐・割引ラベルの面色・Do / Don't = `design.md` §2.1 が正) と、単体 Component として追加で必要になる範囲 (Card 外での配置・サイズ段階・操作可能な場合の扱い) を分離する。**操作可能なバッジは badge ではなく action 系 Component として扱う**既存の境界 (共通事項) は再定義しない
 - [事実] 依頼 D の新規 Component (Pagination / Badge (単体) / Stepper / Empty state) の**定義工程への着手は Web部責任者判断 2026-08-03 で可** (正本 = `governance/owner-decisions.md` §15)。ただし着手可は改訂着手の可否 (`governance/review-approval-rules.md` §9) であり、Component 仕様・variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2) の新設ではない。依頼 D の新規 Component は Work Order 6 の 12 候補 (alignment 候補) とは別であり、同 Work Order 6 の「12 候補は現時点では開始できない」は不変
 
@@ -93,6 +94,115 @@
 - [事実] 実装 (`tocoo/tocoo_travel` `origin/dev-ds` `142afb120`・2026-09-15) は 2 箇所に分かれ、角丸 (8px / 4px)・文字サイズ (14px / 16px)・シェブロン (自前 SVG / ブラウザ標準) が食い違っていた (`search_s_global.scss` L532・`ultra_market_s.scss` L1091。本 Repository で実測)。本節はこの割れを上記の値へ統一する。**実装側の是正の範囲・順序・期限は実装 Repository 側の課題**である
 - [事実] 実装にはプルダウンを UI に用いず、値の運搬にのみ `<select>` を残してチップで選ばせている箇所がある (`inquiry_s.scss` L32・L401)。上記の使い分けに照らすとこれは Select ではなく選択用チップの範囲であり、本節の対象外とする (選択用チップの定義は後続 Task)
 - 未確定事項: サイズ段階 (sm/md/lg) は実体がなく定義しない / 複数選択・検索付きの選択は対象外 (実体皆無) / Modal の表示形態へ切り替える件数のしきい値 / error・disabled・success の実体一式 (follow-up #2)
+
+## Checkbox / Radio
+
+- ステータス: Draft
+- 用途: 絞り込み条件・同意など、複数選択 (Checkbox) / 単一選択 (Radio) の入力
+- バリアント: なし (`Checkbox` と `Radio` は同じ器を共有し、形状と選択時の表現のみ異なる)
+- 構成:
+  - ネイティブの `input` を**視覚的にのみ隠し** (フォーカスは受け取れる状態を保つ)、箱と印を自前で描く
+  - 箱 — 一辺 `{control.size}` (16px) / 面 `{color.surface.default}` / 未選択の枠 `{control.borderWidth}` (2px) × `{color.border.strong}`
+  - 角丸 — Checkbox = `{control.radius}` (4px) / Radio = 円
+  - 選択時 — Checkbox = 面 `{color.brand.primary}` + 枠 `{color.brand.primary}` + `{color.text.inverse}` のチェック印 (`{control.glyphSize}` の FA6 グリフ) / Radio = 面は `{color.surface.default}` のまま中心に直径 `{control.dotSize}` (8px) の `{color.brand.primary}` の点
+  - ラベル — 文字 `{color.text.body}` / 箱との間隔 `{control.gap}` (12px)
+- 状態: focus = `{color.focus.ring}` の outline (`{control.borderWidth}`・オフセット 4px) / disabled・error 🚧 未取得
+- Do / Don't:
+  - Do: `input` は `opacity: 0` 等で**視覚的にのみ隠す**。`display: none` / `visibility: hidden` を用いない (キーボードで操作できなくなる)
+  - Do: 箱とラベルは同一の `label` 要素に収め、ラベル文字を押しても切り替わるようにする
+  - Do: 選択状態を**色だけで伝えない** — Checkbox はチェック印、Radio は中心の点という形の差を併せ持つ
+  - Don't: チェック印を SVG 画像・データ URI で描かない (アイコンは FA6 に統一 = `design.md` §6。色の解決値が焼き込まれスキーム切替に追随しない)
+  - Don't: `{radius.badge}` を流用しない (同トークンは非操作のバッジ/ラベル専用で入力要素を対象外と定めている)
+- 関連トークン: `{control.size}` / `{control.radius}` / `{control.borderWidth}` / `{control.glyphSize}` / `{control.dotSize}` / `{control.gap}` / `{color.surface.default}` / `{color.border.strong}` / `{color.brand.primary}` / `{color.text.inverse}` / `{color.text.body}` / `{color.focus.ring}`
+- [事実] 実装 (`tocoo/tocoo_travel` `origin/dev-ds`) は DS 準拠のファイルの中で 3 箇所に分かれ、絞り込みパネル (`filter_s_global.scss` L58-127) のみが上記の作り、お問い合わせ (`inquiry_s.scss` L707) とソリューション (`solution_s.scss` L510) はネイティブ部品を 24px で置くだけで**選択時の色もフォーカス枠も持たない** (本 Repository で実測)。本節は前者へ統一する (Web部責任者判断 2026-09-15・正本 = `governance/owner-decisions.md` §34 K-6)。実装側の是正の範囲・順序・期限は実装 Repository 側の課題である
+- 未確定事項: disabled・error・不定 (indeterminate) 状態の実体 / サイズ段階 (実体皆無)
+
+## OptionRow
+
+- ステータス: Draft
+- 用途: オーバーレイ (Modal の `sheet` / `drawer` / `popover`) の中に並ぶ、**選択肢から 1 つ選ぶ**行 (並び替えの選択等)
+- バリアント: なし
+- 構成:
+  - 器 — 最小の高さ `{size.tapTarget}` (48px) / 上下 `{row.paddingBlock}` (12px)・左右 `{row.paddingInline}` (16px) / 面と枠は持たない (`transparent`)
+  - 文字 — `{row.fontSize}` (14px) / `{color.text.strong}` / 行内の間隔 `{row.gap}` (12px)
+  - 選択中 — 文字を `{font.heading.weight}` (700) にし、色を `{color.text.link}` にしたうえで、**行末にチェックのアイコン** (FA6) を置く
+  - 区切り — 行を隙間なく並べる場合は `{border.width.thin}` × `{color.border.subtle}` の下線を用いる
+- 状態: hover = 面 `{color.surface.subtle}` / focus = `{color.focus.ring}` outline / disabled 🚧 未取得
+- Do / Don't:
+  - Do: 選択中であることを**色だけで伝えない** — 太さ・チェックアイコンを併せ持つ
+  - Do: 選択したら確定し、オーバーレイを閉じる
+  - Don't: 選択中の表現に面 (背景) を用いない — 面は hover に割り当てており、同じ面を使うと hover と選択中が見分けられなくなる
+  - Don't: 階層をたどる行 (`NavigationRow`) と混在させない
+- 関連トークン: `{size.tapTarget}` / `{row.paddingBlock}` / `{row.paddingInline}` / `{row.gap}` / `{row.fontSize}` / `{color.text.strong}` / `{color.text.link}` / `{font.heading.weight}` / `{color.surface.subtle}` / `{color.border.subtle}` / `{border.width.thin}` / `{color.focus.ring}`
+- [事実] 実装は 2 箇所 (`search_result_s.scss` L616-638 の並び替え・`chokuzen_s.scss` L1213-1237) にあり、**値は 1 つも違わない複写**である (本 Repository で実測)。左右余白のみ目的地の行 (12px) と食い違っていたため 16px へ統一した
+- 未確定事項: 複数選択を伴う行の扱い (実体皆無) / disabled の実体
+
+## NavigationRow
+
+- ステータス: Draft
+- 用途: オーバーレイの中に並ぶ、**次の階層へ進む**行 (目的地 = 地方 → 都道府県 → エリア等)
+- バリアント: なし
+- 構成:
+  - 器・文字 — `OptionRow` と同じ器 (`{size.tapTarget}` / `{row.paddingBlock}` / `{row.paddingInline}` / `{row.gap}` / `{row.fontSize}` / `{color.text.strong}`) を用いる
+  - 行末 — 次の階層があることを示す右向きシェブロン (FA6)。必要に応じてその手前に件数を `{row.countFontSize}` (12px) / `{color.text.body}` で置く
+  - 現在たどっている経路 — 面 `{color.surface.subtle}` に加えて文字を `{font.heading.weight}` (700) にする
+- 状態: hover = 面 `{color.surface.subtle}` / focus = `{color.focus.ring}` outline
+- Do / Don't:
+  - Do: 現在の経路は**面と太さの両方**で示す。面だけでは hover と同じ見た目になり区別できない (Web部責任者判断 2026-09-15・`governance/owner-decisions.md` §35)
+  - Do: 押した結果が「選択の確定」ではなく「次の階層の表示」であることを、行末のシェブロンで示す
+  - Don't: 選択の確定に用いない (確定は `OptionRow` の役割)
+  - Don't: シェブロンに `{color.text.muted}` を用いない — 白面上 2.68:1 で非テキスト UI 要素に求められる 3:1 に達しない
+- 関連トークン: `OptionRow` と同じ器トークン一式 / `{row.countFontSize}` / `{color.surface.subtle}` / `{font.heading.weight}` / `{color.text.body}` / `{color.text.mutedStrong}`
+- [事実] 実装 (`search_s_global.scss` L336-364) は `:hover` と `.is-active` の双方へ `color.surface.subtle` を指定しており、**マウスを乗せている行と現在たどっている行が画面上で区別できない**状態にあった (本 Repository で実測)。本節は現在の経路に太さを加えることでこれを解消する。**新しい色は追加していない**
+- [事実] 同実装のシェブロンは `color.text.muted` (`#9E9E9E`・白面 2.68:1) を用いている (`search_s_global.scss` L364)。本節は `{color.text.mutedStrong}` (`#616161`・白面 6.19:1) を正とする。実装側の是正は実装 Repository 側の課題である
+- 未確定事項: 階層の深さの上限 / 戻る操作の表現 (ヘッダー側の責務との切り分け)
+
+## Chip
+
+- ステータス: Draft
+- 用途: pill 形状の小さな操作要素。**選択させる** (種別の選択等) / **適用中の絞り込みを示し押すと解除する** の 2 用途
+- **用途軸 (use)**: `select` (選択用) / `applied` (適用中の絞り込み) の 2 値。**variant 語彙 (GOV-0002) とは別軸**であり語彙への追加ではない (`PriceTag` の `tone`・`Modal` の `form` と同じ扱い)
+- 構成 (共通): 最小の高さ `{size.tapTarget}` (48px) / 角丸 `{chip.radius}` (pill) / 左右 `{chip.paddingInline}` (16px) / 文言とアイコンの間隔 `{chip.gap}` (8px)
+- 構成 (use ごと):
+
+| | `use = select` | `use = applied` |
+|---|---|---|
+| 面 | `{color.surface.default}` | `{color.scheme.main.tint}` |
+| 枠 | `{chip.borderWidth}` (1px) × `{color.border.default}` | なし |
+| 文字 | `{chip.fontSize.select}` (14px) / `{color.text.body}` | `{chip.fontSize.applied}` (12px) / `{color.text.strong}` |
+| 上下余白 | `{chip.paddingBlock.select}` (8px) | `{chip.paddingBlock.applied}` (4px) |
+| 選択中 | 枠 `{color.brand.primary}` + 面 `{color.scheme.main.tint}` + `{font.heading.weight}` (700) + `{color.text.strong}` | — (適用中であること自体が面で示される) |
+| 押したとき | 選択が切り替わる | その絞り込みが解除される (行末に解除のアイコン) |
+
+- 状態: focus = `{color.focus.ring}` outline / hover 🚧 暫定 (共通事項の opacity 変化) / disabled 🚧 未取得
+- Do / Don't:
+  - Do: `use` は明示的に選択する。文脈から自動で切り替えない
+  - Do: `use = select` の選択中は、枠・面・太さの 3 つで示す (色だけで伝えない)
+  - Do: `use = applied` には解除のアイコンを置き、押すと何が起きるかを形で示す
+  - Don't: 非操作のラベル・バッジに用いない — それらは `Card.slot.badge` / `{radius.badge}` の範囲であり、pill 形状は操作要素のシグネチャである
+  - Don't: `use = applied` に枠線を足さない (面で足りており、解除操作の並びが過密になる)
+- 関連トークン: `{size.tapTarget}` / `{chip.radius}` / `{chip.paddingInline}` / `{chip.gap}` / `{chip.borderWidth}` / `{chip.paddingBlock.*}` / `{chip.fontSize.*}` / `{color.surface.default}` / `{color.scheme.main.tint}` / `{color.border.default}` / `{color.brand.primary}` / `{color.text.body}` / `{color.text.strong}` / `{color.text.mutedStrong}` / `{font.heading.weight}` / `{color.focus.ring}`
+- [事実] 実装は `use = select` が 1 箇所 (`inquiry_s.scss` L426-444)、`use = applied` が 2 箇所 (`search_result_s.scss` L296-312・`chokuzen_s.scss` L373-390) にあり、後者 2 つは**値が 1 つも違わない複写**である (本 Repository で実測)。`use = applied` の最小の高さは実装では 44px であり、`design.md` §4.2 (48px) に合わせて変更する
+- 未確定事項: hover の実体 (follow-up #4) / disabled / 1 行に収まらない場合の折り返しと省略
+
+## Tabs
+
+- ステータス: Draft
+- 用途: 同じ場所に複数の内容を切り替えて表示する (検索モジュールの検索種別等)
+- バリアント: なし
+- 構成:
+  - タブ — 最小の高さ `{size.tapTarget}` (48px) / 上下 `{tab.paddingBlock}` (12px)・左右 `{tab.paddingInline}` (8px) / 面と枠は持たない
+  - 文字 — `{tab.fontSize}` (14px) / `{font.heading.weight}` (700)
+  - 非選択 — `{color.text.mutedStrong}` / 下線なし
+  - 選択中 — `{color.text.link}` + 下 `{tab.indicatorWidth}` (2px) × `{color.brand.primary}` の線
+- 状態: focus = `{color.focus.ring}` outline / hover 🚧 暫定 / disabled 🚧 未取得
+- Do / Don't:
+  - Do: 選択中は**色と下線の両方**で示す (色だけで伝えない)
+  - Do: 切り替えても同じ場所に表示する。別画面へ遷移する導線には用いない (それはナビゲーション項目の役割)
+  - Don't: タブの本数を横スクロール前提で増やさない (実体が無く、省略・スクロールの規則を定めていない)
+- 関連トークン: `{size.tapTarget}` / `{tab.paddingBlock}` / `{tab.paddingInline}` / `{tab.fontSize}` / `{tab.indicatorWidth}` / `{font.heading.weight}` / `{color.text.mutedStrong}` / `{color.text.link}` / `{color.brand.primary}` / `{color.focus.ring}`
+- [事実] 実装は 1 箇所 (`search_s_global.scss` L52-69) のみで割れていない (本 Repository で実測)。非選択の文字色は同実装が `color.text.muted-strong` を用いており本節と一致する
+- 未確定事項: a11y (`role="tablist"` / `aria-selected` / 矢印キー操作) は `alignment-blocking-facts-resolution-plan.md` §8K の下流課題 / 本数が多い場合の省略・スクロール / タブ内容 (pane) の切替の遷移
 
 ## SearchForm
 
@@ -259,3 +369,4 @@
 | 2026-09-07 | Task 009-62: **共通事項の見出し割当の記述を更新**した ([Issue #168](https://github.com/tocoo/coocom-design-system/issues/168)・正本 = `design.md` §3.1・`governance/owner-decisions.md` §28・Web部責任者判断 2026-09-07)。`{font.heading.*}` の割当を幅ごとの 2 組 (**`breakpoint.lg` 1024px 以上の既定** = h1 2.5rem / h2 2rem / h3 1.5rem / h4 1.25rem / **h5 1rem** / h6 1rem、**1024px 未満** = h1 2rem / h2 1.5rem / h3 1.25rem / h4〜h6 1rem) として記載し、段を移す境界が 1024px の 1 つのみであること、この表の範囲内での段下げは §3.1 の「既定から外れる」に該当せず都度の承認を要しないこと、文書レベルの見出しには実寸が 4 の倍数である段のみを用いること (`sm` 14px は `label.*` の器トークンで用いる段のため本規則の対象外) を追記した。`{font.heading.h5Size}` の参照先が `{typography.size.lg}` (18px) から `{typography.size.md}` (1rem) へ変わったことによる記述の同期である。**不変**: 共通事項の他の行、Button / SearchForm / Input / Card / PriceTag / ReviewStars / Breadcrumb / Header / Footer / Modal の仕様、`Card.slot.badge` のラベル種別と用途色・器トークン `label.*` (`fontSize` / `numberSize` / `height` / `paddingInline` / `lineHeight` / `weight` / `radius`) の値と参照先、`{font.heading}` の他のトークン、version 表記、rental-car / inbound の成果物。**行っていないもの**: Component 仕様への幅ごとの値の追加、新規 primitive・semantic トークンの追加、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-07・本件について明示取得) | Claude Code |
 | 2026-09-07 | Task 009-64: **`Breadcrumb` の現在地の文字色を変更**した ([Issue #172](https://github.com/tocoo/coocom-design-system/issues/172)・Web部責任者判断 2026-09-07・明示取得・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §30 判断 G-1)。構成行の現在地を `{color.text.muted}` (#9e9e9e・白背景 **2.68:1**) から **`{color.text.mutedStrong}`** (#616161・白背景 **6.19:1**) へ改め、現在地へ `{color.text.muted}` を使わない Don't を 1 行追加した。従前の記述は `design.md` §2 の [事実]「`color.text.muted` は通常テキストに求められる 4.5:1 に達しないため判読性を要する情報には用いない」と食い違っており、同 §2.1 の検証表にも当該組み合わせの行が無いまま (表は「表に無い組み合わせを検証済みとして扱わない」と宣言) 使用されていた。**新しい色値・新しいトークンは追加していない** (`{color.text.mutedStrong}` は既存 bound トークン)。あわせて非正本の [preview.travel.html](preview.travel.html) の Breadcrumb 見本 (`.crumb__current`) と caption を本変更へ追随させた。**不変**: `Breadcrumb` の用途・ステータス・Do (現在地はリンク化しない)・リンク部分の状態ごとの文字色・未確定事項 (下線の既定は未判定)、他 Component の仕様、共通事項、`{color.text.muted}` / `{color.text.mutedStrong}` の値・参照先・`$status` (トークンの追加・削除・変更は **0 件**)、Input / PriceTag の `{color.text.muted}` に関する既存 Don't、rental-car / inbound の成果物。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-07・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-15 | Task 009-68: **`Select` 節を新設**し、共通事項へ最小タップ領域と角丸 5 系統を反映した ([Issue #180](https://github.com/tocoo/coocom-design-system/issues/180)・Web部責任者判断 2026-09-15・正本 = `governance/owner-decisions.md` §34・`design.md` §4.1 / §4.2 / §5 / §2.3)。①**`Select` 節を追加**した — 器 (高さ `{size.tapTarget}` 48px / 枠線 `{border.width.thin}` × `{color.border.default}` / 面 `{color.surface.default}` / 角丸 `{radius.select}` 8px)、余白 (`{select.paddingInline}` 12px + シェブロン領域)、文字 (`{font.body.family}` / `{font.body.size}` 16px / 選択済み `{color.text.body}` / 未選択 `{color.text.muted}` = AA 未達を明示)、シェブロン (`{select.chevronSize}`・FA6 グリフ・**SVG 画像/データ URI で描かない**)、状態 (focus = `{color.focus.ring}`・error 🚧 暫定・disabled / success 🚧 未取得)、**Modal の表示形態 (§7.1) との使い分け** (1 階層で短い一覧 = Select / 階層あり・件数が多い・他の入力と組み合わせる = sheet / drawer / popover。件数のしきい値は定めない)、Do / Don't、未確定事項。②**共通事項**に、指で操作する要素の最小の高さを `{size.tapTarget}` (48px) とする行を追加し、角丸の用途トークンを **4 系統 → 5 系統** (`{radius.select}` 追加) へ更新し、未着手 Component 一覧から **Select を外した** (8 件へ)。③Modal の未確定事項の「最小タップ領域 44px の spacing トークン (追加せず)」に、Task 009-68 で 48px に確定した旨を追記した (44px 段は引き続き追加しない)。**不変**: Button / Input / SearchForm / Card (ResultCard) / PriceTag / ReviewStars / Header / Footer / Breadcrumb / Modal の仕様 (Modal は未確定事項の当該 1 行のみ追記)、`Card.slot.badge` のラベル種別・用途色・器トークン `label.*` の値と参照先、共通事項の他の行、variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2)、token の値・参照先・`$status`・version、rental-car / inbound の成果物。**行っていないもの**: `Input` の角丸・仕様の変更、Select のサイズ段階 (sm/md/lg) の定義、複数選択・検索付き選択の定義、他の未着手 Component の定義、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-09-15 | Task 009-69: **「選ぶための部品」5 節 (6 Component) を新設**した ([Issue #182](https://github.com/tocoo/coocom-design-system/issues/182)・Web部責任者判断 2026-09-15・正本 = `governance/owner-decisions.md` §35)。①**`Checkbox / Radio`** — ネイティブ `input` を視覚的にのみ隠し (`display: none` は用いない)、箱 (`{control.size}` 16px・`{control.borderWidth}` 2px × `{color.border.strong}`) と印を自前で描く。Checkbox は `{control.radius}` (4px) + `{color.brand.primary}` 面 + `{color.text.inverse}` のチェック印 (`{control.glyphSize}`)、Radio は円 + 中心に `{control.dotSize}` (8px) の点。②**`OptionRow`** (単一選択の行) — 器 `{size.tapTarget}` / `{row.paddingBlock}` / `{row.paddingInline}` / `{row.gap}` / `{row.fontSize}`、選択中は太字 + `{color.text.link}` + チェックアイコンで示し**面は用いない** (面は hover 用)。③**`NavigationRow`** (階層をたどる行) — `OptionRow` と同じ器を共有し、行末にシェブロンと件数を持つ。現在の経路は面 `{color.surface.subtle}` + **太字**で示す (実装は hover と同じ面のみで区別できなかった)。シェブロンは `{color.text.mutedStrong}` を正とする (実装の `color.text.muted` は白面 2.68:1 で非テキスト UI 要素の 3:1 未達)。④**`Chip`** — **用途軸 `use` = `select` / `applied` の 2 値**を定義 (variant 語彙 GOV-0002 への追加ではない・`PriceTag` の `tone` と同じ別軸)。面・枠・文字サイズ・上下余白が `use` ごとに分かれ、`select` の選択中は枠 `{color.brand.primary}` + 面 `{color.scheme.main.tint}` + 太字で示す。⑤**`Tabs`** — 選択中は `{color.text.link}` + 下線 `{tab.indicatorWidth}` (2px) × `{color.brand.primary}` の**両方**で示す。⑥**共通事項**に「状態を色だけで伝えない・hover の表現 (面 `{color.surface.subtle}`) を選択中へ流用しない」を追加し、**未着手 Component 一覧から Tabs を外した** (7 件へ)。**不変**: Button / Input / Select / SearchForm / Card (ResultCard) / PriceTag / ReviewStars / Header / Footer / Breadcrumb / Modal の仕様、`Card.slot.badge` のラベル種別・用途色・器トークン `label.*`、共通事項の他の行、variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2)、token の値・参照先・`$status`・version、rental-car / inbound の成果物。**行っていないもの**: a11y の実装方式の決定 (§8K の下流課題)、disabled / error / hover の実体の確定 (follow-up #2 / #4)、他の未着手 Component の定義、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |

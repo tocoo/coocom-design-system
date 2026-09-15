@@ -1436,6 +1436,70 @@
 - **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
 
 
+## 38. 国内レンタカーへの横断の規則と Select の反映 — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内レンタカー (rental-car) へ、国内宿泊 (travel) で確定した横断の規則 (中央寄せの器の左右余白・最小タップ領域) と Select の角丸を反映する件について、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #188](https://github.com/tocoo/coocom-design-system/issues/188))。契機 = Web部責任者の指示「国内レンタカーについても同様に基本的にはクローン・コピーで反映させたい。レンタカー独自の UI については都度個別に定義する方針とする」(2026-09-15)。上記 §1〜§37 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§37 の各記録は変更しない。
+- **枠組みは §29 と同じ。** 採用するのは travel の**定義体系**であり、**値は rental-car のファイルに独立して持つ。travel のファイルを参照・共有しない** (3 独立 DS の原則 = P1/ADR-0022 は維持)。
+- **適用範囲は国内レンタカー (rental-car) に限る。** travel・inbound の成果物は変更しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 38-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/rental-car/design-system/design.md](../services/rental-car/design-system/design.md) の §4.1 / §4.2 の新設、§5 の角丸用途トークンの 5 系統化、§2.3 品質下限・§8.3 の 44px の更新、未確定事項の一覧の更新、②[../services/rental-car/design-system/components.md](../services/rental-car/design-system/components.md) の 44px の更新と `Select` の意匠の改訂、③[../services/rental-car/design-system/semantic.rental-car.json](../services/rental-car/design-system/semantic.rental-car.json) への `radius.select` / `size.tapTarget` / `select.paddingInline` / `select.chevronSize` の追加 |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
+| 承認日 | 2026-09-15 |
+| 承認主体 | Web部責任者 |
+| 根拠 | travel で確定した横断の規則が rental-car に無く、最小タップ領域は 2 サービスで値が食い違うだけでなく rental-car の DS 内でも 44px と 48px が混在していた |
+| 適用範囲 | rental-car に限定 |
+
+### 38-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out の適用ではない。**承認済みの [決定] の改訂** (§2.3 品質下限の 44px・§5 の判断 F-5 の適用範囲) を伴うため carve-out の対象外である |
+
+### 38-3. 取得した現在判断 (2026-09-15)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| P-1 | レンタカーへの反映の方針 | **基本的にクローン・コピーで反映する。** travel の定義体系を採用し、値は rental-car のファイルに独立して持つ (§29 と同じ枠組み)。**レンタカー独自の UI は都度個別に定義する** |
+| P-2 | 最小タップ領域 | **48px に統一する** (`size.tapTarget` = `{spacing.12}`)。従前の 44px を改める。**44px 段 (`spacing` step 11) は追加しない** |
+| P-3 | Select の角丸 | **`radius.select` (8px) とする。** `radius.action` (pill) が定める「入力要素」に対する **Select 限定の例外**であり、`Input` / `SearchForm` のフィールドへ拡大しない。**判断 F-5 (`radius.input` の廃止・入力要素の pill 統一) は維持する** |
+| P-4 | 未入力状態の文字色 | **変更しない。** rental-car は 2026-09-07 (§29-3 判断 C-5) に既に「UI の種別で限定せず `color.text.muted`」を採っており、travel が 2026-09-15 (§37) に同型へ改めたため、両 DS の規則は既に一致している |
+| P-5 | 進め方 | **3 本に分ける。** 1 本目 = 横断の規則と Select (本 Task)、2 本目 = 選ぶための部品、3 本目 = 一覧まわりの部品 |
+| P-6 | 本件の影響度 (§8) | **高** (§38-2) |
+
+### 38-4. 追加・変更するトークン
+
+**semantic (rental-car のみ)** — いずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。
+
+| トークン | 変更 | `$value` | `$status` |
+| --- | --- | --- | --- |
+| `radius.select` | **追加** | `{radius.md}` (8px) | bound |
+| `size.tapTarget` | **追加** | `{spacing.12}` (48px) | bound |
+| `select.paddingInline` | **追加** | `{spacing.3}` (12px) | bound |
+| `select.chevronSize` | **追加** | `{iconSize.sm}` | bound |
+| `radius.action` / `card` / `badge` / `overlay` | **不変** | — | — |
+| `color.text.muted` / `label.*` | **不変** | — | — |
+
+- **`radius.input` は Task 009-63 で削除済みであり、本 Task で復活させていない。**
+- **幅ごとに値を持つ semantic トークンは新設していない** (左右余白の 5 段は `design.md` §4.1 の表で既存 `spacing` 段への割当として示す)。
+- **`$meta.version` は primitive / semantic とも据置き。**
+
+### 38-5. 本記録が決定しないこと
+
+- **レンタカー独自の UI の仕様** (P-1)。実装 Repository (`tocoo/tocoo_rental_car`) には DS トークンを参照する scss / css が `epic-ds` ブランチを含め **1 件も存在しない** (`8e5d928a0`・2026-09-15・本 Repository で実測) ため、実装から独自 UI を洗い出すことはできない。画面要件・実物に基づき都度個別に定義する。
+- **後続 2 本で移植する部品の具体的な値** (選ぶための部品・一覧まわりの部品)。
+- **実装 Repository 側の適用作業。** 範囲・順序・期限は実装 Repository 側の課題である。
+- **travel・inbound の成果物の変更。**
+- **適用規格・達成レベルの正式確定・適合判定・適合宣言。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+
 ---
 
 ## 変更履歴
@@ -1493,3 +1557,4 @@
 | 2026-09-15 | Task 009-69: §35 「Travel の『選ぶための部品』6 件の定義」を §1〜§34 と分離して追加 ([Issue #182](https://github.com/tocoo/coocom-design-system/issues/182)・§34 K-7 の 3 本のうち 2 本目)。Web部責任者の 2026-09-15 現在判断 (L-1 オーバーレイ内の行は役割が異なるため `OptionRow` と `NavigationRow` の 2 部品に分ける ／L-2 `NavigationRow` の現在の経路は面 + **太字**で示しホバー (面のみ) と区別する ／L-3 `OptionRow` の選択中は太字 + `color.text.link` + チェックアイコン・面は用いない ／L-4 行の左右余白は 16px に統一 ／L-5 チェックボックス・ラジオは自前で描く方式・`display: none` は用いない ／L-6 影響度 = 高) を **travel 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は器トークン 4 群 (`control` 6 件 / `row` 5 件 / `chip` 8 件 / `tab` 4 件) でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`Chip` の用途軸 `use` は variant 語彙 (GOV-0002) への追加ではない (`PriceTag` の `tone`・`Modal` の `form` と同じ別軸)。`$meta.version` は据置き。§1〜§34・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
 | 2026-09-15 | Task 009-70: §36 「Travel の『一覧まわりの部品』6 件の定義」を §1〜§35 と分離して追加 ([Issue #184](https://github.com/tocoo/coocom-design-system/issues/184)・§34 K-7 の 3 本のうち 3 本目)。Web部責任者の 2026-09-15 現在判断 (M-1 6 件を定義する・カレンダーは用途が別のため 2 部品 ／M-2 起点ボタンは `Button` の variant ではなく別 Component `OverlayTrigger` ／M-3 スケルトンのカード外形は `{radius.card}` を正とする (実装の `radius.lg` は是正対象・`radius.card` の placeholder は解消しない) ／M-4 影響度 = 高) を **travel 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は器トークン 6 群 36 件でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。未確定事項として 3 件 (選択不可の文字色トークン／セル高 96px のトークン化／料金・在庫 10px のスケール外の値) を起票し、いずれも本記録では決定しない。`$meta.version` は据置き。§1〜§35・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
 | 2026-09-15 | Task 009-71: §37 「Travel の未入力状態の文字色の統一」を §1〜§36 と分離して追加 ([Issue #186](https://github.com/tocoo/coocom-design-system/issues/186))。Web部責任者の 2026-09-15 現在判断 (N-1 未入力状態の文字色を UI の種別で分けない ／N-2 統一先は `color.text.muted` (`#9E9E9E`・2.68:1・**AA 未達を明示**) ／N-3 理由 = 未入力と入力済みの判別のしやすさを優先・`#616161` にすると入力済み `#424242` との濃度差が小さくなる不利益の方が大きい ／N-4 `color.text.placeholder` の位置づけは未判定 (選択不可の用途として残すか削除するか・`components.md` `DateRangeCalendar` の同一論点と一体で判定) ／N-5 影響度 = 高) を **travel 限定**で記録。**§34 K-5 / `design.md` §2.3 の「プルダウンの未選択値に限る」例外を是正するもので、§22 (2026-08-04) の記録内容は当時の現在判断として保持する**。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。**トークンの追加・削除・値の変更はいずれも行っていない** (`$description` / `$note` の更新のみ)。`$meta.version` は据置き。§1〜§36・設計承認ログ (§5)・適用開始記録 (§6) は不変。rental-car は既に同型の規則 (§29-3 判断 C-5) を持つため変更は生じない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
+| 2026-09-15 | Task 009-72: §38 「国内レンタカーへの横断の規則と Select の反映」を §1〜§37 と分離して追加 ([Issue #188](https://github.com/tocoo/coocom-design-system/issues/188))。Web部責任者の 2026-09-15 現在判断 (P-1 基本的にクローン・コピーで反映・**レンタカー独自の UI は都度個別に定義** ／P-2 最小タップ領域を 44px → **48px** (`size.tapTarget`)・44px 段は追加しない ／P-3 Select の角丸は `radius.select` (8px)・**判断 F-5 (`radius.input` 廃止・入力要素の pill 統一) は維持** ／P-4 未入力状態の文字色は変更しない (§29-3 判断 C-5 と travel §37 が既に一致) ／P-5 3 本に分ける ／P-6 影響度 = 高) を **rental-car 限定**で記録。枠組みは §29 と同じで、採用するのは travel の**定義体系**であり**値は rental-car のファイルに独立して持つ** (3 独立 DS の原則 = P1/ADR-0022 は維持)。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は 4 件でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`$meta.version` は据置き。§1〜§37・設計承認ログ (§5)・適用開始記録 (§6) は不変。travel・inbound の成果物は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |

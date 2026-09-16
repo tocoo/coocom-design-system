@@ -103,6 +103,7 @@
     --radius-card                      : 8px; /* radius.card 🚧 placeholder */
     --radius-badge                     : 4px; /* radius.badge */
     --radius-overlay                   : 16px; /* radius.overlay 🚧 placeholder */
+    --radius-field                     : 8px; /* radius.field */
     --label-height-sm                  : 1.25rem; /* label.height.sm */
     --label-height-md                  : 1.5rem; /* label.height.md */
     --label-padding-inline-sm          : 0.5rem; /* label.paddingInline.sm */
@@ -115,6 +116,68 @@
     --label-weight-emphasis            : 700; /* label.weight.emphasis */
     --label-weight-neutral             : 400; /* label.weight.neutral */
     --label-radius                     : 4px; /* label.radius */
+    --size-tap-target-commit           : 3rem; /* size.tapTarget.commit */
+    --size-tap-target-open             : 3rem; /* size.tapTarget.open */
+    --size-tap-target-toggle           : 2.5rem; /* size.tapTarget.toggle */
+    --size-tap-target-cell             : 2.5rem; /* size.tapTarget.cell */
+    --size-tap-target-thumb            : 1.5rem; /* size.tapTarget.thumb */
+    --trigger-radius                   : 9999px; /* trigger.radius */
+    --trigger-padding-block            : 0.5rem; /* trigger.paddingBlock */
+    --trigger-padding-inline           : 1rem; /* trigger.paddingInline */
+    --trigger-gap                      : 0.5rem; /* trigger.gap */
+    --trigger-border-width             : 1px; /* trigger.borderWidth */
+    --trigger-font-size                : 0.875rem; /* trigger.fontSize */
+    --trigger-badge-min-width          : 1.25rem; /* trigger.badgeMinWidth */
+    --calendar-padding                 : 1rem; /* calendar.padding */
+    --calendar-nav-size                : 3rem; /* calendar.navSize */
+    --calendar-nav-border-width        : 1px; /* calendar.navBorderWidth */
+    --calendar-month-gap               : 1.5rem; /* calendar.monthGap */
+    --calendar-weekday-height          : 2rem; /* calendar.weekdayHeight */
+    --calendar-weekday-font-size       : 0.75rem; /* calendar.weekdayFontSize */
+    --calendar-date-font-size          : 0.875rem; /* calendar.dateFontSize */
+    --calendar-selected-radius         : 16px; /* calendar.selectedRadius */
+    --range-slider-track-height        : 0.25rem; /* rangeSlider.trackHeight */
+    --range-slider-track-radius        : 9999px; /* rangeSlider.trackRadius */
+    --range-slider-thumb-size          : 1rem; /* rangeSlider.thumbSize */
+    --range-slider-thumb-border-width  : 2px; /* rangeSlider.thumbBorderWidth */
+    --range-slider-hit-height          : 1.5rem; /* rangeSlider.hitHeight */
+    --skeleton-radius                  : 4px; /* skeleton.radius */
+    --skeleton-padding                 : 1rem; /* skeleton.padding */
+    --skeleton-gap                     : 0.75rem; /* skeleton.gap */
+    --skeleton-line-height-sm          : 1rem; /* skeleton.lineHeight.sm */
+    --skeleton-line-height-md          : 1.5rem; /* skeleton.lineHeight.md */
+    --skeleton-line-height-lg          : 2rem; /* skeleton.lineHeight.lg */
+    --skeleton-line-height-xl          : 2.5rem; /* skeleton.lineHeight.xl */
+    --sticky-bar-padding-block         : 0.25rem; /* stickyBar.paddingBlock */
+    --sticky-bar-padding-inline        : 1rem; /* stickyBar.paddingInline */
+    --sticky-bar-gap                   : 0.75rem; /* stickyBar.gap */
+    --sticky-bar-main-font-size        : 0.875rem; /* stickyBar.mainFontSize */
+    --sticky-bar-sub-font-size         : 0.75rem; /* stickyBar.subFontSize */
+    --control-size                     : 1rem; /* control.size */
+    --control-radius                   : 4px; /* control.radius */
+    --control-border-width             : 2px; /* control.borderWidth */
+    --control-glyph-size               : 0.75rem; /* control.glyphSize */
+    --control-dot-size                 : 0.5rem; /* control.dotSize */
+    --control-gap                      : 0.75rem; /* control.gap */
+    --row-padding-block                : 0.75rem; /* row.paddingBlock */
+    --row-padding-inline               : 1rem; /* row.paddingInline */
+    --row-gap                          : 0.75rem; /* row.gap */
+    --row-font-size                    : 0.875rem; /* row.fontSize */
+    --row-count-font-size              : 0.75rem; /* row.countFontSize */
+    --chip-radius                      : 9999px; /* chip.radius */
+    --chip-padding-inline              : 1rem; /* chip.paddingInline */
+    --chip-gap                         : 0.5rem; /* chip.gap */
+    --chip-border-width                : 1px; /* chip.borderWidth */
+    --chip-padding-block-select        : 0.5rem; /* chip.paddingBlock.select */
+    --chip-padding-block-applied       : 0.25rem; /* chip.paddingBlock.applied */
+    --chip-font-size-select            : 0.875rem; /* chip.fontSize.select */
+    --chip-font-size-applied           : 0.75rem; /* chip.fontSize.applied */
+    --tab-padding-block                : 0.75rem; /* tab.paddingBlock */
+    --tab-padding-inline               : 0.5rem; /* tab.paddingInline */
+    --tab-font-size                    : 0.875rem; /* tab.fontSize */
+    --tab-indicator-width              : 2px; /* tab.indicatorWidth */
+    --select-padding-inline            : 0.75rem; /* select.paddingInline */
+    --select-chevron-size              : 16px; /* select.chevronSize */
     --motion-transition-duration       : 300ms; /* motion.transition.duration 🚧 placeholder */
     --motion-transition-easing         : ease; /* motion.transition.easing 🚧 placeholder */
     --icon-size                        : 20px; /* icon.size */
@@ -317,11 +380,11 @@
   .btn--text { background: transparent; color: var(--color-text-link); padding-inline: 8px; }
   .btn--focus { outline: var(--border-width-thick) solid var(--color-focus-ring); outline-offset: 2px; }
 
-  /* Input / Select — 角丸は radius.action (pill)。radius.input は廃止 (design.md §5) */
+  /* Input / Select — 角丸は radius.field (8px)。pill は押す要素のシグネチャであり用いない (design.md §5) */
   .field {
     display: inline-flex; align-items: center; width: 240px; min-height: 44px; padding: 10px 16px;
     border: var(--border-width-thin) solid var(--color-border-default);
-    border-radius: var(--radius-action);
+    border-radius: var(--radius-field);
     font-family: var(--font-body-family); font-size: var(--typography-size-md);
     color: var(--color-text-body); background: var(--color-surface-default);
   }
@@ -708,6 +771,7 @@
       <tr><td><code>radius.card</code></td><td class="scale__val">8px <span class="flag">🚧</span></td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-card)"></span></td></tr>
       <tr><td><code>radius.badge</code></td><td class="scale__val">4px</td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-badge)"></span></td></tr>
       <tr><td><code>radius.overlay</code></td><td class="scale__val">16px <span class="flag">🚧</span></td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-overlay)"></span></td></tr>
+      <tr><td><code>radius.field</code></td><td class="scale__val">8px</td><td class="scale__sample"><span class="shape" style="border-radius: var(--radius-field)"></span></td></tr>
     </tbody>
   </table></div>
   <h3>影</h3>

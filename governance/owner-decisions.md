@@ -1684,6 +1684,77 @@
 - **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
 
 
+## 42. 入力・選択系の角丸を pill から外し `radius.field` (8px) へ統合する — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) と国内レンタカー (rental-car) の角丸について、`radius.action` (pill) の対象から**入力・選択系を外し**、`radius.select` (Select 限定の例外) を廃止して `radius.field` (8px) へ統合する件の、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #196](https://github.com/tocoo/coocom-design-system/issues/196))。上記 §1〜§41 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§41 の各記録は変更しない。
+- **適用範囲は travel と rental-car の 2 サービス。** inbound は `radius.select` を持たず、`radius.action` の対象に入力要素を含めていないため対象外 (本 Repository で実測)。値は各 DS のファイルに独立して持つ (3 独立 DS の原則 = P1/ADR-0022 は維持)。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 42-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①[../services/travel/design-system/design.md](../services/travel/design-system/design.md) §5 と [../services/rental-car/design-system/design.md](../services/rental-car/design-system/design.md) §5 の書き換え、②両 `semantic.*.json` の `radius.select` (bound) の廃止と `radius.field` への統合・`radius.action` の `$description` の書き換え、③両 [components.md](../services/travel/design-system/components.md) の共通事項・`Input`・`Select`・`SearchForm` の書き換え |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
+| 承認日 | 2026-09-16 |
+| 承認主体 | Web部責任者 |
+| 根拠 | DS は「入力要素の角丸は `radius.action` (pill)・ただし Select のみ 8px の例外」と定めているが、**情報設計の意図と逆である**。pill は押す物のシグネチャであり、文字カーソルが入るだけの箱に与えると押せる要素に見える。実装 (`tocoo/tocoo_travel` `origin/dev-ds` `eda3a549`) も入力欄・テキストエリア・プルダウン・検索フォームの入力ユニット面のいずれにも pill を用いておらず、DS の記述だけが実装と食い違っていた (本 Repository で実測) |
+| 適用範囲 | travel・rental-car の 2 サービス |
+
+### 42-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-16・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out の適用ではない。承認済みの [決定] (§29 判断 F-5・§34・§38) の線引きを改め、`$status: bound` のトークン (`radius.select`) を廃止するため carve-out の対象外である |
+
+### 42-3. 取得した現在判断 (2026-09-16)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| T-1 | 角丸で何を分けるか | **「押す要素」と「値を受ける箱」で分ける。** 従前の「操作要素か非操作か」ではない。pill は押す物のシグネチャであり、ボタンと入力欄は**同じ形でなくてよい** |
+| T-2 | 入力・選択系の角丸の値 | **8px に統一する** (`radius.md` 参照)。実装の多数派が 8px であり、`radius.badge` (4px・非操作ラベル) との階層差も保てる。**新しい数値は追加しない** |
+| T-3 | `radius.input` (4px) を復活させるか | **復活させない。** 値を受ける箱の角丸は 8px であって 4px ではない。§29 判断 F-5 による `radius.input` の廃止は**維持する** |
+| T-4 | `radius.select` (Select 限定の例外) の扱い | **廃止し `radius.field` へ統合する。** 値 8px・参照先 `radius.md` は不変で、変わるのは適用範囲のみ。Select は例外ではなくなる |
+| T-5 | `radius.field` の対象範囲 | `Input` (テキスト/日付/数値)・`textarea`・`Select`・`SearchForm` のフィールドと、**フォーム内の選択トリガー** (travel = 目的地・日程・人数 / rental-car = 店舗・日時) |
+| T-6 | pill を維持する範囲 | `Button` / CTA / `Chip` / **一覧画面の絞り込み・並び替えの起点** (`OverlayTrigger`) / `StickyBar` の条件ボタン。フォーム内の選択トリガーとは扱いを分ける — 前者は一覧を操作する押しボタンであり、後者はフォームの値を受ける箱である |
+| T-7 | §29 判断 F-5 の扱い | **線引きを改める。** F-5 が解消しようとした「同一フォーム内でボタン (pill) と入力欄 (4px) が異なる形状を持つ」状態は、T-1 により**解消すべき状態ではなくなる**。ただし F-5 のうち `radius.input` (4px) の廃止は維持する (T-3) |
+| T-8 | 実装側の是正 | 実装に残る 4px の 2 件 (`solution_s.scss` L440・`ultra_market_s.scss` L1096) は 8px へ揃える。**範囲・順序・期限は実装 Repository 側の課題**とする |
+| T-9 | 本件の影響度 (§8) | **高** (§42-2) |
+
+### 42-4. 追加・変更するトークン
+
+**semantic (travel・rental-car の両方)** — **廃止 1 件・追加 1 件**。値と参照先は従前の `radius.select` から不変であり、**新しい数値・新しい color 値・新しい primitive は追加していない**。用途トークンの系統数は **5 系統のまま**である。
+
+| トークン | 値 | 参照先 | 扱い |
+| --- | --- | --- | --- |
+| `radius.select` | 8px | `{radius.md}` | **廃止** (`$status: bound` だった) |
+| `radius.field` | 8px | `{radius.md}` | **追加** (`$status: bound`。対象 = 入力・選択系) |
+| `radius.action` | pill | `{radius.full}` | 値・参照先・`$status` は**不変**。`$description` の対象範囲のみ改める |
+
+- **`$meta.version` は primitive / semantic とも据置き。**
+- `select.paddingInline` / `select.chevronSize` の値・参照先・`$status` は**不変**。`$description` の角丸の参照先のみ `radius.field` へ更新した。
+
+### 42-5. 実測の記録 (本 Repository で実施・2026-09-16)
+
+| 対象 | 結果 |
+| --- | --- |
+| travel の実装で pill (`--radius-action`) を使う箇所 | `.ds-btn` / `.ga-auth__submit` / `.gh-btn` / `.um-btn` / `.up-btn` / `.pb-back` / `.pb-group__more` / `.upc-pager__btn` / `.up-gallery__navbtn` / `.iq-chip` / `.sr-chip` / `.sr-op` / `.sr-mbar__cond` — **ボタン・チップ・一覧の起点のみ**。値を受ける箱は 1 件も無い |
+| travel の実装の入力・選択系の角丸 | 8px = `search_s_global.scss` L90 (入力ユニット面) / 同 L538 (年齢プルダウン) / `auth_s_global.scss` L168 (テキスト入力) / `inquiry_s.scss` L379 (テキストエリア)。4px = `solution_s.scss` L440 / `ultra_market_s.scss` L1096 |
+| 実測の対象 | `tocoo/tocoo_travel` `origin/dev-ds` `eda3a549`。**DS トークン (`var(--radius-*)`) を参照している scss に限定**し、旧実装・ビルド済み CSS は含めない |
+| rental-car の実装 | `tocoo/tocoo_rental_car` は `epic-ds` を含め DS トークンを参照しているファイルが **0 件**。本件に該当する実装は存在しない |
+
+### 42-6. 本記録が決定しないこと
+
+- **実装 Repository 側の適用作業。** 範囲・順序・期限は実装 Repository 側の課題である (T-8)。
+- **`radius.card` / `radius.overlay` / `shadow.*` / `motion.*` の placeholder の解消。**
+- **`Input` の高さ 48px の妥当性そのもの。**
+- **`radius.badge` (4px) の値。** 本記録は入力・選択系との階層差を保つことのみを根拠に用いる。
+- **inbound の成果物の変更。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+
 ---
 
 ## 変更履歴
@@ -1745,3 +1816,4 @@
 | 2026-09-15 | Task 009-73: §39 「国内レンタカーへの『選ぶための部品』の反映」を §1〜§38 と分離して追加 ([Issue #190](https://github.com/tocoo/coocom-design-system/issues/190))。Web部責任者の 2026-09-15 現在判断 (Q-1 値の根拠は**国内宿泊 (travel) を正とする** (値は rental-car のファイルに独立して持つ) ／Q-2 プルダウンの角丸は 8px を維持 ／Q-3 タブは**下線式**・高さ 48px・下線 2px・選択中は `color.text.link` (従前の「pill のチップ」はカプセル型が `Chip` の形状でありタブと見分けがつかないため誤りとして是正) ／Q-4 オーバーレイ内の選択肢の行は**面で選択中を示さない** (面は hover 用) ／Q-5 チェックボックス・ラジオは **16px** (従前の 18px は `spacing` に段が無い) ／Q-6 影響度 = 高) を **rental-car 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は器トークン 4 群 23 件でいずれも既存 primitive への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`$meta.version` は据置き。§1〜§38・設計承認ログ (§5)・適用開始記録 (§6) は不変。travel・inbound の成果物は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
 | 2026-09-15 | Task 009-74: §40 「国内レンタカーへの『一覧まわりの部品』の反映」を §1〜§39 と分離して追加 ([Issue #192](https://github.com/tocoo/coocom-design-system/issues/192)・§38 P-5 の 3 本のうち 3 本目)。Web部責任者の 2026-09-15 現在判断 (R-1 5 件を定義する・値の根拠は国内宿泊 (travel) を正とし値は rental-car のファイルに独立して持つ ／R-2 travel の `AvailabilityCalendar` は**移植しない** (日付ごとに空室と料金を一覧するカレンダーは宿泊固有でレンタカーに該当する画面が無い) ／R-3 `DateRangeCalendar` は**日付の範囲のみ**を定める (時刻の入力方式は `SearchForm` の未確定事項として残す) ／R-4 影響度 = 高) を **rental-car 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は器トークン 5 群 32 件でいずれも既存 primitive または既存 semantic (`radius.action`) への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`$meta.version` は据置き。§1〜§39・設計承認ログ (§5)・適用開始記録 (§6) は不変。travel・inbound の成果物は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
 | 2026-09-15 | Task 009-75: §41 最小タップ領域を押した結果と環境で分ける件の改訂着手の設計承認・影響度 (高)・現在判断 S-1〜S-8 を §1〜§40 と分離して追加。Web部責任者判断 2026-09-15 ([Issue #194](https://github.com/tocoo/coocom-design-system/issues/194))。単一値 `size.tapTarget` (48px) を 5 区分 × 幅 2 列へ改める。**既存 §1〜§40・§5 設計承認ログ・§6 適用開始記録・承認済み [review-approval-rules.md](review-approval-rules.md) 本体は不変** | Claude Code |
+| 2026-09-16 | Task 009-76: §42 入力・選択系の角丸を pill から外し `radius.field` (8px) へ統合する件の改訂着手の設計承認・影響度 (高)・現在判断 T-1〜T-9・実測の記録を §1〜§41 と分離して追加。Web部責任者判断 2026-09-16 ([Issue #196](https://github.com/tocoo/coocom-design-system/issues/196))。角丸を「押す要素」と「値を受ける箱」で分け、`radius.select` を廃止して `radius.field` へ統合する。**§29 判断 F-5 (入力要素を pill へ統一) の線引きを改めるが、`radius.input` (4px) の廃止は維持する。既存 §1〜§41・§5 設計承認ログ・§6 適用開始記録・承認済み [review-approval-rules.md](review-approval-rules.md) 本体は不変** | Claude Code |

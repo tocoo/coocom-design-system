@@ -1755,6 +1755,64 @@
 - **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
 
 
+## 43. 選ぶ操作の既定をオーバーレイとし、ネイティブ `Select` を例外とする — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) と国内レンタカー (rental-car) の「選ぶ操作」について、**既定を `OverlayTrigger` + `Modal` (`sheet` / `popover`) + 行**とし、**ネイティブの `<select>` を用いる `Select` を例外**とする件の、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #198](https://github.com/tocoo/coocom-design-system/issues/198))。上記 §1〜§42 とは独立した記録であり、混同しない。§5 設計承認ログ・§6 適用開始記録・§7〜§42 の各記録は変更しない。
+- **適用範囲は travel と rental-car の 2 サービス。** inbound は `Select` を定義していないため対象外 (本 Repository で実測)。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 43-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①両 [components.md](../services/travel/design-system/components.md) の `Select` 節の使い分けの書き換え、②両 `design.md` §7 への [決定] 1 件の追加 |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
+| 承認日 | 2026-09-16 |
+| 承認主体 | Web部責任者 |
+| 根拠 | DS は `Select` を選ぶ操作の既定として定義し、階層がある・件数が多い場合に `Modal` へ回す向きで書いていたが、**実装は逆**である。DS 準拠の層でネイティブの `<select>` が表に出ているのは年齢の 4 箇所のみで、都道府県・エリア・空港・日付・人数はすべてオーバーレイの行で選ばせている (§43-4) |
+| 適用範囲 | travel・rental-car の 2 サービス |
+
+### 43-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-09-16・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定の位置づけ | 本判定は本件に限る都度判断であり、§8 の編集的訂正 carve-out の適用ではない。承認済み成果物の使い分け規則の向きを逆転させるため carve-out の対象外である |
+
+### 43-3. 取得した現在判断 (2026-09-16)
+
+| # | 論点 | 取得した判断 |
+| --- | --- | --- |
+| U-1 | 選ぶ操作の既定を何にするか | **`OverlayTrigger` → `Modal` の `sheet` / `popover` → `OptionRow` / `NavigationRow` の行**。選択肢の一覧は DS が描く |
+| U-2 | ネイティブの `<select>` の位置づけ | **既定ではなく例外。** 「基本的にネイティブのセレクト・プルダウンを使用しない」 |
+| U-3 | 例外として用いてよい条件 | 次を**すべて**満たす場合に限る — ①選択肢が 1 階層である ②件数が少ない ③選んだ値をその場に表示するだけで完結する ④選んだ後に他の入力と組み合わせない |
+| U-4 | 判断に迷う場合 | **既定 (オーバーレイ) を採る** |
+| U-5 | ネイティブを全廃するか | **全廃しない。** 年齢のような U-3 を満たす選択では引き続き用いる。ネイティブ要素を隠して一覧を自前で描く方式 (独自 listbox) は採らない — a11y の実装方式を新たに背負うことになるため |
+| U-6 | 件数のしきい値 | **定めない** (未確定事項として残す)。U-4 の「迷う場合は既定」で運用する |
+| U-7 | 本件の影響度 (§8) | **高** (§43-2) |
+
+### 43-4. 実測の記録 (本 Repository で実施・2026-09-16)
+
+| 対象 | 結果 |
+| --- | --- |
+| travel の DS 準拠の層に表れるネイティブ `<select>` | **4 箇所のみ・いずれも年齢** — `_search_module_tab_v2.ctp` L745 / L759・`MemberDetail/ultra_plan.ctp` L450 (`.ds-guest__age-select`)・`ultra_tocoo_market.ctp` L408 (`.um-age__select`) |
+| 都道府県・エリア・空港・日付・人数 | すべて `.ds-ov__row` のボタンを並べたオーバーレイ (`_search_module_tab_v2.ctp` L636-660・`_tour_search.ctp` L598-601) |
+| 実装がネイティブを既定にしない理由 | `_tour_search.ctp` L12 のコメント — 「国内ツアーだけネイティブの `<select>` と Bootstrap 系の日付プラグインで組むと、同じ『検索する』操作の見えも操作感も画面ごとに割れる」 |
+| 旧層 (DS 非準拠) の扱い | `_search_form.ejs` は `<select tabindex="-1">` を値の運搬だけに残し、UI は `.p-form-panel` の `<ul><li>`。DS 準拠の層と同じ向きだが、**本記録の根拠は DS 準拠の層に限る** |
+| 実測の対象 | `tocoo/tocoo_travel` `origin/dev-ds` `eda3a549`。レンタカー (`tocoo/tocoo_rental_car`) は DS トークンを参照しているファイルが 0 件で該当実装なし |
+
+### 43-5. 本記録が決定しないこと
+
+- **件数のしきい値** (U-6)。
+- **オーバーレイの a11y の実装方式** (`role` / `aria-modal` / フォーカストラップ / 復帰先) — §17・両 `design.md` §7.1 の「本節で定義しない事項」として既に残されている課題であり、本記録はこれを解決しない。
+- **独自 listbox の採否** (U-5 で採らないことのみを定める)。
+- **既存実装の是正。** 範囲・順序・期限は実装 Repository 側の課題である。
+- **`Select` の意匠・トークン。** 本記録は使い分けのみを扱い、器・角丸・文字色は変更しない (角丸は §42)。
+- **inbound の成果物の変更。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+
 ---
 
 ## 変更履歴
@@ -1817,3 +1875,4 @@
 | 2026-09-15 | Task 009-74: §40 「国内レンタカーへの『一覧まわりの部品』の反映」を §1〜§39 と分離して追加 ([Issue #192](https://github.com/tocoo/coocom-design-system/issues/192)・§38 P-5 の 3 本のうち 3 本目)。Web部責任者の 2026-09-15 現在判断 (R-1 5 件を定義する・値の根拠は国内宿泊 (travel) を正とし値は rental-car のファイルに独立して持つ ／R-2 travel の `AvailabilityCalendar` は**移植しない** (日付ごとに空室と料金を一覧するカレンダーは宿泊固有でレンタカーに該当する画面が無い) ／R-3 `DateRangeCalendar` は**日付の範囲のみ**を定める (時刻の入力方式は `SearchForm` の未確定事項として残す) ／R-4 影響度 = 高) を **rental-car 限定**で記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した semantic は器トークン 5 群 32 件でいずれも既存 primitive または既存 semantic (`radius.action`) への参照であり、**新しい数値・新しい色値・新しい primitive は追加していない**。`$meta.version` は据置き。§1〜§39・設計承認ログ (§5)・適用開始記録 (§6) は不変。travel・inbound の成果物は変更していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
 | 2026-09-15 | Task 009-75: §41 最小タップ領域を押した結果と環境で分ける件の改訂着手の設計承認・影響度 (高)・現在判断 S-1〜S-8 を §1〜§40 と分離して追加。Web部責任者判断 2026-09-15 ([Issue #194](https://github.com/tocoo/coocom-design-system/issues/194))。単一値 `size.tapTarget` (48px) を 5 区分 × 幅 2 列へ改める。**既存 §1〜§40・§5 設計承認ログ・§6 適用開始記録・承認済み [review-approval-rules.md](review-approval-rules.md) 本体は不変** | Claude Code |
 | 2026-09-16 | Task 009-76: §42 入力・選択系の角丸を pill から外し `radius.field` (8px) へ統合する件の改訂着手の設計承認・影響度 (高)・現在判断 T-1〜T-9・実測の記録を §1〜§41 と分離して追加。Web部責任者判断 2026-09-16 ([Issue #196](https://github.com/tocoo/coocom-design-system/issues/196))。角丸を「押す要素」と「値を受ける箱」で分け、`radius.select` を廃止して `radius.field` へ統合する。**§29 判断 F-5 (入力要素を pill へ統一) の線引きを改めるが、`radius.input` (4px) の廃止は維持する。既存 §1〜§41・§5 設計承認ログ・§6 適用開始記録・承認済み [review-approval-rules.md](review-approval-rules.md) 本体は不変** | Claude Code |
+| 2026-09-16 | Task 009-77: §43 選ぶ操作の既定をオーバーレイとしネイティブ `Select` を例外とする件の改訂着手の設計承認・影響度 (高)・現在判断 U-1〜U-7・実測の記録を §1〜§42 と分離して追加。Web部責任者判断 2026-09-16 ([Issue #198](https://github.com/tocoo/coocom-design-system/issues/198))。**既存 §1〜§42・§5 設計承認ログ・§6 適用開始記録・承認済み [review-approval-rules.md](review-approval-rules.md) 本体は不変。トークンの値・参照先・`$status` は変更していない** | Claude Code |

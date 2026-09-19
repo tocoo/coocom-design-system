@@ -6,7 +6,7 @@
     "service": "inbound",
     "version": "0.1.1-draft",
     "status": "Draft",
-    "basedOn": "新規生成。出所: 56-IDマトリクス(インバウンド列)・実装着手ガイド§2・inventory-inbound.md・layerB-observations §3。要調査項目は値を作らず placeholder + follow-up 参照(生成手引きの規約)。0.1.1: 是正 R-1(elevation.* 用途トークン追加=primitive 直接参照の解消)。値・判断は変更していない",
+    "basedOn": "新規生成。出所: 56-IDマトリクス(インバウンド列)・実装着手ガイド§2・inventory-inbound.md・layerB-observations §3。要調査項目は値を作らず placeholder + follow-up 参照(生成手引きの規約)。0.1.1: 是正 R-1(elevation.* 用途トークン追加=primitive 直接参照の解消)。値・判断は変更していない。`disabled.opacity` は、押せない状態 (disabled) の不透明度を用途ベース semantic で指定できなかった状態の解消として追加 (Task 009-79・正本 = governance/owner-decisions.md §45)。値は primitive `opacity.50` (0.5) への参照であり、新しい色値は追加していない。",
     "created": "2026-07-02",
     "notes": [
       "インバウンドレンタカー(inbound ゾーン)単独の semantic。3独立DS(ADR-0022)のため他サービスと値を共有せず、相互参照・共通化は行わない",
@@ -94,6 +94,10 @@
     "action":        { "$value": "{radius.full}", "$type": "dimension", "$description": "CTA 形状 pill(R-01。Book Now 999px=layerB §3 実測)", "$status": "bound" },
     "actionCompact": { "$value": "{radius.sm}",   "$type": "dimension", "$description": "小型ボタン(%btn-red 実装 3px→4px へ正規化候補🟢)。暫定名=要ADR", "$status": "placeholder", "$note": "pill と 3px の使い分け基準が未明文化。要実査" },
     "card":          { "$value": "{radius.md}",   "$type": "dimension", "$status": "placeholder", "$note": "検索結果カードの実px未取得(layerB §4/§5)。暫定 md" }
+  },
+
+  "disabled": {
+    "opacity": { "$value": "{opacity.50}", "$type": "number", "$description": "押せない状態 (disabled) の不透明度。押せない操作要素の全体に掛ける", "$status": "bound", "$note": "要素全体に不透明度を掛ける方式であり、色・面・枠のトークンは差し替えない。主ボタン (面 #9E2334 + 白文字) に掛けた場合、白地の上での面は #CE9199 相当となり白文字との実効コントラストは 2.58:1 (本 Repository で計算) で、governance/contrast-rules.md の役割 1・役割 4 のいずれの下限も下回る。WCAG 2.2 は無効化された利用者インタフェース部品をコントラスト要件の対象外とするため適合判定には影響しないが、適合宣言は行わない (同規約 §7)。押せない理由は色・状態だけで伝えず文字で併記する" }
   },
 
   "motion": {

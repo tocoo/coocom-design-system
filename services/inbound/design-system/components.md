@@ -15,7 +15,11 @@
 - [事実] IB-i5: コンテンツは locale 単位で格納。Component はテキストを直接持たず locale 供給を受ける
 - [事実] フォントは `font.locale.*` の fallback 体系で解決 (IB-i2/D-10)。ページ・言語ごとのフォント継ぎ足しを再生産しない。許可リスト外 (Quicksand/Salesforce Sans 等) は新規採用しない
 - [事実] 状態の固定リスト: `hover / active / focus / disabled / loading / error / success` (命名規則§2)
-- [事実] hover は opacity 変化のみ確認 (BT-03)。hover 以外の状態は 🚧 未取得 (follow-up #4)
+- [事実] hover は opacity 変化のみ確認 (BT-03)。hover・`disabled` 以外の状態は 🚧 未取得 (follow-up #4)
+- [決定] **押せない状態 (`disabled`) は、要素全体の不透明度を `{disabled.opacity}` (0.5) にする** (Web部責任者判断 2026-09-19・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §45)。**色・面・枠のトークンは差し替えない** — 押せない状態専用の色を新設せず、既定状態の意匠をそのまま薄くする。カーソルは `not-allowed` とする。本規則は `Button` に限らず、本書のすべての操作要素の `disabled` に適用する
+- [決定] **押せない理由は色・状態だけで伝えない。** 押せないことに理由がある場合は、その理由を**文字で併記する** (A-02 / WCAG 2.2 AA)。**4 言語ぶんの文言長を前提に可変で組む** (IB-i4)。不透明度の低下だけで理由を伝えたものとして扱わない
+- [事実] 不透明度 0.5 を掛けると、主ボタン (面 `#9E2334` + 白文字) の面は白地の上で `#CE9199` 相当となり、白文字との実効コントラストは **2.58:1** (本 Repository で計算) である。[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 1 (4.5:1)・役割 4 (3:1) のいずれの下限も下回る。WCAG 2.2 は**無効化された利用者インタフェース部品をコントラスト要件の対象外**とするため適合判定には影響しないが、**適合宣言は行わない** (同規約 §7)
+- [決定] 本規則が対象とするのは**操作要素が押せない状態**である。「**選べない値**」の表現は本規則では決定しない
 - [事実] 未着手 Component: Select / Tabs / Toast / Table / Accordion (follow-up #1)
 
 ---
@@ -27,14 +31,14 @@
 - バリアント:
   - `Button.primary` — bg `{color.action.primary.bg}` (赤) / 文字 `{color.action.primary.text}` / 角丸 `{radius.actionCompact}` 🚧 (%btn-red 実装 3px)
   - `Button.ghost` 🚧 暫定名 (要 ADR = 命名規則§10) — Book Now 型。透明 bg / 文字 `{color.action.ghost.text}` / pill `{radius.action}` / weight bold / padding 実測 8px 24px (layerB §3)
-- 状態: hover = opacity 変化 🚧 暫定 (BT-03)。active/disabled/focus/loading 🚧 未取得 (follow-up #4)
+- 状態: hover = opacity 変化 🚧 暫定 (BT-03)。**disabled = 要素全体の不透明度を `{disabled.opacity}` (0.5) にする。面・文字・枠の色は変えない。カーソルは `not-allowed`** (共通事項)。active/focus/loading 🚧 未取得 (follow-up #4)
 - Do / Don't:
   - Do: CTA 文言は動詞先頭・英語短文 ("Book Now" / "View details" = 🟢 候補)
   - Do: 文言長可変 (IB-i4) — 幅固定にせず min-width + padding で組む
   - Don't: pill と 3px 角丸を同一階層で混用しない (使い分け基準の明文化まで ❓。検討トリガー: Button 実装着手時)
-- 関連トークン: `color.action.*` / `radius.action` / `radius.actionCompact` / `color.focus.ring` / `motion.transition.*`
+- 関連トークン: `color.action.*` / `radius.action` / `radius.actionCompact` / `color.focus.ring` / `disabled.opacity` / `motion.transition.*`
 - 現状差分メモ: 階層体系なし (BT-02: @extend のみ)。構造🟢/色🔵/形🟡
-- 未確定事項: 状態一式 (follow-up #4)・pill/3px の使い分け (検討トリガー: Button 実装着手時)・ghost 命名 (要 ADR)
+- 未確定事項: 状態一式 (follow-up #4。**`disabled` は Task 009-79 で確定**)・pill/3px の使い分け (検討トリガー: Button 実装着手時)・ghost 命名 (要 ADR)
 
 ## Input
 
@@ -44,7 +48,8 @@
 - 状態:
   - error: 背景 `{color.form.errorBg}` (#ffd6de) + テキスト `{color.state.error}` 🚧 (#f00 は要精査)
   - focus: 背景 `{color.form.focusBg}` (#f3c8d0。実装名 `forcus` 誤記を正規化 = D-3) + `{color.focus.ring}` outline 🚧
-  - disabled / success: success は `{color.state.success}` (実装 confirm #f6f6f6 は要精査 ❓)
+  - disabled: 不透明度 `{disabled.opacity}` (0.5)・色は変えない (共通事項)
+  - success: `{color.state.success}` (実装 confirm #f6f6f6 は要精査 ❓)
 - Do / Don't:
   - Do: エラーはテキスト併記 (A-02)。4言語分の文言長を想定した可変レイアウト (IB-i4)
   - Don't: `forcus` 等の誤記命名を新規コードへ持ち込まない
@@ -158,3 +163,4 @@
 | --- | --- | --- |
 | 2026-07-02 | 初版 (Button/Input/SearchForm/Card/PriceTag/LanguageSwitcher/Header/Footer/Breadcrumb/Modal。i18n 構造制約を共通事項に明記) | Claude Design (Builder) |
 | 2026-07-02 | 是正 R-1: Modal の `elevation.z.*`→`{elevation.*}` (Semantic 参照へ)。S-5: Button の pill/3px 使い分けに検討トリガー付与 | Claude Design (Builder) |
+| 2026-09-19 | Task 009-79: **押せない状態 (`disabled`) の意匠を定義した** ([Issue #202](https://github.com/tocoo/coocom-design-system/issues/202)・Web部責任者判断 2026-09-19・明示取得・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §45)。①**共通事項に 4 項目を追加** — 押せない状態は**要素全体の不透明度を `{disabled.opacity}` (0.5) にし、色・面・枠のトークンは差し替えない**・カーソルは `not-allowed`・本書のすべての操作要素に適用する／押せない理由は色・状態だけで伝えず**文字で併記**し、**4 言語ぶんの文言長を前提に可変で組む** (IB-i4)／不透明度 0.5 を掛けた主ボタン (面 `#9E2334` + 白文字) は実効 **2.58:1** ([../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 1・役割 4 のいずれも下回るが、WCAG 2.2 は無効化された部品を対象外とする。**適合宣言は行わない**)／対象は**操作要素が押せない状態**であり「**選べない値**」の表現は対象外。②**`Button`** の状態の未取得の列挙から `disabled` を外し確定値を明記、関連トークンへ `disabled.opacity` を追加した。③**`Input`** の `disabled` を `success` と分離して確定値を明記した。**不変**: i18n 構造制約 (IB-i1〜i5)・Button の 2 バリアントの意匠と `radius.actionCompact` `🚧`・`ghost` 命名の要 ADR・各 Component の構造・token の値・参照先・`$status` (追加 1 件を除く)・travel / rental-car の成果物。**行っていないもの**: `active` / `focus` / `loading` / `success` の実体の確定 (follow-up #4)、pill と 3px の使い分けの確定、押せない状態専用の色トークンの新設、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。改訂着手の設計承認取得済み (§9・§20・§45)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |

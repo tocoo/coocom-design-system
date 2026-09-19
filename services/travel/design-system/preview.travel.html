@@ -179,6 +179,7 @@
     --sticky-bar-sub-font-size          : 0.75rem; /* stickyBar.subFontSize */
     --select-padding-inline             : 0.75rem; /* select.paddingInline */
     --select-chevron-size               : 16px; /* select.chevronSize */
+    --disabled-opacity                  : 0.5; /* disabled.opacity */
     --motion-transition-duration        : 300ms; /* motion.transition.duration 🚧 placeholder */
     --motion-transition-easing          : ease; /* motion.transition.easing 🚧 placeholder */
     --icon-review-size                  : 16px; /* icon.reviewSize */
@@ -387,6 +388,7 @@
   .btn--ghost { background: transparent; color: var(--color-text-strong); border-color: var(--color-text-strong); }
   .btn--text { background: transparent; color: var(--color-text-link); padding-inline: 8px; }
   .btn--focus { outline: var(--border-width-thick) solid var(--color-focus-ring); outline-offset: 2px; }
+  .btn--disabled { opacity: var(--disabled-opacity); cursor: not-allowed; }
 
   /* Input — 角丸は radius.field (8px)。pill は押す要素のシグネチャであり用いない (design.md §5) */
   .field {
@@ -812,11 +814,14 @@
     <div class="stage__item"><span class="btn btn--ghost">特集を見る</span><span class="caption"><code>Button.ghost</code></span></div>
     <div class="stage__item"><span class="btn btn--text">キャンセル</span><span class="caption"><code>Button.text</code></span></div>
     <div class="stage__item"><span class="btn btn--primary btn--focus">プラン選択へ</span><span class="caption">focus = <code>color.focus.ring</code> の outline</span></div>
+    <div class="stage__item"><span class="btn btn--primary btn--disabled">プラン選択へ</span><span class="caption">disabled = <code>disabled.opacity</code> (0.5)・色は変えない</span></div>
+    <div class="stage__item"><span class="btn btn--secondary btn--disabled">お気に入り</span><span class="caption">disabled (<code>secondary</code>)</span></div>
   </div>
   <dl class="tokens">
     <dt>面・文字</dt><dd><code>color.action.primary.bg / text</code> ・ <code>color.action.secondary.bg / text</code> ・ <code>color.text.strong</code> ・ <code>color.text.link</code></dd>
     <dt>角丸</dt><dd><code>radius.action</code> (pill)</dd>
-    <dt>hover / active / disabled / loading</dt><dd><span class="flag">未取得</span> 正本に値がないため見本を描かない</dd>
+    <dt>disabled</dt><dd>要素全体の不透明度を <code>disabled.opacity</code> (0.5) にする。色・面・枠のトークンは差し替えない。カーソルは <code>not-allowed</code>。主ボタンの白文字の実効コントラストは <strong>2.33:1</strong> となり AA・3:1 いずれも下回るが、WCAG 2.2 は無効化された部品を対象外とする (適合宣言は行わない)。押せない理由は文字で併記する</dd>
+    <dt>hover / active / loading</dt><dd><span class="flag">未取得</span> 正本に値がないため見本を描かない</dd>
   </dl>
   <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Button</code> (バリアント 4 語・campaign 廃止 = TVL-0012)</p>
 </section>
@@ -1154,7 +1159,7 @@
   </table></div>
   <h3><span class="flag">未取得</span> 見本を描けないもの</h3>
   <ul class="note">
-    <li>Button の hover / active / disabled / loading の状態一式</li>
+    <li>Button の hover / active / loading の状態一式 (<code>disabled</code> は Task 009-79 で確定・上に見本あり)</li>
     <li>Input の必須表現・検証表示の一式</li>
     <li>SearchForm のフィールド構成、Card の 8 スロット対応付け、ReviewStars の星の実寸</li>
     <li>Footer の構成、Header の内部ナビ構成</li>

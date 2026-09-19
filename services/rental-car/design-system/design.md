@@ -56,7 +56,7 @@
 | `color.border.subtle` / `default` / `strong` | `#E0E0E0` / `#CCCCCC` / `#BCBCBC` | bound |
 | `color.state.success` | 主色 (専用の緑 `#43a047` / `#58b85d` は廃止) | bound |
 | `color.state.error` | `{color.scheme.main.error}` `#D23A3A` | bound (sub 採用時は参照先の差し替えが必要) |
-| `color.accent.campaign` | `{color.scheme.main.accent}` `#E4572E` | bound (点専用・塗りボタン禁止。sub 採用時は参照先の差し替えが必要) |
+| `color.accent.campaign` | `{color.scheme.main.accent}` `#E4572E` | bound (**面 (背景) として持つのは B 会員種別のみ**・塗りボタン禁止・**文字色としての使用は §2.4 代替規則 4 による**。sub 採用時は参照先の差し替えが必要) |
 | `color.accent.campaignTint` / `campaignInk` | `{color.scheme.main.accentTint}` `#F9CDBC` / `{color.scheme.main.accentInk}` `#8A2E11` (淡色面上 5.84:1・概算) | placeholder `🚧` (濃色段が仮色) |
 | `color.label.discount.surface` / `text` | `{color.scheme.main.inverse}` `#C8912C` / `{color.text.inverse}` `#FFFFFF` (2.78:1 = **AA 未達**・§2.4 の例外) | bound |
 | `color.label.category.surface` / `text` / `icon` / `border` | `{color.surface.default}` `#FFFFFF` / `{color.text.strong}` `#212121` (16.10:1) / `{color.accent.campaign}` `#E4572E` (3.68:1・アイコンのみ) / `{color.border.default}` `#CCCCCC` (1.61:1) | bound |
@@ -74,7 +74,11 @@
 
 ### 2.3 品質下限
 
-WCAG 2.2 AA・タップ領域 (**§4.2 の 5 区分 × 幅 2 列の表**が正。最大は 48px)・代替テキスト・色だけで伝えないを下限とする。例外は本書と [labels-tags.rental-car.md](labels-tags.rental-car.md) に明示したものに限る。
+WCAG 2.2 AA・タップ領域 (**§4.2 の 5 区分 × 幅 2 列の表**が正。最大は 48px)・代替テキスト・色だけで伝えないを下限とする。
+
+**コントラストの下限の決め方は [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) が正本**である (3 サービス横断の運用規約)。同規約は下限をテキストの**役割**で段階化する — 役割 1 必須情報 = 4.5:1 (例外なし)／役割 2 大きなテキスト相当 = 3:1／役割 3 冗長表現 = 3:1 (AA 未達を明示・一般条件は同規約 §5)／役割 4 非テキスト UI 要素 = 3:1／役割 5 装飾・非情報 = 下限なし。**ある表示要素に役割 3 を適用してよいかは、用途名が本書に列挙されているかではなく同規約 §5 の一般条件を満たすかで判定する** (判定に Owner の都度判断を要しない)。3:1 を下回る組み合わせは役割に収まらないため、本書に個別の例外条項として明記したものに限る (同規約 §6)。本書と同規約が食い違った場合は同規約が優先する。
+
+コントラスト以外の下限 (タップ領域・代替テキスト・色だけで伝えない) の例外は、本書と [labels-tags.rental-car.md](labels-tags.rental-car.md) に明示したものに限る。
 
 - [事実] テキスト色は `strong` `#212121` / `body` `#424242` / `mutedStrong` `#616161` / `muted` `#9E9E9E` の 4 段。判読性を要する補助情報 — 価格の補助テキスト (税込 / 日数 / 1 日あたり)・フォームの補足と任意表記・店舗のアクセスと営業時間・オプションの注記・未到達ステップのラベル — は `color.text.mutedStrong` (白背景 6.19:1) を使用する。`color.text.muted` (白背景 **2.68:1**) は通常テキストに求められる 4.5:1 に達しないため、判読性を要する情報には用いず、区切り記号等の装飾に限る。**ただし未入力状態の案内文字は §2.6 で本節の品質下限に対する明示的な例外として同トークンを用いる** (AA 未達を明示したうえでの許容であり適合宣言ではない。判断 C-5)
 - [事実] A 割引率の逆色面 + 白文字は **main `#C8912C` 上 2.78:1 / sub `#C8B12C` 上 2.15:1** であり、両スキームとも通常テキスト 4.5:1 だけでなく大きなテキスト 3:1 も満たさない。2 スキームは値が異なるため、コントラスト比を伴う記述をワイルドカード表記で 1 行に束ねない
@@ -86,6 +90,8 @@ WCAG 2.2 AA・タップ領域 (**§4.2 の 5 区分 × 幅 2 列の表**が正�
 色を**面 (背景)** として使う場合、許可される文字色と文字サイズ・ウェイトの条件は面ごとに異なる。
 
 #### 用語の定義 (本節で用いる条件)
+
+**本節の用語と下限の正本は [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §3・§4** である (3 サービス横断)。以下は同規約を本 DS の色値へ適用するために再掲したものであり、記述が食い違った場合は同規約が優先する。
 
 - **ウェイトの境界**: 「**bold**」は `typography.fontWeight.bold` (`700`) 以上を指す (`extraBold` `800` を含む)。「**通常ウェイト**」は `700` 未満を指す (`thin` `100`・`regular` `400` を含む)。この 2 語で全ウェイトを排他的に二分する
 - **条件 (a)**: `24px` 以上 (**ウェイトを問わない**) — WCAG 2.2 の大きなテキスト
@@ -111,9 +117,9 @@ WCAG 2.2 AA・タップ領域 (**§4.2 の 5 区分 × 幅 2 列の表**が正�
 | `color.scheme.sub.inverse` `#C8B12C` | `#FFFFFF` | 2.15:1 | 未達 | 未達 | **禁止** (同上) |
 | `color.scheme.sub.inverse` `#C8B12C` | `color.text.strong` `#212121` | 7.50:1 | 達成 | 達成 | 許可 |
 | `color.surface.default` `#FFFFFF` | `color.text.strong` `#212121` | 16.10:1 | 達成 | 達成 | 許可 (C カテゴリ・特集ラベルの面 + 文字 = `color.label.category`。サイズ・ウェイトの条件を伴わない) |
-| `color.surface.default` `#FFFFFF` | `color.accent.campaign` `#E4572E` (文字色として) | 3.68:1 | 未達 | 達成 | 条件付き ((a) (b) を満たす文字のみ) |
-| `color.surface.subtle` `#F9F9F9` | `color.accent.campaign` `#E4572E` (文字色として) | 3.50:1 | 未達 | 達成 | 条件付き ((a) (b) を満たす文字のみ) |
-| `color.surface.muted` `#F5F5F5` | `color.accent.campaign` `#E4572E` (文字色として) | 3.38:1 | 未達 | 達成 | 条件付き ((a) (b) を満たす文字のみ) |
+| `color.surface.default` `#FFFFFF` | `color.accent.campaign` `#E4572E` (文字色として) | 3.68:1 | 未達 | 達成 | **条件付き** (役割 2 = 条件 (a) (b) を満たす文字／役割 3 = 冗長表現で [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §5 の一般条件を満たす場合・サイズ・ウェイト不問。いずれも AA 未達を明示) |
+| `color.surface.subtle` `#F9F9F9` | `color.accent.campaign` `#E4572E` (文字色として) | 3.50:1 | 未達 | 達成 | **条件付き** (役割 2 = 条件 (a) (b) を満たす文字／役割 3 = 冗長表現で [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §5 の一般条件を満たす場合・サイズ・ウェイト不問。いずれも AA 未達を明示) |
+| `color.surface.muted` `#F5F5F5` | `color.accent.campaign` `#E4572E` (文字色として) | 3.38:1 | 未達 | 達成 | **条件付き** (役割 2 = 条件 (a) (b) を満たす文字／役割 3 = 冗長表現で [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §5 の一般条件を満たす場合・サイズ・ウェイト不問。いずれも AA 未達を明示) |
 | `color.surface.muted` `#F5F5F5` | `color.tag.neutral.text` `#424242` | 9.22:1 | 達成 | 達成 | 許可 (D 中立タグの面 + 文字) |
 | `color.scheme.main.tint` `#E8EDFB` | `color.scheme.main.ink` `#14224A` | 13.21:1 | 達成 | 達成 | 許可 (B-2 無料会員ラベル・SecretPrice のマスク面) |
 | `color.action.primary.bg` `#2C50C8` | `color.action.primary.text` `#FFFFFF` | 6.80:1 | 達成 | 達成 | 許可 (Button `primary` の面 + 文字 = [components.md](components.md) Button) |
@@ -142,12 +148,15 @@ WCAG 2.2 AA・タップ領域 (**§4.2 の 5 区分 × 幅 2 列の表**が正�
 (a) (b) のいずれも満たさない文字 — すなわち (i) `20px` 未満のすべて、および (ii) `20px` 以上 `24px` 未満かつ通常ウェイト — には次を用いる。
 
 1. **[既定] neutral dark 面へ切り替える** — 背景 `color.surface.inverse` (`#212121`) + 文字 `color.text.inverse` (16.10:1)。**ラベル・非操作要素の面として使える範囲では、白文字が通常テキスト基準 4.5:1 を満たす唯一の面**である (下記「A 割引率ラベルに限る白文字の例外」と同じ限定)。上表で白文字が 4.5:1 を達成する面は**もう 1 つある** — `color.action.primary.bg` (`#2C50C8`) × `color.action.primary.text` (`#FFFFFF`) **6.80:1** — が、これは Button `primary` の**操作要素に固定された用途トークン**であり、ラベルの代替背景には用いない。**濃色文字を用いる面は上表のとおり他にもある**ため、「4.5:1 を満たす面が 1 つしかない」という意味ではない
-2. accent を**非テキスト要素**に限定する — 境界色・アイコン・点的装飾 (非テキスト UI 要素の 3:1 は満たす)。**accent を文字色として明色面に置く方法は、この場合の代替にならない** (`default` 3.68:1 / `subtle` 3.50:1 / `muted` 3.38:1 はいずれも通常テキスト 4.5:1 に達しない。**accent 淡色面 (`color.accent.campaignTint` `#F9CDBC`) 上ではさらに下がり 2.54:1 となる** — 淡色面は白面から離れる分だけ分母が増える。これは accent を**文字色**として淡色面に置く場合であり、b2 = 淡色面 + accent **濃色段**文字 (別トークン `campaignInk`) とは区別する)
+2. accent を**非テキスト要素**に限定する — 境界色・アイコン・点的装飾 (非テキスト UI 要素の 3:1 は満たす)。**accent を文字色として明色面に置く方法は、この場合の代替にならない** (`default` 3.68:1 / `subtle` 3.50:1 / `muted` 3.38:1 はいずれも通常テキスト 4.5:1 に達しない。**ただし当該の文字が役割 3 = 冗長表現に該当する場合は、代替ではなく代替規則 4 の第 2 項として直接成立する**。**accent 淡色面 (`color.accent.campaignTint` `#F9CDBC`) 上ではさらに下がり 2.54:1 となる** — 淡色面は白面から離れる分だけ分母が増える。これは accent を**文字色**として淡色面に置く場合であり、b2 = 淡色面 + accent **濃色段**文字 (別トークン `campaignInk`) とは区別する)
 3. **accent 淡色面 (b2)** — 面 `color.accent.campaignTint` (`#F9CDBC`) + 文字 `color.accent.campaignInk` (`#8A2E11`)。小サイズ (12px) ラベル向け。**accent 濃色段が 🚧 仮色**のため、成立は実色値確定後に検証する。**それまでは 1 (neutral dark 面) を用いる**
 
 (a) (b) を満たす文字については、accent 面を用いない次の構成も選べる。
 
-4. accent を**文字色**として明色面に置く — `color.surface.default` 3.68:1 / `subtle` 3.50:1 / `muted` 3.38:1。いずれも大きなテキスト基準のみを満たすため、**(a) (b) を満たす文字に限る**
+4. accent を**文字色**として明色面に置く — `color.surface.default` 3.68:1 / `subtle` 3.50:1 / `muted` 3.38:1。いずれも大きなテキスト基準 (3:1) のみを満たす。用いてよいのは次の 2 通りである。
+   - **役割 2** — 役割 1 の必須情報を担う文字のうち **(a) (b) を満たすもの**。
+   - **役割 3** — **冗長表現** (同じ情報が同一画面の他の要素からも読み取れる強調・要約・言い換え) で、[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §5 の一般条件をすべて満たすもの。**この場合サイズ・ウェイトの条件 (a) (b) は課さない**。該当例 = 検索結果の「他社より N 円お得」(価格本体が同一画面に別途表示され、文言を併記し、3:1 を満たす)。**用途名の列挙ではなく同規約 §5 の条件で判定する**ため、新しい表示要素のために本書へ用途を追加することを要しない
+   - いずれの場合も **AA (通常テキスト 4.5:1) 未達であることを明示する**。適合宣言は行わない
 
 - [事実] 上記はいずれも既存 palette の組み合わせで成立するため、代替背景色の primitive を新設していない (accent の 4 段は b2 のために追加したものであり代替背景ではない)
 - [決定] 禁止: campaign accent 面上に **(a) (b) を満たさない白文字** を置く / `onAccent` の存在だけを理由にコントラスト確認を省略する / AA 未達を「ブランド表現」で自動的に許容する / 文字へ縁取り・影を付けることでコントラスト不足を解決したものとして扱う
@@ -164,6 +173,8 @@ WCAG 2.2 AA・タップ領域 (**§4.2 の 5 区分 × 幅 2 列の表**が正�
 
 上記の「campaign accent 面上の文字」「scheme inverse 色を面として使用する場合」は、いずれも白文字を通常利用として許可しない。このうち **scheme inverse 面**についてのみ、次の限定条件を**すべて**満たす場合に限り、白文字を**例外**として許容する (AA 未達を明示する)。**campaign accent 面は本例外の対象ではない**。
 
+本例外は **[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §6 の個別例外**にあたる (実測 2.78:1 / 2.15:1 は同規約が役割 3 に求める 3:1 を下回るため、役割による判定には収まらない)。**本条項の適用範囲・実測値・トークンは同規約の制定によって変更されていない。**
+
 - [決定] **用途 = A 割引率ラベル (`color.label.discount`)** に限る。非操作の点的ラベルであっても、A 割引率ラベル以外 (B 会員種別・**C カテゴリ・特集**・D 中立タグ・E 在庫/販売状態・G 写真枚数) は本例外の対象外とする。操作可能なバッジは badge ではなく action 系 Component として扱い、同じく対象外とする
 - [決定] **面 = scheme 逆色 (`color.scheme.main.inverse` `#C8912C` / `color.scheme.sub.inverse` `#C8B12C`)** に限る。`color.surface.inverse` (`#212121`・16.10:1) 以外へ拡大せず、**`color.accent.campaign` (`#E4572E`) 面 + 白文字も本例外に含めない** (**ラベルの面として使える範囲で**白文字が通常テキスト 4.5:1 を満たす面は `surface.inverse` の 1 面のみ。上表の `color.action.primary.bg` `#2C50C8` × 白 6.80:1 は Button `primary` の面であり、ラベルの面には用いない)
 - [決定] サイズ・ウェイトは**不問** (小サイズ・通常ウェイトを含む)。ただし**コントラストが AA (通常テキスト 4.5:1) に未達であることを明示する** (main 逆色 × 白 2.78:1・sub 逆色 × 白 2.15:1)。適合宣言は行わない
@@ -175,7 +186,7 @@ WCAG 2.2 AA・タップ領域 (**§4.2 の 5 区分 × 幅 2 列の表**が正�
 
 - [決定] **accent を面として持つのは B 会員種別 (`color.membership.paid` = accent 淡色段) のみ**とし、**C カテゴリ・特集 (C1 企画名 / C2 販売条件) は accent を「アイコン (点)」として持つ** (`color.label.category.icon`)。C の面は白 (`color.surface.default`) とし accent で塗らない
 - [決定] C の 12px (`label.fontSize.sm`) ラベルは **白面 × `color.text.strong` = 16.10:1 で成立する**。サイズ・ウェイトの条件を伴わないため、C については上記代替規則の 1 (neutral dark 面) / 3 (accent 淡色面) を要しない
-- [決定] accent アイコン (`#E4572E`) は白面上 3.68:1 で、**非テキスト UI 要素の 3:1 は満たすが通常テキスト 4.5:1 には達しない**ため、**アイコンに限り**用いて文字色・面色には用いない
+- [決定] **C カテゴリ・特集ラベルにおいて** accent (`#E4572E`) は**アイコンに限り**用い、C の文字色・面色には用いない。白面上 3.68:1 で**非テキスト UI 要素の 3:1 は満たすが通常テキスト 4.5:1 には達しない**ためである。**本項は C における accent の帰属を定めるものであり、accent を文字色として用いること一般を禁じない** — 代替規則 4 (accent を文字色として明色面に置く) および [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) 役割 3 の適用は本項の対象外である
 - [決定] **白系の面 (`color.surface.default` `#FFFFFF` / `color.surface.subtle` `#F9F9F9`) の上に C を置く場合にのみ**、`color.label.category.border` (= `color.border.default` `#CCCCCC`) の枠線を `border.width.thin` (1px) で引く。**写真の上・有色面の上では枠線を引かず**面のみで分離する (影・スクリムは用いない)
 - [事実] 本項により、[labels-tags.rental-car.md](labels-tags.rental-car.md) C1 が置いていた「accent の帰属が確定するまで面色は暫定」の `🚧` と、本書の未確定事項にあった「accent の帰属」の `🚧` は解消した
 
@@ -206,6 +217,7 @@ WCAG 2.2 AA・タップ領域 (**§4.2 の 5 区分 × 幅 2 列の表**が正�
 
 - [決定] **未入力状態の案内文字の色は `color.text.muted` (`#9E9E9E`・白背景 2.68:1) に統一する。** 対象は `input` / `textarea` の `::placeholder`、Select の未選択値 (選択前の `option` に相当する表示)、およびその他の入力フィールドの未入力表示であり、**UI の種別で限定しない** (判断 C-5・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)
 - [決定] **`color.text.muted` は通常テキストに求められる 4.5:1 に達しない。AA 未達であることを明示する。** 適合宣言は行わない。本節は §2.3 の品質下限に対する明示的な例外であり、未入力状態以外の用途へ拡張しない (判読性を要する補助情報は `color.text.mutedStrong` `#616161`・6.19:1)
+- [事実] 本例外は **[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §6 の個別例外**にあたる (2.68:1 は同規約が役割 3 に求める 3:1 を下回るため、役割による判定には収まらない)。**本節の適用範囲・実測値・トークンは同規約の制定によって変更されていない。** 3:1 を満たす色へ寄せるか本例外として維持するかは ❓ 未判定 (未確定事項の一覧)
 - [決定] 上記は**色の許容であって、未入力であることを色だけで伝えてよいという意味ではない**。未入力の識別は文言 (「選択してください」「出発エリア・空港名」等) が担う (色だけで伝えない = §2.3 の品質下限)
 - [決定] 未入力の案内文字と入力済みテキスト (`color.text.body` `#424242`) の判別を色の差のみに依存させない。入力済みかどうかの識別は実際の文字列の有無で成立する
 - [決定] 案内文字を必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない
@@ -500,6 +512,9 @@ PR 帯・特集帯・支給バナー等のクリエイティブに対する DS �
 
 | 論点 | 内容 | 次アクション |
 | --- | --- | --- |
+| コントラストの下限の決め方 | ✅ **横断規約へ移管** (Task 009-78・正本 = [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md))。下限はテキストの**役割 1〜5** で決まり、役割 3 (冗長表現) の適用は用途名の列挙ではなく同規約 §5 の一般条件で判定する。本書 §2.3 から参照する | — |
+| 未入力状態の案内文字 (`#9E9E9E` 2.68:1) の最終的な扱い | ❓ 未判定。3:1 を下回るため [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 3 に収まらず、同規約 §6 の個別例外として維持している (§2.6)。3:1 を満たす色へ寄せるかは未決 | 決定主体 = Web部責任者・チーフデザイナー |
+| 画像・グラデーション面上の文字のコントラスト評価方法 | ❓ 未定義。[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §10 も未定義とする (scrim の要否・評価点の取り方) | 決定主体 = Web部責任者・チーフデザイナー |
 | accent 濃色段・サブスキーム (coral) 2 段の実色 | **primitive に段を追加済み** (Task 009-63) — `orange.100` `#F9CDBC` のみ bound、`orange.800` `#8A2E11`・`coral.100` `#F8CBC2`・`coral.800` `#8A2C18` は **🚧 仮色 placeholder**。B-1 の淡色面 + 濃色文字 (5.84:1) は概算であり成立検証は実色値確定後 | 実査 (§14 = 依頼元提出値の受領・作業担当者照合 + Web部責任者確認)。実色を発明しない |
 | accent の帰属 | ✅ **確定** (Task 009-63・判断は [governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。accent を**面**として持つのは B 会員種別のみ、**C カテゴリ・特集はアイコン (点)** として持つ。C の面は白 (`color.label.category.surface`)。白系の面の上に置く場合のみ枠線 1px (`color.label.category.border` = 白面上 1.61:1・非テキスト 3:1 未達を明示) | — |
 | A 割引率のコントラスト | 逆色面 + 白文字は main 2.78:1 / sub 2.15:1 で、**両スキームとも**通常テキスト 4.5:1 だけでなく大きなテキスト 3:1 も未達。**例外条項は §2.4「A 割引率ラベルに限る白文字の例外」として明文化済み** (Task 009-63)。**AA 未達を明示したうえでの許容であり適合宣言ではない** | 白文字 (例外) と b2 (accent 淡色面) のどちらを最終解とするかはオーナー判断 |
@@ -551,3 +566,4 @@ PR 帯・特集帯・支給バナー等のクリエイティブに対する DS �
 | 2026-09-15 | Task 009-75: **最小タップ領域の単一値 48px (`{size.tapTarget}`) を、押した結果による 5 区分 × `breakpoint.lg` (1024px) を境とする 2 環境へ改めた** ([Issue #194](https://github.com/tocoo/coocom-design-system/issues/194)・Web部責任者判断 2026-09-15・明示取得・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §41)。①**§4.2 を全面改訂**し、上記の区分表を正とした。区分と値は **A 確定・遷移 48 / 40px (`{size.tapTarget.commit}`) / B 開くだけ 48 / 32px (`{size.tapTarget.open}`) / C 戻せる切替 40 / 32px (`{size.tapTarget.toggle}`) / D 格子のセル 40 / 32px (`{size.tapTarget.cell}`) / E 連続値の操作子 24 / 24px (`{size.tapTarget.thumb}`)** (左 = 1024px 未満・右 = 1024px 以上)。**区分は Component の名前ではなく押した結果で決める** — 同じラジオでも、選んだ瞬間に確定して閉じる `OptionRow` は A、フォームの中で確定しない `StorePicker` は C である。**`Input` (テキスト入力欄) を本規則の対象外とした** (押しても文字カーソルが入るだけで押し間違いによる損失が無く、高さは文字サイズと上下余白で決まる。高さ 48px はフォーム要素の見た目を揃えるための値として維持)。**環境を分ける境界は `breakpoint.lg` (1024px) の 1 つのみ**とし、`pointer: coarse` 等のポインタ種別による分岐は採らない。**1024px 以上の値はトークン化せず §4.2 の表で示す**。実寸 48 / 40 / 32 / 24px はいずれも既存 primitive `spacing` の段であり**新しい数値は追加していない**。**44px 段 (`spacing` step 11) は追加していない**。②**§2.3 品質下限・§8.3** の「タップ領域 48px」を §4.2 の表への参照 (最大は 48px) へ改めた。③**未確定事項の一覧**と **Modal の form の行**に、Task 009-75 で 5 区分へ改めた旨を追記した。**採用したのは travel の定義体系であり、値は本 DS のファイルに独立して持つ** (travel のファイルを参照・共有しない = 3 独立 DS の原則 P1/ADR-0022)。**不変**: §1・§2.1・§2.2・§2.4〜§2.6・§3・§4.1・§5・§6・§7・§9 の本文、§2.3 の他の下限 (コントラスト AA・代替テキスト・色だけで伝えない)、`spacing` / `breakpoint` primitive の値・参照先・`$status`、`$meta.version`・version、travel / inbound の成果物。**行っていないもの**: 44px 段の追加、ポインタ種別による分岐の採用、`Input` の高さの変更、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-15・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。改訂着手の設計承認取得済み (§9・§20・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §41)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-16 | Task 009-76: **入力・選択系の角丸を `radius.action` (pill) の対象から外し、`radius.select` を `radius.field` へ統合した** ([Issue #196](https://github.com/tocoo/coocom-design-system/issues/196)・Web部責任者判断 2026-09-16・明示取得・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §42)。①**§5 の `radius.action` の対象を「押す要素」に限った** — ボタン・CTA・チップ型操作要素・一覧の絞り込み/並び替えの起点 (`OverlayTrigger`)・`StickyBar` の条件ボタン。従前の対象に含まれていた「入力要素 (Input / SearchForm のフィールド)」を外した。②**`radius.select` (Select 限定の例外・Task 009-72) を廃止し `radius.field` (= `{radius.md}` 8px) へ統合**した。対象 = `Input` (テキスト/日付/数値)・`textarea`・`Select`・`SearchForm` のフィールドと、フォーム内の選択トリガー (店舗・日時)。**値 8px・参照先 `radius.md` は不変**であり、変わったのは適用範囲である。**新しい数値・新しい primitive は追加していない**。用途トークンは **5 系統のまま** (`select` が `field` に置き換わった)。③**[決定] 1 件と [事実] 2 件を追加**し、入力・選択系へ pill を使用しない旨、従前の判断 F-5 (Task 009-63・入力要素を pill へ統一) と Task 009-72 (Select のみ例外) の**線引きが逆であった**旨、実装の実測結果を記した。**`radius.input` (4px) は復活させない** — 値を受ける箱の角丸は 8px であって 4px ではない。④§9 Agent Prompt Guide の 4 番目の要点を同じ線引きへ改めた。[事実] 国内宿泊 (travel) の実装 (`tocoo/tocoo_travel` `origin/dev-ds` `eda3a549`) は入力欄・テキストエリア・プルダウン・検索フォームの入力ユニット面のいずれにも pill を用いていない (`search_s_global.scss` L90 / L538・`auth_s_global.scss` L168・`inquiry_s.scss` L379 = 8px、`solution_s.scss` L440・`ultra_market_s.scss` L1096 = 4px。本 Repository で実測)。レンタカーの実装 (`tocoo/tocoo_rental_car`) は `epic-ds` を含め DS トークンを参照しているファイルが 0 件であり、本件に該当する実装は存在しない (同じく実測)。**不変**: §1〜§4 の本文、§4.1 / §4.2 の区分と値、§5 の `radius.action` の値 (full = pill) と `radius.card` / `radius.badge` / `radius.overlay` の値・参照先・`$status`、シャドウ・モーション・z 軸の記述、§6〜§8、未確定事項の一覧、`$meta.version`・version、travel / inbound の成果物 (travel への同型の反映は本 Task に含み別記する)。**行っていないもの**: `radius.input` の復活、実装ファイルの変更、`radius.card` / `radius.overlay` の placeholder の解消、`Input` の高さ 48px の変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-16・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。改訂着手の設計承認取得済み (§9・§20・§42)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-16 | Task 009-77: **§7 に [決定] を 1 件追加**し、選ぶ操作の既定が「トリガー + オーバーレイ + 行」であり、ネイティブの `<select>` を用いる `Select` は 4 条件をすべて満たす場合の例外であることを明記した ([Issue #198](https://github.com/tocoo/coocom-design-system/issues/198)・Web部責任者判断 2026-09-16・明示取得・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §43。条件と実測の記録は [components.md](components.md) の `Select` 節が正)。**不変**: §1〜§6・§8・§9 の本文、§5 の角丸 5 系統 (Task 009-76)、§7 の他の記述と Component の構成 (18 件)、§7.1 の form 軸の定義・配置規則・切替規則・backdrop、未確定事項の一覧、token の値・参照先・`$status` (**本 Task でトークンは一切変更していない**)、`$meta.version`・version、travel / inbound の成果物。**行っていないもの**: ネイティブ `<select>` の全廃、独自 listbox の定義、a11y の実装方式の決定、件数のしきい値の確定、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-16・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。改訂着手の設計承認取得済み (§9・§20・§43)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
+| 2026-09-19 | Task 009-78: **コントラストの品質下限を横断規約へ移し、テキストの役割による段階制へ改めた** ([Issue #200](https://github.com/tocoo/coocom-design-system/issues/200)・記録 = [governance/owner-decisions.md](../../../governance/owner-decisions.md) §44)。①**§2.3 を改訂**し、コントラストの下限の決め方の正本を [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) (3 サービス横断の運用規約) とした — 下限は役割 1 必須情報 4.5:1 (例外なし) / 役割 2 大きなテキスト相当 3:1 / 役割 3 冗長表現 3:1 (AA 未達明示) / 役割 4 非テキスト UI 要素 3:1 / 役割 5 装飾・非情報 下限なし で決まり、**役割 3 の適用可否は用途名が本書に列挙されているかではなく同規約 §5 の一般条件で判定する** (Owner の都度判断を要しない)。コントラスト以外の下限 (タップ領域・代替テキスト・色だけで伝えない) の例外は従前どおり本書と [labels-tags.rental-car.md](labels-tags.rental-car.md) に明示したものに限る。②**§2.4 代替規則 4 を改訂**し、accent を文字色として明色面に置いてよい場合を **役割 2 (条件 (a) (b) を満たす文字) と役割 3 (冗長表現・サイズ/ウェイト不問)** の 2 通りとして明示した (従前は (a) (b) を満たす文字のみ)。検証表の当該 3 行 (`surface.default` 3.68:1 / `subtle` 3.50:1 / `muted` 3.38:1) の**扱い欄**を同内容へ更新した (**実測値は変更していない**)。代替規則 2 の括弧書きに、当該文字が役割 3 に該当する場合は代替規則 4 の第 2 項として直接成立する旨を補記した。③**§2.4「accent の帰属」の記述の矛盾を是正**した — 従前「accent アイコンは**アイコンに限り**用いて文字色・面色には用いない」と無限定に書かれており、同じ §2.4 の代替規則 4 (accent を文字色として明色面に置くことを条件付きで許可) と食い違っていた。本項が **C カテゴリ・特集ラベルにおける帰属**を定めるものであることを明示し、accent を文字色として用いること一般を禁じないことを明記した。あわせて §2.2 用途表の `color.accent.campaign` 行の「点専用」を「面として持つのは B 会員種別のみ・塗りボタン禁止・文字色としての使用は §2.4 代替規則 4 による」へ改めた。④**§2.4「A 割引率ラベルに限る白文字の例外」・§2.6 未入力状態**に、それぞれ [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §6 の個別例外にあたる旨 (3:1 を下回るため役割による判定に収まらない) を追記した。**両者の適用範囲・実測値・トークンは変更していない**。⑤**未確定事項の一覧に 3 行追加**した (下限の決め方の横断規約への移管 = ✅／未入力状態の案内文字の最終的な扱い = ❓／画像・グラデーション面上の評価方法 = ❓)。**不変**: §1・§2.1・§2.5・§3〜§9 の本文、§2.4 の用語の定義の内容・検証表の全行の**実測値**・campaign accent を**面**として使用する場合の各 [決定] と代替規則 1〜3 の本文・scheme inverse 面の各 [決定]・A 割引率ラベルの白文字例外の適用範囲・§2.6 の適用範囲と判断 C-5、**すべてのトークンの値・参照先・`$status`** (追加・削除・変更は **0 件**)、primitive の色値、`$meta.version`・version、travel / inbound の Design System の値。**行っていないもの**: 新しい色値・トークン・用途トークンの追加 (「お得額」専用トークンは新設しない)、accent 濃色段 `🚧` 仮色の bound 昇格、未入力状態の色の変更、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー = [governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §8・§10)。改訂着手の設計承認取得済み (§9・§20・§44)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |

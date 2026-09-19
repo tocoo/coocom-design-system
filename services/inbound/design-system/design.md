@@ -6,6 +6,7 @@
 - 対象: 顧客向け UI のみ (P3/ADR-0012)
 - 実装の所在: GitHub `tocoo/tocoo_rental_car` の `inbound` ゾーン (P6/ADR-0004)。国内レンタカーと同一リポだが DS は独立 (P1)
 - 独立性: 本 DS は国内レンタカー・国内宿泊と Foundation/Semantic/design.md を共有しない (P1/ADR-0022)。命名・運用規約のみ共通 (P2)
+- コントラストの品質下限: 下限の決め方は [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) が正本 (3 サービス共通の運用規約 = P2)。テキストの**役割**で下限が決まる — 役割 1 必須情報 = 4.5:1 (例外なし)／役割 2 大きなテキスト相当 = 3:1／役割 3 冗長表現 = 3:1 (AA 未達を明示・一般条件は同規約 §5)／役割 4 非テキスト UI 要素 = 3:1／役割 5 装飾・非情報 = 下限なし。**本 DS は Draft であり、個々の組み合わせの実測・検証は未実施**である (未確定事項の一覧)
 
 ---
 
@@ -122,3 +123,4 @@
 | --- | --- | --- |
 | 2026-07-02 | 初版 (Ph-E: Foundation/Semantic 新規生成/Component/i18n 固有構造/Agent Prompt Guide を統合) | Claude Design (Builder) |
 | 2026-07-24 | Task 009-18-BP1: breakpoint 記述を是正。旧「foundation 4段 (600/768/992/1200)」の参照を、Q5 決定 (2026-07-24, Web部責任者) の 3DS 共通値 640/768/1024/1280 (Travel TVL-0004 再認定) へ更新。primitive.inbound.json の breakpoint 値も同値へ変更 ($status placeholder 維持)。代表 viewport 390/768/1280/1440px を §4 に追加 (breakpoint とは別概念)。実装値 (320/520/692/800/960/961)・follow-up #8・provenance 未確認は保持 | Claude Code |
+| 2026-09-19 | Task 009-78: **コントラストの品質下限の正本を横断規約とした** ([Issue #200](https://github.com/tocoo/coocom-design-system/issues/200)・記録 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §44)。本 DS には品質下限の節が存在しなかったため、冒頭の属性に [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) (3 サービス共通の運用規約 = P2) への参照 1 行を追加し、テキストの役割 1〜5 による段階制が本 DS にも適用されることを明示した。**本 DS は Draft であり、個々の色の組み合わせの実測・検証は未実施である旨もあわせて記した** (新たな節は設けていない)。**不変**: §1〜§9 の本文、未確定事項の一覧、token の値・参照先・`$status`・version、primitive の色値、travel / rental-car の成果物。**行っていないもの**: 品質下限の節の新設、色の組み合わせの実測・検証表の作成、新しい色値・トークンの追加、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。改訂着手の設計承認取得済み ([../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §9・§20・§44) | Claude Code |

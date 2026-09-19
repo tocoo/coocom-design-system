@@ -7,7 +7,7 @@
     "serviceLabel": "インバウンドレンタカー (tocoo/tocoo_rental_car — inbound ゾーン)",
     "version": "0.2.2-draft",
     "status": "Draft",
-    "basedOn": "共通/primitive.json 0.1.0-draft を実装着手ガイド§1で分割。pink 系(フォーム状態)と red 汎用は inventory-inbound §2 の実装値から追加(分類B・出所明記)。加えて typography.size.3xl を混載初版 32px(宿泊由来)から IB 実測 36px(layerB §3)へ変更している(値変更・出所明記=S-4)。0.2.1: 是正 S-4(3xl 値変更の basedOn 明記)。0.2.2: breakpoint 値を旧暫定 600/768/992/1200 から 3DS 共通値 640/768/1024/1280 (Travel TVL-0004 を再認定・owner-decisions.md Q5 決定 2026-07-24, Task 009-18-BP1) へ変更 ($status は placeholder 維持)。他トークン値は 0.2.1 から変更していない",
+    "basedOn": "共通/primitive.json 0.1.0-draft を実装着手ガイド§1で分割。pink 系(フォーム状態)と red 汎用は inventory-inbound §2 の実装値から追加(分類B・出所明記)。加えて typography.size.3xl を混載初版 32px(宿泊由来)から IB 実測 36px(layerB §3)へ変更している(値変更・出所明記=S-4)。0.2.1: 是正 S-4(3xl 値変更の basedOn 明記)。0.2.2: breakpoint 値を旧暫定 600/768/992/1200 から 3DS 共通値 640/768/1024/1280 (Travel TVL-0004 を再認定・owner-decisions.md Q5 決定 2026-07-24, Task 009-18-BP1) へ変更 ($status は placeholder 維持)。他トークン値は 0.2.1 から変更していない。`opacity.50` (0.5) は、押せない状態 (disabled) の表現に用いる不透明度の段として追加 (Task 009-79・正本 = governance/owner-decisions.md §45)。新しい色値は追加していない。",
     "created": "2026-07-02",
     "rules": [
       "属性ベース命名({category}.{attribute}.{step})",
@@ -136,6 +136,10 @@
     "style": {
       "solid": { "$value": "solid", "$type": "strokeStyle", "$status": "bound" }
     }
+  },
+
+  "opacity": {
+    "50": { "$value": 0.5, "$type": "number", "$description": "不透明度の段 0.5 (50%)。押せない状態 (disabled) の表現に用いる", "$status": "bound" }
   },
 
   "elevation": {

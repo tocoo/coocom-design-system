@@ -178,6 +178,7 @@
     --tab-indicator-width              : 2px; /* tab.indicatorWidth */
     --select-padding-inline            : 0.75rem; /* select.paddingInline */
     --select-chevron-size              : 16px; /* select.chevronSize */
+    --disabled-opacity                 : 0.5; /* disabled.opacity */
     --motion-transition-duration       : 300ms; /* motion.transition.duration 🚧 placeholder */
     --motion-transition-easing         : ease; /* motion.transition.easing 🚧 placeholder */
     --icon-size                        : 20px; /* icon.size */
@@ -379,6 +380,7 @@
   .btn--ghost { background: transparent; color: var(--color-text-strong); border-color: var(--color-text-strong); }
   .btn--text { background: transparent; color: var(--color-text-link); padding-inline: 8px; }
   .btn--focus { outline: var(--border-width-thick) solid var(--color-focus-ring); outline-offset: 2px; }
+  .btn--disabled { opacity: var(--disabled-opacity); cursor: not-allowed; }
 
   /* Input / Select — 角丸は radius.field (8px)。pill は押す要素のシグネチャであり用いない (design.md §5) */
   .field {
@@ -838,12 +840,15 @@
     <div class="stage__item"><span class="btn btn--ghost">特集を見る</span><span class="caption"><code>Button.ghost</code></span></div>
     <div class="stage__item"><span class="btn btn--text">キャンセル</span><span class="caption"><code>Button.text</code></span></div>
     <div class="stage__item"><span class="btn btn--primary btn--focus">卸価格を検索</span><span class="caption">focus = <code>color.focus.ring</code> の outline</span></div>
+    <div class="stage__item"><span class="btn btn--primary btn--disabled">卸価格を検索</span><span class="caption">disabled = <code>disabled.opacity</code> (0.5)・色は変えない</span></div>
+    <div class="stage__item"><span class="btn btn--secondary btn--disabled">条件を変更</span><span class="caption">disabled (<code>secondary</code>)</span></div>
   </div>
   <dl class="tokens">
     <dt>面・文字</dt><dd><code>color.action.primary.bg / text</code> ・ <code>color.action.secondary.bg / text</code> ・ <code>color.text.strong</code> ・ <code>color.text.link</code></dd>
     <dt>角丸</dt><dd><code>radius.action</code> (pill)。旧 R-01 の 4px 固有形状・縦グラデ・emboss 影は廃止</dd>
     <dt>主 CTA の個数制約</dt><dd><strong>設けない</strong> (判断 F-4)。繰り返し要素内で各項目が <code>primary</code> を持つことを妨げない</dd>
-    <dt>hover / active / disabled / loading</dt><dd><span class="flag">未取得</span> 正本に値がないため見本を描かない</dd>
+    <dt>disabled</dt><dd>要素全体の不透明度を <code>disabled.opacity</code> (0.5) にする。色・面・枠のトークンは差し替えない。カーソルは <code>not-allowed</code>。主ボタンの白文字の実効コントラストは <strong>2.33:1</strong> となり AA・3:1 いずれも下回るが、WCAG 2.2 は無効化された部品を対象外とする (適合宣言は行わない)。押せない理由は文字で併記する</dd>
+    <dt>hover / active / loading</dt><dd><span class="flag">未取得</span> 正本に値がないため見本を描かない</dd>
   </dl>
   <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Button</code> (バリアント 4 語・campaign 廃止)</p>
 </section>
@@ -1154,7 +1159,7 @@
     <dt>文字</dt><dd><code>color.label.stock</code> (= <code>color.state.error</code>)</dd>
     <dt>器</dt><dd>面を持たないため <code>label.*</code> の対象外</dd>
   </dl>
-  <p class="note">写真の上には出さない (§2.4 の検証表は白背景のみを対象とする)。D との見分けは面の有無、A との見分けは置き場所。<strong>E2 満車・受付終了</strong>は CTA の非活性へ集約する方向のみ確定で、意匠値が未定のため見本がない (Button の disabled 定義が先)。</p>
+  <p class="note">写真の上には出さない (§2.4 の検証表は白背景のみを対象とする)。D との見分けは面の有無、A との見分けは置き場所。<strong>E2 満車・受付終了</strong>は CTA の非活性へ集約する方向のみ確定。非活性の意匠は Button の <code>disabled</code> (不透明度 0.5・色は変えない = Task 009-79) に従うが、どの variant のボタンを出すか・文言が未確定のため見本がない。</p>
   <p class="source">正本: <a href="semantic.rental-car.json"><code>semantic.rental-car.json</code></a> の <code>color.label.stock</code> / <a href="labels-tags.rental-car.md"><code>labels-tags.rental-car.md</code></a> E1・E2</p>
 </section>
 
@@ -1246,7 +1251,7 @@
   </table></div>
   <h3><span class="flag">未取得</span> 見本を描けないもの</h3>
   <ul class="note">
-    <li>Button の hover / active / <strong>disabled</strong> / loading の状態一式 (disabled は E2 満車表現の前提)</li>
+    <li>Button の hover / active / loading の状態一式 (<code>disabled</code> は Task 009-79 で確定・上に見本あり)</li>
     <li>Input の必須表現・検証表示の一式 (follow-up #2)</li>
     <li>ResultCard の実 px (角丸・影・行高・列幅) と料金列の実ラベル</li>
     <li>Footer の構成、Header の内部ナビ構成、各社ロゴ素材</li>

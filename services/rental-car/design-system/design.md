@@ -284,7 +284,7 @@ Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのも�
 
 - スペーシング: **4px (0.25rem) 系** `spacing.1`〜`16`。旧 Q3 (5px 刻みユーティリティ) は解消し、実装値は [migration-map.md](migration-map.md) に記録した
 - コンテナ幅: **975 / 1195 / 1425px** (`size.container.sm` / `md` / `lg`)
-- ブレークポイント: **`640 / 768 / 1024 / 1280`** (Q5 決定 2026-07-24: 3DS 共通値。0.3.0-draft で `$status` を bound へ)。japan ゾーン実装は DS 移行前は 2段 (959/960) のみで (DS 移行後の `origin/master` `23d7c58b8` は 640 / 768 / 1024 / 1280 を用いる・Task 009-80)、置換の扱いは [migration-map.md](migration-map.md)
+- ブレークポイント: **`640 / 768 / 1024 / 1280`** (Q5 決定 2026-07-24: 3DS 共通値。0.3.0-draft で `$status` を bound へ)。japan ゾーン実装は DS 移行前は 2段 (959/960) のみで (DS 移行後の `origin/master` `23d7c58b8` は 640 / 768 / 1024 / 1280 を用い、ほかに内容に合わせた 430px が 1 箇所ある (`result_list_s_global.scss` L164)・Task 009-80)、置換の扱いは [migration-map.md](migration-map.md)
 - 代表 viewport (画面設計・HTML 確認用の表示幅): **`390 / 768 / 1280 / 1440px`** (3DS 横断・Web部責任者判断 2026-07-24・Task 009-18-BP1)。**表示確認用の代表幅であり breakpoint token ではない**
 
 ### 4.1 中央寄せの器の左右余白
@@ -372,7 +372,7 @@ Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのも�
 
 ### 7.1 Modal の表示形態 (form)
 
-Modal に**表示形態 (form) 軸**を定義する。form は `drawer` (既定) / `sheet` / `popover` の 3 値をとる (判断 F-1・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。旧版が「拡張候補 (未承認)」として [components.md](components.md) の独立節に分離していた BottomSheet / Popover は、本節の `sheet` / `popover` として本文へ統合し、同節を廃止した (これに伴い `components.md` の §7 レスポンシブ → §6、§8 変更履歴 → §7 が繰り上がっている)。
+Modal に**表示形態 (form) 軸**を定義する。form は `drawer` (既定) / `sheet` / `popover` の 3 値をとる (判断 F-1・[governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。旧版が「拡張候補 (未承認)」として [components.md](components.md) の独立節に分離していた BottomSheet / Popover は、本節の `sheet` / `popover` として本文へ統合し、同節を廃止した (これに伴い `components.md` の §7 レスポンシブ → §6、§8 変更履歴 → §7 が繰り上がった。その後 Task 009-82 で `components.md` に §6「予約フロー・状態表示」を新設し、レスポンシブは §7、変更履歴は §8 となっている)。
 
 - [決定] **実装基盤は drawer 単一を維持し、第 3 の Modal 実装基盤を導入しない**。`popover` は overlay の z 軸・backdrop・dismiss を drawer / sheet と共有する**同一基盤上の表示形態**であり、第 3 の実装基盤に当たらない。`popover` の配置方式 (基準要素への相対配置) が drawer / sheet と異なることは、実装基盤の相違としない
 - [決定] form はバリアント語彙とは**別軸**であり語彙への追加ではない (PriceTag の `tone` と同じ扱い)
@@ -571,3 +571,4 @@ PR 帯・特集帯・支給バナー等のクリエイティブに対する DS �
 | 2026-09-19 | Task 009-79: **押せない状態 (`disabled`) の確定に伴う記述の是正** ([Issue #202](https://github.com/tocoo/coocom-design-system/issues/202)・記録 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §45)。①**§1 の観察**から「ボタンの disabled が未取得」を外した。②**未確定事項の一覧**の `E2 満車・受付終了` の行を、Button の disabled の定義が前提であった旨から**前提は解消し、残るのはどの variant のボタンを非活性で出すか・文言・高さ・形**である旨へ改め、次工程を「オーナー判断」とした。③**未確定事項の一覧に 1 行追加** — 「選べない値」(カレンダーの過去日・満車のセル等) の表現は Task 009-79 の対象外である。**不変**: §2〜§9 の本文、§2.3 の品質下限とコントラストの規定、既存 token の値・参照先・`$status` (追加 1 件を除く)、primitive の色値、`$meta.version`・version、travel / inbound の成果物。**行っていないもの**: 選べない値の表現の決定、E2 の意匠値の確定、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。改訂着手の設計承認取得済み (§9・§20・§45)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-29 | Task 009-80 ([Issue #207](https://github.com/tocoo/coocom-design-system/issues/207)): 実装が DS へ移行した (2026-09-15〜09-24) ことに合わせ、§4 のブレークポイントの行と §5 の「レンタカーの実装は DS トークン参照 0 件」の行に、移行前の実測であることと移行後の再実測を [事実] で追記した | Claude Code |
 | 2026-09-29 | Task 009-82 ([Issue #210](https://github.com/tocoo/coocom-design-system/issues/210)・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46): 未確定事項の一覧の「フォーム入力の状態一式」を一部解決へ更新した (必須・任意の表記と欄のエラーを [components.md](components.md) に定義)。「文書レベルの見出し既定を実装へ反映する範囲」の行に、実装の予約フローの見出しが §3.1 の段下げ表と一致することを [事実] で追記した | Claude Code |
+| 2026-09-29 | Task 009-82 ([Issue #210](https://github.com/tocoo/coocom-design-system/issues/210)): §7.1 の「`components.md` の章の繰り上げ」の記述に、Task 009-82 で §6 を新設しレスポンシブ §7・変更履歴 §8 となったことを追記した。§4 のブレークポイントの行の再実測に、内容に合わせた 430px の 1 箇所を加えた | Claude Code |

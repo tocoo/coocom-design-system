@@ -26,7 +26,7 @@
 | 区分 | 1024px 未満 / 以上 | トークン | 該当する Component (本書) |
 |---|---|---|---|
 | **A 確定・遷移** | 48px / 40px | `{size.tapTarget.commit}` | `Button`・`SearchForm` の CTA・`Tabs`・`OptionRow`・`NavigationRow`・`Chip` (`use = applied` の解除)・`Header` のハンバーガー・`ErrorPage` の補助リンク |
-| **B 開くだけ** | 48px / 32px | `{size.tapTarget.open}` | `Select`・`OverlayTrigger`・`Sort / Pagination` の起点・`StickyBar` の条件ボタン |
+| **B 開くだけ** | 48px / 32px | `{size.tapTarget.open}` | `Select`・`OverlayTrigger`・`Sort / Pagination` の起点・`StickyBar` の条件ボタン・`SummaryBar` (最小の高さ 64px で下限を上回る) |
 | **C 戻せる切替** | 40px / 32px | `{size.tapTarget.toggle}` | `Checkbox` の行 (`Options` / `Filter`)・`Chip` (`use = select`)・フォームの中のラジオの行 (`StorePicker`)・`QuantityStepper` の ± ボタン・`ChoiceRow` の行 |
 | **D 格子のセル** | 40px / 32px | `{size.tapTarget.cell}` | `DateRangeCalendar` の日付セル (セル間に `{spacing.1}` 4px 以上の隙間) |
 | **E 連続値の操作子** | 24px / 24px | `{size.tapTarget.thumb}` | `RangeSlider` のつまみ |
@@ -186,7 +186,7 @@
   - 曜日見出し — 高さ `{calendar.weekdayHeight}` (32px) / `{calendar.weekdayFontSize}` (12px) / `color.text.mutedStrong`。日曜は `color.state.error`、土曜は `color.text.link`
   - 日付セル — 最小の高さ `{size.tapTarget.cell}` (**区分 D 格子のセル** = 40px / 1024px 以上 32px) / セル間に `{spacing.1}` (4px) 以上の隙間 / `{calendar.dateFontSize}` (14px) / `color.text.strong` / 数字は等幅 (`tabular-nums`)
   - 範囲の表現 — 両端 = 面 `color.brand.primary` + `color.text.inverse` + 700 + 角丸 `{calendar.selectedRadius}` (16px) / 期間中 = 面 `surface.subtle`
-- 状態: **当日** (Task 009-82) — 面は塗らず、セルの内側に `{border.width.thin}` × `color.text.mutedStrong` の線を角丸 `{calendar.selectedRadius}` (16px) で引く (白背景 6.19:1)。当日が範囲の両端・期間中に当たる場合も線は引いたままにする (実装は `.is-today` と `.is-end` を独立に付ける) / 選択不可 (過去日) `🚧` 暫定 — `color.text.mutedStrong` + 不透明度を下げる。**DS に選択不可の文字色トークンが無い**ため暫定表現である (未確定事項) / focus = `color.focus.ring` の outline
+- 状態: **当日** (Task 009-82) — 面は塗らず、セルの内側に `{border.width.thin}` × `color.text.mutedStrong` の線を角丸 `{calendar.selectedRadius}` (16px) で引く (白背景 6.19:1)。当日が範囲の両端に当たる場合は、線を `color.text.inverse` (白・主色の面の上で 6.80:1) にする — 主色の面の上では `color.text.mutedStrong` との差が 1.10:1 となり見分けられないため。期間中 (面 `surface.subtle`) の上では `color.text.mutedStrong` のまま (5.88:1) /  選択不可 (過去日) `🚧` 暫定 — `color.text.mutedStrong` + 不透明度を下げる。**DS に選択不可の文字色トークンが無い**ため暫定表現である (未確定事項) / focus = `color.focus.ring` の outline
 - Do: 曜日の色分け (日曜・土曜) は補助にとどめる。曜日は列の位置でも判別できる
 - Do: 範囲の両端と期間中を**面の濃さで区別**し、両端は太さも併せ持つ
 - Don't: 選択不可を不透明度だけで表現したまま確定しない (未確定事項として追跡する)
@@ -453,7 +453,7 @@
   - 主 (車種) — `{summaryBar.titleFontSize}` (16px) + 700 + `color.text.strong`
   - 補助 (日時) — `{summaryBar.subFontSize}` (14px) + `color.text.mutedStrong` / 折り返さない
   - 金額 — `font.price.family` + 700 + `{summaryBar.priceFontSize}` (16px) + 行間 1.3 + 数字の幅を揃える + `color.text.strong`
-  - 開く印 — 幅 `{summaryBar.chevronWidth}` (24px) + `color.text.mutedStrong`
+  - 開く印 — 幅 `{summaryBar.chevronWidth}` (24px) + `color.text.mutedStrong`。金額と開く印の間隔は 8px
   - バーと本文が重ならないよう、1024px 未満で本文の下端に余白を足す (実装は 104px = 40px + 64px の固定値)
 - 状態: 開いている / 閉じている (シート)。focus = `color.focus.ring` の outline
 - Do: バー全体を 1 つの `button` とし、`aria-haspopup="dialog"` と `aria-expanded` を付ける。読み上げ名は、見えている車種・日時・金額を `aria-labelledby` で参照して作る
@@ -511,10 +511,10 @@
 - 構成:
   - 器 — 面 `color.surface.default` / 枠 `{border.width.thin}` × `color.border.subtle` / 角丸 `radius.card` / 上下 `{completion.paddingBlock}` (40px)・左右 `{completion.paddingInline}` (24px。768px 以上は 40px) / 中央揃え / 要素の間隔 `{completion.gap}` (24px)
   - 完了の印 — 直径 `{completion.markSize}` (64px) の円 / 面 `color.scheme.main.tint` / チェックのアイコン `{completion.markIconSize}` (32px) × `color.brand.primary` / 装飾として `aria-hidden`
-  - 小見出し — 14px + 700 + `color.text.mutedStrong` (字間 0.14em)
-  - 本文 — 16px + 行間 1.8 + `color.text.body` / 左寄せ / 最大 46 文字幅
+  - 小見出し — 14px + 700 + `color.text.mutedStrong` (字間 0.14em)。見出しとの間隔は 8px
+  - 本文 — 16px + 行間 1.8 + `color.text.body` / 左寄せ / 最大幅 46ch (半角の「0」46 字ぶん。全角ではおよそ 23〜28 字)
   - 要点 — 項目名 (14px + `color.text.mutedStrong`) と値 (`color.text.strong` + 行間 1.8・数字は幅を揃える) の組を、面 `color.surface.muted` + 角丸 `radius.card` + 内側 16px の器に入れる (640px 以上は項目名の列 7em)。最大 46 文字幅
-  - 次の手順 — 番号付きの一覧。手順どうしの間隔 `{completion.stepGap}` (16px) / 番号は直径 `{completion.stepNumberSize}` (24px) の円 (面 `color.scheme.main.tint` + 12px + 700 + `color.text.link`・装飾として `aria-hidden`) / 手順名 700 + `color.text.strong` / 説明 14px + `color.text.body`
+  - 次の手順 — 番号付きの一覧。手順どうしの間隔 `{completion.stepGap}` (16px) / 番号と本文の間隔 12px / 番号は直径 `{completion.stepNumberSize}` (24px) の円 (面 `color.scheme.main.tint` + 12px + 700 + `color.text.link`・装飾として `aria-hidden`) / 手順名 700 + `color.text.strong` / 説明 14px + `color.text.body`
   - 操作 — `Button` を縦に積み中央に置く (間隔 12px)
 - Do: 完了したことを見出し (`h1`) の文で伝える。印だけで伝えない
 - Do: 手順は `ol` で組む
@@ -535,7 +535,7 @@
 
 ### LoadingState
 
-- 用途: 一覧・オーバーレイの中身を読み込み直している間、**その領域が更新中であること**を示す
+- 用途: **一覧を読み込み直している間**は一覧の領域が、**オーバーレイの中身を取得している間** (取得が済むまでオーバーレイは開かない) は押した起点のボタンが、更新中であることを示す
 - 構成:
   - 覆い — 対象の領域の上に面 `color.surface.default` を不透明度 0.6 `🚧` で重ねる
   - 回る印 — Font Awesome の `circle-notch` × `color.text.mutedStrong`。一覧では上端から 24px の中央、起点のボタンでは中央に置く / 1 回転 1 秒で回す。`prefers-reduced-motion: reduce` では止める
@@ -555,7 +555,7 @@
   - カード — 面 `color.surface.default` / 角丸 `{errorPage.cardRadius}` (16px) / 上下 `{errorPage.cardPaddingBlock}` (64px)・左右 `{errorPage.cardPaddingInline}` (24px) / 中央揃え / 要素の間隔 `{errorPage.cardGap}` (16px)
   - アイコン — `{errorPage.iconSize}` (32px)。`error` = `color.state.error` / `muted` = `color.text.mutedStrong`
   - 見出し (`h1`) — `font.heading.family` / 1024px 未満 32px・1024px 以上 `font.heading.h1Size` (40px) / 700 / 行間 1.3 / `color.text.strong`
-  - 本文 — 16px + 行間 1.8 + `color.text.body` / 最大幅 448px / 長い語は途中で折り返す
+  - 本文 — 16px + 行間 1.8 + `color.text.body` / 最大幅 448px / 長い語は途中で折り返す / 段落の間隔は本文の 1 行ぶん (16px × 1.8)
   - 操作 — `Button` (`primary`)
   - 補助リンク — 最小の高さ `{size.tapTarget.commit}` (**区分 A** 48px / 1024px 以上 40px。実装は幅を問わず 48px の固定) / 14px / `color.text.link` + 下線
   - エラーコード — `{errorPage.codeFontSize}` (12px) + `color.text.mutedStrong`
@@ -563,13 +563,13 @@
 - Don't: エラーコードだけで状況を伝えない
 - 関連トークン: `{errorPage.pagePaddingTop}` / `{errorPage.pagePaddingBottom}` / `{errorPage.cardRadius}` / `{errorPage.cardPaddingBlock}` / `{errorPage.cardPaddingInline}` / `{errorPage.cardGap}` / `{errorPage.iconSize}` / `{errorPage.codeFontSize}` / `{size.tapTarget.commit}` / `font.heading.*` / `color.surface.subtle` / `color.surface.default` / `color.state.error` / `color.text.*`
 - [事実] 本節の値は実装の `err_s_global.scss` (共通エラー器・実装側 Issue `#2546`) による。同実装は国内宿泊のエラー画面を移植の出発点とし (Owner 決定 OD-32「共通エラー画面 (G1-D5) のデザイン・レイアウトは tocoo_travel のエラー画面をベースにする」。本 Repository に同決定の記録は無い)、値は国内宿泊と一致する
-- [事実] 実装の `secondary` ボタンの枠 (`color.border.default` #CCCCCC・白面上 1.61:1) は [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 4 (3:1) に届かない。実装に `ge-err__btn--secondary` を使う画面は無い (`src/Template` で 0 件)。本書の `Button.secondary` は枠を定義しておらず、本節は `Button` に無い枠を足さない
+- [事実] 実装の `secondary` ボタンの枠 (`color.border.default` #CCCCCC・白面上 1.61:1) は [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 4 (3:1) に届かない。実装に `ge-err__btn--secondary` を使う画面は無い (`src/Template` で 0 件)。副の操作を置く場合の意匠は本書の `Button.secondary` (枠 `border.default` を持つ) が正であり、本節は独自の値を定めない。`Button.secondary` の枠が役割 4 に届かないことは本 Task では是正していない
 - [事実] 最小の高さ 512px (`spacing.16` × 8)・本文の最大幅 448px (`spacing.16` × 7) は spacing の倍数であり、トークン化していない
-- 未確定事項: 副の操作 (`secondary`) の示し方
+- 未確定事項: `Button.secondary` の枠 (1.61:1) の扱い
 
 ## 7. レスポンシブ
 
-結論: ブレークポイントは 640 / 768 / 1024 / 1280。実装は DS 移行 (2026-09-15〜09-24) の後、640 / 768 / 1024 / 1280 を用いている (2026-09-29 の再実測 (`tocoo/tocoo_rental_car` `origin/master` `23d7c58b8`・Task 009-80)・移行前は 2 段 959 / 960 のみ)。下表の振る舞いが正である。
+結論: ブレークポイントは 640 / 768 / 1024 / 1280。実装は DS 移行 (2026-09-15〜09-24) の後、640 / 768 / 1024 / 1280 を用いている (ほかに内容に合わせた 430px が 1 箇所・`result_list_s_global.scss` L164。2026-09-29 の再実測 (`tocoo/tocoo_rental_car` `origin/master` `23d7c58b8`・Task 009-80)・移行前は 2 段 959 / 960 のみ)。下表の振る舞いが正である。
 
 | Component | 768px 未満 (モバイル) | 1024px 以上 (デスクトップ) |
 | --- | --- | --- |

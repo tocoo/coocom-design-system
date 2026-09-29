@@ -22,8 +22,8 @@
 | 区分 | 1024px 未満 / 以上 | トークン | 該当する Component (本書) |
 |---|---|---|---|
 | **A 確定・遷移** | 48px / 40px | `{size.tapTarget.commit}` | `Button`・`SearchForm` の CTA・`Tabs`・`OptionRow`・`NavigationRow`・`Chip` (`use = applied` の解除)・`Header` のハンバーガー・`ErrorPage` の補助リンク |
-| **B 開くだけ** | 48px / 32px | `{size.tapTarget.open}` | `Select`・`OverlayTrigger`・`StickyBar` の条件ボタン・`TableOfContents` の目次バー |
-| **C 戻せる切替** | 40px / 32px | `{size.tapTarget.toggle}` | `Checkbox` の行・`Chip` (`use = select`)・フォームの中のラジオの行 |
+| **B 開くだけ** | 48px / 32px | `{size.tapTarget.open}` | `Select`・`OverlayTrigger`・`StickyBar` の条件ボタン・`TableOfContents` の目次バー・`SummaryBar` |
+| **C 戻せる切替** | 40px / 32px | `{size.tapTarget.toggle}` | `Checkbox` の行・`Chip` (`use = select`)・フォームの中のラジオの行・`QuantityStepper` の ± ボタン (本書の値 48px が下限を上回る) |
 | **D 格子のセル** | 40px / 32px | `{size.tapTarget.cell}` | `DateRangeCalendar` / `AvailabilityCalendar` の日付セル (セル間に `{spacing.1}` 4px 以上の隙間) |
 | **E 連続値の操作子** | 24px / 24px | `{size.tapTarget.thumb}` | `RangeSlider` のつまみ |
 
@@ -112,12 +112,12 @@
   - Don't: シェブロンを SVG 画像・データ URI で描かない (色の解決値が焼き込まれ、スキーム切替に追随しない)
   - Don't: 本 Component を pill (`{radius.action}`) にしない (ボタン・チップ型操作要素と見分けがつかなくなる)
   - Don't: 未選択であることを色だけで伝えない。文言 (「選択してください」等) を必ず併記する (`design.md` §2.3)
-- 関連トークン: `{radius.field}` / `{size.tapTarget.open}` / `{select.paddingInline}` / `{select.chevronSize}` / `{color.border.default}` / `{border.width.thin}` / `{color.surface.default}` / `{color.text.body}` / `{color.text.muted}` / `{color.focus.ring}` / `{color.state.error}` 🚧 / `{font.body.family}` / `{font.body.size}` / `{disabled.opacity}`
+- 関連トークン: `{radius.field}` / `{size.tapTarget.open}` / `{select.paddingInline}` / `{select.chevronSize}` / `{color.border.default}` / `{border.width.thin}` / `{color.surface.default}` / `{color.text.body}` / `{color.text.muted}` / `{color.focus.ring}` / `{color.state.error}` / `{font.body.family}` / `{font.body.size}` / `{disabled.opacity}`
 - [事実] 実装 (`tocoo/tocoo_travel` `origin/dev-ds` `142afb120`・2026-09-15) は 2 箇所に分かれ、角丸 (8px / 4px)・文字サイズ (14px / 16px)・シェブロン (自前 SVG / ブラウザ標準) が食い違っていた (`search_s_global.scss` L532・`ultra_market_s.scss` L1091。本 Repository で実測)。本節はこの割れを上記の値へ統一する。**実装側の是正の範囲・順序・期限は実装 Repository 側の課題**である
 - [事実] 実装にはプルダウンを UI に用いず、値の運搬にのみ `<select>` を残してチップで選ばせている箇所がある (`inquiry_s.scss` L32・L401)。上記の使い分けに照らすとこれは Select ではなく選択用チップの範囲であり、本節の対象外とする
 - [事実] 実装 (`tocoo/tocoo_travel` `origin/dev-ds` `eda3a549`) で DS 準拠の層に表れるネイティブの `<select>` は **4 箇所のみ**で、いずれも年齢である (`_search_module_tab_v2.ctp` L745 / L759・`MemberDetail/ultra_plan.ctp` L450 = `.ds-guest__age-select`、`ultra_tocoo_market.ctp` L408 = `.um-age__select`)。都道府県・エリア・空港・日付・人数はいずれも `.ds-ov__row` のボタンを並べたオーバーレイで選ばせている (`_search_module_tab_v2.ctp` L636-660・`_tour_search.ctp` L598-601)。本 Repository で実測
 - [事実] 実装がネイティブを既定にしない理由は `_tour_search.ctp` L12 のコメントに書かれている — 「国内ツアーだけネイティブの `<select>` と Bootstrap 系の日付プラグインで組むと、同じ『検索する』操作の見えも操作感も画面ごとに割れる」。旧層の `_search_form.ejs` も `<select tabindex="-1">` を値の運搬だけに残し、UI は `.p-form-panel` の `<ul><li>` である
-- 未確定事項: サイズ段階 (sm/md/lg) は実体がなく定義しない / 複数選択・検索付きの選択は対象外 (実体皆無) / Modal の表示形態へ切り替える件数のしきい値 / error・disabled・success の実体一式 (follow-up #2)
+- 未確定事項: サイズ段階 (sm/md/lg) は実体がなく定義しない / 複数選択・検索付きの選択は対象外 (実体皆無) / Modal の表示形態へ切り替える件数のしきい値 / 検証の実体 (error を出す時機・success の表示) (follow-up #2)。error の意匠は `FormField` (Task 009-81)、disabled は共通事項 (Task 009-79) に定義した
 
 ## Checkbox / Radio
 
@@ -564,7 +564,7 @@
   - Do: 帯を `nav` で組み、何を送るかをラベルで示す
   - Don't: 送れない側を色の変更だけで示さない
 - 関連トークン: `{pager.padding}` / `{pager.gap}` / `{pager.radius}` / `{pager.buttonHeight}` / `{pager.buttonPaddingInline}` / `{pager.buttonGap}` / `{pager.buttonFontSize}` / `{pager.rangeFontSize}` / `{color.surface.subtle}` / `{color.text.link}` / `{color.text.strong}` / `{radius.action}` / `{font.price.family}` / `{disabled.opacity}`
-- [事実] 本節の値は実装の `ultra_plan_calendar_s.scss` L28-76 (`.upc-pager`) による。番号付きのページ送りはマイページ (`my_page_s_global.scss` `.mypage-pager`) にしか実装が無く、マイページの実装は採用の対象から除いたため、本節では定義していない (§46)
+- [事実] 本節の値は実装の `ultra_plan_calendar_s.scss` L28-76 (`.upc-pager`) による。施設詳細の料金カレンダーの前後送り (`plan_calendar_s.scss` `.pc__nav`・2026-08-21) は最終更新が前である。「前後の記事」への導線 (`aboutus_s.scss` `.ab-pager`・09-07) は `Button` (`secondary`) で組んだ記事間の移動であり、期間を送る本節とは役割が異なると判断して比較から外した。番号付きのページ送りはマイページ (`my_page_s_global.scss` `.mypage-pager`) にしか実装が無く、マイページの実装は採用の対象から除いたため、本節では定義していない (§46)
 - [事実] 実装は送れない側を文字色 `color.text.placeholder` + カーソル `default` で示し、640px 未満ではアクセシブルネームが無い。本節は共通事項の `disabled` の規則と上の Do を採る
 - 未確定事項: 番号付きのページ送り (Pagination) の定義 / 送りボタンの区分 (実装は 48px 固定。押すと再取得が走るため区分 A = 48px / 1024px 以上 40px に当たるかは未判定)
 
@@ -634,7 +634,7 @@
   - Do: エラーは枠の色と文の両方で示す (色だけで伝えない)
   - Don't: 必須の表記に `{color.accent.campaign}` を使わない (白背景 3.68:1 で役割 1 の下限 4.5:1 に届かない・[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §4)
 - 関連トークン: `{field.labelFontSize}` / `{field.labelGap}` / `{field.markFontSize}` / `{field.errorFontSize}` / `{field.errorMarginTop}` / `{font.body.lineHeight}` / `{color.text.strong}` / `{color.state.error}` / `{color.scheme.main.ink}`
-- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve.scss` による (予約入力・2026-09-24) — 見出し L246-300 (`.reserve-tbl th`)、必須・任意 L396-420 (`.input-required` / `.input-optional`)、欄のエラー L187-189 と L231-241 (`.error` / `#entryform label.error`)。認証画面 (`webroot/member/scss/auth_s_global.scss`・2026-09-23〜09-24 09:18)・問い合わせ・レンタカー会社加盟の資料請求は最終更新が前であり、マイページ (`.mypage-field__*`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
+- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve.scss` による (予約入力・2026-09-24) — 見出し L246-300 (`.reserve-tbl th`)、必須・任意 L396-421 (`.input-required` / `.input-optional`)、欄のエラー L187-189 と L231-241 (`.error` / `#entryform label.error`)。認証画面 (`webroot/member/scss/auth_s_global.scss`・2026-09-23〜09-24 09:18)・問い合わせ・レンタカー会社加盟の資料請求は最終更新が前であり、マイページ (`.mypage-field__*`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
 - [事実] 実装は、必須の表記に `{color.accent.campaign}` (#E4572E・白背景 3.68:1) を用いている (予約入力・認証・問い合わせ・資料請求のいずれも同じ)。本節はコントラスト規約の役割 1 (4.5:1) を優先し `{color.state.error}` を採る (§46 V-4)
 - [事実] 実装 (予約入力) の欄のエラー文はアイコンを持たない
 - 未確定事項: 欄のエラー文を出す時機 (入力中・離脱時・送信時) / 成功状態の表示
@@ -657,7 +657,7 @@
 - 関連トークン: `{alert.barHeight}` / `{alert.padding}` / `{alert.paddingInlineWide}` / `{alert.gap}` / `{alert.infoGap}` / `{alert.listIndent}` / `{alert.listGap}` / `{alert.bodyFontSize}` / `{color.surface.default}` / `{color.border.subtle}` / `{color.state.error}` / `{color.brand.primary}` / `{color.text.strong}` / `{color.text.body}` / `{radius.card}` 🚧
 - [事実] `error` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L450-489 (`.error-messages`・予約入力・2026-09-24・`MemberReserve/index.ctp` L81 の `role="alert"`)、`info` の値は `reserve_confirm.scss` L75-117 (`.rc-notice`・予約確認・2026-09-24・`conf.ctp` L42 の `role="status"`) による。認証画面 (`auth_s_global.scss` `.ga-auth__alert`・赤枠と薄灰の面・2026-09-23)・ログイン (`login.scss` `.ga-login__alert`・2026-09-23)・お知らせ (`.nw-notice`・09-18)・問い合わせ (`.iq-alert`)・資料請求 (`.frc-alert`)・法人向け (`.sl-alert`)・施設詳細 (`.hd-notice`) は最終更新が前であり、マイページ (`.mypage-error-summary`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
 - [事実] 実装 (予約入力) の `error` の一覧の項目はリンクではない。本節の Do はこれを定める
-- 未確定事項: 影 (🚧 未定義・follow-up #13) / 成功のバリアント
+- 未確定事項: 影 (🚧 未定義・follow-up #13) / 成功を示す種別
 
 ## EmptyState
 
@@ -701,8 +701,8 @@
   - Don't: `inline` で回転・点滅を用いない (`Skeleton` の Don't と同じ)
   - Don't: `blocking` を一覧の読み込みに用いない (操作を止める必要がある送信中に限る)
 - 関連トークン: `{loading.fontSize}` / `{loading.iconGap}` / `{loading.marginBlockEnd}` / `{loading.barWidth}` / `{loading.barHeight}` / `{elevation.modal}` / `{color.overlay.backdrop}` 🚧 / `{radius.overlay}` 🚧 / `{color.surface.default}` / `{color.text.body}` / `{color.brand.primary}`
-- [事実] 本節の値は実装の `ultra_market_s.scss` L871-892 と `ultra_tocoo_market.ctp` L174-205 (2026-08-27) による。検索結果 (`search_result_s.scss` L391-492・`.sr-loading`・回転するスピナー 700ms と明滅する骨組み) は最終更新が前であり採っていない (§46)
-- [事実] `blocking` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L2145-2186 (`.c-loading`・2026-09-24) と `Element/Member_s/footer.ctp` L114 による。`inline` とは役割 (送信中に操作を止める) が異なるため、別のバリアントとした。印の器の一辺 96px は spacing の倍数 (64px × 1.5) であり、トークン化していない
+- [事実] 本節の値は実装の `ultra_market_s.scss` L871-891 と `ultra_tocoo_market.ctp` L174-205 (2026-08-27) による。検索結果 (`search_result_s.scss` L391-492・`.sr-loading`・回転するスピナー 700ms と明滅する骨組み) は最終更新が前であり採っていない (§46)
+- [事実] `blocking` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L2145-2186 (`.c-loading`・2026-09-24) と `Element/Member_s/footer.ctp` L114 による。`inline` とは役割 (送信中に操作を止める) が異なるため、別の種別とした。印の器の一辺 96px は spacing の倍数 (64px × 1.5) であり、トークン化していない
 - 未確定事項: `blocking` の支援技術への告げ方 (実装は告知文を持たない) / 骨組みを出さない小さな領域 (オーバーレイの中の再取得等) の告げ方 / 読み込みが長いときの表示
 
 ## TableOfContents
@@ -745,7 +745,7 @@
   - 見出し (`h1`) — `{font.heading.family}` / 1024px 未満 32px・1024px 以上 `{font.heading.h1Size}` (40px) / 700 / 行間 1.3 / `{color.text.strong}`
   - 本文 — `{font.body.size}` (16px) + 行間 1.8 + `{color.text.body}` / 最大幅 448px / 段落の間隔は本文の 1 行ぶん
   - 操作 — `Button` (`primary`。副の操作は `secondary`)。副の操作があるときは縦に積み、幅いっぱい (最大 20rem) とする
-  - 補助リンク — 最小の高さ `{size.tapTarget.commit}` / 14px / `{color.text.link}` + 下線
+  - 補助リンク — 最小の高さ `{size.tapTarget.commit}` (**区分 A** 48px / 1024px 以上 40px。実装は幅を問わず 48px の固定) / 14px / `{color.text.link}` + 下線
   - エラーコード — `{errorPage.codeFontSize}` (12px) + `{color.text.mutedStrong}`
 - 状態: なし
 - Do / Don't:
@@ -763,7 +763,7 @@
 - 用途: 予約入力で、画面下端に**施設名・条件・支払予定額**を出し続け、押すと予約内容のシートを開く帯 (予約内容バー)
 - バリアント: なし
 - 構成:
-  - 器 — 画面下端に固定 / 重なり `{elevation.sticky}` / 上下 `{summaryBar.paddingBlock}` (12px。下端は `safe-area` の余白を足す)・左右 `{summaryBar.paddingInline}` (16px) / 要素の間隔 `{summaryBar.gap}` (12px) / 面 `{color.surface.default}` / 上端 `{border.width.thin}` × `{color.border.subtle}` / 影は 🚧 未定義 (実装は `shadow.md` を参照)
+  - 器 — 画面下端に固定 / 重なり `{elevation.sticky}` / 最小の高さ `{size.tapTarget.open}` (**区分 B 開くだけ**。実装は最小の高さを指定せず、内容の高さで下限を上回る) / 上下 `{summaryBar.paddingBlock}` (12px。下端は `safe-area` の余白を足す)・左右 `{summaryBar.paddingInline}` (16px) / 要素の間隔 `{summaryBar.gap}` (12px) / 面 `{color.surface.default}` / 上端 `{border.width.thin}` × `{color.border.subtle}` / 影は 🚧 未定義 (実装は `shadow.md` を参照)
   - 施設名 — `{summaryBar.titleFontSize}` (16px) + 700 + 行間 `{font.heading.lineHeight}` (1.3) + `{color.text.strong}` / 長い語は途中で折り返す
   - 条件 (日付・泊数・室数・人数) — `{summaryBar.subFontSize}` (14px) + `{color.text.mutedStrong}` / 施設名との間隔 `{summaryBar.innerGap}` (4px)
   - 料金 — 右寄せ。見出し (「支払予定額」) `{summaryBar.priceLabelFontSize}` (12px) + `{color.text.mutedStrong}` / 数字 `{summaryBar.priceFontSize}` (18px) + 700 + `{color.text.body}` / 単位 (円) `{summaryBar.priceUnitFontSize}` (12px) + 400
@@ -773,9 +773,9 @@
 - Do / Don't:
   - Do: バー全体を 1 つの `button` とし、`aria-expanded` と `aria-controls` (開くシート) を付ける
   - Don't: 本文の下端の余白を固定値にしない (バーの高さは内容で変わる)
-- 関連トークン: `{summaryBar.paddingBlock}` / `{summaryBar.paddingInline}` / `{summaryBar.gap}` / `{summaryBar.innerGap}` / `{summaryBar.titleFontSize}` / `{summaryBar.subFontSize}` / `{summaryBar.priceLabelFontSize}` / `{summaryBar.priceFontSize}` / `{summaryBar.priceUnitFontSize}` / `{summaryBar.chevronSize}` / `{elevation.sticky}` / `{color.surface.default}` / `{color.border.subtle}` / `{color.text.strong}` / `{color.text.body}` / `{color.text.mutedStrong}` / `{font.heading.lineHeight}` / `{color.focus.ring}`
+- 関連トークン: `{size.tapTarget.open}` / `{summaryBar.paddingBlock}` / `{summaryBar.paddingInline}` / `{summaryBar.gap}` / `{summaryBar.innerGap}` / `{summaryBar.titleFontSize}` / `{summaryBar.subFontSize}` / `{summaryBar.priceLabelFontSize}` / `{summaryBar.priceFontSize}` / `{summaryBar.priceUnitFontSize}` / `{summaryBar.chevronSize}` / `{elevation.sticky}` / `{color.surface.default}` / `{color.border.subtle}` / `{color.text.strong}` / `{color.text.body}` / `{color.text.mutedStrong}` / `{font.heading.lineHeight}` / `{color.focus.ring}`
 - [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L663-730 (`.sumbar`・2026-09-24) と `MemberReserve/index.ctp` L262-272 による (実装は 1 系統)
-- [事実] 実装の値のうち既存の段に無いものを、最寄りの段へ丸めた (§46 V-5) — 上下余白 10px → 12px (8px と 12px の中間のため大きい側)、施設名と条件の間隔 2px → 4px (0 と 4px の中間のため大きい側)、開く印 10px → 12px (同)、料金の見出し 11px → 12px (文字の最小の段が 12px)、単位のウェイト 500 → 400 (400 との差 100・700 との差 200)
+- [事実] 実装の値のうち既存の段に無いものを、最寄りの段へ丸めた (§46 V-5) — 上下余白 10px → 12px (8px と 12px の中間のため大きい側)、施設名と条件の間隔 2px → 4px (0 と 4px の中間のため大きい側)、開く印 10px → 12px (8px と 12px の中間のため大きい側)、料金の見出し 11px → 12px (文字の最小の段が 12px)、単位のウェイト 500 → 400 (400 との差 100・700 との差 200)
 - [事実] 画面上端に貼り付く `StickyBar` とは別の部品である (位置・中身・押した結果が異なる)
 - 未確定事項: 出す幅の条件 (実装の CSS では確かめられなかった) / 影の実値
 
@@ -796,6 +796,7 @@
   - Don't: 表 (`Table`) の見た目で組まない。罫と面を持たない
 - 関連トークン: `{descriptionList.itemGap}` / `{descriptionList.rowGap}` / `{descriptionList.columnGap}` / `{descriptionList.termFontSize}` / `{font.body.size}` / `{color.text.mutedStrong}` / `{color.text.strong}`
 - [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve_confirm.scss` L155-195 (予約確認・2026-09-24) による。項目名の列の幅 9em は文字数に基づく値であり、トークン化していない
+- [事実] お知らせ・規約ページの定義リスト (`note_s.scss` L319-331・`.nt-dl`・2026-09-24 22:52) は更新が新しいが、文書の本文を面の器 (`.nt-box`) に入れて示すものであり、フォームの確認に用いる本節とは役割が異なると判断して比較から外した。認証 (`.ga-auth__summary-*`・09-23)・問い合わせ (`.iq-summary`)・資料請求 (`.frc-summary`)・法人向け (`.sl-summary`) は最終更新が前である ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
 - [事実] 実装は `table` 要素を組み替えてこの見た目にしている。本節の Do は `dl` を定める
 
 ## CompletionPanel
@@ -818,8 +819,10 @@
   - Do: 完了したことを見出しの文で伝える。印だけで伝えない
   - Do: 手順は `ol` で組む
 - 関連トークン: `{completion.paddingBlock}` / `{completion.paddingInline}` / `{completion.gap}` / `{completion.markSize}` / `{completion.markIconSize}` / `{completion.stepGap}` / `{completion.stepInnerGap}` / `{completion.stepNumberSize}` / `{completion.stepNumberFontSize}` / `{color.surface.default}` / `{color.scheme.main.tint}` / `{color.action.primary.bg}` / `{color.action.primary.text}` / `{color.text.*}` / `{font.heading.*}` / `{radius.card}` 🚧
-- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/booking_complete.scss` L13-190 と `MemberReserve/done.ctp` による (予約完了・2026-09-18)。認証系の完了カード (`auth_s_global.scss` `.ga-auth__card--done`・2026-09-23 / `--flow-done`・2026-09-23 / `.ga-auth__done-notes`・2026-09-24) は更新が新しいが、完了の印も次の手順の一覧も持たない文とボタンだけのカードであり、本節 (完了の印・次の手順・戻り先) とは部品の役割が異なると判断して比較から外した。問い合わせ (`.iq-done`・完了の印あり・2026-09-14)・資料請求 (`.frc-done`・09-15)・法人向け (`.sl-done`・09-11) は最終更新が前である器の最大幅 640px・手順と操作の最大幅 448px は spacing の倍数であり、トークン化していない
+- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/booking_complete.scss` L13-190 と `MemberReserve/done.ctp` による (予約完了・2026-09-18)。認証系の完了カード (`auth_s_global.scss` `.ga-auth__card--done`・2026-09-23 / `--flow-done`・2026-09-23 / `.ga-auth__done-notes`・2026-09-24) は更新が新しいが、完了の印も次の手順の一覧も持たない文とボタンだけのカードであり、本節 (完了の印・次の手順・戻り先) とは部品の役割が異なると判断して比較から外した。問い合わせ (`.iq-done`・完了の印あり・2026-09-14)・資料請求 (`.frc-done`・09-15)・法人向け (`.sl-done`・09-11) は最終更新が前である。写真付きの登録完了 (`.ga-auth--photo-done`・09-24) と会員登録の完了 (`register.scss` `.ga-auth--register-done`・09-23) も、完了の印と手順の一覧を持たないため同じ理由で比較から外した
+- [事実] 器の最大幅 640px・手順と操作の最大幅 448px は spacing の倍数であり、トークン化していない
 - [事実] 実装の `secondary` ボタンは枠 `{color.border.default}` (白面上 1.61:1) を持つ。本節は操作の意匠を `Button` に委ね、`Button` に無い枠を本節で足さない (`ErrorPage` と同じ扱い)
+- 未確定事項: 白い面の上に置く `Button.secondary` の境界の示し方 (`ErrorPage` と同じ論点) / 手順が 3 以上の場合の並び
 
 ## 変更履歴
 

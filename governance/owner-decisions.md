@@ -1953,7 +1953,7 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 
 | 項目 | 内容 |
 | --- | --- |
-| 承認対象 | ①travel `components.md` への 14 節 (Stepper / QuantityStepper / Pager / Accordion / Table / FormField / Alert / EmptyState / LoadingState / TableOfContents / ErrorPage / SummaryBar / DescriptionList / CompletionPanel) の新設と `Card` への追記、②rental-car `components.md` への 10 部品の定義 (§2 QuantityStepper と §6 新設の 9 節) と Input・FormLabel・DateRangeCalendar への追記、③両サービスの `semantic.*.json` への器トークンの追加 (既存の値への割当のみ)、④両サービスの `design.md`・rental-car の `design-system/README.md`・travel の見本ページの未取得記述の更新 |
+| 承認対象 | ①travel `components.md` への 14 節 (Stepper / QuantityStepper / Pager / Accordion / Table / FormField / Alert / EmptyState / LoadingState / TableOfContents / ErrorPage / SummaryBar / DescriptionList / CompletionPanel) の新設と `Card` への追記、②rental-car `components.md` への 10 部品の定義 (§2 QuantityStepper と §6 新設の 9 節) と Input・FormLabel・DateRangeCalendar への追記、③両サービスの `semantic.*.json` への器トークンの追加 (既存の値への割当のみ)、④両サービスの `design.md`・rental-car の `design-system/README.md`・travel の見本ページの未取得記述の更新、⑤両サービスの見本ページの生成ブロックの再生成 (`tools/gen-preview-tokens.py`) |
 | 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
 | 承認日 | 2026-09-29 |
 | 承認主体 | Web部責任者 |
@@ -1966,7 +1966,7 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 | --- | --- |
 | 影響度 | **未取得** |
 | 必要レビュー主体 | 影響度の判定後に [review-approval-rules.md](review-approval-rules.md) §10 に従って定まる |
-| 備考 | 2 サービスの Component 定義と token に及ぶ。同 §8 の編集的訂正 carve-out は「Component 定義・token 値に影響する変更」を明文で除外しており、本件に適用しない |
+| 備考 | 2 サービスの Component 定義と token に及ぶ。同 §8 の編集的訂正 carve-out は、token 値・Component 定義に影響する変更を除外しており (「設計内容・設計判断・token 値・Component 定義・version・プロセス判断に影響する変更」)、本件に適用しない |
 
 ### 46-3. 取得した現在判断 (2026-09-29)
 
@@ -1974,7 +1974,7 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 | --- | --- | --- |
 | V-1 | **実装にあって定義の無い部品・状態は、実装の値で定義する** | 未着手一覧に載せるだけにとどめず、実装の寸法・色・状態を DS の部品定義として書き起こす。新しい数値・色値・primitive は追加せず、既存の値への割当で表す |
 | V-2 | **実装が割れている部品は、最も新しい実装の値を採る** | 同じ役割の実装が複数ある場合は、その実装の行が最後に更新された日時 (`git blame`) が最も新しいものを採る。比べる範囲は DS トークンを参照している実装ファイルのすべてとする — travel は `webroot/member/scss/` と `yarn_project/src/assets_s/css/` (予約フロー)、rental-car は `gulp/japan/scss/` |
-| V-3 | **マイページの実装は採用の対象から除く** | マイページの実装は正しくない可能性が高いため、V-2 の比較から外す。これにより、番号付きのページ送り (マイページにしか実装が無い) は定義せず、未着手に残す |
+| V-3 | **マイページの実装は採用の対象から除く** | マイページの実装は正しくない可能性が高いため、V-2 の比較から外す。これにより、travel の番号付きのページ送り (travel ではマイページにしか実装が無い) は定義せず、未着手に残す。rental-car は `Pagination` を定義済みである |
 | V-4 | **実装の値が既存の規則に反する箇所は、既存の規則を優先する** (取り扱い) | 押せない状態 (§45 = 不透明度 0.5・色を変えない) と [contrast-rules.md](contrast-rules.md) の下限に反する実装の値は採らない。本件で置き換えたのは次の 4 点 — travel の必須の表記 (`color.accent.campaign` 3.68:1 → `color.state.error` 4.77:1)、travel の数値ステッパーと前後送りの押せない側 (文字色の変更 → 不透明度 0.5)、rental-car のカレンダーの当日の線 (`color.border.strong` 1.90:1 → `color.text.mutedStrong` 6.19:1) |
 | V-5 | **最も新しい実装が既存の段に無い値を使っている場合は、最寄りの既存の段に丸める** | 余白・文字サイズ・太さ・行間の値が既存の段に無い場合は、近い段へ寄せて定義し、丸めた箇所を各節に明記する。2 段のちょうど中間の値は大きい側へ寄せる (行間 1.4 は `normal` 1.5)。本件で丸めたのは travel の `Stepper` (番号の円 28px → 32px・行間 1.4 → 1.5) と `SummaryBar` (余白 10px → 12px・2px → 4px・文字 11px → 12px・ウェイト 500 → 400・印 10px → 12px) |
 
@@ -1983,7 +1983,7 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 ### 46-4. 本記録が決定しないこと
 
 - **DS に定義があり、実装の値と食い違う部品の扱い** (travel の Button の 1024px 以上の高さ・Breadcrumb の現在地の色・NavigationRow の選択中、rental-car の StepIndicator の段数と形・FormLabel のウェイト・ResultCard の写真幅と車種名の書体ほか)。どちらを正とするかは本記録の対象外である。
-- **番号付きのページ送り (Pagination)** の定義。
+- **travel の番号付きのページ送り (Pagination)** の定義。
 - **画面固有の組み合わせ** (rental-car のプラン詳細の 2 列の配置・車両の見出し・トップのヒーローと会員帯、予約サマリのカード等) の部品化。
 - **「選べない値」の表現** (§37 N-4・§45-5 のまま据え置く)。
 - **既存実装の是正。** 範囲・順序・期限は実装 Repository 側の課題である。

@@ -25,9 +25,9 @@
 
 | 区分 | 1024px 未満 / 以上 | トークン | 該当する Component (本書) |
 |---|---|---|---|
-| **A 確定・遷移** | 48px / 40px | `{size.tapTarget.commit}` | `Button`・`SearchForm` の CTA・`Tabs`・`OptionRow`・`NavigationRow`・`Chip` (`use = applied` の解除)・`Header` のハンバーガー |
+| **A 確定・遷移** | 48px / 40px | `{size.tapTarget.commit}` | `Button`・`SearchForm` の CTA・`Tabs`・`OptionRow`・`NavigationRow`・`Chip` (`use = applied` の解除)・`Header` のハンバーガー・`ErrorPage` の補助リンク |
 | **B 開くだけ** | 48px / 32px | `{size.tapTarget.open}` | `Select`・`OverlayTrigger`・`Sort / Pagination` の起点・`StickyBar` の条件ボタン |
-| **C 戻せる切替** | 40px / 32px | `{size.tapTarget.toggle}` | `Checkbox` の行 (`Options` / `Filter`)・`Chip` (`use = select`)・フォームの中のラジオの行 (`StorePicker`) |
+| **C 戻せる切替** | 40px / 32px | `{size.tapTarget.toggle}` | `Checkbox` の行 (`Options` / `Filter`)・`Chip` (`use = select`)・フォームの中のラジオの行 (`StorePicker`)・`QuantityStepper` の ± ボタン・`ChoiceRow` の行 |
 | **D 格子のセル** | 40px / 32px | `{size.tapTarget.cell}` | `DateRangeCalendar` の日付セル (セル間に `{spacing.1}` 4px 以上の隙間) |
 | **E 連続値の操作子** | 24px / 24px | `{size.tapTarget.thumb}` | `RangeSlider` のつまみ |
 
@@ -185,7 +185,7 @@
   - 曜日見出し — 高さ `{calendar.weekdayHeight}` (32px) / `{calendar.weekdayFontSize}` (12px) / `color.text.mutedStrong`。日曜は `color.state.error`、土曜は `color.text.link`
   - 日付セル — 最小の高さ `{size.tapTarget.cell}` (**区分 D 格子のセル** = 40px / 1024px 以上 32px) / セル間に `{spacing.1}` (4px) 以上の隙間 / `{calendar.dateFontSize}` (14px) / `color.text.strong` / 数字は等幅 (`tabular-nums`)
   - 範囲の表現 — 両端 = 面 `color.brand.primary` + `color.text.inverse` + 700 + 角丸 `{calendar.selectedRadius}` (16px) / 期間中 = 面 `surface.subtle`
-- 状態: **当日** (Task 009-82) — 面は塗らず、セルの内側に `{border.width.thin}` × `color.text.mutedStrong` の線を角丸 `{calendar.selectedRadius}` (16px) で引く (白背景 6.19:1)。範囲の両端・期間中の表現が優先し、当日の線はその上に重ならない位置で示す / 選択不可 (過去日) `🚧` 暫定 — `color.text.mutedStrong` + 不透明度を下げる。**DS に選択不可の文字色トークンが無い**ため暫定表現である (未確定事項) / focus = `color.focus.ring` の outline
+- 状態: **当日** (Task 009-82) — 面は塗らず、セルの内側に `{border.width.thin}` × `color.text.mutedStrong` の線を角丸 `{calendar.selectedRadius}` (16px) で引く (白背景 6.19:1)。当日が範囲の両端・期間中に当たる場合も線は引いたままにする (実装は `.is-today` と `.is-end` を独立に付ける) / 選択不可 (過去日) `🚧` 暫定 — `color.text.mutedStrong` + 不透明度を下げる。**DS に選択不可の文字色トークンが無い**ため暫定表現である (未確定事項) / focus = `color.focus.ring` の outline
 - Do: 曜日の色分け (日曜・土曜) は補助にとどめる。曜日は列の位置でも判別できる
 - Do: 範囲の両端と期間中を**面の濃さで区別**し、両端は太さも併せ持つ
 - Don't: 選択不可を不透明度だけで表現したまま確定しない (未確定事項として追跡する)
@@ -346,7 +346,7 @@
 
 ## 5. オプション・ナビゲーション・オーバーレイ
 
-結論: Header / Breadcrumb / Footer / Modal は travel と同型の定義を採るが、意匠と値は本 DS のファイルに独立して持つ。オーバーレイの追加種別 (BottomSheet / Popover) は、Task 009-63 で Modal の**表示形態 (form) 軸**として本文へ統合した — 旧版が独立節として置いていた「拡張候補 (未承認)」は廃止し、以降の節番号を 1 つ繰り上げている (旧 §7 レスポンシブ → §6、旧 §8 変更履歴 → §7)。**統合に際し、旧候補の Popover が定めていた「意匠 = backdrop なし」「Don't: backdrop を敷かない」は撤回した** — form = `popover` も `drawer` / `sheet` と同じく `color.overlay.backdrop` を敷く (判断 F-1・[design.md](design.md) §7.1)。旧記述は**未承認の候補**であり承認済み規則ではないが、挙動が反転するため差分として明示する。
+結論: Header / Breadcrumb / Footer / Modal は travel と同型の定義を採るが、意匠と値は本 DS のファイルに独立して持つ。オーバーレイの追加種別 (BottomSheet / Popover) は、Task 009-63 で Modal の**表示形態 (form) 軸**として本文へ統合した — 旧版が独立節として置いていた「拡張候補 (未承認)」は廃止し、以降の節番号を 1 つ繰り上げている (旧 §7 レスポンシブ → §6、旧 §8 変更履歴 → §7。その後 Task 009-82 で §6「予約フロー・状態表示」を新設し、レスポンシブを §7、変更履歴を §8 へ繰り下げた)。**統合に際し、旧候補の Popover が定めていた「意匠 = backdrop なし」「Don't: backdrop を敷かない」は撤回した** — form = `popover` も `drawer` / `sheet` と同じく `color.overlay.backdrop` を敷く (判断 F-1・[design.md](design.md) §7.1)。旧記述は**未承認の候補**であり承認済み規則ではないが、挙動が反転するため差分として明示する。
 
 ### Options
 
@@ -453,7 +453,7 @@
   - 補助 (日時) — `{summaryBar.subFontSize}` (14px) + `color.text.mutedStrong` / 折り返さない
   - 金額 — `font.price.family` + 700 + `{summaryBar.priceFontSize}` (16px) + 行間 1.3 + 数字の幅を揃える + `color.text.strong`
   - 開く印 — 幅 `{summaryBar.chevronWidth}` (24px) + `color.text.mutedStrong`
-  - バーと本文が重ならないよう、本文の下端にバーの高さぶんの余白を足す
+  - バーと本文が重ならないよう、1024px 未満で本文の下端に余白を足す (実装は 104px = 40px + 64px の固定値)
 - 状態: 開いている / 閉じている (シート)。focus = `color.focus.ring` の outline
 - Do: バー全体を 1 つの `button` とし、`aria-haspopup="dialog"` と `aria-expanded` を付ける。読み上げ名は、見えている車種・日時・金額を `aria-labelledby` で参照して作る
 - Don't: 見えている金額と異なる内容を読み上げ名に書かない
@@ -466,13 +466,14 @@
 
 - 用途: 予約内容・確認画面の**項目名と値の対**を並べる
 - 構成:
-  - 640px 未満 — 項目名の下に値を置き、組どうしの間隔 `{descriptionList.itemGap}` (16px)
-  - 640px 以上 — 項目名の列 (9em) と値の列を横に並べる。縦の間隔 `{descriptionList.rowGap}` (4px)・横の間隔 `{descriptionList.columnGap}` (24px)
+  - 縦の間隔 `{descriptionList.rowGap}` (4px・すべての幅)
+  - 640px 未満 — 項目名の下に値を置き、値の下に `{descriptionList.itemGap}` (16px) の余白を取る (組どうしの間隔は 4px + 16px = 20px になる)
+  - 640px 以上 — 項目名の列 (9em) と値の列を横に並べる。値の下の余白は取らない。横の間隔 `{descriptionList.columnGap}` (24px)
   - 項目名 — `{descriptionList.termFontSize}` (14px) + 400 + `color.text.mutedStrong` + 行間 1.8
   - 値 — `color.text.strong` + 行間 1.8。長い語は途中で折り返す
 - Do: `dl` / `dt` / `dd` で組む
 - 関連トークン: `{descriptionList.rowGap}` / `{descriptionList.columnGap}` / `{descriptionList.itemGap}` / `{descriptionList.termFontSize}` / `color.text.mutedStrong` / `color.text.strong`
-- [事実] 本節の値は実装の `reservation_s_global.scss` L510-540 (`.gr-dl`) による。項目名の列の幅 9em は文字数に基づく値であり、トークン化していない
+- [事実] 本節の値は実装の `reservation_s_global.scss` L510-540 (`.gr-dl`・2026-09-24) による。プラン詳細 (`detail_s.scss` `.pd-dl`・09-23)・検索結果のドロワー (`.sr-drawer__dl`・09-22) は最終更新が前である ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)。項目名の列の幅 9em は文字数に基づく値であり、トークン化していない
 
 ### FeeBreakdown
 
@@ -501,7 +502,7 @@
 - Do: 選択肢の群に `role="radiogroup"` とアクセシブルネームを付ける
 - Don't: 選択中を面の色だけで示さない (内側の線とラジオの点を併せる)
 - 関連トークン: `{choiceRow.paddingBlock}` / `{choiceRow.paddingInline}` / `{choiceRow.gap}` / `{choiceRow.selectedWidth}` / `{size.tapTarget.toggle}` / `color.surface.muted` / `color.text.body` / `color.text.strong` / `color.brand.primary` / `radius.card`
-- [事実] 本節の値は実装の `reservation_s_global.scss` L470-487 (`.gr-choice`) による。実装は選択中の線に `color.scheme.main.base` を参照しており、本節は同値の用途トークン `color.brand.primary` (#2C50C8) に置き換えた
+- [事実] 本節の値は実装の `reservation_s_global.scss` L470-493 (`.gr-choice` / `.gr-choices`) による。実装は選択中の線に `color.scheme.main.base` を参照しており、本節は同値の用途トークン `color.brand.primary` (#2C50C8) に置き換えた
 
 ### CompletionPanel
 
@@ -511,13 +512,13 @@
   - 完了の印 — 直径 `{completion.markSize}` (64px) の円 / 面 `color.scheme.main.tint` / チェックのアイコン `{completion.markIconSize}` (32px) × `color.brand.primary` / 装飾として `aria-hidden`
   - 小見出し — 14px + 700 + `color.text.mutedStrong` (字間 0.14em)
   - 本文 — 16px + 行間 1.8 + `color.text.body` / 左寄せ / 最大 46 文字幅
-  - 要点 — `DescriptionList` の値の組み方で、面 `color.surface.muted` + 角丸 `radius.card` + 内側 16px の器に入れる (640px 以上は項目名の列 7em)。最大 46 文字幅
+  - 要点 — 項目名 (14px + `color.text.mutedStrong`) と値 (`color.text.strong` + 行間 1.8・数字は幅を揃える) の組を、面 `color.surface.muted` + 角丸 `radius.card` + 内側 16px の器に入れる (640px 以上は項目名の列 7em)。最大 46 文字幅
   - 次の手順 — 番号付きの一覧。手順どうしの間隔 `{completion.stepGap}` (16px) / 番号は直径 `{completion.stepNumberSize}` (24px) の円 (面 `color.scheme.main.tint` + 12px + 700 + `color.text.link`・装飾として `aria-hidden`) / 手順名 700 + `color.text.strong` / 説明 14px + `color.text.body`
   - 操作 — `Button` を縦に積み中央に置く (間隔 12px)
 - Do: 完了したことを見出し (`h1`) の文で伝える。印だけで伝えない
 - Do: 手順は `ol` で組む
 - 関連トークン: `{completion.gap}` / `{completion.paddingBlock}` / `{completion.paddingInline}` / `{completion.markSize}` / `{completion.markIconSize}` / `{completion.stepNumberSize}` / `{completion.stepGap}` / `color.surface.default` / `color.surface.muted` / `color.border.subtle` / `color.scheme.main.tint` / `color.brand.primary` / `color.text.*` / `radius.card`
-- [事実] 本節の値は実装の `reservation_done_s.scss` L20-135 (予約完了・2026-09-24) による。46 文字幅・7em・字間 0.14em は実装が「据え置いた寸法」と記しており、トークン化していない
+- [事実] 本節の値は実装の `reservation_done_s.scss` L20-174 (予約完了・2026-09-24) による。46 文字幅・7em・字間 0.14em は実装が「据え置いた寸法」と記しており、トークン化していない
 
 ### EmptyState
 
@@ -528,7 +529,7 @@
 - Do: 見出しで状況を、続く文で次にできること (条件の変更等) を書く
 - Do: 結果の差し替えを支援技術へ伝える (件数の文を `aria-live` 領域に置く)
 - 関連トークン: `{emptyState.padding}` / `{emptyState.gap}` / `{emptyState.fontSize}` / `color.border.subtle` / `color.text.body` / `color.text.strong` / `radius.card`
-- [事実] 本節の値は実装の `search_result_s.scss` L539-552 (`.sr-empty`・2026-09-21) による。マイページの空状態 (`.gm-empty`) は採用の対象から除いた (§46)。国内宿泊の `EmptyState` (白い面・中央揃え・アイコン付き) とは値が異なる (3 独立 DS の原則により各 DS で持つ)
+- [事実] 本節の値は実装の `search_result_s.scss` L539-552 (`.sr-empty`・2026-09-21) による。マイページの空状態 (`.gm-empty`) は採用の対象から除いた (§46)。プラン詳細の返却店舗の 0 件 (`detail_s.scss` `.pd-officeempty`・09-22) と時刻の一覧の 0 件 (`search_s_global.scss` `.ds-timelist-empty`・09-19) は、オーバーレイの中の 1 行の文言であり一覧の場所を置き換える本部品とは役割が異なると判断して比較から外した。国内宿泊の `EmptyState` (白い面・中央揃え・アイコン付き) とは値が異なる (3 独立 DS の原則により各 DS で持つ)
 - 未確定事項: 取得の失敗の表示を本部品で兼ねるか (実装は `Alert` 相当の `.sr-alert` を別に持つ)
 
 ### LoadingState
@@ -555,13 +556,14 @@
   - 見出し (`h1`) — `font.heading.family` / 1024px 未満 32px・1024px 以上 `font.heading.h1Size` (40px) / 700 / 行間 1.3 / `color.text.strong`
   - 本文 — 16px + 行間 1.8 + `color.text.body` / 最大幅 448px / 長い語は途中で折り返す
   - 操作 — `Button` (`primary`)
-  - 補助リンク — 最小の高さ `{size.tapTarget.commit}` / 14px / `color.text.link` + 下線
+  - 補助リンク — 最小の高さ `{size.tapTarget.commit}` (**区分 A** 48px / 1024px 以上 40px。実装は幅を問わず 48px の固定) / 14px / `color.text.link` + 下線
   - エラーコード — `{errorPage.codeFontSize}` (12px) + `color.text.mutedStrong`
 - Do: カードに `role="alert"` を付ける。アイコンは `aria-hidden` とする
 - Don't: エラーコードだけで状況を伝えない
 - 関連トークン: `{errorPage.pagePaddingTop}` / `{errorPage.pagePaddingBottom}` / `{errorPage.cardRadius}` / `{errorPage.cardPaddingBlock}` / `{errorPage.cardPaddingInline}` / `{errorPage.cardGap}` / `{errorPage.iconSize}` / `{errorPage.codeFontSize}` / `{size.tapTarget.commit}` / `font.heading.*` / `color.surface.subtle` / `color.surface.default` / `color.state.error` / `color.text.*`
 - [事実] 本節の値は実装の `err_s_global.scss` (共通エラー器・実装側 Issue `#2546`) による。同実装は国内宿泊のエラー画面を移植の出発点とし (Owner 決定 OD-32「共通エラー画面 (G1-D5) のデザイン・レイアウトは tocoo_travel のエラー画面をベースにする」。本 Repository に同決定の記録は無い)、値は国内宿泊と一致する
-- [事実] 実装の `secondary` ボタンの枠 (`color.border.default` #CCCCCC・白面上 1.61:1) は [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 4 (3:1) に届かない。実装側はこの variant を使う画面を 0 本としている。本節は `secondary` を定義に含めない
+- [事実] 実装の `secondary` ボタンの枠 (`color.border.default` #CCCCCC・白面上 1.61:1) は [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 4 (3:1) に届かない。実装に `ge-err__btn--secondary` を使う画面は無い (`src/Template` で 0 件)。本書の `Button.secondary` は枠を定義しておらず、本節は `Button` に無い枠を足さない
+- [事実] 最小の高さ 512px (`spacing.16` × 8)・本文の最大幅 448px (`spacing.16` × 7) は spacing の倍数であり、トークン化していない
 - 未確定事項: 副の操作 (`secondary`) の示し方
 
 ## 7. レスポンシブ

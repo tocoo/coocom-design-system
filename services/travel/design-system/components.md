@@ -21,8 +21,8 @@
 
 | 区分 | 1024px 未満 / 以上 | トークン | 該当する Component (本書) |
 |---|---|---|---|
-| **A 確定・遷移** | 48px / 40px | `{size.tapTarget.commit}` | `Button`・`SearchForm` の CTA・`Tabs`・`OptionRow`・`NavigationRow`・`Chip` (`use = applied` の解除)・`Header` のハンバーガー |
-| **B 開くだけ** | 48px / 32px | `{size.tapTarget.open}` | `Select`・`OverlayTrigger`・`StickyBar` の条件ボタン |
+| **A 確定・遷移** | 48px / 40px | `{size.tapTarget.commit}` | `Button`・`SearchForm` の CTA・`Tabs`・`OptionRow`・`NavigationRow`・`Chip` (`use = applied` の解除)・`Header` のハンバーガー・`ErrorPage` の補助リンク |
+| **B 開くだけ** | 48px / 32px | `{size.tapTarget.open}` | `Select`・`OverlayTrigger`・`StickyBar` の条件ボタン・`TableOfContents` の目次バー |
 | **C 戻せる切替** | 40px / 32px | `{size.tapTarget.toggle}` | `Checkbox` の行・`Chip` (`use = select`)・フォームの中のラジオの行 |
 | **D 格子のセル** | 40px / 32px | `{size.tapTarget.cell}` | `DateRangeCalendar` / `AvailabilityCalendar` の日付セル (セル間に `{spacing.1}` 4px 以上の隙間) |
 | **E 連続値の操作子** | 24px / 24px | `{size.tapTarget.thumb}` | `RangeSlider` のつまみ |
@@ -332,7 +332,7 @@
   - Don't: 実際には出ない要素の骨組みを置かない
 - 関連トークン: `{skeleton.radius}` / `{skeleton.padding}` / `{skeleton.gap}` / `{skeleton.lineHeight.sm}` / `.md` / `.lg` / `.xl` / `{color.surface.muted}` / `{radius.card}` 🚧
 - [事実] Task 009-70 (2026-09-15) の実測では、実装は 1 箇所 (`ultra_market_s.scss` L806-860) のみで割れていなかった (下の行の再実測で 2 箇所目を確認した)。ただし同実装はカード外形に `radius.lg` (16px) を用いており、**カード外形の用途トークン `{radius.card}` (暫定 md = 8px) と食い違う**。本節は `{radius.card}` を正とする — 骨組みは置き換える対象と同じ外形であるべきであり、対象であるカードの角丸は `{radius.card}` が定めるためである。**`{radius.card}` 自体が `placeholder` (実px 未取得) である点は本 Task で解消しない**
-- [事実] 2026-09-29 の再実測 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`・Task 009-80) で、**2 箇所目**を確認した — 検索結果の読み込み中 (`search_result_s.scss` L418-462・`.sr-sk`)。同実装は外形の角丸 `radius.lg` (16px)・内側 16px・線の角丸 `radius.sm` (4px)・線の高さ 20px / 12px / 44px・線どうしの間隔 12px で、**明滅のアニメーション** (`sr-sk-pulse` 1400ms・不透明度 0.5 ⇄ 1。`prefers-reduced-motion: reduce` では止める) を持つ。線の高さ (20px / 12px / 44px) と明滅は本節 (16 / 24 / 32 / 40px の 4 段・Don't「点滅・明滅で表現しない」) と食い違う。本節の値は変えていない。1 箇所目の行番号は同日時点で `ultra_market_s.scss` L892- へ移っている
+- [事実] 2026-09-29 の再実測 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`・Task 009-80) で、**2 箇所目**を確認した — 検索結果の読み込み中 (`search_result_s.scss` L418-489・`.sr-sk`)。同実装は外形の角丸 `radius.lg` (16px)・内側 16px・線の角丸 `radius.sm` (4px)・線の高さ 20px / 12px / 44px・線どうしの間隔 12px で、**明滅のアニメーション** (`sr-sk-pulse` 1400ms・不透明度 0.5 ⇄ 1。`prefers-reduced-motion: reduce` では止める) を持つ。線の高さ (20px / 12px / 44px) と明滅は本節 (16 / 24 / 32 / 40px の 4 段・Don't「点滅・明滅で表現しない」) と食い違う。本節の値は変えていない。1 箇所目の行番号は同日時点で `ultra_market_s.scss` L892- へ移っている
 - 未確定事項: `{radius.card}` の実px (follow-up・`design.md` §5) / 骨組みを出す件数・最小表示時間 / 読み込み中の支援技術への伝え方
 
 ## StickyBar

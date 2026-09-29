@@ -1943,6 +1943,56 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 
 ---
 
+## 46. 実装にあって DS に定義の無い部品を実装の値で定義する (travel・rental-car) — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 国内宿泊 (travel) と国内レンタカー (rental-car) の実装に存在しながら Design System に定義の無い部品を、実装の値で定義する件の、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #209](https://github.com/tocoo/coocom-design-system/issues/209)・[Issue #210](https://github.com/tocoo/coocom-design-system/issues/210))。
+- **適用範囲は travel・rental-car の 2 サービス。** inbound は対象外。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 46-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①travel `components.md` への 14 節 (Stepper / QuantityStepper / Pager / Accordion / Table / FormField / Alert / EmptyState / LoadingState / TableOfContents / ErrorPage / SummaryBar / DescriptionList / CompletionPanel) の新設と `Card` への追記、②rental-car `components.md` への 10 部品の定義 (§2 QuantityStepper と §6 新設の 9 節) と Input・FormLabel・DateRangeCalendar への追記、③両サービスの `semantic.*.json` への器トークンの追加 (既存の値への割当のみ)、④両サービスの `design.md`・rental-car の `design-system/README.md`・travel の見本ページの未取得記述の更新、⑤両サービスの見本ページの生成ブロックの再生成 (`tools/gen-preview-tokens.py`) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
+| 承認日 | 2026-09-29 |
+| 承認主体 | Web部責任者 |
+| 契機 | 2026-09-29 — Web部責任者が「トラベル・レンタカーの最新実装を確認し、DS 側が追いついていない内容を最新化する」ことを依頼した。本 Repository の走査で、travel の実装 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`) と rental-car の実装 (`tocoo/tocoo_rental_car` `origin/master` `23d7c58b8`・2026-09-15〜09-24 に DS 移行) に、定義の無い部品が多数あることを確認した |
+| 適用範囲 | travel・rental-car の 2 サービス |
+
+### 46-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (PR [#211](https://github.com/tocoo/coocom-design-system/pull/211)・判定者 = Web部責任者・判定日 2026-09-29・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定理由 | 2 サービスの Component 定義と token に及ぶ。同 §8 の編集的訂正 carve-out は、token 値・Component 定義に影響する変更を除外しており (「設計内容・設計判断・token 値・Component 定義・version・プロセス判断に影響する変更」)、本件に適用しない |
+| 関連 PR の影響度 | PR [#208](https://github.com/tocoo/coocom-design-system/pull/208) (Task 009-80・実装の現状と合わなくなった事実記録の是正) = **低** (判定者 = Web部責任者・判定日 2026-09-29・明示取得)。値・規則・token を変えない事実の記録であるため。必要レビュー主体 = §10 の影響度・低の既定である **Web部レビュー担当者** |
+
+### 46-3. 取得した現在判断 (2026-09-29)
+
+| 記号 | 判断 | 内容 |
+| --- | --- | --- |
+| V-1 | **実装にあって定義の無い部品・状態は、実装の値で定義する** | 未着手一覧に載せるだけにとどめず、実装の寸法・色・状態を DS の部品定義として書き起こす。新しい数値・色値・primitive は追加せず、既存の値への割当で表す |
+| V-2 | **実装が割れている部品は、最も新しい実装の値を採る** | 同じ役割の実装が複数ある場合は、その実装の行が最後に更新された日時 (`git blame`) が最も新しいものを採る。比べる範囲は DS トークンを参照している実装ファイルのすべてとする — travel は `webroot/member/scss/` と `yarn_project/src/assets_s/css/` (予約フロー)、rental-car は `gulp/japan/scss/` |
+| V-3 | **マイページの実装は採用の対象から除く** | マイページの実装は正しくない可能性が高いため、V-2 の比較から外す。これにより、travel の番号付きのページ送り (travel ではマイページにしか実装が無い) は定義せず、未着手に残す。rental-car は `Pagination` を定義済みである |
+| V-4 | **実装の値が既存の規則に反する箇所は、既存の規則を優先する** (取り扱い) | 押せない状態 (§45 = 不透明度 0.5・色を変えない) と [contrast-rules.md](contrast-rules.md) の下限に反する実装の値は採らない。本件で置き換えたのは次の 4 点 — travel の必須の表記 (`color.accent.campaign` 3.68:1 → `color.state.error` 4.77:1)、travel の数値ステッパーと前後送りの押せない側 (文字色の変更 → 不透明度 0.5)、rental-car のカレンダーの当日の線 (`color.border.strong` 1.90:1 → `color.text.mutedStrong` 6.19:1。範囲の端の主色の面の上では `color.text.inverse` 6.80:1)。± ボタンの枠の置き換えは V-6 による |
+| V-5 | **最も新しい実装が既存の段に無い値を使っている場合は、最寄りの既存の段に丸める** | 余白・文字サイズ・太さ・行間の値が既存の段に無い場合は、近い段へ寄せて定義し、丸めた箇所を各節に明記する。2 段のちょうど中間の値は大きい側へ寄せる (行間 1.4 は `normal` 1.5)。本件で丸めたのは travel の `Stepper` (番号の円 28px → 32px・行間 1.4 → 1.5) と `SummaryBar` (余白 10px → 12px・2px → 4px・文字 11px → 12px・ウェイト 500 → 400・印 10px → 12px) |
+| V-6 | **数値ステッパーの ± ボタンの枠は `color.text.mutedStrong` (#616161) とする** | travel・rental-car の実装はボタンの枠に `color.border.default` (#CCCCCC・白地 1.61:1) を用いており、[contrast-rules.md](contrast-rules.md) の役割 4 (3:1) に届かない。個別例外 (同 §6) とはせず、枠を 6.19:1 の色で引く。枠の色トークンに 3:1 を満たす段が無いため、文字色のトークンを線に用いる (rental-car のカレンダーの当日の線と同じ扱い) |
+
+- 判断の取得方法: V-1・V-2・V-5・V-6 は選択肢を示して取得した。V-3 は、V-2 を当てはめた結果 (部品ごとに採用される実装の一覧) を示した後に、Web部責任者が示した。V-5 は、V-2 の比較範囲に予約フローを加えた結果、最も新しい実装が既存の段に無い値を持つことが判明した後に取得した。V-4 は V-2 を問う際に取り扱いとして示し、異議が無かったもの (明示の選択ではない)。
+
+### 46-4. 本記録が決定しないこと
+
+- **DS に定義があり、実装の値と食い違う部品の扱い** (travel の Button の 1024px 以上の高さ・Breadcrumb の現在地の色・NavigationRow の選択中、rental-car の StepIndicator の段数と形・FormLabel のウェイト・ResultCard の写真幅と車種名の書体ほか)。どちらを正とするかは本記録の対象外である。
+- **travel の番号付きのページ送り (Pagination)** の定義。
+- **画面固有の組み合わせ** (rental-car のプラン詳細の 2 列の配置・車両の見出し・トップのヒーローと会員帯、予約サマリのカード等) の部品化。
+- **「選べない値」の表現** (§37 N-4・§45-5 のまま据え置く)。
+- **既存実装の是正。** 範囲・順序・期限は実装 Repository 側の課題である。
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -2007,3 +2057,4 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 | 2026-09-19 | Task 009-78: **§44 (コントラストの品質下限を横断規約へ移し、テキストの役割による段階制へ改める) を §1〜§43 と分離して追加** ([Issue #200](https://github.com/tocoo/coocom-design-system/issues/200))。改訂着手の設計承認 (§9・§20・承認日 2026-09-19・承認主体 = Web部責任者)、影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)、現在判断 6 件 (H-1 色を個別に指定する改定は採らない／H-2 下限はテキストの役割で決まる (役割 1〜5)／H-3 役割 3 は一般条件で判定し用途名を列挙しない／H-4 3:1 未満は個別例外で Owner 判断を要する／H-5 「お得額」は役割 3 に該当し現行の `#E4572E` のまま許容/AA 未達を明示／H-6 達成レベルは引き下げない)、本 Repository での実測 7 組、本記録が決定しないこと (適合宣言・既存例外 4 件の変更・未入力状態の最終的な扱い・仮色の bound 昇格・画像/グラデーション面の評価方法・ブランド色の値・実装是正・§23 の記録内容 ほか) を記録した。契機は 2026-09-19 の Slack 指摘 (国内レンタカー検索結果「お得額」の文字色 3.68:1 の可否) と、同種の指摘が都度発生する状態そのものを問題とする Web部責任者の指示。本節は §23 が別 Task へ送った Governance 原則正本の実本文の作成を本件について実施するものであり、**§23 の記録内容は変更しない**。既存 §1〜§43・§5 設計承認ログ・§6 適用開始記録は不変。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定していない。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設していない | Claude Code |
 | 2026-09-19 | Task 009-78R: §44-3 に **H-7 を追加** — PR [#201](https://github.com/tocoo/coocom-design-system/pull/201) の内容レビュー前の自己レビューで、H-2 の「役割 1 = 4.5:1 (例外なし)」が、現に維持している AA 未達の運用 2 件 (A 割引率ラベルに限る白文字 2.78:1 / 2.15:1・未入力状態の案内文字 2.68:1) および [contrast-rules.md](contrast-rules.md) §6・§9 と**矛盾していた**ため、Web部責任者判断 (2026-09-19) を取得して明確化した — **当該 DS の `design.md` に個別の例外条項として明記したものに限り役割 1 の下限未達を許容し、それ以外は認めない**。H-2 は取得時点の表現を残し H-7 への参照を付した。**不変**: H-1・H-3〜H-6、§44-1 設計承認・§44-2 影響度 (高)・§44-4 実測 7 組・§44-5 Does Not Decide、既存 2 件の適用範囲・実測値・トークン・文字色、§1〜§43。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-19 | Task 009-79: §45 「押せない状態 (`disabled`) の意匠を 3 サービスで定義する」を §1〜§44 と分離して追加 ([Issue #202](https://github.com/tocoo/coocom-design-system/issues/202))。Web部責任者の 2026-09-19 現在判断 (I-1 定義はサービスごとに個別 = 横断規約は新設しない ／I-2 表現は要素全体の不透明度を下げる = 専用の面色・文字色は新設しない ／I-3 値は 0.5 に揃える ／I-4 押せない理由は文字で併記 ／I-5 WCAG 2.2 の無効化部品の対象外規定により許容し適合宣言は行わない) を記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した token は primitive `opacity.50` (0.5) と semantic `disabled.opacity` の 3 サービス各 2 件であり、**新しい色値は追加していない**。「選べない値」の表現・E2 の意匠・`active` / `loading` の実体は本記録では決定しない (45-5)。§1〜§44・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
+| 2026-09-29 | Task 009-81 / 009-82: §46「実装にあって DS に定義の無い部品を実装の値で定義する (travel・rental-car)」を §1〜§45 と分離して追加 ([Issue #209](https://github.com/tocoo/coocom-design-system/issues/209)・[Issue #210](https://github.com/tocoo/coocom-design-system/issues/210))。Web部責任者の 2026-09-29 の判断 V-1〜V-6 と改訂着手の設計承認、影響度 (#211 = 高・#208 = 低・明示取得) を記録した | Claude Code |

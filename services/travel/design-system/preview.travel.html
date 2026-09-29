@@ -72,6 +72,8 @@
     --color-label-category-icon         : #e4572e; /* color.label.category.icon */
     --color-label-category-border       : #cccccc; /* color.label.category.border */
     --color-label-stock                 : #d23a3a; /* color.label.stock */
+    --color-label-point-surface         : #e8edfb; /* color.label.point.surface */
+    --color-label-point-text            : #14224a; /* color.label.point.text */
     --color-membership-paid-surface     : #f9cdbc; /* color.membership.paid.surface 🚧 placeholder */
     --color-membership-paid-text        : #8a2e11; /* color.membership.paid.text 🚧 placeholder */
     --color-membership-free-surface     : #e8edfb; /* color.membership.free.surface */
@@ -177,6 +179,105 @@
     --sticky-bar-gap                    : 0.75rem; /* stickyBar.gap */
     --sticky-bar-main-font-size         : 0.875rem; /* stickyBar.mainFontSize */
     --sticky-bar-sub-font-size          : 0.75rem; /* stickyBar.subFontSize */
+    --stepper-bar-padding-top           : 1.5rem; /* stepper.barPaddingTop */
+    --stepper-bar-padding-bottom        : 1rem; /* stepper.barPaddingBottom */
+    --stepper-list-padding-inline       : 1rem; /* stepper.listPaddingInline */
+    --stepper-gap                       : 0.5rem; /* stepper.gap */
+    --stepper-font-size                 : 0.875rem; /* stepper.fontSize */
+    --stepper-number-size               : 2rem; /* stepper.numberSize */
+    --stepper-connector-width           : 2px; /* stepper.connectorWidth */
+    --quantity-stepper-gap              : 0.75rem; /* quantityStepper.gap */
+    --quantity-stepper-button-size      : 3rem; /* quantityStepper.buttonSize */
+    --quantity-stepper-icon-size        : 16px; /* quantityStepper.iconSize */
+    --quantity-stepper-value-min-width  : 2rem; /* quantityStepper.valueMinWidth */
+    --quantity-stepper-value-font-size  : 1.125rem; /* quantityStepper.valueFontSize */
+    --pager-padding                     : 0.5rem; /* pager.padding */
+    --pager-gap                         : 0.25rem; /* pager.gap */
+    --pager-radius                      : 8px; /* pager.radius */
+    --pager-button-height               : 3rem; /* pager.buttonHeight */
+    --pager-button-padding-inline       : 0.75rem; /* pager.buttonPaddingInline */
+    --pager-button-gap                  : 0.5rem; /* pager.buttonGap */
+    --pager-button-font-size            : 0.875rem; /* pager.buttonFontSize */
+    --pager-range-font-size             : 0.75rem; /* pager.rangeFontSize */
+    --accordion-gap                     : 0.75rem; /* accordion.gap */
+    --accordion-head-min-height         : 4rem; /* accordion.headMinHeight */
+    --accordion-head-padding-block      : 1rem; /* accordion.headPaddingBlock */
+    --accordion-head-padding-inline     : 1.25rem; /* accordion.headPaddingInline */
+    --accordion-head-gap                : 0.75rem; /* accordion.headGap */
+    --accordion-title-font-size         : 1rem; /* accordion.titleFontSize */
+    --accordion-sub-font-size           : 0.75rem; /* accordion.subFontSize */
+    --accordion-body-padding            : 1.25rem; /* accordion.bodyPadding */
+    --accordion-body-gap                : 1rem; /* accordion.bodyGap */
+    --table-font-size                   : 0.875rem; /* table.fontSize */
+    --table-cell-padding-block          : 0.75rem; /* table.cellPaddingBlock */
+    --table-cell-padding-inline         : 1rem; /* table.cellPaddingInline */
+    --table-stack-gap                   : 1rem; /* table.stackGap */
+    --field-label-font-size             : 0.875rem; /* field.labelFontSize */
+    --field-label-gap                   : 0.5rem; /* field.labelGap */
+    --field-mark-font-size              : 0.75rem; /* field.markFontSize */
+    --field-error-font-size             : 0.875rem; /* field.errorFontSize */
+    --field-error-margin-top            : 0.25rem; /* field.errorMarginTop */
+    --alert-bar-height                  : 0.25rem; /* alert.barHeight */
+    --alert-padding                     : 1.5rem; /* alert.padding */
+    --alert-padding-inline-wide         : 2.5rem; /* alert.paddingInlineWide */
+    --alert-gap                         : 0.75rem; /* alert.gap */
+    --alert-info-gap                    : 0.5rem; /* alert.infoGap */
+    --alert-list-indent                 : 1.25rem; /* alert.listIndent */
+    --alert-list-gap                    : 0.25rem; /* alert.listGap */
+    --alert-body-font-size              : 0.875rem; /* alert.bodyFontSize */
+    --summary-bar-padding-block         : 0.75rem; /* summaryBar.paddingBlock */
+    --summary-bar-padding-inline        : 1rem; /* summaryBar.paddingInline */
+    --summary-bar-gap                   : 0.75rem; /* summaryBar.gap */
+    --summary-bar-inner-gap             : 0.25rem; /* summaryBar.innerGap */
+    --summary-bar-title-font-size       : 1rem; /* summaryBar.titleFontSize */
+    --summary-bar-sub-font-size         : 0.875rem; /* summaryBar.subFontSize */
+    --summary-bar-price-label-font-size : 0.75rem; /* summaryBar.priceLabelFontSize */
+    --summary-bar-price-font-size       : 1.125rem; /* summaryBar.priceFontSize */
+    --summary-bar-price-unit-font-size  : 0.75rem; /* summaryBar.priceUnitFontSize */
+    --summary-bar-chevron-size          : 0.75rem; /* summaryBar.chevronSize */
+    --description-list-item-gap         : 1rem; /* descriptionList.itemGap */
+    --description-list-row-gap          : 0.25rem; /* descriptionList.rowGap */
+    --description-list-column-gap       : 1.5rem; /* descriptionList.columnGap */
+    --description-list-term-font-size   : 0.875rem; /* descriptionList.termFontSize */
+    --completion-padding-block          : 4rem; /* completion.paddingBlock */
+    --completion-padding-inline         : 1.5rem; /* completion.paddingInline */
+    --completion-gap                    : 1.25rem; /* completion.gap */
+    --completion-mark-size              : 4rem; /* completion.markSize */
+    --completion-mark-icon-size         : 24px; /* completion.markIconSize */
+    --completion-step-gap               : 1rem; /* completion.stepGap */
+    --completion-step-inner-gap         : 0.75rem; /* completion.stepInnerGap */
+    --completion-step-number-size       : 1.5rem; /* completion.stepNumberSize */
+    --completion-step-number-font-size  : 0.875rem; /* completion.stepNumberFontSize */
+    --empty-state-radius                : 16px; /* emptyState.radius */
+    --empty-state-padding-block         : 4rem; /* emptyState.paddingBlock */
+    --empty-state-padding-inline        : 1.5rem; /* emptyState.paddingInline */
+    --empty-state-gap                   : 0.75rem; /* emptyState.gap */
+    --empty-state-icon-size             : 32px; /* emptyState.iconSize */
+    --empty-state-title-font-size       : 1.125rem; /* emptyState.titleFontSize */
+    --empty-state-body-font-size        : 0.875rem; /* emptyState.bodyFontSize */
+    --loading-font-size                 : 0.875rem; /* loading.fontSize */
+    --loading-icon-gap                  : 0.5rem; /* loading.iconGap */
+    --loading-margin-block-end          : 1rem; /* loading.marginBlockEnd */
+    --loading-bar-width                 : 0.25rem; /* loading.barWidth */
+    --loading-bar-height                : 2rem; /* loading.barHeight */
+    --toc-panel-padding                 : 1.25rem; /* toc.panelPadding */
+    --toc-panel-radius                  : 16px; /* toc.panelRadius */
+    --toc-title-font-size               : 1rem; /* toc.titleFontSize */
+    --toc-title-gap                     : 0.75rem; /* toc.titleGap */
+    --toc-link-font-size                : 0.875rem; /* toc.linkFontSize */
+    --toc-link-padding                  : 0.75rem; /* toc.linkPadding */
+    --toc-current-indicator-width       : 2px; /* toc.currentIndicatorWidth */
+    --toc-bar-padding-block             : 0.75rem; /* toc.barPaddingBlock */
+    --toc-bar-padding-inline            : 1rem; /* toc.barPaddingInline */
+    --toc-bar-font-size                 : 1.125rem; /* toc.barFontSize */
+    --error-page-page-padding-top       : 2.5rem; /* errorPage.pagePaddingTop */
+    --error-page-page-padding-bottom    : 4rem; /* errorPage.pagePaddingBottom */
+    --error-page-card-radius            : 16px; /* errorPage.cardRadius */
+    --error-page-card-padding-block     : 4rem; /* errorPage.cardPaddingBlock */
+    --error-page-card-padding-inline    : 1.5rem; /* errorPage.cardPaddingInline */
+    --error-page-card-gap               : 1rem; /* errorPage.cardGap */
+    --error-page-icon-size              : 32px; /* errorPage.iconSize */
+    --error-page-code-font-size         : 0.75rem; /* errorPage.codeFontSize */
     --select-padding-inline             : 0.75rem; /* select.paddingInline */
     --select-chevron-size               : 16px; /* select.chevronSize */
     --disabled-opacity                  : 0.5; /* disabled.opacity */
@@ -612,6 +713,8 @@
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-icon)"></span><code>color.label.category.icon</code><span class="sw__val">#e4572e</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-category-border)"></span><code>color.label.category.border</code><span class="sw__val">#cccccc</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-label-stock)"></span><code>color.label.stock</code><span class="sw__val">#d23a3a</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-point-surface)"></span><code>color.label.point.surface</code><span class="sw__val">#e8edfb</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-label-point-text)"></span><code>color.label.point.text</code><span class="sw__val">#14224a</span></div>
   </div>
   <h3>会員種別</h3>
   <div class="sw-grid">
@@ -1160,7 +1263,7 @@
   <h3><span class="flag">未取得</span> 見本を描けないもの</h3>
   <ul class="note">
     <li>Button の hover / active / loading の状態一式 (<code>disabled</code> は Task 009-79 で確定・上に見本あり)</li>
-    <li>Input の必須表現・検証表示の一式</li>
+    <li>Input の検証の実体 (エラーを出す時機・success の表示)。欄の見出し・必須/任意・欄のエラーの意匠は <code>FormField</code> に定義済み (Task 009-81・見本は未収録)</li>
     <li>SearchForm のフィールド構成、Card の 8 スロット対応付け、ReviewStars の星の実寸</li>
     <li>Footer の構成、Header の内部ナビ構成</li>
     <li>Breadcrumb など standalone なリンクへ下線の既定を及ぼすか</li>
@@ -1169,7 +1272,8 @@
   <h3>本ページの範囲外</h3>
   <ul class="note">
     <li>ラベル・タグの E2 販売終了 (方向のみ)</li>
-    <li>未着手 Component (Select / Tabs / Toast / Table / Accordion / Pagination / Badge 単体 / Stepper / Empty state)</li>
+    <li>未着手 Component (Toast / Pagination 番号付き / Badge 単体)</li>
+    <li>Task 009-81 で定義した 14 部品 (Stepper / QuantityStepper / Pager / Accordion / Table / FormField / Alert / EmptyState / LoadingState / TableOfContents / ErrorPage / SummaryBar / DescriptionList / CompletionPanel) の見本 — 定義は <a href="components.md"><code>components.md</code></a> が正</li>
     <li>副色 (sub) スキームでの各 Component の見え方 — 色見本のみ収録</li>
   </ul>
   <p class="source">正本: <a href="design.md"><code>design.md</code></a>「未確定事項の一覧」 / 各 Component の「未確定事項」行 = <a href="components.md"><code>components.md</code></a></p>

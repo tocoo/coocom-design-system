@@ -288,7 +288,7 @@
   - Don't: 日付の範囲選択に用いない — それは `DateRangeCalendar` の役割
 - 関連トークン: `{availability.cellRadius}` / `{availability.cellPaddingBlock}` / `{availability.cellPaddingInline}` / `{availability.selectedBorderWidth}` / `{color.scheme.main.tint}` / `{color.surface.muted}` / `{color.surface.subtle}` / `{color.brand.primary}` / `{font.price.family}` / `{color.label.stock}` / `{color.text.mutedStrong}` / `{color.text.placeholder}`
 - [事実] Task 009-70 (2026-09-15) の実測では、実装は 1 箇所 (`ultra_plan_calendar_s.scss` L100-183) のみで割れていなかった (下の行の再実測で 2 箇所目を確認した)
-- [事実] 2026-09-29 の再実測 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`・Task 009-80) で、**2 箇所目**を確認した — 施設詳細の料金カレンダー (`plan_calendar_s.scss` L86-115・`.pc__cell`)。同実装はセルの最小高さ 68px (`calc(spacing.16 + spacing.1)`)・角丸 `radius.sm` (4px)・選択中を面 `{color.scheme.main.tint}` + 内側 2px の主色枠・満室と期間外を `color.text.placeholder` で示し、本節 (最小高さ 96px・角丸 `{calendar.selectedRadius}` 8px・選択中は面を変えず枠のみ) と食い違う。本節の値は変えていない
+- [事実] 2026-09-29 の再実測 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`・Task 009-80) で、**2 箇所目**を確認した — 施設詳細の料金カレンダー (`plan_calendar_s.scss` L86-115・`.pc__cell`)。同実装はセルの最小高さ 68px (`calc(spacing.16 + spacing.1)`)・角丸 `radius.sm` (4px)・選択中を面 `{color.scheme.main.tint}` + 内側 2px の主色枠・満室と期間外を `color.text.placeholder` で示し、本節 (最小高さ 96px・角丸 `{availability.cellRadius}` 8px・選択中は面を変えず枠のみ) と食い違う。本節の値は変えていない
 - [事実] セルの最小の高さ 96px は実装では `calc(spacing.16 + spacing.8)` (64px + 32px) で組まれている。`spacing` に 96px の段が無いため**単一のトークンでは表せない**。本節は実装値をそのまま正とし、**新しい段は追加しない** (トークン化の要否は未確定事項)
 - [事実] 料金・在庫の 10px は `calc(typography.size.xs - 0.125rem)` で組まれており、`typography.size` の 9 段に存在しない値である。**本書はこれを正としない** — 段の新設の要否を未確定事項として起票する
 - 未確定事項: セル高 96px のトークン化 / **料金・在庫の 10px** (スケール外の値・段の新設の要否) / 横スクロール時の月またぎ / focus の実体

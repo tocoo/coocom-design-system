@@ -12,7 +12,7 @@
 旧値を DS のトークンに含めない (実装の値をそのまま正としない)。既存画面の置換は段階導入とし、本表を差し替えの単位として使う。
 
 - [事実] **§3 の置換は実装で実施済みである** (2026-09-29 に `tocoo/tocoo_rental_car` `origin/master` `23d7c58b8` で確認・Task 009-80)。2026-09-15〜09-24 の一連の変更 (実装側 Issue `#2527` の旧スタイルシート廃止・`#2520` のグローバル要素の刷新・`#2539` トップ・`#2547` 検索結果・`#2548` / `#2566` プラン詳細・`#2549` 予約フォーム〜完了・`#2555` マイページ・`#2546` 共通エラー器) で、`gulp/japan/scss/` の 23 ファイルが DS トークンを参照する形へ置き換わった。**左列は置換前の記録として残す** (値の出所を追えるようにするため)
-- [事実] 左列の出典のうち、`gulp/scss/japan/` 配下 (`mixin/_mixin.scss`・`header_new.scss`・`footer_new.scss`・`contents_new.scss`) は実装側 `#2526` (2026-09-09) のビルド環境の分離で移動・削除され、`import_rent.css` と `contents_search.scss` は `#2527` で削除された。`rentacar_top.scss` と `files/assets/css/mixin/_mixin.scss` はファイルとして残るが、共通の読み込み口 (`src/Template/Jp/Element/system/head_css.ctp`) からは読まれていない
+- [事実] 左列の出典のうち、`gulp/scss/japan/` 配下 (`mixin/_mixin.scss`・`header_new.scss`・`footer_new.scss`・`contents_new.scss`) は実装側 `#2526` (2026-09-09) のビルド環境の分離で移動・削除され、`import_rent.css` は `#2527` (2026-09-15) で、`contents_search.scss` (`webroot/japan/css/files/assets/css/include/contents_search.scss`) は `#2547` (2026-09-21) で削除された。`rentacar_top.scss` と `files/assets/css/mixin/_mixin.scss` はファイルとして残るが、共通の読み込み口 (`src/Template/Jp/Element/system/head_css.ctp`) からは読まれていない
 
 ## 2. 対照表
 
@@ -31,7 +31,7 @@
 | コンテナ | 960px (旧) / 1280px (新ヘッダー) の二重基準 | 975 / 1195 / 1425px | `contents_new.scss`, `header_new.scss` |
 | 並び替え | 常時展開の帯 `.sort` (#f9f9f9 + 上下境界 #f1f1f1・高さ 56px / 選択は下線 4px #000 + bold / 右トグル #ededed・選択 #e1e1e1) | トリガー (`OverlayTrigger` が正。高さは `{size.tapTarget.open}` = 48px / 1024px 以上 32px・[components.md](components.md) §1) + 並び替えパネル。SP は追従バーに絞り込み (件数バッジ) と並置 | 実装: `import_rent.css` (`.sort` L2628-2678 / L4123-4176)。移行先: 国内宿泊 search-result |
 | ラベル・タグ | `.cat-label` 92x25px 固定・三角の尾 #8C4801・分類色 #060 (kusairo) / #c90 (oudoiro)。器の統一なし | 器を 1 つに固定 (sm 20 / md 24px・左右 8 / 12・角丸 4px・行高 1) し、カテゴリ A〜H は面と文字だけで区別 | 実装: `rentacar_top.scss` (`.cat-label` / `.kusairo` / `.oudoiro`)。移行先: 国内宿泊 ラベル・タグ定義シート (2026-08-10) |
-| アイコン / オーバーレイ | FontAwesome 4 記法・slick 由来 / remodal (LightBox) | Font Awesome 6 / オーバーレイは `Modal` の 3 形態 (drawer / sheet / popover・[design.md](design.md) §7.1・[components.md](components.md) `Modal` が正) | mixin `fa()`, `rentacar_top.scss` `.remodal` |
+| アイコン / オーバーレイ | FontAwesome 4 記法・slick 由来 / remodal (LightBox) | Font Awesome 6 / オーバーレイは `Modal` の 3 形態 (drawer / sheet / popover・[design.md](design.md) §7.1・[components.md](components.md) `Modal` が正。`🚧` 3 DS 横断の実装基盤は未決) | mixin `fa()`, `rentacar_top.scss` `.remodal` |
 
 ## 3. 置換の順序
 
@@ -48,4 +48,4 @@
 | --- | --- | --- |
 | 2026-08-19 | 初版 (12 項目)。実装実測値と 0.3.0-draft の正値の対応を記録 | Claude Design |
 | 2026-08-20 | 本 Repository へ新設 (0.3.0-draft)。実装 (japan ゾーン) の旧値 12 項目と DS 正値の対応を記録。根拠はオーナー判断 2026-08-18 (記録 = [governance/owner-decisions.md](../../../governance/owner-decisions.md) §25) | Claude Code |
-| 2026-09-29 | Task 009-80 ([Issue #207](https://github.com/tocoo/coocom-design-system/issues/207)): 実装の置換完了を §1 に [事実] 2 行で記録した (置換を実施した実装側の変更と、左列の出典の多くが削除・移動済みであること)。右列の 2 箇所を DS 本体の現行値へ合わせた — 並び替えのトリガーを「pill 44px」から `OverlayTrigger` (`{size.tapTarget.open}` 48px / 1024px 以上 32px・Task 009-75) へ、オーバーレイを「drawer 系に統一」から `Modal` の 3 形態 (drawer / sheet / popover) へ。左列 (置換前の実測値) は変えていない | Claude Code |
+| 2026-09-29 | Task 009-80 ([Issue #207](https://github.com/tocoo/coocom-design-system/issues/207)): 実装の置換完了を §1 に [事実] 2 行で記録した (置換を実施した実装側の変更と、左列の出典の多くが削除・移動済みであること)。右列の 2 箇所を DS 本体の現行値へ合わせた — 並び替えのトリガーを「pill 44px」から `OverlayTrigger` (`{size.tapTarget.open}` 48px / 1024px 以上 32px・Task 009-75) へ、オーバーレイを「drawer 系に統一」から `Modal` の 3 形態 (drawer / sheet / popover) へ (「3 DS 横断の実装基盤は未決」の `🚧` は残した)。左列 (置換前の実測値) は変えていない | Claude Code |

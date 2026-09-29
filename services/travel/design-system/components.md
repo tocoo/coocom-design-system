@@ -701,7 +701,7 @@
   - Don't: `inline` で回転・点滅を用いない (`Skeleton` の Don't と同じ)
   - Don't: `blocking` を一覧の読み込みに用いない (操作を止める必要がある送信中に限る)
 - 関連トークン: `{loading.fontSize}` / `{loading.iconGap}` / `{loading.marginBlockEnd}` / `{loading.barWidth}` / `{loading.barHeight}` / `{elevation.modal}` / `{color.overlay.backdrop}` 🚧 / `{radius.overlay}` 🚧 / `{color.surface.default}` / `{color.text.body}` / `{color.brand.primary}`
-- [事実] 本節の値は実装の `ultra_market_s.scss` L871-889 と `ultra_tocoo_market.ctp` L174-205 (2026-08-27) による。検索結果 (`search_result_s.scss` L391-492・`.sr-loading`・回転するスピナー 700ms と明滅する骨組み) は最終更新が前であり採っていない (§46)
+- [事実] 本節の値は実装の `ultra_market_s.scss` L871-889 と `ultra_tocoo_market.ctp` L175-210 (2026-08-27) による。検索結果 (`search_result_s.scss` L391-489・`.sr-loading`・回転するスピナー 700ms と明滅する骨組み) は最終更新が前であり採っていない (§46)
 - [事実] `blocking` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L2145-2186 (`.c-loading`・2026-09-24) と `Element/Member_s/footer.ctp` L114 による。`inline` とは役割 (送信中に操作を止める) が異なるため、別の種別とした。印の器の一辺 96px は spacing の倍数 (64px × 1.5) であり、トークン化していない
 - 未確定事項: `blocking` の支援技術への告げ方 (実装は告知文を持たない) / 骨組みを出さない小さな領域 (オーバーレイの中の再取得等) の告げ方 / 読み込みが長いときの表示
 

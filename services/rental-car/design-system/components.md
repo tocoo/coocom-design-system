@@ -513,13 +513,13 @@
   - 完了の印 — 直径 `{completion.markSize}` (64px) の円 / 面 `color.scheme.main.tint` / チェックのアイコン `{completion.markIconSize}` (32px) × `color.brand.primary` / 装飾として `aria-hidden`
   - 小見出し — 14px + 700 + `color.text.mutedStrong` (字間 0.14em)。見出しとの間隔は 8px
   - 本文 — 16px + 行間 1.8 + `color.text.body` / 左寄せ / 最大幅 46ch (半角の「0」46 字ぶん。全角ではおよそ 23〜28 字)
-  - 要点 — 項目名 (14px + `color.text.mutedStrong`) と値 (`color.text.strong` + 行間 1.8・数字は幅を揃える) の組を、面 `color.surface.muted` + 角丸 `radius.card` + 内側 16px の器に入れる (640px 以上は項目名の列 7em。縦の間隔 4px・横の間隔 24px)。最大幅 46ch
+  - 要点 — 項目名 (14px + `color.text.mutedStrong`) と値 (`color.text.strong` + 行間 1.8・数字は幅を揃える) の組を、面 `color.surface.muted` + 角丸 `radius.card` + 内側 16px の器に入れる (縦の間隔 4px・横の間隔 24px。640px 以上は項目名の列 7em で横に並べる)。最大幅 46ch
   - 次の手順 — 番号付きの一覧。最大幅 46ch / 手順どうしの間隔 `{completion.stepGap}` (16px) / 番号と本文の間隔 12px / 番号は直径 `{completion.stepNumberSize}` (24px) の円 (面 `color.scheme.main.tint` + 12px + 700 + `color.text.link`・装飾として `aria-hidden`) / 手順名 700 + `color.text.strong` / 説明 14px + `color.text.body`
   - 操作 — `Button` を縦に積み中央に置く (間隔 12px)
 - Do: 完了したことを見出し (`h1`) の文で伝える。印だけで伝えない
 - Do: 手順は `ol` で組む
 - 関連トークン: `{completion.gap}` / `{completion.paddingBlock}` / `{completion.paddingInline}` / `{completion.markSize}` / `{completion.markIconSize}` / `{completion.stepNumberSize}` / `{completion.stepGap}` / `color.surface.default` / `color.surface.muted` / `color.border.subtle` / `color.scheme.main.tint` / `color.brand.primary` / `color.text.*` / `radius.card`
-- [事実] 本節の値は実装の `reservation_done_s.scss` L20-174 (予約完了・2026-09-24) による。46ch・7em・字間 0.14em は実装が「据え置いた寸法」と記しており、トークン化していない
+- [事実] 本節の値は実装の `reservation_done_s.scss` L19-174 (予約完了・2026-09-24) による。46ch は実装が「据え置いた寸法」と記している。46ch・7em・字間 0.14em はいずれもトークン化していない
 
 ### EmptyState
 

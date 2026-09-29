@@ -40,7 +40,7 @@
 - [事実] リンクは色 `{color.text.link}` (= 主色・TVL-0011) に加え、状態ごとの文字色 (hover = `{color.text.linkHover}` / active = `{color.text.linkActive}` / visited = 専用色を設けず `{color.text.link}` を維持 / focus = `{color.focus.ring}` の `outline`) を使用する。**文中リンクには下線を付し、hover で下線を外さない**。standalone なリンク (カード全体リンク・ナビゲーション項目・パンくず) への下線の既定は未判定であり、状態ごとの文字色は対象を限定せず適用される。**リンクの状態表現に `opacity` を用いない** — 上記の「全 Component の hover は opacity 変化 (≈0.85) を暫定参照」からリンクを除外している。正は `design.md` §2.2
 - [事実] **未入力状態の案内文字** (`input` / `textarea` の `::placeholder`・Select の未選択値・その他の入力フィールドの未入力表示) の文字色は `{color.text.muted}` (#9E9E9E・白背景 **2.68:1**・**AA 未達を明示**) に統一する。**UI の種別で限定しない**。未入力であることを色だけで伝えず文言が担う。案内文字を必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない。正は `design.md` §2.3 (Task 009-71)
 - [事実] variant 語彙は `primary / secondary / ghost / campaign / text` の5語で確定 (GOV-0002)。語彙外の新設は ADR 必須。**travel の Button 実装は4語 (primary/secondary/ghost/text)**— campaign (accent 塗りボタン) は廃止 (TVL-0012)、accent を**面**として持つのはバッジ/割引ラベルに限る (Card badge)。**accent を文字色として明色面に置くことは禁じていない** ([design.md](design.md) §2.1 代替規則 3 の 2 通り = 役割 2 / 役割 3 に限る)
-- [事実] 未着手 Component: Toast / Pagination (番号付き) / Badge (単体)。本仕様に含めない。**Stepper / Table / Accordion / Empty state は Task 009-81 で定義済みへ移した** (実装にあって定義の無かった部品 14 種を実装の値で定義・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46。Pagination は前後送りだけを `Pager` として定義し、番号付きは未着手に残す)。**Select は Task 009-68・Tabs は Task 009-69 で定義済みへ移した**。Task 009-69 / 009-70 ではあわせて、実装に存在しながら未着手一覧に載っていなかった 10 件 (Checkbox / Radio・OptionRow・NavigationRow・Chip・OverlayTrigger・DateRangeCalendar・AvailabilityCalendar・RangeSlider・Skeleton・StickyBar) を新規に定義した。**Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理した** (Task 009-39・受理と分類のみ。仕様定義は別 Task)。Tabs / Select は従来から未着手として記載済み。各 Component の実体データ・実装実査の有無は Component ごとに異なる (`Pagination` / `Stepper` / `Empty state` は全文検索 0 件・従来の未着手一覧にも不在だった / Badge は `Card.slot.badge` としてスロット規則が定義済みだが Card 外で使う単体 Component は未定義)
+- [事実] 未着手 Component: Toast / Pagination (番号付き) / Badge (単体)。本仕様に含めない。**Stepper / Table / Accordion / Empty state は Task 009-81 で定義済みへ移した** (実装にあって定義の無かった部品 14 種を実装の値で定義・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46。Pagination は前後送りだけを `Pager` として定義し、番号付きは未着手に残す)。**Select は Task 009-68・Tabs は Task 009-69 で定義済みへ移した**。Task 009-69 / 009-70 ではあわせて、実装に存在しながら未着手一覧に載っていなかった 10 件 (Checkbox / Radio・OptionRow・NavigationRow・Chip・OverlayTrigger・DateRangeCalendar・AvailabilityCalendar・RangeSlider・Skeleton・StickyBar) を新規に定義した。**Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理した** (Task 009-39・受理と分類のみ。仕様定義は別 Task)。Tabs / Select は従来から未着手として記載済み。各 Component の実体データ・実装実査の有無は Component ごとに異なる (Task 009-39 の時点では `Pagination` / `Stepper` / `Empty state` は全文検索 0 件・従来の未着手一覧にも不在だった / Badge は `Card.slot.badge` としてスロット規則が定義済みだが Card 外で使う単体 Component は未定義)
 - [事実] **Badge (単体) Component の切り出し境界** (Task 009-39): 既に定義済みの `Card.slot.badge` (角丸 `{radius.badge}`・面と文字色の (a)(b) 分岐・割引ラベルの面色・Do / Don't = `design.md` §2.1 が正) と、単体 Component として追加で必要になる範囲 (Card 外での配置・サイズ段階・操作可能な場合の扱い) を分離する。**操作可能なバッジは badge ではなく action 系 Component として扱う**既存の境界 (共通事項) は再定義しない
 - [事実] 依頼 D の新規 Component (Pagination / Badge (単体) / Stepper / Empty state) の**定義工程への着手は Web部責任者判断 2026-08-03 で可** (正本 = `governance/owner-decisions.md` §15)。ただし着手可は改訂着手の可否 (`governance/review-approval-rules.md` §9) であり、Component 仕様・variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2) の新設ではない。依頼 D の新規 Component は Work Order 6 の 12 候補 (alignment 候補) とは別であり、同 Work Order 6 の「12 候補は現時点では開始できない」は不変
 
@@ -98,7 +98,7 @@
   - 文字 — 書体 `{font.body.family}` / サイズ `{font.body.size}` (1rem・16px) / 選択済みの文字色 `{color.text.body}`
   - 未選択値 — `{color.text.muted}` (`#9E9E9E`・白背景 **2.68:1**・**AA 未達を明示**。`design.md` §2.3 が正。`input` / `textarea` の未入力と同一の扱いであり UI の種別で色を変えない)
   - シェブロン — ブラウザ標準の矢印を止め (`appearance: none`)、`{select.chevronSize}` の Font Awesome 6 グリフを右端に置く (`design.md` §6 のアイコン体系)
-- 状態: focus = `{color.focus.ring}` outline / error = 枠 `{color.state.error}` 🚧 暫定 (Input に合わせる) / **disabled = 不透明度 `{disabled.opacity}` (0.5)・色は変えない** (共通事項) / success 🚧 未取得
+- 状態: focus = `{color.focus.ring}` outline / error = 枠 `{color.state.error}` + 欄のエラー文 (`FormField` が正・Task 009-81) / **disabled = 不透明度 `{disabled.opacity}` (0.5)・色は変えない** (共通事項) / success 🚧 未取得
 - **選ぶ操作の既定** (Web部責任者判断 2026-09-16・Task 009-77・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §43):
   - **既定 = `OverlayTrigger` → `Modal` の `sheet` / `popover` (§7.1) → `OptionRow` / `NavigationRow` の行**。選択肢の一覧は DS が描く
   - **例外 = 本 Component (ネイティブの `<select>`)**。次を**すべて**満たす場合にのみ用いる — ①選択肢が 1 階層である ②件数が少ない ③選んだ値をその場に表示するだけで完結する ④選んだ後に他の入力と組み合わせない。実装で該当するのは子どもの年齢のみである
@@ -227,7 +227,8 @@
   - Do: 切り替えても同じ場所に表示する。別画面へ遷移する導線には用いない (それはナビゲーション項目の役割)
   - Don't: タブの本数を横スクロール前提で増やさない (実体が無く、省略・スクロールの規則を定めていない)
 - 関連トークン: `{size.tapTarget.commit}` / `{tab.paddingBlock}` / `{tab.paddingInline}` / `{tab.fontSize}` / `{tab.indicatorWidth}` / `{font.heading.weight}` / `{color.text.mutedStrong}` / `{color.text.link}` / `{color.brand.primary}` / `{color.focus.ring}` / `{disabled.opacity}`
-- [事実] 実装は 1 箇所 (`search_s_global.scss` L52-69) のみで割れていない (本 Repository で実測)。非選択の文字色は同実装が `color.text.muted-strong` を用いており本節と一致する
+- [事実] Task 009-69 (2026-09-15) の実測では、実装は 1 箇所 (`search_s_global.scss` L52-69) のみで割れていなかった (本 Repository で実測)。非選択の文字色は同実装が `color.text.muted-strong` を用いており本節と一致する
+- [事実] 2026-09-29 の再実測 (`origin/master` `6f87701ad`・Task 009-81) で、`role="tablist"` を持つ実装を**ほかに 2 箇所**確認した — 有効期限の選択 (`auth_s_global.scss` L1577-1605・`.ga-auth__expiry-tab`・最小の高さ 40px・下線 2px × `action.primary.bg`・選択中 `text.link` + 700) と、ウルトラトクー市の食事条件 (`ultra_plan_s.scss` L420-452・`.up-meal`・最小の高さ 48px・角丸 8px・枠 1px・選択中は主色の塗り + 白文字)。後者は下線ではなく塗りで選択中を示し、本節と見た目が異なる。本節の値は変えていない
 - 未確定事項: a11y (`role="tablist"` / `aria-selected` / 矢印キー操作) は `alignment-blocking-facts-resolution-plan.md` §8K の下流課題 / 本数が多い場合の省略・スクロール / タブ内容 (pane) の切替の遷移
 
 ## OverlayTrigger
@@ -378,7 +379,7 @@
   - Do: 価格は `Card.slot.price` に PriceTag を配置
   - Do: バッジは `Card.slot.badge` に集約
   - Don't: スロットを位置名 (top-left 等) で命名しない
-- `Card.slot.media` の**画像なし**の表示 (Task 009-81): 画像が無い・読み込めない場合は、面 `{color.surface.muted}` の上に「画像なし」の図 (`img_noimage.svg`) を縦横比を保って収め (`object-fit: contain`)、周りに 16px の余白を取る。代替テキストは空 (`alt=""`) とする — 施設名は `Card.slot.title` が担うため。[事実] 実装 `chokuzen_s.scss` L513-516 (今日割・明日割・2026-09-01) の値による。検索結果のカード (`hotel_list_s_global.scss` L549-552・余白 32px) は最終更新が前であり採っていない ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
+- `Card.slot.media` の**画像なし**の表示 (Task 009-81): 画像が無い・読み込めない場合は、面 `{color.surface.muted}` の上に「画像なし」の図 (`img_noimage.svg`) を縦横比を保って収め (`object-fit: contain`)、周りに 16px の余白を取る。代替テキストは空 (`alt=""`) とする — 施設名は `Card.slot.title` が担うため。[事実] 実装 `chokuzen_s.scss` L513-516 (今日割・明日割・2026-09-01) の値による。検索結果のカード (`hotel_list_s_global.scss` L549-552・余白 32px・2026-08-21) とウルトラトクー市のカード (`ultra_market_s.scss` `.um-card__noimg`・2026-08-27) は最終更新が前であり採っていない ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
 - `Card.slot.badge` (割引率ラベル・状態バッジ・カテゴリラベル等の非操作ラベル) の規則:
   - 角丸: `{label.radius}` (= `{radius.badge}` = 4px・確定 bound・Owner 2026-08-07)。`{radius.action}` (pill) を使用しない — 操作要素との誤認防止
   - 器 (寸法・共通・2 サイズ。ラベル・タグ定義シート 器・器トークン `label.*` が正):
@@ -554,7 +555,7 @@
 - バリアント: なし
 - 構成:
   - 帯 — 面 `{color.surface.subtle}` / 角丸 `{pager.radius}` (8px) / 内側 `{pager.padding}` (8px) / 要素の間隔 `{pager.gap}` (4px)。前へ・期間表示・次へを両端揃えで並べる
-  - 送りボタン — 最小の高さ `{pager.buttonHeight}` (48px) / 左右 `{pager.buttonPaddingInline}` (12px) / 角丸 `{radius.action}` (pill) / 枠と面は持たない / 文字 `{pager.buttonFontSize}` (14px) + `{font.heading.weight}` (700) + `{color.text.link}` / アイコンと文字の間隔 `{pager.buttonGap}` (8px)。640px 未満は文字を隠しアイコンだけにする
+  - 送りボタン — 最小の高さ `{pager.buttonHeight}` (48px) / 左右 `{pager.buttonPaddingInline}` (12px) / 角丸 `{radius.action}` (pill) / 枠と面は持たない / 文字 `{pager.buttonFontSize}` (14px) + 700 + `{color.text.link}` / アイコンと文字の間隔 `{pager.buttonGap}` (8px)。640px 未満は文字を隠しアイコンだけにする
   - 期間表示 — `{font.price.family}` / 数字の幅を揃える / `{pager.rangeFontSize}` (12px) + 700 / `{color.text.strong}` / 中央揃え
 - 状態: **送れない側 = `disabled`** (不透明度 `{disabled.opacity}`・色は変えない・共通事項) / focus = `{color.focus.ring}` outline / hover 🚧 暫定
 - Do / Don't:
@@ -641,7 +642,7 @@
 
 - ステータス: Draft
 - 用途: 画面の上部で、**入力の誤り**や**まだ完了していないこと**を告げる帯
-- バリアント: `error` (入力の誤り・送信の失敗) / `info` (未完了の告知等)
+- 種別 (`kind`): `error` (入力の誤り・送信の失敗) / `info` (未完了の告知等)。variant 語彙 (GOV-0002) への追加ではない別軸である
 - 構成:
   - 器 — 面 `{color.surface.default}` / 枠 `{border.width.thin}` × `{color.border.subtle}` / 角丸 `{radius.card}` 🚧 / 影は 🚧 未定義 (実装は `shadow.sm` を参照) / 内側 `{alert.padding}` (24px)。768px 以上は左右を `{alert.paddingInlineWide}` (40px) にする
   - 上端の色帯 — 高さ `{alert.barHeight}` (4px)。`error` = `{color.state.error}` / `info` = `{color.brand.primary}`
@@ -653,7 +654,7 @@
   - Do: 種別を上端の色帯だけで伝えない (見出しの文で伝える)。アイコンは `aria-hidden` とする
   - Do: 直すべき欄が複数ある場合は、一覧の項目を欄へのリンクにする
 - 関連トークン: `{alert.barHeight}` / `{alert.padding}` / `{alert.paddingInlineWide}` / `{alert.gap}` / `{alert.infoGap}` / `{alert.listIndent}` / `{alert.listGap}` / `{alert.bodyFontSize}` / `{color.surface.default}` / `{color.border.subtle}` / `{color.state.error}` / `{color.brand.primary}` / `{color.text.strong}` / `{color.text.body}` / `{radius.card}` 🚧
-- [事実] `error` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L450-489 (`.error-messages`・予約入力・2026-09-24・`MemberReserve/index.ctp` L81 の `role="alert"`)、`info` の値は `reserve_confirm.scss` L75-117 (`.rc-notice`・予約確認・2026-09-24・`conf.ctp` L42 の `role="status"`) による。認証画面 (`auth_s_global.scss` `.ga-auth__alert`・赤枠と薄灰の面・2026-09-23)・問い合わせ (`.iq-alert`)・資料請求 (`.frc-alert`) は最終更新が前であり、マイページ (`.mypage-error-summary`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
+- [事実] `error` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L450-489 (`.error-messages`・予約入力・2026-09-24・`MemberReserve/index.ctp` L81 の `role="alert"`)、`info` の値は `reserve_confirm.scss` L75-117 (`.rc-notice`・予約確認・2026-09-24・`conf.ctp` L42 の `role="status"`) による。認証画面 (`auth_s_global.scss` `.ga-auth__alert`・赤枠と薄灰の面・2026-09-23)・ログイン (`login.scss` `.ga-login__alert`・2026-09-23)・お知らせ (`.nw-notice`・09-18)・問い合わせ (`.iq-alert`)・資料請求 (`.frc-alert`)・法人向け (`.sl-alert`)・施設詳細 (`.hd-notice`) は最終更新が前であり、マイページ (`.mypage-error-summary`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
 - [事実] 実装 (予約入力) の `error` の一覧の項目はリンクではない。本節の Do はこれを定める
 - 未確定事項: 影 (🚧 未定義・follow-up #13) / 成功のバリアント
 
@@ -661,7 +662,7 @@
 
 - ステータス: Draft
 - 用途: 一覧の結果が **0 件**のとき、または**取得に失敗した**ときに、一覧の場所に理由と次の操作を示す
-- バリアント: `default` (0 件) / `error` (取得の失敗)
+- 種別 (`kind`): `default` (0 件) / `error` (取得の失敗)。variant 語彙 (GOV-0002) への追加ではない別軸である
 - 構成:
   - 器 — 面 `{color.surface.default}` / 角丸 `{emptyState.radius}` (16px) / 上下 `{emptyState.paddingBlock}` (64px)・左右 `{emptyState.paddingInline}` (24px) / 中央揃え / 要素の間隔 `{emptyState.gap}` (12px)
   - アイコン — `{emptyState.iconSize}` (32px)。`default` = `{color.text.muted}` / `error` = `{color.state.error}`。装飾として扱い `aria-hidden` とする
@@ -683,7 +684,7 @@
 
 - ステータス: Draft
 - 用途: 一覧を読み込んでいる間、**読み込み中であることを文で告げ**、骨組み (`Skeleton`) で結果の場所を示す (`inline`)。フォームの送信中は画面全体を覆い、操作を止める (`blocking`)
-- バリアント: `inline` / `blocking`
+- 種別 (`kind`): `inline` / `blocking`。variant 語彙 (GOV-0002) への追加ではない別軸である
 - 構成 (`inline`):
   - 告知文 — `{loading.fontSize}` (14px) + `{color.text.body}` / 骨組みとの間隔 `{loading.marginBlockEnd}` (16px)
   - アイコン — `fa-circle-notch` × `{color.brand.primary}`。告知文の前に置く / 文との間隔 `{loading.iconGap}` (8px) / **回転させない**
@@ -735,7 +736,7 @@
 
 - ステータス: Draft
 - 用途: 404・500 等で**ページを表示できない**ことを告げ、戻り先を示す共通のエラー画面
-- バリアント: アイコンの色 `error` / `muted`
+- 種別 (`kind`): アイコンの色 `error` / `muted`。variant 語彙 (GOV-0002) への追加ではない別軸である
 - 構成:
   - 地 — 面 `{color.surface.subtle}` / 最小の高さ 512px / 上 `{errorPage.pagePaddingTop}` (40px)・下 `{errorPage.pagePaddingBottom}` (64px) / 中央寄せの器 (幅 sm = 975px・`design.md` §4。左右余白は同 §4.1)
   - カード — 面 `{color.surface.default}` / 角丸 `{errorPage.cardRadius}` (16px) / 上下 `{errorPage.cardPaddingBlock}` (64px)・左右 `{errorPage.cardPaddingInline}` (24px) / 中央揃え / 要素の間隔 `{errorPage.cardGap}` (16px)
@@ -752,7 +753,7 @@
   - Don't: エラーコードだけで状況を伝えない
 - 関連トークン: `{errorPage.pagePaddingTop}` / `{errorPage.pagePaddingBottom}` / `{errorPage.cardRadius}` / `{errorPage.cardPaddingBlock}` / `{errorPage.cardPaddingInline}` / `{errorPage.cardGap}` / `{errorPage.iconSize}` / `{errorPage.codeFontSize}` / `{size.tapTarget.commit}` / `{font.heading.h1Size}` / `{color.surface.subtle}` / `{color.surface.default}` / `{color.state.error}` / `{color.text.mutedStrong}` / `{color.text.strong}` / `{color.text.body}` / `{color.text.link}`
 - [事実] 本節の値は実装の `err_s_global.scss` L25-247 と `Element/Member_s/_error_card.ctp` による (実装は 1 系統)。国内レンタカーの共通エラー画面は同じ実装を移植している (実装側の Owner 決定 OD-32 による。本 Repository に同決定の記録は無い)
-- [事実] 実装の `secondary` ボタンは枠 `{color.border.default}` (#CCCCCC・白面上 1.61:1) を持ち、[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 4 (3:1) に届かない。本書の `Button.secondary` は枠を定義していない。本節は操作の意匠を `Button` に委ね、この枠を定義に含めない
+- [事実] 実装の `secondary` ボタンは枠 `{color.border.default}` (#CCCCCC・白面上 1.61:1) を持ち、[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 4 (3:1) に届かない。本書の `Button.secondary` は枠を定義していない。本節は操作の意匠を `Button` に委ね、`Button` に無い枠を本節で足さない
 - 未確定事項: 白い面の上に置く `Button.secondary` の境界の示し方 (実装は 1.61:1 の枠) / 最小の高さ 512px・本文の最大幅 448px・副の操作の最大幅 20rem の扱い (実装は spacing の倍数・rem で書いており、トークン化していない)
 
 ## SummaryBar
@@ -764,7 +765,7 @@
   - 器 — 画面下端に固定 / 重なり `{elevation.sticky}` / 上下 `{summaryBar.paddingBlock}` (12px。下端は `safe-area` の余白を足す)・左右 `{summaryBar.paddingInline}` (16px) / 要素の間隔 `{summaryBar.gap}` (12px) / 面 `{color.surface.default}` / 上端 `{border.width.thin}` × `{color.border.subtle}` / 影は 🚧 未定義 (実装は `shadow.md` を参照)
   - 施設名 — `{summaryBar.titleFontSize}` (16px) + 700 + 行間 `{font.heading.lineHeight}` (1.3) + `{color.text.strong}` / 長い語は途中で折り返す
   - 条件 (日付・泊数・室数・人数) — `{summaryBar.subFontSize}` (14px) + `{color.text.mutedStrong}` / 施設名との間隔 `{summaryBar.innerGap}` (4px)
-  - 料金 — 右寄せ。見出し (「支払予定額」) `{summaryBar.priceLabelFontSize}` (12px) + `{color.text.mutedStrong}` / 数字 `{summaryBar.priceFontSize}` (18px) + 700 + `{color.text.body}` / 単位 (円) `{summaryBar.priceUnitFontSize}` (12px) + 700
+  - 料金 — 右寄せ。見出し (「支払予定額」) `{summaryBar.priceLabelFontSize}` (12px) + `{color.text.mutedStrong}` / 数字 `{summaryBar.priceFontSize}` (18px) + 700 + `{color.text.body}` / 単位 (円) `{summaryBar.priceUnitFontSize}` (12px) + 400
   - 開く印 — 一辺 `{summaryBar.chevronSize}` (12px) の上向きの印 × `{color.text.mutedStrong}`。装飾として `aria-hidden`
   - バーと本文が重ならないよう、本文の下端にバーの高さぶんの余白を足す
 - 状態: 開いている / 閉じている (シート)。focus = `{color.focus.ring}` outline / hover 🚧 暫定
@@ -773,7 +774,7 @@
   - Don't: 本文の下端の余白を固定値にしない (バーの高さは内容で変わる)
 - 関連トークン: `{summaryBar.paddingBlock}` / `{summaryBar.paddingInline}` / `{summaryBar.gap}` / `{summaryBar.innerGap}` / `{summaryBar.titleFontSize}` / `{summaryBar.subFontSize}` / `{summaryBar.priceLabelFontSize}` / `{summaryBar.priceFontSize}` / `{summaryBar.priceUnitFontSize}` / `{summaryBar.chevronSize}` / `{elevation.sticky}` / `{color.surface.default}` / `{color.border.subtle}` / `{color.text.strong}` / `{color.text.body}` / `{color.text.mutedStrong}` / `{font.heading.lineHeight}` / `{color.focus.ring}`
 - [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L663-730 (`.sumbar`・2026-09-24) と `MemberReserve/index.ctp` L262-272 による (実装は 1 系統)
-- [事実] 実装の値のうち既存の段に無いものを、最寄りの段へ丸めた (§46 V-5) — 上下余白 10px → 12px、施設名と条件の間隔 2px → 4px、料金の見出し 11px → 12px、単位のウェイト 500 → 700、開く印 10px → 12px。いずれも 2 段の中間の値は大きい側へ寄せた
+- [事実] 実装の値のうち既存の段に無いものを、最寄りの段へ丸めた (§46 V-5) — 上下余白 10px → 12px (8px と 12px の中間のため大きい側)、施設名と条件の間隔 2px → 4px (0 と 4px の中間のため大きい側)、開く印 10px → 12px (同)、料金の見出し 11px → 12px (文字の最小の段が 12px)、単位のウェイト 500 → 400 (400 との差 100・700 との差 200)
 - [事実] 画面上端に貼り付く `StickyBar` とは別の部品である (位置・中身・押した結果が異なる)
 - 未確定事項: 出す幅の条件 (実装の CSS では確かめられなかった) / 影の実値
 
@@ -816,8 +817,8 @@
   - Do: 完了したことを見出しの文で伝える。印だけで伝えない
   - Do: 手順は `ol` で組む
 - 関連トークン: `{completion.paddingBlock}` / `{completion.paddingInline}` / `{completion.gap}` / `{completion.markSize}` / `{completion.markIconSize}` / `{completion.stepGap}` / `{completion.stepInnerGap}` / `{completion.stepNumberSize}` / `{completion.stepNumberFontSize}` / `{color.surface.default}` / `{color.scheme.main.tint}` / `{color.action.primary.bg}` / `{color.action.primary.text}` / `{color.text.*}` / `{font.heading.*}` / `{radius.card}` 🚧
-- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/booking_complete.scss` L13-190 と `MemberReserve/done.ctp` による (予約完了・2026-09-18・実装は 1 系統)。器の最大幅 640px・手順と操作の最大幅 448px は spacing の倍数であり、トークン化していない
-- [事実] 実装の `secondary` ボタンは枠 `{color.border.default}` (白面上 1.61:1) を持つ。本節は操作の意匠を `Button` に委ね、この枠を定義に含めない (`ErrorPage` と同じ扱い)
+- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/booking_complete.scss` L13-190 と `MemberReserve/done.ctp` による (予約完了・2026-09-18)。認証系の完了カード (`auth_s_global.scss` `.ga-auth__card--done`・2026-09-23 / `--flow-done`・2026-09-23 / `.ga-auth__done-notes`・2026-09-24) は更新が新しいが、完了の印も次の手順の一覧も持たない文とボタンだけのカードであり、本節 (完了の印・次の手順・戻り先) とは部品の役割が異なると判断して比較から外した。問い合わせ (`.iq-done`・完了の印あり・2026-09-14)・資料請求 (`.frc-done`・09-15)・法人向け (`.sl-done`・09-11) は最終更新が前である器の最大幅 640px・手順と操作の最大幅 448px は spacing の倍数であり、トークン化していない
+- [事実] 実装の `secondary` ボタンは枠 `{color.border.default}` (白面上 1.61:1) を持つ。本節は操作の意匠を `Button` に委ね、`Button` に無い枠を本節で足さない (`ErrorPage` と同じ扱い)
 
 ## 変更履歴
 

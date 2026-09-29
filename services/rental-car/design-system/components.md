@@ -432,7 +432,7 @@
 - 用途: 画面の上部で、**入力の誤り**や**まだ完了していないこと**をまとめて告げる帯 (通知帯)
 - バリアント: `error` (入力の誤り・送信の失敗) / `info` (未完了の告知等)
 - 構成:
-  - 器 — 面 `color.surface.default` / 枠 `{border.width.thin}` × `color.border.subtle` / 角丸 `radius.card` / 影 `shadow.sm` `🚧`
+  - 器 — 面 `color.surface.default` / 枠 `{border.width.thin}` × `color.border.subtle` / 角丸 `radius.card` / 影は `🚧` 未定義 (実装は `shadow.sm` を参照)
   - 上端の色帯 — 高さ `{alert.barHeight}` (4px)。`error` = `color.state.error` / `info` = `color.brand.primary`
   - 本文 — 内側 `{alert.padding}` (24px)・768px 以上 `{alert.paddingWide}` (40px) / 要素の間隔 `{alert.gap}` (16px)
   - 見出し — 700 + `color.text.strong`。`error` は `color.state.error` (白背景 4.77:1)。先頭にアイコン (間隔 `{alert.iconGap}` 8px)
@@ -442,7 +442,7 @@
 - Do: 種別を上端の色帯だけで伝えない (見出しの文で伝える)
 - 関連トークン: `{alert.barHeight}` / `{alert.padding}` / `{alert.paddingWide}` / `{alert.gap}` / `{alert.iconGap}` / `{alert.listIndent}` / `{alert.listGap}` / `color.surface.default` / `color.border.subtle` / `color.state.error` / `color.brand.primary` / `color.text.strong` / `radius.card`
 - [事実] 本節の値は実装の `reservation_s_global.scss` L300-356 (`.gr-notice`・予約フォーム〜確認・2026-09-24) による。検索結果の通信失敗 (`search_result_s.scss` `.sr-alert`・赤の 1px 枠・2026-09-22) は最終更新が前であり、マイページの通知 (`.gm-flash` / `.gm-notice`) は採用の対象から除いた (§46)
-- 未確定事項: 影 (`shadow.sm` の実値・follow-up #13) / 成功のバリアント
+- 未確定事項: 影 (`🚧` follow-up #13) / 成功のバリアント
 
 ### SummaryBar
 

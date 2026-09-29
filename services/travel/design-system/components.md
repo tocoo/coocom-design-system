@@ -699,12 +699,12 @@
 - バリアント: なし
 - 構成:
   - 目次 (768px 以上) — 本文の横の列に置き、画面上端から 16px の位置で追従させる。列の幅は 768px 以上 240px / 1024px 以上 280px
-    - 器 — 面 `{color.surface.default}` / 枠 `{border.width.thin}` × `{color.border.subtle}` / 角丸 `{toc.panelRadius}` (16px) / 内側 `{toc.panelPadding}` (20px) / 影 `shadow.md` 🚧
+    - 器 — 面 `{color.surface.default}` / 枠 `{border.width.thin}` × `{color.border.subtle}` / 角丸 `{toc.panelRadius}` (16px) / 内側 `{toc.panelPadding}` (20px) / 影は 🚧 未定義 (実装は `shadow.md` を参照)
     - 見出し — `{font.heading.family}` / `{toc.titleFontSize}` (16px) + 700 + 行間 `{font.heading.lineHeight}` (1.3) + `{color.text.strong}` / 一覧との間隔 `{toc.titleGap}` (12px)
     - 一覧 — 器の中で一覧だけをスクロールさせる。項目の上端に `{border.width.thin}` × `{color.border.subtle}` (最後の項目は下端にも)
     - 項目 — 番号 (「1.」・`{color.text.mutedStrong}`・数字の幅を揃える) + 節名。上下と左 `{toc.linkPadding}` (12px)・番号と節名の間隔 `{toc.linkPadding}` (12px) / `{toc.linkFontSize}` (14px) + 行間 1.8 + `{color.text.body}`
   - 目次バー (768px 未満) — 画面下端に追従する押す要素。目次を `Modal` (form = sheet) で開く
-    - 最小の高さ `{size.tapTarget.open}` / 上下 `{toc.barPaddingBlock}` (12px)・左右 `{toc.barPaddingInline}` (16px)・下端は `safe-area` の余白を足す / 面 `{color.surface.default}` / 上端 `{border.width.thin}` × `{color.border.subtle}` / 影 `shadow.md` 🚧 / 重なり `{elevation.sticky}`
+    - 最小の高さ `{size.tapTarget.open}` / 上下 `{toc.barPaddingBlock}` (12px)・左右 `{toc.barPaddingInline}` (16px)・下端は `safe-area` の余白を足す / 面 `{color.surface.default}` / 上端 `{border.width.thin}` × `{color.border.subtle}` / 影は 🚧 未定義 (実装は `shadow.md` を参照) / 重なり `{elevation.sticky}`
     - 文字 `{toc.barFontSize}` (18px) + 700 + `{color.text.strong}`。アイコンは右端に置く
 - 状態:
   - 現在地 — 項目の面 `{color.surface.subtle}` + 左端に `{toc.currentIndicatorWidth}` (2px) × `{color.brand.primary}` の線 / 節名 700 + `{color.text.strong}` / 番号 `{color.brand.primary}`
@@ -718,7 +718,7 @@
 - [事実] 本節の値は実装の `faq_s.scss` L252-490 と `filter_s_global.scss` L16-25 (目次の器 `.gf-panel`) による (FAQ 11 画面・実装は 1 系統)。列の幅 240px / 280px は幅ごとの値であり、トークン化していない
 - [事実] 実装の目次バーの最小の高さは 48px を直接参照している。本節は区分 B (`{size.tapTarget.open}` = 48px / 1024px 以上 32px) を当てる。目次バーは 768px 未満にしか出ないため、実際の値は 48px で変わらない
 - [事実] 実装が開くシートの最大の高さは 85% であり、`Modal` の sheet の最大高 (`90vh`・`design.md` §7.1) と異なる。本節はシートの意匠を `Modal` に委ねる
-- 未確定事項: 影 (`shadow.md`) の実値 (primitive が placeholder)
+- 未確定事項: 影 (🚧 未定義・follow-up #13)
 
 ## ErrorPage
 

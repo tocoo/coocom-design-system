@@ -25,7 +25,7 @@
 | [primitive.rental-car.json](primitive.rental-car.json) | 正本 | 値 (Primitive) トークン。実装からの直接参照は禁止 | Draft (0.3.0-draft) |
 | [components.md](components.md) | 正本 | Component 仕様 (共通事項・フォーム系・検索系・検索結果系・オーバーレイ・レスポンシブ) | Draft (0.3.0-draft) |
 | [labels-tags.rental-car.md](labels-tags.rental-car.md) | 正本 | ラベル・タグ定義 (器の統一・カテゴリ A〜H・Do / Don't・追加したトークン) | Draft |
-| [migration-map.md](migration-map.md) | 記録 | 実装 (japan ゾーン) の旧値と DS 正値の対照表 (12 項目)。**左列は実装の事実値であり DS の正値ではない** | 記録 |
+| [migration-map.md](migration-map.md) | 記録 | 実装 (japan ゾーン) の旧値と DS 正値の対照表 (12 項目)。**左列は実装の事実値であり DS の正値ではない**。実装の置換は 2026-09-24 までに実施済み (同書 §1) | 記録 |
 | [preview.rental-car.html](preview.rental-car.html) | **非正本** | DS 見本ページ。正本のトークンを実際に描画したもの。**規則の文章を持たない** | 非正本 |
 
 - **値が食い違った場合は JSON を正とする** ([design.md](design.md) §2 冒頭)。`design.md` の表は要約である。
@@ -120,3 +120,4 @@
 | --- | --- | --- |
 | 2026-09-07 | 初版。Design System レイヤーの入口文書として新設 (Task 009-63・[Issue #170](https://github.com/tocoo/coocom-design-system/issues/170)・記録 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §29)。成果物の一覧・読み順・正本の所在・責務の境界・3 独立 DS の原則・Status / version の扱い・上流/下流との関係・Open Issue を定義した。**個別のトークン・Component・ブランド値・判断は定義・変更していない** | Claude Code |
 | 2026-09-07 | Task 009-63R の記述是正: PR [#171](https://github.com/tocoo/coocom-design-system/pull/171) コードレビュー ([issuecomment-5565532746](https://github.com/tocoo/coocom-design-system/pull/171#issuecomment-5565532746)) の指摘に対応。§2.6 の改題 (「プレースホルダの文字色」→「未入力状態の文字色」) に伴い、成果物の一覧と正本の所在表の該当記述を追随させた。**個別のトークン・Component・ブランド値・判断は定義・変更していない** | Claude Code |
+| 2026-09-29 | Task 009-80 ([Issue #207](https://github.com/tocoo/coocom-design-system/issues/207)): §2 の `migration-map.md` の行に、実装の置換が 2026-09-24 までに実施済みであることを追記した | Claude Code |

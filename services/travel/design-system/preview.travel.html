@@ -179,11 +179,13 @@
     --sticky-bar-gap                    : 0.75rem; /* stickyBar.gap */
     --sticky-bar-main-font-size         : 0.875rem; /* stickyBar.mainFontSize */
     --sticky-bar-sub-font-size          : 0.75rem; /* stickyBar.subFontSize */
+    --stepper-bar-padding-top           : 1.5rem; /* stepper.barPaddingTop */
+    --stepper-bar-padding-bottom        : 1rem; /* stepper.barPaddingBottom */
+    --stepper-list-padding-inline       : 1rem; /* stepper.listPaddingInline */
     --stepper-gap                       : 0.5rem; /* stepper.gap */
     --stepper-font-size                 : 0.875rem; /* stepper.fontSize */
-    --stepper-connector-min-width       : 0.75rem; /* stepper.connectorMinWidth */
-    --stepper-connector-width           : 1px; /* stepper.connectorWidth */
-    --stepper-bar-padding-block         : 0.75rem; /* stepper.barPaddingBlock */
+    --stepper-number-size               : 2rem; /* stepper.numberSize */
+    --stepper-connector-width           : 2px; /* stepper.connectorWidth */
     --quantity-stepper-gap              : 0.75rem; /* quantityStepper.gap */
     --quantity-stepper-button-size      : 3rem; /* quantityStepper.buttonSize */
     --quantity-stepper-icon-size        : 16px; /* quantityStepper.iconSize */
@@ -214,15 +216,38 @@
     --field-label-gap                   : 0.5rem; /* field.labelGap */
     --field-mark-font-size              : 0.75rem; /* field.markFontSize */
     --field-error-font-size             : 0.875rem; /* field.errorFontSize */
-    --field-error-icon-size             : 16px; /* field.errorIconSize */
-    --field-error-gap                   : 0.25rem; /* field.errorGap */
-    --alert-padding                     : 1rem; /* alert.padding */
-    --alert-gap                         : 0.5rem; /* alert.gap */
-    --alert-text-gap                    : 0.25rem; /* alert.textGap */
-    --alert-icon-size                   : 20px; /* alert.iconSize */
-    --alert-title-font-size             : 1rem; /* alert.titleFontSize */
+    --field-error-margin-top            : 0.25rem; /* field.errorMarginTop */
+    --alert-bar-height                  : 0.25rem; /* alert.barHeight */
+    --alert-padding                     : 1.5rem; /* alert.padding */
+    --alert-padding-inline-wide         : 2.5rem; /* alert.paddingInlineWide */
+    --alert-gap                         : 0.75rem; /* alert.gap */
+    --alert-info-gap                    : 0.5rem; /* alert.infoGap */
+    --alert-list-indent                 : 1.25rem; /* alert.listIndent */
+    --alert-list-gap                    : 0.25rem; /* alert.listGap */
     --alert-body-font-size              : 0.875rem; /* alert.bodyFontSize */
-    --alert-margin-block-end            : 1rem; /* alert.marginBlockEnd */
+    --summary-bar-padding-block         : 0.75rem; /* summaryBar.paddingBlock */
+    --summary-bar-padding-inline        : 1rem; /* summaryBar.paddingInline */
+    --summary-bar-gap                   : 0.75rem; /* summaryBar.gap */
+    --summary-bar-inner-gap             : 0.25rem; /* summaryBar.innerGap */
+    --summary-bar-title-font-size       : 1rem; /* summaryBar.titleFontSize */
+    --summary-bar-sub-font-size         : 0.875rem; /* summaryBar.subFontSize */
+    --summary-bar-price-label-font-size : 0.75rem; /* summaryBar.priceLabelFontSize */
+    --summary-bar-price-font-size       : 1.125rem; /* summaryBar.priceFontSize */
+    --summary-bar-price-unit-font-size  : 0.75rem; /* summaryBar.priceUnitFontSize */
+    --summary-bar-chevron-size          : 0.75rem; /* summaryBar.chevronSize */
+    --description-list-item-gap         : 1rem; /* descriptionList.itemGap */
+    --description-list-row-gap          : 0.25rem; /* descriptionList.rowGap */
+    --description-list-column-gap       : 1.5rem; /* descriptionList.columnGap */
+    --description-list-term-font-size   : 0.875rem; /* descriptionList.termFontSize */
+    --completion-padding-block          : 4rem; /* completion.paddingBlock */
+    --completion-padding-inline         : 1.5rem; /* completion.paddingInline */
+    --completion-gap                    : 1.25rem; /* completion.gap */
+    --completion-mark-size              : 4rem; /* completion.markSize */
+    --completion-mark-icon-size         : 24px; /* completion.markIconSize */
+    --completion-step-gap               : 1rem; /* completion.stepGap */
+    --completion-step-inner-gap         : 0.75rem; /* completion.stepInnerGap */
+    --completion-step-number-size       : 1.5rem; /* completion.stepNumberSize */
+    --completion-step-number-font-size  : 0.875rem; /* completion.stepNumberFontSize */
     --empty-state-radius                : 16px; /* emptyState.radius */
     --empty-state-padding-block         : 4rem; /* emptyState.paddingBlock */
     --empty-state-padding-inline        : 1.5rem; /* emptyState.paddingInline */
@@ -233,6 +258,8 @@
     --loading-font-size                 : 0.875rem; /* loading.fontSize */
     --loading-icon-gap                  : 0.5rem; /* loading.iconGap */
     --loading-margin-block-end          : 1rem; /* loading.marginBlockEnd */
+    --loading-bar-width                 : 0.25rem; /* loading.barWidth */
+    --loading-bar-height                : 2rem; /* loading.barHeight */
     --toc-panel-padding                 : 1.25rem; /* toc.panelPadding */
     --toc-panel-radius                  : 16px; /* toc.panelRadius */
     --toc-title-font-size               : 1rem; /* toc.titleFontSize */
@@ -1246,7 +1273,7 @@
   <ul class="note">
     <li>ラベル・タグの E2 販売終了 (方向のみ)</li>
     <li>未着手 Component (Toast / Pagination 番号付き / Badge 単体)</li>
-    <li>Task 009-81 で定義した 11 部品 (Stepper / QuantityStepper / Pager / Accordion / Table / FormField / Alert / EmptyState / LoadingState / TableOfContents / ErrorPage) の見本 — 定義は <a href="components.md"><code>components.md</code></a> が正</li>
+    <li>Task 009-81 で定義した 14 部品 (Stepper / QuantityStepper / Pager / Accordion / Table / FormField / Alert / EmptyState / LoadingState / TableOfContents / ErrorPage / SummaryBar / DescriptionList / CompletionPanel) の見本 — 定義は <a href="components.md"><code>components.md</code></a> が正</li>
     <li>副色 (sub) スキームでの各 Component の見え方 — 色見本のみ収録</li>
   </ul>
   <p class="source">正本: <a href="design.md"><code>design.md</code></a>「未確定事項の一覧」 / 各 Component の「未確定事項」行 = <a href="components.md"><code>components.md</code></a></p>

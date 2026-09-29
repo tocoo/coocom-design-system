@@ -40,7 +40,7 @@
 - [事実] リンクは色 `{color.text.link}` (= 主色・TVL-0011) に加え、状態ごとの文字色 (hover = `{color.text.linkHover}` / active = `{color.text.linkActive}` / visited = 専用色を設けず `{color.text.link}` を維持 / focus = `{color.focus.ring}` の `outline`) を使用する。**文中リンクには下線を付し、hover で下線を外さない**。standalone なリンク (カード全体リンク・ナビゲーション項目・パンくず) への下線の既定は未判定であり、状態ごとの文字色は対象を限定せず適用される。**リンクの状態表現に `opacity` を用いない** — 上記の「全 Component の hover は opacity 変化 (≈0.85) を暫定参照」からリンクを除外している。正は `design.md` §2.2
 - [事実] **未入力状態の案内文字** (`input` / `textarea` の `::placeholder`・Select の未選択値・その他の入力フィールドの未入力表示) の文字色は `{color.text.muted}` (#9E9E9E・白背景 **2.68:1**・**AA 未達を明示**) に統一する。**UI の種別で限定しない**。未入力であることを色だけで伝えず文言が担う。案内文字を必須項目・ラベル・エラーメッセージ・入力形式の説明の代替として用いない。正は `design.md` §2.3 (Task 009-71)
 - [事実] variant 語彙は `primary / secondary / ghost / campaign / text` の5語で確定 (GOV-0002)。語彙外の新設は ADR 必須。**travel の Button 実装は4語 (primary/secondary/ghost/text)**— campaign (accent 塗りボタン) は廃止 (TVL-0012)、accent を**面**として持つのはバッジ/割引ラベルに限る (Card badge)。**accent を文字色として明色面に置くことは禁じていない** ([design.md](design.md) §2.1 代替規則 3 の 2 通り = 役割 2 / 役割 3 に限る)
-- [事実] 未着手 Component: Toast / Pagination (番号付き) / Badge (単体)。本仕様に含めない。**Stepper / Table / Accordion / Empty state は Task 009-81 で定義済みへ移した** (実装にあって定義の無かった部品 11 種を実装の値で定義・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46。Pagination は前後送りだけを `Pager` として定義し、番号付きは未着手に残す)。**Select は Task 009-68・Tabs は Task 009-69 で定義済みへ移した**。Task 009-69 / 009-70 ではあわせて、実装に存在しながら未着手一覧に載っていなかった 10 件 (Checkbox / Radio・OptionRow・NavigationRow・Chip・OverlayTrigger・DateRangeCalendar・AvailabilityCalendar・RangeSlider・Skeleton・StickyBar) を新規に定義した。**Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理した** (Task 009-39・受理と分類のみ。仕様定義は別 Task)。Tabs / Select は従来から未着手として記載済み。各 Component の実体データ・実装実査の有無は Component ごとに異なる (`Pagination` / `Stepper` / `Empty state` は全文検索 0 件・従来の未着手一覧にも不在だった / Badge は `Card.slot.badge` としてスロット規則が定義済みだが Card 外で使う単体 Component は未定義)
+- [事実] 未着手 Component: Toast / Pagination (番号付き) / Badge (単体)。本仕様に含めない。**Stepper / Table / Accordion / Empty state は Task 009-81 で定義済みへ移した** (実装にあって定義の無かった部品 14 種を実装の値で定義・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46。Pagination は前後送りだけを `Pager` として定義し、番号付きは未着手に残す)。**Select は Task 009-68・Tabs は Task 009-69 で定義済みへ移した**。Task 009-69 / 009-70 ではあわせて、実装に存在しながら未着手一覧に載っていなかった 10 件 (Checkbox / Radio・OptionRow・NavigationRow・Chip・OverlayTrigger・DateRangeCalendar・AvailabilityCalendar・RangeSlider・Skeleton・StickyBar) を新規に定義した。**Pagination / Badge (単体) / Stepper / Empty state は依頼元 (2026-08-03・依頼 D) の指摘で受理した** (Task 009-39・受理と分類のみ。仕様定義は別 Task)。Tabs / Select は従来から未着手として記載済み。各 Component の実体データ・実装実査の有無は Component ごとに異なる (`Pagination` / `Stepper` / `Empty state` は全文検索 0 件・従来の未着手一覧にも不在だった / Badge は `Card.slot.badge` としてスロット規則が定義済みだが Card 外で使う単体 Component は未定義)
 - [事実] **Badge (単体) Component の切り出し境界** (Task 009-39): 既に定義済みの `Card.slot.badge` (角丸 `{radius.badge}`・面と文字色の (a)(b) 分岐・割引ラベルの面色・Do / Don't = `design.md` §2.1 が正) と、単体 Component として追加で必要になる範囲 (Card 外での配置・サイズ段階・操作可能な場合の扱い) を分離する。**操作可能なバッジは badge ではなく action 系 Component として扱う**既存の境界 (共通事項) は再定義しない
 - [事実] 依頼 D の新規 Component (Pagination / Badge (単体) / Stepper / Empty state) の**定義工程への着手は Web部責任者判断 2026-08-03 で可** (正本 = `governance/owner-decisions.md` §15)。ただし着手可は改訂着手の可否 (`governance/review-approval-rules.md` §9) であり、Component 仕様・variant 語彙 (GOV-0002)・状態固定リスト (命名規則§2) の新設ではない。依頼 D の新規 Component は Work Order 6 の 12 候補 (alignment 候補) とは別であり、同 Work Order 6 の「12 候補は現時点では開始できない」は不変
 
@@ -502,24 +502,28 @@
 ## Stepper
 
 - ステータス: Draft
-- 用途: 複数画面にまたがる手続き (会員登録・パスワード再設定・有料会員登録等) の**いまの段と全体の段数**を示す
+- 用途: 複数画面にまたがる手続き (予約入力 → 確認 → 完了・会員登録等) の**いまの段・済んだ段・全体の段数**を示す
 - バリアント: なし
 - 構成:
-  - 帯 — 面 `{color.surface.default}` / 下端 `{border.width.thin}` × `{color.border.subtle}`。左右余白は中央寄せの器の左右余白 (`design.md` §4.1 の 5 段) に従い、中の段の並びは最大幅 400px で中央に置く / 上下 `{stepper.barPaddingBlock}` (12px)
-  - 段 — 番号 (「1.」) + 段名。間隔 `{stepper.gap}` (8px) / 文字 `{stepper.fontSize}` (14px) / 折り返さない
-  - 段をつなぐ線 — 最後以外の段の後ろに置く。太さ `{stepper.connectorWidth}` (1px) × `{color.border.subtle}` / 最小の長さ `{stepper.connectorMinWidth}` (12px)。残りの幅を線が埋める
-  - 段名は帯の中では**常に表示する**
+  - 帯 — 面 `{color.surface.default}` / 上 `{stepper.barPaddingTop}` (24px)・下 `{stepper.barPaddingBottom}` (16px)
+  - 段の並び — 段を等幅の列に並べる (3 段なら 3 列) / 最大幅 640px で中央に置く / 左右 `{stepper.listPaddingInline}` (16px)
+  - 段 — 番号の円の下に段名を置き、中央揃え。間隔 `{stepper.gap}` (8px) / 文字 `{stepper.fontSize}` (14px) / 行間 1.5 / `{color.text.mutedStrong}`
+  - 番号の円 — 直径 `{stepper.numberSize}` (32px) / 角丸 `{radius.action}` (円) / 面 `{color.surface.muted}` / 数字 `{stepper.fontSize}` (14px) + 700 + 数字の幅を揃える + `{color.text.mutedStrong}` (面の上 5.68:1)
+  - 段をつなぐ線 — 2 段目以降の段の前に、前の段の円の中心から自分の円の中心まで引く。太さ `{stepper.connectorWidth}` (2px) / 色 `{color.surface.subtle}`。円の中心の高さに置く
 - 状態:
-  - 現在の段 — 文字 `{color.text.strong}` + `{font.heading.weight}` (700)。色と太さの両方で示す
-  - 現在以外の段 — 文字 `{color.text.mutedStrong}` / 400
+  - 現在の段 — 段名 700 + `{color.brand.primary}` (白背景 6.80:1) / 番号の円の面 `{color.brand.primary}` + 数字 `{color.text.inverse}` / 前の段からの線を `{color.brand.primary}` にする
+  - 済んだ段 — 段名 700 + `{color.brand.primary}` / 番号の円の面 `{color.scheme.main.tint}` + 数字 `{color.brand.primary}` (5.81:1) / 前の段からの線を `{color.brand.primary}` にする
+  - まだの段 — 既定の値のまま
 - Do / Don't:
   - Do: 現在の段に `aria-current="step"` を付ける
-  - Do: 段の並びは順序付きリスト (`ol`) で組む
-  - Don't: 現在の段を色だけで示さない (共通事項)
-- 関連トークン: `{stepper.gap}` / `{stepper.fontSize}` / `{stepper.connectorMinWidth}` / `{stepper.connectorWidth}` / `{stepper.barPaddingBlock}` / `{color.text.strong}` / `{color.text.mutedStrong}` / `{color.border.subtle}` / `{color.surface.default}` / `{font.heading.weight}`
-- [事実] 本節の値は実装 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`) の `auth_s_global.scss` L200-280 (段) と L726-766 (帯 `.ga-stepbar`・共通 Element `auth_stepper.ctp`・9 呼び出し) による (Task 009-81)。同じファイルに段名を畳む別の帯 (L153-167・パスワード再設定の 4 画面) があるが、最終更新が前であり採っていない ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
-- [事実] マイページの「入力 (1/2)」形式の段表示 (`.mypage-step`) は採っていない (マイページの実装は採用の対象から除く・§46)
-- 未確定事項: **完了済みの段**を現在以外の段と区別するか (実装は区別しない) / 段名を畳む表示の要否 / `ol` のアクセシブルネーム
+  - Do: 段の並びはリストで組む。順序を持つため `ol` を用いる
+  - Don't: 現在の段と済んだ段を色だけで区別しない (番号の円の面と数字の色の組み合わせを変える)
+- 関連トークン: `{stepper.barPaddingTop}` / `{stepper.barPaddingBottom}` / `{stepper.listPaddingInline}` / `{stepper.gap}` / `{stepper.fontSize}` / `{stepper.numberSize}` / `{stepper.connectorWidth}` / `{radius.action}` / `{color.surface.default}` / `{color.surface.muted}` / `{color.surface.subtle}` / `{color.brand.primary}` / `{color.scheme.main.tint}` / `{color.text.mutedStrong}` / `{color.text.inverse}`
+- [事実] 本節の値は実装 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`) の `yarn_project/src/assets_s/css/reserve.scss` L500-580 (`.p-stepbar`・予約入力と予約確認・2026-09-24) と `src/Template/Member/MemberReserve/index.ctp` / `conf.ctp` による (Task 009-81)。会員登録などの共通部品 (`webroot/member/scss/auth_s_global.scss` L726-766 `.ga-stepbar`・2026-09-23 17:35) とパスワード再設定の帯 (同 L153-167・2026-09-23 16:46) は最終更新が前であり採っていない ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
+- [事実] 実装の値のうち既存の段に無いものを、最寄りの段へ丸めた (§46 V-5) — 番号の円の直径 28px → 32px (`spacing.6` 24px と `spacing.8` 32px の中間のため大きい側)、行間 1.4 → 1.5 (`tight` 1.3 と `normal` 1.5 の中間のため `normal`)。つなぎ線の位置 (実装は 13px = 28px の円の中心) は「円の中心の高さ」とした。太さ 2px は `border.width.thick` と一致する
+- [事実] 実装は段の並びを `ul` で組んでいる。本節の Do は順序を持つ `ol` を定める
+- [事実] つなぎ線の既定の色 `{color.surface.subtle}` は白背景 1.05:1 である。段の状態は番号の円と段名が担い、線は装飾として扱う ([../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §4 役割 5)
+- 未確定事項: 段数が 4 以上の場合の並び / 段名が長い場合の折り返し
 
 ## QuantityStepper
 
@@ -616,10 +620,10 @@
 - バリアント: なし
 - 構成:
   - 見出しの行 — 見出しと必須・任意の表記を横に並べ、文字の基準線で揃える。間隔 `{field.labelGap}` (8px)
-    - 見出し — `{field.labelFontSize}` (14px) + 700 + `{color.text.strong}`
+    - 見出し — `{field.labelFontSize}` (14px) + 700 + 行間 `{font.body.lineHeight}` (1.8) + `{color.text.strong}`
     - 必須の表記 (「必須」) — `{field.markFontSize}` (12px) + 700 + `{color.state.error}` (白背景 4.77:1)
     - 任意の表記 (「任意」) — `{field.markFontSize}` (12px) + 700 + `{color.scheme.main.ink}` (白背景 15.47:1)
-  - 欄のエラー文 — 欄の下に置く。`{field.errorFontSize}` (14px) / 行間 `{font.body.lineHeight}` (1.8) / `{color.state.error}` / 先頭にアイコン `{field.errorIconSize}` (16px・1 行目の高さに揃える) / アイコンと文の間隔 `{field.errorGap}` (4px)
+  - 欄のエラー文 — 欄の下に置く。欄との間隔 `{field.errorMarginTop}` (4px) / `{field.errorFontSize}` (14px) + 400 + 行間 `{font.body.lineHeight}` (1.8) + `{color.state.error}`
 - 状態:
   - 欄のエラー — 欄の枠を `{color.state.error}` にし、欄のエラー文を出す。欄には `aria-invalid="true"` を付ける
 - Do / Don't:
@@ -627,30 +631,31 @@
   - Do: 欄のエラー文を `aria-describedby` で欄と結ぶ
   - Do: エラーは枠の色と文の両方で示す (色だけで伝えない)
   - Don't: 必須の表記に `{color.accent.campaign}` を使わない (白背景 3.68:1 で役割 1 の下限 4.5:1 に届かない・[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §4)
-- 関連トークン: `{field.labelFontSize}` / `{field.labelGap}` / `{field.markFontSize}` / `{field.errorFontSize}` / `{field.errorIconSize}` / `{field.errorGap}` / `{font.body.lineHeight}` / `{color.text.strong}` / `{color.state.error}` / `{color.scheme.main.ink}`
-- [事実] 本節の値は実装の `auth_s_global.scss` L318-334 (見出し・必須)・L384-408 (欄のエラー文)・L440-448 (欄のエラー)・L1396-1400 (任意) による (認証画面・2026-09-23)。問い合わせ (`inquiry_s.scss`・欄のエラー文 12px)・レンタカー会社加盟の資料請求 (`for_rentacar_s.scss`・同 12px) は最終更新が前であり、マイページ (`.mypage-field__*`) は採用の対象から除いた (§46)
-- [事実] 実装はすべての系統で必須の表記に `{color.accent.campaign}` (#E4572E・白背景 3.68:1) を用いている。本節はコントラスト規約の役割 1 (4.5:1) を優先し `{color.state.error}` を採る (§46)
-- [事実] 任意の表記 (`.ga-auth__optional`) は実装に定義はあるが、テンプレートでの使用は 0 件である
+- 関連トークン: `{field.labelFontSize}` / `{field.labelGap}` / `{field.markFontSize}` / `{field.errorFontSize}` / `{field.errorMarginTop}` / `{font.body.lineHeight}` / `{color.text.strong}` / `{color.state.error}` / `{color.scheme.main.ink}`
+- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve.scss` による (予約入力・2026-09-24) — 見出し L246-300 (`.reserve-tbl th`)、必須・任意 L396-420 (`.input-required` / `.input-optional`)、欄のエラー L187-189 と L231-241 (`.error` / `#entryform label.error`)。認証画面 (`webroot/member/scss/auth_s_global.scss`・2026-09-23〜09-24 09:18)・問い合わせ・レンタカー会社加盟の資料請求は最終更新が前であり、マイページ (`.mypage-field__*`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
+- [事実] 実装は、必須の表記に `{color.accent.campaign}` (#E4572E・白背景 3.68:1) を用いている (予約入力・認証・問い合わせ・資料請求のいずれも同じ)。本節はコントラスト規約の役割 1 (4.5:1) を優先し `{color.state.error}` を採る (§46 V-4)
+- [事実] 実装 (予約入力) の欄のエラー文はアイコンを持たない
 - 未確定事項: 欄のエラー文を出す時機 (入力中・離脱時・送信時) / 成功状態の表示
 
 ## Alert
 
 - ステータス: Draft
-- 用途: フォームの冒頭で、**送信に失敗したことと直すべき欄**をまとめて示す (エラー要約)
-- バリアント: なし (現時点で定義するのはエラーの 1 種)
+- 用途: 画面の上部で、**入力の誤り**や**まだ完了していないこと**を告げる帯
+- バリアント: `error` (入力の誤り・送信の失敗) / `info` (未完了の告知等)
 - 構成:
-  - 器 — 面 `{color.surface.subtle}` / 枠 `{border.width.thin}` × `{color.state.error}` / 角丸 `{radius.card}` 🚧 / 内側 `{alert.padding}` (16px) / 下の余白 `{alert.marginBlockEnd}` (16px)
-  - アイコン — `{alert.iconSize}` (20px) × `{color.state.error}`。見出しの 1 行目の高さに揃える / アイコンと文の間隔 `{alert.gap}` (8px)
-  - 見出し — `{alert.titleFontSize}` (16px) + 700 + 行間 1.8 + `{color.state.error}` (`{color.surface.subtle}` 面上 4.53:1)
-  - 本文 — `{alert.bodyFontSize}` (14px) + 行間 1.8 + `{color.text.body}` / 見出しとの間隔 `{alert.textGap}` (4px)
+  - 器 — 面 `{color.surface.default}` / 枠 `{border.width.thin}` × `{color.border.subtle}` / 角丸 `{radius.card}` 🚧 / 影は 🚧 未定義 (実装は `shadow.sm` を参照) / 内側 `{alert.padding}` (24px)。768px 以上は左右を `{alert.paddingInlineWide}` (40px) にする
+  - 上端の色帯 — 高さ `{alert.barHeight}` (4px)。`error` = `{color.state.error}` / `info` = `{color.brand.primary}`
+  - `error` の中身 — 見出し (700 + `{color.state.error}`・白背景 4.77:1) と、直すべき項目の一覧 (字下げ `{alert.listIndent}` 20px・項目の間隔 `{alert.listGap}` 4px・`{alert.bodyFontSize}` 14px + `{color.text.body}`)。見出しと一覧の間隔 `{alert.gap}` (12px)
+  - `info` の中身 — 見出し (先頭にアイコン × `{color.brand.primary}`・700 + `{color.text.strong}`) と本文 (`{alert.bodyFontSize}` 14px + `{color.text.body}`)。間隔 `{alert.infoGap}` (8px)
 - 状態: なし
 - Do / Don't:
-  - Do: 器に `role="alert"` を付ける
-  - Do: 直すべき欄が複数ある場合は、欄へのリンクを並べる
-  - Don't: エラーを色だけで伝えない (見出しの文で伝える)
-- 関連トークン: `{alert.padding}` / `{alert.gap}` / `{alert.textGap}` / `{alert.iconSize}` / `{alert.titleFontSize}` / `{alert.bodyFontSize}` / `{alert.marginBlockEnd}` / `{color.surface.subtle}` / `{color.state.error}` / `{color.text.body}` / `{radius.card}` 🚧
-- [事実] 本節の値は実装の `auth_s_global.scss` L470-514 (`.ga-auth__alert`・2026-09-23) による。問い合わせ (`.iq-alert`)・資料請求 (`.frc-alert`) は同じ値で最終更新が前であり、マイページ (`.mypage-error-summary`) は採用の対象から除いた (§46)。実装の角丸は `radius.md` (8px) を直接参照しており、本節は用途トークン `{radius.card}` (現在の参照先 = `radius.md`) に置き換えた
-- 未確定事項: 成功・注意・情報のバリアント / フォーム以外 (通信失敗等) での用い方
+  - Do: `error` は `role="alert"`、`info` は `role="status"` とする
+  - Do: 種別を上端の色帯だけで伝えない (見出しの文で伝える)。アイコンは `aria-hidden` とする
+  - Do: 直すべき欄が複数ある場合は、一覧の項目を欄へのリンクにする
+- 関連トークン: `{alert.barHeight}` / `{alert.padding}` / `{alert.paddingInlineWide}` / `{alert.gap}` / `{alert.infoGap}` / `{alert.listIndent}` / `{alert.listGap}` / `{alert.bodyFontSize}` / `{color.surface.default}` / `{color.border.subtle}` / `{color.state.error}` / `{color.brand.primary}` / `{color.text.strong}` / `{color.text.body}` / `{radius.card}` 🚧
+- [事実] `error` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L450-489 (`.error-messages`・予約入力・2026-09-24・`MemberReserve/index.ctp` L81 の `role="alert"`)、`info` の値は `reserve_confirm.scss` L75-117 (`.rc-notice`・予約確認・2026-09-24・`conf.ctp` L42 の `role="status"`) による。認証画面 (`auth_s_global.scss` `.ga-auth__alert`・赤枠と薄灰の面・2026-09-23)・問い合わせ (`.iq-alert`)・資料請求 (`.frc-alert`) は最終更新が前であり、マイページ (`.mypage-error-summary`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
+- [事実] 実装 (予約入力) の `error` の一覧の項目はリンクではない。本節の Do はこれを定める
+- 未確定事項: 影 (🚧 未定義・follow-up #13) / 成功のバリアント
 
 ## EmptyState
 
@@ -677,20 +682,26 @@
 ## LoadingState
 
 - ステータス: Draft
-- 用途: 一覧を読み込んでいる間、**読み込み中であることを文で告げ**、骨組み (`Skeleton`) で結果の場所を示す
-- バリアント: なし
-- 構成:
+- 用途: 一覧を読み込んでいる間、**読み込み中であることを文で告げ**、骨組み (`Skeleton`) で結果の場所を示す (`inline`)。フォームの送信中は画面全体を覆い、操作を止める (`blocking`)
+- バリアント: `inline` / `blocking`
+- 構成 (`inline`):
   - 告知文 — `{loading.fontSize}` (14px) + `{color.text.body}` / 骨組みとの間隔 `{loading.marginBlockEnd}` (16px)
   - アイコン — `fa-circle-notch` × `{color.brand.primary}`。告知文の前に置く / 文との間隔 `{loading.iconGap}` (8px) / **回転させない**
   - 骨組み — `Skeleton` が正
-- 状態: なし (読み込みが終わると結果・`EmptyState` に置き換わる)
+- 構成 (`blocking`):
+  - 覆い — 画面全体 / 重なり `{elevation.modal}` / 面 `{color.overlay.backdrop}` 🚧
+  - 印の器 — 一辺 96px の正方形 / 面 `{color.surface.default}` / 角丸 `{radius.overlay}` 🚧 / 中央に置く
+  - 印 — 幅 `{loading.barWidth}` (4px)・高さ `{loading.barHeight}` (32px) の棒 5 本 × `{color.brand.primary}` / 棒どうしの間隔 `{loading.barWidth}` (4px) / 棒を順に縦へ伸縮させる (周期 900ms 🚧)。`prefers-reduced-motion: reduce` では止める
+- 状態: なし (`inline` は読み込みが終わると結果・`EmptyState` に置き換わる。`blocking` は送信の完了・失敗で外す)
 - Do / Don't:
   - Do: 告知文を**常設の** `aria-live="polite"` 領域に出し入れする (領域ごと挿入すると読み上げられない)
   - Do: 骨組みの領域に `aria-busy="true"` を付ける
-  - Don't: 回転・点滅で読み込み中を表現しない (`Skeleton` の Don't と同じ)
-- 関連トークン: `{loading.fontSize}` / `{loading.iconGap}` / `{loading.marginBlockEnd}` / `{color.text.body}` / `{color.brand.primary}`
+  - Don't: `inline` で回転・点滅を用いない (`Skeleton` の Don't と同じ)
+  - Don't: `blocking` を一覧の読み込みに用いない (操作を止める必要がある送信中に限る)
+- 関連トークン: `{loading.fontSize}` / `{loading.iconGap}` / `{loading.marginBlockEnd}` / `{loading.barWidth}` / `{loading.barHeight}` / `{elevation.modal}` / `{color.overlay.backdrop}` 🚧 / `{radius.overlay}` 🚧 / `{color.surface.default}` / `{color.text.body}` / `{color.brand.primary}`
 - [事実] 本節の値は実装の `ultra_market_s.scss` L871-892 と `ultra_tocoo_market.ctp` L174-205 (2026-08-27) による。検索結果 (`search_result_s.scss` L391-492・`.sr-loading`・回転するスピナー 700ms と明滅する骨組み) は最終更新が前であり採っていない (§46)
-- 未確定事項: 骨組みを出さない小さな領域 (オーバーレイの中の再取得等) の告げ方 / 読み込みが長いときの表示
+- [事実] `blocking` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L2145-2186 (`.c-loading`・2026-09-24) と `Element/Member_s/footer.ctp` L114 による。`inline` とは役割 (送信中に操作を止める) が異なるため、別のバリアントとした。印の器の一辺 96px は spacing の倍数 (64px × 1.5) であり、トークン化していない
+- 未確定事項: `blocking` の支援技術への告げ方 (実装は告知文を持たない) / 骨組みを出さない小さな領域 (オーバーレイの中の再取得等) の告げ方 / 読み込みが長いときの表示
 
 ## TableOfContents
 
@@ -740,9 +751,73 @@
   - Do: 見出しで状況を、本文で利用者にできることを書く
   - Don't: エラーコードだけで状況を伝えない
 - 関連トークン: `{errorPage.pagePaddingTop}` / `{errorPage.pagePaddingBottom}` / `{errorPage.cardRadius}` / `{errorPage.cardPaddingBlock}` / `{errorPage.cardPaddingInline}` / `{errorPage.cardGap}` / `{errorPage.iconSize}` / `{errorPage.codeFontSize}` / `{size.tapTarget.commit}` / `{font.heading.h1Size}` / `{color.surface.subtle}` / `{color.surface.default}` / `{color.state.error}` / `{color.text.mutedStrong}` / `{color.text.strong}` / `{color.text.body}` / `{color.text.link}`
-- [事実] 本節の値は実装の `err_s_global.scss` L25-247 と `Element/Member_s/_error_card.ctp` による (実装は 1 系統)。国内レンタカーの共通エラー画面は同じ実装を移植している (Owner 決定 OD-32)
+- [事実] 本節の値は実装の `err_s_global.scss` L25-247 と `Element/Member_s/_error_card.ctp` による (実装は 1 系統)。国内レンタカーの共通エラー画面は同じ実装を移植している (実装側の Owner 決定 OD-32 による。本 Repository に同決定の記録は無い)
 - [事実] 実装の `secondary` ボタンは枠 `{color.border.default}` (#CCCCCC・白面上 1.61:1) を持ち、[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 4 (3:1) に届かない。本書の `Button.secondary` は枠を定義していない。本節は操作の意匠を `Button` に委ね、この枠を定義に含めない
 - 未確定事項: 白い面の上に置く `Button.secondary` の境界の示し方 (実装は 1.61:1 の枠) / 最小の高さ 512px・本文の最大幅 448px・副の操作の最大幅 20rem の扱い (実装は spacing の倍数・rem で書いており、トークン化していない)
+
+## SummaryBar
+
+- ステータス: Draft
+- 用途: 予約入力で、画面下端に**施設名・条件・支払予定額**を出し続け、押すと予約内容のシートを開く帯 (予約内容バー)
+- バリアント: なし
+- 構成:
+  - 器 — 画面下端に固定 / 重なり `{elevation.sticky}` / 上下 `{summaryBar.paddingBlock}` (12px。下端は `safe-area` の余白を足す)・左右 `{summaryBar.paddingInline}` (16px) / 要素の間隔 `{summaryBar.gap}` (12px) / 面 `{color.surface.default}` / 上端 `{border.width.thin}` × `{color.border.subtle}` / 影は 🚧 未定義 (実装は `shadow.md` を参照)
+  - 施設名 — `{summaryBar.titleFontSize}` (16px) + 700 + 行間 `{font.heading.lineHeight}` (1.3) + `{color.text.strong}` / 長い語は途中で折り返す
+  - 条件 (日付・泊数・室数・人数) — `{summaryBar.subFontSize}` (14px) + `{color.text.mutedStrong}` / 施設名との間隔 `{summaryBar.innerGap}` (4px)
+  - 料金 — 右寄せ。見出し (「支払予定額」) `{summaryBar.priceLabelFontSize}` (12px) + `{color.text.mutedStrong}` / 数字 `{summaryBar.priceFontSize}` (18px) + 700 + `{color.text.body}` / 単位 (円) `{summaryBar.priceUnitFontSize}` (12px) + 700
+  - 開く印 — 一辺 `{summaryBar.chevronSize}` (12px) の上向きの印 × `{color.text.mutedStrong}`。装飾として `aria-hidden`
+  - バーと本文が重ならないよう、本文の下端にバーの高さぶんの余白を足す
+- 状態: 開いている / 閉じている (シート)。focus = `{color.focus.ring}` outline / hover 🚧 暫定
+- Do / Don't:
+  - Do: バー全体を 1 つの `button` とし、`aria-expanded` と `aria-controls` (開くシート) を付ける
+  - Don't: 本文の下端の余白を固定値にしない (バーの高さは内容で変わる)
+- 関連トークン: `{summaryBar.paddingBlock}` / `{summaryBar.paddingInline}` / `{summaryBar.gap}` / `{summaryBar.innerGap}` / `{summaryBar.titleFontSize}` / `{summaryBar.subFontSize}` / `{summaryBar.priceLabelFontSize}` / `{summaryBar.priceFontSize}` / `{summaryBar.priceUnitFontSize}` / `{summaryBar.chevronSize}` / `{elevation.sticky}` / `{color.surface.default}` / `{color.border.subtle}` / `{color.text.strong}` / `{color.text.body}` / `{color.text.mutedStrong}` / `{font.heading.lineHeight}` / `{color.focus.ring}`
+- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L663-730 (`.sumbar`・2026-09-24) と `MemberReserve/index.ctp` L262-272 による (実装は 1 系統)
+- [事実] 実装の値のうち既存の段に無いものを、最寄りの段へ丸めた (§46 V-5) — 上下余白 10px → 12px、施設名と条件の間隔 2px → 4px、料金の見出し 11px → 12px、単位のウェイト 500 → 700、開く印 10px → 12px。いずれも 2 段の中間の値は大きい側へ寄せた
+- [事実] 画面上端に貼り付く `StickyBar` とは別の部品である (位置・中身・押した結果が異なる)
+- 未確定事項: 出す幅の条件 (実装の CSS では確かめられなかった) / 影の実値
+
+## DescriptionList
+
+- ステータス: Draft
+- 用途: 予約確認のような画面で、**項目名と値の対**を並べる
+- バリアント: なし
+- 構成:
+  - 組どうしの間隔 `{descriptionList.itemGap}` (16px)
+  - 640px 未満 — 項目名の下に値を置く。間隔 `{descriptionList.rowGap}` (4px)
+  - 640px 以上 — 項目名の列 (9em) と値の列を横に並べる。横の間隔 `{descriptionList.columnGap}` (24px)
+  - 項目名 — `{descriptionList.termFontSize}` (14px) + 400 + 行間 1.8 + `{color.text.mutedStrong}`
+  - 値 — `{font.body.size}` (16px) + 行間 1.8 + `{color.text.strong}` / 長い語は途中で折り返す
+- 状態: なし
+- Do / Don't:
+  - Do: `dl` / `dt` / `dd` で組む
+  - Don't: 表 (`Table`) の見た目で組まない。罫と面を持たない
+- 関連トークン: `{descriptionList.itemGap}` / `{descriptionList.rowGap}` / `{descriptionList.columnGap}` / `{descriptionList.termFontSize}` / `{font.body.size}` / `{color.text.mutedStrong}` / `{color.text.strong}`
+- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve_confirm.scss` L155-195 (予約確認・2026-09-24) による。項目名の列の幅 9em は文字数に基づく値であり、トークン化していない
+- [事実] 実装は `table` 要素を組み替えてこの見た目にしている。本節の Do は `dl` を定める
+
+## CompletionPanel
+
+- ステータス: Draft
+- 用途: 予約の**完了**を告げ、次の手順と戻り先を示す
+- バリアント: なし
+- 構成:
+  - 器 — 面 `{color.surface.default}` / 角丸 `{radius.card}` 🚧 / 最大幅 640px で中央に置く / 上下 `{completion.paddingBlock}` (64px)・左右 `{completion.paddingInline}` (24px)。768px 未満は上下 40px・左右 16px / 中央揃え / 要素の間隔 `{completion.gap}` (20px)
+  - 完了の印 — 直径 `{completion.markSize}` (64px) の円 / 面 `{color.scheme.main.tint}` / チェックのアイコン `{completion.markIconSize}` (24px) × `{color.action.primary.bg}` / 装飾として `aria-hidden`
+  - 小見出し — 12px + 700 + `{color.text.mutedStrong}` (字間 0.08em)
+  - 見出し (`h1`) — `{font.heading.family}` / 1024px 未満 32px・1024px 以上 `{font.heading.h1Size}` (40px) / 700 / 行間 1.3 / `{color.text.strong}`
+  - 本文 — 16px + 行間 1.8 + `{color.text.body}`
+  - 次の手順 — 番号付きの一覧。最大幅 448px・左寄せ / 手順どうしの間隔 `{completion.stepGap}` (16px) / 番号と本文の間隔 `{completion.stepInnerGap}` (12px)
+    - 番号 — 直径 `{completion.stepNumberSize}` (24px) の円 / 面 `{color.action.primary.bg}` + 数字 `{color.action.primary.text}` / `{completion.stepNumberFontSize}` (14px) + 700
+    - 手順名 — 16px + 700 + `{color.text.strong}` / 説明 — 14px + `{color.text.mutedStrong}`
+  - 操作 — `Button` (`primary` / `secondary`)。最大幅 448px / 間隔 12px / 640px 未満は縦に積み、640px 以上は横に並べて主の操作を右に置く
+- 状態: なし
+- Do / Don't:
+  - Do: 完了したことを見出しの文で伝える。印だけで伝えない
+  - Do: 手順は `ol` で組む
+- 関連トークン: `{completion.paddingBlock}` / `{completion.paddingInline}` / `{completion.gap}` / `{completion.markSize}` / `{completion.markIconSize}` / `{completion.stepGap}` / `{completion.stepInnerGap}` / `{completion.stepNumberSize}` / `{completion.stepNumberFontSize}` / `{color.surface.default}` / `{color.scheme.main.tint}` / `{color.action.primary.bg}` / `{color.action.primary.text}` / `{color.text.*}` / `{font.heading.*}` / `{radius.card}` 🚧
+- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/booking_complete.scss` L13-190 と `MemberReserve/done.ctp` による (予約完了・2026-09-18・実装は 1 系統)。器の最大幅 640px・手順と操作の最大幅 448px は spacing の倍数であり、トークン化していない
+- [事実] 実装の `secondary` ボタンは枠 `{color.border.default}` (白面上 1.61:1) を持つ。本節は操作の意匠を `Button` に委ね、この枠を定義に含めない (`ErrorPage` と同じ扱い)
 
 ## 変更履歴
 
@@ -776,4 +851,4 @@
 | 2026-09-19 | Task 009-78: **コントラストの下限の決め方が横断規約へ移ったことに伴う参照の是正** ([Issue #200](https://github.com/tocoo/coocom-design-system/issues/200)・記録 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §44)。Button の variant の [事実] 行と Don't 行の「accent は『点』専用」という書き方を是正した — accent を**文字色**として用いることまで禁じていると読めたため、限定の対象が**面**であることを明示し、文字色としての可否は [design.md](design.md) §2.1 代替規則 3 (役割 2 = 条件 (a) (b) を満たす文字／役割 3 = 冗長表現。いずれも AA 未達を明示) によることを明記した。コントラストの下限の決め方 (テキストの役割 1〜5) の正本は [../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) である。**不変**: すべての Component の仕様・意匠値・状態・バリアント語彙 (GOV-0002 の 5 語・travel 実装の 4 語)・スロット責務、用途色の割当・器・角丸、token の値・参照先・`$status`・version、accent 塗りボタン禁止 (TVL-0012)、rental-car / inbound の成果物。**行っていないもの**: 新しい色値・トークンの追加、Component の追加・変更、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。改訂着手の設計承認取得済み ([../../../governance/review-approval-rules.md](../../../governance/review-approval-rules.md) §9・§20・§44) | Claude Code |
 | 2026-09-19 | Task 009-79: **押せない状態 (`disabled`) の意匠を定義した** ([Issue #202](https://github.com/tocoo/coocom-design-system/issues/202)・Web部責任者判断 2026-09-19・明示取得・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §45)。①**共通事項に 4 項目を追加** — 押せない状態は**要素全体の不透明度を `{disabled.opacity}` (0.5) にし、色・面・枠のトークンは差し替えない** (押せない状態専用の色は新設しない)・カーソルは `not-allowed`・本書のすべての操作要素に適用する／押せない理由は色・状態だけで伝えず**文字で併記する**／不透明度 0.5 を掛けた主ボタンの白文字は実効 **2.33:1** ([../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) の役割 1・役割 4 のいずれも下回るが、WCAG 2.2 は無効化された部品を対象外とする。**適合宣言は行わない**)／本規則の対象は**操作要素が押せない状態**であり「**選べない値**」の表現は対象外 (`color.text.placeholder` の位置づけ = §37 N-4 と一体で判定)。②共通事項の「ボタン状態は未取得」から `disabled` を外した (残るは hover/active/focus)。③**`Button`** の状態に `disabled` を明記し、未取得の列挙から外した。④**`Input`**・**`Select`**・**`Checkbox / Radio`**・**`OptionRow`**・**`Chip`**・**`Tabs`**・**`OverlayTrigger`**・**`RangeSlider`** の状態行 8 箇所の `disabled` を確定値へ改め、対応する未確定事項 5 箇所から `disabled` を外した。⑤当該 9 Component の**関連トークン**へ `{disabled.opacity}` を追記した。**不変**: variant 語彙 (GOV-0002)・Button の 4 語の意匠・最小タップ領域の 5 区分・角丸の用途トークン・`hover` の暫定参照 (`opacity` ≈ .85)・`focus` の扱い・他の全 Component の構造とスロット責務名・token の値・参照先・`$status` (追加 1 件を除く)・rental-car / inbound の成果物。**行っていないもの**: `active` / `loading` / `error` / `success` の実体の確定、押せない状態専用の色トークンの新設、「選べない値」の表現の決定、実装ファイルの変更。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。改訂着手の設計承認取得済み (§9・§20・§45)。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-29 | Task 009-80 ([Issue #207](https://github.com/tocoo/coocom-design-system/issues/207)): **実装の 2 箇所目を事実として記録した**。`AvailabilityCalendar` に施設詳細の料金カレンダー (`plan_calendar_s.scss` `.pc__cell`) を、`Skeleton` に検索結果の読み込み中 (`search_result_s.scss` `.sr-sk`) を、それぞれ値と本節との食い違いとともに追記した。あわせて、従前の「実装は 1 箇所」の行を Task 009-70 時点の実測であると明記した (新しい行と矛盾させないため)。**本節の値・規則は変えていない** | Claude Code |
-| 2026-09-29 | Task 009-81 ([Issue #209](https://github.com/tocoo/coocom-design-system/issues/209)・Web部責任者判断 2026-09-29・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46): **実装 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`) にあって定義の無かった部品 11 種を、実装の値で定義した** — `Stepper` / `QuantityStepper` / `Pager` / `Accordion` / `Table` / `FormField` / `Alert` / `EmptyState` / `LoadingState` / `TableOfContents` / `ErrorPage` の 11 節を新設し、`Card` に画像なしの表示とポイント利用ラベルを加えた。実装が割れている部品は、マイページを除いたうえで最も新しい実装の値を採った。実装の値が既存の規則に反する箇所 (押せない側を色で示す・必須の表記を `{color.accent.campaign}` で示す) は既存の規則を優先した。共通事項の未着手一覧から Stepper / Table / Accordion / Empty state を外し、Pagination を「番号付き」に限った。`Input` の error・必須の表記の未取得記述を `FormField` への参照へ改めた | Claude Code |
+| 2026-09-29 | Task 009-81 ([Issue #209](https://github.com/tocoo/coocom-design-system/issues/209)・Web部責任者判断 2026-09-29・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46): **実装 (`tocoo/tocoo_travel` `origin/master` `6f87701ad`) にあって定義の無かった部品 14 種を、実装の値で定義した** — `Stepper` / `QuantityStepper` / `Pager` / `Accordion` / `Table` / `FormField` / `Alert` / `EmptyState` / `LoadingState` / `TableOfContents` / `ErrorPage` / `SummaryBar` / `DescriptionList` / `CompletionPanel` の 14 節を新設し、`Card` に画像なしの表示とポイント利用ラベルを加えた。実装が割れている部品は、マイページを除いたうえで最も新しい実装の値を採った。実装の走査範囲は `webroot/member/scss/` と、予約フローの `yarn_project/src/assets_s/css/` (予約入力・確認・支払い情報・完了の 4 ファイル) である。実装の値が既存の規則に反する箇所 (押せない側を色で示す・必須の表記を `{color.accent.campaign}` で示す) は既存の規則を優先し、既存の段に無い値は最寄りの段へ丸めた (§46 V-5)。共通事項の未着手一覧から Stepper / Table / Accordion / Empty state を外し、Pagination を「番号付き」に限った。`Input` の error・必須の表記の未取得記述を `FormField` への参照へ改めた | Claude Code |

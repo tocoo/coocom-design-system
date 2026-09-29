@@ -284,7 +284,7 @@ Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのも�
 
 - スペーシング: **4px (0.25rem) 系** `spacing.1`〜`16`。旧 Q3 (5px 刻みユーティリティ) は解消し、実装値は [migration-map.md](migration-map.md) に記録した
 - コンテナ幅: **975 / 1195 / 1425px** (`size.container.sm` / `md` / `lg`)
-- ブレークポイント: **`640 / 768 / 1024 / 1280`** (Q5 決定 2026-07-24: 3DS 共通値。0.3.0-draft で `$status` を bound へ)。japan ゾーン実装は DS 移行前は 2段 (959/960) のみで (DS 移行後の `origin/master` `23d7c58b8` は 640 / 768 / 1024 / 1280 を用い、ほかに内容に合わせた 430px が 1 箇所ある (`result_list_s_global.scss` L164)・Task 009-80)、置換の扱いは [migration-map.md](migration-map.md)
+- ブレークポイント: **`640 / 768 / 1024 / 1280`** (Q5 決定 2026-07-24: 3DS 共通値。0.3.0-draft で `$status` を bound へ)。japan ゾーン実装は DS 移行前は 2段 (959/960) のみで (DS 移行後の `origin/master` `23d7c58b8` は 640 / 768 / 1024 / 1280 を用い、ほかに内容に合わせた 430px が 1 箇所ある (`result_list_s_global.scss` L164。DS トークンを参照するファイルの中での実測)・Task 009-80)、置換の扱いは [migration-map.md](migration-map.md)
 - 代表 viewport (画面設計・HTML 確認用の表示幅): **`390 / 768 / 1280 / 1440px`** (3DS 横断・Web部責任者判断 2026-07-24・Task 009-18-BP1)。**表示確認用の代表幅であり breakpoint token ではない**
 
 ### 4.1 中央寄せの器の左右余白

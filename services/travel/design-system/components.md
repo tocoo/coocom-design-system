@@ -634,7 +634,7 @@
   - Do: エラーは枠の色と文の両方で示す (色だけで伝えない)
   - Don't: 必須の表記に `{color.accent.campaign}` を使わない (白背景 3.68:1 で役割 1 の下限 4.5:1 に届かない・[../../../governance/contrast-rules.md](../../../governance/contrast-rules.md) §4)
 - 関連トークン: `{field.labelFontSize}` / `{field.labelGap}` / `{field.markFontSize}` / `{field.errorFontSize}` / `{field.errorMarginTop}` / `{font.body.lineHeight}` / `{color.text.strong}` / `{color.state.error}` / `{color.scheme.main.ink}`
-- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve.scss` による (予約入力・2026-09-24) — 見出し L246-300 (`.reserve-tbl th`)、必須・任意 L396-421 (`.input-required` / `.input-optional`)、欄のエラー L187-189 と L231-241 (`.error` / `#entryform label.error`)。認証画面 (`webroot/member/scss/auth_s_global.scss`・2026-09-23〜09-24 09:18)・問い合わせ・レンタカー会社加盟の資料請求は最終更新が前であり、マイページ (`.mypage-field__*`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
+- [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve.scss` による (予約入力・2026-09-24) — 見出し L246-300 (`.reserve-tbl th`)、必須・任意 L401-422 (`.input-required` / `.input-optional`)、欄のエラー L187-189 と L231-241 (`.error` / `#entryform label.error`)。認証画面 (`webroot/member/scss/auth_s_global.scss`・2026-09-23〜09-24 09:18)・問い合わせ・レンタカー会社加盟の資料請求は最終更新が前であり、マイページ (`.mypage-field__*`) は採用の対象から除いた ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
 - [事実] 実装は、必須の表記に `{color.accent.campaign}` (#E4572E・白背景 3.68:1) を用いている (予約入力・認証・問い合わせ・資料請求のいずれも同じ)。本節はコントラスト規約の役割 1 (4.5:1) を優先し `{color.state.error}` を採る (§46 V-4)
 - [事実] 実装 (予約入力) の欄のエラー文はアイコンを持たない
 - 未確定事項: 欄のエラー文を出す時機 (入力中・離脱時・送信時) / 成功状態の表示
@@ -701,7 +701,7 @@
   - Don't: `inline` で回転・点滅を用いない (`Skeleton` の Don't と同じ)
   - Don't: `blocking` を一覧の読み込みに用いない (操作を止める必要がある送信中に限る)
 - 関連トークン: `{loading.fontSize}` / `{loading.iconGap}` / `{loading.marginBlockEnd}` / `{loading.barWidth}` / `{loading.barHeight}` / `{elevation.modal}` / `{color.overlay.backdrop}` 🚧 / `{radius.overlay}` 🚧 / `{color.surface.default}` / `{color.text.body}` / `{color.brand.primary}`
-- [事実] 本節の値は実装の `ultra_market_s.scss` L871-891 と `ultra_tocoo_market.ctp` L174-205 (2026-08-27) による。検索結果 (`search_result_s.scss` L391-492・`.sr-loading`・回転するスピナー 700ms と明滅する骨組み) は最終更新が前であり採っていない (§46)
+- [事実] 本節の値は実装の `ultra_market_s.scss` L871-889 と `ultra_tocoo_market.ctp` L174-205 (2026-08-27) による。検索結果 (`search_result_s.scss` L391-492・`.sr-loading`・回転するスピナー 700ms と明滅する骨組み) は最終更新が前であり採っていない (§46)
 - [事実] `blocking` の値は実装の `yarn_project/src/assets_s/css/reserve.scss` L2145-2186 (`.c-loading`・2026-09-24) と `Element/Member_s/footer.ctp` L114 による。`inline` とは役割 (送信中に操作を止める) が異なるため、別の種別とした。印の器の一辺 96px は spacing の倍数 (64px × 1.5) であり、トークン化していない
 - 未確定事項: `blocking` の支援技術への告げ方 (実装は告知文を持たない) / 骨組みを出さない小さな領域 (オーバーレイの中の再取得等) の告げ方 / 読み込みが長いときの表示
 
@@ -796,7 +796,7 @@
   - Don't: 表 (`Table`) の見た目で組まない。罫と面を持たない
 - 関連トークン: `{descriptionList.itemGap}` / `{descriptionList.rowGap}` / `{descriptionList.columnGap}` / `{descriptionList.termFontSize}` / `{font.body.size}` / `{color.text.mutedStrong}` / `{color.text.strong}`
 - [事実] 本節の値は実装の `yarn_project/src/assets_s/css/reserve_confirm.scss` L155-195 (予約確認・2026-09-24) による。項目名の列の幅 9em は文字数に基づく値であり、トークン化していない
-- [事実] お知らせ・規約ページの定義リスト (`note_s.scss` L319-331・`.nt-dl`・2026-09-24 22:52) は更新が新しいが、文書の本文を面の器 (`.nt-box`) に入れて示すものであり、フォームの確認に用いる本節とは役割が異なると判断して比較から外した。認証 (`.ga-auth__summary-*`・09-23)・問い合わせ (`.iq-summary`)・資料請求 (`.frc-summary`)・法人向け (`.sl-summary`) は最終更新が前である ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
+- [事実] 宿泊施設の方へ (加盟案内) のページの定義リスト (`note_s.scss` L319-332・`.nt-dl`・`MemberNote/forfacility.ctp`・2026-09-24 22:52) は更新が新しいが、文書の本文を面の器 (`.nt-box`) に入れて示すものであり、フォームの確認に用いる本節とは役割が異なると判断して比較から外した。認証 (`.ga-auth__summary-*`・09-23)・問い合わせ (`.iq-summary`)・資料請求 (`.frc-summary`)・法人向け (`.sl-summary`) は最終更新が前である ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46)
 - [事実] 実装は `table` 要素を組み替えてこの見た目にしている。本節の Do は `dl` を定める
 
 ## CompletionPanel

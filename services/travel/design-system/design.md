@@ -363,27 +363,27 @@ Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのも�
 | セクション間 (隣り合うセクションの間の余白) | 40px | `{section.gap}` = `{spacing.10}` |
 
 - [決定] 隣り合うセクションの間は `{section.gap}` (40px) で空ける。**幅によらず 1 値**であり、§3.1 の見出し・§4.1 の左右余白・§4.2 のタップ領域のように幅で段を移さない (Web部責任者 2026-11-09・Task 009-83・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §47 S-1)
-- [決定] 空ける**手段は問わない**。前のセクションの `margin`、親要素の `gap`、各セクションの `padding-top` のいずれで書いても、隣り合うセクションの内容の端どうしの距離が `{section.gap}` になるようにする。`padding` で持つ場合に本節が対象とするのはセクションどうしの間の距離であり、器の内側の余白 (次項) ではない
-- [決定] **36px 段 (`spacing.9`) は追加しない。** [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §18 ⓐ (2026-08-04) は 36px 段を追加する方向としていたが、実装の実測 (下の [事実]) で 36px が宿泊トップ 1 画面のみ、40px が 4 画面であったことから、既存の `spacing.10` を用いる判断へ改めた (Web部責任者 2026-11-09・同 §47 S-1)。**新しい primitive の段は追加していない**。44px 段も追加しない (同 §18 ⓒ)
+- [決定] 空ける**手段は問わない**。各セクション自身の `margin` でも親要素の `gap` でも、隣り合うセクションの内容の端どうしの距離が `{section.gap}` になるようにする。**各セクションが自身の `padding-block` で縦余白を持つ器 (面色の帯の形) は、下の据え置き区分であり本節の対象外**である (S-2)
+- [決定] **36px 段 (`spacing.9`) は追加しない。** [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §18 ⓐ (2026-08-04) は 36px 段を追加する方向としていたが、実装の実測 (下の [事実]) で 36px が宿泊トップ 1 画面のみ、40px が 4 画面 (うち 1 画面は 1024px 未満) であったことから、既存の `spacing.10` を用いる判断へ改めた (Web部責任者 2026-11-09・同 §47 S-1)。**新しい primitive の段は追加していない**。44px 段も追加しない (同 §18 ⓒ)
 - [決定] 用途トークンを持つのは「セクション間」のみ。**「セクション内ブロック間」「面色セクション内側 padding」の 2 区分は用途トークン化せず据え置く** (同 §18 ⓑ)
-- [決定] **器の内側の上下 `padding` は「セクション間」に当てない。** 面色のある帯・ヒーロー帯・静的ページの本文の器が自身に持つ上下の余白は、面色の有無を問わず据え置き区分 (「面色セクション内側 padding」と同じ扱い) であり、本節は値を定めない。`{section.gap}` へ揃える対象ではない (Web部責任者 2026-11-09・同 §47 S-2)
-- [決定] 実装側の暫定段 `--spacing-9` (36px・`webroot/member/scss/_tokens_travel.scss`・🚧 正本に無い段と注記) は、本節の確定後も正本に無い段のままである。同じ暫定段を `min-height` に用いる箇所 (`pointbank_s.scss`) も含め、暫定段の扱いは実装 Repository 側の課題とし、本節は `{section.gap}` 以外の値を定めない
-- [事実] 実装 (`tocoo/tocoo_travel` `origin/master` `3e1ae318f`・2026-11-09 本 Repository で実測。`webroot/member/scss/` と `yarn_project/src/assets_s/css/` を走査) で、見出しを持つセクションどうしの間を空けている箇所は次のとおりである。36px は宿泊トップのみで、最も多い値は 40px (`spacing.10`) である
+- [決定] **器の内側の上下 `padding` は「セクション間」に当てない。** 面色のある帯・ヒーロー帯・静的ページの節・本文の器が自身に持つ上下の余白は、面色の有無を問わず据え置き区分 (「面色セクション内側 padding」と同じ扱い) であり、本節は値を定めない。`{section.gap}` へ揃える対象ではない (Web部責任者 2026-11-09・同 §47 S-2)
+- [事実] 実装側の暫定段 `--spacing-9` (36px・`webroot/member/scss/_tokens_travel.scss`・🚧 正本に無い段と注記) は、本節の確定後も正本に無い段のままである。同じ暫定段を `min-height` に用いる箇所 (`pointbank_s.scss`) も含め、暫定段の扱いは実装 Repository 側の課題である ([../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §47-4)。本節は `{section.gap}` 以外の値を定めない
+- [事実] 実装 (`tocoo/tocoo_travel` `origin/master` `3e1ae318f`・2026-11-09 本 Repository で実測) で、見出しを持つセクションどうしの間を空けている箇所は次のとおりである。走査は `webroot/member/scss/` と `yarn_project/src/assets_s/css/` の全 SCSS を対象に、`margin*` / `gap` / `row-gap` に `spacing.6` 以上の段を持つ規則をセレクタの文脈つきで列挙し (複数行規則・`+` 結合子・親要素の `gap` を含む)、`src/Template/` で見出しを持つまとまりに効くものだけを採った。ホテル詳細の `.hd-section` (`padding-top` 32px) はテンプレートで使われていない規則のため含めない。マイページは [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §46 V-3 と同じ理由 (実装が正しくない可能性が高い) で比較から外す。36px は宿泊トップのみで、最も多い値は 40px (`spacing.10`) である
 
 | 画面 | 書き方 | 値 | 幅で変わるか |
 |---|---|---|---|
-| 宿泊トップ (`spa/top_spa.scss` `.top-sec`) | 前のセクションの `margin-top` | 36px (暫定段 `--spacing-9`) | 変わらない |
+| 宿泊トップ (`spa/top_spa.scss` `.top-sec`) | 各セクション自身の `margin-top` | 36px (暫定段 `--spacing-9`) | 変わらない |
 | ポイント BANK トップ (`pointbank_s.scss` `.pb-group + .pb-group`) | `margin-top` | 40px (`spacing.10`) | 変わらない |
 | プラン詳細 (`ultra_plan_s.scss` `.up-sections`) | 親の `gap` | 40px (`spacing.10`) | 変わらない |
 | 予約フロー (`yarn_project/src/assets_s/css/reserve.scss` `.form-wrap`・節カード間) | 親の `gap` | 40px (`spacing.10`) | 変わらない |
 | 規約・注記ページ (`note_s.scss` `.nt-block`) | `margin-top` | 40px → 1024px 以上 48px (`spacing.10` → `spacing.12`) | 変わる |
-| ホテル詳細 (`detail_s.scss` `.hd-section`) | 各セクションの `padding-top` | 32px (`spacing.8`) | 変わらない |
-| マイページ (`my_page_s_global.scss` `.mypage-section`) | `margin-bottom` | 32px → 1024px 以上 40px (`spacing.8` → `spacing.10`) | 変わる (マイページは同 §46 V-3 により採用対象外) |
+| 問い合わせの入力・確認 (`inquiry_s.scss` `.iq-card + .iq-card`・h2 付きのカード) | `margin-top` | 24px (`spacing.6`) | 変わらない |
+| マイページ (`my_page_s_global.scss` `.mypage-section`) | `margin-bottom` | 32px → 1024px 以上 40px (`spacing.8` → `spacing.10`) | 変わる (上記のとおり比較から外す) |
 
 - [事実] 器の内側の上下 `padding` (上の [決定] により据え置き区分・本節は値を定めない) は、同実装で次のとおりである。静的ページの節・本文の器 (aboutus / promise / corporate / news / note / faq / solution / tour) は 32px → 768px 以上 48px (`spacing.8` → `spacing.12`)、inquiry は 32px → 40px、加盟フォームの面色の帯 (`for_rentacar_s.scss` `.frc-band`) は 24px → 40px。ヒーロー帯の内側 (`__inner`) は aboutus / promise / tour / pointbank / ultra_market が上 40px / 下 64px (`spacing.10` / `spacing.16`)、corporate / solution が上下とも 48px → 768px 以上 64px (`spacing.12` → `spacing.16`)。news / note / faq / inquiry にヒーロー帯は無い
-- [観察] 面色の無い節が自身の `padding-block` で縦余白を持ち、それが並ぶ画面 (promise) では、節と節の間が padding 2 つ分 (64px → 96px) になる。本節は器の内側の余白を定めないため、この距離は `{section.gap}` の対象外である
+- [観察] 面色の無い節が自身の `padding-block` で縦余白を持ち、それが並ぶ画面 (promise・corporate) では、節と節の内容の間が padding 2 つ分 (64px → 96px) になる。本節は器の内側の余白を定めない (S-2) ため、この距離を `{section.gap}` に揃えるかは本節で定めていない (未確定事項)
 - [事実] 用途トークンの命名規則の正本 `governance/naming-rules.md` は Repository 内に存在しない (参照切れ・[README.md](README.md) §16)。`section.gap` は既存 semantic の流儀 (用途名のグループの下に寸法を置く。`stickyBar.*` / `loading.*` と同じ) に揃えた命名であり、命名規則の整備後に改称の要否を見直す (同 §47 S-3)
-- 未確定事項: 「セクション内ブロック間」「面色セクション内側 padding」の 2 区分の値 (据え置き・トークン化しない・同 §18 ⓑ)。`{section.gap}` と異なる実装の値 (宿泊トップ 36px・ホテル詳細 32px・規約ページの幅で変わる段) の是正は実装 Repository 側の課題
+- 未確定事項: 「セクション内ブロック間」「面色セクション内側 padding」の 2 区分の値 (据え置き・トークン化しない・同 §18 ⓑ)。節自身の `padding-block` が並ぶことで生じる節の間の距離 (上の [観察]) を `{section.gap}` に揃えるか。`{section.gap}` と異なる実装の値 (宿泊トップ 36px・問い合わせのカード間 24px・規約ページの幅で変わる段) の是正は実装 Repository 側の課題
 
 ## 5. 角丸・シャドウ
 

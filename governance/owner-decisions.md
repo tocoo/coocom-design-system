@@ -1993,6 +1993,55 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 
 ---
 
+## 47. セクション間の余白の用途トークン `section.gap` の実追加と 36px 段 (`spacing.9`) を追加しない判断 (travel) — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: §18 (2026-08-04) で方向を確定していた travel の「セクション間」余白の用途 semantic トークンの実追加と、同 §18 ⓐ が方向としていた 36px 段 (`spacing.9`) の扱いについて、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #206](https://github.com/tocoo/coocom-design-system/issues/206)・Task 009-83)。§18 は方向の記録であり、本 §47 がその実追加の記録である。§18 の本文は改定せず、ⓐ の方向を改めた事実は本 §47 に記録する。§1〜§46 とは独立した記録であり、混同しない。
+- **適用範囲は国内宿泊 (travel) のみ。** rental-car・inbound へは自動適用しない (§18 と同じ)。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 47-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①travel `semantic.travel.json` へ用途トークン `section.gap` を追加、②travel `design.md` §4.3「セクション間の余白」の新設 (値・適用範囲・据え置き区分の扱い) と未確定事項の一覧の更新、③travel 見本ページの生成ブロックの再生成 (`tools/gen-preview-tokens.py`)。承認を得た時点の対象には ④travel `primitive.travel.json` への `spacing.9` (2.25rem・36px) の追加を含んでいたが、47-3 S-1 の再取得により追加しない判断となり、primitive は変更していない |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
+| 承認日 | 2026-11-09 |
+| 承認主体 | Web部責任者 |
+| 契機 | [Issue #206](https://github.com/tocoo/coocom-design-system/issues/206) (2026-09-25 起票)。§18 (2026-08-04) で確定した方向の実追加が「改訂着手の設計承認を経た別 Task」とされたまま行われておらず、実装 (`tocoo/tocoo_travel`) はその間セクションの上下余白を画面ごとに書いて値が割れていた。2026-11-09 に Web部責任者が open Issue のうち進行可能なものからの着手を依頼し、open Issue 3 件 ([#205](https://github.com/tocoo/coocom-design-system/issues/205)・[Issue #206](https://github.com/tocoo/coocom-design-system/issues/206)・[#212](https://github.com/tocoo/coocom-design-system/issues/212)) のうち先行判断 (§18) があり残る判断が最も少ない本件を最初に提示した |
+| 適用範囲 | travel のみ |
+
+### 47-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-11-09・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定理由 | semantic トークン (`section.gap`) の追加と design.md §4 の規範規則 (§4.3) の新設を含む。同 §8 の編集的訂正 carve-out は token 値・設計内容に影響する変更を除外しており、本件に適用しない。§46-2 で token と Component 定義の追加 (PR [#211](https://github.com/tocoo/coocom-design-system/pull/211)) を高と判定した前例と同じ性質である |
+| 判定時の対象 | 判定を取得した時点の差分は primitive `spacing.9` の追加を含んでいた。47-3 S-1 の再取得で primitive の変更が無くなった後の再判定は取得していない (semantic トークンの追加と規範規則の新設は残るため、上の判定理由はそのまま当てはまる) |
+
+### 47-3. 取得した現在判断 (2026-11-09)
+
+| 記号 | 判断 | 内容 |
+| --- | --- | --- |
+| S-1 | **「セクション間」の値は幅によらず 40px (既存 `spacing.10`) の 1 値とし、36px 段 (`spacing.9`) は追加しない** | §18 ⓐ (36px 段を追加する方向) を改めた判断である。実装 (`tocoo/tocoo_travel` `origin/master` `3e1ae318f`) で見出しを持つセクションどうしの間を空けている 7 画面のうち、36px は宿泊トップ 1 画面のみ、40px がポイント BANK トップ・プラン詳細・予約フロー・規約ページ (1024px 未満) の 4 画面、32px がホテル詳細とマイページ (1024px 未満)、幅で変わるのが規約ページ (40 → 48px) とマイページ (32 → 40px・§46 V-3 により採用対象外) であった。最も多い値を採り、新しい primitive の段を追加しない。幅で段を移さない。§4.1 の左右余白・§3.1 の見出しと同じく幅ごとの値はトークンに持たせない |
+| S-1 (初回・撤回) | 「幅によらず 36px (`spacing.9`) の 1 値」 | 同日に先に取得した判断。提示した前提「隣り合うセクションの間を margin で空けるのは宿泊トップのみで、幅で変える例が無い」が、走査漏れ (複数行規則の `+` 結合子・親要素の `gap`・`padding-top` で空ける書き方) による誤りであったことが判断レビュー段 (final-reviewer) の指摘で判明し、再走査の結果を示して S-1 を再取得した。初回の判断は前提の誤りにより撤回し、記録としてのみ残す |
+| S-2 | **器の内側の上下 padding は「セクション間」に当てず、据え置き区分として規定しない** | 静的ページの節・本文の器 (32px → 768px 以上 48px・inquiry は → 40px・加盟フォームの面色の帯は 24 → 40px) とヒーロー帯の内側 (aboutus / promise / tour / pointbank / ultra_market = 上 40px / 下 64px、corporate / solution = 48 → 64px) は、面色の有無を問わず「面色セクション内側 padding」と同じ据え置き区分とし、トークン化せず値も定めない。実装の値は design.md §4.3 に [事実] として記録する。提示時の推奨理由 (記録者): これを「セクション間」に当てると静的ページ全部が 1 値へ揃える対象になり、§18 ⓓ が追認しなかった一斉化と同じ結果を DS の規則として生むため。判断の取得時に示したヒーロー帯の値は「上 40px / 下 64px」のみで、corporate / solution の 48 → 64px は判断レビュー段の指摘後に補った (据え置き区分とする判断の内容は変わらない) |
+| S-3 | **用途トークンの命名は既存 semantic の流儀に揃える** (取り扱い) | 命名規則の正本 `governance/naming-rules.md` は Repository 内に不在 (参照切れ・§18 ⓑ) のため、用途名のグループの下に寸法を置く既存の流儀 (`stickyBar.*` / `loading.*`) に揃えて `section.gap` とし、命名規則の整備後に改称の要否を見直す。`naming-rules.md` は本 Task でも新規作成しない |
+
+- 判断の取得方法: 設計承認 (47-1)・S-1 (初回)・S-2・影響度 (47-2)・S-1 (再取得) の順に、1 問ずつ選択肢を示して取得した。S-1 (初回) と S-2 は本 Repository で実装を走査した結果 (セクション間の書き方・値・面色の有無・1 ページあたりの節の数) を示したうえで、S-1 (再取得) は走査漏れを補った 7 画面の表 (design.md §4.3 の [事実]) を示したうえで取得した。S-2 の提示文には「面色の有無を問わず」「「面色セクション内側 padding」と同じ扱い」を含めた。S-3 は設計承認を問う際に前提 (Assumption) として示し、異議が無かったもの (明示の選択ではない)。
+- 実装との関係 (事実): 実装側の暫定段 `--spacing-9` (36px・`webroot/member/scss/_tokens_travel.scss`・🚧 正本に無い段と注記) は、S-1 により正本に無い段のままである。同じ暫定段を `min-height` に用いる箇所 (`pointbank_s.scss`) も同様で、暫定段の扱いは実装 Repository 側の課題である。[Issue #206](https://github.com/tocoo/coocom-design-system/issues/206) が記す実装側の運用 (C-4「決まるまでセクションの上下余白の値を新しく増やさない」。起点は [tocoo/tocoo_travel#7260](https://github.com/tocoo/tocoo_travel/issues/7260) (CLOSED・2026-10-02)、現在の所在は同 Repository `docs/DS_IMPLEMENTATION.md` の C-4 で本 Issue を「提案中」と参照) の解除は本記録で判断していない。
+
+### 47-4. 本記録が決定しないこと
+
+- **「セクション内ブロック間」「面色セクション内側 padding」の 2 区分の値・トークン化** (§18 ⓑ の据え置きを維持する)。
+- **44px 段 (`spacing` step 11) の追加** (§18 ⓒ の「追加しない」を維持する)。
+- **`governance/naming-rules.md` の新規作成**と `section.gap` の最終的な名称 (命名規則の整備後に見直す)。
+- **既存実装の是正** (宿泊トップ 36px・ホテル詳細 32px・規約ページの幅で変わる段の `section.gap` への統一、暫定段 `--spacing-9` の扱い、静的ページの器の内側の余白)。範囲・順序・期限は実装 Repository 側の課題である。
+- **rental-car・inbound への適用。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -2058,3 +2107,4 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 | 2026-09-19 | Task 009-78R: §44-3 に **H-7 を追加** — PR [#201](https://github.com/tocoo/coocom-design-system/pull/201) の内容レビュー前の自己レビューで、H-2 の「役割 1 = 4.5:1 (例外なし)」が、現に維持している AA 未達の運用 2 件 (A 割引率ラベルに限る白文字 2.78:1 / 2.15:1・未入力状態の案内文字 2.68:1) および [contrast-rules.md](contrast-rules.md) §6・§9 と**矛盾していた**ため、Web部責任者判断 (2026-09-19) を取得して明確化した — **当該 DS の `design.md` に個別の例外条項として明記したものに限り役割 1 の下限未達を許容し、それ以外は認めない**。H-2 は取得時点の表現を残し H-7 への参照を付した。**不変**: H-1・H-3〜H-6、§44-1 設計承認・§44-2 影響度 (高)・§44-4 実測 7 組・§44-5 Does Not Decide、既存 2 件の適用範囲・実測値・トークン・文字色、§1〜§43。新規 ADR・Decision ID・正式 Status・Phase・Gate は作成・採番・新設していない | Claude Code |
 | 2026-09-19 | Task 009-79: §45 「押せない状態 (`disabled`) の意匠を 3 サービスで定義する」を §1〜§44 と分離して追加 ([Issue #202](https://github.com/tocoo/coocom-design-system/issues/202))。Web部責任者の 2026-09-19 現在判断 (I-1 定義はサービスごとに個別 = 横断規約は新設しない ／I-2 表現は要素全体の不透明度を下げる = 専用の面色・文字色は新設しない ／I-3 値は 0.5 に揃える ／I-4 押せない理由は文字で併記 ／I-5 WCAG 2.2 の無効化部品の対象外規定により許容し適合宣言は行わない) を記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した token は primitive `opacity.50` (0.5) と semantic `disabled.opacity` の 3 サービス各 2 件であり、**新しい色値は追加していない**。「選べない値」の表現・E2 の意匠・`active` / `loading` の実体は本記録では決定しない (45-5)。§1〜§44・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
 | 2026-09-29 | Task 009-81 / 009-82: §46「実装にあって DS に定義の無い部品を実装の値で定義する (travel・rental-car)」を §1〜§45 と分離して追加 ([Issue #209](https://github.com/tocoo/coocom-design-system/issues/209)・[Issue #210](https://github.com/tocoo/coocom-design-system/issues/210))。Web部責任者の 2026-09-29 の判断 V-1〜V-6 と改訂着手の設計承認、影響度 (#211 = 高・#208 = 低・明示取得) を記録した | Claude Code |
+| 2026-11-09 | Task 009-83: §47「セクション間の余白の用途トークン `section.gap` の実追加と 36px 段 (`spacing.9`) を追加しない判断 (travel)」を §1〜§46 と分離して追加 ([Issue #206](https://github.com/tocoo/coocom-design-system/issues/206))。§18 (2026-08-04) で方向を確定していた実追加について、Web部責任者の 2026-11-09 の改訂着手の設計承認、影響度 (高・明示取得)、現在判断 S-1〜S-3 (値は幅によらず 40px = 既存 `spacing.10` の 1 値・36px 段は追加しない (§18 ⓐ の方向を変更)／器の内側の上下 padding は据え置き区分／命名は既存 semantic の流儀) を記録した。S-1 は初回 (36px) の前提が走査漏れで誤っていたため撤回し再取得した経緯を含めて記録 | Claude Code |

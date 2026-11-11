@@ -83,6 +83,7 @@
     --color-focus-ring                  : #2c50c8; /* color.focus.ring */
     --color-icon-rating                 : #c8912c; /* color.icon.rating */
     --color-overlay-backdrop            : rgba(0,0,0,0.45); /* color.overlay.backdrop 🚧 placeholder */
+    --color-loading-backdrop            : rgba(0,0,0,0.55); /* color.loading.backdrop */
     --font-body-family                  : 'LINE Seed JP', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; /* font.body.family */
     --font-body-size                    : 1rem; /* font.body.size */
     --font-body-line-height             : 1.8; /* font.body.lineHeight */
@@ -169,6 +170,8 @@
     --range-slider-hit-height           : 1.5rem; /* rangeSlider.hitHeight */
     --skeleton-radius                   : 4px; /* skeleton.radius */
     --skeleton-padding                  : 1rem; /* skeleton.padding */
+    --skeleton-container-padding-block  : 1.5rem; /* skeleton.containerPaddingBlock */
+    --skeleton-card-border-width        : 1px; /* skeleton.cardBorderWidth */
     --skeleton-gap                      : 0.75rem; /* skeleton.gap */
     --skeleton-line-height-sm           : 1rem; /* skeleton.lineHeight.sm */
     --skeleton-line-height-md           : 1.5rem; /* skeleton.lineHeight.md */
@@ -260,6 +263,11 @@
     --loading-margin-block-end          : 1rem; /* loading.marginBlockEnd */
     --loading-bar-width                 : 0.25rem; /* loading.barWidth */
     --loading-bar-height                : 2rem; /* loading.barHeight */
+    --loading-cover-font-size           : 1rem; /* loading.coverFontSize */
+    --loading-cover-gap                 : 0.75rem; /* loading.coverGap */
+    --loading-cover-padding-inline      : 1rem; /* loading.coverPaddingInline */
+    --loading-logo-height               : 1.25rem; /* loading.logoHeight */
+    --loading-progress-height           : 0.25rem; /* loading.progressHeight */
     --toc-panel-padding                 : 1.25rem; /* toc.panelPadding */
     --toc-panel-radius                  : 16px; /* toc.panelRadius */
     --toc-title-font-size               : 1rem; /* toc.titleFontSize */
@@ -293,6 +301,7 @@
     --elevation-sticky                  : 1100; /* elevation.sticky */
     --elevation-overlay                 : 1200; /* elevation.overlay */
     --elevation-modal                   : 1300; /* elevation.modal */
+    --elevation-toast                   : 1400; /* elevation.toast */
     --spacing-0                         : 0; /* spacing.0 */
     --spacing-1                         : 0.25rem; /* spacing.1 */
     --spacing-2                         : 0.5rem; /* spacing.2 */
@@ -729,7 +738,7 @@
     <div class="sw"><span class="sw__chip" style="background: var(--color-tag-neutral-surface)"></span><code>color.tag.neutral.surface</code><span class="sw__val">#f5f5f5</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-tag-neutral-text)"></span><code>color.tag.neutral.text</code><span class="sw__val">#424242</span></div>
   </div>
-  <h3>フォーカス・アイコン・オーバーレイ</h3>
+  <h3>フォーカス・アイコン・オーバーレイ・遷移中の覆い</h3>
   <div class="sw-grid">
     <div class="sw"><span class="sw__chip" style="background: var(--color-focus-ring)"></span><code>color.focus.ring</code><span class="sw__val">#2c50c8</span></div>
   </div>
@@ -738,6 +747,9 @@
   </div>
   <div class="sw-grid">
     <div class="sw"><span class="sw__chip" style="background: var(--color-overlay-backdrop)"></span><code>color.overlay.backdrop</code><span class="sw__val">rgba(0,0,0,0.45) <span class="flag">🚧</span></span></div>
+  </div>
+  <div class="sw-grid">
+    <div class="sw"><span class="sw__chip" style="background: var(--color-loading-backdrop)"></span><code>color.loading.backdrop</code><span class="sw__val">rgba(0,0,0,0.55)</span></div>
   </div>
 <!-- === /generated:colors === -->
   <p class="source">正本: <a href="semantic.travel.json"><code>semantic.travel.json</code></a> (用途) → <a href="primitive.travel.json"><code>primitive.travel.json</code></a> (値) / 面と文字色の組み合わせ規則は <a href="design.md"><code>design.md</code></a> §2.1</p>

@@ -68,9 +68,10 @@ SERVICES = {
             ("ラベル・タグ", "color.label"),
             ("会員種別", "color.membership"),
             ("施設属性タグ", "color.tag"),
-            ("フォーカス・アイコン・オーバーレイ", "color.focus"),
+            ("フォーカス・アイコン・オーバーレイ・遷移中の覆い", "color.focus"),
             ("", "color.icon"),
             ("", "color.overlay"),
+            ("", "color.loading"),
         ],
         # アイコンサイズ見本の色に使う CSS 変数 (評価色)
         "icon_color": "--color-icon-rating",

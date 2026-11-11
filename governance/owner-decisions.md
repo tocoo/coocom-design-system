@@ -2044,6 +2044,62 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 
 ---
 
+## 48. ページ遷移中のローディング表示を `LoadingState` の種別 `navigation` として定義する (travel) — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: 宿泊の実装 ([tocoo/tocoo_travel#7405](https://github.com/tocoo/tocoo_travel/pull/7405)・2026-10-20 merge・`origin/master` `7dfc1a867`) が Owner 判断 (2026-10-19) で先行したページ遷移中のローディング表示を、travel の DS 正本 (`components.md` `LoadingState` / `Skeleton`・`primitive.travel.json`・`semantic.travel.json`・`design.md`) に反映するかについて、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #212](https://github.com/tocoo/coocom-design-system/issues/212)・Task 009-84)。§1〜§47 とは独立した記録であり、混同しない。
+- **適用範囲は国内宿泊 (travel) のみ。** rental-car・inbound へは自動適用しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 48-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①travel `components.md` の `LoadingState` への種別 `navigation` の追加と `Skeleton` への遷移中の汎用形の追加、②travel `primitive.travel.json` への `color.palette.blackAlpha.55` の追加、③travel `semantic.travel.json` への `color.loading.backdrop` / `loading.coverFontSize` / `loading.coverGap` / `loading.logoHeight` / `loading.progressHeight` / `elevation.toast` の追加、④travel `design.md` のトークン表と未確定事項の一覧の更新、⑤travel 見本ページの生成ブロックの再生成 (`tools/gen-preview-tokens.py`。同スクリプトの travel の色見本の群の一覧に `color.loading` を加え、見本の見出しを「フォーカス・アイコン・オーバーレイ・遷移中の覆い」に改めることを含む。計画の提示時には含めておらず、再生成時に同スクリプトの検査で群の登録が必要と判明したため記録者が加えた)。**判断レビュー後の追加 (X-8・同日)**: ⑥travel `design.md` §2.1 への「遷移中の上端のバーに限る主色の例外」の新設 (X-8 ③)、⑦travel `semantic.travel.json` への `skeleton.containerPaddingBlock` / `skeleton.cardBorderWidth` / `loading.coverPaddingInline` の追加 (X-8 ④)、⑧`components.md` への送信の境界と `Skeleton` の例外の範囲の追記 (X-8 ①②)。判断レビュー 2 回目の後の追加 (X-9・同日): ⑨`components.md` の `LoadingState` の用途の書き分け (X-9 ①)、⑩travel `design.md` §2.1 への「画面全体を覆う暗幕の上に置く文字の判定方法」の新設 (X-9 ②)。⑥〜⑩は X-8 / X-9 の「修正する」の取得をもって承認対象に加わったものとして扱う (記録者の扱い。X-8 / X-9 を §9・§20 の設計承認として改めて問うてはいない) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
+| 承認日 | 2026-11-11 |
+| 承認主体 | Web部責任者 |
+| 契機 | [Issue #212](https://github.com/tocoo/coocom-design-system/issues/212) (2026-10-19 起票)。実装は Issue 起票後の 2026-10-20 に `origin/master` へ merge されており (本番への反映は未確認)、DS 正本は `blocking` (送信中・白い器＋主色の棒) までしか定めておらず、実装先行のトークン 3 件 (`--color-palette-black-alpha-55` / `--loading-backdrop` / `--loading-logo-height`) が SOT 未登録のままであった。2026-11-11 に Web部責任者が本 Issue の進行を依頼した |
+| 適用範囲 | travel のみ |
+
+### 48-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-11-11・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定理由 | primitive (`blackAlpha.55`) と semantic トークンの追加、Component 定義 (`LoadingState` の種別追加・`Skeleton` の Do の例外) の変更を含む。同 §8 の編集的訂正 carve-out は token 値・Component 定義に影響する変更を除外しており、本件に適用しない。§46-2・§47-2 で同種の変更を高と判定した前例と同じ性質である |
+| 判定時の対象 | 判定を取得した時点で示した差分の内訳 (上の判定理由) に、`tools/gen-preview-tokens.py` の色群 1 行と見本の見出し文言の変更 (48-1 ⑤) と、判断レビュー後に X-8 / X-9 で加わった変更 (48-1 ⑥〜⑩ = 例外条項の新設・semantic 3 件・規則文の追記・用途の書き分け・暗幕上の文字の判定方法) は含まれていなかった。影響度は高／低の 2 値で高が上限のため、これらの追加分があっても判定の結論は高のまま変わらない。この確認は記録者が行ったもので、追加分を含めた再判定は Web部責任者から取得していない |
+
+### 48-3. 取得した現在判断 (2026-11-11)
+
+| 記号 | 判断 | 内容 |
+| --- | --- | --- |
+| X-1 | **ページ遷移中の表示は `LoadingState` の新しい種別として追加する** (`blocking` の用途は広げない) | 示した選択肢は「新しい種別を追加する (推奨)」「`blocking` の用途を遷移中へ広げる」。提示した事実: 実装は送信中の覆い (予約画面で `validate.js` が出す白い器＋主色の棒) を従来どおり残し、遷移中だけ同じ器に別の見た目を与えており、2 つの見た目が併存している。`blocking` の定義と Don't「一覧の読み込みに用いない (送信中に限る)」は据え置き。種別名 `navigation` は記録者の判断 (Navigation API の語に合わせた) |
+| X-2 | **遷移中の覆いの意匠は実装の値のまま定める** — 器なし・白の告知文 (16px・400)・黒 55% の暗幕 | 示した選択肢は「実装の値のまま定める (推奨)」「暗幕は既存の 45% に揃える」。提示した事実: 既存 `color.overlay.backdrop` (黒 45%) の上では白文字が 3.35:1 で [contrast-rules.md](contrast-rules.md) §4 の役割 1 (4.5:1) を満たさず、黒 55% なら 4.76:1 で満たす (本 Repository で計算)。この判断により primitive `color.palette.blackAlpha.55` と semantic `color.loading.backdrop` を追加する。`color.overlay.backdrop` の値は変えない。semantic の名を `loading.backdrop` でなく `color.loading.backdrop` とし、告知文の文字 (`loading.coverFontSize`) と印との間隔 (`loading.coverGap`) を既存の段への割当として追加したのは記録者の判断 (色を `color.*` の下に置く既存の流儀・§47 W-3 と同じ扱い) |
+| X-3 | **画面上端の進捗バーは独立の Component にせず、`navigation` の構成要素として定める** | 示した選択肢は「遷移中の種別の構成要素として定める (推奨)」「独立の Component (ProgressBar) として新設する」「DS に定めない」。提示した事実: 実装は高さ 4px (`spacing.1`)・主色・時間で 9 割まで伸ばす目安で、z 軸は primitive `elevation.z.toast` を直接参照しており semantic に `toast` 段が無い。この判断により semantic `elevation.toast` (→ `elevation.z.toast` 1400) と `loading.progressHeight` (→ `spacing.1`) を追加する (新しい数値は追加しない) |
+| X-4 | **遷移中に差し込む汎用の骨組み (写真＋線 3 本 × 3) を `Skeleton` の使い方として定める** | 示した選択肢は「定める (推奨)」「定めない (実装固有の扱い)」。提示した事実: 既存 `Skeleton` の Do「置き換える対象と同じ外形・同じ配置にする」に汎用形は当てはまらないが、行き先の形は遷移元で分からない。遷移中に限る例外として Do に明記し、形は既存 `skeleton.*` の値で書く |
+| X-5 | **未確定事項「読み込みが長いときの表示」は `navigation` に限って解消する** — 10 秒で 2 行目「時間がかかっています。もう少しお待ちください。」を足す・閉じる操作は置かない・中止は `navigateerror` で片づける | 示した選択肢は「遷移中の種別に限って解消する (推奨)」「3 種別すべてに広げて解消する」「未確定のまま残す」。`inline` / `blocking` の長い待ちは未確定のまま残す (実装が無い種別を DS が先に定めない) |
+| X-6 | **覆いの印 (白抜きのロゴ・パーツが順に点く) は、ロゴガイドラインに「ローディング用ロゴ」を正規の種類として新規定義し、DS はそれを参照する** | 2 段階で取得した。①ロゴガイドラインの原本 (Claude Design「ToCoo ロゴガイドライン」Version 0.1 / Draft・最終更新 2026-07-27・DesignSync で読解) を示したうえで「白地付き枠ロゴを指定色・静止で置く (推奨)」「現実装をガイドラインの例外として採る」「ロゴを用いず白い棒 5 本にする」の 3 択を示し、**「例外として採る」**を取得した。提示した事実: 原本は暗色背景での基本ロゴを不可とし、禁止事項に「指定色以外への変更・透明度低下」「効果の追加」「一部の削除・移動・置換」を挙げ、「ブランド資産の管理責任者および例外承認手順」は未確定事項である。実装はこのうち 3 点 (暗色背景で基本ロゴ・白への色変更・不透明度 0.4 の薄い表示) に当たる。パーツが順に点く動きそのものは、原本に記述が無い (禁止事項にも許可にも挙がっていない)。②その直後に Web部責任者から「ローディング用として新規に定義するのは」との提案があり、「新規定義に改める (推奨)」「例外のままとする」の 2 択で**「新規定義に改める」**を取得した (①の判断を改めた。記録としてのみ残す)。DS は「ロゴガイドラインが定めるローディング用ロゴ」を参照し、例外とは記録しない。実装の値 (白・高さ 20px = `loading.logoHeight`・「文字 → O の輪 → !」の順に点く・周期 1.5 秒) は `components.md` に [事実] として記録する |
+| X-7 | **ロゴガイドラインへの「ローディング用ロゴ」の追加は別課題とし、本 Task の DS は参照だけ書く** | 示した選択肢は「別課題にして DS は参照だけ書く (推奨)」「本 Task でガイドラインも書き換える (記録者が起草し承認後に DesignSync で書き込む)」。提示した事実: ガイドラインの実体は Claude Design プロジェクトの HTML 1 ファイルで DS Repository の外にあり、追加されるまで DS の参照先は無い状態になる。追加の内容 (資産・用途の限定・動きの定義・最小サイズ)・時期・主体は本記録で決めない (ガイドライン側の管理責任者は未確定) |
+| X-8 | **判断レビュー (final-reviewer・2026-11-11) の規則の内容に関わる指摘 4 件をすべて採る** — ①送信処理が自ら `blocking` を出す送信には `navigation` を出さない境界を書く ②`Skeleton` の遷移中の例外を用途・器の構成・Don't「実際には出ない要素」にも及ぼす ③上端のバーのコントラスト未達 (暗幕越し 1.43:1・役割 4 の 3:1 未達) は **`design.md` §2.1 の例外条項として主色を残す** ④`components.md` の追記で primitive を直接参照した箇所を semantic 化する | 4 件を 1 問 (複数選択) で提示し、すべて採られた。③の方式は別に 1 問で「例外条項として主色を残す (推奨)」「バーを白 (`color.text.inverse`・4.76:1) に改める」を示し、前者を取得した。④で追加した semantic は `skeleton.containerPaddingBlock` (→ `spacing.6`)・`skeleton.cardBorderWidth` (→ `border.width.thin`)・`loading.coverPaddingInline` (→ `spacing.4`)。骨組みの写真の幅 96px は `spacing` に段が無く (段の追加はしない)、`blocking` の印の器 96px と同じくトークン化しない (記録者の判断)。同じレビューの記述の誤り (§48-2 の矛盾・出所の無い改訂主体の記述・構成の階層・用語の精度・裸の番号・iframe の転記漏れ等) は記録者の誤りとして直し、本表には載せない |
+| X-9 | **判断レビュー 2 回目 (final-reviewer・2026-11-11) の規則の内容に関わる指摘 2 件をすべて採る** — ①`LoadingState` の用途を役割で書き分ける (`blocking` = 送信処理が画面を離れずに応答を待つ間に自ら出す覆い・`navigation` = ブラウザがページを移る間 (リンクと、送信処理を持たない通常のフォーム送信)。Don't もこれに合わせる) ②**画面全体を覆う暗幕の上に直接置く文字は、暗幕と最も明るい下地 (白) の合成面との比で判定する**ことを `design.md` §2.1 に明記する ([contrast-rules.md](contrast-rules.md) §4「半透明の重ねで解決したものとして扱わない」は局所的に敷く場合を指すとの読み・同規約 §8 ③ の解釈。同規約本体は改定しない) | 2 件を 1 問 (複数選択) で提示し、すべて採られた。提示した事実: ①は X-8 ① の境界が実装の仕組み (送信処理が既定動作を止めて自ら覆いを出すか) でしか書かれておらず、用途「フォームの送信中」と出す操作「フォーム送信」が字義上重なっていた。②は白の告知文 4.76:1 の根拠が暗幕との合成面にあり、同規約 §4 の文と二通りに読め、scrim の評価方法は同規約 §10 で未定義であること。②を採らない場合は役割 1 未達として §6 の例外条項を書く、と示した |
+
+- 判断の取得方法: 設計承認 (48-1)・X-1・X-2・X-3・X-4・X-5・X-6 (①②)・X-7・影響度 (48-2) の順に、1 問ずつ選択肢を示して取得した。X-8 は判断レビューの後に、4 件の採否を 1 問 (複数選択)、③の方式を 1 問で取得した。X-9 は判断レビュー 2 回目の後に、2 件の採否を 1 問 (複数選択) で取得した。各問の前に、実装 (`loading_s_global.scss` / `.js`・`loading_cover.ctp`・`_tokens_travel.scss`) と DS 正本・[contrast-rules.md](contrast-rules.md)・ロゴガイドラインの原本を本 Repository の作業で読んだ事実を示した。X-6 ①はロゴガイドラインの原本を読む前には問わず、Web部責任者が DesignSync の認可 (`/design-login`) を与えた後に原本を読んでから問うた。記録者の判断 (種別名・トークン名・既存の段への割当・`blackAlpha.55` を bound とする扱い・時間の値をトークン化しない扱い・記号 X-・§番号) は着手前に計画として示し、異議が無かったもの (明示の選択ではない)。
+- 実装との関係 (事実): 実装側のトークン `--color-palette-black-alpha-55` は本記録で primitive `color.palette.blackAlpha.55` (bound) に、`--loading-logo-height` は semantic `loading.logoHeight` に対応した。`--loading-backdrop` は semantic `color.loading.backdrop` に対応するが名が食い違う。上端のバーの z 軸は実装が primitive `elevation.z.toast` を直接参照しており、semantic `elevation.toast` の追加により参照先が生じた。これらの実装側の名・参照の是正の範囲・順序・期限は実装 Repository 側の課題である。
+
+### 48-4. 本記録が決定しないこと
+
+- **ロゴガイドラインへの「ローディング用ロゴ」の追加の内容・時期** (資産を同じ SVG とするか新しい白抜きの SVG を置くか・用途の限定・動きの定義・最小サイズ) と、ガイドライン側の管理責任者・例外承認手順。
+- **`inline` / `blocking` の読み込みが長いときの表示**、`blocking` の支援技術への告げ方 (従来の未確定事項を維持する)、`navigation` の覆いを出している間のフォーカスとキーボード操作。
+- **[contrast-rules.md](contrast-rules.md) §10 が未定義とする scrim の評価方法そのもの**と同規約本体の改定 (X-9 ② は travel `design.md` での読みの記録にとどめる)。
+- **`blocking` の意匠の変更**と `color.overlay.backdrop` (45%) の値・`$status` の変更。
+- **時間の値 (棒 900ms・ロゴ 1.5 秒・バー 10 秒・2 行目 10 秒) のトークン化** (`motion.*` は実査待ちの placeholder のまま)。
+- **既存実装の是正** (トークン名 `--loading-backdrop` と primitive 直参照 `elevation.z.toast` の扱い)。範囲・順序・期限は実装 Repository 側の課題である。
+- **rental-car・inbound への適用。**
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設。**
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -2110,3 +2166,6 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 | 2026-09-19 | Task 009-79: §45 「押せない状態 (`disabled`) の意匠を 3 サービスで定義する」を §1〜§44 と分離して追加 ([Issue #202](https://github.com/tocoo/coocom-design-system/issues/202))。Web部責任者の 2026-09-19 現在判断 (I-1 定義はサービスごとに個別 = 横断規約は新設しない ／I-2 表現は要素全体の不透明度を下げる = 専用の面色・文字色は新設しない ／I-3 値は 0.5 に揃える ／I-4 押せない理由は文字で併記 ／I-5 WCAG 2.2 の無効化部品の対象外規定により許容し適合宣言は行わない) を記録。改訂着手の設計承認取得済み (§9・§20)。影響度 = **高** (判定者 = Web部責任者・判定日 2026-09-19・本件について明示取得。必要レビュー主体 = Web部責任者およびチーフデザイナー)。追加した token は primitive `opacity.50` (0.5) と semantic `disabled.opacity` の 3 サービス各 2 件であり、**新しい色値は追加していない**。「選べない値」の表現・E2 の意匠・`active` / `loading` の実体は本記録では決定しない (45-5)。§1〜§44・設計承認ログ (§5)・適用開始記録 (§6) は不変。恒久 Decision ID・ADR・正式 Status・Phase・Gate は採番・作成・新設せず | Claude Code |
 | 2026-09-29 | Task 009-81 / 009-82: §46「実装にあって DS に定義の無い部品を実装の値で定義する (travel・rental-car)」を §1〜§45 と分離して追加 ([Issue #209](https://github.com/tocoo/coocom-design-system/issues/209)・[Issue #210](https://github.com/tocoo/coocom-design-system/issues/210))。Web部責任者の 2026-09-29 の判断 V-1〜V-6 と改訂着手の設計承認、影響度 (#211 = 高・#208 = 低・明示取得) を記録した | Claude Code |
 | 2026-11-09 | Task 009-83: §47「セクション間の余白の用途トークン `section.gap` の実追加と 36px 段 (`spacing.9`) を追加しない判断 (travel)」を §1〜§46 と分離して追加 ([Issue #206](https://github.com/tocoo/coocom-design-system/issues/206))。§18 (2026-08-04) で方向を確定していた実追加について、Web部責任者の 2026-11-09 の改訂着手の設計承認、影響度 (高・明示取得)、現在判断 W-1〜W-4 (値は幅によらず 40px = 既存 `spacing.10` の 1 値・36px 段は追加しない (§18 ⓐ の方向を変更)／器の内側の上下 padding は据え置き区分／命名は既存 semantic の流儀／セクションは本文の器の直下に並ぶまとまり・直下はレイアウト用の入れ物を飛ばして数え見出しの無いまとまりの中は入れ子) を記録した。W-1 は初回 (36px) の前提が走査漏れで誤っていたため撤回し再取得した経緯を含めて記録。**§18 ⓐ の末尾に §47 への参照 1 句を添えた** (Web部責任者 2026-11-09 確認・判断内容・日付は不変) | Claude Code |
+| 2026-11-11 | Task 009-84: §48「ページ遷移中のローディング表示を `LoadingState` の種別 `navigation` として定義する (travel)」を §1〜§47 と分離して追加 ([Issue #212](https://github.com/tocoo/coocom-design-system/issues/212))。宿泊の実装 ([tocoo/tocoo_travel#7405](https://github.com/tocoo/tocoo_travel/pull/7405)・Owner 判断 2026-10-19) が先行したページ遷移中の表示について、Web部責任者の 2026-11-11 の改訂着手の設計承認、影響度 (高・明示取得)、現在判断 X-1〜X-7 (新しい種別として追加／覆いの意匠は実装の値のまま・黒 55% の暗幕のため primitive `blackAlpha.55` と semantic `color.loading.backdrop` を追加／上端のバーは種別の構成要素・`elevation.toast` を追加／汎用の骨組みは `Skeleton` の例外／長い待ちは `navigation` に限って 10 秒・2 行目で解消／印はロゴガイドラインに「ローディング用ロゴ」を正規の種類として新規定義し DS は参照 (初回の「例外として採る」を Web部責任者の提案で改めた)／ガイドラインへの追加は別課題) を記録した | Claude Code |
+| 2026-11-11 | Task 009-84R の記述是正: 判断レビュー (final-reviewer・2026-11-11・ローカルで実行) の指摘に対応。①§48-2「判定時の対象」を事実 (`tools` と見本の見出しの変更は判定時に含まれていなかった・判定の結論は変わらない) に改めた ②§48-3 X-7 と X-6 から出所の無い「改訂主体はチーフデザイナー」を削除し、X-6 にロゴの動きの判定 (薄い表示に当たる・動きそのものは原本に記述が無い) を補った ③「判断の取得方法」の記録者の判断の一覧に `blackAlpha.55` を bound とする扱いを補った ④48-1 ⑤に見本の見出し文言の変更を補った ⑤**X-8 (レビューの規則の内容に関わる指摘 4 件の採否と、上端のバーの例外条項の方式) を追加した** | Claude Code |
+| 2026-11-11 | Task 009-84R の記述是正 (2 回目): 判断レビュー 2 回目 (final-reviewer・2026-11-11・ローカルで実行) の指摘に対応。①§48-1 の承認対象と §48-2 の判定時の対象に、X-8 / X-9 で後から加わった変更 (⑥〜⑩) を補った ②「判断の取得方法」に X-8 / X-9 の取得を補った ③契機の「本番コードにあり」を「`origin/master` へ merge 済み (本番への反映は未確認)」に正した ④**X-9 (判断レビュー 2 回目の規則の内容に関わる指摘 2 件の採否) を追加し**、48-4 にフォーカス・キーボード操作と scrim の評価方法を加えた | Claude Code |

@@ -326,6 +326,7 @@ Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのも�
 
 - スペーシング: **4px (0.25rem) 系で確定** (TVL-0002)。spacing.0〜16 全段 bound
 - コンテナ幅: `975 / 1195 / 1425px` (宿泊実装値・bound)
+- 読み幅 (中央寄せの器より狭く本文を収める幅): **`400 / 640 / 768px`** (`size.content.sm / md / lg`・bound・Task 009-85)。役割 (カード / フォーム列 / 本文列) との対応と器の幅との関係は §4.4
 - ブレークポイント: **`640 / 768 / 1024 / 1280px`** (TVL-0004。現代標準へ更新 — 旧実装値 600/992/1200 からの変更。移行方針は TVL-0004 参照)。**本値は 3DS 共通 breakpoint として再認定** (owner-decisions.md Q5 決定・2026-07-24・Task 009-18-BP1)。ADR 正本・provenance は未確認 (009-19 provenance トラックへ残す)。**文書レベルの見出し (`h1`〜`h6`) のサイズ段を移す境界は `1024px` (`breakpoint.lg`) の 1 つのみ**とする (§3.1・Task 009-62)
 - 代表 viewport (画面設計・Claude Design・HTML 確認用の表示幅): **`390 / 768 / 1280 / 1440px`** (3DS 横断・Web部責任者判断 2026-07-24・Task 009-18-BP1)。**これは表示確認用の代表幅であり responsive breakpoint token ではない** (breakpoint は上記・`breakpoint.*` token が正)
 
@@ -403,6 +404,49 @@ Component に属さない**文書レベルの見出し** (`h1`〜`h6` そのも�
 - [事実] 用途トークンの命名規則の正本 `governance/naming-rules.md` は Repository 内に存在しない (参照切れ・[README.md](README.md) §16)。`section.gap` は既存 semantic の流儀 (用途名のグループの下に寸法を置く。`stickyBar.*` / `loading.*` と同じ) に揃えた命名であり、命名規則の整備後に改称の要否を見直す (同 §47 W-3)
 - 未確定事項 (DS 側で未決): 「セクション内ブロック間」「面色セクション内側 padding」の 2 区分の値 (据え置き・トークン化しない・同 §18 ⓑ)。節自身の `padding-block` が並ぶことで生じる節の間の距離 (上の [観察]・64 → 96px) を `{section.gap}` に揃えるか
 - 実装 Repository 側の課題 (本節は定めない): `{section.gap}` と異なる実装の値 (宿泊トップ 36px・問い合わせのカード間 24px・FAQ 32px・規約ページの幅で変わる段) の是正と、暫定段 `--spacing-9` の扱い
+
+### 4.4 器より狭い本文の幅 (読み幅)
+
+中央寄せの器 (§4・§4.1) の中で、本文を器より狭く収める幅 (**読み幅**) を、役割ごとに 3 段で定める。値は primitive `size.content.sm / md / lg` で持ち、器の幅 `size.container.sm / md / lg` と対にする。読み幅は器の幅と同じく**幅 (breakpoint) で段を移さない**。**本節は本文を狭める場合の段を定めるものであり、狭めること自体は求めない** (器いっぱいに置く画面はそのままでよい) (Web部責任者 2026-11-12・Task 009-85・[../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §49)。読み幅の列は器の内側に `max-width` で置き、§4.1 の左右余白の内側で効く (器の内側の幅が段の値より小さい幅では、列は器いっぱいに縮む)。列の配置 (中央寄せ・左寄せ) は本節で定めない (この 2 文は記録者の補足であり Owner 判断ではない)。
+
+| 段 | 役割 (列に収める範囲で分ける) | 値 | トークン |
+|---|---|---|---|
+| 本文列 | 散文・欄・確認のサマリを含む**本文全体を 1 列に収める** (ページの見出し h1 と h1 のリード文は本文に数えない。問い合わせの入力・確認、予約確認) | 768px | `{size.content.lg}` |
+| フォーム列 | 散文は器いっぱいに置き、**欄の積み (と確認のサマリ) だけを狭める** (加盟フォーム・マイページの編集フォーム) | 640px | `{size.content.md}` |
+| カード | **列そのものが面 (枠・影) を持つ 1 枚で、短い本文と操作を収める** (認証のカード)。本文列やフォーム列の中に置く面 (告知・カード) はこれに当たらない | 400px | `{size.content.sm}` |
+
+- [決定] 読み幅は上表の 3 段とし、**役割で段を選ぶ**。画面ごとに別の値を持たない (同 §49 Y-1)。役割は**列に収める範囲**で分ける (同 §49 Y-5)。**ページの見出し (h1) と h1 のリード文 (h1 と同じ親要素の子として並ぶ導入の地の文) は本文に数えない** (§4.3 と同じ数え方。h1 を列の中に置いても外に置いても役割は変わらない。同 §49 Y-8)
+- [決定] 3 段は primitive `size.content.*` で持つ (同 §49 Y-4)。器の幅 `size.container.*` と同じく役割に依存する固定の px 値であり、幅で段を移さないため、§4.1・§4.2 (1024px 以上の値) のように表だけで示す扱いは採らない。役割との対応は本表が正であり、トークン名には役割を含めない。読み幅の列はページの配置であって Component ではないため、`size.container.*` と同じく primitive を直接参照する (primitive の規則「コンポーネント実装からの直接参照は禁止」の対象外。semantic を置かない Y-4 からの帰結として記録者が導いた扱い)
+- [決定] 上表に無い値は読み幅に用いない (Y-1 の 3 段の帰結)。実装にある 560px (加盟フォームの列・認証の広いカード) は**フォーム列 (640px) へ寄せる** (同 §49 Y-2)。カード (400px) へは寄せない。宿泊トップの注記の上限 975px (段落に掛けた `size.container.sm`) は**本文列 (768px) へ寄せる** (同 §49 Y-7)。是正はいずれも実装 Repository 側の課題である
+- [決定] **`CompletionPanel` の形 (中央寄せ 1 枚・完了の印・次の手順) の完了画面 (予約・問い合わせ・加盟フォーム) は [components.md](components.md) の `CompletionPanel` に従う** (器の最大幅 640px = `{size.content.md}` と同値)。完了画面の本文は本文列の役割に含めない (同 §49 Y-6)。問い合わせ・加盟フォームの完了画面が本文を 768px に収めている実装は、`CompletionPanel` の器へ寄せる是正対象である (実装 Repository 側の課題)。**認証の完了画面 (`.ga-auth__card--done`) はカード (400px) のまま**であり、`CompletionPanel` には従わない (同 Y-6。components.md が役割の異なる部品として比較から外しているとおり)。狭めていない完了画面 (法人向け) は Y-5 により対象外である
+- [決定] **部品の中の要素の幅は本節の対象外** (同 §49 Y-3)。[components.md](components.md) が部品の値として持つ 448px (`CompletionPanel` の手順・操作、`ErrorPage` の本文) は部品定義の責務であり、読み幅の段にしない。同じ理由で、帯の中の要素 (`Stepper` の段の並び 640px) も本節の段を参照させない (Y-3 の取得時の記録者の読み・§49 Y-3)。これらの値のトークン化の要否は本節では扱わない (`ErrorPage` の 448px は同部品の未確定事項、`CompletionPanel` の 448px・640px は同部品の [事実]「トークン化していない」のまま)
+- [決定] **ヒーロー帯の中の文 (リード文・副文) は本節の対象外** (同 §49 Y-5)。帯の中の要素であり、部品の中の要素と同じ扱いとする。実装のポイント BANK のリード文 (46ch)・ウルトラ市場の副文 (576px) は本節の段に当てない
+- [事実] 器そのものの幅を小さい段 (`size.container.sm` 975px) にする選択 (マイページの器・エラーページの器) は、器の幅の選択であって本節の読み幅ではない。本節は器の中で本文を狭める幅だけを定める
+- [事実] 3 段の値はいずれも実装にある値 (下表) である。400px = `spacing.4` × 25、640px = `spacing.16` × 10、768px = `spacing.16` × 12 で、いずれも 4px 系に乗る。primitive には `size.content` の 3 段を新しく追加した (400px は primitive に無かった値。640px・768px は `breakpoint.sm` / `.md` と同じ数値)
+- [事実] 実装 (`tocoo/tocoo_travel` `origin/master` `b887b1373`・2026-11-12 本 Repository で実測) で器より狭く本文を収めている箇所は次のとおりである。走査は `webroot/member/scss/` と `yarn_project/src/assets_s/css/` の全 SCSS のうち DS トークン (`--spacing-*` / `--size-container-*` / `--color-*`) を参照する 59 ファイルを対象に、`max-width` と `width` の全出現をセレクタの文脈つきで列挙し、欄単体の幅 (Input / Select の上限)・UI 部品・はみ出し防止の規則を除いたものである。`flex-basis` / `grid` / mixin の引数による狭めと、DS トークンを参照しないファイル (旧実装) は未走査
+
+| 画面・箇所 | 値 | 本節の段 |
+|---|---|---|
+| 問い合わせの入力・確認の本文列 (`inquiry_s.scss` `.iq-col`。h1・案内の散文・フォームを 1 列に収める) | 768px | 本文列 |
+| 予約確認の本文 (`yarn_project/src/assets_s/css/reserve_confirm.scss` `.reserve_confirm-contents`・左右 padding 16 / 24px を含めて 800 / 816px)、告知 (`.rc-notice`)。h1 は列の外に置き、告知と確認のサマリ (本文全体) を収める | 768px | 本文列 |
+| 問い合わせの完了 (`.iq-done`)、加盟フォーム (加盟申請資料請求) の完了 (`for_rentacar_s.scss` `.frc-done`) | 768px | `CompletionPanel` の器 (640px) へ寄せる (Y-6) |
+| 加盟フォームの入力・確認の列 (`.frc-col`。導入の散文は列の外に置き、欄とサマリだけを狭める。実装側で Owner 指定 2026-09-15 の値) | 560px | 段外。フォーム列へ寄せる (Y-2) |
+| マイページ編集のフォーム列 (`my_page_s_global.scss` `.mypage-form-stack`。会員情報編集では 1024px 以上で列の上限を外し、項目ごとに 40rem を掛ける) | 640px (40rem) | フォーム列 |
+| メール編集の h1 のリード文 (`_mypage_g1.scss` `.mypage-section__lead`・フォーム列と同幅に揃えている) | 640px (40rem) | h1 のリード文 (対象外・Y-8)。実装はフォーム列と同幅に揃えている |
+| 認証のカード (`auth_s_global.scss` `.ga-auth__card`。見出しと段表示の内側も同幅。完了画面の `--done` を含む) | 400px | カード |
+| 認証の広いカード (`.ga-auth__card--wide`・有料会員登録とアップグレードの入力・確認画面。見出しの内側も同幅) | 560px | 段外。フォーム列へ寄せる (Y-2) |
+| 予約完了のカード (`booking_complete.scss` `.bc-card`) | 640px | `CompletionPanel` の器 (Y-6。`{size.content.md}` と同値) |
+| 進行表示の段の並び (`reserve.scss` `.p-stepbar-list`・帯の中) | 640px | 部品の値 (対象外・Y-3 の読み) |
+| 予約完了の手順・操作 (`.bc-steps`・`.bc-actions`)、エラーページの本文 (`err_s_global.scss` `.ge-err__bodies`・`.ge-err__items`) | 448px | 部品の値 (対象外・Y-3) |
+| ポイント BANK のヒーロー帯のリード文 (`pointbank_s.scss` `.pb-hero__lead`)、ウルトラ市場のヒーロー帯の副文 (`ultra_market_s.scss` `.um-hero__sub`) | 46ch・576px | ヒーロー帯の中の文 (対象外・Y-5) |
+| 宿泊トップの注記 (`spa/top_spa.scss` `.fv-value__note`・器 md の中の面に置く 1 段落。`width: fit-content` に上限を掛けたもの) | 975px (`size.container.sm`) | 段外。本文列へ寄せる (Y-7) |
+| マイページの器 (`my_page_s_global.scss` `.block`)、エラーページの器 (`err_s_global.scss` `.ge-err__container`) | 975px (`size.container.sm`) | 器の幅の選択 (対象外) |
+
+- [事実] 上表の読み幅はいずれも幅 (breakpoint) で値を変えていない (会員情報編集の 1024px 以上は、値ではなく掛ける要素を変えている)
+- [事実] 静的ページ (aboutus / promise / solution 等) は本文を器 md (1195px) いっぱいに置いている (実装側の Owner 判断 2026-09-05)。本節は狭めることを求めないため、これらは是正の対象ではない
+- [事実] 実装のコメント (`inquiry_s.scss` の本文列) は「欄の幅は想定入力長の信号であり、広い列は入力と見直しの視線移動を増やすだけで用途が無い。入力→確認が同幅なら項目位置が揃い照合も速い」とし、補強として「予約正典 (宿泊予約フォームの handoff) も aside の無い画面の本文を 768px に収める」と述べている。handoff は本 Repository に無く、その記述は未検証である。本節の根拠は実装の値と上の [決定] に置く
+- 未確定事項 (DS 側で未決): 部品の値 (`ErrorPage` の 448px、`CompletionPanel` の 448px と器の 640px、`Stepper` の 640px) のトークン化の要否 (`ErrorPage` の未確定事項・`CompletionPanel` の [事実] のまま据え置き)
+- 実装 Repository 側の課題 (本節は定めない): 560px (加盟フォームの列・認証の広いカード) のフォーム列への是正、完了画面 (問い合わせ・加盟の 768px) の `CompletionPanel` の器への是正、宿泊トップの注記 (975px) の本文列への是正、`calc(spacing × n)` で書いている読み幅の `size.content.*` 参照への置き換え、`docs/DS_IMPLEMENTATION.md` C-2 (読み幅は DS 未規定・決定までは既存の値を増やさない) の更新
 
 ## 5. 角丸・シャドウ
 
@@ -639,6 +683,7 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | — | 実装 Repository (`tocoo/tocoo_travel`) の見出しのうち §3.1 の段下げ表から外れている箇所の是正 | 🚧 未着手 ([Issue #168](https://github.com/tocoo/coocom-design-system/issues/168) のスコープ外)。`origin/dev-ds` (`e664e5802`・2026-09-04) の実測では、DS トークンを参照する scss 21 ファイルのうち 8 ファイルが media query 内で `font-size` を宣言し、うちレベルが確定する見出し 6 例中 2 例 (`ultra_plan_s.scss` `.up-hotelname` / `ultra_market_s.scss` `.um-hero__name`) のみが本表と一致する。境界を 768px に置く 4 例 (`.up-hsec` / `.up-h3` / `.up-h4` / `detail_s.scss` `.hd-overview__name`) は本表と一致しない。`spa/top_spa.scss` L313 の `calc(--typography-size-2xl + --spacing-1)` (28px) は §3 のスケールに無い値である。是正の範囲・順序・期限は実装 Repository 側の課題 |
 | — | 文書レベルの見出しに用いる段を 4 の倍数に限る規則を、見出し以外の `typography` 用途へ及ぼすか | ❓ 未判定 (Task 009-62 で見出しのみに限定して確定)。`typography.size` で 4 の倍数でないのは `sm` (14px) と `lg` (18px) の 2 段。`sm` は `label.fontSize.md` / `label.numberSize.sm` として §8.1 の「1 段上」規則と `label.*` の器トークンに組み込まれ bound 確定済み (Task 009-48) で、及ぼす場合は同規則・器トークン・実装 143 箇所に波及する。TVL-0002 (4px 系) の対象は §4 のとおりスペーシングであり、`typography` 全体へ拡げる決定は行っていない |
 | — | ページ遷移中の覆いの印 (ローディング用ロゴ = 白抜き・パーツが順に点く) のロゴガイドラインへの追加 | 🚧 別課題 (Task 009-84・Web部責任者判断 2026-11-11・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §48 X-6 / X-7)。ロゴガイドライン (Claude Design「ToCoo ロゴガイドライン」v0.1 Draft・2026-07-27) は暗色背景での基本ロゴ・指定色以外への変更・透明度低下を禁じており、実装 ([tocoo/tocoo_travel#7405](https://github.com/tocoo/tocoo_travel/pull/7405)) の印はこれに当たる。例外ではなく**正規の種類として追加する**方向。追加までは `components.md` `LoadingState` が実装の値を [事実] として記録する。追加の主体・時期は決めていない (ガイドライン側の「管理責任者・例外承認手順」は未確定) |
+| — | 中央寄せの器より狭く本文を収める幅 (読み幅) の段 | ✅ **確定** (Task 009-85・[Issue #205](https://github.com/tocoo/coocom-design-system/issues/205)・§4.4・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §49)。役割で 3 段 (本文列 768 / フォーム列 640 / カード 400px) とし primitive `size.content.sm / md / lg` で持つ。役割は列に収める範囲で分け、完了画面は `CompletionPanel` に従う。560px はフォーム列へ、注記の 975px は本文列へ寄せ、部品の値 (448 / 640px) とヒーロー帯の中の文は対象外。部品の値のトークン化の要否は `ErrorPage` の未確定事項・`CompletionPanel` の [事実] のまま |
 
 ---
 
@@ -696,3 +741,6 @@ AI に本 DS で UI を生成させる際の読み順と規則:
 | 2026-11-11 | Task 009-84 ([Issue #212](https://github.com/tocoo/coocom-design-system/issues/212)・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §48): §2 のトークン表に `color.loading.backdrop` (= 新 primitive `palette.blackAlpha.55`・黒 55%・ページ遷移中の覆いの暗幕) の行を追加した。`color.overlay.backdrop` (45%・Modal / Overlay) の値・用途は不変。未確定事項の一覧に「ローディング用ロゴのロゴガイドラインへの追加 (別課題)」を追加した。§7 の Component 一覧は不変 (`LoadingState` の種別追加は `components.md`) | Claude Code |
 | 2026-11-11 | Task 009-84R の記述是正: 判断レビュー (final-reviewer・2026-11-11・ローカルで実行) の指摘に対応。**§2.1 に「遷移中の上端のバーに限る主色の例外」(暗幕越し 1.43:1・役割 4 未達・contrast-rules §6 の個別例外・Web部責任者判断 2026-11-11・§48 X-8 ③) を新設した**。未確定事項の一覧の行から出所の無い「改訂主体はチーフデザイナー」を削除し、裸の PR 番号をリンクにした | Claude Code |
 | 2026-11-11 | Task 009-84R の記述是正 (2 回目): 判断レビュー 2 回目 (final-reviewer・2026-11-11・ローカルで実行) の指摘に対応。**§2.1 に「画面全体を覆う暗幕の上に置く文字の判定方法」(暗幕と最も明るい下地 (白) の合成面との比で判定・contrast-rules §4 の「半透明の重ね」の読み・§48 X-9 ②) を新設した**。上端のバーの例外条項に下地の色による値の違いと実装の下地 (白) を補い、根拠の行を [事実] に改めた | Claude Code |
+| 2026-11-12 | Task 009-85 ([Issue #205](https://github.com/tocoo/coocom-design-system/issues/205)・正本 = [../../../governance/owner-decisions.md](../../../governance/owner-decisions.md) §49): **§4.4 器より狭い本文の幅 (読み幅) を新設**し、役割で 3 段 (本文列 768px / フォーム列 640px / カード 400px) を primitive `size.content.sm / md / lg` で定めた (Y-1・Y-4)。§4 の箇条書きに読み幅の行を追加した。段外の 560px はフォーム列へ寄せ (Y-2)、部品の中の幅 448 / 640px は部品の値として据え置き (Y-3)、器そのものの幅を sm にする選択は読み幅ではないと記した。実装 (`tocoo/tocoo_travel` `b887b1373`) の走査結果を [事実] の表で記録した。未確定事項の一覧に読み幅の行を追加した。見本ページの生成ブロックを再生成した (生成器にサービスごとの追加の群の設定を設け、travel に `size.content` を必須の群として登録) | Claude Code |
+| 2026-11-12 | Task 009-85R の記述是正: 判断レビュー (final-reviewer・2026-11-12・ローカルで実行) の指摘に対応。**§4.4 の役割の線引きを「列に収める範囲」で定め直し** (本文列 = 本文全体 / フォーム列 = 欄の積みだけ / カード = 面を持つ 1 枚・§49 Y-5)、**完了画面は `CompletionPanel` に従わせて本文列から外し** (Y-6)、**宿泊トップの注記 975px は本文列へ寄せる** (Y-7) とした。取得していない規定 (中央寄せ・「入力・確認・完了を通じて同じ段」・役割の「読み物の本文」と「リード文」) を削り、狭めること自体は求めないと明記した。ヒーロー帯の中の文は対象外 (Y-5)。ページの見出し (h1) は本文に数えない読み (§4.3 と同じ) を記録者の補足として添えた。[事実] の誤り (注記 975px を器の幅の選択としていた・認証の広いカードの用途・走査表の漏れ 2 件 (`.um-hero__sub` 576px・`.ge-err__container`)・46ch の Y-2 への帰属・「新しい数値は追加していない」の表現・handoff の位置づけ・`CompletionMessage` → `CompletionPanel`) を是正した | Claude Code |
+| 2026-11-12 | Task 009-85R の記述是正 (2 回目): 判断レビュー 2 回目 (final-reviewer・2026-11-12・ローカルで実行) の指摘に対応。**Y-6 の範囲を `CompletionPanel` の形の完了画面 (予約・問い合わせ・加盟フォーム) に限り、認証の完了画面 (`--done`) はカード 400px のままと明記**した。**h1 と h1 のリード文は本文に数えない (§4.3 と同じ数え方) を Owner 判断 (§49 Y-8) として [決定] に書き**、メール編集のリード文を対象外に改めた。Y-2 を一般則に広げていた文を削った。役割の定義文を §49 Y-5・`primitive.travel.json` の説明文と揃え、カードの定義に「列そのものが面」を補い、記録者の補足 (配置・primitive の直接参照・Stepper の読み) に印を付け、Owner 帰属の範囲を区切った | Claude Code |

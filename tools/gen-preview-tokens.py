@@ -10,7 +10,8 @@
   @generated:scales   タイポ・余白・角丸・影などスケールの一覧
 
 対応サービスは SERVICES に定義する。サービスごとに色見本の並び (color_groups) と
-アイコン見本の色 (icon_color) が異なるため、共通の走査ロジックへ設定として渡す。
+アイコン見本の色 (icon_color)、そのサービスにしか無い primitive の群
+(extra_primitive_groups / extra_scale_groups) が異なるため、共通の走査ロジックへ設定として渡す。
 
 使い方:
     python3 tools/gen-preview-tokens.py                     # 全サービスを更新
@@ -27,14 +28,17 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
-# primitive から CSS 変数へ出す群 (semantic に無いスケールのみ)。全サービス共通
+# primitive から CSS 変数へ出す群 (semantic に無いスケールのみ)。全サービス共通。
+# 一部のサービスにしか無い群は、サービスごとの設定 extra_primitive_groups に書く (そのサービスでは必須)
 PRIMITIVE_GROUPS = [
     "spacing", "breakpoint", "radius", "shadow", "iconSize",
     "typography.size", "typography.lineHeight", "typography.fontWeight",
     "elevation.z", "size.container", "border.width",
 ]
 
-# スケール見本の並び: (見出し, パス接頭辞, 見本の描き方)。全サービス共通
+# スケール見本の並び: (見出し, パス接頭辞, 見本の描き方)。全サービス共通。
+# 一部のサービスにしか無い群は、サービスごとの設定 extra_scale_groups に書く (そのサービスでは必須。
+# 見本では「コンテナ幅」の直後に並べる)
 SCALE_GROUPS = [
     ("文字サイズ", "typography.size", "text"),
     ("行間", "typography.lineHeight", "plain"),
@@ -75,6 +79,9 @@ SERVICES = {
         ],
         # アイコンサイズ見本の色に使う CSS 変数 (評価色)
         "icon_color": "--color-icon-rating",
+        # travel にしか無い primitive の群 (design.md §4.4 読み幅)。無ければ止める
+        "extra_primitive_groups": ["size.content"],
+        "extra_scale_groups": [("読み幅 (器より狭い本文の幅)", "size.content", "plain")],
     },
     "rental-car": {
         "dir": ROOT / "services" / "rental-car" / "design-system",
@@ -118,6 +125,11 @@ class Service:
         self.dir = config["dir"]
         self.color_groups = config["color_groups"]
         self.icon_color = config["icon_color"]
+        self.primitive_groups = PRIMITIVE_GROUPS + config.get("extra_primitive_groups", [])
+        # サービス固有のスケール群は「コンテナ幅」(size.container) の直後に差し込む
+        extra = config.get("extra_scale_groups", [])
+        at = next(i for i, g in enumerate(SCALE_GROUPS) if g[1] == "size.container") + 1
+        self.scale_groups = SCALE_GROUPS[:at] + extra + SCALE_GROUPS[at:]
         self.semantic_path = self.dir / f"semantic.{name}.json"
         self.primitive_path = self.dir / f"primitive.{name}.json"
         self.target = self.dir / f"preview.{name}.html"
@@ -167,7 +179,7 @@ class Service:
 
     def build_tokens(self):
         rows = self.flatten(self.sem)
-        for group in PRIMITIVE_GROUPS:
+        for group in self.primitive_groups:
             sub = self.node(self.prim, group)
             if sub is None:
                 raise SystemExit(f"{self.name}: primitive に不在: {group}")
@@ -246,7 +258,7 @@ class Service:
 
     def build_scales(self):
         lines = [BLOCKS["scales"][0]]
-        for title, prefix, kind in SCALE_GROUPS:
+        for title, prefix, kind in self.scale_groups:
             if kind == "radius-semantic":
                 rows = self.flatten(self.node(self.sem, "radius"), "radius")
             else:

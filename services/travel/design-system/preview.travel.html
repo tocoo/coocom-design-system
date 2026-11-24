@@ -42,6 +42,8 @@
     --color-action-primary-hover-bg     : #2340a6; /* color.action.primary.hoverBg */
     --color-action-secondary-bg         : #ffffff; /* color.action.secondary.bg */
     --color-action-secondary-text       : #212121; /* color.action.secondary.text */
+    --color-action-spot-bg              : #dcd3b2; /* color.action.spot.bg */
+    --color-action-spot-text            : #212121; /* color.action.spot.text */
     --color-text-strong                 : #212121; /* color.text.strong */
     --color-text-body                   : #424242; /* color.text.body */
     --color-text-muted                  : #9e9e9e; /* color.text.muted */
@@ -501,6 +503,7 @@
   .btn--secondary { background: var(--color-action-secondary-bg); color: var(--color-action-secondary-text); border-color: var(--color-border-default); }
   .btn--ghost { background: transparent; color: var(--color-text-strong); border-color: var(--color-text-strong); }
   .btn--text { background: transparent; color: var(--color-text-link); padding-inline: 8px; }
+  .btn--spot { background: var(--color-action-spot-bg); color: var(--color-action-spot-text); font-size: var(--typography-size-sm); }
   .btn--focus { outline: var(--border-width-thick) solid var(--color-focus-ring); outline-offset: 2px; }
   .btn--disabled { opacity: var(--disabled-opacity); cursor: not-allowed; }
 
@@ -678,6 +681,8 @@
     <div class="sw"><span class="sw__chip" style="background: var(--color-action-primary-hover-bg)"></span><code>color.action.primary.hoverBg</code><span class="sw__val">#2340a6</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-action-secondary-bg)"></span><code>color.action.secondary.bg</code><span class="sw__val">#ffffff</span></div>
     <div class="sw"><span class="sw__chip" style="background: var(--color-action-secondary-text)"></span><code>color.action.secondary.text</code><span class="sw__val">#212121</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-action-spot-bg)"></span><code>color.action.spot.bg</code><span class="sw__val">#dcd3b2</span></div>
+    <div class="sw"><span class="sw__chip" style="background: var(--color-action-spot-text)"></span><code>color.action.spot.text</code><span class="sw__val">#212121</span></div>
   </div>
   <h3>文字</h3>
   <div class="sw-grid">
@@ -940,17 +945,18 @@
     <div class="stage__item"><span class="btn btn--secondary">お気に入り</span><span class="caption"><code>Button.secondary</code></span></div>
     <div class="stage__item"><span class="btn btn--ghost">特集を見る</span><span class="caption"><code>Button.ghost</code></span></div>
     <div class="stage__item"><span class="btn btn--text">キャンセル</span><span class="caption"><code>Button.text</code></span></div>
+    <div class="stage__item"><span class="btn btn--spot">サービス紹介を見る</span><span class="caption"><code>Button.spot</code> (スポット用・同じ画面では 1 つの行き先)</span></div>
     <div class="stage__item"><span class="btn btn--primary btn--focus">プラン選択へ</span><span class="caption">focus = <code>color.focus.ring</code> の outline</span></div>
     <div class="stage__item"><span class="btn btn--primary btn--disabled">プラン選択へ</span><span class="caption">disabled = <code>disabled.opacity</code> (0.5)・色は変えない</span></div>
     <div class="stage__item"><span class="btn btn--secondary btn--disabled">お気に入り</span><span class="caption">disabled (<code>secondary</code>)</span></div>
   </div>
   <dl class="tokens">
-    <dt>面・文字</dt><dd><code>color.action.primary.bg / text</code> ・ <code>color.action.secondary.bg / text</code> ・ <code>color.text.strong</code> ・ <code>color.text.link</code></dd>
+    <dt>面・文字</dt><dd><code>color.action.primary.bg / text</code> ・ <code>color.action.secondary.bg / text</code> ・ <code>color.action.spot.bg / text</code> ・ <code>color.text.strong</code> ・ <code>color.text.link</code></dd>
     <dt>角丸</dt><dd><code>radius.action</code> (pill)</dd>
     <dt>disabled</dt><dd>要素全体の不透明度を <code>disabled.opacity</code> (0.5) にする。色・面・枠のトークンは差し替えない。カーソルは <code>not-allowed</code>。主ボタンの白文字の実効コントラストは <strong>2.33:1</strong> となり AA・3:1 いずれも下回るが、WCAG 2.2 は無効化された部品を対象外とする (適合宣言は行わない)。押せない理由は文字で併記する</dd>
     <dt>hover / active / loading</dt><dd><span class="flag">未取得</span> 正本に値がないため見本を描かない</dd>
   </dl>
-  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Button</code> (バリアント 4 語・campaign 廃止 = TVL-0012)</p>
+  <p class="source">正本: <a href="components.md"><code>components.md</code></a> <code>Button</code> (バリアント 5 語 = primary / secondary / ghost / text / spot・campaign 廃止 = TVL-0012)</p>
 </section>
 
 <section class="card">

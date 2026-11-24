@@ -2153,6 +2153,53 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 
 ---
 
+## 50. スポット用の塗りボタン `Button.spot` (砂色 `#dcd3b2`) の色とバリアントの定義 (travel) — 改訂着手の設計承認・影響度・現在判断の記録
+
+- 種別: スポット用の塗りボタンの色とバリアントについて、Web部責任者が示した改訂着手の設計承認・影響度判定・現在判断の記録 ([Issue #217](https://github.com/tocoo/coocom-design-system/issues/217)・Task 009-86)。§1〜§49 とは独立した記録であり、混同しない。
+- **適用範囲は国内宿泊 (travel) のみ。** rental-car・inbound へは自動適用しない。
+- 規約: 恒久 Decision ID・ADR・新しい正式 Status・Phase・Gate は採番・作成・新設しない。GitHub の approval・merge を判断・設計承認と同一視しない。承認済みの [review-approval-rules.md](review-approval-rules.md) 本体は改定しない。
+
+### 50-1. 改訂着手の設計承認 (§9・§20)
+
+| 項目 | 内容 |
+| --- | --- |
+| 承認対象 | ①travel `primitive.travel.json` へ `color.palette.sand.200` (`#dcd3b2`) を追加、②travel `semantic.travel.json` へ `color.action.spot.bg` (→ `sand.200`) / `color.action.spot.text` (→ `color.text.strong`) を追加、③travel `design.md` §2 の用途表・§2.1 の検証表への行の追加、④travel `components.md` の `Button` へのスポット用バリアントの追加 (状態・Do / Don't) と共通事項の variant 語彙の行の更新、⑤travel 見本ページの再生成 (`tools/gen-preview-tokens.py`)、⑥本記録。承認の取得時には ⑤ を「生成器で作り直す」とだけ示しており、次の変更は承認の取得時に示しておらず、記述を整合させるために記録者が加えた: 見本ページの `Button` の節への `Button.spot` の実例 1 件・トークン一覧への `color.action.spot.bg / text`・正本の注記の「バリアント 4 語」を 5 語へ改めること、travel `design.md` §7 の Button variant 語彙の行への travel での `spot` の追加、travel `components.md` の `OverlayTrigger` のバリアントの行の「`Button` の 4 語」を語数に依存しない表現へ改めること。生成器 (`tools/gen-preview-tokens.py`) は変更していない (`color.action` の群が登録済みのため) |
+| 承認種別 | **改訂着手承認** ([review-approval-rules.md](review-approval-rules.md) §9・§20) |
+| 承認日 | 2026-11-24 |
+| 承認主体 | Web部責任者 |
+| 契機 | [Issue #217](https://github.com/tocoo/coocom-design-system/issues/217)。実装 (`tocoo/tocoo_travel` #7485・PR #7489 / #7496) で、紹介LP の入口に DS に無い色の塗りボタン (`.ds-btn--spot`) を 🚧 暫定トークン (`--color-palette-sand-200` / `--color-action-spot-bg` / `--color-action-spot-text`) で置いており、正本に入るまでトークン同期で消える状態にあった。色は砂色 `#dcd3b2` (Owner 指定 2026-11-13・Issue の記載による) |
+| 適用範囲 | travel のみ |
+
+### 50-2. 影響度 (§8)
+
+| 項目 | 内容 |
+| --- | --- |
+| 影響度 | **高** (判定者 = Web部責任者・判定日 2026-11-24・本件について明示取得) |
+| 必要レビュー主体 | [review-approval-rules.md](review-approval-rules.md) §10 の影響度・高の既定 = **Web部責任者およびチーフデザイナー**。いずれか一方のレビューのみで内容レビュー完了・反映確定として扱わない (同 §10・§11) |
+| 判定理由 | primitive・semantic トークンの追加、variant 語彙への `spot` の追加、`Button.spot` の仕様と使用範囲の規則の新設を含む。同 §8 の編集的訂正 carve-out は token 値・設計内容に影響する変更を除外しており、本件に適用しない。§46-2〜§49-2 でトークンの追加と規範規則の新設を高と判定した前例と同じ性質である |
+| 判定時の対象 | 50-1 の承認対象 ①〜⑥ と Z-1〜Z-3。50-1 に記した記録者が加えた変更 (見本ページ・design.md §7・components.md `OverlayTrigger` の記述の整合) は判定時に示していない (記述の整合であり判定の結論は変わらない、というのは記録者の推定である) |
+
+### 50-3. 取得した現在判断 (2026-11-24)
+
+| 記号 | 判断 | 内容 |
+| --- | --- | --- |
+| Z-1 | **variant 語彙に `spot` を加え、`Button.spot` とする** | 示した選択肢: 「語彙に spot を加える (推奨)」「語彙とは別の軸にする (例 `use: spot`。Chip の `use`・PriceTag の `tone` と同じ扱い)」。取得時に示した事実: travel `components.md` は「variant 語彙は 5 語で確定 (GOV-0002)。語彙外の新設は ADR 必須」と書くが、ADR 正本は未作成 (travel `README.md`)。実装は他のバリアントと同じ形の `.ds-btn--spot`。推奨理由: 実装と名前・形が一致する。別の軸は面の色を変える軸であり実質 variant と同じ役割になり、variant との組み合わせの規則が別に要る。不利益として示した点: 「ADR 必須」の手続きを本判断で代える。語彙の追加は travel に限る (GOV-0002 の cross-service 5 語は不変) |
+| Z-2 | **hover は他のバリアントと同じ暫定参照 (opacity 変化 ≈0.85) に従い、専用の hover 色を設けない** | 示した選択肢: 「共通の暫定に従う (推奨)」「色を変えない (実装どおり)」「暗い段の砂色を新設する (値は別途 Owner 指定)」。取得時に示した事実: 実装の `.ds-btn--spot:hover` は面・文字とも変えていない。focus は全バリアント共通で `{color.focus.ring}` の outline を暫定適用している (components.md `Button` の状態)。実装の hover の是正は実装 Repository 側の課題 |
+| Z-3 | **使用範囲: スポット的な利用に限り、CTA の強弱階層 (`primary` / `secondary` / `ghost` / `text`) の代わりにしない。同じ画面に置く `spot` は 1 つの行き先への入口だけにする (同じ入口を置き場ごとに繰り返すことは妨げない)。砂色を文字・枠に使わない** | 示した選択肢: 「行き先を 1 つに限る (推奨)」「1 画面に 1 つまで (Issue の案)」「数は定めない」。取得時に示した事実 (実装 `tocoo/tocoo_travel` `origin/master` `cc73c220e` のテンプレートを読んだ結果であり実描画は未確認): 宿泊トップにヘッダーの入口と帯の入口 2 本、検索結果にヘッダーの入口・登録帯の入口・初回案内の下端バーの入口が同時に出力されうる。いずれも行き先は紹介LP の 1 つ。「1 画面に 1 つまで」は実装と食い違い実装側の是正が要る。取得時に示さなかった事実 (判断レビュー段で判明): 宿泊トップも初回案内を出す画面に含まれ、条件を満たすときは下端バーの入口も同時に出る。行き先は同じ紹介LP であり結論は変わらない。「スポット的な利用に限る・CTA 階層には使わない」と砂色を文字・枠に使わないことは Issue の記載による |
+
+- 判断の取得方法: 設計承認 (50-1)・Z-1・Z-2・Z-3・影響度 (50-2) の順に、1 問ずつ選択肢を示して取得した。設計承認の前に、実装の使用箇所 (5 箇所)・コントラストの実測 (下記)・GOV-0002 の記述と変更計画を示した。判断レビュー段 (final-reviewer・2026-11-24) の規則内容に関わる指摘 4 点 (`Button.spot` の文字サイズが primitive `typography.size.sm` を直接指す点・砂色の面と周りの面の比 (白 1.50:1 / `#F9F9F9` 1.42:1 / `#E8EDFB` 1.28:1) が文字以外の UI 要素の 3:1 に届かない点・「語彙外の新設は ADR 必須」の今後の効力・見本ページの既存の `.btn` の高さ 44px) は、推奨する対応を添えて 1 回でまとめて示し、「色の追加だけです」の回答を得た (いずれも本件では対応しない)。
+- コントラスト (事実・本 Repository の primitive 値から WCAG 2.x の式で算出): 砂色面 × `#212121` = 10.74:1、砂色面 × 主色 `#2C50C8` = 4.53:1、白地 × 砂色 = 1.50:1、`color.surface.subtle` `#F9F9F9` (実装のヘッダー上部の帯の面) × 砂色 = 1.42:1。このうち `Button.spot` が用いる組 (10.74:1) と禁止する組 (1.50:1) を design.md §2.1 の検証表に載せた。
+- 文字サイズ `{typography.size.sm}` (Issue の記載では Owner 決定 2026-11-13) と寸法 (高さ `{size.tapTarget.commit}`・pill・Issue の記載による) は、Issue #217 の記載に基づいて components.md に書いたものであり、本記録で取得した判断ではない。Issue が記す余白 (spacing.2 × spacing.6) は、DS の `Button` がどのバリアントにも余白を定義していないため書いていない。
+
+### 50-4. 本記録が決定しないこと
+
+- **実装の是正** (暫定トークン名の正式名への置き換えと 🚧 の除去、hover を Z-2 に合わせること)。範囲・順序・期限は実装 Repository 側の課題である。
+- **rental-car・inbound への適用** (rental-car の同入口への適用は別途)。
+- **砂色の hover・active の専用の段** (Z-2 により設けない)。
+- **恒久 Decision ID・ADR・正式 Status・Phase・Gate の採番・作成・新設** (Z-1 の語彙の追加を含む)。
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 | 変更者 |
@@ -2225,3 +2272,4 @@ WCAG 2.x 標準式により算出。不透明度 0.5 を白地 (`#FFFFFF`) の�
 | 2026-11-12 | Task 009-85: §49「中央寄せの器より狭く本文を収める幅 (読み幅) の 3 段 `size.content.sm / md / lg` の追加と役割の割当 (travel)」を §1〜§48 と分離して追加 ([Issue #205](https://github.com/tocoo/coocom-design-system/issues/205))。改訂着手の設計承認 (49-1)・影響度 = 高 (49-2)・現在判断 Y-1〜Y-4 (49-3)・決定しないこと (49-4) を記録した。承認済みの review-approval-rules.md 本体は改定していない | Claude Code |
 | 2026-11-12 | Task 009-85R の記述是正: 判断レビュー (final-reviewer・2026-11-12・ローカルで実行) の指摘に対応。§49-3 に Y-5 (役割の線引き・狭めることは求めない・ヒーロー帯の中の文は対象外)・Y-6 (完了画面は `CompletionPanel` に従う)・Y-7 (注記 975px は本文列へ) を追加し、Y-2 に取得時に示していなかった事実 (560px は実装側の Owner 指定 2026-09-15・広いカードは入力画面でも使用) と引用の原文を補い、Y-3 の 640px の読みを改めた。「判断の取得方法」に 2 回目の取得 (8 点を 1 回で提示) を補い、49-1 ④ の inbound の記述と 49-1 契機の値の列挙 (975px) と 49-4 を是正した | Claude Code |
 | 2026-11-12 | Task 009-85R の記述是正 (2 回目): 判断レビュー 2 回目 (final-reviewer・2026-11-12・ローカルで実行) の指摘に対応。§49-3 の Y-6 に範囲の限定 (認証の完了画面はカード 400px のまま・法人向けは対象外・components.md の用途を広げる) を補い、Y-8 (h1 と h1 のリード文は本文に数えない) を追加し、Y-5 の定義文を design.md と揃え、Y-2 の一般化の削除を記した。49-1 に ⑤ (components.md の変更)、49-2 に Y-5〜Y-8 の時系列、49-4 に部品の値の列挙を補った | Claude Code |
+| 2026-11-24 | Task 009-86: §50「スポット用の塗りボタン `Button.spot` (砂色 `#dcd3b2`) の色とバリアントの定義 (travel)」を §1〜§49 と分離して追加 ([Issue #217](https://github.com/tocoo/coocom-design-system/issues/217))。改訂着手の設計承認 (50-1)・影響度 = 高 (50-2)・現在判断 Z-1〜Z-3 (50-3)・決定しないこと (50-4) を記録した。承認済みの review-approval-rules.md 本体は改定していない | Claude Code |

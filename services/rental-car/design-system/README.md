@@ -74,7 +74,7 @@
 ### 本レイヤーが管理しない
 
 - **ページの配置と余白**・画面構成・URL・route — Component が定義するのは自身の構造・状態・トークン参照だけである ([components.md](components.md) §1)。
-- **画面別の見出し階層・semantic role の割当** (どの画面のどのコンテンツを `h1` / `h2` とするか) — Screen Requirements 側の課題。本レイヤーは `h1`〜`h6` の各要素に当てる**既定値**のみを定める ([design.md](design.md) §3.1)。
+- **画面別の見出し階層・semantic role の割当** (どの画面のどのコンテンツを `h1` / `h2` とするか) — Screen Requirements 側の課題。本レイヤーは `h1`〜`h6` の各要素に当てる**推奨値・既定値**のみを定める ([design.md](design.md) §3.1)。
 - **事業・価格仕様** — 割引率の算出方法・端数処理・上限値は定義しない ([design.md](design.md) §8.1)。
 - **a11y の実装方式** — `role` / `aria-modal` / フォーカストラップ / 復帰先・背面スクロールロックは DS 層で決定しない ([design.md](design.md) §7.1)。
 - **実装 Repository (`tocoo/tocoo_rental_car`) 側の適用作業**・反映の範囲・順序・期限。
